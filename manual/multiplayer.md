@@ -19,7 +19,28 @@ sandbox.exe --help                   :: all options
 - To connect from another PC over UDP, allow `sandbox.exe` in the host's firewall, and set up port forwarding across the internet. With Steam neither is needed.
 - To test with several windows on one PC, use `--host --local` so the firewall prompt does not appear.
 
-Game controls in the example: `WASD` move, `Space` jump, left click push, right drag camera, wheel zoom, `V` vsync, `F12` screenshot, `Esc` quit.
+Game controls in the example: `WASD` or a gamepad's left stick move, `Space` jump, left click push, right drag or right stick camera, wheel zoom, `F6` debug shockwave, `V` vsync, `F12` screenshot, `Esc` quit. The bindings are in `assets/input.bindings` (see {doc}`input`).
+
+## Commands
+
+Inputs are only 8 bytes per player per tick. Things that happen now and then and change the simulation, such as debug cheats, votes or changing a setting during a match, are sent as **commands**.
+Never change the simulation state directly from the view side: the other peers and the shadow simulation would not see the change, and the game would desync.
+
+```cpp
+// sim/Commands.h: a command type (no strings or containers, it is copied as bytes)
+MEALKIT_STRUCT(DebugShockwave) { MEALKIT_FIELD(u32, pushes, 1, "Pushes"); };
+
+// view side: send it
+mealkit::sim::sendCommand(ctx.session, DebugShockwave{});
+
+// World::step(), first thing: handle the commands of this tick
+mealkit::sim::forEachCommand(tickInputs, [&](const mealkit::sim::Command& c) {
+    if (DebugShockwave d; c.read(d)) shockwave(world, c.player, d);
+});
+```
+
+The host puts each command on the next tick it confirms and sends it to every peer together with that tick's inputs, so every peer handles it on the same tick, in the order player number, then send order. A tick carries up to 256 bytes of commands; the rest moves to the next tick.
+Commands are part of the tick inputs, so input recordings, rewind and the shadow simulation include them.
 
 ## Determinism rules
 
