@@ -47,6 +47,12 @@ An action name that is not in the table reads as zero and logs one warning.
 
 Action values are only seen by the view side. The game turns them into its 8-byte input (`GameInput`) for each tick, so input bindings never affect the simulation or the content hash.
 
+## Gamepads
+
+On Windows the engine reads Xbox and XInput-compatible gamepads (four slots) and passes the first connected one to the actions. Unconnected slots are checked once a second, because checking an empty slot is slow.
+A `-` in front of a gamepad input makes it the negative side, so two buttons make one axis: `pad DPadUp -DPadDown`. A trigger bound to a `Button` action is pressed from halfway.
+Gamepads are only read while the game window has focus (in the editor, while the game view has the keyboard). PlayStation and Switch controllers are not supported yet.
+
 ## Player bindings
 
 Keys a player changes are saved in the user folder (`%LOCALAPPDATA%\<game>\input.bindings` on Windows), holding only the rows that differ from the project. They are applied on top of the project file, so a game update that adds actions keeps the player's other keys.

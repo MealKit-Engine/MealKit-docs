@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-18 22:56+0900\n"
+"POT-Creation-Date: 2026-10-18 23:06+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ko\n"
@@ -143,6 +143,12 @@ msgstr "게임이 키보드·마우스를 받지 않는 동안(에디터 게임 
 
 msgid "Action values are only seen by the view side. The game turns them into its 8-byte input (`GameInput`) for each tick, so input bindings never affect the simulation or the content hash."
 msgstr "액션 값은 화면 쪽만 본다. 게임이 틱마다 8바이트 입력(`GameInput`)으로 바꿔 보내므로, 입력 바인딩은 시뮬레이션과 콘텐츠 해시에 영향을 주지 않는다."
+
+msgid "Gamepads"
+msgstr "게임패드"
+
+msgid "On Windows the engine reads Xbox and XInput-compatible gamepads (four slots) and passes the first connected one to the actions. Unconnected slots are checked once a second, because checking an empty slot is slow. A `-` in front of a gamepad input makes it the negative side, so two buttons make one axis: `pad DPadUp -DPadDown`. A trigger bound to a `Button` action is pressed from halfway. Gamepads are only read while the game window has focus (in the editor, while the game view has the keyboard). PlayStation and Switch controllers are not supported yet."
+msgstr "Windows에서 엔진은 Xbox·XInput 호환 게임패드(슬롯 4개)를 읽어 연결된 첫 패드를 액션에 넘긴다. 빈 슬롯은 확인이 느려서 1초에 한 번만 본다. 게임패드 입력 앞에 `-`를 붙이면 음수 쪽이라, 버튼 둘로 축 하나를 만든다: `pad DPadUp -DPadDown`. `Button` 액션에 묶은 트리거는 절반부터 눌림이다. 게임패드는 게임 창에 포커스가 있을 때(에디터에서는 게임 뷰가 키보드를 받을 때)만 읽는다. PlayStation·Switch 컨트롤러는 아직 지원하지 않는다."
 
 msgid "Player bindings"
 msgstr "플레이어 바인딩"
