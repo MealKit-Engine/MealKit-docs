@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-18 18:20+0900\n"
+"POT-Creation-Date: 2026-10-18 23:50+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -127,6 +127,41 @@ msgstr "정의 데이터 표"
 
 msgid "A table has a row type declared with `MEALKIT_STRUCT` and is registered with `MEALKIT_TABLE(Row, \"tables/props.table\", 0)`. The file has a `row <id>` line followed by that row's values. Other data points at a row with a `RowRef<Row>` field (the row id in files, a dropdown in the editor). The game reads tables with `game::loadTable` when a match starts, and simulation code reads rows by number. In the Tables panel (View > Tables, `Ctrl+T`) you add, copy, delete and reorder rows, edit cells, and see every reference to a missing row id. **CSV import and export** let you balance a table in Google Sheets or Excel: the first column is `id` and the other columns are the field paths. Importing replaces the table. A table registered with `reflect::kTableView` is display-only and stays out of the content hash."
 msgstr "표는 `MEALKIT_STRUCT`로 선언한 행 타입을 `MEALKIT_TABLE(Row, \"tables/props.table\", 0)`으로 등록한다. 파일은 `row <id>` 줄 다음에 그 행의 값이 온다. 다른 데이터는 `RowRef<Row>` 필드로 행을 가리킨다(파일에는 행 id, 에디터에는 드롭다운). 게임은 매치를 시작할 때 `game::loadTable`로 표를 읽고, 시뮬레이션 코드는 행을 번호로 읽는다. [표] 패널([보기] > [표], `Ctrl+T`)에서 행을 더하고·복제하고·지우고·순서를 바꾸고, 칸을 고치고, 없는 행 id를 가리키는 참조를 모두 본다. **CSV 가져오기·내보내기**로 Google Sheets나 Excel에서 밸런스를 잡는다: 첫 열은 `id`, 나머지 열은 필드 경로다. 가져오면 표가 CSV 내용으로 바뀐다. `reflect::kTableView`로 등록한 표는 화면 전용이라 콘텐츠 해시에 들어가지 않는다."
+
+msgid "Game text and languages"
+msgstr "게임 글자와 언어"
+
+msgid "Text that players see is never written in code. Each language has a string table `assets/strings/<language>.txt` with one `key = text` per line:"
+msgstr "플레이어에게 보이는 글자는 코드에 쓰지 않는다. 언어마다 문자열 표 `assets/strings/<언어>.txt`가 있고 한 줄에 `키 = 문자열` 하나씩이다:"
+
+#, python-brace-format
+msgid ""
+"# assets/strings/ko.txt\n"
+"menu.start = 시작\n"
+"hud.score = 점수 <1>{score}</1>점\n"
+msgstr ""
+"# assets/strings/ko.txt\n"
+"menu.start = 시작\n"
+"hud.score = 점수 <1>{score}</1>점\n"
+
+#, python-brace-format
+msgid "The view side uses only keys: `ctx.strings.get(\"menu.start\")`, or `ctx.strings.format(\"hud.score\", {{\"score\", \"12\"}})` to fill the `{name}` places. `\\n` is a line break. Numbered tags such as `<1>...</1>` mark text spans with their own style; the game UI reads them, and translators only move them."
+msgstr "화면 쪽은 키만 쓴다: `ctx.strings.get(\"menu.start\")`, `{이름}` 자리를 채울 때는 `ctx.strings.format(\"hud.score\", {{\"score\", \"12\"}})`. `\\n`은 줄바꿈이다. `<1>...</1>` 같은 번호 태그는 자기 스타일이 있는 글자 구간을 표시한다. 게임 UI가 읽고, 번역할 때는 태그 위치만 옮긴다."
+
+msgid "The default language is `language` in the project settings (`ko`). The game picks another with `--lang en` (later, the settings screen)."
+msgstr "기본 언어는 프로젝트 설정의 `language`(`ko`)다. 게임은 `--lang en`으로 다른 언어를 고른다(나중에는 설정 화면)."
+
+msgid "A key missing in the chosen language comes from the default language; a key missing everywhere shows the key name and logs one warning."
+msgstr "고른 언어에 없는 키는 기본 언어에서 가져오고, 어디에도 없는 키는 키 이름을 보여 주고 경고를 한 번 남긴다."
+
+msgid "The tables are reloaded when they change."
+msgstr "표가 바뀌면 다시 읽는다."
+
+msgid "**Every character must be in a font.** Before the game builds, `mealkit_stringcheck` checks that each character of the tables is in one of the fonts in `assets/fonts` (`.ttf`, `.otf`, `.ttc`). A missing one stops the build with `error STR001` and the line. Put a font's license next to it as a `.txt` file; the release build adds it to the notices."
+msgstr "**모든 글자는 글꼴에 있어야 한다.** 게임을 빌드하기 전에 `mealkit_stringcheck`가 표의 모든 글자가 `assets/fonts`의 글꼴(`.ttf`, `.otf`, `.ttc`) 중 하나에 있는지 검사한다. 없는 글자가 있으면 `error STR001`과 줄 번호로 빌드가 멈춘다. 글꼴의 라이선스는 옆에 `.txt` 파일로 두면 출시 빌드가 고지문에 넣는다."
+
+msgid "The example uses Pretendard (SIL Open Font License) for Korean and English."
+msgstr "예제는 한국어와 영어에 Pretendard(SIL Open Font License)를 쓴다."
 
 msgid "Content hash"
 msgstr "콘텐츠 해시"

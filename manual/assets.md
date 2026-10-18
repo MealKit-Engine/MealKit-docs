@@ -45,6 +45,26 @@ Other data points at a row with a `RowRef<Row>` field (the row id in files, a dr
 In the Tables panel (View > Tables, `Ctrl+T`) you add, copy, delete and reorder rows, edit cells, and see every reference to a missing row id. **CSV import and export** let you balance a table in Google Sheets or Excel: the first column is `id` and the other columns are the field paths. Importing replaces the table.
 A table registered with `reflect::kTableView` is display-only and stays out of the content hash.
 
+## Game text and languages
+
+Text that players see is never written in code. Each language has a string table `assets/strings/<language>.txt` with one `key = text` per line:
+
+```text
+# assets/strings/ko.txt
+menu.start = 시작
+hud.score = 점수 <1>{score}</1>점
+```
+
+The view side uses only keys: `ctx.strings.get("menu.start")`, or `ctx.strings.format("hud.score", {{"score", "12"}})` to fill the `{name}` places.
+`\n` is a line break. Numbered tags such as `<1>...</1>` mark text spans with their own style; the game UI reads them, and translators only move them.
+
+- The default language is `language` in the project settings (`ko`). The game picks another with `--lang en` (later, the settings screen).
+- A key missing in the chosen language comes from the default language; a key missing everywhere shows the key name and logs one warning.
+- The tables are reloaded when they change.
+- **Every character must be in a font.** Before the game builds, `mealkit_stringcheck` checks that each character of the tables is in one of the fonts in `assets/fonts` (`.ttf`, `.otf`, `.ttc`). A missing one stops the build with `error STR001` and the line. Put a font's license next to it as a `.txt` file; the release build adds it to the notices.
+
+The example uses Pretendard (SIL Open Font License) for Korean and English.
+
 ## Content hash
 
 When the scene's collision data, model files, tuning values or simulation tables change, the content hash changes. Peers using different data are refused when they connect. View tuning and display-only tables are not included.
