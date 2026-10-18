@@ -1,0 +1,164 @@
+# Korean translation of the MealKit documentation.
+# This file is distributed under the same license as the MealKit documentation (CC BY 4.0).
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: MealKit\n"
+"POT-Creation-Date: 2026-10-18 16:06+0900\n"
+"PO-Revision-Date: 2026-10-18 16:00+0900\n"
+"Last-Translator: KingProtea99\n"
+"Language: ko\n"
+"Language-Team: Korean\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+msgid "Introduction"
+msgstr "소개"
+
+msgid "MealKit is a **3D multiplayer game engine** that stays light and fast on office PCs with Intel integrated graphics. Today it runs on Windows with DirectX 12. Other platforms are planned for stage 5 of the {engine}`roadmap <docs/ROADMAP.md>`."
+msgstr "MealKit은 사무용 PC(Intel 내장 그래픽)에서도 가볍고 빠르게 돌아가는 **3D 멀티플레이 게임 엔진**이다. 지금은 Windows + DirectX 12에서 돈다. 다른 플랫폼은 {engine}`로드맵 <docs/ROADMAP.md>` 5단계다."
+
+msgid "Principles"
+msgstr "원칙"
+
+msgid "**Must have**: 3D and multiplayer."
+msgstr "**반드시 지킬 것**: 3D, 멀티플레이."
+
+msgid "A light, fast engine comes before any one game. Games built on the engine may change."
+msgstr "게임보다 엔진이 가볍고 빠른 것이 우선. 엔진 위의 게임은 바뀔 수 있다."
+
+msgid "Many platforms, with DirectX 12 as the reference. OS APIs are called only behind the platform layer (`mealkit/platform/`) and graphics APIs only behind the engine's thin RHI (`mealkit/rhi/`). Features are not lowered to fit another API."
+msgstr "여러 플랫폼을 지원하되 DirectX 12가 기준이다. OS API는 플랫폼 계층(`mealkit/platform/`), 그래픽 API는 엔진이 만드는 얇은 RHI(`mealkit/rhi/`) 뒤에서만 쓴다. 다른 API에 맞추려고 기능을 낮추지 않는다."
+
+msgid "Goals: release on PC, mobile, web and consoles, editors on Windows, macOS and Linux, and crossplay between all platforms (roadmap stage 5). Simulation code has no platform branches. 2D games are not supported."
+msgstr "목표: PC·모바일·웹·콘솔 출시, Windows·macOS·Linux 에디터, 모든 플랫폼 사이 크로스플레이(로드맵 5단계). 시뮬레이션 코드에는 플랫폼 분기를 두지 않는다. 2D 게임은 지원하지 않는다."
+
+msgid "No game is built in the engine repository. Engine features are proven by using them in the reference samples under `samples/`."
+msgstr "엔진 저장소에서는 게임을 만들지 않는다. 엔진 기능은 `samples/`의 기준 샘플에서 실제로 써서 검증한다."
+
+msgid "The engine builds only deterministic simulation, lockstep networking, the renderer and the editor, and takes everything else from finished external tools and libraries. Authoring tools (Blender, Penpot, Effekseer, VS Code) are used freely. Libraries that ship inside the game are copied into `third_party/` at a fixed version. Libraries that touch the simulation must be verified as deterministic."
+msgstr "엔진은 결정론 시뮬레이션, 락스텝 네트워크, 렌더러, 에디터만 만들고 나머지는 완성된 외부 도구·라이브러리를 가져다 쓴다. 제작 도구(Blender, Penpot, Effekseer, VS Code)는 자유롭게 쓴다. 게임에 들어가는 라이브러리는 버전을 고정해 `third_party/`에 넣는다. 시뮬레이션에 닿는 라이브러리는 결정론을 검증한 것만 쓴다."
+
+msgid "One answer per problem. Design questions such as global access, object composition, pooling and asynchronous work have a single answer in the {engine}`coding model <docs/CODING_MODEL.md>`, and only that answer is used."
+msgstr "한 문제에 답은 하나. 전역 접근, 오브젝트 구성, 풀링, 비동기 같은 설계 질문의 답은 {engine}`코딩 방식 <docs/CODING_MODEL.md>`에 하나씩 정해 두고 그것만 쓴다."
+
+msgid "Current state"
+msgstr "현재 상태"
+
+msgid "Module"
+msgstr "모듈"
+
+msgid "Contents"
+msgstr "내용"
+
+msgid "Core"
+msgstr "Core"
+
+msgid "Logging, high-resolution clock, frame limiter, math (Vec3/Quat/Mat4, reversed-Z), deterministic math (DetMath), PCG32 random numbers, FNV hash, field declarations (`MEALKIT_FIELD`), Tracy markers"
+msgstr "로그, 고해상도 시계, 프레임 제한기, 수학(Vec3/Quat/Mat4, reversed-Z), 결정론 수학(DetMath), PCG32 난수, FNV 해시, 필드 선언(`MEALKIT_FIELD`), Tracy 마커"
+
+msgid "Platform"
+msgstr "Platform"
+
+msgid "The layer that holds all OS calls (`platform/win32/`, and a minimal `platform/posix/` for headless builds that CI compiles on Linux and macOS): Win32 window, per-monitor DPI, Raw Input, paths and user data folders, child processes, DLLs and file dialogs (editor), images (WIC). `tools\\check_platform.ps1` blocks OS calls outside the layer"
+msgstr "OS 호출을 모은 층(`platform/win32/`, 헤드리스용 `platform/posix/` 최소 구현, CI의 Linux·macOS 헤드리스 빌드가 컴파일한다): Win32 창, Per-Monitor DPI, Raw Input, 경로·사용자 데이터 폴더, 자식 프로세스·DLL·파일 대화상자(에디터), 그림(WIC). `tools\\check_platform.ps1`이 층 밖의 OS 호출을 막는다"
+
+msgid "Online"
+msgstr "Online"
+
+msgid "`online::Service`: accounts, friend lobbies, invites, platform relay transport. One backend per build (Steam: game builds with the SDK present; none: everything else, including the Editor build)"
+msgstr "`online::Service`: 계정, 친구 로비, 초대, 플랫폼 릴레이 전송. 백엔드는 빌드 때 하나(Steam: SDK가 있는 게임 빌드, 없음: 그 밖과 Editor 빌드)"
+
+msgid "Render"
+msgstr "Render"
+
+msgid "DirectX 12 forward renderer: instancing per mesh (draw calls = number of mesh kinds), upload ring buffer, shaders compiled at build time (DXC), vertex colors, 16/32-bit indices, PNG screenshots, Tracy GPU timing"
+msgstr "DirectX 12 포워드 렌더러: 메시별 인스턴싱(드로우 콜 = 메시 종류 수), 업로드 링 버퍼, 빌드 시점 셰이더 컴파일(DXC), 정점 색, 16/32비트 인덱스, PNG 스크린샷, Tracy GPU 시간"
+
+msgid "Physics"
+msgstr "Physics"
+
+msgid "Jolt Physics wrapper: boxes, spheres, capsules, convex hulls, ray casts, state hash. Deterministic build"
+msgstr "Jolt Physics 래퍼: 상자/구/캡슐/볼록 껍질, 광선, 상태 해시. 결정론 빌드"
+
+msgid "Asset"
+msgstr "Asset"
+
+msgid "glTF loading (cgltf) + optimization and LOD (meshoptimizer) + model cache"
+msgstr "glTF 불러오기(cgltf) + 최적화·LOD(meshoptimizer) + 모델 캐시"
+
+msgid "Net"
+msgstr "Net"
+
+msgid "Host–client deterministic input lockstep (the host is a player and the relay, no dedicated server): only 8 bytes of input per player per tick, desync detection by state hash, up to 8 players. Transport: UDP (redundant sends, no TCP) or Steam relay. Peers with a different build, scene, models or tuning are refused"
+msgstr "호스트-클라이언트(방장이 플레이어이자 중계자, 전용 서버 없음) 결정론 입력 락스텝: 틱당 플레이어별 입력 8바이트만 전송, 상태 해시로 디싱크 감지, 최대 8명. 전송: UDP(중복 전송, TCP 안 씀) 또는 Steam 릴레이. 빌드·씬·모델·튜닝이 다른 피어는 접속 거부"
+
+msgid "Scene"
+msgstr "Scene"
+
+msgid "Object kinds and fields declared by the game, parent–child hierarchy, environment. Human-readable `.scene` text"
+msgstr "게임이 선언한 물체 종류 + 필드, 부모·자식 계층, 환경. 사람이 읽을 수 있는 `.scene` 텍스트"
+
+msgid "Game / Sim"
+msgstr "Game / Sim"
+
+msgid "`GameInstance` and `GameContext` (the boundary to game code), `Simulation<World>` (fixed ticks, interpolation, shadow simulation, recording and rewind), tuning (`.tuning`), project settings, `Pool<T>`, `TickTimer`, `TickEvents`"
+msgstr "`GameInstance`·`GameContext`(게임 코드 경계), `Simulation<World>`(고정 틱, 보간, 그림자 시뮬레이션, 기록·되감기), 튜닝(`.tuning`), 프로젝트 설정, `Pool<T>`·`TickTimer`·`TickEvents`"
+
+msgid "Editor"
+msgstr "Editor"
+
+msgid "The general-purpose editor `MealKitEditor` (Dear ImGui + ImGuizmo, Korean and English): project manager, game DLL hot reload, docking panels, scene tree, inspector, gizmos, click selection, undo, autosave, model picker, tuning, state and project settings panels, play mode (several players, pause, rewind), game code and release builds"
+msgstr "범용 에디터 `MealKitEditor` (Dear ImGui + ImGuizmo, 한국어/영어): 프로젝트 관리자, 게임 DLL 핫 리로드, 도킹 패널, 씬 트리, 인스펙터, 기즈모, 클릭 선택, 되돌리기, 자동 저장, 모델 선택, 튜닝·상태·프로젝트 설정 패널, 플레이 모드(여러 명, 일시정지·되감기), 게임 코드·출시 빌드"
+
+msgid "Measurements (Intel Core Ultra 5 125U integrated graphics, 1280×720, vsync off, Release, 2,000 boxes + 9 models):"
+msgstr "측정값 (Intel Core Ultra 5 125U 내장 그래픽, 1280×720, 수직동기 끔, Release, 상자 2,000개 + 모델 9개):"
+
+msgid "Item"
+msgstr "항목"
+
+msgid "Value"
+msgstr "값"
+
+msgid "Frame"
+msgstr "프레임"
+
+msgid "about 3,500 fps (0.28 ms), 4 draw calls"
+msgstr "약 3,500 fps (0.28 ms), 드로우 콜 4회"
+
+msgid "Simulation (Jolt, per tick)"
+msgstr "시뮬레이션 (Jolt, 틱당)"
+
+msgid "about 2.5 ms while falling → about 0.9 ms once stacked and asleep"
+msgstr "떨어지는 중 약 2.5 ms → 쌓여서 잠든 뒤 약 0.9 ms"
+
+msgid "4-player network (8,000 boxes)"
+msgstr "4인 네트워크 (상자 8,000개)"
+
+msgid "about 5 KB/s total sent by the host, independent of the number of objects"
+msgstr "호스트 송신 합계 약 5 KB/s, 물체 수와 무관"
+
+msgid "Executables"
+msgstr "실행 파일"
+
+msgid "shipped game about 1.4 MB (static CRT, no redistributable needed). Editor: `MealKitEditor.exe` 1.8 MB + `mealkit.dll` 2.7 MB, game DLL about 0.1 MB"
+msgstr "출시 게임 약 1.4 MB (정적 CRT, 재배포 패키지 불필요). 에디터: `MealKitEditor.exe` 1.8 MB + `mealkit.dll` 2.7 MB, 게임 DLL 약 0.1 MB"
+
+msgid "The performance budget for the minimum spec is in {doc}`../manual/performance`."
+msgstr "최소 사양 성능 예산은 {doc}`../manual/performance`에 있다."
+
+msgid "Voice chat"
+msgstr "보이스 챗"
+
+msgid "Voice chat is not in the engine core. For friends playing together, **Discord calls are recommended**. The runtime cost is small (encoding takes 1–2% of one CPU core, about 3 KB/s per speaker), but the development cost (microphones, echo cancellation) is large. If it becomes necessary, **Steam Voice will be added as an optional module** on top of Steamworks."
+msgstr "보이스 챗은 엔진 코어에 넣지 않았다. 친구끼리는 **디스코드 통화를 권장**한다. 실행 비용은 작지만(인코딩은 CPU 코어 하나의 1~2%, 말하는 사람당 약 3 KB/s), 마이크·에코 제거 등 개발 비용이 크다. 필요해지면 Steamworks 위에 **Steam Voice를 선택 모듈로** 붙인다."
+
+msgid "What's next"
+msgstr "다음 단계"
+
+msgid "The plan and its order are in the {engine}`roadmap <docs/ROADMAP.md>` (\"Recommended order\"), decisions and postponed features in the {engine}`decision log <docs/DECISIONS.md>`, and details of finished items in the {engine}`changelog <docs/CHANGELOG.md>`. The engine is in stage 1 (v0.5, the minimum features that make a game)."
+msgstr "계획과 순서는 {engine}`로드맵 <docs/ROADMAP.md>`(\"추천 순서 요약\"), 정한 것과 미룬 것은 {engine}`결정 기록 <docs/DECISIONS.md>`, 끝낸 것의 상세는 {engine}`변경 기록 <docs/CHANGELOG.md>`에 있다. 엔진은 지금 1단계(v0.5, 게임이 되게 하는 최소 기능) 중이다."
+

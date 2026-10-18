@@ -1,0 +1,149 @@
+# Korean translation of the MealKit documentation.
+# This file is distributed under the same license as the MealKit documentation (CC BY 4.0).
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: MealKit\n"
+"POT-Creation-Date: 2026-10-18 16:06+0900\n"
+"PO-Revision-Date: 2026-10-18 16:00+0900\n"
+"Last-Translator: KingProtea99\n"
+"Language: ko\n"
+"Language-Team: Korean\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+msgid "Glossary"
+msgstr "용어집"
+
+msgid "Terms used in this documentation. The Korean translation uses the same words as the editor's Korean strings."
+msgstr "이 문서에서 쓰는 용어. 한국어 번역은 에디터 한국어 문자열과 같은 말을 쓴다."
+
+msgid "Content hash"
+msgstr "콘텐츠 해시 (Content hash)"
+
+msgid "A hash of the data every peer must share: scene collision data, model files and tuning values. Peers with a different content hash are refused."
+msgstr "모든 피어가 같아야 하는 데이터의 해시: 씬 충돌 데이터, 모델 파일, 튜닝 값. 콘텐츠 해시가 다른 피어는 접속이 거부된다."
+
+msgid "Controller"
+msgstr "컨트롤러 (Controller)"
+
+msgid "What drives a pawn: a player or an AI."
+msgstr "Pawn을 움직이는 것: 플레이어 또는 AI."
+
+msgid "Desync"
+msgstr "디싱크 (Desync)"
+
+msgid "Peers whose simulations no longer match. Detected by comparing state hashes."
+msgstr "피어들의 시뮬레이션이 더 이상 같지 않은 상태. 상태 해시를 비교해 감지한다."
+
+msgid "Deterministic simulation"
+msgstr "결정론 시뮬레이션 (Deterministic simulation)"
+
+msgid "A simulation that gives bit-for-bit the same result from the same inputs on every PC, compiler and operating system."
+msgstr "같은 입력이면 모든 PC·컴파일러·OS에서 비트 단위로 같은 결과를 내는 시뮬레이션."
+
+msgid "Export (release build)"
+msgstr "출시 빌드 (Export)"
+
+msgid "Making the release folder `export/<game>/` that is given to players."
+msgstr "플레이어에게 주는 출시 폴더 `export/<게임>/`를 만드는 것."
+
+msgid "Game DLL"
+msgstr "게임 DLL (Game DLL)"
+
+msgid "The game code built for the editor (`<game>_game.dll`). The editor loads a copy and swaps it in when it changes (hot reload)."
+msgstr "에디터용으로 빌드한 게임 코드(`<게임>_game.dll`). 에디터가 복사본을 불러오고, 바뀌면 바꿔 끼운다(핫 리로드)."
+
+msgid "Headless"
+msgstr "헤드리스 (Headless)"
+
+msgid "Running only the simulation, without a window, renderer or audio."
+msgstr "창·렌더러·오디오 없이 시뮬레이션만 돌리는 것."
+
+msgid "Host"
+msgstr "호스트 (Host)"
+
+msgid "The peer that relays inputs. The host is also a player."
+msgstr "입력을 중계하는 피어(방장). 호스트도 플레이어다."
+
+msgid "Hot reload"
+msgstr "핫 리로드 (Hot reload)"
+
+msgid "Swapping in newly built game code while the editor stays open."
+msgstr "에디터를 켜 둔 채 새로 빌드한 게임 코드로 바꿔 끼우는 것."
+
+msgid "Lockstep"
+msgstr "락스텝 (Lockstep)"
+
+msgid "A network model where peers exchange only inputs and every peer runs the same simulation tick by tick."
+msgstr "피어끼리 입력만 주고받고, 모든 피어가 같은 시뮬레이션을 틱마다 돌리는 네트워크 방식."
+
+msgid "Pawn"
+msgstr "Pawn"
+
+msgid "A body inside the world. A controller possesses a pawn."
+msgstr "월드 안의 몸. 컨트롤러가 Pawn에 빙의한다."
+
+msgid "Platform layer"
+msgstr "플랫폼 계층 (Platform layer)"
+
+msgid "The engine layer that holds all operating system calls (`mealkit/platform/`)."
+msgstr "OS 호출을 모두 모은 엔진 층(`mealkit/platform/`)."
+
+msgid "Player slot"
+msgstr "플레이어 슬롯 (Player slot)"
+
+msgid "A person taking part in a match. Separate from the pawn they control."
+msgstr "매치에 참가한 사람. 그 사람이 조종하는 Pawn과 나뉜다."
+
+msgid "Project"
+msgstr "프로젝트 (Project)"
+
+msgid "A game project folder with a `mealkit.project` file."
+msgstr "`mealkit.project` 파일이 있는 게임 프로젝트 폴더."
+
+msgid "RHI"
+msgstr "RHI"
+
+msgid "The engine's thin rendering hardware interface (`mealkit/rhi/`). Graphics APIs are called only behind it."
+msgstr "엔진이 만드는 얇은 렌더링 하드웨어 인터페이스(`mealkit/rhi/`). 그래픽 API는 그 뒤에서만 부른다."
+
+msgid "Rewind"
+msgstr "되감기 (Rewind)"
+
+msgid "Going back to a recorded snapshot and running the recorded inputs again."
+msgstr "기록한 스냅샷으로 돌아가 기록한 입력을 다시 실행하는 것."
+
+msgid "Shadow simulation"
+msgstr "그림자 시뮬레이션 (Shadow simulation)"
+
+msgid "A second copy of the world run in the same process to check that the simulation reads no hidden global state."
+msgstr "시뮬레이션이 숨은 전역 상태를 읽지 않는지 보려고 같은 프로세스에서 돌리는 두 번째 월드."
+
+msgid "SimCheck"
+msgstr "SimCheck"
+
+msgid "The build-time checker for the determinism rules of the `sim/` folder."
+msgstr "`sim/` 폴더의 결정론 규칙을 빌드 때 검사하는 도구."
+
+msgid "State hash"
+msgstr "상태 해시 (State hash)"
+
+msgid "A hash of the simulation state, compared between peers every tick."
+msgstr "시뮬레이션 상태의 해시. 틱마다 피어끼리 비교한다."
+
+msgid "Tick"
+msgstr "틱 (Tick)"
+
+msgid "One fixed step of the simulation (30 per second today)."
+msgstr "시뮬레이션의 고정된 한 걸음(지금은 초당 30번)."
+
+msgid "Tuning"
+msgstr "튜닝 (Tuning)"
+
+msgid "Numbers the simulation reads (`assets/game.tuning`), edited in the editor's Tuning panel."
+msgstr "시뮬레이션이 읽는 숫자(`assets/game.tuning`). 에디터 [튜닝] 패널에서 고친다."
+

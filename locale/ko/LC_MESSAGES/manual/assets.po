@@ -1,0 +1,53 @@
+# Korean translation of the MealKit documentation.
+# This file is distributed under the same license as the MealKit documentation (CC BY 4.0).
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: MealKit\n"
+"POT-Creation-Date: 2026-10-18 16:06+0900\n"
+"PO-Revision-Date: 2026-10-18 16:00+0900\n"
+"Last-Translator: KingProtea99\n"
+"Language: ko\n"
+"Language-Team: Korean\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+msgid "Assets"
+msgstr "에셋"
+
+msgid "3D models (glTF)"
+msgstr "3D 모델 (glTF)"
+
+msgid "Put `.glb` (recommended) or `.gltf` files under `assets/models/`. In Blender: File → Export → glTF 2.0, format glTF Binary."
+msgstr "`assets/models/` 아래에 `.glb`(권장) 또는 `.gltf`를 둔다. Blender: 파일 → 내보내기 → glTF 2.0, 형식 glTF Binary."
+
+msgid "Scenes store model paths **relative to `assets/`**, like `models/tree.glb`."
+msgstr "씬에는 `models/tree.glb`처럼 **`assets/` 기준 상대 경로**로 저장된다."
+
+msgid "On load, meshoptimizer optimizes the vertex cache, overdraw and fetch order, and builds **two more LOD levels** for models with many triangles. Distant objects use the lighter LODs automatically."
+msgstr "불러올 때 meshoptimizer가 정점 캐시·오버드로·페치 순서를 최적화하고, 삼각형이 많으면 **LOD를 2단계 더** 만든다. 멀어지면 자동으로 가벼운 LOD를 쓴다."
+
+msgid "Colors come from the material base color (baseColorFactor) and vertex colors. **Textures are not supported yet.**"
+msgstr "색은 재질의 기본 색(baseColorFactor)과 정점 색을 쓴다. **텍스처는 아직 지원하지 않는다.**"
+
+msgid "A solid box with a model collides as the **convex hull of the model's vertices** (concave parts are filled in). Hull points are taken from the original vertices before optimization, so they are the same on every PC."
+msgstr "충돌 상자에 붙인 모델은 **모델 정점의 볼록 껍질**로 충돌한다(오목한 부분은 메워진다). 껍질 점은 최적화 전 원본 정점에서 뽑으므로 모든 PC에서 같다."
+
+msgid "The sample models (tree, rock, ring) can be regenerated with `python tools/make_sample_models.py`."
+msgstr "샘플 모델(나무, 바위, 고리)은 `python tools/make_sample_models.py`로 다시 만들 수 있다."
+
+msgid "Tuning values"
+msgstr "튜닝 값"
+
+msgid "Numbers the simulation uses (movement speed, jump strength, and so on) are not constants in code. The game declares them in `MEALKIT_STRUCT(Tuning)` and their values live in `assets/game.tuning`. The simulation reads them through `world.tuning`, and the editor's Tuning panel edits them. Where each kind of number belongs is in the engine's {engine}`coding model <docs/CODING_MODEL.md>` (\"Where do numbers go\")."
+msgstr "시뮬레이션이 쓰는 숫자(이동 속도, 점프 힘 등)는 코드 상수로 두지 않는다. 게임이 `MEALKIT_STRUCT(Tuning)`으로 선언하고 값은 `assets/game.tuning`에 있다. 시뮬레이션은 `world.tuning`으로 읽고, 에디터 [튜닝] 패널에서 고친다. 숫자 종류마다 어디에 두는지는 엔진의 {engine}`코딩 방식 <docs/CODING_MODEL.md>`(\"숫자는 어디에 두나\")에 있다."
+
+msgid "Content hash"
+msgstr "콘텐츠 해시"
+
+msgid "When the scene's collision data, model files or tuning values change, the content hash changes. Peers using different data are refused when they connect."
+msgstr "씬 충돌 데이터, 모델 파일, 튜닝 값이 바뀌면 콘텐츠 해시가 바뀐다. 다른 데이터를 쓰는 피어는 접속이 거부된다."
+

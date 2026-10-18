@@ -1,0 +1,83 @@
+# Korean translation of the MealKit documentation.
+# This file is distributed under the same license as the MealKit documentation (CC BY 4.0).
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: MealKit\n"
+"POT-Creation-Date: 2026-10-18 16:06+0900\n"
+"PO-Revision-Date: 2026-10-18 16:00+0900\n"
+"Last-Translator: KingProtea99\n"
+"Language: ko\n"
+"Language-Team: Korean\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+msgid "Performance"
+msgstr "성능"
+
+msgid "Budget"
+msgstr "예산"
+
+msgid "The minimum spec is Intel 11th generation (Xe) integrated graphics at 1280×720 and 60 fps. Features that exceed the budget must be possible to turn off."
+msgstr "최소 사양은 Intel 11세대(Xe) 내장 그래픽, 1280×720, 60 fps 기준이다. 예산을 넘는 기능은 끌 수 있어야 한다."
+
+msgid "Item"
+msgstr "항목"
+
+msgid "Whole frame (GPU)"
+msgstr "프레임 전체 (GPU)"
+
+msgid "8 ms or less (half of a 60 fps frame stays free)"
+msgstr "8 ms 이하 (60 fps에서 절반을 여유로 남김)"
+
+msgid "Simulation tick (30 Hz)"
+msgstr "시뮬레이션 틱 (30 Hz)"
+
+msgid "4 ms or less per tick"
+msgstr "틱당 4 ms 이하"
+
+msgid "Draw calls"
+msgstr "드로우 콜"
+
+msgid "200 or fewer"
+msgstr "200회 이하"
+
+msgid "Network (4 players, host sending)"
+msgstr "네트워크 (4인, 호스트 송신)"
+
+msgid "10 KB/s or less"
+msgstr "10 KB/s 이하"
+
+msgid "Game executable"
+msgstr "게임 실행 파일"
+
+msgid "5 MB or less (without assets)"
+msgstr "5 MB 이하 (에셋 제외)"
+
+msgid "The current values are in the engine {engine}`roadmap <docs/ROADMAP.md>` (\"Performance budget\") and in {doc}`../about/introduction`."
+msgstr "현재 값은 엔진 {engine}`로드맵 <docs/ROADMAP.md>`(\"성능 예산\")과 {doc}`../about/introduction`에 있다."
+
+msgid "Profiling (Tracy)"
+msgstr "프로파일링 (Tracy)"
+
+msgid "`build.bat Profile` → run `build\\Profile\\bin\\sandbox.exe`."
+msgstr "`build.bat Profile` → `build\\Profile\\bin\\sandbox.exe` 실행."
+
+msgid "Start the Tracy profiler (v0.14.1, https://github.com/wolfpld/tracy/releases) and connect to `127.0.0.1`."
+msgstr "Tracy 프로파일러 앱(v0.14.1, https://github.com/wolfpld/tracy/releases)을 켜고 `127.0.0.1`에 연결한다."
+
+msgid "You see CPU zones per frame (`Simulation`, `Physics step`, `Network`, `Render`, `Editor UI`) and the **GPU frame time**."
+msgstr "프레임별 CPU 구간(`Simulation`, `Physics step`, `Network`, `Render`, `Editor UI`)과 **GPU 프레임 시간**이 보인다."
+
+msgid "In normal builds the `MEALKIT_ZONE(\"name\")` markers produce no code at all, so add them to any function you want to measure."
+msgstr "일반 빌드에서는 `MEALKIT_ZONE(\"이름\")` 마커가 아무 코드도 만들지 않는다. 측정하고 싶은 함수에 마음껏 넣어도 된다."
+
+msgid "Profile builds collect data only while a profiler is connected (`TRACY_ON_DEMAND`) and accept connections only from 127.0.0.1."
+msgstr "프로파일 빌드는 프로파일러가 붙었을 때만 수집하고(`TRACY_ON_DEMAND`), 127.0.0.1에서만 접속을 받는다."
+
+msgid "`MEALKIT_FRAME_MARK()` marks the end of a frame. Both macros are in `mealkit/core/Profile.h`."
+msgstr "`MEALKIT_FRAME_MARK()`는 프레임 끝을 표시한다. 두 매크로는 `mealkit/core/Profile.h`에 있다."
+

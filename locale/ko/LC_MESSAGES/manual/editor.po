@@ -1,0 +1,134 @@
+# Korean translation of the MealKit documentation.
+# This file is distributed under the same license as the MealKit documentation (CC BY 4.0).
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: MealKit\n"
+"POT-Creation-Date: 2026-10-18 16:06+0900\n"
+"PO-Revision-Date: 2026-10-18 16:00+0900\n"
+"Last-Translator: KingProtea99\n"
+"Language: ko\n"
+"Language-Team: Korean\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+msgid "Editor"
+msgstr "에디터"
+
+msgid "The general-purpose editor `MealKitEditor` edits scenes, runs the game in play mode, and builds game code and releases. The first steps are in {doc}`../getting_started/editor_quick_start`."
+msgstr "범용 에디터 `MealKitEditor`는 씬을 편집하고, 플레이 모드로 게임을 돌리고, 게임 코드와 출시본을 빌드한다. 처음 쓰는 방법은 {doc}`../getting_started/editor_quick_start`에 있다."
+
+msgid "Controls"
+msgstr "조작"
+
+msgid "Control"
+msgstr "입력"
+
+msgid "Action"
+msgstr "기능"
+
+msgid "Right drag + `WASD` / `Q` `E`"
+msgstr "오른쪽 드래그 + `WASD` / `Q` `E`"
+
+msgid "Fly the camera (`Shift` for faster, wheel to change speed)"
+msgstr "카메라 비행 (`Shift` 빠르게, 휠로 속도 조절)"
+
+msgid "Wheel / middle drag"
+msgstr "휠 / 가운데 드래그"
+
+msgid "Move forward and back / pan"
+msgstr "앞뒤 이동 / 화면 이동"
+
+msgid "Left click"
+msgstr "왼쪽 클릭"
+
+msgid "Select (click empty space to deselect)"
+msgstr "선택 (빈 곳을 클릭하면 해제)"
+
+msgid "`W` `E` `R`"
+msgstr "`W` `E` `R`"
+
+msgid "Move / rotate / scale gizmo (hold `Ctrl` while dragging to snap)"
+msgstr "이동 / 회전 / 크기 기즈모 (`Ctrl` 누른 채 끌면 스냅)"
+
+msgid "`F` or double-click in the scene tree"
+msgstr "`F` 또는 씬 트리 더블클릭"
+
+msgid "Move the camera to the selected object"
+msgstr "선택한 물체로 카메라 이동"
+
+msgid "`Ctrl+D` / `Delete`"
+msgstr "`Ctrl+D` / `Delete`"
+
+msgid "Duplicate / delete"
+msgstr "복제 / 삭제"
+
+msgid "`Ctrl+Z` / `Ctrl+Y`"
+msgstr "`Ctrl+Z` / `Ctrl+Y`"
+
+msgid "Undo / redo"
+msgstr "되돌리기 / 다시 실행"
+
+msgid "`Ctrl+S` / `Ctrl+O` / `Ctrl+N`"
+msgstr "`Ctrl+S` / `Ctrl+O` / `Ctrl+N`"
+
+msgid "Save / open / new scene"
+msgstr "저장 / 열기 / 새 씬"
+
+msgid "`F5` / `Esc`"
+msgstr "`F5` / `Esc`"
+
+msgid "Play / back to editing"
+msgstr "플레이 / 편집으로 돌아오기"
+
+msgid "`Ctrl+R` / `Ctrl+B`"
+msgstr "`Ctrl+R` / `Ctrl+B`"
+
+msgid "Build game code (hot reload) / release build"
+msgstr "게임 코드 빌드 (핫 리로드) / 출시 빌드"
+
+msgid "Objects"
+msgstr "물체"
+
+msgid "The object kinds come from the game (`MEALKIT_OBJECT` declarations) and appear in the editor's Add menu. The example game has these:"
+msgstr "물체 종류는 게임이 정하고(`MEALKIT_OBJECT` 선언) 에디터 [추가] 메뉴에 나온다. 예제 게임에는 다음이 있다:"
+
+msgid "**Solid box**: visible and collides."
+msgstr "**충돌 상자**: 보이고 부딪힌다."
+
+msgid "**Decoration (no collision)**: only visible."
+msgstr "**장식**: 보이기만 한다."
+
+msgid "**Spawn point**: where players start. Not visible in the game."
+msgstr "**스폰 지점**: 플레이어 시작 위치. 게임에서는 보이지 않는다."
+
+msgid "Solid boxes and decorations can carry a **model** (glTF): `+ Model` in the scene tree, or `Choose Model...` in the inspector. See {doc}`assets`."
+msgstr "충돌 상자와 장식에는 **모델**(glTF)을 붙일 수 있다. 씬 트리의 `+ 모델` 또는 인스펙터의 `모델 선택...`. {doc}`assets`를 본다."
+
+msgid "Scenes are saved as human-readable `.scene` text: each object is its kind name plus field text. Values of child objects are relative to their parent."
+msgstr "씬은 사람이 읽을 수 있는 `.scene` 텍스트로 저장된다. 물체마다 종류 이름 + 필드 텍스트다. 자식 물체의 값은 부모 기준이다."
+
+msgid "Panels"
+msgstr "패널"
+
+msgid "**Tuning**: the game's tuning values (`assets/game.tuning`), which the simulation reads."
+msgstr "**튜닝**: 시뮬레이션이 읽는 게임 튜닝 값(`assets/game.tuning`)."
+
+msgid "**State**: the simulation state declared with `MEALKIT_FIELD` while playing."
+msgstr "**상태**: 플레이 중 `MEALKIT_FIELD`로 선언된 시뮬레이션 상태."
+
+msgid "**Project Settings**: `mealkit.project` (File > Project Settings)."
+msgstr "**프로젝트 설정**: `mealkit.project` ([파일] > [프로젝트 설정])."
+
+msgid "**Build**: the Build menu runs the project's `build.bat Editor` and `build.bat Export` in the background and shows the log."
+msgstr "**빌드**: [빌드] 메뉴가 프로젝트의 `build.bat Editor`·`build.bat Export`를 백그라운드에서 실행하고 로그를 보여 준다."
+
+msgid "Play mode"
+msgstr "플레이 모드"
+
+msgid "Play mode runs the game inside the editor with the scene being edited. It can run several players at once, pause, and rewind. For automated checks, the editor also runs from the command line (see {doc}`../reference/command_line`)."
+msgstr "플레이 모드는 편집 중인 씬으로 에디터 안에서 게임을 돌린다. 여러 명을 같이 돌리고, 일시정지하고, 되감을 수 있다. 자동 검사용으로 에디터를 명령줄에서도 실행할 수 있다({doc}`../reference/command_line`)."
+

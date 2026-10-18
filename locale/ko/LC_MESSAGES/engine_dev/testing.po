@@ -1,0 +1,120 @@
+# Korean translation of the MealKit documentation.
+# This file is distributed under the same license as the MealKit documentation (CC BY 4.0).
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: MealKit\n"
+"POT-Creation-Date: 2026-10-18 16:06+0900\n"
+"PO-Revision-Date: 2026-10-18 16:00+0900\n"
+"Last-Translator: KingProtea99\n"
+"Language: ko\n"
+"Language-Team: Korean\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+msgid "Testing"
+msgstr "테스트"
+
+msgid "Full check"
+msgstr "전체 검증"
+
+msgid ""
+"powershell -ExecutionPolicy Bypass -File tools\\check.ps1          # about 2 minutes, close the editor first\n"
+"powershell -ExecutionPolicy Bypass -File tools\\check.ps1 -Quick   # build + unit tests + determinism tests\n"
+msgstr ""
+"powershell -ExecutionPolicy Bypass -File tools\\check.ps1          # 약 2분, 먼저 에디터를 닫는다\n"
+"powershell -ExecutionPolicy Bypass -File tools\\check.ps1 -Quick   # 빌드 + 단위 테스트 + 결정론 테스트\n"
+
+msgid "Run the full check after changing the engine. Unit tests alone are `build\\Release\\bin\\mealkit_tests.exe` (also in the Editor build; the `detmath-bits` hash must be the same in both builds)."
+msgstr "엔진을 고치면 전체 검증을 돌린다. 단위 테스트만은 `build\\Release\\bin\\mealkit_tests.exe`(Editor 빌드에도 있다. `detmath-bits` 해시가 두 빌드에서 같아야 한다)."
+
+msgid "Determinism test"
+msgstr "결정론 테스트"
+
+msgid "powershell -ExecutionPolicy Bypass -File tools\\mp_test.ps1 -Clients 3 -Ticks 1800\n"
+msgstr "powershell -ExecutionPolicy Bypass -File tools\\mp_test.ps1 -Clients 3 -Ticks 1800\n"
+
+msgid "This starts one host and N clients with bot input and checks that every peer produces the same state hash on the same tick. Client i uses i physics threads, so it also checks that **the result does not depend on the thread count**."
+msgstr "호스트 1개와 클라이언트 N개를 봇 입력으로 실행하고, 모든 피어가 같은 틱에서 같은 상태 해시를 내는지 확인한다. 클라이언트 i는 물리 스레드를 i개 쓰므로, **스레드 수가 달라도 결과가 같은지**도 함께 확인된다."
+
+msgid "powershell -ExecutionPolicy Bypass -File tools\\mp_test.ps1 -Clients 3 -Ticks 900 -ClientExe build\\ClangCL\\bin\\sandbox.exe\n"
+msgstr "powershell -ExecutionPolicy Bypass -File tools\\mp_test.ps1 -Clients 3 -Ticks 900 -ClientExe build\\ClangCL\\bin\\sandbox.exe\n"
+
+msgid "This connects clang-cl clients to an MSVC host to see that **the result does not depend on the compiler** (swap with `-Exe` for the other direction). Normally a different executable is refused, so for this test the host accepts other builds with `--any-build`."
+msgstr "MSVC 빌드 호스트에 clang-cl 빌드 클라이언트를 붙여 **컴파일러가 달라도 결과가 같은지** 본다(`-Exe`와 바꿔 반대 방향도). 보통은 실행 파일이 다르면 접속이 거부되므로, 이때 호스트는 시험용 `--any-build`로 다른 빌드를 받는다."
+
+msgid "With `-Headless`, every peer runs without a window (`--headless`). It runs as fast as inputs allow: 900 ticks take about 5 seconds (about 30 seconds with windows)."
+msgstr "`-Headless`를 붙이면 모든 피어가 창 없이(`--headless`) 돈다. 입력이 허락하는 만큼 빨리 돌아 900틱이 약 5초다(창 모드는 약 30초)."
+
+msgid "Inside one process: `sandbox.exe --bot --exit-tick 900 --shadow --rewind-test --vsync 0` must print `SHADOW ok` and `REWIND ok`."
+msgstr "한 프로세스 안에서: `sandbox.exe --bot --exit-tick 900 --shadow --rewind-test --vsync 0`이 `SHADOW ok`, `REWIND ok`를 출력해야 한다."
+
+msgid "CI (GitHub Actions)"
+msgstr "CI (GitHub Actions)"
+
+msgid "`.github/workflows/ci.yml` runs on every push and pull request. The result table appears in the summary of each Actions run."
+msgstr "`.github/workflows/ci.yml`이 푸시·PR마다 돈다. 결과 표는 Actions 실행의 요약(Summary)에 나온다."
+
+msgid "Build"
+msgstr "빌드"
+
+msgid "Runner"
+msgstr "러너"
+
+msgid "What it builds"
+msgstr "만드는 것"
+
+msgid "`windows-msvc` (reference)"
+msgstr "`windows-msvc` (기준)"
+
+msgid "windows-2022"
+msgstr "windows-2022"
+
+msgid "`build.bat` (Release) + `check_strings` and `check_platform`"
+msgstr "`build.bat` (Release) + `check_strings`·`check_platform`"
+
+msgid "`windows-clang-cl`"
+msgstr "`windows-clang-cl`"
+
+msgid "`build.bat ClangCL`"
+msgstr "`build.bat ClangCL`"
+
+msgid "`windows-msvc-editor`"
+msgstr "`windows-msvc-editor`"
+
+msgid "`build.bat Editor` (unit tests only)"
+msgstr "`build.bat Editor` (단위 테스트만)"
+
+msgid "`linux-x64-clang`"
+msgstr "`linux-x64-clang`"
+
+msgid "ubuntu-24.04"
+msgstr "ubuntu-24.04"
+
+msgid "headless: `sandbox_headless`, `mealkit_tests`"
+msgstr "헤드리스: `sandbox_headless`, `mealkit_tests`"
+
+msgid "`macos-arm64-clang`"
+msgstr "`macos-arm64-clang`"
+
+msgid "macos-15 (Apple Silicon)"
+msgstr "macos-15 (Apple Silicon)"
+
+msgid "Every build runs `tools/ci_test.ps1`: unit tests (`detmath-bits`), a replay of the fixed input recordings `samples/*/replays/*.rec` with `--replay-inputs --hash-log` (`REPLAY ok`), and a headless `mp_test` (1+3, 900 ticks)."
+msgstr "빌드마다 `tools/ci_test.ps1`: 단위 테스트(`detmath-bits`), 저장소의 고정 입력 기록 `samples/*/replays/*.rec`를 `--replay-inputs --hash-log`로 재생(`REPLAY ok`), 헤드리스 `mp_test`(1+3, 900틱)."
+
+msgid "The final `compare` job runs `tools/ci_compare.ps1`, which compares `detmath-bits` and the per-tick hash logs of every build with `windows-msvc`. When they differ, it shows the first tick that differs and fails."
+msgstr "마지막 `compare` 작업의 `tools/ci_compare.ps1`이 모든 빌드의 `detmath-bits`와 틱별 해시 로그를 `windows-msvc`와 비교한다. 다르면 처음 갈라진 틱을 보여 주고 실패한다."
+
+msgid "To run the same locally: `powershell -ExecutionPolicy Bypass -File tools\\ci_test.ps1 -Bin build\\Release\\bin -Name windows-msvc`, then `tools\\ci_compare.ps1 -Dir build\\ci`. The Linux and macOS headless build is `cmake -S . -B build/Headless -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=clang++` → `cmake --build build/Headless --target sandbox_headless mealkit_tests`."
+msgstr "로컬에서 같은 것을 보려면 `powershell -ExecutionPolicy Bypass -File tools\\ci_test.ps1 -Bin build\\Release\\bin -Name windows-msvc` 후 `tools\\ci_compare.ps1 -Dir build\\ci`. Linux·macOS 헤드리스 빌드는 `cmake -S . -B build/Headless -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=clang++` → `cmake --build build/Headless --target sandbox_headless mealkit_tests`."
+
+msgid "**When you change the simulation result on purpose** (physics, game rules, tuning, scenes, bot input), the recordings no longer match and CI and the \"Committed replays\" step of `check.ps1` fail. Run `build.bat`, then `powershell -ExecutionPolicy Bypass -File tools\\record_replay.ps1` (4 headless players, seed 7, 900 ticks) to remake them, and commit them together. If it fails without such a change, it is a desync."
+msgstr "**시뮬레이션 결과를 일부러 바꾸면**(물리·게임 규칙·튜닝·씬·봇 입력) 기록이 맞지 않아 CI와 `check.ps1`의 \"Committed replays\"가 실패한다. `build.bat` 후 `powershell -ExecutionPolicy Bypass -File tools\\record_replay.ps1`(헤드리스 4명, seed 7, 900틱)로 다시 만들어 같이 커밋한다. 그런 변경 없이 실패하면 디싱크다."
+
+msgid "`.rec` files are binary in `.gitattributes`, so line endings are never converted. The runners have no GPU, so screen captures and the shadow/rewind checks run only in the local `check.ps1`. Steam and EOS SDKs are absent, so the \"none\" backend is built."
+msgstr "`.rec`는 `.gitattributes`에서 바이너리라 줄 끝 변환을 받지 않는다. GPU가 없는 러너라 화면 캡처·그림자/되감기 검사는 로컬 `check.ps1`에만 있다. Steam·EOS SDK가 없어 \"없음\" 백엔드로 빌드된다."
+

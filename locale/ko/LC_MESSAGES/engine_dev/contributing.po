@@ -1,0 +1,89 @@
+# Korean translation of the MealKit documentation.
+# This file is distributed under the same license as the MealKit documentation (CC BY 4.0).
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: MealKit\n"
+"POT-Creation-Date: 2026-10-18 16:06+0900\n"
+"PO-Revision-Date: 2026-10-18 16:00+0900\n"
+"Last-Translator: KingProtea99\n"
+"Language: ko\n"
+"Language-Team: Korean\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+msgid "Contributing"
+msgstr "기여하기"
+
+msgid "The repositories are private until the maintainer decides MealKit is ready and publishes them. These rules apply from then on, and to the maintainer already."
+msgstr "저장소는 관리자가 MealKit이 준비됐다고 판단해 공개할 때까지 비공개다. 아래 규칙은 그때부터 적용되고, 관리자에게는 지금부터 적용된다."
+
+msgid "Developer Certificate of Origin (DCO)"
+msgstr "DCO (Developer Certificate of Origin)"
+
+msgid "Contributions are accepted under the [Developer Certificate of Origin](https://developercertificate.org/). There is no contributor license agreement (CLA). Sign off every commit with `git commit -s`, which adds a `Signed-off-by: Name <email>` line. The sign-off states that you have the right to submit the change under the repository's license (engine: MIT, documentation: CC BY 4.0, sample assets: CC0)."
+msgstr "기여는 [Developer Certificate of Origin](https://developercertificate.org/)으로 받는다. 기여자 라이선스 동의서(CLA)는 없다. 커밋마다 `git commit -s`로 서명해 `Signed-off-by: 이름 <이메일>` 줄을 넣는다. 서명은 그 변경을 저장소 라이선스(엔진: MIT, 문서: CC BY 4.0, 샘플 에셋: CC0)로 낼 권리가 있다는 뜻이다."
+
+msgid "Engine rules"
+msgstr "엔진 규칙"
+
+msgid "Follow the order of the {engine}`roadmap <docs/ROADMAP.md>` and the \"postponed\" table in the {engine}`decision log <docs/DECISIONS.md>`. When a decision changes, add a row to the decision log."
+msgstr "{engine}`로드맵 <docs/ROADMAP.md>` 순서와 {engine}`결정 기록 <docs/DECISIONS.md>`의 \"보류\" 표를 따른다. 결정이 바뀌면 결정 기록에 행을 더한다."
+
+msgid "Use only the answers in the {engine}`coding model <docs/CODING_MODEL.md>`. A design question that is not in its table gets a new row, agreed on before any code is written."
+msgstr "{engine}`코딩 방식 <docs/CODING_MODEL.md>`의 답만 쓴다. 표에 없는 설계 질문이면 코드를 짜기 전에 행을 추가하고 합의한다."
+
+msgid "OS APIs are called only in `mealkit/platform/<os>/`, graphics APIs only in `mealkit/rhi/`."
+msgstr "OS API는 `mealkit/platform/<os>/`, 그래픽 API는 `mealkit/rhi/` 안에서만 부른다."
+
+msgid "After changing simulation, physics or network code, run `tools\\mp_test.ps1` and confirm there is no desync. See {doc}`testing`."
+msgstr "시뮬레이션·물리·네트워크 코드를 바꾸면 `tools\\mp_test.ps1`로 디싱크가 없는지 확인한다. {doc}`testing`을 본다."
+
+msgid "Adding an external library"
+msgstr "외부 라이브러리 넣기"
+
+msgid "The engine builds only deterministic simulation, lockstep networking, the renderer and the editor, and prefers finished external libraries for everything else. A runtime library must:"
+msgstr "엔진은 결정론 시뮬레이션, 락스텝 네트워크, 렌더러, 에디터만 만들고 나머지는 완성된 외부 라이브러리를 먼저 쓴다. 런타임 라이브러리는:"
+
+msgid "be verified as deterministic if it touches the simulation,"
+msgstr "시뮬레이션에 닿으면 결정론을 검증해야 하고,"
+
+msgid "have a permissive license (MIT, BSD, zlib, public domain and similar),"
+msgstr "허용 라이선스(MIT, BSD, zlib, 퍼블릭 도메인 등)여야 하고,"
+
+msgid "fit in the 5 MB budget of the shipped executable,"
+msgstr "출시 실행 파일 예산 5 MB 안에 들어가야 하고,"
+
+msgid "be copied into `third_party/` at a fixed version."
+msgstr "버전을 고정해 `third_party/`에 복사해 넣는다."
+
+msgid "When adding one, update {engine}`third_party/VERSIONS.txt` and `THIRD_PARTY_NOTICES.txt` together."
+msgstr "넣을 때는 {engine}`third_party/VERSIONS.txt`와 `THIRD_PARTY_NOTICES.txt`를 함께 고친다."
+
+msgid "Documentation"
+msgstr "문서"
+
+msgid "This documentation lives in its own repository (`MealKit-docs`). English is the source language and Korean is a gettext translation in `locale/ko/LC_MESSAGES/`."
+msgstr "이 문서는 별도 저장소(`MealKit-docs`)에 있다. 영어가 원문이고 한국어는 `locale/ko/LC_MESSAGES/`의 gettext 번역이다."
+
+msgid "Change English and Korean in the same pull request. After editing a page, run `python tools/build.py update`: new sentences appear empty and changed sentences are marked fuzzy in the `.po` files. Translate them and remove the fuzzy flag."
+msgstr "영어와 한국어를 같은 PR에서 고친다. 페이지를 고친 뒤 `python tools/build.py update`를 돌리면 `.po` 파일에 새 문장은 빈 칸으로, 바뀐 문장은 fuzzy로 나온다. 번역하고 fuzzy 표시를 지운다."
+
+msgid "`python tools/build.py check` builds both languages with warnings as errors and fails on any untranslated, fuzzy or leftover message. CI runs the same check and a link check."
+msgstr "`python tools/build.py check`는 두 언어를 경고 = 오류로 빌드하고, 미번역·fuzzy·남은 문장이 하나라도 있으면 실패한다. CI도 같은 검사와 링크 검사를 돈다."
+
+msgid "Use the terms in the {doc}`../glossary`, which match the editor's Korean strings (`engine/res/strings/ko.txt`)."
+msgstr "용어는 에디터 한국어 문자열(`engine/res/strings/ko.txt`)과 맞춘 {doc}`../glossary`를 따른다."
+
+msgid "One documentation branch per engine minor version: `master` is the latest, and `ENGINE_VERSION` must match the engine's `VERSION` (MAJOR.MINOR). Engine messages point to the documentation of their own version."
+msgstr "엔진 MINOR 버전마다 문서 브랜치 하나: `master`가 최신이고, `ENGINE_VERSION`이 엔진 `VERSION`(MAJOR.MINOR)과 같아야 한다. 엔진 메시지는 자기 버전의 문서를 가리킨다."
+
+msgid "Rules that change in the same commit as engine code stay in the engine repository: the roadmap, the decision log, the changelog, `CLAUDE.md`, the coding model with the determinism rules, and `third_party/VERSIONS.txt`. This documentation links to them instead of copying them."
+msgstr "엔진 코드와 같은 커밋에 바뀌는 약속은 엔진 저장소에 둔다: 로드맵, 결정 기록, 변경 기록, `CLAUDE.md`, 결정론 규칙을 포함한 코딩 방식, `third_party/VERSIONS.txt`. 이 문서는 그것을 복사하지 않고 링크한다."
+
+msgid "Editor screenshots are made with the editor's `--capture`, with `--lang en` or `--lang ko` for each language."
+msgstr "에디터 스크린샷은 에디터 `--capture`로 만들고, 언어마다 `--lang en` 또는 `--lang ko`를 붙인다."
+

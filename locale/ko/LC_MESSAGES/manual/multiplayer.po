@@ -1,0 +1,144 @@
+# Korean translation of the MealKit documentation.
+# This file is distributed under the same license as the MealKit documentation (CC BY 4.0).
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: MealKit\n"
+"POT-Creation-Date: 2026-10-18 16:06+0900\n"
+"PO-Revision-Date: 2026-10-18 16:00+0900\n"
+"Last-Translator: KingProtea99\n"
+"Language: ko\n"
+"Language-Team: Korean\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+msgid "Multiplayer and determinism"
+msgstr "멀티플레이와 결정론"
+
+msgid "MealKit multiplayer is **deterministic input lockstep**. Peers send only their inputs (8 bytes per player per tick), every PC runs the same simulation, and state hashes detect desyncs. The host is both a player and the relay. There is no dedicated server."
+msgstr "MealKit 멀티플레이는 **결정론 입력 락스텝**이다. 피어는 입력만 보내고(틱당 플레이어별 8바이트) 모든 PC가 같은 시뮬레이션을 돌리며, 상태 해시로 디싱크를 감지한다. 호스트(방장)가 플레이어이자 중계자다. 전용 서버는 없다."
+
+msgid "Playing together"
+msgstr "같이 플레이하기"
+
+msgid ""
+"sandbox.exe                          :: play alone\n"
+"sandbox.exe --host                   :: host a match (UDP 27015). Press Enter in the lobby to start\n"
+"sandbox.exe --join 192.168.0.10      :: join\n"
+"sandbox.exe --steam                  :: create a Steam friends lobby (needs the Steamworks SDK)\n"
+"sandbox.exe --scene my.scene         :: play another scene\n"
+"sandbox.exe --system-info            :: print CPU and GPU features (exit code 2 below the minimum spec)\n"
+"sandbox.exe --help                   :: all options\n"
+msgstr ""
+"sandbox.exe                          :: 혼자 플레이\n"
+"sandbox.exe --host                   :: 방 만들기 (UDP 27015). 로비에서 Enter로 시작\n"
+"sandbox.exe --join 192.168.0.10      :: 참가\n"
+"sandbox.exe --steam                  :: Steam 친구 로비 만들기 (Steamworks SDK 필요)\n"
+"sandbox.exe --scene my.scene         :: 다른 씬으로 플레이\n"
+"sandbox.exe --system-info            :: CPU·GPU 기능 출력 (최소 사양 미달이면 종료 코드 2)\n"
+"sandbox.exe --help                   :: 전체 옵션\n"
+
+msgid "Every player must use **the same executable, the same scene and the same model files**. Otherwise the connection is refused (this protects determinism)."
+msgstr "모든 플레이어가 **같은 실행 파일, 같은 씬, 같은 모델 파일**을 써야 한다. 다르면 접속이 거부된다(결정론 보장)."
+
+msgid "To connect from another PC over UDP, allow `sandbox.exe` in the host's firewall, and set up port forwarding across the internet. With Steam neither is needed."
+msgstr "UDP로 다른 PC에서 접속하려면 호스트 방화벽에서 `sandbox.exe`를 허용해야 하고, 인터넷 너머라면 포트 포워딩이 필요하다. Steam을 쓰면 둘 다 필요 없다."
+
+msgid "To test with several windows on one PC, use `--host --local` so the firewall prompt does not appear."
+msgstr "같은 PC에서 여러 창으로 테스트할 때는 `--host --local`을 쓰면 방화벽 확인 창이 뜨지 않는다."
+
+msgid "Game controls in the example: `WASD` move, `Space` jump, left click push, right drag camera, wheel zoom, `V` vsync, `F12` screenshot, `Esc` quit."
+msgstr "예제 게임 조작: `WASD` 이동, `Space` 점프, 왼쪽 클릭 밀치기, 오른쪽 드래그 카메라, 휠 줌, `V` 수직동기, `F12` 스크린샷, `Esc` 종료."
+
+msgid "Determinism rules"
+msgstr "결정론 규칙"
+
+msgid "Lockstep works only if every PC computes bit-for-bit the same result. The game's simulation code lives in `sim/`, and `World::step()` calls the system functions in a fixed order. Before every build, **SimCheck** checks the `sim/` files. When a rule is broken, it prints `file(line,col): error SIMnnn` with what to use instead, and stops the build."
+msgstr "락스텝은 모든 PC가 비트 단위로 같은 계산을 해야 동작한다. 게임의 시뮬레이션 코드는 `sim/`에 두고, `World::step()`이 시스템 함수를 정해진 순서로 부른다. 빌드할 때마다 **SimCheck**가 `sim/` 파일을 검사한다. 규칙을 어기면 `파일(줄,열): error SIMnnn`과 대신 쓸 것을 출력하고 빌드를 멈춘다."
+
+msgid "The rules themselves (math functions, floating-point options, random numbers, iteration order, state declarations) change together with engine code, so their canonical text is in the engine's {engine}`coding model <docs/CODING_MODEL.md>` (\"Determinism rules\"). In short:"
+msgstr "규칙 자체(수학 함수, 부동소수점 옵션, 난수, 순회 순서, 상태 선언)는 엔진 코드와 함께 바뀌므로 정본은 엔진의 {engine}`코딩 방식 <docs/CODING_MODEL.md>`(\"결정론 규칙\")에 있다. 요약하면:"
+
+msgid "Use only arithmetic and `sqrt`. For angles, use `detSin`, `detCos` and `detAtan2` from `mealkit/core/DetMath.h`."
+msgstr "사칙연산과 `sqrt`만 쓴다. 각도는 `mealkit/core/DetMath.h`의 `detSin`·`detCos`·`detAtan2`를 쓴다."
+
+msgid "Use only `Pcg32` for random numbers."
+msgstr "난수는 `Pcg32`만 쓴다."
+
+msgid "Keep iteration and creation order fixed. Do not iterate hash maps or depend on pointer addresses."
+msgstr "순회·생성 순서를 고정한다. 해시맵을 순회하지 않고 포인터 주소에 의존하지 않는다."
+
+msgid "The simulation never reads real time, the camera, the frame rate or rendering LOD."
+msgstr "시뮬레이션은 실제 시간, 카메라, 프레임레이트, 렌더링 LOD를 읽지 않는다."
+
+msgid "State that lives across ticks is declared with `MEALKIT_FIELD` inside `WorldState`."
+msgstr "틱을 넘어 남는 상태는 `WorldState` 안에 `MEALKIT_FIELD`로 선언한다."
+
+msgid "Running without a window (headless)"
+msgstr "창 없이 돌리기 (헤드리스)"
+
+msgid ""
+"sandbox_headless.exe --seed 7 --exit-tick 900 --hash-log a.txt --record-inputs match.rec\n"
+"sandbox.exe --headless --replay-inputs match.rec --hash-log b.txt   :: rerun the same inputs and compare the recorded hash every tick\n"
+"sandbox_headless.exe --host --local --players 2 --exit-tick 900      :: networking works as usual (windowed peers can connect too)\n"
+"sandbox_headless.exe --help\n"
+msgstr ""
+"sandbox_headless.exe --seed 7 --exit-tick 900 --hash-log a.txt --record-inputs match.rec\n"
+"sandbox.exe --headless --replay-inputs match.rec --hash-log b.txt   :: 같은 입력으로 다시 돌려 틱마다 기록된 해시와 비교\n"
+"sandbox_headless.exe --host --local --players 2 --exit-tick 900      :: 네트워크도 그대로 (창 있는 피어와도 접속된다)\n"
+"sandbox_headless.exe --help\n"
+
+msgid "No window, renderer or audio is created. Only `World` runs. Input is always bot input, and alone it runs as fast as it can (900 ticks in about 1–2 seconds)."
+msgstr "창·렌더러·오디오를 만들지 않고 `World`만 돌린다. 입력은 항상 봇 입력이고, 혼자면 쉬지 않고 돈다(900틱 약 1~2초)."
+
+msgid "`sandbox_headless.exe` links only `sim/` + `app/Headless.cpp` with the engine core (`mealkit_core`, no renderer or window). On Linux (x64) and macOS (ARM64) with Clang, only this is built. The shipped exe's `--headless` runs the same code."
+msgstr "`sandbox_headless.exe`는 `sim/` + `app/Headless.cpp`만 엔진 코어(`mealkit_core`, 렌더러·창 없음)와 링크한다. Linux(x64)·macOS(ARM64)의 Clang에서는 이것만 빌드한다. 출시 exe의 `--headless`도 같은 코드다."
+
+msgid "`--hash-log`: one `<tick> <hash>` line per tick. The windowed game (`sandbox.exe --bot --hash-log`) writes the same file."
+msgstr "`--hash-log`: 틱마다 `<틱> <해시>` 한 줄. 창 있는 게임(`sandbox.exe --bot --hash-log`)도 같은 파일을 쓴다."
+
+msgid "`--record-inputs` (also in the windowed game) saves the confirmed inputs and the hash of every tick. `--replay-inputs` reruns them without a network and prints `REPLAY ok` or the first tick that differs. To compare builds, compilers or operating systems, do not run bots separately: replay **the same recording** in each build (for example `build\\ClangCL\\bin\\sandbox_headless.exe --replay-inputs match.rec`)."
+msgstr "`--record-inputs`(창 있는 게임에도 있다)는 확정된 입력과 틱별 해시를 저장한다. `--replay-inputs`는 네트워크 없이 그것을 다시 돌려 `REPLAY ok` 또는 처음 갈라진 틱을 출력한다. 빌드·컴파일러·OS 사이 비교는 봇을 따로 돌리지 않고 **같은 기록 파일**을 각 빌드에서 재생한다(예: `build\\ClangCL\\bin\\sandbox_headless.exe --replay-inputs match.rec`)."
+
+msgid "A game project gets `<name>_headless` by putting `MEALKIT_HEADLESS_GAME(class)` in `source/app/Headless.cpp` (`mealkit/game/Headless.h`, coding model \"Headless entry point\")."
+msgstr "게임 프로젝트는 `source/app/Headless.cpp`에 `MEALKIT_HEADLESS_GAME(클래스)`를 두면 `<이름>_headless`가 생긴다(`mealkit/game/Headless.h`, 코딩 방식 \"헤드리스 진입점\")."
+
+msgid "Steamworks"
+msgstr "Steamworks"
+
+msgid "Valve's terms do not allow the Steamworks SDK in the repository. Download it yourself and CMake detects it."
+msgstr "Steamworks SDK는 Valve 약관상 저장소에 넣지 않는다. 직접 받아서 넣으면 CMake가 감지한다."
+
+msgid "Sign in to https://partner.steamgames.com/ with a Steam account → **download the SDK** (`steamworks_sdk_xxx.zip`)."
+msgstr "https://partner.steamgames.com/ 에 Steam 계정으로 로그인 → **SDK 다운로드** (`steamworks_sdk_xxx.zip`)."
+
+msgid "Unzip it and put the whole `sdk` folder at `third_party/steamworks/sdk`. These two files must exist:"
+msgstr "압축을 풀어 `sdk` 폴더째로 `third_party/steamworks/sdk`에 둔다. 아래 두 파일이 있어야 한다:"
+
+msgid "`third_party/steamworks/sdk/public/steam/steam_api.h`"
+msgstr "`third_party/steamworks/sdk/public/steam/steam_api.h`"
+
+msgid "`third_party/steamworks/sdk/redistributable_bin/win64/steam_api64.lib`"
+msgstr "`third_party/steamworks/sdk/redistributable_bin/win64/steam_api64.lib`"
+
+msgid "Run `build.bat` again. If the build log shows `Steamworks SDK found`, it is on. `steam_api64.dll` and `steam_appid.txt` are placed next to the executable automatically. The app ID is `mealkit_add_game(... STEAM_APP_ID <id>)` (default 480)."
+msgstr "`build.bat`을 다시 실행한다. 빌드 로그에 `Steamworks SDK found`가 보이면 켜진 것이다. `steam_api64.dll`과 `steam_appid.txt`는 자동으로 실행 파일 옆에 놓인다. 앱 ID는 `mealkit_add_game(... STEAM_APP_ID <id>)` (기본 480)."
+
+msgid "With the Steam client running, `sandbox.exe --steam` creates a lobby and opens the friend invite window (`I` opens it again). When a friend accepts, the game starts with `+connect_lobby` and joins automatically."
+msgstr "Steam 클라이언트를 켠 상태에서 `sandbox.exe --steam` → 로비가 만들어지고 친구 초대 창이 뜬다(`I`로 다시 열기). 친구가 초대를 수락하면 게임이 `+connect_lobby`로 실행되어 자동으로 들어온다."
+
+msgid "During development, use Valve's test app ID **480 (Spacewar)**. For release, change `STEAM_APP_ID` in the project's `CMakeLists.txt` to your own app ID from Steam. If it is not 480, `steam_appid.txt` is not put in the release folder (Steam launches the game)."
+msgstr "개발 중에는 Valve의 테스트 앱 ID **480(Spacewar)** 을 쓴다. 출시할 때는 프로젝트 `CMakeLists.txt`의 `STEAM_APP_ID`를 Steam에서 받은 내 앱 ID로 바꾼다. 480이 아니면 출시 폴더에 `steam_appid.txt`를 넣지 않는다(Steam이 실행해 준다)."
+
+msgid "The Steam backend (`engine/src/mealkit/online/OnlineSteam.cpp`; games use only `online::Service`) **has been compiled and linked** against SDK v1.65. Connecting through real Steam lobbies and relays has not been verified yet."
+msgstr "Steam 백엔드(`engine/src/mealkit/online/OnlineSteam.cpp`, 게임은 `online::Service`만 쓴다)는 SDK v1.65로 **컴파일·링크까지 확인했다.** 실제 Steam 로비·릴레이로 접속하는 것은 아직 검증하지 못했다."
+
+msgid "`third_party/steamworks/` is in `.gitignore`."
+msgstr "`third_party/steamworks/`는 `.gitignore`에 들어 있다."
+
+msgid "Online features (accounts, lobbies, invites, relay) go only through `online::Service`. Game code never calls a platform SDK directly. The Editor build always uses the \"none\" backend."
+msgstr "온라인 기능(계정·로비·초대·릴레이)은 `online::Service`로만 쓴다. 게임 코드는 플랫폼 SDK를 직접 부르지 않는다. Editor 빌드는 항상 \"없음\" 백엔드다."
+
