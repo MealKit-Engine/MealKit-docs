@@ -1,0 +1,97 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, KingProtea99 and MealKit contributors. CC BY 4.0
+# This file is distributed under the same license as the MealKit package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: MealKit 0.4\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-18 23:36+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ko\n"
+"Language-Team: ko <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+msgid "Debug UI"
+msgstr "디버그 UI"
+
+msgid "Screens for development (performance numbers, cheat buttons, state views) are written in code with [Dear ImGui](https://github.com/ocornut/imgui). They are not game UI: the shipped game does not contain them."
+msgstr "개발용 화면(성능 숫자, 치트 버튼, 상태 보기)은 [Dear ImGui](https://github.com/ocornut/imgui)로 코드에서 만든다. 게임 UI가 아니라서 출시 게임에는 들어가지 않는다."
+
+msgid "Where it shows"
+msgstr "어디에 나오나"
+
+msgid "Build"
+msgstr "빌드"
+
+msgid "How"
+msgstr "방법"
+
+msgid "Development game (`build.bat`, `Debug`, `Profile`)"
+msgstr "개발용 게임(`build.bat`, `Debug`, `Profile`)"
+
+msgid "Press `F1` to show or hide the overlay (`--debug-ui` starts with it shown). The engine window \"MealKit\" shows frame time, simulation time, network and audio numbers"
+msgstr "`F1`로 오버레이를 켜고 끈다(`--debug-ui`는 켠 채로 시작). 엔진 창 \"MealKit\"이 프레임 시간, 시뮬레이션 시간, 네트워크와 소리 숫자를 보여 준다"
+
+msgid "Editor play mode"
+msgstr "에디터 플레이 모드"
+
+msgid "Always, as windows over the editor"
+msgstr "항상, 에디터 위의 창으로"
+
+msgid "Release build (`build.bat Export`)"
+msgstr "출시 빌드(`build.bat Export`)"
+
+msgid "Not there: ImGui is not compiled in"
+msgstr "없다: ImGui를 컴파일하지 않는다"
+
+msgid "While the mouse or keyboard is over a debug window, the game does not receive it."
+msgstr "마우스나 키보드가 디버그 창 위에 있는 동안은 게임이 그 입력을 받지 않는다."
+
+msgid "Writing a debug window"
+msgstr "디버그 창 만들기"
+
+msgid "The game overrides `GameInstance::debugUi` and wraps the body in `#if MEALKIT_DEBUG_UI`, because release builds have no ImGui:"
+msgstr "게임은 `GameInstance::debugUi`를 구현하고, 출시 빌드에는 ImGui가 없으므로 몸을 `#if MEALKIT_DEBUG_UI`로 감싼다:"
+
+#, python-brace-format, python-format
+msgid ""
+"#if MEALKIT_DEBUG_UI\n"
+"#include <imgui.h>\n"
+"#endif\n"
+"\n"
+"void GameSession::debugUi(mealkit::game::GameContext& ctx) {\n"
+"#if MEALKIT_DEBUG_UI\n"
+"    if (ImGui::Begin(\"Sandbox\", nullptr, ImGuiWindowFlags_AlwaysAutoResize)) {\n"
+"        ImGui::Text(\"tick %u\", m_sim.world().state.tick);\n"
+"        if (ImGui::Button(\"Shockwave\")) mealkit::sim::sendCommand(ctx.session, DebugShockwave{});\n"
+"    }\n"
+"    ImGui::End();\n"
+"#endif\n"
+"}\n"
+msgstr ""
+"#if MEALKIT_DEBUG_UI\n"
+"#include <imgui.h>\n"
+"#endif\n"
+"\n"
+"void GameSession::debugUi(mealkit::game::GameContext& ctx) {\n"
+"#if MEALKIT_DEBUG_UI\n"
+"    if (ImGui::Begin(\"Sandbox\", nullptr, ImGuiWindowFlags_AlwaysAutoResize)) {\n"
+"        ImGui::Text(\"tick %u\", m_sim.world().state.tick);\n"
+"        if (ImGui::Button(\"Shockwave\")) mealkit::sim::sendCommand(ctx.session, DebugShockwave{});\n"
+"    }\n"
+"    ImGui::End();\n"
+"#endif\n"
+"}\n"
+
+#, python-brace-format
+msgid "A button that changes the simulation sends a command (see {doc}`multiplayer`), never changes the state directly. Otherwise the other players and the shadow simulation would desync. In the editor, the game DLL uses the editor's own ImGui inside `mealkit.dll`, so there is nothing to set up."
+msgstr "시뮬레이션을 바꾸는 버튼은 상태를 직접 고치지 않고 명령을 보낸다({doc}`multiplayer` 참고). 그러지 않으면 다른 플레이어와 그림자 시뮬레이션이 디싱크된다. 에디터에서는 게임 DLL이 `mealkit.dll` 안의 에디터 ImGui를 그대로 쓰므로 따로 준비할 것이 없다."
+

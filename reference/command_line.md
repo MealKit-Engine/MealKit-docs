@@ -33,6 +33,7 @@ The example game is called `sandbox`. In a game project, the executables carry t
 | `--hash-log <file>` | Write `<tick> <hash>` for every tick |
 | `--record-inputs <file>` | Save confirmed inputs and hashes (replay with `--headless --replay-inputs`) |
 | `--mute` | Start with sound off (automated tests) |
+| `--debug-ui` | Start with the debug UI shown (development builds, `F1` toggles it) |
 | `--headless` | Run without a window (the options below) |
 
 ## Headless (`<game>_headless.exe`, `<game>.exe --headless`)
@@ -46,7 +47,7 @@ The example game is called `sandbox`. In a game project, the executables carry t
 | `--delay`, `--seed`, `--threads`, `--scene`, `--tuning`, `--shadow`, `--hash-log`, `--record-inputs`, `--any-build` | As in the game |
 | `--replay-inputs <file>` | Replay a recorded match and compare every tick hash (no network) |
 
-Window options (`--bot`, `--vsync`, `--fps`, `--size`, `--debug`, `--mute`) are accepted and ignored.
+Window options (`--bot`, `--vsync`, `--fps`, `--size`, `--debug`, `--mute`, `--debug-ui`) are accepted and ignored.
 
 ## Editor (`MealKitEditor.exe`)
 

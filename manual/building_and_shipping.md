@@ -5,13 +5,13 @@
 | Command | Folder | What it is for |
 |---|---|---|
 | `build.bat Editor` | `build\Editor` | The editor: engine `mealkit.dll` (dynamic CRT) + `MealKitEditor.exe`, and in a project only the game DLL `<game>_game.dll` |
-| `build.bat` | `build\Release` | The shipped game: one static `<game>.exe` (static CRT), plus `<game>_headless.exe` |
+| `build.bat` | `build\Release` | The development game: one static `<game>.exe` (static CRT) with the debug UI, plus `<game>_headless.exe` |
 | `build.bat Debug` | `build\Debug` | Debugging, with the D3D12 debug layer |
 | `build.bat Profile` | `build\Profile` | Release with Tracy markers (see {doc}`performance`) |
-| `build.bat Export` | `export\<game>\` | The release folder |
+| `build.bat Export` | `build\Export` → `export\<game>\` | The release folder, built without the debug UI |
 
 The Editor and Release builds use different CRTs and library kinds, so they live in separate folders.
-The shipped exe stays a single static file and never links the editor (Dear ImGui, ImGuizmo).
+The shipped exe stays a single static file and never links the editor. Dear ImGui is only in development builds and the editor (see {doc}`debug_ui`): the export builds the game again in its own folder with the debug UI turned off, so the first export takes longer.
 
 (export)=
 ## Release build (export)

@@ -3,8 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: MealKit\n"
-"POT-Creation-Date: 2026-10-18 16:06+0900\n"
+"Project-Id-Version:  MealKit\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-10-18 23:36+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -45,8 +46,8 @@ msgstr "`build.bat`"
 msgid "`build\\Release`"
 msgstr "`build\\Release`"
 
-msgid "The shipped game: one static `<game>.exe` (static CRT), plus `<game>_headless.exe`"
-msgstr "출시 게임: 정적 단일 `<게임>.exe`(정적 CRT)와 `<게임>_headless.exe`"
+msgid "The development game: one static `<game>.exe` (static CRT) with the debug UI, plus `<game>_headless.exe`"
+msgstr "개발용 게임: 디버그 UI가 들어 있는 정적 단일 `<게임>.exe`(정적 CRT)와 `<게임>_headless.exe`"
 
 msgid "`build.bat Debug`"
 msgstr "`build.bat Debug`"
@@ -63,20 +64,22 @@ msgstr "`build.bat Profile`"
 msgid "`build\\Profile`"
 msgstr "`build\\Profile`"
 
+#, python-brace-format
 msgid "Release with Tracy markers (see {doc}`performance`)"
 msgstr "Tracy 마커가 들어간 Release ({doc}`performance` 참고)"
 
 msgid "`build.bat Export`"
 msgstr "`build.bat Export`"
 
-msgid "`export\\<game>\\`"
-msgstr "`export\\<게임>\\`"
+msgid "`build\\Export` → `export\\<game>\\`"
+msgstr "`build\\Export` → `export\\<게임>\\`"
 
-msgid "The release folder"
-msgstr "출시 폴더"
+msgid "The release folder, built without the debug UI"
+msgstr "출시 폴더 (디버그 UI 없이 빌드)"
 
-msgid "The Editor and Release builds use different CRTs and library kinds, so they live in separate folders. The shipped exe stays a single static file and never links the editor (Dear ImGui, ImGuizmo)."
-msgstr "Editor와 Release 빌드는 CRT와 라이브러리 형태가 달라 폴더가 나뉜다. 출시 exe는 정적 단일 파일을 유지하고 에디터(Dear ImGui, ImGuizmo)를 링크하지 않는다."
+#, python-brace-format
+msgid "The Editor and Release builds use different CRTs and library kinds, so they live in separate folders. The shipped exe stays a single static file and never links the editor. Dear ImGui is only in development builds and the editor (see {doc}`debug_ui`): the export builds the game again in its own folder with the debug UI turned off, so the first export takes longer."
+msgstr "Editor와 Release 빌드는 CRT와 라이브러리 형태가 달라 폴더가 나뉜다. 출시 exe는 정적 단일 파일을 유지하고 에디터를 링크하지 않는다. Dear ImGui는 개발 빌드와 에디터에만 있다({doc}`debug_ui` 참고): 출시 빌드는 디버그 UI를 끄고 자기 폴더에서 게임을 다시 빌드하므로 처음 한 번은 오래 걸린다."
 
 msgid "Release build (export)"
 msgstr "출시 빌드 (export)"
