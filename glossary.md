@@ -35,6 +35,9 @@ Headless
 Host
 : The peer that relays inputs. The host is also a player.
 
+Input action
+: A named control the game reads (`move`, `jump`) instead of keys. Bindings to keys, mouse and gamepad are in `assets/input.bindings`.
+
 Hit stop
 : A short freeze of the view on a strong hit. Only the view stops; the simulation keeps running.
 

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-18 22:43+0900\n"
+"POT-Creation-Date: 2026-10-18 22:56+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -87,6 +87,12 @@ msgstr "호스트 (Host)"
 
 msgid "The peer that relays inputs. The host is also a player."
 msgstr "입력을 중계하는 피어(방장). 호스트도 플레이어다."
+
+msgid "Input action"
+msgstr "입력 액션 (Input action)"
+
+msgid "A named control the game reads (`move`, `jump`) instead of keys. Bindings to keys, mouse and gamepad are in `assets/input.bindings`."
+msgstr "게임이 키 대신 읽는 이름 붙은 조작(`move`, `jump`). 키·마우스·게임패드 바인딩은 `assets/input.bindings`에 있다."
 
 msgid "Hit stop"
 msgstr "화면 정지 (Hit stop)"

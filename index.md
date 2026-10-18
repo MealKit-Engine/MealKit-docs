@@ -33,6 +33,7 @@ manual/projects
 manual/editor
 manual/assets
 manual/sound
+manual/input
 manual/multiplayer
 manual/building_and_shipping
 manual/performance
