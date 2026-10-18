@@ -35,6 +35,7 @@ manual/assets
 manual/sound
 manual/input
 manual/ui
+manual/settings
 manual/debug_ui
 manual/multiplayer
 manual/building_and_shipping

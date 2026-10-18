@@ -1,0 +1,87 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, KingProtea99 and MealKit contributors. CC BY 4.0
+# This file is distributed under the same license as the MealKit package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: MealKit 0.4\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-19 08:18+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ko\n"
+"Language-Team: ko <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+msgid "Player settings"
+msgstr "플레이어 설정"
+
+msgid "Every game gets the same settings without writing them: display, audio, controls, keys and game options. The engine stores them, applies them and opens a standard settings screen; the game only restyles the screen."
+msgstr "모든 게임이 따로 만들지 않아도 같은 설정을 갖는다: 화면, 소리, 조작, 키, 게임 옵션. 엔진이 저장하고 적용하고 표준 설정 화면을 열며, 게임은 화면의 모양만 바꾼다."
+
+msgid "What is in it"
+msgstr "들어 있는 것"
+
+msgid "Tab"
+msgstr "탭"
+
+msgid "Settings"
+msgstr "설정"
+
+msgid "Display"
+msgstr "화면"
+
+msgid "Window mode (windowed, borderless window, fullscreen), resolution of the window, vertical sync, frame limit, render scale, graphics quality, field of view, brightness"
+msgstr "창 모드(창, 테두리 없는 창, 전체 화면), 창 해상도, 수직 동기, 프레임 제한, 렌더 배율, 그래픽 품질, 시야각, 밝기"
+
+msgid "Audio"
+msgstr "소리"
+
+msgid "Master, music, effects, interface and voice volume (the audio buses), mute when the window is in the background"
+msgstr "전체·배경음·효과음·인터페이스·음성 볼륨(오디오 버스), 창이 뒤에 있으면 소리 끄기"
+
+msgid "Controls"
+msgstr "조작"
+
+msgid "Mouse and gamepad sensitivity, invert Y"
+msgstr "마우스·게임패드 감도, Y축 반전"
+
+msgid "Keys"
+msgstr "키"
+
+msgid "One row per button action: press it, then press the new key (Esc cancels). A key used by another action is marked. Reset restores the project's keys"
+msgstr "버튼 액션마다 한 줄: 누른 다음 새 키를 누른다(Esc는 취소). 다른 동작이 쓰는 키면 표시한다. 기본값은 프로젝트의 키로 되돌린다"
+
+msgid "Game"
+msgstr "게임"
+
+msgid "Language, interface size, subtitles"
+msgstr "언어, 인터페이스 크기, 자막"
+
+msgid "Fullscreen is a borderless window the size of the monitor. Render scale, graphics quality and brightness are stored now and used by the graphics features of stage 2. When the resolution or window mode changes, a box asks to keep it and reverts after 15 seconds without an answer."
+msgstr "전체 화면은 모니터 크기의 테두리 없는 창이다. 렌더 배율, 그래픽 품질, 밝기는 지금은 저장만 하고 2단계 그래픽 기능이 쓴다. 해상도나 창 모드를 바꾸면 유지할지 묻는 창이 뜨고, 15초 안에 답하지 않으면 되돌린다."
+
+msgid "The values are saved in the user folder (`%LOCALAPPDATA%\\<game>\\settings.ini` on Windows), next to the player's key bindings. They are not part of the content hash, and the simulation never reads them: sensitivity and invert are applied to the input actions before the game turns them into its tick input."
+msgstr "값은 사용자 폴더(Windows는 `%LOCALAPPDATA%\\<game>\\settings.ini`)에 플레이어 키 바인딩과 같이 저장한다. 콘텐츠 해시에 들어가지 않고 시뮬레이션은 읽지 않는다: 감도와 반전은 게임이 틱 입력으로 바꾸기 전에 입력 액션에 적용한다."
+
+msgid "Using it from the game"
+msgstr "게임에서 쓰기"
+
+msgid "Any button in a `.ui` file with `button settings.open` opens the settings screen. In code: `ctx.settings.open()`."
+msgstr "`.ui` 파일의 어느 버튼이든 `button settings.open`이면 설정 화면을 연다. 코드에서는 `ctx.settings.open()`."
+
+msgid "`ctx.settings.values()` reads the settings on the view side, for example `values().display.fov` for the camera."
+msgstr "`ctx.settings.values()`로 화면 쪽에서 설정을 읽는다. 예: 카메라의 `values().display.fov`."
+
+msgid "The look of the screen is `assets/ui/settings.ui`. Change it freely, but keep its bindings (`tabs`, `rows` and the row fields) and its `settings.*` actions. The text comes from the string table keys `settings.*`, `action.<id>` and `language.<code>`."
+msgstr "화면 모양은 `assets/ui/settings.ui`다. 자유롭게 바꾸되 바인딩(`tabs`, `rows`와 줄 필드)과 `settings.*` 액션은 그대로 둔다. 글자는 문자열 표의 `settings.*`, `action.<id>`, `language.<code>` 키에서 온다."
+
+msgid "Automated runs (`--exit-tick`) use the default settings and do not save, so the settings on one PC do not change test results. Giving `--size`, `--vsync` or `--fps` makes that run use the command line instead of the display settings. `--settings` starts with the screen open."
+msgstr "자동 실행(`--exit-tick`)은 기본 설정으로 돌고 저장하지 않으므로, 한 PC의 설정이 시험 결과를 바꾸지 않는다. `--size`, `--vsync`, `--fps`를 주면 그 실행은 화면 설정 대신 명령줄을 쓴다. `--settings`는 설정 화면을 연 채로 시작한다."
+

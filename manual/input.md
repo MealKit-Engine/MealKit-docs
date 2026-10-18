@@ -56,4 +56,4 @@ Gamepads are only read while the game window has focus (in the editor, while the
 ## Player bindings
 
 Keys a player changes are saved in the user folder (`%LOCALAPPDATA%\<game>\input.bindings` on Windows), holding only the rows that differ from the project. They are applied on top of the project file, so a game update that adds actions keeps the player's other keys.
-The settings screen that changes them comes with the settings item of the roadmap.
+The Keys tab of the settings screen changes them (see {doc}`settings`).

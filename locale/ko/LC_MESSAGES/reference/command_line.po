@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-19 08:05+0900\n"
+"POT-Creation-Date: 2026-10-19 08:18+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -199,6 +199,12 @@ msgstr "`--debug-ui`"
 msgid "Start with the debug UI shown (development builds, `F1` toggles it)"
 msgstr "디버그 UI를 켠 채로 시작(개발 빌드, `F1`로 켜고 끈다)"
 
+msgid "`--settings`"
+msgstr "`--settings`"
+
+msgid "Start with the settings screen open"
+msgstr "설정 화면을 연 채로 시작"
+
 msgid "`--lang <code>`"
 msgstr "`--lang <code>`"
 
@@ -247,8 +253,8 @@ msgstr "`--replay-inputs <file>`"
 msgid "Replay a recorded match and compare every tick hash (no network)"
 msgstr "기록한 매치를 다시 돌려 틱마다 해시 비교 (네트워크 없음)"
 
-msgid "Window options (`--bot`, `--vsync`, `--fps`, `--size`, `--debug`, `--mute`, `--debug-ui`, `--lang`) are accepted and ignored."
-msgstr "창 옵션(`--bot`, `--vsync`, `--fps`, `--size`, `--debug`, `--mute`, `--debug-ui`, `--lang`)은 받기만 하고 무시한다."
+msgid "Window options (`--bot`, `--vsync`, `--fps`, `--size`, `--debug`, `--mute`, `--debug-ui`, `--settings`, `--lang`) are accepted and ignored."
+msgstr "창 옵션(`--bot`, `--vsync`, `--fps`, `--size`, `--debug`, `--mute`, `--debug-ui`, `--settings`, `--lang`)은 받기만 하고 무시한다."
 
 msgid "Editor (`MealKitEditor.exe`)"
 msgstr "에디터 (`MealKitEditor.exe`)"
