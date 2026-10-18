@@ -42,6 +42,12 @@ mealkit::sim::forEachCommand(tickInputs, [&](const mealkit::sim::Command& c) {
 The host puts each command on the next tick it confirms and sends it to every peer together with that tick's inputs, so every peer handles it on the same tick, in the order player number, then send order. A tick carries up to 256 bytes of commands; the rest moves to the next tick.
 Commands are part of the tick inputs, so input recordings, rewind and the shadow simulation include them.
 
+## Match start data
+
+Values each player brings into the match, such as a chosen character or equipment, are a **loadout**: a `MEALKIT_STRUCT` of up to 128 bytes without strings.
+Before the match, `GameInstance::lobby` sends it with `mealkit::game::setLoadout(session, loadout)`. The host collects every player's loadout from the lobby and sends them all when it starts the match.
+The match start (`startWorld`) reads them with `mealkit::game::readLoadout(match, player, loadout)` and copies them into the players' state, which is hashed like any other state. Input recordings keep the loadouts, so replays rebuild the same match.
+
 ## Determinism rules
 
 Lockstep works only if every PC computes bit-for-bit the same result. The game's simulation code lives in `sim/`, and `World::step()` calls the system functions in a fixed order.

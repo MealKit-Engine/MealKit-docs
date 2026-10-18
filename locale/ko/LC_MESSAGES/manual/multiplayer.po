@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-18 23:18+0900\n"
+"POT-Creation-Date: 2026-10-19 08:37+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -87,6 +87,12 @@ msgstr ""
 
 msgid "The host puts each command on the next tick it confirms and sends it to every peer together with that tick's inputs, so every peer handles it on the same tick, in the order player number, then send order. A tick carries up to 256 bytes of commands; the rest moves to the next tick. Commands are part of the tick inputs, so input recordings, rewind and the shadow simulation include them."
 msgstr "호스트는 명령을 다음에 확정하는 틱에 붙여 그 틱의 입력과 함께 모든 피어에 보낸다. 그래서 모든 피어가 같은 틱에, 플레이어 번호 → 보낸 순서로 처리한다. 한 틱에는 명령을 256바이트까지 싣고 나머지는 다음 틱으로 넘어간다. 명령은 틱 입력의 일부라서 입력 기록, 되감기, 그림자 시뮬레이션에 같이 들어간다."
+
+msgid "Match start data"
+msgstr "매치 시작 데이터"
+
+msgid "Values each player brings into the match, such as a chosen character or equipment, are a **loadout**: a `MEALKIT_STRUCT` of up to 128 bytes without strings. Before the match, `GameInstance::lobby` sends it with `mealkit::game::setLoadout(session, loadout)`. The host collects every player's loadout from the lobby and sends them all when it starts the match. The match start (`startWorld`) reads them with `mealkit::game::readLoadout(match, player, loadout)` and copies them into the players' state, which is hashed like any other state. Input recordings keep the loadouts, so replays rebuild the same match."
+msgstr "고른 캐릭터나 장비처럼 플레이어마다 매치에 가져가는 값은 **로드아웃**이다: 문자열이 없는 128바이트 이하의 `MEALKIT_STRUCT`. 매치 전에 `GameInstance::lobby`가 `mealkit::game::setLoadout(session, loadout)`으로 보낸다. 호스트는 로비에서 모두의 로드아웃을 모았다가 매치를 시작할 때 한꺼번에 보낸다. 매치 시작(`startWorld`)이 `mealkit::game::readLoadout(match, player, loadout)`으로 읽어 플레이어 상태에 복사하므로 다른 상태처럼 해시에 들어간다. 입력 기록이 로드아웃을 갖고 있어 재생도 같은 매치를 다시 만든다."
 
 msgid "Determinism rules"
 msgstr "결정론 규칙"
