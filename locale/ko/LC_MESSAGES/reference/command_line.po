@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-18 18:20+0900\n"
+"POT-Creation-Date: 2026-10-18 22:45+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -187,6 +187,12 @@ msgstr "`--record-inputs <file>`"
 msgid "Save confirmed inputs and hashes (replay with `--headless --replay-inputs`)"
 msgstr "확정된 입력과 해시 저장 (재생은 `--headless --replay-inputs`)"
 
+msgid "`--mute`"
+msgstr "`--mute`"
+
+msgid "Start with sound off (automated tests)"
+msgstr "소리를 끄고 시작(자동 시험)"
+
 msgid "`--headless`"
 msgstr "`--headless`"
 
@@ -229,8 +235,8 @@ msgstr "`--replay-inputs <file>`"
 msgid "Replay a recorded match and compare every tick hash (no network)"
 msgstr "기록한 매치를 다시 돌려 틱마다 해시 비교 (네트워크 없음)"
 
-msgid "Window options (`--bot`, `--vsync`, `--fps`, `--size`, `--debug`) are accepted and ignored."
-msgstr "창 옵션(`--bot`, `--vsync`, `--fps`, `--size`, `--debug`)은 받기만 하고 무시한다."
+msgid "Window options (`--bot`, `--vsync`, `--fps`, `--size`, `--debug`, `--mute`) are accepted and ignored."
+msgstr "창 옵션(`--bot`, `--vsync`, `--fps`, `--size`, `--debug`, `--mute`)은 받기만 하고 무시한다."
 
 msgid "Editor (`MealKitEditor.exe`)"
 msgstr "에디터 (`MealKitEditor.exe`)"
@@ -307,11 +313,11 @@ msgstr "`--project-settings`"
 msgid "Start with the Project Settings window open"
 msgstr "[프로젝트 설정] 창을 열고 시작"
 
-msgid "`--tables`"
-msgstr "`--tables`"
+msgid "`--tables`, `--sounds`, `--feedback`"
+msgstr "`--tables`, `--sounds`, `--feedback`"
 
-msgid "Start with the Tables panel open"
-msgstr "[표] 패널을 열고 시작"
+msgid "Start with the Tables, Sounds or Feedback panel open"
+msgstr "[표], [소리], [연출] 패널을 열고 시작"
 
 msgid "`--bodies <n>`, `--debug`"
 msgstr "`--bodies <n>`, `--debug`"
@@ -393,4 +399,10 @@ msgstr "`make_sample_models.py`"
 
 msgid "Regenerate the sample models"
 msgstr "샘플 모델 다시 만들기"
+
+msgid "`make_sample_sounds.py`"
+msgstr "`make_sample_sounds.py`"
+
+msgid "Regenerate the sample sounds"
+msgstr "샘플 소리 다시 만들기"
 

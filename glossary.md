@@ -20,6 +20,9 @@ Definition table
 Deterministic simulation
 : A simulation that gives bit-for-bit the same result from the same inputs on every PC, compiler and operating system.
 
+Feedback table
+: `assets/feedback.table`: rows that turn tick events into sounds, camera shake, screen flash and hit stop. Edited in the editor's Feedback panel.
+
 Export (release build)
 : Making the release folder `export/<game>/` that is given to players.
 
@@ -31,6 +34,9 @@ Headless
 
 Host
 : The peer that relays inputs. The host is also a player.
+
+Hit stop
+: A short freeze of the view on a strong hit. Only the view stops; the simulation keeps running.
 
 Hot reload
 : Swapping in newly built game code while the editor stays open.
@@ -61,6 +67,9 @@ Rewind
 
 Shadow simulation
 : A second copy of the world run in the same process to check that the simulation reads no hidden global state.
+
+Sound event
+: A named sound in `assets/sounds.table` (files, volume, pitch, 3D distance, bus, voice limits). Game code plays events by name, never files.
 
 SimCheck
 : The build-time checker for the determinism rules of the `sim/` folder.

@@ -32,6 +32,7 @@ The example game is called `sandbox`. In a game project, the executables carry t
 | `--any-build` | Host: accept peers running a different build (compiler comparison tests) |
 | `--hash-log <file>` | Write `<tick> <hash>` for every tick |
 | `--record-inputs <file>` | Save confirmed inputs and hashes (replay with `--headless --replay-inputs`) |
+| `--mute` | Start with sound off (automated tests) |
 | `--headless` | Run without a window (the options below) |
 
 ## Headless (`<game>_headless.exe`, `<game>.exe --headless`)
@@ -45,7 +46,7 @@ The example game is called `sandbox`. In a game project, the executables carry t
 | `--delay`, `--seed`, `--threads`, `--scene`, `--tuning`, `--shadow`, `--hash-log`, `--record-inputs`, `--any-build` | As in the game |
 | `--replay-inputs <file>` | Replay a recorded match and compare every tick hash (no network) |
 
-Window options (`--bot`, `--vsync`, `--fps`, `--size`, `--debug`) are accepted and ignored.
+Window options (`--bot`, `--vsync`, `--fps`, `--size`, `--debug`, `--mute`) are accepted and ignored.
 
 ## Editor (`MealKitEditor.exe`)
 
@@ -63,7 +64,7 @@ Window options (`--bot`, `--vsync`, `--fps`, `--size`, `--debug`) are accepted a
 | `--export` | Make a release build |
 | `--upgrade` | Upgrade the project right away |
 | `--project-settings` | Start with the Project Settings window open |
-| `--tables` | Start with the Tables panel open |
+| `--tables`, `--sounds`, `--feedback` | Start with the Tables, Sounds or Feedback panel open |
 | `--bodies <n>`, `--debug` | As in the game |
 
 For example: `MealKitEditor.exe --project . --frames 60 --select 5 --capture out.png`.
@@ -83,3 +84,4 @@ For example: `MealKitEditor.exe --project . --frames 60 --select 5 --capture out
 | `check_layout.ps1 [-Project <folder>]` | Project folder layout and third-party metadata (also run by the release build and the editor) |
 | `gen_notices.ps1 [-Check]` | Build `third_party/VERSIONS.txt` and `THIRD_PARTY_NOTICES.txt` from `third_party/<lib>/mealkit.txt` (`-Check` only compares) |
 | `make_sample_models.py` | Regenerate the sample models |
+| `make_sample_sounds.py` | Regenerate the sample sounds |

@@ -1,0 +1,159 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, KingProtea99 and MealKit contributors. CC BY 4.0
+# This file is distributed under the same license as the MealKit package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: MealKit 0.4\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-18 22:45+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ko\n"
+"Language-Team: ko <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+msgid "Sound and feedback"
+msgstr "소리와 연출"
+
+msgid "Sound and \"game feel\" (camera shake, screen flash, hit stop) are data. Sound designers change them in the editor without touching code, and the changes are heard at once, even during play."
+msgstr "소리와 \"타격감\"(카메라 흔들림, 화면 번쩍임, 화면 정지)은 데이터다. 사운드 담당이 코드를 건드리지 않고 에디터에서 고치고, 플레이 중에도 바로 들린다."
+
+msgid "Sound events"
+msgstr "소리 이벤트"
+
+msgid "Game code plays a **sound event** by name, never a file: `ctx.audio.play(\"hit\", position, {{\"speed\", 9.0f}})`, or `ctx.audio.play2D(\"click\")` for sounds with no position. Events live in `assets/sounds.table`, a definition table edited in the Tables panel (or through CSV). Each row is one event:"
+msgstr "게임 코드는 파일이 아니라 **소리 이벤트**를 이름으로 낸다: `ctx.audio.play(\"hit\", position, {{\"speed\", 9.0f}})`, 위치가 없는 소리는 `ctx.audio.play2D(\"click\")`. 이벤트는 `assets/sounds.table`(정의 데이터 표, [표] 패널이나 CSV로 고친다)에 있고 한 행이 이벤트 하나다:"
+
+msgid "Columns"
+msgstr "열"
+
+msgid "Meaning"
+msgstr "뜻"
+
+msgid "`clips`, `container`"
+msgstr "`clips`, `container`"
+
+msgid "Sound files (paths under `assets/`, separated by spaces). `random` picks one each time, `switch` picks by the parameter, `blend` crossfades by the parameter"
+msgstr "소리 파일(`assets/` 아래 경로, 공백으로 구분). `random`은 매번 하나를 고르고, `switch`는 파라미터로 고르고, `blend`는 파라미터로 섞는다"
+
+msgid "`param`, `paramMin`, `paramMax`"
+msgstr "`param`, `paramMin`, `paramMax`"
+
+msgid "The parameter that drives the container and the curves"
+msgstr "컨테이너와 곡선을 움직이는 파라미터"
+
+msgid "`volume`, `pitch`, `volumeRandom`, `pitchRandom`"
+msgstr "`volume`, `pitch`, `volumeRandom`, `pitchRandom`"
+
+msgid "Base volume and pitch, and random variation each time"
+msgstr "기본 볼륨과 음높이, 매번 달라지는 무작위 폭"
+
+msgid "`volumeAtMin` ... `lowpassAtMax`"
+msgstr "`volumeAtMin` ... `lowpassAtMax`"
+
+msgid "Curves: volume, pitch and low-pass filter at the start and end of the parameter range"
+msgstr "곡선: 파라미터 범위의 시작과 끝에서의 볼륨, 음높이, 로우패스 필터"
+
+msgid "`spatial`, `minDistance`, `maxDistance`"
+msgstr "`spatial`, `minDistance`, `maxDistance`"
+
+msgid "3D position; full volume within the minimum distance, silent beyond the maximum"
+msgstr "3D 위치. 최소 거리 안에서는 최대 볼륨, 최대 거리 밖에서는 들리지 않는다"
+
+msgid "`bus`"
+msgstr "`bus`"
+
+msgid "Mix bus: `music`, `sfx`, `ui`, `voice`"
+msgstr "믹스 버스: `music`, `sfx`, `ui`, `voice`"
+
+msgid "`loop`, `stream`"
+msgstr "`loop`, `stream`"
+
+msgid "Loop; stream from disk instead of loading into memory (music)"
+msgstr "반복. 메모리에 올리지 않고 디스크에서 읽으며 재생(음악)"
+
+msgid "`priority`, `maxInstances`, `steal`, `cooldown`"
+msgstr "`priority`, `maxInstances`, `steal`, `cooldown`"
+
+msgid "Voice management (below)"
+msgstr "목소리 관리(아래)"
+
+msgid "The table is reloaded when the file changes. The engine moves the listener with the camera."
+msgstr "파일이 바뀌면 표를 다시 읽는다. 듣는 위치는 엔진이 카메라에 맞춰 옮긴다."
+
+msgid "Voice management"
+msgstr "목소리 관리"
+
+msgid "The engine mixes at most `audioVoices` voices at once (Project Settings, default 32). Voices beyond that, and voices too far or too quiet to hear, become **virtual**: they keep counting their play position without being mixed, and come back when they are audible again. Several plays of the same event in one frame are merged into one louder voice. An event can limit its own instances (`maxInstances`, with `steal`: `oldest`, `quietest` or `none`) and repeats (`cooldown`). The simulation never plays sounds. It leaves tick events, and the view side turns them into sounds, so sound never affects the game state. Physics impact sounds come from `PhysicsWorld::setContactEvents`; the contacts come in the same order whatever the number of physics threads."
+msgstr "엔진은 한 번에 최대 `audioVoices`개(프로젝트 설정, 기본 32)의 목소리를 믹싱한다. 그보다 많거나 너무 멀거나 작아 들리지 않는 목소리는 **가상 목소리**가 된다: 믹싱하지 않고 재생 위치만 세다가 다시 들릴 때 돌아온다. 한 프레임에 같은 이벤트를 여러 번 내면 더 큰 목소리 하나로 합친다. 이벤트마다 동시 개수(`maxInstances`, 넘치면 `steal`: `oldest`, `quietest`, `none`)와 반복 간격(`cooldown`)을 제한할 수 있다. 시뮬레이션은 소리를 내지 않는다. 틱 이벤트만 남기고 화면 쪽이 소리로 바꾸므로 소리가 게임 상태에 영향을 주지 않는다. 물리 충돌 소리는 `PhysicsWorld::setContactEvents`에서 오고, 충돌 목록은 물리 스레드 수와 상관없이 같은 순서다."
+
+msgid "Sounds panel"
+msgstr "[소리] 패널"
+
+msgid "View > Sounds shows the output buses with level meters and volume, the playing voices (mixed or virtual, audibility, distance), the most recently culled plays and why (cooldown, voice limit, missing clip ...), and a preview of the selected event."
+msgstr "[보기] > [소리]는 출력 버스(레벨 미터와 볼륨), 재생 중인 목소리(믹싱·가상, 들리는 정도, 거리), 최근에 걸러진 재생과 이유(재사용 대기, 목소리 상한, 없는 파일 등), 고른 이벤트의 미리듣기를 보여 준다."
+
+msgid "Feedback table"
+msgstr "연출 표 (Feedback table)"
+
+msgid "`assets/feedback.table` maps **tick events** to reactions. Game code passes every tick event to `ctx.feedback.trigger(event, localPlayer)` and does nothing else. The event type is a `MEALKIT_STRUCT` whose first `MEALKIT_ENUM` field is the event kind. A row's id is the kind name (`Push`); more rows for the same kind take a suffix (`Push.local`)."
+msgstr "`assets/feedback.table`은 **틱 이벤트**를 연출로 잇는다. 게임 코드는 틱 이벤트마다 `ctx.feedback.trigger(event, localPlayer)`만 부른다. 이벤트 타입은 `MEALKIT_STRUCT`이고 첫 `MEALKIT_ENUM` 필드가 이벤트 종류다. 행 id는 종류 이름(`Push`)이고, 같은 종류에 행을 더하면 접미사를 붙인다(`Push.local`)."
+
+msgid "`players`"
+msgstr "`players`"
+
+msgid "Whose events: `any`, `local` (the player of this window) or `others`"
+msgstr "누구의 이벤트: `any`, `local`(이 창의 플레이어), `others`"
+
+msgid "`strengthFrom`, `strengthFull`"
+msgstr "`strengthFrom`, `strengthFull`"
+
+msgid "An event field that scales the reaction, and its value at full strength (empty is always full)"
+msgstr "연출의 세기를 정하는 이벤트 필드와 최대 세기의 값(비우면 항상 최대)"
+
+msgid "`positionFrom`"
+msgstr "`positionFrom`"
+
+msgid "An event field holding the position (empty is everywhere)"
+msgstr "위치를 담은 이벤트 필드(비우면 위치 없음)"
+
+msgid "`sound`, `soundParam`"
+msgstr "`sound`, `soundParam`"
+
+msgid "A sound event to play, and a sound parameter set to the strength field"
+msgstr "낼 소리 이벤트와 세기 필드 값을 넣을 소리 파라미터"
+
+msgid "`shake`, `shakeSeconds`, `shakeFrequency`, `shakeRange`"
+msgstr "`shake`, `shakeSeconds`, `shakeFrequency`, `shakeRange`"
+
+msgid "Camera shake: size at full strength, time, speed, and the distance where it fades out"
+msgstr "카메라 흔들림: 최대 세기의 크기, 시간, 빠르기, 사라지는 거리"
+
+msgid "`flash`, `flashSeconds`, `flashColor`"
+msgstr "`flash`, `flashSeconds`, `flashColor`"
+
+msgid "Screen flash: strength, time and color"
+msgstr "화면 번쩍임: 세기, 시간, 색"
+
+msgid "`hitStop`"
+msgstr "`hitStop`"
+
+msgid "Hit stop: the view freezes for this many seconds"
+msgstr "화면 정지: 이 초만큼 화면이 멈춘다"
+
+msgid "**Hit stop freezes only the view.** The simulation keeps running in lockstep with the other players; when the stop ends, the view jumps back to the current state."
+msgstr "**화면 정지는 화면만 멈춘다.** 시뮬레이션은 다른 플레이어와 락스텝으로 계속 돌고, 정지가 끝나면 화면이 지금 상태로 바로 돌아온다."
+
+msgid "Feedback panel"
+msgstr "[연출] 패널"
+
+msgid "View > Feedback lists the game's event kinds and their rows. Edits are saved automatically and a playing game picks them up at once. **Preview** plays the rows of the selected kind right now, even while editing."
+msgstr "[보기] > [연출]은 게임의 이벤트 종류와 그 행들을 보여 준다. 고치면 자동으로 저장되고 플레이 중인 게임에 바로 반영된다. **[미리듣기]**는 고른 종류의 행을 지금 한 번 낸다(편집 중에도 된다)."
+

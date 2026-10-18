@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-18 18:20+0900\n"
+"POT-Creation-Date: 2026-10-18 22:45+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -131,6 +131,14 @@ msgstr "**튜닝**: 탭 두 개. \"게임\"은 시뮬레이션이 읽는 값(`as
 
 msgid "**Tables**: the game's definition tables (`assets/tables/*.table`) as a spreadsheet, CSV import and export, and the list of missing row references. Playing saves edited tables first."
 msgstr "**표**: 게임의 정의 데이터 표(`assets/tables/*.table`)를 스프레드시트로 보여 주고, CSV 가져오기·내보내기와 없는 행 참조 목록이 있다. 플레이를 누르면 고친 표를 먼저 저장한다."
+
+#, python-brace-format
+msgid "**Sounds**: output buses, playing voices and culled plays, and a preview of sound events (see {doc}`sound`)."
+msgstr "**소리**: 출력 버스, 재생 중인 목소리와 걸러진 재생, 소리 이벤트 미리듣기({doc}`sound` 참고)."
+
+#, python-brace-format
+msgid "**Feedback**: the feedback table that turns tick events into sounds, camera shake, screen flash and hit stop (see {doc}`sound`)."
+msgstr "**연출**: 틱 이벤트를 소리·카메라 흔들림·화면 번쩍임·화면 정지로 바꾸는 연출 표({doc}`sound` 참고)."
 
 msgid "**State**: the simulation state declared with `MEALKIT_FIELD` while playing."
 msgstr "**상태**: 플레이 중 `MEALKIT_FIELD`로 선언된 시뮬레이션 상태."

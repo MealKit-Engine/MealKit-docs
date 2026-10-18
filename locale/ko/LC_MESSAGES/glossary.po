@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-18 18:20+0900\n"
+"POT-Creation-Date: 2026-10-18 22:43+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -58,6 +58,12 @@ msgstr "결정론 시뮬레이션 (Deterministic simulation)"
 msgid "A simulation that gives bit-for-bit the same result from the same inputs on every PC, compiler and operating system."
 msgstr "같은 입력이면 모든 PC·컴파일러·OS에서 비트 단위로 같은 결과를 내는 시뮬레이션."
 
+msgid "Feedback table"
+msgstr "연출 표 (Feedback table)"
+
+msgid "`assets/feedback.table`: rows that turn tick events into sounds, camera shake, screen flash and hit stop. Edited in the editor's Feedback panel."
+msgstr "`assets/feedback.table`: 틱 이벤트를 소리·카메라 흔들림·화면 번쩍임·화면 정지로 바꾸는 행들. 에디터 [연출] 패널에서 고친다."
+
 msgid "Export (release build)"
 msgstr "출시 빌드 (Export)"
 
@@ -81,6 +87,12 @@ msgstr "호스트 (Host)"
 
 msgid "The peer that relays inputs. The host is also a player."
 msgstr "입력을 중계하는 피어(방장). 호스트도 플레이어다."
+
+msgid "Hit stop"
+msgstr "화면 정지 (Hit stop)"
+
+msgid "A short freeze of the view on a strong hit. Only the view stops; the simulation keeps running."
+msgstr "강한 타격 때 화면을 잠깐 멈추는 것. 화면만 멈추고 시뮬레이션은 계속 돈다."
 
 msgid "Hot reload"
 msgstr "핫 리로드 (Hot reload)"
@@ -141,6 +153,12 @@ msgstr "그림자 시뮬레이션 (Shadow simulation)"
 
 msgid "A second copy of the world run in the same process to check that the simulation reads no hidden global state."
 msgstr "시뮬레이션이 숨은 전역 상태를 읽지 않는지 보려고 같은 프로세스에서 돌리는 두 번째 월드."
+
+msgid "Sound event"
+msgstr "소리 이벤트 (Sound event)"
+
+msgid "A named sound in `assets/sounds.table` (files, volume, pitch, 3D distance, bus, voice limits). Game code plays events by name, never files."
+msgstr "`assets/sounds.table`에 이름으로 둔 소리(파일, 볼륨, 음높이, 3D 거리, 버스, 목소리 상한). 게임 코드는 파일이 아니라 이벤트 이름으로 소리를 낸다."
 
 msgid "SimCheck"
 msgstr "SimCheck"

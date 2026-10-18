@@ -32,6 +32,7 @@ getting_started/editor_quick_start
 manual/projects
 manual/editor
 manual/assets
+manual/sound
 manual/multiplayer
 manual/building_and_shipping
 manual/performance
