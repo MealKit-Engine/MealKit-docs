@@ -67,6 +67,7 @@ Window options (`--bot`, `--vsync`, `--fps`, `--size`, `--debug`, `--mute`, `--d
 | `--upgrade` | Upgrade the project right away |
 | `--project-settings` | Start with the Project Settings window open |
 | `--tables`, `--sounds`, `--feedback` | Start with the Tables, Sounds or Feedback panel open |
+| `--ui <file.ui>` | Start with the UI panel previewing this screen |
 | `--bodies <n>`, `--debug` | As in the game |
 
 For example: `MealKitEditor.exe --project . --frames 60 --select 5 --capture out.png`.

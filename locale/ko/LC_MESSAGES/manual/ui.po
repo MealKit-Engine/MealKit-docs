@@ -1,0 +1,212 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, KingProtea99 and MealKit contributors. CC BY 4.0
+# This file is distributed under the same license as the MealKit package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: MealKit 0.4\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-19 08:05+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ko\n"
+"Language-Team: ko <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+msgid "Game UI"
+msgstr "게임 화면 UI"
+
+msgid "The game's screens (HUD, menus, settings) are `.ui` files in `assets/ui/`. The engine lays them out and draws them in one 2D pass after the 3D scene. Later a Penpot plugin will export these files from a visual design; until then they are written by hand in the same format, and hand-written screens keep working when the plugin arrives."
+msgstr "게임 화면(HUD, 메뉴, 설정)은 `assets/ui/`의 `.ui` 파일이다. 엔진이 배치하고 3D 장면 다음의 2D 패스 하나로 그린다. 나중에 Penpot 플러그인이 시각 디자인에서 이 파일을 내보낸다. 그때까지는 같은 형식으로 손으로 쓰고, 손으로 쓴 화면은 플러그인이 생겨도 그대로 쓴다."
+
+msgid "A screen file"
+msgstr "화면 파일"
+
+msgid ""
+"# assets/ui/hud.ui\n"
+"board hud 1920 1080\n"
+"  frame scoreboard\n"
+"    pos 32 32\n"
+"    size 320 hug\n"
+"    layout column\n"
+"    padding 16 20\n"
+"    gap 8\n"
+"    fill $panel\n"
+"    radius 12\n"
+"    shadow 0 6 24 0 #00000066\n"
+"    text title\n"
+"      key hud.players\n"
+"      fontSize 22\n"
+"      color $textDim\n"
+"    end\n"
+"  end\n"
+"end\n"
+msgstr ""
+"# assets/ui/hud.ui\n"
+"board hud 1920 1080\n"
+"  frame scoreboard\n"
+"    pos 32 32\n"
+"    size 320 hug\n"
+"    layout column\n"
+"    padding 16 20\n"
+"    gap 8\n"
+"    fill $panel\n"
+"    radius 12\n"
+"    shadow 0 6 24 0 #00000066\n"
+"    text title\n"
+"      key hud.players\n"
+"      fontSize 22\n"
+"      color $textDim\n"
+"    end\n"
+"  end\n"
+"end\n"
+
+msgid "One property per line. `board <name> <width> <height>` is the root, in logical units of the reference resolution. Nodes are `frame`, `text`, `image` and `use <name> <component.ui>` (another `.ui` reused as a component, with `set <child> <property> <value>` overrides), each closed with `end`. The scale is `min(width / board width, height / board height) × UI scale`. The root stretches to the whole screen, and children stay attached through their constraints."
+msgstr "한 줄에 속성 하나다. `board <이름> <가로> <세로>`가 뿌리이고 기준 해상도의 논리 단위다. 노드는 `frame`, `text`, `image`, `use <이름> <컴포넌트.ui>`(다른 `.ui`를 컴포넌트로 재사용, `set <자식> <속성> <값>`으로 덮어쓴다)이고 각각 `end`로 닫는다. 배율은 `min(가로 / 보드 가로, 세로 / 보드 세로) × UI 배율`이다. 뿌리는 화면 전체로 늘어나고 자식은 제약으로 붙어 있다."
+
+msgid "Group"
+msgstr "묶음"
+
+msgid "Properties"
+msgstr "속성"
+
+msgid "Position and size"
+msgstr "위치와 크기"
+
+msgid "`pos x y`, `size <w> <h>` (a number, `hug` to fit the content, `fill` to take the free space), `min`, `max`, `margin`, `absolute`, `constraints left|right|leftright|center|scale top|bottom|topbottom|center|scale`, `rotation`, `opacity`, `hidden`, `clip`"
+msgstr "`pos x y`, `size <가로> <세로>`(숫자, 내용에 맞추는 `hug`, 남는 자리를 차지하는 `fill`), `min`, `max`, `margin`, `absolute`, `constraints left|right|leftright|center|scale top|bottom|topbottom|center|scale`, `rotation`, `opacity`, `hidden`, `clip`"
+
+msgid "Flex layout"
+msgstr "Flex 배치"
+
+msgid "`layout row|column [reverse] [wrap]`, `gap`, `padding`, `justify start|center|end|space-between|space-around|space-evenly`, `align`, `alignContent`, `alignSelf`"
+msgstr "`layout row|column [reverse] [wrap]`, `gap`, `padding`, `justify start|center|end|space-between|space-around|space-evenly`, `align`, `alignContent`, `alignSelf`"
+
+msgid "Look"
+msgstr "모양"
+
+msgid "`fill <color>` or `fill linear|radial x0 y0 x1 y1 <color> <color>`, `stroke <width> <color>`, `radius` (one value or one per corner), `shadow <dx> <dy> <blur> <spread> <color>` (several allowed)"
+msgstr "`fill <색>` 또는 `fill linear|radial x0 y0 x1 y1 <색> <색>`, `stroke <두께> <색>`, `radius`(값 하나 또는 모서리마다), `shadow <dx> <dy> <흐림> <퍼짐> <색>`(여러 개 가능)"
+
+msgid "Images"
+msgstr "이미지"
+
+msgid "`src ui/icon.png`, `slice <left> <top> <right> <bottom>` (9-slice), `tint <color>`"
+msgstr "`src ui/icon.png`, `slice <왼쪽> <위> <오른쪽> <아래>`(9-slice), `tint <색>`"
+
+msgid "Text"
+msgstr "글자"
+
+msgid "`key <strings key>` or `content <text>`, `font`, `fontSize`, `color`, `letterSpacing`, `lineHeight`, `textAlign`, `verticalAlign`, `underline`, `strike`, `transform`, `wrap word|syllable|none`, `overflow ellipsis`, `maxLines`, `span <tag> <property> <value> ...`"
+msgstr "`key <문자열 키>` 또는 `content <글자>`, `font`, `fontSize`, `color`, `letterSpacing`, `lineHeight`, `textAlign`, `verticalAlign`, `underline`, `strike`, `transform`, `wrap word|syllable|none`, `overflow ellipsis`, `maxLines`, `span <태그> <속성> <값> ...`"
+
+msgid "States"
+msgstr "상태"
+
+msgid "`on hover|pressed|focus|disabled|checked <property line>`, `transition <seconds>`"
+msgstr "`on hover|pressed|focus|disabled|checked <속성 줄>`, `transition <초>`"
+
+msgid "Board lines"
+msgstr "보드 줄"
+
+msgid "`navigation` (keyboard and gamepad focus, for menus), `firstFocus <node>`, `back <action>`"
+msgstr "`navigation`(키보드·게임패드 포커스, 메뉴용), `firstFocus <노드>`, `back <액션>`"
+
+msgid "Colors are `#RRGGBB[AA]` or `$token` from the theme `assets/ui/theme.ui` (`color <name> #...`, `number <name> <value>`). Text with several styles uses numbered tags from the string table, `<1>...</1>`, styled by `span 1 ...`. Korean text breaks between syllables (`wrap syllable`, the default); `wrap word` breaks only at spaces. Characters missing from one font are taken from another font in `assets/fonts`. Files are reloaded within a quarter second when they change, also during play. Errors are logged as `file(line): ...`."
+msgstr "색은 `#RRGGBB[AA]` 또는 테마 `assets/ui/theme.ui`의 `$토큰`이다(`color <이름> #...`, `number <이름> <값>`). 여러 스타일 글자는 문자열 표의 번호 태그 `<1>...</1>`를 쓰고 `span 1 ...`로 꾸민다. 한글은 음절 사이에서 줄을 바꾸고(`wrap syllable`, 기본), `wrap word`는 공백에서만 바꾼다. 한 글꼴에 없는 글자는 `assets/fonts`의 다른 글꼴에서 가져온다. 파일이 바뀌면 플레이 중에도 0.25초 안에 다시 읽는다. 오류는 `파일(줄): ...`로 로그에 남는다."
+
+msgid "Connecting the game"
+msgstr "게임과 연결하기"
+
+#, python-brace-format
+msgid "The game declares a **view model**, fills it every frame and handles the actions of buttons. The UI never changes the simulation: a button that should change it makes the game send a command (see {doc}`multiplayer`)."
+msgstr "게임은 **뷰 모델**을 선언하고 매 프레임 채우며 버튼의 액션을 처리한다. UI는 시뮬레이션을 바꾸지 않는다: 시뮬레이션을 바꿔야 하는 버튼이면 게임이 명령을 보낸다({doc}`multiplayer` 참고)."
+
+#, python-brace-format
+msgid ""
+"MEALKIT_STRUCT(PlayerRowVm) { MEALKIT_FIELD(std::string, name, {}, \"Name\"); MEALKIT_FIELD(u32, falls, 0, \"Falls\"); };\n"
+"MEALKIT_VIEWMODEL(HudVm) {\n"
+"    MEALKIT_FIELD(f32, time, 0.0f, \"Match time\");\n"
+"    MEALKIT_LIST(PlayerRowVm, players, 8, \"Players\"); // array plus playersCount\n"
+"};\n"
+"\n"
+"m_hud = ctx.ui.open(\"ui/hud.ui\");     // once\n"
+"ctx.ui.bind(m_hud, m_hudVm);\n"
+"fillHud(world, m_hudVm);              // every frame\n"
+"for (const mealkit::ui::Action& a : ctx.ui.actions())\n"
+"    if (a.name == \"debug.shockwave\") mealkit::sim::sendCommand(ctx.session, DebugShockwave{});\n"
+msgstr ""
+"MEALKIT_STRUCT(PlayerRowVm) { MEALKIT_FIELD(std::string, name, {}, \"Name\"); MEALKIT_FIELD(u32, falls, 0, \"Falls\"); };\n"
+"MEALKIT_VIEWMODEL(HudVm) {\n"
+"    MEALKIT_FIELD(f32, time, 0.0f, \"Match time\");\n"
+"    MEALKIT_LIST(PlayerRowVm, players, 8, \"Players\"); // array plus playersCount\n"
+"};\n"
+"\n"
+"m_hud = ctx.ui.open(\"ui/hud.ui\");     // once\n"
+"ctx.ui.bind(m_hud, m_hudVm);\n"
+"fillHud(world, m_hudVm);              // every frame\n"
+"for (const mealkit::ui::Action& a : ctx.ui.actions())\n"
+"    if (a.name == \"debug.shockwave\") mealkit::sim::sendCommand(ctx.session, DebugShockwave{});\n"
+
+msgid "In the `.ui`"
+msgstr "`.ui`에서"
+
+msgid "Meaning"
+msgstr "뜻"
+
+#, python-brace-format
+msgid "`{field}`, `{field:n0}`, `{field:f1}`, `{field:time}`, `{field:pct}`"
+msgstr "`{field}`, `{field:n0}`, `{field:f1}`, `{field:time}`, `{field:pct}`"
+
+msgid "A value inside text: as is, thousands separators, decimals, minutes:seconds, percent"
+msgstr "글자 안의 값: 그대로, 천 단위 구분, 소수 자리, 분:초, 퍼센트"
+
+msgid "`visible [!]field`, `disabled field`, `widthRatio field`, `colorField field`"
+msgstr "`visible [!]field`, `disabled field`, `widthRatio field`, `colorField field`"
+
+msgid "Show or hide, disable a widget, scale the width by 0 to 1 (health bars), take the color from a field"
+msgstr "보이기·숨기기, 위젯 비활성, 너비를 0~1배로(체력 막대), 필드의 색 쓰기"
+
+msgid "`button <action>`"
+msgstr "`button <action>`"
+
+msgid "Sends the action when clicked or confirmed"
+msgstr "누르거나 확인하면 액션을 보낸다"
+
+msgid "`toggle <field>`, `slider <field> <min> <max> <step>`, `select <field> <key1,key2>`"
+msgstr "`toggle <field>`, `slider <field> <min> <max> <step>`, `select <field> <key1,key2>`"
+
+#, python-brace-format
+msgid "Input widgets write their own field and send `changed` (or the action given after the field). Text inside a select shows the choice with `{option}`"
+msgstr "입력 위젯은 자기 필드에 값을 쓰고 `changed`(또는 필드 뒤에 적은 액션)를 보낸다. 선택 상자 안의 글자는 `{option}`으로 고른 것을 보여 준다"
+
+msgid "`scroll [horizontal]`"
+msgstr "`scroll [horizontal]`"
+
+msgid "Scrolls its content with the wheel"
+msgstr "휠로 내용을 스크롤한다"
+
+msgid "`list <field>`"
+msgstr "`list <field>`"
+
+msgid "Repeats its first child for each item; inside, fields are looked up in the item first. Other children are only examples"
+msgstr "첫 자식을 항목마다 반복한다. 그 안에서는 필드를 항목에서 먼저 찾는다. 나머지 자식은 예시일 뿐이다"
+
+msgid "Mouse input over a widget or a filled panel does not reach the game. On screens with `navigation`, the input actions `ui.up`, `ui.down`, `ui.left`, `ui.right`, `ui.confirm` and `ui.back` move the focus to the nearest widget in that direction, change sliders and selects, and press buttons. The HUD has no `navigation`, so it never takes the movement keys."
+msgstr "위젯이나 채워진 판 위의 마우스 입력은 게임에 가지 않는다. `navigation`이 있는 화면에서는 입력 액션 `ui.up`, `ui.down`, `ui.left`, `ui.right`, `ui.confirm`, `ui.back`이 그 방향의 가장 가까운 위젯으로 포커스를 옮기고, 슬라이더와 선택 상자를 바꾸고, 버튼을 누른다. HUD에는 `navigation`이 없어 이동 키를 가져가지 않는다."
+
+msgid "**World UI**: a screen opened with `ctx.ui.openWorld(\"ui/nametag.ui\")` is a template. In `buildFrame` the game calls `ctx.ui.drawAt(template, worldPosition, viewModel)` for each name tag; the engine places it on the screen with the frame's camera and hides it behind the camera."
+msgstr "**월드 위 UI**: `ctx.ui.openWorld(\"ui/nametag.ui\")`로 연 화면은 템플릿이다. 게임이 `buildFrame`에서 이름표마다 `ctx.ui.drawAt(템플릿, 월드 위치, 뷰 모델)`을 부르면, 엔진이 그 프레임의 카메라로 화면 위치에 놓고 카메라 뒤면 숨긴다."
+
+msgid "Previewing in the editor"
+msgstr "에디터에서 미리 보기"
+
+msgid "**View > UI** lists the screens in `assets/ui`. The selected screen is drawn over the scene view in edit mode, inside a frame of the chosen resolution (16:9, 21:9, 4:3, portrait). The panel changes the UI scale and the language (to check that translations fit), shows the focus, fills a game view model with test values, and lists file errors, binding errors (fields the view model does not have) and the node count (budget 500 per screen). `MealKitEditor.exe --ui hud.ui` opens the panel with that screen."
+msgstr "**[보기] > [UI]**가 `assets/ui`의 화면을 보여 준다. 고른 화면은 편집 모드에서 씬 뷰 위, 고른 해상도(16:9, 21:9, 4:3, 세로)의 틀 안에 그려진다. 패널에서 UI 배율과 언어(번역이 들어가는지 확인)를 바꾸고, 포커스를 보이고, 게임 뷰 모델에 시험 값을 넣고, 파일 오류·바인딩 오류(뷰 모델에 없는 필드)·노드 수(화면당 예산 500)를 본다. `MealKitEditor.exe --ui hud.ui`는 그 화면으로 패널을 연다."
+

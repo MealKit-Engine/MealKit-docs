@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-18 23:50+0900\n"
+"POT-Creation-Date: 2026-10-19 08:05+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -330,6 +330,12 @@ msgstr "`--tables`, `--sounds`, `--feedback`"
 
 msgid "Start with the Tables, Sounds or Feedback panel open"
 msgstr "[표], [소리], [연출] 패널을 열고 시작"
+
+msgid "`--ui <file.ui>`"
+msgstr "`--ui <file.ui>`"
+
+msgid "Start with the UI panel previewing this screen"
+msgstr "[UI] 패널에 이 화면을 미리 보며 시작"
 
 msgid "`--bodies <n>`, `--debug`"
 msgstr "`--bodies <n>`, `--debug`"
