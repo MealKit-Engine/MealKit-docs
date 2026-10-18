@@ -16,6 +16,7 @@ The general-purpose editor `MealKitEditor` edits scenes, runs the game in play m
 | `Ctrl+S` / `Ctrl+O` / `Ctrl+N` | Save / open / new scene |
 | `F5` / `Esc` | Play / back to editing |
 | `Ctrl+R` / `Ctrl+B` | Build game code (hot reload) / release build |
+| `Ctrl+T` | Show or hide the Tables panel |
 
 ## Objects
 
@@ -24,6 +25,7 @@ The object kinds come from the game (`MEALKIT_OBJECT` declarations) and appear i
 - **Solid box**: visible and collides.
 - **Decoration (no collision)**: only visible.
 - **Spawn point**: where players start. Not visible in the game.
+- **Match area** and **Box spawn area**: invisible area boxes. The editor draws their edges; click an edge to select one.
 
 Solid boxes and decorations can carry a **model** (glTF): `+ Model` in the scene tree, or `Choose Model...` in the inspector. See {doc}`assets`.
 
@@ -31,9 +33,11 @@ Scenes are saved as human-readable `.scene` text: each object is its kind name p
 
 ## Panels
 
-- **Tuning**: the game's tuning values (`assets/game.tuning`), which the simulation reads.
+- **Tuning**: two tabs. Game holds the values the simulation reads (`assets/game.tuning`); during solo play changes apply at once. Display holds the values that are only seen (`assets/view.tuning`); changes apply at once in every player window, even with several players.
+- **Tables**: the game's definition tables (`assets/tables/*.table`) as a spreadsheet, CSV import and export, and the list of missing row references. Playing saves edited tables first.
 - **State**: the simulation state declared with `MEALKIT_FIELD` while playing.
 - **Project Settings**: `mealkit.project` (File > Project Settings).
+- **Folder layout**: when a project opens, the editor runs the layout check in the background and lists misplaced files (see {doc}`projects`).
 - **Build**: the Build menu runs the project's `build.bat Editor` and `build.bat Export` in the background and shows the log.
 
 ## Play mode

@@ -3,8 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: MealKit\n"
-"POT-Creation-Date: 2026-10-18 16:06+0900\n"
+"Project-Id-Version:  MealKit\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-10-18 18:20+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -99,14 +100,65 @@ msgstr "프로젝트 설정"
 msgid "`mealkit.project` holds the project settings: `name`, `engine`, `engineVersion`, `scene`, and game entries (`game.*`). Edit them in the editor under File > Project Settings. To rename a project (the name is also the exe name), use the project manager or `tools\\rename_project.ps1 -Project <folder> -Name <new name>`."
 msgstr "`mealkit.project`에 프로젝트 설정이 있다: `name`, `engine`, `engineVersion`, `scene`, 게임 항목(`game.*`). 에디터 [파일] > [프로젝트 설정]에서 고친다. 프로젝트 이름(= exe 이름)은 프로젝트 관리자나 `tools\\rename_project.ps1 -Project <폴더> -Name <새 이름>`으로 바꾼다."
 
+msgid "Folder layout"
+msgstr "폴더 구조"
+
+msgid "The engine fixes the project layout, so tools find files without settings and source files never end up in a release."
+msgstr "프로젝트 폴더 구조는 엔진이 정한다. 그래서 도구가 설정 없이 파일을 찾고, 원본 파일이 출시본에 섞이지 않는다."
+
+msgid "What goes there"
+msgstr "두는 것"
+
+msgid "`source/`"
+msgstr "`source/`"
+
+msgid "Game code (`sim/`, `view/`, `app/`)"
+msgstr "게임 코드 (`sim/`, `view/`, `app/`)"
+
+msgid "`assets/`"
+msgstr "`assets/`"
+
+msgid "Only what ships with the game. Directly inside it: the kind folders `scenes/ models/ textures/ sounds/ effects/ ui/ fonts/ tables/ strings/ lut/` and the fixed files `game.tuning`, `view.tuning`, `input.bindings`, `feedback.table`, `sounds.table`. Subfolders inside a kind folder are free"
+msgstr "출시에 들어가는 것만. 바로 밑에는 종류 폴더 `scenes/ models/ textures/ sounds/ effects/ ui/ fonts/ tables/ strings/ lut/`와 정해진 파일 `game.tuning`, `view.tuning`, `input.bindings`, `feedback.table`, `sounds.table`만. 종류 폴더 안의 하위 폴더는 자유"
+
+msgid "`art/`"
+msgstr "`art/`"
+
+msgid "Source files of external tools (`.blend`, Penpot, PSD, audio projects). Not shipped, not in the content hash"
+msgstr "외부 도구 원본(`.blend`, Penpot, PSD, 소리 프로젝트). 출시·콘텐츠 해시에 들어가지 않는다"
+
+msgid "`modules/`"
+msgstr "`modules/`"
+
+msgid "Source modules (later)"
+msgstr "소스 모듈 (나중에)"
+
+msgid "`third_party/`"
+msgstr "`third_party/`"
+
+msgid "The game's own libraries: one folder per library with its original `LICENSE` and a `mealkit.txt`"
+msgstr "게임이 쓰는 외부 라이브러리: 라이브러리마다 폴더 하나, 원본 `LICENSE`와 `mealkit.txt`"
+
+msgid "`build/`, `export/`"
+msgstr "`build/`, `export/`"
+
+msgid "Generated"
+msgstr "생성물"
+
+msgid "`tools\\check_layout.ps1 -Project <folder>` checks the layout: unknown files directly in `assets/`, wrong extensions in kind folders, source formats in `assets/`, and libraries without metadata or with a license outside the allowed list. `check.ps1`, the release build and the editor use the same script. New projects get every folder, and `upgrade_project.ps1` adds missing ones."
+msgstr "`tools\\check_layout.ps1 -Project <폴더>`가 구조를 검사한다: `assets/` 바로 밑의 알 수 없는 파일, 종류 폴더와 맞지 않는 확장자, `assets/` 안의 원본 형식, 메타데이터가 없거나 허용 목록 밖의 라이선스인 라이브러리. `check.ps1`, 출시 빌드, 에디터가 같은 스크립트를 쓴다. 새 프로젝트는 모든 폴더를 갖고, `upgrade_project.ps1`이 없는 폴더를 만든다."
+
+msgid "Third-party libraries"
+msgstr "외부 라이브러리"
+
+msgid "Copy only the files needed to build into `third_party/<lib>/`, keep its `LICENSE`, and write `mealkit.txt` with `name`, `version`, `license`, `source`, `usedIn` and `kept`. If the library has a `CMakeLists.txt`, also give the target to link with `cmakeTarget`; otherwise it is used as headers only (`include` names the header folder). `mealkit_add_game()` links these libraries into the game exe and DLL only. `sim/` code cannot include their headers (SimCheck `SIM011`), and a library the engine already has cannot be added again. The release build merges the notices of MealKit itself, the engine libraries inside the exe, the game libraries and the fonts in `assets/fonts/` into `THIRD_PARTY_NOTICES.txt`, and fails if the exe is larger than 5 MB. In the engine repository, `tools\\gen_notices.ps1` builds `third_party/VERSIONS.txt` and `THIRD_PARTY_NOTICES.txt` from the same metadata."
+msgstr "빌드에 필요한 파일만 `third_party/<lib>/`에 복사하고, `LICENSE`를 두고, `mealkit.txt`에 `name`, `version`, `license`, `source`, `usedIn`, `kept`를 쓴다. 라이브러리에 `CMakeLists.txt`가 있으면 링크할 타깃을 `cmakeTarget`으로 적고, 없으면 헤더 전용으로 쓴다(`include`가 헤더 폴더). `mealkit_add_game()`이 이 라이브러리를 게임 exe와 DLL에만 붙인다. `sim/` 코드는 그 헤더를 include할 수 없고(SimCheck `SIM011`), 엔진에 이미 있는 라이브러리는 다시 넣을 수 없다. 출시 빌드는 MealKit 자신, exe에 들어간 엔진 라이브러리, 게임 라이브러리, `assets/fonts/`의 글꼴 고지문을 `THIRD_PARTY_NOTICES.txt`로 합치고, exe가 5 MB를 넘으면 실패한다. 엔진 저장소에서는 `tools\\gen_notices.ps1`이 같은 메타데이터로 `third_party/VERSIONS.txt`와 `THIRD_PARTY_NOTICES.txt`를 만든다."
+
 msgid "Game code folders"
 msgstr "게임 코드 폴더"
 
 msgid "Game code is split into three folders. `mealkit_add_game()` collects them by pattern, so adding a file needs no CMake change."
 msgstr "게임 코드는 세 폴더로 나눈다. `mealkit_add_game()`이 패턴으로 모으므로 파일을 추가해도 CMake를 고치지 않는다."
-
-msgid "What goes there"
-msgstr "두는 것"
 
 msgid "`sim/`"
 msgstr "`sim/`"
@@ -126,6 +178,7 @@ msgstr "`app/`"
 msgid "`GameSession` (the `GameInstance` implementation), `main.cpp`, `GameModule.cpp`, `Headless.cpp`"
 msgstr "`GameSession`(`GameInstance` 구현), `main.cpp`, `GameModule.cpp`, `Headless.cpp`"
 
+#, python-brace-format
 msgid "The rules for `sim/` are in the engine's {engine}`coding model <docs/CODING_MODEL.md>` (\"Determinism rules\"). See also {doc}`multiplayer`."
 msgstr "`sim/` 규칙은 엔진의 {engine}`코딩 방식 <docs/CODING_MODEL.md>`(\"결정론 규칙\")에 있다. {doc}`multiplayer`도 본다."
 

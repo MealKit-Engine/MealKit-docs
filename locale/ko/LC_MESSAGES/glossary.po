@@ -3,8 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: MealKit\n"
-"POT-Creation-Date: 2026-10-18 16:06+0900\n"
+"Project-Id-Version:  MealKit\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-10-18 18:20+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -21,11 +22,17 @@ msgstr "용어집"
 msgid "Terms used in this documentation. The Korean translation uses the same words as the editor's Korean strings."
 msgstr "이 문서에서 쓰는 용어. 한국어 번역은 에디터 한국어 문자열과 같은 말을 쓴다."
 
+msgid "Area object"
+msgstr "영역 물체 (Area object)"
+
+msgid "A scene object that is an invisible box (`kObjectArea`). Its position and size are the data, for example a spawn area."
+msgstr "보이지 않는 상자인 씬 물체(`kObjectArea`). 위치와 크기가 곧 데이터다(예: 생성 영역)."
+
 msgid "Content hash"
 msgstr "콘텐츠 해시 (Content hash)"
 
-msgid "A hash of the data every peer must share: scene collision data, model files and tuning values. Peers with a different content hash are refused."
-msgstr "모든 피어가 같아야 하는 데이터의 해시: 씬 충돌 데이터, 모델 파일, 튜닝 값. 콘텐츠 해시가 다른 피어는 접속이 거부된다."
+msgid "A hash of the data every peer must share: scene collision data, model files, tuning values and simulation tables. Peers with a different content hash are refused."
+msgstr "모든 피어가 같아야 하는 데이터의 해시: 씬 충돌 데이터, 모델 파일, 튜닝 값, 시뮬레이션 표. 콘텐츠 해시가 다른 피어는 접속이 거부된다."
 
 msgid "Controller"
 msgstr "컨트롤러 (Controller)"
@@ -38,6 +45,12 @@ msgstr "디싱크 (Desync)"
 
 msgid "Peers whose simulations no longer match. Detected by comparing state hashes."
 msgstr "피어들의 시뮬레이션이 더 이상 같지 않은 상태. 상태 해시를 비교해 감지한다."
+
+msgid "Definition table"
+msgstr "정의 데이터 표 (Definition table)"
+
+msgid "Many rows of the same shape (weapons, items, enemy kinds) in `assets/tables/*.table`, edited in the editor's Tables panel."
+msgstr "같은 모양의 행이 여러 개인 데이터(무기, 아이템, 적 종류). `assets/tables/*.table`에 두고 에디터 [표] 패널에서 고친다."
 
 msgid "Deterministic simulation"
 msgstr "결정론 시뮬레이션 (Deterministic simulation)"
@@ -105,6 +118,12 @@ msgstr "프로젝트 (Project)"
 msgid "A game project folder with a `mealkit.project` file."
 msgstr "`mealkit.project` 파일이 있는 게임 프로젝트 폴더."
 
+msgid "Row reference"
+msgstr "행 참조 (Row reference)"
+
+msgid "A field (`RowRef<Row>`) that points at a row of a definition table by its id."
+msgstr "정의 데이터 표의 행을 id로 가리키는 필드(`RowRef<Row>`)."
+
 msgid "RHI"
 msgstr "RHI"
 
@@ -146,4 +165,10 @@ msgstr "튜닝 (Tuning)"
 
 msgid "Numbers the simulation reads (`assets/game.tuning`), edited in the editor's Tuning panel."
 msgstr "시뮬레이션이 읽는 숫자(`assets/game.tuning`). 에디터 [튜닝] 패널에서 고친다."
+
+msgid "View tuning"
+msgstr "화면용 튜닝"
+
+msgid "Numbers that are only seen, such as camera and colors (`assets/view.tuning`). Not in the content hash; changes apply at once."
+msgstr "카메라·색처럼 보이기만 하는 숫자(`assets/view.tuning`). 콘텐츠 해시에 들어가지 않고, 바꾸면 바로 적용된다."
 

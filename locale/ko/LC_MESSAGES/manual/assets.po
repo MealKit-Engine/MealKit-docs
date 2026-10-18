@@ -3,8 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: MealKit\n"
-"POT-Creation-Date: 2026-10-18 16:06+0900\n"
+"Project-Id-Version:  MealKit\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-10-18 18:20+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -39,15 +40,97 @@ msgstr "충돌 상자에 붙인 모델은 **모델 정점의 볼록 껍질**로 
 msgid "The sample models (tree, rock, ring) can be regenerated with `python tools/make_sample_models.py`."
 msgstr "샘플 모델(나무, 바위, 고리)은 `python tools/make_sample_models.py`로 다시 만들 수 있다."
 
-msgid "Tuning values"
-msgstr "튜닝 값"
+msgid "Where numbers go"
+msgstr "숫자는 어디에 두나"
 
-msgid "Numbers the simulation uses (movement speed, jump strength, and so on) are not constants in code. The game declares them in `MEALKIT_STRUCT(Tuning)` and their values live in `assets/game.tuning`. The simulation reads them through `world.tuning`, and the editor's Tuning panel edits them. Where each kind of number belongs is in the engine's {engine}`coding model <docs/CODING_MODEL.md>` (\"Where do numbers go\")."
-msgstr "시뮬레이션이 쓰는 숫자(이동 속도, 점프 힘 등)는 코드 상수로 두지 않는다. 게임이 `MEALKIT_STRUCT(Tuning)`으로 선언하고 값은 `assets/game.tuning`에 있다. 시뮬레이션은 `world.tuning`으로 읽고, 에디터 [튜닝] 패널에서 고친다. 숫자 종류마다 어디에 두는지는 엔진의 {engine}`코딩 방식 <docs/CODING_MODEL.md>`(\"숫자는 어디에 두나\")에 있다."
+#, python-brace-format
+msgid "Numbers are not constants in code. Each kind of number has one place, chosen by what it affects (the engine's {engine}`coding model <docs/CODING_MODEL.md>`, \"Where do numbers go\"):"
+msgstr "숫자는 코드 상수로 두지 않는다. 숫자 종류마다 무엇에 영향을 주는지에 따라 자리가 하나씩 있다(엔진의 {engine}`코딩 방식 <docs/CODING_MODEL.md>` \"숫자는 어디에 두나\"):"
+
+msgid "Kind of value"
+msgstr "값의 종류"
+
+msgid "Place"
+msgstr "자리"
+
+msgid "Edited in"
+msgstr "고치는 곳"
+
+msgid "Game rules (speed, mass, chance, cooldown)"
+msgstr "게임 규칙 값 (속도, 질량, 확률, 재사용 대기)"
+
+msgid "`MEALKIT_STRUCT(Tuning)` → `assets/game.tuning`, read as `world.tuning`"
+msgstr "`MEALKIT_STRUCT(Tuning)` → `assets/game.tuning`, `world.tuning`으로 읽는다"
+
+msgid "Tuning panel, Game tab"
+msgstr "[튜닝] 패널 \"게임\" 탭"
+
+msgid "Values that differ per map (areas, counts, heights)"
+msgstr "맵마다 다른 값 (영역, 개수, 높이)"
+
+msgid "Scene objects; ranges and heights are the position and size of an **area object**"
+msgstr "씬 물체. 범위와 높이는 **영역 물체**의 위치·크기 자체"
+
+msgid "Scene view and inspector"
+msgstr "씬 뷰와 인스펙터"
+
+msgid "Many rows of the same shape (weapons, items, enemy kinds)"
+msgstr "같은 모양의 행이 여러 개 (무기, 아이템, 적 종류)"
+
+msgid "Definition table `assets/tables/*.table`"
+msgstr "정의 데이터 표 `assets/tables/*.table`"
+
+msgid "Tables panel, or a spreadsheet through CSV"
+msgstr "[표] 패널, 또는 CSV로 스프레드시트에서"
+
+msgid "Values that are only seen (camera, colors, effects)"
+msgstr "보이기만 하는 값 (카메라, 색, 효과)"
+
+msgid "`MEALKIT_STRUCT(ViewTuning)` → `assets/view.tuning`, read as `ctx.viewTuning<ViewTuning>()`"
+msgstr "`MEALKIT_STRUCT(ViewTuning)` → `assets/view.tuning`, `ctx.viewTuning<ViewTuning>()`으로 읽는다"
+
+msgid "Tuning panel, Display tab"
+msgstr "[튜닝] 패널 \"화면\" 탭"
+
+msgid "Whole-project settings"
+msgstr "프로젝트 전체 설정"
+
+msgid "`mealkit.project`"
+msgstr "`mealkit.project`"
+
+msgid "File > Project Settings"
+msgstr "[파일] > [프로젝트 설정]"
+
+msgid "Code keeps only unit conversions, algorithm constants and trivial values such as 0 and 1. SimCheck warns about other float literals in `sim/` (`SIM012`); an algorithm constant is marked with `// const-ok: <reason>` at the end of the line."
+msgstr "코드에 남기는 것은 단위 변환, 알고리즘 상수, 0·1 같은 자명한 값뿐이다. SimCheck가 `sim/`의 다른 실수 리터럴을 경고하고(`SIM012`), 알고리즘 상수는 줄 끝에 `// const-ok: <이유>`로 표시한다."
+
+msgid "Time values"
+msgstr "시간 값"
+
+msgid "Time values (cooldowns, respawn delays) are declared with the `Ticks` type: `MEALKIT_FIELD(Ticks, respawn, Ticks::seconds(1.5f), \"...\")`. Files and the editor show seconds; on load the value is rounded once to whole ticks, and `sim/` code uses ticks only (`TickTimer::start(tick, world.tuning.respawn)`)."
+msgstr "시간 값(재사용 대기, 리스폰 대기)은 `Ticks` 타입으로 선언한다: `MEALKIT_FIELD(Ticks, respawn, Ticks::seconds(1.5f), \"...\")`. 파일과 에디터에는 초로 보이고, 불러올 때 한 번 정수 틱으로 반올림되며, `sim/` 코드는 틱만 쓴다(`TickTimer::start(tick, world.tuning.respawn)`)."
+
+msgid "View tuning"
+msgstr "화면용 튜닝"
+
+msgid "View tuning is not part of the content hash, so it can differ between players and changes apply at once, even during multiplayer play: the engine reloads `assets/view.tuning` when the file changes. Colors use the `Color` field type (`#RRGGBB` in files, a color picker in the editor). `sim/` code cannot include `view/` headers, so the simulation never reads view tuning."
+msgstr "화면용 튜닝은 콘텐츠 해시에 들어가지 않아 플레이어마다 달라도 되고, 여러 명 플레이 중에도 바꾸면 바로 적용된다: 엔진이 `assets/view.tuning` 파일이 바뀌면 다시 읽는다. 색은 `Color` 필드 타입이다(파일에는 `#RRGGBB`, 에디터에는 색 고르기). `sim/` 코드는 `view/` 헤더를 include할 수 없어 시뮬레이션이 화면용 튜닝을 읽는 일은 없다."
+
+msgid "Area objects"
+msgstr "영역 물체"
+
+msgid "A scene object kind declared with `kObjectFlags = mealkit::reflect::kObjectArea` is an invisible box. The editor draws only its edges, and you pick it by clicking an edge. The game does not draw it; it reads the box with `scene::areaBounds()`. In the example, the match area's floor is the fall height and its top is where fallen boxes are dropped again, and box spawn areas hold the number and kind of boxes to scatter."
+msgstr "`kObjectFlags = mealkit::reflect::kObjectArea`로 선언한 씬 물체 종류는 보이지 않는 상자다. 에디터는 모서리만 그리고, 모서리를 눌러 고른다. 게임은 그리지 않고 `scene::areaBounds()`로 상자를 읽는다. 예제에서는 경기 영역의 바닥이 낙사 높이, 위가 떨어진 상자를 다시 떨어뜨리는 높이이고, 상자 생성 영역에 흩어 놓을 상자 수와 종류가 있다."
+
+msgid "Definition tables"
+msgstr "정의 데이터 표"
+
+msgid "A table has a row type declared with `MEALKIT_STRUCT` and is registered with `MEALKIT_TABLE(Row, \"tables/props.table\", 0)`. The file has a `row <id>` line followed by that row's values. Other data points at a row with a `RowRef<Row>` field (the row id in files, a dropdown in the editor). The game reads tables with `game::loadTable` when a match starts, and simulation code reads rows by number. In the Tables panel (View > Tables, `Ctrl+T`) you add, copy, delete and reorder rows, edit cells, and see every reference to a missing row id. **CSV import and export** let you balance a table in Google Sheets or Excel: the first column is `id` and the other columns are the field paths. Importing replaces the table. A table registered with `reflect::kTableView` is display-only and stays out of the content hash."
+msgstr "표는 `MEALKIT_STRUCT`로 선언한 행 타입을 `MEALKIT_TABLE(Row, \"tables/props.table\", 0)`으로 등록한다. 파일은 `row <id>` 줄 다음에 그 행의 값이 온다. 다른 데이터는 `RowRef<Row>` 필드로 행을 가리킨다(파일에는 행 id, 에디터에는 드롭다운). 게임은 매치를 시작할 때 `game::loadTable`로 표를 읽고, 시뮬레이션 코드는 행을 번호로 읽는다. [표] 패널([보기] > [표], `Ctrl+T`)에서 행을 더하고·복제하고·지우고·순서를 바꾸고, 칸을 고치고, 없는 행 id를 가리키는 참조를 모두 본다. **CSV 가져오기·내보내기**로 Google Sheets나 Excel에서 밸런스를 잡는다: 첫 열은 `id`, 나머지 열은 필드 경로다. 가져오면 표가 CSV 내용으로 바뀐다. `reflect::kTableView`로 등록한 표는 화면 전용이라 콘텐츠 해시에 들어가지 않는다."
 
 msgid "Content hash"
 msgstr "콘텐츠 해시"
 
-msgid "When the scene's collision data, model files or tuning values change, the content hash changes. Peers using different data are refused when they connect."
-msgstr "씬 충돌 데이터, 모델 파일, 튜닝 값이 바뀌면 콘텐츠 해시가 바뀐다. 다른 데이터를 쓰는 피어는 접속이 거부된다."
+msgid "When the scene's collision data, model files, tuning values or simulation tables change, the content hash changes. Peers using different data are refused when they connect. View tuning and display-only tables are not included."
+msgstr "씬 충돌 데이터, 모델 파일, 튜닝 값, 시뮬레이션 표가 바뀌면 콘텐츠 해시가 바뀐다. 다른 데이터를 쓰는 피어는 접속이 거부된다. 화면용 튜닝과 화면 전용 표는 들어가지 않는다."
 

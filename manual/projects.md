@@ -26,6 +26,29 @@ The engine repository itself is also an example game project (top-level `mealkit
 `mealkit.project` holds the project settings: `name`, `engine`, `engineVersion`, `scene`, and game entries (`game.*`). Edit them in the editor under File > Project Settings.
 To rename a project (the name is also the exe name), use the project manager or `tools\rename_project.ps1 -Project <folder> -Name <new name>`.
 
+## Folder layout
+
+The engine fixes the project layout, so tools find files without settings and source files never end up in a release.
+
+| Folder | What goes there |
+|---|---|
+| `source/` | Game code (`sim/`, `view/`, `app/`) |
+| `assets/` | Only what ships with the game. Directly inside it: the kind folders `scenes/ models/ textures/ sounds/ effects/ ui/ fonts/ tables/ strings/ lut/` and the fixed files `game.tuning`, `view.tuning`, `input.bindings`, `feedback.table`, `sounds.table`. Subfolders inside a kind folder are free |
+| `art/` | Source files of external tools (`.blend`, Penpot, PSD, audio projects). Not shipped, not in the content hash |
+| `modules/` | Source modules (later) |
+| `third_party/` | The game's own libraries: one folder per library with its original `LICENSE` and a `mealkit.txt` |
+| `build/`, `export/` | Generated |
+
+`tools\check_layout.ps1 -Project <folder>` checks the layout: unknown files directly in `assets/`, wrong extensions in kind folders, source formats in `assets/`, and libraries without metadata or with a license outside the allowed list.
+`check.ps1`, the release build and the editor use the same script. New projects get every folder, and `upgrade_project.ps1` adds missing ones.
+
+### Third-party libraries
+
+Copy only the files needed to build into `third_party/<lib>/`, keep its `LICENSE`, and write `mealkit.txt` with `name`, `version`, `license`, `source`, `usedIn` and `kept`. If the library has a `CMakeLists.txt`, also give the target to link with `cmakeTarget`; otherwise it is used as headers only (`include` names the header folder).
+`mealkit_add_game()` links these libraries into the game exe and DLL only. `sim/` code cannot include their headers (SimCheck `SIM011`), and a library the engine already has cannot be added again.
+The release build merges the notices of MealKit itself, the engine libraries inside the exe, the game libraries and the fonts in `assets/fonts/` into `THIRD_PARTY_NOTICES.txt`, and fails if the exe is larger than 5 MB.
+In the engine repository, `tools\gen_notices.ps1` builds `third_party/VERSIONS.txt` and `THIRD_PARTY_NOTICES.txt` from the same metadata.
+
 ## Game code folders
 
 Game code is split into three folders. `mealkit_add_game()` collects them by pattern, so adding a file needs no CMake change.

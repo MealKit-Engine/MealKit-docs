@@ -3,8 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: MealKit\n"
-"POT-Creation-Date: 2026-10-18 16:06+0900\n"
+"Project-Id-Version:  MealKit\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-10-18 18:20+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -75,8 +76,8 @@ msgstr "방을 만들 때 최대 인원 (기본: `game.defaultMaxPlayers`, 최�
 msgid "`--bodies <n>`"
 msgstr "`--bodies <n>`"
 
-msgid "Physics bodies in the example (default 2000, set by the host; same as `--match-data`)"
-msgstr "예제의 물리 바디 수 (기본 2000, 호스트가 정함. `--match-data`와 같다)"
+msgid "Number of boxes in the example (default: the scene's box spawn areas; set by the host; same as `--match-data`)"
+msgstr "예제의 상자 수 (기본: 씬의 상자 생성 영역. 호스트가 정함. `--match-data`와 같다)"
 
 msgid "`--delay <ticks>`"
 msgstr "`--delay <ticks>`"
@@ -213,8 +214,8 @@ msgstr "최대 인원, 로비에 n명이 모이면 호스트가 시작 (기본: 
 msgid "`--match-data <n>`"
 msgstr "`--match-data <n>`"
 
-msgid "Game-defined match value sent by the host (example: physics boxes)"
-msgstr "호스트가 보내는 게임 정의 매치 값 (예제: 물리 상자 수)"
+msgid "Game-defined match value sent by the host (example: number of boxes, 0 = the scene's)"
+msgstr "호스트가 보내는 게임 정의 매치 값 (예제: 상자 수, 0 = 씬의 값)"
 
 msgid "`--delay`, `--seed`, `--threads`, `--scene`, `--tuning`, `--shadow`, `--hash-log`, `--record-inputs`, `--any-build`"
 msgstr "`--delay`, `--seed`, `--threads`, `--scene`, `--tuning`, `--shadow`, `--hash-log`, `--record-inputs`, `--any-build`"
@@ -306,6 +307,12 @@ msgstr "`--project-settings`"
 msgid "Start with the Project Settings window open"
 msgstr "[프로젝트 설정] 창을 열고 시작"
 
+msgid "`--tables`"
+msgstr "`--tables`"
+
+msgid "Start with the Tables panel open"
+msgstr "[표] 패널을 열고 시작"
+
 msgid "`--bodies <n>`, `--debug`"
 msgstr "`--bodies <n>`, `--debug`"
 
@@ -368,6 +375,18 @@ msgstr "`check_platform.ps1`, `check_strings.ps1`"
 
 msgid "OS calls outside the platform layer; editor translations"
 msgstr "플랫폼 층 밖 OS 호출, 에디터 번역"
+
+msgid "`check_layout.ps1 [-Project <folder>]`"
+msgstr "`check_layout.ps1 [-Project <폴더>]`"
+
+msgid "Project folder layout and third-party metadata (also run by the release build and the editor)"
+msgstr "프로젝트 폴더 구조와 외부 라이브러리 메타데이터 (출시 빌드와 에디터도 부른다)"
+
+msgid "`gen_notices.ps1 [-Check]`"
+msgstr "`gen_notices.ps1 [-Check]`"
+
+msgid "Build `third_party/VERSIONS.txt` and `THIRD_PARTY_NOTICES.txt` from `third_party/<lib>/mealkit.txt` (`-Check` only compares)"
+msgstr "`third_party/<lib>/mealkit.txt`에서 `third_party/VERSIONS.txt`와 `THIRD_PARTY_NOTICES.txt`를 만든다 (`-Check`는 비교만)"
 
 msgid "`make_sample_models.py`"
 msgstr "`make_sample_models.py`"

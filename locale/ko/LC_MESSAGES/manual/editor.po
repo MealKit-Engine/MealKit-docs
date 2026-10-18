@@ -3,8 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: MealKit\n"
-"POT-Creation-Date: 2026-10-18 16:06+0900\n"
+"Project-Id-Version:  MealKit\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-10-18 18:20+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -18,6 +19,7 @@ msgstr ""
 msgid "Editor"
 msgstr "에디터"
 
+#, python-brace-format
 msgid "The general-purpose editor `MealKitEditor` edits scenes, runs the game in play mode, and builds game code and releases. The first steps are in {doc}`../getting_started/editor_quick_start`."
 msgstr "범용 에디터 `MealKitEditor`는 씬을 편집하고, 플레이 모드로 게임을 돌리고, 게임 코드와 출시본을 빌드한다. 처음 쓰는 방법은 {doc}`../getting_started/editor_quick_start`에 있다."
 
@@ -90,6 +92,12 @@ msgstr "`Ctrl+R` / `Ctrl+B`"
 msgid "Build game code (hot reload) / release build"
 msgstr "게임 코드 빌드 (핫 리로드) / 출시 빌드"
 
+msgid "`Ctrl+T`"
+msgstr "`Ctrl+T`"
+
+msgid "Show or hide the Tables panel"
+msgstr "[표] 패널 보이기·숨기기"
+
 msgid "Objects"
 msgstr "물체"
 
@@ -105,6 +113,10 @@ msgstr "**장식**: 보이기만 한다."
 msgid "**Spawn point**: where players start. Not visible in the game."
 msgstr "**스폰 지점**: 플레이어 시작 위치. 게임에서는 보이지 않는다."
 
+msgid "**Match area** and **Box spawn area**: invisible area boxes. The editor draws their edges; click an edge to select one."
+msgstr "**경기 영역**과 **상자 생성 영역**: 보이지 않는 영역 상자. 에디터는 모서리를 그리고, 모서리를 눌러 고른다."
+
+#, python-brace-format
 msgid "Solid boxes and decorations can carry a **model** (glTF): `+ Model` in the scene tree, or `Choose Model...` in the inspector. See {doc}`assets`."
 msgstr "충돌 상자와 장식에는 **모델**(glTF)을 붙일 수 있다. 씬 트리의 `+ 모델` 또는 인스펙터의 `모델 선택...`. {doc}`assets`를 본다."
 
@@ -114,8 +126,11 @@ msgstr "씬은 사람이 읽을 수 있는 `.scene` 텍스트로 저장된다. �
 msgid "Panels"
 msgstr "패널"
 
-msgid "**Tuning**: the game's tuning values (`assets/game.tuning`), which the simulation reads."
-msgstr "**튜닝**: 시뮬레이션이 읽는 게임 튜닝 값(`assets/game.tuning`)."
+msgid "**Tuning**: two tabs. Game holds the values the simulation reads (`assets/game.tuning`); during solo play changes apply at once. Display holds the values that are only seen (`assets/view.tuning`); changes apply at once in every player window, even with several players."
+msgstr "**튜닝**: 탭 두 개. \"게임\"은 시뮬레이션이 읽는 값(`assets/game.tuning`)으로, 혼자 플레이 중에는 바꾸면 바로 적용된다. \"화면\"은 보이기만 하는 값(`assets/view.tuning`)으로, 여러 명이어도 모든 플레이어 창에 바로 적용된다."
+
+msgid "**Tables**: the game's definition tables (`assets/tables/*.table`) as a spreadsheet, CSV import and export, and the list of missing row references. Playing saves edited tables first."
+msgstr "**표**: 게임의 정의 데이터 표(`assets/tables/*.table`)를 스프레드시트로 보여 주고, CSV 가져오기·내보내기와 없는 행 참조 목록이 있다. 플레이를 누르면 고친 표를 먼저 저장한다."
 
 msgid "**State**: the simulation state declared with `MEALKIT_FIELD` while playing."
 msgstr "**상태**: 플레이 중 `MEALKIT_FIELD`로 선언된 시뮬레이션 상태."
@@ -123,12 +138,17 @@ msgstr "**상태**: 플레이 중 `MEALKIT_FIELD`로 선언된 시뮬레이션 �
 msgid "**Project Settings**: `mealkit.project` (File > Project Settings)."
 msgstr "**프로젝트 설정**: `mealkit.project` ([파일] > [프로젝트 설정])."
 
+#, python-brace-format
+msgid "**Folder layout**: when a project opens, the editor runs the layout check in the background and lists misplaced files (see {doc}`projects`)."
+msgstr "**폴더 구조**: 프로젝트를 열면 에디터가 폴더 구조 검사를 백그라운드로 돌려 잘못 놓인 파일을 알려 준다({doc}`projects` 참고)."
+
 msgid "**Build**: the Build menu runs the project's `build.bat Editor` and `build.bat Export` in the background and shows the log."
 msgstr "**빌드**: [빌드] 메뉴가 프로젝트의 `build.bat Editor`·`build.bat Export`를 백그라운드에서 실행하고 로그를 보여 준다."
 
 msgid "Play mode"
 msgstr "플레이 모드"
 
+#, python-brace-format
 msgid "Play mode runs the game inside the editor with the scene being edited. It can run several players at once, pause, and rewind. For automated checks, the editor also runs from the command line (see {doc}`../reference/command_line`)."
 msgstr "플레이 모드는 편집 중인 씬으로 에디터 안에서 게임을 돌린다. 여러 명을 같이 돌리고, 일시정지하고, 되감을 수 있다. 자동 검사용으로 에디터를 명령줄에서도 실행할 수 있다({doc}`../reference/command_line`)."
 

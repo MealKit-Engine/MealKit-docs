@@ -2,14 +2,20 @@
 
 Terms used in this documentation. The Korean translation uses the same words as the editor's Korean strings.
 
+Area object
+: A scene object that is an invisible box (`kObjectArea`). Its position and size are the data, for example a spawn area.
+
 Content hash
-: A hash of the data every peer must share: scene collision data, model files and tuning values. Peers with a different content hash are refused.
+: A hash of the data every peer must share: scene collision data, model files, tuning values and simulation tables. Peers with a different content hash are refused.
 
 Controller
 : What drives a pawn: a player or an AI.
 
 Desync
 : Peers whose simulations no longer match. Detected by comparing state hashes.
+
+Definition table
+: Many rows of the same shape (weapons, items, enemy kinds) in `assets/tables/*.table`, edited in the editor's Tables panel.
 
 Deterministic simulation
 : A simulation that gives bit-for-bit the same result from the same inputs on every PC, compiler and operating system.
@@ -44,6 +50,9 @@ Player slot
 Project
 : A game project folder with a `mealkit.project` file.
 
+Row reference
+: A field (`RowRef<Row>`) that points at a row of a definition table by its id.
+
 RHI
 : The engine's thin rendering hardware interface (`mealkit/rhi/`). Graphics APIs are called only behind it.
 
@@ -64,3 +73,6 @@ Tick
 
 Tuning
 : Numbers the simulation reads (`assets/game.tuning`), edited in the editor's Tuning panel.
+
+View tuning
+: Numbers that are only seen, such as camera and colors (`assets/view.tuning`). Not in the content hash; changes apply at once.
