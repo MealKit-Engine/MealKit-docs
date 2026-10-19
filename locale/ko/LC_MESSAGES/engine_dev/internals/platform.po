@@ -1,0 +1,615 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, KingProtea99 and MealKit contributors. CC BY 4.0
+# This file is distributed under the same license as the MealKit package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: MealKit 0.4\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-19 13:10+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ko\n"
+"Language-Team: ko <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+msgid "Platform"
+msgstr "플랫폼"
+
+#, python-brace-format
+msgid "This page explains how the platform folder works inside: the window and input, files and folders, processes, dynamic libraries, dialogs, images, gamepads and sockets, and how the code for each operating system is kept apart. Platform is the engine's only door to the operating system. Together with `core` it is the first group in the folder order, and the two may include each other; every other folder comes after them (see \"엔진 폴더 사이 의존\" in {engine}`docs/CODING_MODEL.md`). The code is in {engine}`engine/src/mealkit/platform`."
+msgstr "이 페이지는 플랫폼 폴더가 안에서 어떻게 돌아가는지 설명한다: 창과 입력, 파일과 폴더, 프로세스, 동적 라이브러리, 대화상자, 그림, 게임패드, 소켓, 그리고 OS마다 코드를 어떻게 나누는지. 플랫폼은 엔진이 OS로 나가는 유일한 문이다. `core`와 함께 폴더 순서의 첫 묶음이고, 둘은 서로 include할 수 있다. 다른 폴더는 모두 그 뒤에 온다({engine}`docs/CODING_MODEL.md`의 \"엔진 폴더 사이 의존\"). 코드는 {engine}`engine/src/mealkit/platform`에 있다."
+
+msgid "How win32/ and posix/ split"
+msgstr "win32/와 posix/로 나누는 방법"
+
+#, python-brace-format
+msgid "Headers sit where the feature belongs and contain no operating system types: `platform/Window.h`, `platform/Paths.h`, `core/Clock.h`, `net/Socket.h`. Each operating system gets its own `.cpp` files in `platform/win32/` or `platform/posix/`, and CMake picks one set when it configures the build ({engine}`engine/CMakeLists.txt`). There are no `#ifdef` branches spread through the engine and no virtual interface; one build has exactly one implementation (\"그래픽 API와 OS 기능\" in {engine}`docs/CODING_MODEL.md`)."
+msgstr "헤더는 기능 자리에 두고 OS 타입을 담지 않는다: `platform/Window.h`, `platform/Paths.h`, `core/Clock.h`, `net/Socket.h`. OS마다 자기 `.cpp` 파일을 `platform/win32/` 또는 `platform/posix/`에 두고, CMake가 빌드를 구성할 때 한 벌을 고른다({engine}`engine/CMakeLists.txt`). 엔진 곳곳에 흩어진 `#ifdef`도, 가상 인터페이스도 없다. 빌드 하나에 구현은 정확히 하나다({engine}`docs/CODING_MODEL.md`의 \"그래픽 API와 OS 기능\")."
+
+msgid "Handles such as `HWND` or `HANDLE` are stored as `void*` or `u64` in the headers, so `<windows.h>` never reaches other engine code or game code. Code that works on every system with the standard library alone stays outside the system folders: `platform/Paths.cpp` (`std::filesystem`) and `platform/System.cpp` (`cpuName` with the CPUID instruction)."
+msgstr "`HWND`나 `HANDLE` 같은 핸들은 헤더에서 `void*`나 `u64`로 담으므로, `<windows.h>`가 다른 엔진 코드나 게임 코드에 닿지 않는다. 표준 라이브러리만으로 모든 OS에서 되는 코드는 OS 폴더 밖에 둔다: `platform/Paths.cpp`(`std::filesystem`)와 `platform/System.cpp`(CPUID 명령으로 `cpuName`)."
+
+msgid "Feature"
+msgstr "기능"
+
+msgid "Header"
+msgstr "헤더"
+
+msgid "`win32/`"
+msgstr "`win32/`"
+
+msgid "`posix/`"
+msgstr "`posix/`"
+
+msgid "Time"
+msgstr "시간"
+
+msgid "`core/Clock.h`"
+msgstr "`core/Clock.h`"
+
+msgid "`Clock.cpp`"
+msgstr "`Clock.cpp`"
+
+msgid "Files and folders"
+msgstr "파일과 폴더"
+
+msgid "`platform/Paths.h`"
+msgstr "`platform/Paths.h`"
+
+msgid "`Paths.cpp`"
+msgstr "`Paths.cpp`"
+
+msgid "Debugger, dialogs, process id"
+msgstr "디버거, 대화상자, 프로세스 id"
+
+msgid "`platform/System.h`"
+msgstr "`platform/System.h`"
+
+msgid "`System.cpp`"
+msgstr "`System.cpp`"
+
+msgid "UDP sockets"
+msgstr "UDP 소켓"
+
+msgid "`net/Socket.h`"
+msgstr "`net/Socket.h`"
+
+msgid "`Socket.cpp`"
+msgstr "`Socket.cpp`"
+
+msgid "Window and input"
+msgstr "창과 입력"
+
+msgid "`platform/Window.h`, `Input.h`"
+msgstr "`platform/Window.h`, `Input.h`"
+
+msgid "`Window.cpp`"
+msgstr "`Window.cpp`"
+
+msgid "-"
+msgstr "-"
+
+msgid "Child processes"
+msgstr "자식 프로세스"
+
+msgid "`platform/Process.h`"
+msgstr "`platform/Process.h`"
+
+msgid "`Process.cpp`"
+msgstr "`Process.cpp`"
+
+msgid "Dynamic libraries"
+msgstr "동적 라이브러리"
+
+msgid "`platform/DynamicLibrary.h`"
+msgstr "`platform/DynamicLibrary.h`"
+
+msgid "`DynamicLibrary.cpp`"
+msgstr "`DynamicLibrary.cpp`"
+
+msgid "File dialogs"
+msgstr "파일 대화상자"
+
+msgid "`platform/FileDialog.h`"
+msgstr "`platform/FileDialog.h`"
+
+msgid "`FileDialog.cpp`"
+msgstr "`FileDialog.cpp`"
+
+msgid "Images"
+msgstr "그림"
+
+msgid "`platform/Image.h`"
+msgstr "`platform/Image.h`"
+
+msgid "`Image.cpp`"
+msgstr "`Image.cpp`"
+
+msgid "Gamepads"
+msgstr "게임패드"
+
+msgid "`platform/Gamepad.h`"
+msgstr "`platform/Gamepad.h`"
+
+msgid "`Gamepad.cpp`"
+msgstr "`Gamepad.cpp`"
+
+msgid "`posix/` has only what the headless build needs on Linux and macOS: time, files, sockets and logging. CI builds it to compare tick hashes across platforms. The window, input, dialogs, images and DLL loading come with the editor port in stage 5."
+msgstr "`posix/`에는 Linux와 macOS 헤드리스 빌드에 필요한 것만 있다: 시간, 파일, 소켓, 로그. CI가 이것을 빌드해 플랫폼 사이 틱 해시를 비교한다. 창, 입력, 대화상자, 그림, DLL 불러오기는 5단계 에디터 이식 때 생긴다."
+
+#, python-brace-format
+msgid "The first four rows are in `MEALKIT_CORE_SOURCES`, which the headless executable links as `mealkit_core`. The rest are in `MEALKIT_FRONT_SOURCES`, linked only by programs with a screen. The `platform/<os>/` files implement headers from several folders (`net/Socket.h` is one), so the folder order check ({engine}`tools/check_layers.ps1`) skips them and the platform check below looks at them instead."
+msgstr "앞의 네 행은 `MEALKIT_CORE_SOURCES`에 있고, 헤드리스 실행 파일이 `mealkit_core`로 링크한다. 나머지는 `MEALKIT_FRONT_SOURCES`에 있고, 화면이 있는 프로그램만 링크한다. `platform/<os>/` 파일은 여러 폴더의 헤더(`net/Socket.h` 등)를 구현하므로, 폴더 순서 검사({engine}`tools/check_layers.ps1`)는 이 파일을 빼고 아래 플랫폼 검사가 대신 본다."
+
+msgid "The check_platform rule"
+msgstr "check_platform 규칙"
+
+#, python-brace-format
+msgid "{engine}`tools/check_platform.ps1` (run by `check.ps1`) reads every `.cpp` and `.h` in `engine/src/mealkit` outside `platform/win32/` and `platform/posix/`, and every file in `samples/`. It fails when a line (comments removed) has:"
+msgstr "{engine}`tools/check_platform.ps1`(`check.ps1`이 부른다)은 `engine/src/mealkit`에서 `platform/win32/`와 `platform/posix/` 밖의 모든 `.cpp`·`.h`와 `samples/`의 모든 파일을 읽는다. 한 줄(주석을 뺀)에 다음이 있으면 실패한다:"
+
+msgid "an operating system or graphics header, such as `<windows.h>`, `<winsock2.h>`, `<dwmapi.h>`, `<xinput.h>`, `<d3d12.h>`, `<unistd.h>`, `<dlfcn.h>` or `<sys/...>`;"
+msgstr "OS나 그래픽 헤더: `<windows.h>`, `<winsock2.h>`, `<dwmapi.h>`, `<xinput.h>`, `<d3d12.h>`, `<unistd.h>`, `<dlfcn.h>`, `<sys/...>` 등"
+
+msgid "a typical system call, such as `MultiByteToWideChar`, `LoadLibrary`, `CreateProcess`, `QueryPerformanceCounter`, `WSAStartup`, `getenv` or `dlopen`."
+msgstr "대표적인 시스템 호출: `MultiByteToWideChar`, `LoadLibrary`, `CreateProcess`, `QueryPerformanceCounter`, `WSAStartup`, `getenv`, `dlopen` 등"
+
+msgid "Two files are allowed until the RHI layer arrives in stage 2: `render/Renderer.cpp` (DX12) and `debug/ImGuiLayer.cpp` (the ImGui Win32 and DX12 backends). The script prints them on every run. When a port to another system starts, only `platform/<os>/` and the RHI backend need new code."
+msgstr "RHI 층이 생기는 2단계까지 두 파일은 예외다: `render/Renderer.cpp`(DX12)와 `debug/ImGuiLayer.cpp`(ImGui Win32·DX12 백엔드). 스크립트는 실행할 때마다 이 둘을 출력한다. 다른 OS로 이식을 시작하면 `platform/<os>/`와 RHI 백엔드만 새로 쓰면 된다."
+
+#, python-brace-format
+msgid "`Window` ({engine}`engine/src/mealkit/platform/win32/Window.cpp`) is one Win32 window."
+msgstr "`Window`({engine}`engine/src/mealkit/platform/win32/Window.cpp`)는 Win32 창 하나다."
+
+msgid "**Creating**: the process becomes per-monitor DPI aware (version 2), so sizes are physical pixels and the window follows DPI changes (`WM_DPICHANGED`). The icon is resource 1 of the exe when there is one. A caption color in `WindowDesc` turns on the dark title bar and, on Windows 11, paints it with that color through DWM."
+msgstr "**만들기**: 프로세스를 모니터별 DPI 인식(버전 2)으로 바꾸므로, 크기는 물리 픽셀이고 창이 DPI 변화(`WM_DPICHANGED`)를 따라간다. 아이콘은 exe에 리소스 1번이 있으면 그것이다. `WindowDesc`에 제목 표시줄 색을 주면 어두운 제목 표시줄을 켜고, Windows 11에서는 DWM으로 그 색을 칠한다."
+
+msgid "**Modes**: windowed mode centers the window in the monitor's work area. Borderless and fullscreen are both a popup window the size of the monitor; there is no exclusive fullscreen, because a flip model swap chain has the same latency without it. `displaySizes()` lists the monitor's resolutions of at least 800×600, largest first, without duplicates."
+msgstr "**모드**: 창 모드는 창을 모니터 작업 영역 가운데에 둔다. 테두리 없는 창과 전체화면은 둘 다 모니터 크기의 팝업 창이다. 플립 모델 스왑 체인은 독점 전체화면 없이도 지연이 같아서 독점 전체화면은 없다. `displaySizes()`는 모니터의 800×600 이상 해상도를 큰 것부터 중복 없이 나열한다."
+
+msgid "**Messages**: `pumpMessages()` runs once a frame. It starts a new input frame, then handles every waiting message with `PeekMessageW`, so it never blocks. It returns `false` after the window is closed."
+msgstr "**메시지**: `pumpMessages()`는 프레임마다 한 번 돈다. 새 입력 프레임을 시작하고, 기다리는 메시지를 `PeekMessageW`로 모두 처리하므로 멈추지 않는다. 창이 닫히면 `false`를 돌려준다."
+
+msgid "**Hook**: `setMessageHook` lets another module see each message first. The editor and the debug overlay use it to feed Dear ImGui; a non-zero return means the message is handled."
+msgstr "**훅**: `setMessageHook`은 다른 모듈이 메시지를 먼저 보게 한다. 에디터와 디버그 오버레이가 이것으로 Dear ImGui에 메시지를 넘긴다. 0이 아닌 값을 돌려주면 그 메시지는 처리된 것이다."
+
+#, python-brace-format
+msgid "`Input` ({engine}`engine/src/mealkit/platform/Input.h`) is the raw state of keys and the mouse:"
+msgstr "`Input`({engine}`engine/src/mealkit/platform/Input.h`)은 키와 마우스의 원시 상태다:"
+
+msgid "Keys are Win32 virtual key codes. Letter keys use the capital letter (`'W'`), and `key::` has names for the others."
+msgstr "키는 Win32 가상 키 코드다. 글자 키는 대문자(`'W'`)를 쓰고, 다른 키는 `key::`에 이름이 있다."
+
+msgid "`keyPressed` compares this frame with the previous one, which `beginFrame()` copies before new messages arrive."
+msgstr "`keyPressed`는 이번 프레임과 이전 프레임을 비교한다. 이전 프레임은 새 메시지가 오기 전에 `beginFrame()`이 복사해 둔다."
+
+msgid "Mouse movement for camera control comes from **Raw Input** (`WM_INPUT`), so it has no pointer acceleration and does not stop at the screen edge. The cursor position comes from `WM_MOUSEMOVE`."
+msgstr "카메라 조작용 마우스 이동량은 **Raw Input**(`WM_INPUT`)에서 오므로, 포인터 가속이 없고 화면 끝에서 멈추지 않는다. 커서 위치는 `WM_MOUSEMOVE`에서 온다."
+
+msgid "Pressing a mouse button captures the mouse to the window until all buttons are up, so a drag that leaves the window still ends."
+msgstr "마우스 버튼을 누르면 모든 버튼을 뗄 때까지 마우스를 창에 붙잡아 두므로, 창 밖으로 나간 드래그도 끝난다."
+
+msgid "When the window loses focus, all keys and buttons are cleared and the cursor is released, so no key stays stuck down."
+msgstr "창이 포커스를 잃으면 모든 키와 버튼을 지우고 커서를 놓아주므로, 눌린 채로 남는 키가 없다."
+
+#, python-brace-format
+msgid "Game code does not read `Input` directly. It reads named actions from `input::Actions`, which the engine fills from `Input` and the gamepad (see {doc}`../../manual/input`). `window.input()` is for engine and debug keys."
+msgstr "게임 코드는 `Input`을 직접 읽지 않는다. 엔진이 `Input`과 게임패드로 채우는 `input::Actions`에서 이름 있는 액션을 읽는다({doc}`../../manual/input` 참고). `window.input()`은 엔진·디버그 키 전용이다."
+
+#, python-brace-format
+msgid "`Gamepads` ({engine}`engine/src/mealkit/platform/win32/Gamepad.cpp`) reads four XInput slots (Xbox and XInput-compatible pads). The engine updates it once a frame and passes `first()`, the first connected pad, to the input actions."
+msgstr "`Gamepads`({engine}`engine/src/mealkit/platform/win32/Gamepad.cpp`)는 XInput 슬롯 네 개(Xbox와 XInput 호환 패드)를 읽는다. 엔진이 프레임마다 한 번 갱신하고, 첫 번째 연결된 패드 `first()`를 입력 액션에 넘긴다."
+
+msgid "Sticks become -1 to 1 (negative values divide by 32768, positive ones by 32767, so both ends reach exactly 1), triggers 0 to 1. The dead zone is applied later by the actions."
+msgstr "스틱은 -1~1이 되고(음수는 32768로, 양수는 32767로 나눠 양 끝이 정확히 1에 닿는다), 트리거는 0~1이다. 데드존은 나중에 액션이 적용한다."
+
+msgid "Asking XInput about an empty slot is slow (about 14 µs per slot), so an unconnected slot is checked only once a second. A connected slot is read every frame."
+msgstr "빈 슬롯을 XInput에 물어보는 것은 느려서(슬롯당 약 14 µs), 연결되지 않은 슬롯은 1초에 한 번만 본다. 연결된 슬롯은 매 프레임 읽는다."
+
+msgid "Connecting and disconnecting are written to the log."
+msgstr "연결과 연결 끊김은 로그에 남는다."
+
+#, python-brace-format
+msgid "XInput was chosen over SDL3 because SDL3's gamepad support alone would take about a third of the 5 MB executable budget (see {engine}`docs/DECISIONS.md`, 2026-10-18)."
+msgstr "SDL3 대신 XInput을 고른 것은 SDL3의 게임패드 지원만으로 5 MB 실행 파일 예산의 약 3분의 1을 쓰기 때문이다({engine}`docs/DECISIONS.md`, 2026-10-18)."
+
+msgid "Paths"
+msgstr "경로"
+
+#, python-brace-format
+msgid "{engine}`engine/src/mealkit/platform/Paths.h` handles files and folders. Every path is UTF-8."
+msgstr "{engine}`engine/src/mealkit/platform/Paths.h`는 파일과 폴더를 다룬다. 경로는 모두 UTF-8이다."
+
+msgid "Finding assets"
+msgstr "에셋 찾기"
+
+msgid "`findAsset(relative)` returns the full path of an asset file, or an empty string:"
+msgstr "`findAsset(relative)`는 에셋 파일의 전체 경로를 돌려주고, 없으면 빈 문자열이다:"
+
+msgid "When a project root is set (`setProjectRoot`), it looks **only** in that folder."
+msgstr "프로젝트 루트가 정해져 있으면(`setProjectRoot`) 그 폴더에서**만** 찾는다."
+
+msgid "Otherwise it looks in the executable's folder and up to five folders above it, then in the current folder."
+msgstr "아니면 실행 파일 폴더와 그 위로 다섯 폴더까지, 그다음 현재 폴더에서 찾는다."
+
+#, python-brace-format
+msgid "Step 2 lets a development build in `build\\Release\\bin` find the repository's `assets` folder without copying it. Step 1 exists for the editor: `MealKitEditor.exe` lives inside the engine repository, so without a root it would find the engine's own `assets` instead of the open project's (see {doc}`editor`)."
+msgstr "2단계 덕분에 `build\\Release\\bin`의 개발 빌드가 복사 없이 저장소의 `assets` 폴더를 찾는다. 1단계는 에디터를 위한 것이다: `MealKitEditor.exe`는 엔진 저장소 안에 있어서, 루트가 없으면 연 프로젝트가 아니라 엔진 자신의 `assets`를 찾는다({doc}`editor` 참고)."
+
+msgid "Reading and writing"
+msgstr "읽기와 쓰기"
+
+msgid "`readTextFile` reads a whole file in 16 KB blocks."
+msgstr "`readTextFile`은 파일 전체를 16 KB 단위로 읽는다."
+
+msgid "`writeTextFile` writes to `<file>.tmp` in the same folder, flushes it, and then replaces the original in one step: `MoveFileExW` with `MOVEFILE_REPLACE_EXISTING | MOVEFILE_WRITE_THROUGH` on Windows, `fsync` and `rename` on POSIX. A crash or power cut during the write leaves the old file whole. Tuning and other declared text files, tables, `mealkit.project` and saves go through it."
+msgstr "`writeTextFile`은 같은 폴더의 `<file>.tmp`에 쓰고 비운(flush) 뒤 원본을 한 번에 바꿔 넣는다: Windows는 `MOVEFILE_REPLACE_EXISTING | MOVEFILE_WRITE_THROUGH`를 준 `MoveFileExW`, POSIX는 `fsync`와 `rename`. 쓰는 도중에 프로그램이 죽거나 전원이 꺼져도 예전 파일은 그대로 남는다. 튜닝과 다른 선언 텍스트 파일, 표, `mealkit.project`, 세이브가 이것을 거친다."
+
+msgid "`openFile` opens a UTF-8 path with `_wfopen_s` on Windows, because the narrow `fopen` there uses the system code page. POSIX paths are already bytes."
+msgstr "`openFile`은 Windows에서 UTF-8 경로를 `_wfopen_s`로 연다. 그곳의 좁은 문자 `fopen`은 시스템 코드 페이지를 쓰기 때문이다. POSIX 경로는 이미 바이트다."
+
+msgid "`fileWriteTime` and `fileCreationTime` return a number for comparing (Windows `FILETIME`, POSIX nanoseconds). Linux `stat` has no creation time, so there it returns the write time."
+msgstr "`fileWriteTime`과 `fileCreationTime`은 비교용 숫자를 돌려준다(Windows `FILETIME`, POSIX 나노초). Linux `stat`에는 만든 시각이 없어서 그곳에서는 수정 시각을 돌려준다."
+
+msgid "The user folder"
+msgstr "사용자 폴더"
+
+msgid "`userDataDirectory()` is the base folder for per-user data:"
+msgstr "`userDataDirectory()`는 사용자별 데이터의 바탕 폴더다:"
+
+msgid "System"
+msgstr "시스템"
+
+msgid "Folder"
+msgstr "폴더"
+
+msgid "Windows"
+msgstr "Windows"
+
+msgid "`%LOCALAPPDATA%`"
+msgstr "`%LOCALAPPDATA%`"
+
+msgid "Linux"
+msgstr "Linux"
+
+msgid "`$XDG_DATA_HOME`, or `~/.local/share`"
+msgstr "`$XDG_DATA_HOME` 또는 `~/.local/share`"
+
+msgid "macOS"
+msgstr "macOS"
+
+msgid "`~/Library/Application Support`"
+msgstr "`~/Library/Application Support`"
+
+msgid "If none is known, it returns the executable's folder. A game's user folder is `<base>/<project name>` (`game::userFolder`), where key bindings, `settings.ini` and saves live. The editor uses `<base>/MealKit`."
+msgstr "어느 것도 모르면 실행 파일 폴더를 돌려준다. 게임의 사용자 폴더는 `<바탕>/<프로젝트 이름>`(`game::userFolder`)이고, 키 바인딩, `settings.ini`, 세이브가 여기에 있다. 에디터는 `<바탕>/MealKit`을 쓴다."
+
+#, python-brace-format
+msgid "{engine}`engine/src/mealkit/platform/System.h` has small process-wide functions:"
+msgstr "{engine}`engine/src/mealkit/platform/System.h`에는 프로세스 전체에 쓰는 작은 함수들이 있다:"
+
+msgid "Function"
+msgstr "함수"
+
+msgid "POSIX"
+msgstr "POSIX"
+
+msgid "`cpuName()`"
+msgstr "`cpuName()`"
+
+msgid "the CPUID brand string (leaves 0x80000002 to 0x80000004), on x64"
+msgstr "x64에서 CPUID 브랜드 문자열(리프 0x80000002~0x80000004)"
+
+msgid "the same on x64; empty on ARM64 for now"
+msgstr "x64에서는 같음. ARM64에서는 지금 빈 문자열"
+
+msgid "`debugOutput`, `debuggerAttached`, `debugBreak`"
+msgstr "`debugOutput`, `debuggerAttached`, `debugBreak`"
+
+msgid "`OutputDebugStringA`, `IsDebuggerPresent`, `__debugbreak`"
+msgstr "`OutputDebugStringA`, `IsDebuggerPresent`, `__debugbreak`"
+
+msgid "nothing, `false`, `SIGTRAP`"
+msgstr "없음, `false`, `SIGTRAP`"
+
+msgid "`showErrorDialog`"
+msgstr "`showErrorDialog`"
+
+msgid "`MessageBoxA`"
+msgstr "`MessageBoxA`"
+
+msgid "nothing (the log already has the message)"
+msgstr "없음 (로그에 이미 메시지가 있다)"
+
+msgid "`exitProcess`"
+msgstr "`exitProcess`"
+
+msgid "`ExitProcess`"
+msgstr "`ExitProcess`"
+
+msgid "`_Exit`"
+msgstr "`_Exit`"
+
+msgid "`processId`"
+msgstr "`processId`"
+
+msgid "`GetCurrentProcessId`"
+msgstr "`GetCurrentProcessId`"
+
+msgid "`getpid`"
+msgstr "`getpid`"
+
+msgid "The game and the headless executable log `cpuName()` at start, so determinism reports from different computers say which CPU ran them. The editor puts `processId()` in the names of hot reload copies."
+msgstr "게임과 헤드리스 실행 파일은 시작할 때 `cpuName()`을 로그에 남기므로, 다른 컴퓨터의 결정론 보고에 어느 CPU에서 돌았는지 나온다. 에디터는 `processId()`를 핫 리로드 복사본 이름에 넣는다."
+
+msgid "Process and ChildProcess"
+msgstr "Process와 ChildProcess"
+
+#, python-brace-format
+msgid "{engine}`engine/src/mealkit/platform/Process.h` starts other programs ({engine}`engine/src/mealkit/platform/win32/Process.cpp`):"
+msgstr "{engine}`engine/src/mealkit/platform/Process.h`는 다른 프로그램을 띄운다({engine}`engine/src/mealkit/platform/win32/Process.cpp`):"
+
+msgid "**`ChildProcess`** runs a command line through `cmd.exe /s /c \"...\"` with no window, and sends its standard output and error into one pipe. `/s` removes only the outer pair of quotes, so a quoted path with spaces reaches the command unchanged. `poll()` never blocks: `PeekNamedPipe` says how many bytes are waiting, and only those are read. Output is split into lines; a line that is not valid UTF-8 is treated as the console code page (CP949 on Korean Windows) and converted. When the process ends, the last partial line is flushed and the exit code is kept. The editor runs `build.bat Editor`, `build.bat Export`, the upgrade script and the layout check this way."
+msgstr "**`ChildProcess`**는 명령줄을 창 없이 `cmd.exe /s /c \"...\"`로 실행하고, 표준 출력과 오류를 파이프 하나로 보낸다. `/s`는 바깥 따옴표 한 쌍만 벗기므로, 공백이 있는 따옴표 경로가 그대로 명령에 간다. `poll()`은 멈추지 않는다: `PeekNamedPipe`가 기다리는 바이트 수를 알려 주고, 그만큼만 읽는다. 출력은 줄로 나누고, 올바른 UTF-8이 아닌 줄은 콘솔 코드 페이지(한국어 Windows는 CP949)로 보고 변환한다. 프로세스가 끝나면 마지막 미완성 줄을 내보내고 종료 코드를 남긴다. 에디터는 `build.bat Editor`, `build.bat Export`, 업그레이드 스크립트, 폴더 구조 검사를 이렇게 실행한다."
+
+msgid "**`ProcessGroup`** starts several programs and closes them together. They go into a Windows **job object** with \"kill on job close\", so they end even if the editor crashes. Each process starts suspended and is added to the job before it runs, so programs it starts itself are in the job too. Its output goes to a log file. Multiplayer play in the editor starts its player windows this way."
+msgstr "**`ProcessGroup`**은 프로그램 여러 개를 띄우고 한꺼번에 닫는다. 프로세스를 \"작업 닫히면 종료\"가 켜진 Windows **Job 개체**에 넣으므로, 에디터가 비정상 종료해도 같이 끝난다. 프로세스는 멈춘 상태로 시작해 실행 전에 Job에 들어가므로, 그 프로세스가 띄우는 프로그램도 Job에 들어간다. 출력은 로그 파일로 간다. 에디터의 여러 명 플레이가 참가 창을 이렇게 띄운다."
+
+msgid "`launchDetached` starts a program without waiting (the project manager opening a project in a new editor process), and `openInExplorer` opens a folder."
+msgstr "`launchDetached`는 기다리지 않고 프로그램을 띄우고(프로젝트 관리자가 새 에디터 프로세스로 프로젝트를 열 때), `openInExplorer`는 폴더를 연다."
+
+msgid "DynamicLibrary"
+msgstr "DynamicLibrary"
+
+#, python-brace-format
+msgid "{engine}`engine/src/mealkit/platform/DynamicLibrary.h` is three functions: `loadLibrary` (`LoadLibraryW`, with the error code in the message on failure), `findSymbol` (`GetProcAddress`) and `freeLibrary`. The editor uses them to load the game DLL and to swap it during hot reload. Only Windows has them for now, because the editor is Windows only."
+msgstr "{engine}`engine/src/mealkit/platform/DynamicLibrary.h`는 함수 세 개다: `loadLibrary`(`LoadLibraryW`, 실패하면 메시지에 오류 코드), `findSymbol`(`GetProcAddress`), `freeLibrary`. 에디터가 이것으로 게임 DLL을 불러오고 핫 리로드 때 바꿔 끼운다. 에디터가 Windows 전용이라 지금은 Windows 구현만 있다."
+
+msgid "FileDialog"
+msgstr "FileDialog"
+
+#, python-brace-format
+msgid "{engine}`engine/src/mealkit/platform/FileDialog.h` opens the system dialogs for the editor:"
+msgstr "{engine}`engine/src/mealkit/platform/FileDialog.h`는 에디터용 시스템 대화상자를 연다:"
+
+msgid "`openFileDialog` and `saveFileDialog` use the common dialogs (`GetOpenFileNameW`, `GetSaveFileNameW`). The filters become the `name\\0pattern\\0...\\0\\0` string Windows expects. Saving asks before overwriting and adds the default extension when the name has none."
+msgstr "`openFileDialog`와 `saveFileDialog`는 공용 대화상자(`GetOpenFileNameW`, `GetSaveFileNameW`)를 쓴다. 필터는 Windows가 원하는 `name\\0pattern\\0...\\0\\0` 문자열이 된다. 저장은 덮어쓰기 전에 묻고, 이름에 확장자가 없으면 기본 확장자를 붙인다."
+
+msgid "`pickFolderDialog` uses the newer `IFileOpenDialog` with `FOS_PICKFOLDERS`, because the common dialogs cannot pick a folder."
+msgstr "`pickFolderDialog`는 공용 대화상자로는 폴더를 고를 수 없어서 더 새로운 `IFileOpenDialog`를 `FOS_PICKFOLDERS`로 쓴다."
+
+msgid "They return a UTF-8 path, or an empty string when cancelled."
+msgstr "UTF-8 경로를 돌려주고, 취소하면 빈 문자열이다."
+
+msgid "Image"
+msgstr "Image"
+
+#, python-brace-format
+msgid "{engine}`engine/src/mealkit/platform/Image.h` reads and writes pictures for the editor (project icons) with the Windows Imaging Component (WIC), so the engine needs no image library for this."
+msgstr "{engine}`engine/src/mealkit/platform/Image.h`는 에디터용 그림(프로젝트 아이콘)을 Windows Imaging Component(WIC)로 읽고 쓴다. 그래서 엔진은 이것을 위한 그림 라이브러리가 필요 없다."
+
+msgid "`loadImage` decodes PNG, JPEG, BMP, ICO and other formats WIC knows. An ICO file holds several sizes, and the widest frame is used."
+msgstr "`loadImage`는 PNG, JPEG, BMP, ICO와 WIC가 아는 다른 형식을 디코딩한다. ICO 파일에는 크기가 여러 개 있고, 가장 넓은 프레임을 쓴다."
+
+msgid "A picture larger than `maxSize` is scaled down with its aspect ratio kept (high-quality cubic filter)."
+msgstr "`maxSize`보다 큰 그림은 비율을 지켜 줄인다(고품질 큐빅 필터)."
+
+msgid "Every picture is converted to RGBA8 with straight (not premultiplied) alpha."
+msgstr "모든 그림은 곱하지 않은(premultiplied가 아닌) 알파의 RGBA8로 바꾼다."
+
+msgid "`loadImageResource` reads a picture stored in the executable as an `RCDATA` resource, and `savePng` writes RGBA8 as PNG. When the PNG encoder only accepts BGRA, red and blue are swapped first."
+msgstr "`loadImageResource`는 실행 파일에 `RCDATA` 리소스로 넣은 그림을 읽고, `savePng`는 RGBA8을 PNG로 쓴다. PNG 인코더가 BGRA만 받으면 먼저 빨강과 파랑을 바꾼다."
+
+msgid "The WIC factory is created once, on first use."
+msgstr "WIC 팩토리는 처음 쓸 때 한 번 만든다."
+
+msgid "Socket implementation"
+msgstr "소켓 구현"
+
+#, python-brace-format
+msgid "The UDP socket is declared in {engine}`engine/src/mealkit/net/Socket.h` and implemented in `platform/win32/Socket.cpp` and `platform/posix/Socket.cpp`. Lockstep and the transport above it are described with the network code."
+msgstr "UDP 소켓은 {engine}`engine/src/mealkit/net/Socket.h`에 선언하고 `platform/win32/Socket.cpp`와 `platform/posix/Socket.cpp`에서 구현한다. 그 위의 락스텝과 전송은 네트워크 코드와 함께 설명한다."
+
+msgid "Both versions behave the same:"
+msgstr "두 구현은 똑같이 동작한다:"
+
+msgid "IPv4 only. `resolveAddress` accepts `host`, `host:port` or `1.2.3.4:port` and uses `getaddrinfo`."
+msgstr "IPv4만. `resolveAddress`는 `host`, `host:port`, `1.2.3.4:port`를 받고 `getaddrinfo`를 쓴다."
+
+msgid "The socket is non-blocking. `receiveFrom` returns -1 when nothing is waiting, so the network session polls it without stopping the frame."
+msgstr "소켓은 논블로킹이다. 기다리는 것이 없으면 `receiveFrom`이 -1을 돌려주므로, 네트워크 세션이 프레임을 멈추지 않고 확인한다."
+
+msgid "Send and receive buffers are 1 MB."
+msgstr "보내기와 받기 버퍼는 1 MB다."
+
+msgid "`open(port, loopbackOnly)` binds to all addresses or only to 127.0.0.1. Port 0 picks a free port."
+msgstr "`open(port, loopbackOnly)`는 모든 주소나 127.0.0.1에만 바인딩한다. 포트 0은 빈 포트를 고른다."
+
+msgid "Windows needs two extra steps:"
+msgstr "Windows는 두 단계가 더 있다:"
+
+msgid "`startup()` and `cleanup()` call `WSAStartup` and `WSACleanup` with a reference count, so several users can open and close the socket library. On POSIX they do nothing."
+msgstr "`startup()`과 `cleanup()`은 참조 카운트로 `WSAStartup`과 `WSACleanup`을 불러, 여러 사용자가 소켓 라이브러리를 열고 닫을 수 있다. POSIX에서는 아무것도 하지 않는다."
+
+msgid "On Windows, when a UDP packet reaches a closed port, the next `recvfrom` fails with `WSAECONNRESET`. The socket turns this off with `SIO_UDP_CONNRESET`, so a peer that left does not break receiving from the others."
+msgstr "Windows에서는 UDP 패킷이 닫힌 포트에 닿으면 다음 `recvfrom`이 `WSAECONNRESET`으로 실패한다. 소켓은 `SIO_UDP_CONNRESET`으로 이 동작을 꺼서, 떠난 피어 때문에 다른 피어에게서 받기가 깨지지 않는다."
+
+msgid "Techniques used"
+msgstr "쓰인 기법"
+
+msgid "The algorithms and patterns behind the parts above, with where to find them in the code."
+msgstr "위 부분들 뒤에 있는 알고리즘과 패턴, 그리고 코드에서 찾을 곳."
+
+msgid "Structure"
+msgstr "구조"
+
+msgid "Technique"
+msgstr "기법"
+
+msgid "Where"
+msgstr "위치"
+
+msgid "What it does"
+msgstr "하는 일"
+
+msgid "One implementation per build"
+msgstr "빌드마다 구현 하나"
+
+#, python-brace-format
+msgid "{engine}`engine/CMakeLists.txt`"
+msgstr "{engine}`engine/CMakeLists.txt`"
+
+msgid "Shared headers, and CMake picks `win32/` or `posix/` source files. No virtual calls and no `#ifdef` in callers."
+msgstr "헤더는 같이 쓰고, CMake가 `win32/` 또는 `posix/` 소스 파일을 고른다. 호출하는 쪽에 가상 호출도 `#ifdef`도 없다."
+
+msgid "Opaque handles"
+msgstr "불투명 핸들"
+
+msgid "`Window`, `ChildProcess`, `UdpSocket`"
+msgstr "`Window`, `ChildProcess`, `UdpSocket`"
+
+msgid "System handles are stored as `void*` or `u64`, so headers never include system headers."
+msgstr "시스템 핸들을 `void*`나 `u64`로 담아, 헤더가 시스템 헤더를 include하지 않는다."
+
+msgid "Static check of the boundary"
+msgstr "경계의 정적 검사"
+
+msgid "`tools/check_platform.ps1`"
+msgstr "`tools/check_platform.ps1`"
+
+msgid "Regular expressions find system headers and calls outside `platform/<os>/`, with a short, printed list of exceptions."
+msgstr "정규식으로 `platform/<os>/` 밖의 시스템 헤더와 호출을 찾고, 예외는 짧은 목록으로 출력한다."
+
+msgid "Files"
+msgstr "파일"
+
+msgid "Atomic replace on write"
+msgstr "쓰기를 원자적으로 바꿔 넣기"
+
+msgid "`writeTextFile`"
+msgstr "`writeTextFile`"
+
+msgid "Writes a temporary file in the same folder and renames it over the original, so a crash never leaves a half-written file."
+msgstr "같은 폴더에 임시 파일을 쓰고 원본 위로 이름을 바꾸므로, 프로그램이 죽어도 반쯤 쓴 파일이 남지 않는다."
+
+msgid "Upward asset search"
+msgstr "위로 올라가며 에셋 찾기"
+
+msgid "`findAsset`"
+msgstr "`findAsset`"
+
+msgid "Looks in the executable's folder and its parents, so development builds find the repository's assets. A project root replaces the search."
+msgstr "실행 파일 폴더와 그 위 폴더들을 보므로, 개발 빌드가 저장소의 에셋을 찾는다. 프로젝트 루트가 있으면 검색 대신 그것을 쓴다."
+
+msgid "UTF-8 everywhere"
+msgstr "어디서나 UTF-8"
+
+msgid "`Paths.cpp`, `win32/*.cpp`"
+msgstr "`Paths.cpp`, `win32/*.cpp`"
+
+msgid "Paths are UTF-8 in the engine and become UTF-16 only at the Windows call (`MultiByteToWideChar`, `u8string`)."
+msgstr "경로는 엔진 안에서 UTF-8이고, Windows 호출 직전에만 UTF-16이 된다(`MultiByteToWideChar`, `u8string`)."
+
+msgid "Input and timing"
+msgstr "입력과 시간"
+
+msgid "Raw Input for mouse movement"
+msgstr "마우스 이동량에 Raw Input"
+
+msgid "`Window::create`, `WM_INPUT`"
+msgstr "`Window::create`, `WM_INPUT`"
+
+msgid "Registers the mouse as a raw device and adds relative movement, free of acceleration and screen edges."
+msgstr "마우스를 원시 장치로 등록하고 상대 이동량을 더하므로, 가속과 화면 끝의 영향이 없다."
+
+msgid "Edge detection with two frames"
+msgstr "두 프레임으로 눌림 감지"
+
+msgid "`Input::beginFrame`, `keyPressed`"
+msgstr "`Input::beginFrame`, `keyPressed`"
+
+msgid "Keeps the previous frame's keys, so \"pressed this frame\" is `down && !wasDown`."
+msgstr "이전 프레임의 키를 갖고 있으므로 \"이번 프레임에 눌림\"은 `down && !wasDown`이다."
+
+msgid "Clear on focus loss"
+msgstr "포커스를 잃으면 지우기"
+
+msgid "`WM_ACTIVATE`"
+msgstr "`WM_ACTIVATE`"
+
+msgid "Drops all key and button state, since key-up messages go to the window that has focus."
+msgstr "키를 뗀 메시지는 포커스가 있는 창으로 가므로, 키와 버튼 상태를 모두 버린다."
+
+msgid "Backed-off polling of empty slots"
+msgstr "빈 슬롯은 드물게 확인"
+
+msgid "`Gamepads::update`"
+msgstr "`Gamepads::update`"
+
+msgid "Checks empty gamepad slots once a second because each check is slow."
+msgstr "확인 한 번이 느려서 빈 게임패드 슬롯은 1초에 한 번 본다."
+
+msgid "Asymmetric stick scaling"
+msgstr "비대칭 스틱 배율"
+
+msgid "`stick` in `Gamepad.cpp`"
+msgstr "`Gamepad.cpp`의 `stick`"
+
+msgid "Divides negative values by 32768 and positive ones by 32767, so both full deflections map to exactly ±1."
+msgstr "음수는 32768로, 양수는 32767로 나눠 양쪽 끝까지 민 값이 정확히 ±1이 된다."
+
+msgid "Processes"
+msgstr "프로세스"
+
+msgid "Non-blocking pipe reading"
+msgstr "멈추지 않는 파이프 읽기"
+
+msgid "`ChildProcess::readAvailable`"
+msgstr "`ChildProcess::readAvailable`"
+
+msgid "`PeekNamedPipe` before `ReadFile`, so the editor frame never waits for build output."
+msgstr "`ReadFile` 전에 `PeekNamedPipe`를 불러, 에디터 프레임이 빌드 출력을 기다리지 않는다."
+
+msgid "Line assembly with partial buffer"
+msgstr "미완성 버퍼로 줄 모으기"
+
+msgid "`ChildProcess::m_partial`"
+msgstr "`ChildProcess::m_partial`"
+
+msgid "Keeps bytes after the last newline until the rest of the line arrives."
+msgstr "마지막 줄바꿈 뒤의 바이트를 줄의 나머지가 올 때까지 갖고 있는다."
+
+msgid "Encoding detection by validation"
+msgstr "검증으로 인코딩 알아내기"
+
+msgid "`toUtf8Line`"
+msgstr "`toUtf8Line`"
+
+msgid "Tries strict UTF-8 first and falls back to the console code page."
+msgstr "먼저 엄격한 UTF-8로 시도하고, 아니면 콘솔 코드 페이지로 본다."
+
+msgid "Job object with kill on close"
+msgstr "닫히면 종료하는 Job 개체"
+
+msgid "`ProcessGroup::launch`"
+msgstr "`ProcessGroup::launch`"
+
+msgid "Child processes, and the processes they start, end with the editor even after a crash. Starting suspended closes the gap before the process joins the job."
+msgstr "자식 프로세스와 그것이 띄운 프로세스가 비정상 종료 뒤에도 에디터와 함께 끝난다. 멈춘 상태로 시작해 프로세스가 Job에 들어가기 전의 틈을 없앤다."
+
+msgid "Reference-counted library start-up"
+msgstr "참조 카운트로 라이브러리 시작"
+
+msgid "`net::startup`"
+msgstr "`net::startup`"
+
+msgid "`WSAStartup` once for the first user, `WSACleanup` after the last."
+msgstr "첫 사용자가 `WSAStartup`을 한 번, 마지막 사용자 뒤에 `WSACleanup`을 부른다."
+

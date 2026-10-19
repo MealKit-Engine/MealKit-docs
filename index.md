@@ -60,6 +60,14 @@ engine_dev/contributing
 
 ```{toctree}
 :maxdepth: 2
+:caption: "Internals: foundation"
+
+engine_dev/internals/core
+engine_dev/internals/platform
+```
+
+```{toctree}
+:maxdepth: 2
 :caption: "Internals: game boundary"
 
 engine_dev/internals/editor
