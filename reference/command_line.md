@@ -6,7 +6,7 @@ The example game is called `sandbox`. In a game project, the executables carry t
 
 | Option | Meaning |
 |---|---|
-| `--host [port]` | Host a match (default: `game.defaultPort` in `mealkit.project`) |
+| `--host [port]` | Host a room and wait in the lobby (default: `game.defaultPort` in `mealkit.project`). Without options a game with menus starts at its title screen |
 | `--join <addr[:port]>` | Join a host |
 | `--steam` | Host a Steam friends-only lobby (invite with `I` or `Shift+Tab`) |
 | `--steam-join <lobby>` | Join a Steam lobby by id (invites from Steam join automatically) |
@@ -27,7 +27,9 @@ The example game is called `sandbox`. In a game project, the executables carry t
 | `--bot` | Drive the local player with scripted input |
 | `--shadow` | Run a shadow simulation and compare state hashes every tick |
 | `--rewind-test` | Record inputs and snapshots, rewind and replay at the exit tick |
-| `--capture <png> <tick>` | Save a screenshot after the given tick |
+| `--capture <png> [tick]` | Save a screenshot after the given tick (without a tick: the last frame of `--frames`) |
+| `--frames <n>` | Draw n frames and exit (screens outside a match, such as the title) |
+| `--ui-press <frame:node,...>` | Press the UI widget with that node name at that frame (screen flow tests, e.g. `20:start,50:solo`) |
 | `--system-info` | Print CPU and GPU features and exit (exit code 2 below the minimum spec) |
 | `--any-build` | Host: accept peers running a different build (compiler comparison tests) |
 | `--hash-log <file>` | Write `<tick> <hash>` for every tick |

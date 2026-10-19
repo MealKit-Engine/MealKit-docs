@@ -67,6 +67,7 @@ for (const mealkit::ui::Action& a : ctx.ui.actions())
 | `visible [!]field`, `disabled field`, `widthRatio field`, `colorField field` | Show or hide, disable a widget, scale the width by 0 to 1 (health bars), take the color from a field |
 | `button <action>` | Sends the action when clicked or confirmed |
 | `toggle <field>`, `slider <field> <min> <max> <step>`, `select <field> <key1,key2>` | Input widgets write their own field and send `changed` (or the action given after the field). Text inside a select shows the choice with `{option}` |
+| `textInput <field> [action]` | On a text node: typing writes the string field (keyboard text, including Korean input), `Enter` sends the action (default `submit`), `Esc` stops typing. `placeholder <key>` shows dimmed text while it is empty, `maxLength <n>` limits the characters. While typing, the game gets no keyboard input. `ctx.ui.focusText(screen, node)` starts typing from code (a chat key) |
 | `scroll [horizontal]` | Scrolls its content with the wheel |
 | `list <field>` | Repeats its first child for each item; inside, fields are looked up in the item first. Other children are only examples |
 

@@ -15,14 +15,16 @@ A game implements one class, `game::GameInstance` ({engine}`engine/src/mealkit/g
 | Function | Called |
 |---|---|
 | `lobby` | Every frame before the match starts (once before an offline session opens). The game sets this player's match start data. |
-| `start` | Once, when the session becomes `Running`. |
+| `start` | Once per match, one frame after the session becomes `Running` (that frame draws the loading screen). |
+| `stop` | Once when the match is over: back to the lobby, left, or disconnected. The next match calls `start` again. |
+| `menus` | `true` if the game draws its own screen flow (title, menus, lobby, results). The engine then starts at the menu when no room is given on the command line and leaves `Esc` and `Enter` to the game. |
 | `update` | Every frame: camera input and simulation ticks. |
 | `buildFrame` | Every frame: fills the frame parameters and the draw list. |
 | `nextTick`, `stateHash`, `finished`, `captureDue`, `takeSimMsPerTick` | By the engine loop for automated tests and performance numbers. |
 | `setTuning`, `stateView`, `debug` | By the editor: live tuning, the State panel, and pause and rewind. |
 | `debugUi` | Inside the Dear ImGui frame, in development builds and the editor. |
 
-The engine passes a `game::GameContext` ({engine}`engine/src/mealkit/game/GameContext.h`) to each call. It holds references to the engine services the screen side uses: window, renderer, models, lockstep session, audio, feedback, input actions, strings, game UI and player settings.
+The engine passes a `game::GameContext` ({engine}`engine/src/mealkit/game/GameContext.h`) to each call. It holds references to the engine services the screen side uses: window, renderer, models, lockstep session, the match service, audio, feedback, input actions, strings, game UI and player settings.
 It also holds values the engine sets every frame: the viewport, whether the game may read the keyboard and mouse, the display tuning and the user folder.
 The game does not keep the context, and `sim/` never receives it: the simulation only gets `World&`. The reasons are in {engine}`docs/CODING_MODEL.md` "엔진 기능에 어떻게 접근하나".
 
@@ -31,7 +33,7 @@ The same game class is used in two ways:
 - **The editor** loads it from a game DLL through `game::GameModule`, a table of plain function pointers returned by `mealkitGetGameModule` (the `MEALKIT_GAME_MODULE` macro). {doc}`editor` lists the entries.
 - **The shipped exe** links the game class directly. `gameModuleOf<GameClass>` builds the same table, so the exe main reads object types, tuning type and tables the same way the editor does.
 
-`kApiVersion` (now 19) is raised whenever the promise across the DLL boundary changes. The comment above it lists what each version added. The editor refuses a DLL whose version differs.
+`kApiVersion` (now 20) is raised whenever the promise across the DLL boundary changes. The comment above it lists what each version added. The editor refuses a DLL whose version differs.
 
 Optional types are found at compile time. If the game class declares `ProjectSettingsType`, `ViewTuningType` or `EventType`, the matching module entry returns its type information; otherwise it returns `nullptr`. This uses C++20 `requires` expressions, so a game declares only what it uses.
 
@@ -51,14 +53,14 @@ The macro writes `main` ({engine}`engine/src/mealkit/game/GameMain.h`). If the a
 1. Parse the command line with `parseGameArgs` (`--help` lists the options). `--system-info` prints the CPU and GPU and exits.
 2. Create the window, the renderer and the model cache.
 3. Call `loadMatchData` (see "Match data and tuning" below): `mealkit.project` with the game's `game.*` lines, the start scene (or `--scene`), the tuning and the content hash. Then apply the headless defaults and set the content hash on the lockstep session.
-4. Open the session: offline, host, join, or a Steam lobby (opened later, when the lobby is ready).
+4. Create the `MatchService` (which owns the lockstep session) and open what the command line asks for: host, join or a Steam lobby. Solo play starts a match at once for games without menus, for `--exit-tick` runs and for `--bot`; a game with menus otherwise starts at its title.
 5. Create the game, start audio and feedback, and initialize the `Frontend`.
 
 Then it runs one loop. Each frame:
 
-1. Handle engine keys: `Esc` quits (unless the settings screen is open), `V` toggles vsync, `F12` saves a screenshot, `F1` toggles the debug UI in development builds.
-2. Update the online lobby and the lockstep session. Before the match, call `game->lobby`. The host starts the match on `Enter` or when `--auto-start` players are in.
-3. When the session becomes `Running`, call `game->start`.
+1. Handle engine keys: `Esc` quits a game without menus (unless the settings screen is open), `V` toggles vsync, `F12` saves a screenshot, `F1` toggles the debug UI in development builds, `I` opens the friend invite in an online lobby.
+2. Update the match service (online lobby, session, LAN room announcements and search). Before the match, call `game->lobby`. The host starts the match when `--auto-start` players are in, and a game without menus also on `Enter`.
+3. One frame after the session becomes `Running`, call `game->start`; when it stops being `Running`, call `game->stop`.
 4. Set the viewport and input permission (the window must have focus, and the debug UI may take input), then `front.update` and `game->update`.
 5. Update audio and feedback.
 6. Unless the window is minimized: `game->buildFrame`, `front.afterBuildFrame`, draw the 3D scene, the game UI, then the debug UI on top.
@@ -79,6 +81,12 @@ REWIND ok|FAIL ticks=<a>..<b> memory=<MB> ...  (with --rewind-test)
 
 `--rewind-test` pauses, seeks through the whole recorded range in steps of 37 ticks, returns to the live tick and checks that the hash is unchanged. The exit code is 0 for success, 2 for a network desync, 3 if the session ended early, 4 for a rewind failure and 5 for a shadow desync.
 The exe waits one more second before closing, so peers receive the last tick.
+
+## Match service
+
+`game::MatchService` ({engine}`engine/src/mealkit/game/MatchService.h`) owns the lockstep session and is what a game's menus call through `ctx.match`: `playOffline`, `host`, `hostOnline`, `join`, `joinOnline`, `start`, `returnToLobby`, `leave`, `setBrowsing` and `rooms`. The exe, editor play and player windows each create one; the command line uses the same calls.
+`phase()` maps the session state to what the screen flow needs (menu, opening an online lobby, connecting, lobby, running, ended). `update` runs the online service, opens the session when an online lobby is ready (owner hosts on the platform relay, others join it), joins an accepted invite from the menu, updates the session, announces a hosted lobby on the LAN, and refreshes the room list while browsing.
+The default player name is the online account name, otherwise the computer's user name (`userName()`); a game can set another with `ctx.session.setLocalName`.
 
 ## Frontend
 

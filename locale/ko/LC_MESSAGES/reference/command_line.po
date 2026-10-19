@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-19 08:18+0900\n"
+"POT-Creation-Date: 2026-10-19 18:29+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -34,8 +34,8 @@ msgstr "뜻"
 msgid "`--host [port]`"
 msgstr "`--host [port]`"
 
-msgid "Host a match (default: `game.defaultPort` in `mealkit.project`)"
-msgstr "방 만들기 (기본: `mealkit.project`의 `game.defaultPort`)"
+msgid "Host a room and wait in the lobby (default: `game.defaultPort` in `mealkit.project`). Without options a game with menus starts at its title screen"
+msgstr "방을 만들고 로비에서 기다린다(기본: `mealkit.project`의 `game.defaultPort`). 옵션이 없으면 메뉴가 있는 게임은 타이틀 화면에서 시작한다"
 
 msgid "`--join <addr[:port]>`"
 msgstr "`--join <addr[:port]>`"
@@ -157,11 +157,23 @@ msgstr "`--rewind-test`"
 msgid "Record inputs and snapshots, rewind and replay at the exit tick"
 msgstr "입력과 스냅샷을 기록하고, 종료 틱에서 되감아 다시 실행"
 
-msgid "`--capture <png> <tick>`"
-msgstr "`--capture <png> <tick>`"
+msgid "`--capture <png> [tick]`"
+msgstr "`--capture <png> [tick]`"
 
-msgid "Save a screenshot after the given tick"
-msgstr "지정한 틱 뒤 스크린샷 저장"
+msgid "Save a screenshot after the given tick (without a tick: the last frame of `--frames`)"
+msgstr "그 틱 뒤 스크린샷을 저장한다(틱이 없으면 `--frames`의 마지막 프레임)"
+
+msgid "`--frames <n>`"
+msgstr "`--frames <n>`"
+
+msgid "Draw n frames and exit (screens outside a match, such as the title)"
+msgstr "n 프레임을 그리고 끝낸다(타이틀처럼 매치 밖 화면)"
+
+msgid "`--ui-press <frame:node,...>`"
+msgstr "`--ui-press <frame:node,...>`"
+
+msgid "Press the UI widget with that node name at that frame (screen flow tests, e.g. `20:start,50:solo`)"
+msgstr "그 프레임에 그 노드 이름의 UI 위젯을 누른다(화면 흐름 시험, 예: `20:start,50:solo`)"
 
 msgid "`--system-info`"
 msgstr "`--system-info`"
@@ -282,9 +294,6 @@ msgstr "`--lang <ko|en>`"
 
 msgid "Editor language for this run only (the saved setting is not changed; used for documentation screenshots)"
 msgstr "이번 실행만 에디터 언어 지정 (저장된 설정은 바꾸지 않는다. 문서 스크린샷용)"
-
-msgid "`--frames <n>`"
-msgstr "`--frames <n>`"
 
 msgid "Exit after n frames"
 msgstr "n 프레임 뒤 종료"

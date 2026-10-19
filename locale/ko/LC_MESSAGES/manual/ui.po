@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-19 08:05+0900\n"
+"POT-Creation-Date: 2026-10-19 18:29+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ko\n"
@@ -185,6 +185,12 @@ msgstr "`toggle <field>`, `slider <field> <min> <max> <step>`, `select <field> <
 #, python-brace-format
 msgid "Input widgets write their own field and send `changed` (or the action given after the field). Text inside a select shows the choice with `{option}`"
 msgstr "입력 위젯은 자기 필드에 값을 쓰고 `changed`(또는 필드 뒤에 적은 액션)를 보낸다. 선택 상자 안의 글자는 `{option}`으로 고른 것을 보여 준다"
+
+msgid "`textInput <field> [action]`"
+msgstr "`textInput <field> [action]`"
+
+msgid "On a text node: typing writes the string field (keyboard text, including Korean input), `Enter` sends the action (default `submit`), `Esc` stops typing. `placeholder <key>` shows dimmed text while it is empty, `maxLength <n>` limits the characters. While typing, the game gets no keyboard input. `ctx.ui.focusText(screen, node)` starts typing from code (a chat key)"
+msgstr "글자 노드에: 친 글자를 문자열 필드에 쓰고(한글 입력 포함 키보드 글자), `Enter`면 액션(기본 `submit`), `Esc`면 그만둔다. `placeholder <key>`는 비어 있을 때 흐린 글자, `maxLength <n>`은 글자 수 제한. 치는 동안 게임은 키보드를 받지 않는다. `ctx.ui.focusText(screen, node)`로 코드에서 글자 치기를 시작한다(채팅 키)"
 
 msgid "`scroll [horizontal]`"
 msgstr "`scroll [horizontal]`"

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-19 13:15+0900\n"
+"POT-Creation-Date: 2026-10-19 18:29+0900\n"
 "PO-Revision-Date: 2026-10-19 13:15+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -268,6 +268,9 @@ msgstr "슬라이더나 선택 위젯에서 왼쪽·오른쪽은 옮기지 않�
 
 msgid "`ui.back` sends the board's `back` action."
 msgstr "`ui.back`은 보드의 `back` 액션을 낸다."
+
+msgid "**Text input**: activating a `textInput` node (click, confirm, or `focusText` from code) starts typing in it. While typing, that screen takes the whole keyboard: the frame's typed text (`Input::text()`, UTF-8) is appended up to `maxLength` characters, each backspace removes the last character with its UTF-8 continuation bytes, `Enter` sends the node's action and stops, and `Esc` or a click elsewhere stops. `wantsKeyboard()` stays true, so the game and the `ui.*` navigation see no keys. An empty field shows its placeholder at lower opacity; the caret is a thin bar after the last character that blinks."
+msgstr "**글자 입력**: `textInput` 노드를 누르면(클릭, 확인, 코드의 `focusText`) 글자 치기가 시작된다. 치는 동안 그 화면이 키보드를 모두 가져간다: 이번 프레임에 친 글자(`Input::text()`, UTF-8)를 `maxLength` 글자까지 붙이고, 지우기마다 마지막 글자를 UTF-8 이어지는 바이트까지 지우고, `Enter`면 노드의 액션을 내고 그만두고, `Esc`나 다른 곳 클릭이면 그만둔다. `wantsKeyboard()`가 계속 참이라 게임과 `ui.*` 이동은 키를 받지 않는다. 빈 칸은 자리 표시 글자를 흐리게 보이고, 커서는 마지막 글자 뒤의 깜박이는 가는 막대다."
 
 msgid "The focus ring is drawn only after keyboard or gamepad use; moving the mouse hides it. `wantsMouse()` and `wantsKeyboard()` tell the engine to hide that input from the game this frame."
 msgstr "포커스 표시는 키보드나 게임패드를 쓴 뒤에만 그리고, 마우스를 움직이면 숨긴다. `wantsMouse()`와 `wantsKeyboard()`가 이번 프레임에 그 입력을 게임에서 숨기라고 엔진에 알린다."

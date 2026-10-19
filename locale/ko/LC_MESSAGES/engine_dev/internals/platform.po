@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-19 13:10+0900\n"
+"POT-Creation-Date: 2026-10-19 18:29+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ko\n"
@@ -199,6 +199,12 @@ msgstr "마우스 버튼을 누르면 모든 버튼을 뗄 때까지 마우스�
 msgid "When the window loses focus, all keys and buttons are cleared and the cursor is released, so no key stays stuck down."
 msgstr "창이 포커스를 잃으면 모든 키와 버튼을 지우고 커서를 놓아주므로, 눌린 채로 남는 키가 없다."
 
+msgid "Typed text comes from `WM_CHAR`: UTF-16 units (joined when a character takes two) become UTF-8 in `text()`, after the input method has composed them, so Korean works. Backspaces are counted separately (`backspaces()`, key repeat included). Text input widgets use these."
+msgstr "친 글자는 `WM_CHAR`에서 온다: UTF-16 단위(두 개로 오는 글자는 합친다)가 입력기 조합이 끝난 뒤 `text()`에 UTF-8로 들어가므로 한글이 된다. 지우기는 따로 센다(`backspaces()`, 키 반복 포함). 글자 입력 위젯이 이것을 쓴다."
+
+msgid "`close()` makes the next `pumpMessages()` return `false` (a game's Quit button)."
+msgstr "`close()`를 부르면 다음 `pumpMessages()`가 `false`를 돌려준다(게임의 [끝내기] 버튼)."
+
 #, python-brace-format
 msgid "Game code does not read `Input` directly. It reads named actions from `input::Actions`, which the engine fills from `Input` and the gamepad (see {doc}`../../manual/input`). `window.input()` is for engine and debug keys."
 msgstr "게임 코드는 `Input`을 직접 읽지 않는다. 엔진이 `Input`과 게임패드로 채우는 `input::Actions`에서 이름 있는 액션을 읽는다({doc}`../../manual/input` 참고). `window.input()`은 엔진·디버그 키 전용이다."
@@ -346,6 +352,15 @@ msgstr "`GetCurrentProcessId`"
 msgid "`getpid`"
 msgstr "`getpid`"
 
+msgid "`userName`"
+msgstr "`userName`"
+
+msgid "`GetUserNameW` (UTF-8)"
+msgstr "`GetUserNameW` (UTF-8)"
+
+msgid "`$USER`"
+msgstr "`$USER`"
+
 msgid "The game and the headless executable log `cpuName()` at start, so determinism reports from different computers say which CPU ran them. The editor puts `processId()` in the names of hot reload copies."
 msgstr "게임과 헤드리스 실행 파일은 시작할 때 `cpuName()`을 로그에 남기므로, 다른 컴퓨터의 결정론 보고에 어느 CPU에서 돌았는지 나온다. 에디터는 `processId()`를 핫 리로드 복사본 이름에 넣는다."
 
@@ -431,6 +446,9 @@ msgstr "보내기와 받기 버퍼는 1 MB다."
 
 msgid "`open(port, loopbackOnly)` binds to all addresses or only to 127.0.0.1. Port 0 picks a free port."
 msgstr "`open(port, loopbackOnly)`는 모든 주소나 127.0.0.1에만 바인딩한다. 포트 0은 빈 포트를 고른다."
+
+msgid "`openShared(port)` binds with `SO_REUSEADDR` (and `SO_REUSEPORT` where it exists), so several processes receive the same broadcast. `enableBroadcast()` allows sending to 255.255.255.255. LAN room discovery uses both."
+msgstr "`openShared(port)`는 `SO_REUSEADDR`(있으면 `SO_REUSEPORT`도)로 묶어 여러 프로세스가 같은 브로드캐스트를 받는다. `enableBroadcast()`는 255.255.255.255로 보내게 한다. LAN 방 찾기가 둘 다 쓴다."
 
 msgid "Windows needs two extra steps:"
 msgstr "Windows는 두 단계가 더 있다:"

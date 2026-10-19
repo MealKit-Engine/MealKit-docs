@@ -123,6 +123,8 @@ A button is activated when the mouse is released over the same node it was press
 - Left and right on a slider or a select change its value instead of moving.
 - `ui.back` sends the board's `back` action.
 
+**Text input**: activating a `textInput` node (click, confirm, or `focusText` from code) starts typing in it. While typing, that screen takes the whole keyboard: the frame's typed text (`Input::text()`, UTF-8) is appended up to `maxLength` characters, each backspace removes the last character with its UTF-8 continuation bytes, `Enter` sends the node's action and stops, and `Esc` or a click elsewhere stops. `wantsKeyboard()` stays true, so the game and the `ui.*` navigation see no keys. An empty field shows its placeholder at lower opacity; the caret is a thin bar after the last character that blinks.
+
 The focus ring is drawn only after keyboard or gamepad use; moving the mouse hides it.
 `wantsMouse()` and `wantsKeyboard()` tell the engine to hide that input from the game this frame.
 

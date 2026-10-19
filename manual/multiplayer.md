@@ -5,9 +5,14 @@ The host is both a player and the relay. There is no dedicated server.
 
 ## Playing together
 
+Started without options, the example opens its title screen. From the main menu you can play solo, host a room, join a room (rooms on the same network are listed by themselves, or type an address), or play with Steam friends when the build has the Steamworks SDK.
+In the lobby every player picks a body, marks themself ready and can chat; the host starts when everyone is ready. A match counts down, runs for two minutes and shows the results; then the host takes everyone back to the lobby for the next match.
+
+The same rooms can be opened from the command line, which skips the menus:
+
 ```bat
-sandbox.exe                          :: play alone
-sandbox.exe --host                   :: host a match (UDP 27015). Press Enter in the lobby to start
+sandbox.exe                          :: title screen and menus
+sandbox.exe --host                   :: host a room (UDP 27015) and wait in the lobby
 sandbox.exe --join 192.168.0.10      :: join
 sandbox.exe --steam                  :: create a Steam friends lobby (needs the Steamworks SDK)
 sandbox.exe --scene my.scene         :: play another scene
@@ -17,9 +22,28 @@ sandbox.exe --help                   :: all options
 
 - Every player must use **the same executable, the same scene and the same model files**. Otherwise the connection is refused (this protects determinism).
 - To connect from another PC over UDP, allow `sandbox.exe` in the host's firewall, and set up port forwarding across the internet. With Steam neither is needed.
-- To test with several windows on one PC, use `--host --local` so the firewall prompt does not appear.
+- To test with several windows on one PC, use `--host --local` so the firewall prompt does not appear. Rooms hosted with `--local` are announced on 127.0.0.1 only, so other windows on the same PC still list them.
+- Rooms announce themselves on the local network every second while they wait in the lobby (UDP port 27199). The join screen lists rooms of the same game; a room with a different version or different game data is grayed out.
 
-Game controls in the example: `WASD` or a gamepad's left stick move, `Space` jump, left click push, right drag or right stick camera, wheel zoom, `F6` debug shockwave, `V` vsync, `F12` screenshot, `Esc` quit. The bindings are in `assets/input.bindings` (see {doc}`input`).
+Game controls in the example: `WASD` or a gamepad's left stick move, `Space` jump, left click push, right drag or right stick camera, wheel zoom, `F8` debug shockwave, `Enter` chat, `Esc` or `Start` pause menu, `V` vsync, `F12` screenshot. The bindings are in `assets/input.bindings` (see {doc}`input`).
+
+## Screen flow
+
+The screens from the title to the results are game code, so each game changes them freely: the example keeps them in `source/app/Flow.cpp` and one `.ui` file per screen (`title`, `menu`, `join`, `lobby`, `loading`, `pause`, `results`, `message`).
+Opening and closing rooms is engine work, and the game only calls `ctx.match` (`mealkit/game/MatchService.h`):
+
+| Call | When |
+|---|---|
+| `playOffline()`, `host()`, `hostOnline()`, `join(address)` | From the menu. Each goes to the lobby; `join` also takes the address of a room from `rooms()` (fill the list while the join screen is open with `setBrowsing(true)`) |
+| `start()` | Host, in the lobby |
+| `returnToLobby()` | Host, after the results. Every player goes back to the lobby; one session hosts any number of matches |
+| `leave()` | Anywhere: closes the session and goes back to the menu |
+| `phase()`, `error()` | Which screen to show: menu, connecting, lobby, match or ended (with the reason) |
+
+In the lobby, `ctx.session` has the players (`lobbyMembers()`: name, ready, host, the loadout they picked), `setLocalName`, `setLocalReady` and the chat (`sendChat`, `chatLog`). Chat lines go through the host, so everyone sees them in the same order; they are not part of the match and are not recorded.
+When the match must end is decided by the simulation (the example's `MatchPhase`: countdown, playing, finished), so every peer shows the results on the same tick.
+The engine calls `GameInstance::start` one frame after the session starts the match (so the loading screen is drawn) and `GameInstance::stop` when the match is over.
+A game that draws these screens returns `true` from `GameInstance::menus()`; the engine then leaves `Esc` and `Enter` to the game.
 
 ## Commands
 

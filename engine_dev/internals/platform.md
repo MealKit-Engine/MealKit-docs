@@ -57,6 +57,8 @@ When a port to another system starts, only `platform/<os>/` and the RHI backend 
 - Mouse movement for camera control comes from **Raw Input** (`WM_INPUT`), so it has no pointer acceleration and does not stop at the screen edge. The cursor position comes from `WM_MOUSEMOVE`.
 - Pressing a mouse button captures the mouse to the window until all buttons are up, so a drag that leaves the window still ends.
 - When the window loses focus, all keys and buttons are cleared and the cursor is released, so no key stays stuck down.
+- Typed text comes from `WM_CHAR`: UTF-16 units (joined when a character takes two) become UTF-8 in `text()`, after the input method has composed them, so Korean works. Backspaces are counted separately (`backspaces()`, key repeat included). Text input widgets use these.
+- `close()` makes the next `pumpMessages()` return `false` (a game's Quit button).
 
 Game code does not read `Input` directly. It reads named actions from `input::Actions`, which the engine fills from `Input` and the gamepad (see {doc}`../../manual/input`). `window.input()` is for engine and debug keys.
 
@@ -113,6 +115,7 @@ If none is known, it returns the executable's folder. A game's user folder is `<
 | `showErrorDialog` | `MessageBoxA` | nothing (the log already has the message) |
 | `exitProcess` | `ExitProcess` | `_Exit` |
 | `processId` | `GetCurrentProcessId` | `getpid` |
+| `userName` | `GetUserNameW` (UTF-8) | `$USER` |
 
 The game and the headless executable log `cpuName()` at start, so determinism reports from different computers say which CPU ran them. The editor puts `processId()` in the names of hot reload copies.
 
@@ -162,6 +165,7 @@ Both versions behave the same:
 - The socket is non-blocking. `receiveFrom` returns -1 when nothing is waiting, so the network session polls it without stopping the frame.
 - Send and receive buffers are 1 MB.
 - `open(port, loopbackOnly)` binds to all addresses or only to 127.0.0.1. Port 0 picks a free port.
+- `openShared(port)` binds with `SO_REUSEADDR` (and `SO_REUSEPORT` where it exists), so several processes receive the same broadcast. `enableBroadcast()` allows sending to 255.255.255.255. LAN room discovery uses both.
 
 Windows needs two extra steps:
 

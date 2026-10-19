@@ -68,9 +68,12 @@ Ticks are kept in a ring buffer of 256 slots (`kTickWindow`, about 8.5 seconds a
 | State | What happens |
 |---|---|
 | `Connecting` | The client sends a connect request every 0.25 seconds. |
-| `Lobby` | The host sends the player count every 0.5 seconds. The client repeats its connect request every second as a keep-alive, and it carries the player's match start data (loadout). |
+| `Lobby` | Every 0.5 seconds the host sends the lobby: player count, the match index, and for each player the number, name, ready and host flags and loadout (as many as fit; the next packet continues). The client repeats its connect request every second as a keep-alive, and it carries the player's loadout, name and ready flag (sent at once when one changes). |
 | `Running` | `startMatch(seed, matchData)` on the host fixes the player count, numbers the players, and sends a start packet (seed, match data, input delay, every player's loadout) every 0.1 seconds until each client answers with its first input packet. |
 | `Ended` | A disconnect, a timeout or a rejection. `endReason()` says which. |
+
+One session hosts many matches. `returnToLobby()` on the host puts it back in `Lobby` and clears everyone's ready flag; its lobby packets tell the clients to leave the match too. Each `startMatch` raises the **match index**, which travels in the start and lobby packets, and its low byte in every input and bundle packet, so a late packet from the previous match is dropped.
+A player who leaves the lobby frees their number for the next one; `startMatch` renumbers the players without gaps. `openOffline()` gives solo play the same lobby, and `reset()` closes the session and returns to `Idle` (the name and content hash stay).
 
 A peer that sends nothing for 10 seconds times out. In the lobby it is removed. During a match, the match ends, because lockstep cannot go on without one player's inputs.
 A loadout is at most 128 bytes (`kMaxLoadoutBytes`), so the start packet holds 8 players.
@@ -90,6 +93,16 @@ Besides the 8-byte inputs, a peer can send a confirmed command of up to 200 byte
 The host puts waiting commands into the next tick it finalizes, in player order and then in the order they were sent. A tick holds up to 256 bytes of commands, including a 2-byte header per command. What does not fit goes into the next tick.
 Commands then travel with that tick's inputs, so every peer runs them on the same tick. The typed layer on top is `sim::sendCommand` (see {doc}`sim`).
 
+### Chat
+
+`sendChat` sends one line of up to 120 bytes, at most one every 0.5 seconds. A client keeps its unconfirmed lines and sends them every 0.1 seconds in a chat packet together with the index of the last relayed line it has. The host numbers each line it accepts, adds it to its own log and relays it to every client the same way, until each confirms it.
+Because the host numbers every line, all players see the chat in the same order, the sender included. Chat is outside the ticks, so recordings and replays do not contain it. `chatLog()` keeps the last 50 lines.
+
+### LAN rooms
+
+{engine}`engine/src/mealkit/net/Rooms.h` lets players find rooms without typing an address. While a hosted room waits in the lobby, `RoomAnnouncer` sends a small packet every second (game name, host name, build id, content hash, players, maximum, session port) to the broadcast address and to 127.0.0.1 on UDP port 27199. A room hosted on 127.0.0.1 only sends to 127.0.0.1.
+`RoomFinder` listens on that port with `openShared`, so several games on one PC can listen at once, keeps rooms of the same game name, merges the two copies of a room on the same PC, and drops a room after 3.5 seconds without an announcement. The game service compares the build id and content hash to gray out rooms it could not join.
+
 ### Desync detection
 
 Each client puts the hash of its latest executed tick into every input packet. The host keeps its own hashes for the last 256 ticks and compares them, both when a report arrives and when the host runs that tick itself.
@@ -98,7 +111,7 @@ Only the host compares hashes, and only the latest hash goes into each packet, s
 
 ### Offline
 
-`startOffline` runs a session with one player and no sockets. It uses the same tick and input path, so playing alone runs the same code as a network match.
+`startOffline` (or `openOffline` and then `startMatch`) runs a session with one player and no sockets. It uses the same tick and input path, so playing alone runs the same code as a network match.
 
 ### Session stats
 
