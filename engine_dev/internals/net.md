@@ -39,7 +39,14 @@ A player input is 8 bytes (`kInputBytes`). What the bytes mean is up to the game
 ### Input delay
 
 The input delay is the number of ticks between sampling an input and running it. It hides the network round trip: while the input travels, the peer still has finalized ticks to run.
-The default is 3 ticks (`--delay`), and `hostWith` clamps it to 1–30. An offline session uses 1.
+`hostWith` clamps it to 1–30, and an offline session uses 1.
+
+With `setAutoDelay` (the exe and the headless binary turn it on from `mealkit.project` unless `--delay` fixes the value), the host chooses it:
+
+- **At match start**, from the round trip times measured in the lobby: `delayForRtt` takes the worst one × 1.25 (jitter margin) plus one tick, in ticks, kept between `inputDelayMinMs` and `inputDelayMaxMs`. A client's input reaches the other clients through the host, so the worst round trip to the host bounds the path.
+- **During the match**, every second: when the measured value needs more, the host sends an engine command (a confirmed command with its own type) with the new delay at once; when it needs at least two ticks less, it lowers it by one. Changes are at least three seconds apart.
+
+Every peer applies the command right after running the tick that carries it, so all switch on the same tick. When the delay grows, the ticks between the last old target and the first new target would have no input, so each peer fills them with its last input. When it shrinks, targets overlap, and an input for a tick already sent is skipped (the host never changes a finalized tick). `requestInputDelay` sends the same command by hand.
 
 When a match starts, the first input-delay ticks are already finalized with empty inputs, so tick 0 can run at once.
 

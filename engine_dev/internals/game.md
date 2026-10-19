@@ -209,7 +209,7 @@ The display tuning is not in the content hash, so it can change during a multipl
 
 ## Project settings
 
-`game::ProjectSettings` ({engine}`engine/src/mealkit/game/ProjectSettings.h`) is the engine part of `mealkit.project`: name, engine folder and version, start scene, icon, creation date, sound voices and default language. A game adds its own struct, saved in the file with the `game.` prefix.
+`game::ProjectSettings` ({engine}`engine/src/mealkit/game/ProjectSettings.h`) is the engine part of `mealkit.project`: name, engine folder and version, start scene, icon, creation date, sound voices, default language and the automatic input delay (`inputDelayAuto`, `inputDelayMinMs`, `inputDelayMaxMs`). A game adds its own struct, saved in the file with the `game.` prefix.
 
 The file uses the same `path value` lines as tuning files, and the reader also accepts old `key=value` lines. Loading keeps three things the engine cannot type-check:
 

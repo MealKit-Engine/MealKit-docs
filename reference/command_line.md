@@ -14,7 +14,7 @@ The example game is called `sandbox`. In a game project, the executables carry t
 | `--tuning <file>` | Tuning values (default `assets/game.tuning`) |
 | `--players <n>` | Maximum players when hosting (default: `game.defaultMaxPlayers`, at most 8) |
 | `--bodies <n>` | Number of boxes in the example (default: the scene's box spawn areas; set by the host; same as `--match-data`) |
-| `--delay <ticks>` | Input delay in 33 ms ticks (default 3) |
+| `--delay <ticks>` | Fixed input delay in 33 ms ticks (default: chosen by the host from the players' ping, `inputDelayAuto` in `mealkit.project`) |
 | `--seed <n>` | World seed |
 | `--vsync <0\|1>` | Vertical sync (default 1) |
 | `--fps <n>` | Frame cap when vsync is off |
