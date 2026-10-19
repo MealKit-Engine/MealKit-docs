@@ -1,0 +1,255 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, KingProtea99 and MealKit contributors. CC BY 4.0
+# This file is distributed under the same license as the MealKit package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: MealKit 0.4\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-19 13:08+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ko\n"
+"Language-Team: ko <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+msgid "Physics"
+msgstr "물리"
+
+#, python-brace-format
+msgid "This page explains how the physics layer works inside: a small wrapper around Jolt Physics, and what it does to give the same result on every PC. `physics` comes after `net` in the layer order and includes only `core` (see \"엔진 폴더 사이 의존\" in {engine}`docs/CODING_MODEL.md`). The determinism rules that game code follows are in {doc}`../../manual/multiplayer`. The code is in {engine}`engine/src/mealkit/physics`."
+msgstr "이 페이지는 물리 계층이 안에서 어떻게 돌아가는지 설명한다: Jolt Physics를 감싼 작은 래퍼, 그리고 모든 PC에서 같은 결과를 내려고 하는 일. `physics`는 계층 순서에서 `net` 다음이고 `core`만 include한다({engine}`docs/CODING_MODEL.md`의 \"엔진 폴더 사이 의존\" 참고). 게임 코드가 따르는 결정론 규칙은 {doc}`../../manual/multiplayer`에 있다. 코드는 {engine}`engine/src/mealkit/physics`에 있다."
+
+msgid "The wrapper"
+msgstr "래퍼"
+
+#, python-brace-format
+msgid "`physics::PhysicsWorld` ({engine}`engine/src/mealkit/physics/PhysicsWorld.h`) is the only physics API that game code sees. Bodies are plain `BodyId` numbers (`u32`), and no Jolt header reaches game code: the engine links Jolt privately. This keeps Jolt types out of the simulation state, so a `BodyId` can be a `MEALKIT_FIELD` that is hashed and saved like any other number."
+msgstr "`physics::PhysicsWorld`({engine}`engine/src/mealkit/physics/PhysicsWorld.h`)는 게임 코드가 보는 유일한 물리 API다. 바디는 그냥 `BodyId` 숫자(`u32`)이고, Jolt 헤더는 게임 코드에 닿지 않는다: 엔진이 Jolt를 PRIVATE으로 링크한다. 그래서 Jolt 타입이 시뮬레이션 상태에 들어가지 않고, `BodyId`는 다른 숫자처럼 해시·저장되는 `MEALKIT_FIELD`가 될 수 있다."
+
+msgid "Function"
+msgstr "함수"
+
+msgid "What it does"
+msgstr "하는 일"
+
+msgid "`init(maxBodies, threads)`"
+msgstr "`init(maxBodies, threads)`"
+
+msgid "Creates the Jolt physics system and a job thread pool. `threads = 0` uses the core count minus one (for the main thread), between 1 and 6."
+msgstr "Jolt 물리 시스템과 작업 스레드 풀을 만든다. `threads = 0`이면 코어 수에서 하나(메인 스레드용)를 뺀 수를 1과 6 사이로 쓴다."
+
+msgid "`createBox` / `createSphere` / `createCapsule` / `createConvexHull`"
+msgstr "`createBox` / `createSphere` / `createCapsule` / `createConvexHull`"
+
+msgid "Creates a static, dynamic or kinematic body from a `BodyDesc` (friction, restitution, damping, mass, rotation lock, sleep)."
+msgstr "`BodyDesc`(마찰, 반발, 감쇠, 질량, 회전 잠금, 잠들기)로 정적·동적·키네마틱 바디를 만든다."
+
+msgid "`destroy`"
+msgstr "`destroy`"
+
+msgid "Removes a body."
+msgstr "바디를 지운다."
+
+msgid "`optimize`"
+msgstr "`optimize`"
+
+msgid "Rebuilds the broad phase once after the static bodies are made."
+msgstr "정적 바디를 다 만든 뒤 브로드페이즈를 한 번 다시 만든다."
+
+msgid "`step(dt, collisionSteps)`"
+msgstr "`step(dt, collisionSteps)`"
+
+msgid "Advances the world."
+msgstr "세계를 진행한다."
+
+msgid "`castRay`"
+msgstr "`castRay`"
+
+msgid "Finds the nearest body on a ray, optionally ignoring one body."
+msgstr "광선 위에서 가장 가까운 바디를 찾는다. 바디 하나를 무시할 수 있다."
+
+msgid "`hashState`"
+msgstr "`hashState`"
+
+msgid "Adds every body's id, position, rotation and velocities to the state hash, in creation order."
+msgstr "모든 바디의 id, 위치, 회전, 속도를 만든 순서대로 상태 해시에 넣는다."
+
+msgid "`save` / `restore`"
+msgstr "`save` / `restore`"
+
+msgid "Snapshots the whole physics state (see below)."
+msgstr "물리 상태 전체를 스냅샷한다(아래 참고)."
+
+msgid "There are two collision layers: static bodies (`NonMoving`) and everything else (`Moving`). Two static bodies never collide with each other. A mass of 0 means Jolt computes it from the shape with a density of 1000 kg/m³. With `lockRotation`, only the three translation axes are free, so a character does not fall over."
+msgstr "충돌 레이어는 두 개다: 정적 바디(`NonMoving`)와 나머지 전부(`Moving`). 정적 바디끼리는 충돌하지 않는다. 질량 0은 Jolt가 모양과 밀도 1000 kg/m³로 계산한다는 뜻이다. `lockRotation`이면 이동 세 축만 자유로워서 캐릭터가 넘어지지 않는다."
+
+msgid "Determinism"
+msgstr "결정론"
+
+#, python-brace-format
+msgid "Lockstep needs every peer to compute bit for bit the same physics. Jolt supports this when it is built for it and called in the same order. The rules are in \"결정론 규칙\" in {engine}`docs/CODING_MODEL.md`."
+msgstr "락스텝은 모든 피어가 비트 단위로 같은 물리를 계산해야 한다. Jolt는 그렇게 빌드하고 같은 순서로 부르면 이것을 지원한다. 규칙은 {engine}`docs/CODING_MODEL.md`의 \"결정론 규칙\"에 있다."
+
+msgid "Build options"
+msgstr "빌드 옵션"
+
+#, python-brace-format
+msgid "Jolt is built from source with fixed options in {engine}`cmake/MealKit.cmake`:"
+msgstr "Jolt는 {engine}`cmake/MealKit.cmake`의 고정된 옵션으로 소스에서 빌드한다:"
+
+msgid "`CROSS_PLATFORM_DETERMINISTIC` is on. Jolt then avoids operations whose result can differ between compilers and CPUs."
+msgstr "`CROSS_PLATFORM_DETERMINISTIC`을 켠다. 그러면 Jolt는 컴파일러와 CPU에 따라 결과가 달라질 수 있는 연산을 피한다."
+
+msgid "AVX, AVX2, AVX-512, FMA (`USE_FMADD`), F16C, LZCNT and TZCNT are off. SSE4.1 and SSE4.2 are on. The same executable then runs the same instructions on every CPU, including office Pentium and Celeron CPUs. A fused multiply-add rounds once instead of twice, so allowing it on some CPUs would change results."
+msgstr "AVX, AVX2, AVX-512, FMA(`USE_FMADD`), F16C, LZCNT, TZCNT를 끈다. SSE4.1과 SSE4.2는 켠다. 그러면 같은 실행 파일이 사무용 펜티엄·셀러론을 포함한 모든 CPU에서 같은 명령어를 실행한다. 융합 곱셈-덧셈(FMA)은 반올림을 두 번이 아니라 한 번 하므로, 일부 CPU에서만 쓰게 두면 결과가 달라진다."
+
+msgid "Floating point exceptions are off, and the Jolt GPU compute back ends are off."
+msgstr "부동소수점 예외를 끄고, Jolt의 GPU 계산 백엔드도 끈다."
+
+msgid "With clang-cl, Jolt also gets `-ffp-contract=off`, so the compiler does not fuse a multiply and an add by itself. MSVC uses `/fp:precise`."
+msgstr "clang-cl에서는 Jolt에 `-ffp-contract=off`도 주어, 컴파일러가 곱셈과 덧셈을 스스로 합치지 않게 한다. MSVC는 `/fp:precise`를 쓴다."
+
+msgid "These options are not to be changed (engine `CLAUDE.md`)."
+msgstr "이 옵션들은 바꾸지 않는다(엔진 `CLAUDE.md`)."
+
+msgid "Same calls in the same order"
+msgstr "같은 호출을 같은 순서로"
+
+#, python-brace-format
+msgid "Jolt gives the same result for the same sequence of calls. Game code therefore creates and destroys bodies and applies forces in the same order on every peer, which the fixed system order of `World::step()` and the slot order of `Pool<T>` already give (see {doc}`sim`)."
+msgstr "Jolt는 같은 호출 순서에 같은 결과를 낸다. 그래서 게임 코드는 모든 피어에서 바디를 같은 순서로 만들고 지우고 힘을 준다. `World::step()`의 고정된 시스템 순서와 `Pool<T>`의 슬롯 순서가 이미 이것을 보장한다({doc}`sim` 참고)."
+
+msgid "Body ids are chosen by the engine, not by Jolt. `PhysicsWorld` keeps its own id allocator: a list of free index numbers and a sequence number per index. Destroying a body increments the sequence number of its index and puts the index back on the free list, so a reused index gives a different id. Because this allocator is part of the snapshot, bodies made after a restore get the same ids as the first time."
+msgstr "바디 id는 Jolt가 아니라 엔진이 정한다. `PhysicsWorld`는 자기 id 할당기를 갖는다: 빈 번호 목록과 번호마다의 순번(sequence number). 바디를 지우면 그 번호의 순번을 올리고 번호를 빈 목록에 돌려놓으므로, 다시 쓴 번호는 다른 id가 된다. 이 할당기가 스냅샷에 들어가므로, 복원한 뒤 만드는 바디도 처음과 같은 id를 받는다."
+
+msgid "Thread count does not matter"
+msgstr "스레드 수는 상관없다"
+
+msgid "Jolt's job system splits the work across threads, but its results do not depend on how many threads there are. A peer with 2 cores and a peer with 8 cores compute the same state. The shadow simulation uses this: it runs its second world with 1 physics thread and still must match the real world's hash every tick."
+msgstr "Jolt의 작업 시스템은 일을 여러 스레드로 나누지만, 결과는 스레드 수와 관계없다. 코어가 2개인 피어와 8개인 피어가 같은 상태를 계산한다. 그림자 시뮬레이션이 이것을 쓴다: 두 번째 세계를 물리 스레드 1개로 돌리면서도 매 틱 진짜 세계의 해시와 같아야 한다."
+
+msgid "Steps per tick"
+msgstr "틱당 단계"
+
+#, python-brace-format
+msgid "`step(dt, collisionSteps)` passes `collisionSteps` to Jolt, which splits the time step into that many collision steps. The sandbox sample calls `physics.step(kTickDt, 2)`, so a 30 Hz tick runs two physics steps for better stability ({engine}`samples/sandbox/sim/World.cpp`). The number is an algorithm constant in game code, the same on every peer."
+msgstr "`step(dt, collisionSteps)`는 `collisionSteps`를 Jolt에 넘기고, Jolt는 시간 단계를 그만큼의 충돌 단계로 나눈다. sandbox 샘플은 `physics.step(kTickDt, 2)`를 불러, 30 Hz 틱 하나에 물리 단계 두 번을 돌려 안정성을 높인다({engine}`samples/sandbox/sim/World.cpp`). 이 수는 게임 코드의 알고리즘 상수이고 모든 피어에서 같다."
+
+msgid "Contact events"
+msgstr "접촉 이벤트"
+
+msgid "`setContactEvents(minSpeed, maxPerStep)` turns on events for pairs that newly touch at a speed of at least `minSpeed` (the closing speed along the contact normal). They are for sound and effects, not for game rules, so they are not in the state hash. With `minSpeed = 0` (the default) no listener is installed and they cost nothing."
+msgstr "`setContactEvents(minSpeed, maxPerStep)`은 `minSpeed` 이상의 속도(접촉 법선 방향으로 다가오던 속도)로 새로 닿은 쌍의 이벤트를 켠다. 게임 규칙이 아니라 소리와 효과용이라 상태 해시에 들어가지 않는다. `minSpeed = 0`(기본값)이면 리스너를 달지 않아 비용이 없다."
+
+msgid "Jolt reports contacts from its worker threads, in an order that depends on thread timing. The collector stores them under a lock, and at the end of `step()` sorts them by speed (strongest first), then body ids, then contact position, and keeps the first `maxPerStep`. After sorting, the list is the same for any thread count, so a game can turn contacts into tick events without breaking determinism."
+msgstr "Jolt는 작업 스레드에서 접촉을 알리고, 그 순서는 스레드 타이밍에 따라 다르다. 수집기는 잠금 안에서 모아 두었다가 `step()` 끝에서 속도(센 것부터) → 바디 id → 접촉 위치로 정렬하고 앞의 `maxPerStep`개만 남긴다. 정렬한 뒤의 목록은 스레드 수와 관계없이 같으므로, 게임은 결정론을 깨지 않고 접촉을 틱 이벤트로 바꿀 수 있다."
+
+msgid "Convex hulls from original vertices"
+msgstr "원본 정점으로 만드는 볼록 껍질"
+
+#, python-brace-format
+msgid "A solid with a model gets a convex hull shape. Its points come from `asset::Model::hullPoints`, which {engine}`engine/src/mealkit/asset/ModelCache.cpp` takes from the vertices as read from the glTF file, **before** meshoptimizer changes the mesh (at most 1024 points, taking every n-th vertex). The physics shape therefore never depends on the optimizer's output, which could change with a library version. If Jolt cannot build a hull from the points, `createConvexHull` logs a warning and makes a box from their bounds instead."
+msgstr "모델이 있는 충돌 물체는 볼록 껍질 모양을 받는다. 점은 `asset::Model::hullPoints`에서 오고, {engine}`engine/src/mealkit/asset/ModelCache.cpp`가 meshoptimizer가 메시를 바꾸기 **전에** glTF 파일에서 읽은 그대로의 정점에서 뽑는다(최대 1024개, n번째 정점마다 하나). 그래서 물리 모양은 라이브러리 버전에 따라 바뀔 수 있는 최적화 결과에 의존하지 않는다. Jolt가 그 점들로 껍질을 만들지 못하면 `createConvexHull`은 경고를 남기고 점들의 경계로 상자를 대신 만든다."
+
+msgid "Snapshots"
+msgstr "스냅샷"
+
+msgid "`save` fills a `PhysicsSnapshot` with three things: the list of bodies with their shapes and settings, the id allocator, and Jolt's full state written by `PhysicsSystem::SaveState` through a byte-array `StateRecorder`."
+msgstr "`save`는 `PhysicsSnapshot`에 세 가지를 채운다: 모양·설정을 포함한 바디 목록, id 할당기, 그리고 `PhysicsSystem::SaveState`가 바이트 배열 `StateRecorder`로 쓴 Jolt 상태 전체."
+
+#, python-brace-format
+msgid "`restore` first makes the set of bodies match the snapshot: bodies created after the snapshot are removed, and bodies destroyed after it are created again **with the same ids** (Jolt's `CreateBodyWithID`). Then Jolt reads the saved state back. Snapshots are used only inside one process, for the rewind checkpoints and the shadow simulation (see {doc}`editor`)."
+msgstr "`restore`는 먼저 바디 집합을 스냅샷에 맞춘다: 스냅샷 뒤에 만든 바디는 지우고, 스냅샷 뒤에 지운 바디는 **같은 id로** 다시 만든다(Jolt의 `CreateBodyWithID`). 그다음 Jolt가 저장한 상태를 다시 읽는다. 스냅샷은 한 프로세스 안에서만 쓴다: 되감기 체크포인트와 그림자 시뮬레이션({doc}`editor` 참고)."
+
+msgid "Techniques used"
+msgstr "쓰인 기법"
+
+msgid "Technique"
+msgstr "기법"
+
+msgid "Where"
+msgstr "위치"
+
+msgid "Opaque handle API (facade)"
+msgstr "불투명 핸들 API (퍼사드)"
+
+msgid "`PhysicsWorld`, `BodyId`"
+msgstr "`PhysicsWorld`, `BodyId`"
+
+msgid "Game code uses numbers and engine math types only. Jolt stays a private dependency."
+msgstr "게임 코드는 숫자와 엔진 수학 타입만 쓴다. Jolt는 PRIVATE 의존으로 남는다."
+
+msgid "Cross-platform deterministic floating point"
+msgstr "플랫폼에 무관한 결정론적 부동소수점"
+
+#, python-brace-format
+msgid "{engine}`cmake/MealKit.cmake`"
+msgstr "{engine}`cmake/MealKit.cmake`"
+
+msgid "Fixed instruction set (SSE4.2, no AVX or FMA), no floating point contraction, Jolt's deterministic mode."
+msgstr "고정된 명령어 집합(SSE4.2, AVX·FMA 없음), 부동소수점 축약 없음, Jolt의 결정론 모드."
+
+msgid "Two broad phase layers"
+msgstr "브로드페이즈 레이어 두 개"
+
+msgid "`BroadPhaseLayerMap`, `ObjectPairFilter`"
+msgstr "`BroadPhaseLayerMap`, `ObjectPairFilter`"
+
+msgid "Static and moving bodies live in separate trees. Static pairs are never tested."
+msgstr "정적 바디와 움직이는 바디가 서로 다른 트리에 있다. 정적 바디끼리의 쌍은 검사하지 않는다."
+
+msgid "Generational ids with a fixed free list"
+msgstr "고정된 빈 목록을 쓰는 세대 id"
+
+msgid "`BodyIdAllocator`, `destroy`"
+msgstr "`BodyIdAllocator`, `destroy`"
+
+msgid "A reused index gets a new sequence number, and reuse order is fixed, so ids are the same on every peer and after a restore."
+msgstr "다시 쓴 번호는 새 순번을 받고 재사용 순서가 고정되어 있어, 모든 피어에서, 복원한 뒤에도 id가 같다."
+
+msgid "Sorting events gathered in parallel"
+msgstr "병렬로 모은 이벤트 정렬"
+
+msgid "`PhysicsWorld::step`"
+msgstr "`PhysicsWorld::step`"
+
+msgid "Contacts from worker threads are sorted by a full key (speed, ids, position) to remove the thread-timing order."
+msgstr "작업 스레드에서 온 접촉을 전체 키(속도, id, 위치)로 정렬해 스레드 타이밍 순서를 없앤다."
+
+msgid "Hashing in creation order"
+msgstr "만든 순서로 해시"
+
+msgid "Walks the body list in creation order, not Jolt's internal order, and adds each value field by field."
+msgstr "Jolt 내부 순서가 아니라 만든 순서대로 바디 목록을 돌며, 값을 필드 하나씩 넣는다."
+
+msgid "State recording"
+msgstr "상태 기록"
+
+msgid "`save`, `restore`, `ByteStateRecorder`"
+msgstr "`save`, `restore`, `ByteStateRecorder`"
+
+msgid "Jolt's own state serialization into a byte array, plus the engine's body list so created and destroyed bodies come back with the same ids."
+msgstr "Jolt 자체의 상태 직렬화를 바이트 배열로, 그리고 엔진의 바디 목록을 함께 저장해 만들거나 지운 바디가 같은 id로 돌아온다."
+
+msgid "Convex hull with a fallback"
+msgstr "대체 경로가 있는 볼록 껍질"
+
+msgid "`createConvexHull`"
+msgstr "`createConvexHull`"
+
+msgid "Jolt builds the hull. Degenerate point sets (for example all on one plane) fall back to an axis-aligned box from the point bounds."
+msgstr "껍질은 Jolt가 만든다. 퇴화한 점 집합(예: 모두 한 평면 위)이면 점 경계로 만든 축 정렬 상자로 대신한다."
+
+msgid "Sub-stepping"
+msgstr "하위 단계 나누기 (sub-stepping)"
+
+msgid "Several collision steps per tick reduce tunneling and jitter at a 30 Hz tick rate."
+msgstr "틱 하나에 충돌 단계를 여러 번 돌려, 30 Hz 틱레이트에서 터널링과 떨림을 줄인다."
+
