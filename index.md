@@ -62,6 +62,7 @@ engine_dev/contributing
 :maxdepth: 2
 :caption: "Internals: game boundary"
 
+engine_dev/internals/game
 engine_dev/internals/editor
 ```
 

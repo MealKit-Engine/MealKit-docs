@@ -1,0 +1,721 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, KingProtea99 and MealKit contributors. CC BY 4.0
+# This file is distributed under the same license as the MealKit package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: MealKit 0.4\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-19 13:07+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ko\n"
+"Language-Team: ko <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+msgid "Game"
+msgstr "게임"
+
+#, python-brace-format
+msgid "This page explains how the game folder works inside: the boundary between the engine and game code, the main loop of the shipped exe, the simulation runner, headless runs, input recordings and the small data services (tuning, project settings, match start data, saves, performance numbers). The code is in {engine}`engine/src/mealkit/game`. `game` is the last engine folder before `editor` in the layer order ({engine}`docs/CODING_MODEL.md` \"엔진 폴더 사이 의존\"), so it may include every other engine folder, and only the editor includes it."
+msgstr "이 페이지는 game 폴더가 안에서 어떻게 돌아가는지 설명한다: 엔진과 게임 코드 사이의 경계, 출시 exe의 메인 루프, 시뮬레이션 실행기, 헤드리스 실행, 입력 기록, 그리고 작은 데이터 서비스들(튜닝, 프로젝트 설정, 매치 시작 데이터, 세이브, 성능 숫자). 코드는 {engine}`engine/src/mealkit/game`에 있다. `game`은 폴더 순서에서 `editor` 바로 앞의 엔진 폴더라({engine}`docs/CODING_MODEL.md` \"엔진 폴더 사이 의존\"), 다른 엔진 폴더를 모두 include할 수 있고 이것을 include하는 것은 에디터뿐이다."
+
+#, python-brace-format
+msgid "Part of the folder belongs to the engine core (`mealkit_core`), which runs without a window: `GameInstance.h`, `GameContext.h`, `GameData`, `Headless`, `InputRecord`, `ProjectSettings`, `Save`, `Loadout.h`, `WorldSnapshot.h`, `SimDebug.h` and `Simulation.h`. The rest needs the screen side and is only in the windowed engine: `Frontend`, `GameMain` and `FrameStats` ({engine}`engine/CMakeLists.txt`)."
+msgstr "폴더의 일부는 창 없이 도는 엔진 코어(`mealkit_core`)에 속한다: `GameInstance.h`, `GameContext.h`, `GameData`, `Headless`, `InputRecord`, `ProjectSettings`, `Save`, `Loadout.h`, `WorldSnapshot.h`, `SimDebug.h`, `Simulation.h`. 나머지는 화면 쪽이 필요해 창 있는 엔진에만 있다: `Frontend`, `GameMain`, `FrameStats`({engine}`engine/CMakeLists.txt`)."
+
+#, python-brace-format
+msgid "How to use these from a game is in {doc}`../../manual/projects`, {doc}`../../manual/multiplayer` and {doc}`../../manual/settings`. How the editor uses them is in {doc}`editor`."
+msgstr "게임에서 이것들을 쓰는 법은 {doc}`../../manual/projects`, {doc}`../../manual/multiplayer`, {doc}`../../manual/settings`에 있다. 에디터가 이것들을 쓰는 방식은 {doc}`editor`에 있다."
+
+msgid "The game code boundary"
+msgstr "게임 코드 경계"
+
+#, python-brace-format
+msgid "A game implements one class, `game::GameInstance` ({engine}`engine/src/mealkit/game/GameInstance.h`), usually `app/GameSession`. It is one match: it runs the deterministic simulation, reads local input, moves the camera and fills the draw list."
+msgstr "게임은 클래스 하나, `game::GameInstance`({engine}`engine/src/mealkit/game/GameInstance.h`)를 구현한다. 보통 `app/GameSession`이다. 이것이 한 판이다: 결정론 시뮬레이션을 돌리고, 로컬 입력을 읽고, 카메라를 움직이고, 그리기 목록을 채운다."
+
+msgid "Function"
+msgstr "함수"
+
+msgid "Called"
+msgstr "부르는 때"
+
+msgid "`lobby`"
+msgstr "`lobby`"
+
+msgid "Every frame before the match starts (once before an offline session opens). The game sets this player's match start data."
+msgstr "매치가 시작되기 전 매 프레임(혼자 플레이는 세션을 열기 전에 한 번). 게임이 이 플레이어의 매치 시작 데이터를 정한다."
+
+msgid "`start`"
+msgstr "`start`"
+
+msgid "Once, when the session becomes `Running`."
+msgstr "세션이 `Running`이 될 때 한 번."
+
+msgid "`update`"
+msgstr "`update`"
+
+msgid "Every frame: camera input and simulation ticks."
+msgstr "매 프레임: 카메라 입력과 시뮬레이션 틱."
+
+msgid "`buildFrame`"
+msgstr "`buildFrame`"
+
+msgid "Every frame: fills the frame parameters and the draw list."
+msgstr "매 프레임: 프레임 값과 그리기 목록을 채운다."
+
+msgid "`nextTick`, `stateHash`, `finished`, `captureDue`, `takeSimMsPerTick`"
+msgstr "`nextTick`, `stateHash`, `finished`, `captureDue`, `takeSimMsPerTick`"
+
+msgid "By the engine loop for automated tests and performance numbers."
+msgstr "엔진 루프가 자동 시험과 성능 숫자에 쓴다."
+
+msgid "`setTuning`, `stateView`, `debug`"
+msgstr "`setTuning`, `stateView`, `debug`"
+
+msgid "By the editor: live tuning, the State panel, and pause and rewind."
+msgstr "에디터가 쓴다: 실시간 튜닝, [상태] 패널, 일시정지와 되감기."
+
+msgid "`debugUi`"
+msgstr "`debugUi`"
+
+msgid "Inside the Dear ImGui frame, in development builds and the editor."
+msgstr "Dear ImGui 프레임 안에서, 개발 빌드와 에디터에서."
+
+#, python-brace-format
+msgid "The engine passes a `game::GameContext` ({engine}`engine/src/mealkit/game/GameContext.h`) to each call. It holds references to the engine services the screen side uses: window, renderer, models, lockstep session, audio, feedback, input actions, strings, game UI and player settings. It also holds values the engine sets every frame: the viewport, whether the game may read the keyboard and mouse, the display tuning and the user folder. The game does not keep the context, and `sim/` never receives it: the simulation only gets `World&`. The reasons are in {engine}`docs/CODING_MODEL.md` \"엔진 기능에 어떻게 접근하나\"."
+msgstr "엔진은 호출마다 `game::GameContext`({engine}`engine/src/mealkit/game/GameContext.h`)를 넘긴다. 여기에는 화면 쪽이 쓰는 엔진 서비스의 참조가 들어 있다: 창, 렌더러, 모델, 락스텝 세션, 소리, 연출, 입력 액션, 문자열, 게임 UI, 플레이어 설정. 엔진이 매 프레임 정하는 값도 들어 있다: 화면 영역, 게임이 키보드와 마우스를 읽어도 되는지, 화면용 튜닝, 사용자 폴더. 게임은 컨텍스트를 보관하지 않고, `sim/`은 이것을 받지 않는다: 시뮬레이션은 `World&`만 받는다. 이유는 {engine}`docs/CODING_MODEL.md` \"엔진 기능에 어떻게 접근하나\"에 있다."
+
+msgid "The same game class is used in two ways:"
+msgstr "같은 게임 클래스를 두 가지로 쓴다:"
+
+#, python-brace-format
+msgid "**The editor** loads it from a game DLL through `game::GameModule`, a table of plain function pointers returned by `mealkitGetGameModule` (the `MEALKIT_GAME_MODULE` macro). {doc}`editor` lists the entries."
+msgstr "**에디터**는 게임 DLL에서 `game::GameModule`로 불러온다. 이것은 `mealkitGetGameModule`(`MEALKIT_GAME_MODULE` 매크로)이 돌려주는 평범한 함수 포인터 표다. 항목은 {doc}`editor`에 있다."
+
+msgid "**The shipped exe** links the game class directly. `gameModuleOf<GameClass>` builds the same table, so the exe main reads object types, tuning type and tables the same way the editor does."
+msgstr "**출시 exe**는 게임 클래스를 직접 링크한다. `gameModuleOf<GameClass>`가 같은 표를 만들므로, exe의 main도 에디터와 같은 방법으로 오브젝트 종류, 튜닝 타입, 표를 읽는다."
+
+msgid "`kApiVersion` (now 19) is raised whenever the promise across the DLL boundary changes. The comment above it lists what each version added. The editor refuses a DLL whose version differs."
+msgstr "`kApiVersion`(지금 19)은 DLL 경계의 약속이 바뀔 때마다 올린다. 그 위의 주석에 버전마다 더한 것이 적혀 있다. 에디터는 버전이 다른 DLL을 받지 않는다."
+
+msgid "Optional types are found at compile time. If the game class declares `ProjectSettingsType`, `ViewTuningType` or `EventType`, the matching module entry returns its type information; otherwise it returns `nullptr`. This uses C++20 `requires` expressions, so a game declares only what it uses."
+msgstr "선택 타입은 컴파일 시간에 찾는다. 게임 클래스가 `ProjectSettingsType`, `ViewTuningType`, `EventType`을 선언하면 맞는 모듈 항목이 그 타입 정보를 돌려주고, 아니면 `nullptr`을 돌려준다. C++20 `requires` 식을 쓰므로 게임은 쓰는 것만 선언한다."
+
+msgid "The shipped exe main"
+msgstr "출시 exe의 main"
+
+msgid "A game's `app/main.cpp` is one line:"
+msgstr "게임의 `app/main.cpp`는 한 줄이다:"
+
+msgid "MEALKIT_GAME_MAIN(sandbox::GameSession, sandbox::Headless)\n"
+msgstr "MEALKIT_GAME_MAIN(sandbox::GameSession, sandbox::Headless)\n"
+
+#, python-brace-format
+msgid "The macro writes `main` ({engine}`engine/src/mealkit/game/GameMain.h`). If the arguments contain `--headless`, it calls the headless entry point; otherwise it calls `game::runGame` ({engine}`engine/src/mealkit/game/GameMain.cpp`). `gameMainSpec` also takes the headless class's `defaults` function, so the windowed exe and the headless binary get the same default port and player count from the game's project settings. A `static_assert` checks that both classes use the same `ProjectSettingsType`."
+msgstr "매크로가 `main`을 만든다({engine}`engine/src/mealkit/game/GameMain.h`). 인자에 `--headless`가 있으면 헤드리스 진입점을 부르고, 아니면 `game::runGame`({engine}`engine/src/mealkit/game/GameMain.cpp`)을 부른다. `gameMainSpec`은 헤드리스 클래스의 `defaults` 함수도 받으므로, 창 있는 exe와 헤드리스 실행 파일이 게임의 프로젝트 설정에서 같은 기본 포트와 인원을 얻는다. 두 클래스가 같은 `ProjectSettingsType`을 쓰는지 `static_assert`가 확인한다."
+
+msgid "`runGame` starts in this order:"
+msgstr "`runGame`은 이 순서로 시작한다:"
+
+msgid "Parse the command line (`--help` lists the options). `--system-info` prints the CPU and GPU and exits."
+msgstr "명령줄을 읽는다(`--help`가 옵션을 보여 준다). `--system-info`는 CPU와 GPU를 출력하고 끝낸다."
+
+msgid "Read `mealkit.project` and the game's `game.*` lines, then apply the headless defaults."
+msgstr "`mealkit.project`와 게임의 `game.*` 줄을 읽고, 헤드리스 기본값을 적용한다."
+
+msgid "Load the start scene (or `--scene`). Without a scene file it uses a built-in arena."
+msgstr "시작 씬(또는 `--scene`)을 불러온다. 씬 파일이 없으면 내장 경기장을 쓴다."
+
+msgid "Create the window, the renderer and the model cache."
+msgstr "창, 렌더러, 모델 캐시를 만든다."
+
+msgid "Load the tuning and set the content hash on the lockstep session."
+msgstr "튜닝을 읽고 락스텝 세션에 콘텐츠 해시를 정한다."
+
+msgid "Open the session: offline, host, join, or a Steam lobby (opened later, when the lobby is ready)."
+msgstr "세션을 연다: 혼자, 호스트, 참가, 또는 Steam 로비(로비가 준비되면 나중에 연다)."
+
+msgid "Create the game, start audio and feedback, and initialize the `Frontend`."
+msgstr "게임을 만들고, 소리와 연출을 시작하고, `Frontend`를 초기화한다."
+
+msgid "Then it runs one loop. Each frame:"
+msgstr "그다음 루프 하나를 돈다. 매 프레임:"
+
+msgid "Handle engine keys: `Esc` quits (unless the settings screen is open), `V` toggles vsync, `F12` saves a screenshot, `F1` toggles the debug UI in development builds."
+msgstr "엔진 키를 처리한다: `Esc`는 종료(설정 화면이 열려 있으면 아님), `V`는 수직동기 전환, `F12`는 스크린샷 저장, `F1`은 개발 빌드에서 디버그 UI 전환."
+
+msgid "Update the online lobby and the lockstep session. Before the match, call `game->lobby`. The host starts the match on `Enter` or when `--auto-start` players are in."
+msgstr "온라인 로비와 락스텝 세션을 갱신한다. 매치 전에는 `game->lobby`를 부른다. 호스트는 `Enter`를 누르거나 `--auto-start` 인원이 모이면 매치를 시작한다."
+
+msgid "When the session becomes `Running`, call `game->start`."
+msgstr "세션이 `Running`이 되면 `game->start`를 부른다."
+
+msgid "Set the viewport and input permission (the window must have focus, and the debug UI may take input), then `front.update` and `game->update`."
+msgstr "화면 영역과 입력 허용을 정하고(창에 포커스가 있어야 하고, 디버그 UI가 입력을 가져갈 수 있다), `front.update`와 `game->update`를 부른다."
+
+msgid "Update audio and feedback."
+msgstr "소리와 연출을 갱신한다."
+
+msgid "Unless the window is minimized: `game->buildFrame`, `front.afterBuildFrame`, draw the 3D scene, the game UI, then the debug UI on top."
+msgstr "창이 최소화되지 않았으면: `game->buildFrame`, `front.afterBuildFrame`, 3D 장면을 그리고, 게임 UI, 맨 위에 디버그 UI를 그린다."
+
+msgid "Wait for the frame limiter, then update `FrameStats`. Four times a second the window title shows the lobby state or the performance line."
+msgstr "프레임 제한을 기다리고 `FrameStats`를 갱신한다. 1초에 네 번 창 제목에 로비 상태나 성능 줄을 보여 준다."
+
+msgid "Delta time is capped at 0.25 seconds, so a long stall does not become a huge step."
+msgstr "프레임 시간은 0.25초로 자르므로, 긴 멈춤이 큰 한 걸음이 되지 않는다."
+
+msgid "Automated runs"
+msgstr "자동 실행"
+
+msgid "With `--exit-tick`, the run is automated: error dialogs are off, player settings use defaults and are not saved, and there is no user folder. When the game reaches the exit tick, `reportFinish` prints lines that test scripts read:"
+msgstr "`--exit-tick`을 주면 자동 실행이다: 오류 대화 상자가 꺼지고, 플레이어 설정은 기본값으로 돌고 저장하지 않으며, 사용자 폴더가 없다. 게임이 끝 틱에 닿으면 `reportFinish`가 시험 스크립트가 읽는 줄을 출력한다:"
+
+msgid ""
+"FINAL tick=<t> hash=<16 hex digits> desync=<0|1>\n"
+"SHADOW ok|DESYNC tick=<t>                      (with --shadow)\n"
+"REWIND ok|FAIL ticks=<a>..<b> memory=<MB> ...  (with --rewind-test)\n"
+msgstr ""
+"FINAL tick=<t> hash=<16진 16자리> desync=<0|1>\n"
+"SHADOW ok|DESYNC tick=<t>                      (--shadow를 주었을 때)\n"
+"REWIND ok|FAIL ticks=<a>..<b> memory=<MB> ...  (--rewind-test를 주었을 때)\n"
+
+msgid "`--rewind-test` pauses, seeks through the whole recorded range in steps of 37 ticks, returns to the live tick and checks that the hash is unchanged. The exit code is 0 for success, 2 for a network desync, 3 if the session ended early, 4 for a rewind failure and 5 for a shadow desync. The exe waits one more second before closing, so peers receive the last tick."
+msgstr "`--rewind-test`는 일시정지하고, 기록된 범위 전체를 37틱씩 건너며 찾아가고, 현재 틱으로 돌아와 해시가 그대로인지 확인한다. 종료 코드는 성공 0, 네트워크 디싱크 2, 세션이 일찍 끝남 3, 되감기 실패 4, 그림자 디싱크 5다. exe는 닫기 전에 1초 더 기다려 상대가 마지막 틱을 받게 한다."
+
+msgid "Frontend"
+msgstr "Frontend"
+
+#, python-brace-format
+msgid "`game::Frontend` ({engine}`engine/src/mealkit/game/Frontend.h`) is the set of screen services that every windowed host of a match owns: the shipped exe, editor play and the editor's player windows. Each one calls it in the same order, so input, UI and settings behave the same everywhere."
+msgstr "`game::Frontend`({engine}`engine/src/mealkit/game/Frontend.h`)는 매치를 띄우는 창 있는 주인마다 갖는 화면 쪽 서비스 묶음이다: 출시 exe, 에디터 플레이, 에디터의 참가 창. 모두 같은 순서로 부르므로 입력, UI, 설정이 어디서나 똑같이 동작한다."
+
+msgid "It owns the input actions and gamepads, the game strings, the game UI system, the player settings service and the live display tuning. Audio and feedback are owned by the host, because the editor also uses them for its Sound and Feedback previews."
+msgstr "입력 액션과 게임패드, 게임 문자열, 게임 UI 시스템, 플레이어 설정 서비스, 실시간 화면용 튜닝을 갖는다. 소리와 연출은 주인이 갖는다. 에디터가 [소리]·[연출] 미리보기에도 쓰기 때문이다."
+
+msgid "`init` loads key bindings (the project's file plus the player's changed keys), strings, UI and settings. Calling it again loads them again."
+msgstr "`init`은 키 바인딩(프로젝트 파일과 플레이어가 바꾼 키), 문자열, UI, 설정을 읽는다. 다시 부르면 다시 읽는다."
+
+msgid "`context` builds a `GameContext` that points at these services."
+msgstr "`context`는 이 서비스들을 가리키는 `GameContext`를 만든다."
+
+msgid "`update` runs before `game.update` every frame. The UI updates first: if it wants the mouse or keyboard, the frame's permission flags are turned off, so a click on a button does not also reach the game. Then the settings screen updates, and last the input actions are sampled."
+msgstr "`update`는 매 프레임 `game.update` 전에 돈다. UI가 먼저 갱신된다: UI가 마우스나 키보드를 원하면 그 프레임의 허용 플래그를 끄므로, 버튼 위의 클릭이 게임에도 가지 않는다. 그다음 설정 화면이 갱신되고, 마지막으로 입력 액션을 읽는다."
+
+msgid "`afterBuildFrame` passes the camera to world-space UI, puts the audio listener at the camera, and adds the feedback screen tint."
+msgstr "`afterBuildFrame`은 월드 위 UI에 카메라를 넘기고, 소리 듣는 위치를 카메라에 두고, 연출의 화면 색을 더한다."
+
+msgid "`renderUi` draws the game UI after the 3D scene and before the debug UI."
+msgstr "`renderUi`는 3D 장면 다음, 디버그 UI 전에 게임 UI를 그린다."
+
+msgid "The editor passes `nullptr` for the display window, so player settings such as window mode and frame cap do not change the editor window."
+msgstr "에디터는 화면 창에 `nullptr`을 넘기므로, 창 모드나 프레임 제한 같은 플레이어 설정이 에디터 창을 바꾸지 않는다."
+
+msgid "The simulation runner"
+msgstr "시뮬레이션 실행기"
+
+#, python-brace-format
+msgid "`game::Simulation<World>` ({engine}`engine/src/mealkit/game/Simulation.h`) runs the game's `World` at a fixed tick. The game's `GameSession` owns one. It is a template, so the game's world type is known at compile time and the class is `final`."
+msgstr "`game::Simulation<World>`({engine}`engine/src/mealkit/game/Simulation.h`)는 게임의 `World`를 고정 틱으로 돌린다. 게임의 `GameSession`이 하나 갖는다. 템플릿이라 게임의 월드 타입을 컴파일 시간에 알고, 클래스는 `final`이다."
+
+msgid "The world must have `state` (a `MEALKIT_STRUCT` with a `tick` field), `physics`, `events`, `step(const net::TickInputs&)` and `hash()`. A `static_assert` refuses a state that contains `std::string`: names belong in tuning or scene data, and the state uses ids."
+msgstr "월드에는 `state`(`tick` 필드가 있는 `MEALKIT_STRUCT`), `physics`, `events`, `step(const net::TickInputs&)`, `hash()`가 있어야 한다. `std::string`이 든 상태는 `static_assert`가 막는다: 이름은 튜닝이나 씬 데이터에 두고, 상태는 id를 쓴다."
+
+msgid "Fixed tick"
+msgstr "고정 틱"
+
+msgid "`update` adds the frame's `dt` to an accumulator and runs ticks while the accumulator holds at least one tick, up to 8 ticks per frame (`kCatchUpTicks`). A tick runs only when the lockstep session has every player's input for it (`canExecute`). While waiting for input, the accumulator is capped at 8 ticks, so time debt does not grow without end."
+msgstr "`update`는 프레임의 `dt`를 누산기에 더하고, 누산기에 한 틱 이상 쌓여 있는 동안 틱을 돌린다. 한 프레임에 최대 8틱이다(`kCatchUpTicks`). 틱은 락스텝 세션에 그 틱의 모든 플레이어 입력이 있을 때만 돈다(`canExecute`). 입력을 기다리는 동안 누산기는 8틱으로 제한되어, 시간 빚이 끝없이 쌓이지 않는다."
+
+msgid "One tick follows the lockstep order:"
+msgstr "틱 하나는 락스텝 순서를 따른다:"
+
+msgid "Take the confirmed inputs for this tick from the session."
+msgstr "세션에서 이 틱의 확정된 입력을 가져온다."
+
+msgid "Copy the current state to `previous`, then call `World::step`."
+msgstr "현재 상태를 `previous`에 복사하고 `World::step`을 부른다."
+
+msgid "Hash the state and report it to the session (`tickExecuted`), which compares hashes between peers."
+msgstr "상태를 해시해 세션에 알린다(`tickExecuted`). 세션은 피어 사이의 해시를 비교한다."
+
+msgid "Write the input recording and hash log if they are open, step the shadow world, and record history (below)."
+msgstr "입력 기록과 해시 로그가 열려 있으면 쓰고, 그림자 월드를 진행하고, 기록을 남긴다(아래)."
+
+msgid "Call the game's `onTick` so it moves this tick's events to the screen side. Events are cleared by the next `step`, so this happens after every tick, not once per frame."
+msgstr "게임의 `onTick`을 불러 이번 틱 이벤트를 화면 쪽으로 옮기게 한다. 이벤트는 다음 `step`이 지우므로 프레임마다 한 번이 아니라 틱마다 한다."
+
+msgid "Sample local input and send it for tick `next + inputDelay`."
+msgstr "로컬 입력을 읽어 `next + inputDelay` 틱으로 보낸다."
+
+#, python-brace-format
+msgid "The rules behind the order are in {engine}`docs/CODING_MODEL.md` \"흐름\"."
+msgstr "순서 뒤의 규칙은 {engine}`docs/CODING_MODEL.md` \"흐름\"에 있다."
+
+msgid "Interpolation"
+msgstr "보간"
+
+msgid "The screen draws between two ticks. `previous()` is the state before the last tick, and `alpha()` is the accumulator divided by the tick length, clamped to 0..1. The view lerps positions from `previous` to the current state with `alpha`. When paused, `alpha` is 1, so the screen shows the exact tick."
+msgstr "화면은 두 틱 사이를 그린다. `previous()`는 마지막 틱 전의 상태이고, `alpha()`는 누산기를 틱 길이로 나눈 값을 0..1로 자른 것이다. 화면은 위치를 `previous`에서 현재 상태로 `alpha`만큼 보간한다. 일시정지 중에는 `alpha`가 1이라 화면이 정확히 그 틱을 보여 준다."
+
+msgid "Shadow simulation"
+msgstr "그림자 시뮬레이션"
+
+msgid "With `PlayOptions::shadow`, `start` creates a second `World` and resets it with the same reset function (with one physics thread, which does not change the result). Every tick steps it with the same inputs and compares `hash()`. On the first difference, the runner stops comparing, lists the differing state fields with `reflect::diffStruct` (at most 24), logs them and pauses. An empty list means only the physics state differs. This finds uninitialized values, global state, pointer order and wall clock reads inside one process. It doubles the simulation CPU."
+msgstr "`PlayOptions::shadow`를 주면 `start`가 두 번째 `World`를 만들고 같은 초기화 함수로 초기화한다(물리 스레드 하나로. 스레드 수는 결과를 바꾸지 않는다). 매 틱 같은 입력으로 진행하고 `hash()`를 비교한다. 처음 다른 틱에서 비교를 멈추고, 다른 상태 필드를 `reflect::diffStruct`로 나열해(최대 24개) 로그에 남기고 일시정지한다. 목록이 비어 있으면 물리 상태만 다르다는 뜻이다. 이것으로 한 프로세스 안에서 초기화하지 않은 값, 전역 상태, 포인터 순서, 실제 시간 읽기를 찾는다. 시뮬레이션 CPU가 두 배가 된다."
+
+msgid "Recording, snapshots and rewind"
+msgstr "기록, 스냅샷, 되감기"
+
+msgid "With `PlayOptions::record`, every tick's inputs and hash are kept in queues, and a snapshot is taken every 150 ticks (`kSnapshotInterval`, 5 seconds at 30 Hz). The newest 40 snapshots are kept (`kKeepSnapshots`), and inputs older than the first snapshot are dropped."
+msgstr "`PlayOptions::record`를 주면 매 틱의 입력과 해시를 큐에 남기고, 150틱마다 스냅샷을 찍는다(`kSnapshotInterval`, 30Hz에서 5초). 최신 스냅샷 40개를 남기고(`kKeepSnapshots`), 첫 스냅샷보다 오래된 입력은 버린다."
+
+msgid "`seek(tick)` works only while paused:"
+msgstr "`seek(tick)`은 일시정지 중에만 동작한다:"
+
+msgid "On the first seek, the live state is saved in its own snapshot, so the runner can return to it."
+msgstr "처음 찾아갈 때 현재 상태를 따로 스냅샷으로 남겨, 나중에 돌아올 수 있게 한다."
+
+msgid "It loads the latest snapshot at or before the target tick."
+msgstr "목표 틱이나 그 전의 가장 늦은 스냅샷을 불러온다."
+
+msgid "It runs the recorded inputs up to the target, comparing every tick's hash with the recorded hash."
+msgstr "목표까지 기록된 입력을 다시 돌리며, 매 틱 해시를 기록된 해시와 비교한다."
+
+msgid "A snapshot that does not restore to its saved hash, or a replayed tick with a different hash, sets `replayError`. Both mean there is state not declared with `MEALKIT_FIELD`, or the code is not deterministic. Resuming or stepping past the end returns to the live snapshot."
+msgstr "저장할 때의 해시로 복원되지 않는 스냅샷이나, 해시가 다른 재실행 틱은 `replayError`를 남긴다. 둘 다 `MEALKIT_FIELD`로 선언하지 않은 상태가 있거나 코드가 결정론적이지 않다는 뜻이다. 계속하거나 끝을 넘어 한 틱 진행하면 현재 스냅샷으로 돌아간다."
+
+msgid "`modifyWorlds` changes the real and shadow worlds the same way (for example a live tuning change) and clears the history, because old inputs would no longer reproduce the new state."
+msgstr "`modifyWorlds`는 진짜 월드와 그림자 월드를 똑같이 바꾸고(예: 실시간 튜닝 변경) 기록을 비운다. 예전 입력으로는 새 상태가 재현되지 않기 때문이다."
+
+#, python-brace-format
+msgid "The editor controls all of this through `game::SimDebug` ({engine}`engine/src/mealkit/game/SimDebug.h`): `timeline` (first, live and viewed tick, paused, memory used), `setPaused`, `stepOnce`, `seek`, `shadow` and `replayError`. `GameInstance::debug()` returns the runner, or `nullptr` if the game has none."
+msgstr "에디터는 이 모두를 `game::SimDebug`({engine}`engine/src/mealkit/game/SimDebug.h`)로 조작한다: `timeline`(처음·현재·보이는 틱, 일시정지, 쓰는 메모리), `setPaused`, `stepOnce`, `seek`, `shadow`, `replayError`. `GameInstance::debug()`가 실행기를 돌려주고, 게임에 없으면 `nullptr`이다."
+
+msgid "World snapshots"
+msgstr "월드 스냅샷"
+
+#, python-brace-format
+msgid "`game::WorldSnapshot` ({engine}`engine/src/mealkit/game/WorldSnapshot.h`) is the tick, the hash at save time, the declared state as bytes, and the physics snapshot."
+msgstr "`game::WorldSnapshot`({engine}`engine/src/mealkit/game/WorldSnapshot.h`)은 틱, 저장할 때의 해시, 바이트로 된 선언한 상태, 물리 스냅샷이다."
+
+msgid "`saveSnapshot` writes the state field by field with `reflect::saveStruct` and saves Jolt's state with `physics.save`."
+msgstr "`saveSnapshot`은 상태를 `reflect::saveStruct`로 필드마다 쓰고, Jolt 상태를 `physics.save`로 저장한다."
+
+msgid "`loadSnapshot` reads them back and returns `false` if the bytes do not fit or the hash after restoring differs from the saved hash."
+msgstr "`loadSnapshot`은 그것을 다시 읽고, 바이트가 맞지 않거나 복원한 뒤의 해시가 저장할 때의 해시와 다르면 `false`를 돌려준다."
+
+msgid "Values outside `state` and `physics` (spawn points, tuning copied at match start) are not saved, because they do not change during a match. The hash check on load makes undeclared state visible at once instead of a silent difference later."
+msgstr "`state`와 `physics` 밖의 값(스폰 지점, 매치 시작 때 복사한 튜닝)은 저장하지 않는다. 매치 안에서는 바뀌지 않기 때문이다. 불러올 때 해시를 확인하므로, 선언하지 않은 상태가 나중에 조용한 차이가 되지 않고 바로 드러난다."
+
+msgid "Headless runs"
+msgstr "헤드리스 실행"
+
+#, python-brace-format
+msgid "`game::runHeadless<Game>` ({engine}`engine/src/mealkit/game/Headless.h`) runs a match with no window, renderer or audio. Input always comes from the game's bot function. It is used for the CI determinism comparison, rule tests and network tests."
+msgstr "`game::runHeadless<Game>`({engine}`engine/src/mealkit/game/Headless.h`)은 창, 렌더러, 소리 없이 매치를 돌린다. 입력은 항상 게임의 봇 함수에서 온다. CI 결정론 비교, 규칙 시험, 네트워크 시험에 쓴다."
+
+msgid "A game writes a class in `app/Headless.cpp` and the line `MEALKIT_HEADLESS_GAME(sandbox::Headless)`. The class gives `World`, `TuningType`, `kTickDt`, `startWorld` and `botInput`, and optionally `ProjectSettingsType`, `botCommands`, `botLoadout` and `defaults`. `GameSession` uses the same `startWorld` and `botInput`, so the headless match is the windowed match without a screen."
+msgstr "게임은 `app/Headless.cpp`에 클래스 하나와 `MEALKIT_HEADLESS_GAME(sandbox::Headless)` 한 줄을 쓴다. 클래스는 `World`, `TuningType`, `kTickDt`, `startWorld`, `botInput`을 주고, 선택으로 `ProjectSettingsType`, `botCommands`, `botLoadout`, `defaults`를 준다. `GameSession`도 같은 `startWorld`와 `botInput`을 쓰므로, 헤드리스 매치는 화면만 없는 창 있는 매치다."
+
+#, python-brace-format
+msgid "The macro defines `mealkitHeadlessMain`, which the shipped exe calls for `--headless`. In the `<game>_headless` target (`MEALKIT_HEADLESS_TARGET`) it also defines `main`. That target is built from `sim/` and `Headless.cpp` only and links only `mealkit_core` ({engine}`cmake/MealKit.cmake`). This is why it builds on Linux and macOS with Clang or GCC, and why the layer order matters: the core folders never include the screen side."
+msgstr "매크로는 `mealkitHeadlessMain`을 정의하고, 출시 exe가 `--headless`에서 이것을 부른다. `<게임>_headless` 타깃(`MEALKIT_HEADLESS_TARGET`)에서는 `main`도 정의한다. 이 타깃은 `sim/`과 `Headless.cpp`만으로 빌드하고 `mealkit_core`만 링크한다({engine}`cmake/MealKit.cmake`). 그래서 Linux와 macOS에서 Clang이나 GCC로 빌드되고, 그래서 폴더 순서가 중요하다: 코어 폴더는 화면 쪽을 include하지 않는다."
+
+msgid "The headless loop is like `runGame` without drawing:"
+msgstr "헤드리스 루프는 그리기가 없는 `runGame`과 비슷하다:"
+
+msgid "`loadHeadlessData` reads the project, the scene (and its flattened copy for the simulation), the tuning and the models (CPU data only), and builds the same content hash as the exe, so a headless peer can join a windowed one."
+msgstr "`loadHeadlessData`가 프로젝트, 씬(과 시뮬레이션용 평평한 사본), 튜닝, 모델(CPU 데이터만)을 읽고 exe와 같은 콘텐츠 해시를 만든다. 그래서 헤드리스 피어가 창 있는 피어에 참가할 수 있다."
+
+msgid "The host starts the match when `--auto-start` players are in the lobby."
+msgstr "호스트는 `--auto-start` 인원이 로비에 모이면 매치를 시작한다."
+
+msgid "Every iteration passes a frame time of 8 ticks, so the runner catches up as fast as possible."
+msgstr "반복마다 8틱의 프레임 시간을 넘겨, 실행기가 최대한 빨리 따라잡게 한다."
+
+msgid "Offline runs never sleep. Network runs sleep 1 ms only when no tick ran in that iteration (waiting for input), so peers on a runner with few cores leave time for each other's physics threads."
+msgstr "혼자 실행은 쉬지 않는다. 네트워크 실행은 그 반복에 틱이 하나도 돌지 않았을 때(입력 대기)만 1ms 잔다. 그래서 코어가 적은 러너에서 피어들이 서로의 물리 스레드에 시간을 남긴다."
+
+#, python-brace-format
+msgid "At the exit tick it prints the same `FINAL` and `SHADOW` lines as the exe. How to run it is in {doc}`../../manual/multiplayer` and {doc}`../testing`."
+msgstr "끝 틱에서 exe와 같은 `FINAL`·`SHADOW` 줄을 출력한다. 실행하는 법은 {doc}`../../manual/multiplayer`와 {doc}`../testing`에 있다."
+
+msgid "Input recordings and hash logs"
+msgstr "입력 기록과 해시 로그"
+
+#, python-brace-format
+msgid "{engine}`engine/src/mealkit/game/InputRecord.h` writes two kinds of files."
+msgstr "{engine}`engine/src/mealkit/game/InputRecord.h`는 두 종류의 파일을 쓴다."
+
+msgid "**Hash log** (`--hash-log`): one line per tick, `<tick> <hash in 16 hex digits>`. If two runs write the same file, their states were equal on every tick."
+msgstr "**해시 로그**(`--hash-log`): 틱마다 한 줄, `<틱> <16진 16자리 해시>`. 두 실행이 같은 파일을 쓰면 모든 틱에서 상태가 같았다."
+
+msgid "**Input recording** (`--record-inputs`): the confirmed inputs and the state hash of every tick. `--replay-inputs` runs them again and compares."
+msgstr "**입력 기록**(`--record-inputs`): 매 틱의 확정된 입력과 상태 해시. `--replay-inputs`가 그것을 다시 돌려 비교한다."
+
+msgid "The recording starts with `MKINPUT1`, the format version (now 3), player count, seed, match data, the content hash and every player's match start data. Then, per tick: 8 bytes of input per player, the command bytes with a 2-byte length, and the 8-byte hash. All numbers are written byte by byte in little endian, so the file is the same on every CPU. The writer opens the file on tick 0, because the match values are only fixed when the session becomes `Running`. The reader stops at the first incomplete tick, so a file cut off by a crash is still usable up to that point. It also reads versions 1 (no commands) and 2 (no match start data)."
+msgstr "기록은 `MKINPUT1`, 형식 버전(지금 3), 인원, 시드, 매치 데이터, 콘텐츠 해시, 플레이어마다의 매치 시작 데이터로 시작한다. 그 뒤 틱마다: 플레이어당 8바이트 입력, 2바이트 길이가 붙은 명령 바이트, 8바이트 해시. 모든 숫자를 리틀 엔디언으로 한 바이트씩 쓰므로 어느 CPU에서나 파일이 같다. 매치 값은 세션이 `Running`이 되어야 확정되므로, 쓰기는 틱 0에서 파일을 연다. 읽기는 처음 나오는 불완전한 틱에서 멈추므로, 크래시로 잘린 파일도 그 앞까지는 쓸 수 있다. 버전 1(명령 없음)과 2(매치 시작 데이터 없음)도 읽는다."
+
+msgid "`replayHeadless` loads the recording, builds the world from the recorded match values (`MatchInfo`), steps through every recorded input without a network, and prints `REPLAY ok` or `REPLAY DESYNC tick=<first mismatch>`. It warns when the content hash differs, because then the hashes will differ too."
+msgstr "`replayHeadless`는 기록을 불러와 기록된 매치 값(`MatchInfo`)으로 월드를 만들고, 네트워크 없이 기록된 입력을 모두 진행하며 `REPLAY ok`나 `REPLAY DESYNC tick=<처음 다른 틱>`을 출력한다. 콘텐츠 해시가 다르면 해시도 달라지므로 경고한다."
+
+#, python-brace-format
+msgid "The CI uses these files: each build replays the recordings in `samples/*/replays/*.rec` with a hash log, and `tools/ci_compare.ps1` checks that every build (Windows MSVC and clang-cl, Linux, macOS) wrote the same hashes ({engine}`.github/workflows/ci.yml`). Feeding one recorded file to every build, instead of running bots on each, is what makes the builds comparable. `tools/record_replay.ps1` makes the recording again when the simulation result changes on purpose."
+msgstr "CI가 이 파일들을 쓴다: 빌드마다 `samples/*/replays/*.rec`의 기록을 해시 로그와 함께 재생하고, `tools/ci_compare.ps1`이 모든 빌드(Windows MSVC와 clang-cl, Linux, macOS)가 같은 해시를 썼는지 본다({engine}`.github/workflows/ci.yml`). 빌드마다 봇을 돌리지 않고 기록 파일 하나를 모든 빌드에 넣기 때문에 빌드끼리 비교할 수 있다. 시뮬레이션 결과를 일부러 바꿨을 때는 `tools/record_replay.ps1`이 기록을 다시 만든다."
+
+msgid "Match data and tuning"
+msgstr "매치 데이터와 튜닝"
+
+#, python-brace-format
+msgid "{engine}`engine/src/mealkit/game/GameData.h` loads what a match is made of, the same way in the exe, the headless binary and the editor."
+msgstr "{engine}`engine/src/mealkit/game/GameData.h`는 매치를 이루는 것을 exe, 헤드리스 실행 파일, 에디터에서 같은 방법으로 읽는다."
+
+msgid "`loadTuning` reads `assets/game.tuning` (or a given path) into the game's tuning type. A missing file keeps the declared defaults and logs a warning."
+msgstr "`loadTuning`은 `assets/game.tuning`(또는 준 경로)을 게임의 튜닝 타입으로 읽는다. 파일이 없으면 선언의 기본값을 두고 경고를 남긴다."
+
+msgid "`LiveTuning` holds the display tuning (`assets/view.tuning`). `poll` checks the file time at most every 0.25 seconds and reads the file again when it changed. It reads into a fresh value, so a deleted line goes back to its default. If the file does not exist yet, it watches the path next to `game.tuning`."
+msgstr "`LiveTuning`은 화면용 튜닝(`assets/view.tuning`)을 갖는다. `poll`은 많아야 0.25초마다 파일 시각을 보고, 바뀌었으면 파일을 다시 읽는다. 새 값에 읽으므로 지운 줄은 기본값으로 돌아간다. 파일이 아직 없으면 `game.tuning` 옆의 경로를 지켜본다."
+
+msgid "`contentHash` is the hash peers compare before a match. It hashes the parts of the scene that affect the game, the model files, the tuning values, the project settings except view fields, and the simulation tables."
+msgstr "`contentHash`는 매치 전에 피어들이 비교하는 해시다. 씬 중 게임에 영향을 주는 부분, 모델 파일, 튜닝 값, 화면 필드를 뺀 프로젝트 설정, 시뮬레이션 표를 해시한다."
+
+#, python-brace-format
+msgid "The display tuning is not in the content hash, so it can change during a multiplayer match. Where each kind of number belongs is in {engine}`docs/CODING_MODEL.md` \"숫자는 어디에 두나\"."
+msgstr "화면용 튜닝은 콘텐츠 해시에 들어가지 않으므로 여러 명 매치 중에도 바꿀 수 있다. 숫자를 종류마다 어디에 두는지는 {engine}`docs/CODING_MODEL.md` \"숫자는 어디에 두나\"에 있다."
+
+msgid "Project settings"
+msgstr "프로젝트 설정"
+
+#, python-brace-format
+msgid "`game::ProjectSettings` ({engine}`engine/src/mealkit/game/ProjectSettings.h`) is the engine part of `mealkit.project`: name, engine folder and version, start scene, icon, creation date, sound voices and default language. A game adds its own struct, saved in the file with the `game.` prefix."
+msgstr "`game::ProjectSettings`({engine}`engine/src/mealkit/game/ProjectSettings.h`)는 `mealkit.project`의 엔진 쪽이다: 이름, 엔진 폴더와 버전, 시작 씬, 아이콘, 만든 날짜, 소리 목소리 수, 기본 언어. 게임은 자기 구조체를 더하고, 파일에는 `game.` 접두사로 저장된다."
+
+msgid "The file uses the same `path value` lines as tuning files, and the reader also accepts old `key=value` lines. Loading keeps three things the engine cannot type-check:"
+msgstr "파일은 튜닝 파일과 같은 `경로 값` 줄을 쓰고, 읽기는 예전 `키=값` 줄도 받는다. 읽을 때 엔진이 타입을 확인할 수 없는 세 가지를 남겨 둔다:"
+
+msgid "`game.*` lines are kept as text, so the editor can save the file before the game DLL is loaded without losing them."
+msgstr "`game.*` 줄은 글자로 남겨 두므로, 에디터가 게임 DLL을 불러오기 전에 파일을 저장해도 잃지 않는다."
+
+msgid "Unknown keys (written by a newer engine) are kept and written back."
+msgstr "모르는 키(새 엔진이 쓴 것)는 남겨 두었다가 그대로 다시 쓴다."
+
+msgid "Comment lines before the first key are kept as the header."
+msgstr "첫 키 앞의 주석 줄은 머리글로 남긴다."
+
+#, python-brace-format
+msgid "`loadGameProject` finds `mealkit.project` with `findAsset`, so it works next to the exe in a release folder and in the project folder during development. Only fields that affect the simulation enter the content hash; others are declared with `MEALKIT_VIEW_FIELD`. `userFolder` returns the per-player folder (the user data folder plus the game name) for changed keys, settings and saves. See {doc}`../../manual/projects`."
+msgstr "`loadGameProject`는 `mealkit.project`를 `findAsset`으로 찾으므로, 출시 폴더에서는 exe 옆에서, 개발 중에는 프로젝트 폴더에서 동작한다. 시뮬레이션에 닿는 필드만 콘텐츠 해시에 들어가고, 나머지는 `MEALKIT_VIEW_FIELD`로 선언한다. `userFolder`는 바꾼 키, 설정, 세이브를 둘 플레이어별 폴더(사용자 데이터 폴더 + 게임 이름)를 돌려준다. {doc}`../../manual/projects`를 보라."
+
+msgid "Match start data"
+msgstr "매치 시작 데이터"
+
+#, python-brace-format
+msgid "{engine}`engine/src/mealkit/game/Loadout.h` sends values a player brings into a match, such as a chosen character. In the lobby the screen side calls `setLoadout(session, value)`. The host fixes everyone's data when the match starts and sends it to all peers. `startWorld` reads it with `readLoadout(match, player, value)` and copies it into the world state, so it is part of the hash and snapshots."
+msgstr "{engine}`engine/src/mealkit/game/Loadout.h`는 고른 캐릭터처럼 플레이어가 매치에 가져가는 값을 보낸다. 로비에서 화면 쪽이 `setLoadout(session, value)`를 부른다. 호스트가 매치를 시작할 때 모두의 데이터를 확정해 모든 피어에 보낸다. `startWorld`가 `readLoadout(match, player, value)`로 읽어 월드 상태에 복사하므로, 해시와 스냅샷에 들어간다."
+
+#, python-brace-format
+msgid "The value is sent with `memcpy`, so the type must be trivially copyable (no strings, containers or pointers), checked by `static_assert`. With its 4-byte header it must fit in `net::kMaxLoadoutBytes` (128). The header is the FNV-1a hash of the type name, so data of another type is refused and the default stays. The data is also written into input recordings, so a replay starts with the same choices. See {doc}`../../manual/multiplayer`."
+msgstr "값은 `memcpy`로 보내므로 타입은 trivially copyable이어야 한다(문자열, 컨테이너, 포인터 없음). `static_assert`가 확인한다. 4바이트 머리를 더해 `net::kMaxLoadoutBytes`(128)에 들어가야 한다. 머리는 타입 이름의 FNV-1a 해시라, 다른 타입의 데이터는 거절되고 기본값이 남는다. 이 데이터는 입력 기록에도 써지므로 재생도 같은 선택으로 시작한다. {doc}`../../manual/multiplayer`를 보라."
+
+msgid "Saves"
+msgstr "세이브"
+
+#, python-brace-format
+msgid "{engine}`engine/src/mealkit/game/Save.h` saves progress that lives outside a match (unlocks, statistics) as one `MEALKIT_STRUCT`, in `saves/<name>.save` in the user folder."
+msgstr "{engine}`engine/src/mealkit/game/Save.h`는 매치 밖에 남는 진행 데이터(해금, 통계)를 `MEALKIT_STRUCT` 하나로, 사용자 폴더의 `saves/<이름>.save`에 저장한다."
+
+msgid "The file is text: a comment line with the type name, `version <n>`, then `path value` lines."
+msgstr "파일은 글자다: 타입 이름이 든 주석 줄, `version <n>`, 그 뒤 `경로 값` 줄."
+
+msgid "Reading drops fields the type no longer has and leaves missing fields at their defaults. A file with a lower version is passed to the game's `migrate` function first, which can rewrite the lines. A newer version is read with a warning."
+msgstr "읽기는 타입에 더 이상 없는 필드를 버리고, 없는 필드는 기본값으로 둔다. 버전이 낮은 파일은 먼저 게임의 `migrate` 함수로 넘겨 줄을 고칠 수 있게 한다. 더 새 버전은 경고와 함께 읽는다."
+
+msgid "Writing copies the previous file to `.bak`, then writes through `writeTextFile`, which writes a temporary file and renames it over the old one, so a crash during the write does not break the save."
+msgstr "쓰기는 직전 파일을 `.bak`으로 복사한 뒤 `writeTextFile`로 쓴다. 이 함수는 임시 파일에 쓰고 원래 파일 위로 이름을 바꾸므로, 쓰는 중에 꺼져도 세이브가 깨지지 않는다."
+
+msgid "An empty user folder (automated runs, editor player windows) means nothing is read or written."
+msgstr "사용자 폴더가 비어 있으면(자동 실행, 에디터의 참가 창) 아무것도 읽거나 쓰지 않는다."
+
+#, python-brace-format
+msgid "The simulation never reads save data. See {doc}`../../manual/settings`."
+msgstr "시뮬레이션은 세이브 데이터를 읽지 않는다. {doc}`../../manual/settings`를 보라."
+
+msgid "Performance numbers"
+msgstr "성능 숫자"
+
+#, python-brace-format
+msgid "`game::FrameStats` ({engine}`engine/src/mealkit/game/FrameStats.h`) collects the numbers each subsystem measures with its own `stats()`: frame time, simulation time per tick, tick, players, round trip time and bandwidth, desync, draw calls and instances, and sound voices. `update(dt, sources)` is called every frame. When a period ends (0.25 seconds by default) it averages the frame time, keeps the worst frame, reads every source that is not `nullptr`, and returns `true`."
+msgstr "`game::FrameStats`({engine}`engine/src/mealkit/game/FrameStats.h`)는 각 하위 시스템이 자기 `stats()`로 잰 숫자를 모은다: 프레임 시간, 틱당 시뮬레이션 시간, 틱, 플레이어, 왕복 시간과 대역폭, 디싱크, 드로우 콜과 인스턴스, 소리 목소리. `update(dt, sources)`를 매 프레임 부른다. 주기(기본 0.25초)가 끝나면 프레임 시간의 평균을 내고, 가장 긴 프레임을 남기고, `nullptr`이 아닌 출처를 모두 읽고 `true`를 돌려준다."
+
+#, python-brace-format
+msgid "`line()` joins the items with ` | ` for the window title and the `perf:` log, and `lines()` puts one item per line for the `F1` overlay. The editor status bar uses the same class. `takeSimMsPerTick` empties its average when read, so only `FrameStats` calls it, and every display shows the same numbers. See {doc}`../../manual/performance` and {engine}`docs/CODING_MODEL.md` \"성능 숫자 모으기와 보여 주기\"."
+msgstr "`line()`은 항목을 ` | `로 이어 창 제목과 `perf:` 로그에 쓰고, `lines()`는 `F1` 오버레이에 항목을 한 줄씩 둔다. 에디터 상태 표시줄도 같은 클래스를 쓴다. `takeSimMsPerTick`은 읽으면 평균이 비워지므로 `FrameStats`만 부르고, 그래서 모든 화면이 같은 숫자를 보여 준다. {doc}`../../manual/performance`와 {engine}`docs/CODING_MODEL.md` \"성능 숫자 모으기와 보여 주기\"를 보라."
+
+msgid "Techniques used"
+msgstr "쓰인 기법"
+
+msgid "The algorithms and patterns behind the parts above, with where to find them in the code."
+msgstr "위 부분들 뒤의 알고리즘과 패턴, 그리고 코드에서 찾을 곳."
+
+msgid "Boundary and main loop"
+msgstr "경계와 메인 루프"
+
+msgid "Technique"
+msgstr "기법"
+
+msgid "Where"
+msgstr "위치"
+
+msgid "What it does"
+msgstr "하는 일"
+
+msgid "Versioned C ABI"
+msgstr "버전이 붙은 C ABI"
+
+msgid "`GameModule`, `kApiVersion`"
+msgstr "`GameModule`, `kApiVersion`"
+
+msgid "A table of plain function pointers behind one `extern \"C\"` function, checked by a version number, so DLLs from another build are refused instead of crashing."
+msgstr "`extern \"C\"` 함수 하나 뒤의 평범한 함수 포인터 표를 버전 번호로 확인한다. 그래서 다른 빌드의 DLL은 크래시 대신 거절된다."
+
+msgid "One table for two link modes"
+msgstr "두 링크 방식에 표 하나"
+
+msgid "`gameModuleOf<GameClass>`"
+msgstr "`gameModuleOf<GameClass>`"
+
+msgid "The exe links the game class directly but builds the same module table as the DLL, so both read game types in one way."
+msgstr "exe는 게임 클래스를 직접 링크하지만 DLL과 같은 모듈 표를 만들어, 둘이 게임 타입을 한 가지 방법으로 읽는다."
+
+msgid "Compile-time optional members"
+msgstr "컴파일 시간 선택 멤버"
+
+msgid "`gameProjectSettingsType`, `gameViewTuningType`, `gameEventType`, `runHeadless`"
+msgstr "`gameProjectSettingsType`, `gameViewTuningType`, `gameEventType`, `runHeadless`"
+
+msgid "C++20 `requires` expressions detect whether the game declares a type or function, so optional parts need no registration."
+msgstr "C++20 `requires` 식으로 게임이 타입이나 함수를 선언했는지 알아내므로, 선택 부분에 등록이 필요 없다."
+
+msgid "Service context (dependency passing)"
+msgstr "서비스 컨텍스트 (의존성 넘기기)"
+
+msgid "`GameContext`"
+msgstr "`GameContext`"
+
+msgid "Engine services are passed into every call instead of being global, and the simulation never gets them."
+msgstr "엔진 서비스를 전역 대신 호출마다 넘기고, 시뮬레이션은 받지 않는다."
+
+msgid "Shared frame order"
+msgstr "같은 프레임 순서"
+
+msgid "`Frontend`"
+msgstr "`Frontend`"
+
+msgid "The exe, editor play and player windows call the same steps in the same order, so screen behavior cannot drift between them."
+msgstr "exe, 에디터 플레이, 참가 창이 같은 단계를 같은 순서로 부르므로, 화면 동작이 서로 어긋나지 않는다."
+
+msgid "Input capture by priority"
+msgstr "우선순위로 입력 가져가기"
+
+msgid "`Frontend::update`"
+msgstr "`Frontend::update`"
+
+msgid "The UI takes the mouse and keyboard first and turns off the game's permission flags for that frame."
+msgstr "UI가 마우스와 키보드를 먼저 가져가고, 그 프레임의 게임 허용 플래그를 끈다."
+
+msgid "Clamped delta time"
+msgstr "프레임 시간 자르기"
+
+msgid "`runGame`"
+msgstr "`runGame`"
+
+msgid "A frame time above 0.25 seconds is cut, so a stall does not become one huge step."
+msgstr "0.25초보다 긴 프레임 시간은 잘라, 멈춤이 큰 한 걸음이 되지 않게 한다."
+
+msgid "Simulation"
+msgstr "시뮬레이션"
+
+msgid "Fixed timestep with accumulator"
+msgstr "누산기를 쓰는 고정 시간 간격"
+
+msgid "`Simulation::update`"
+msgstr "`Simulation::update`"
+
+msgid "Frame time is added to an accumulator and spent in whole ticks, at most 8 per frame, with the debt capped while waiting for input."
+msgstr "프레임 시간을 누산기에 더하고 온전한 틱으로 쓴다. 한 프레임에 최대 8틱이고, 입력을 기다리는 동안 빚을 제한한다."
+
+msgid "Render interpolation"
+msgstr "렌더 보간"
+
+msgid "`Simulation::alpha`, `previous`"
+msgstr "`Simulation::alpha`, `previous`"
+
+msgid "The screen draws between the previous and current tick with the leftover fraction of a tick."
+msgstr "남은 틱 비율로 직전 틱과 현재 틱 사이를 그린다."
+
+msgid "Deterministic lockstep order"
+msgstr "결정론 락스텝 순서"
+
+msgid "`Simulation::executeTick`"
+msgstr "`Simulation::executeTick`"
+
+msgid "A tick runs only with every player's confirmed input; local input is sent for a later tick (input delay)."
+msgstr "틱은 모든 플레이어의 확정된 입력이 있을 때만 돌고, 로컬 입력은 나중 틱으로 보낸다(입력 지연)."
+
+msgid "Dual execution (shadow simulation)"
+msgstr "이중 실행 (그림자 시뮬레이션)"
+
+msgid "`Simulation` with `PlayOptions::shadow`"
+msgstr "`Simulation` with `PlayOptions::shadow`"
+
+msgid "A second world steps with the same inputs, and the hashes are compared every tick."
+msgstr "두 번째 월드를 같은 입력으로 진행하고 매 틱 해시를 비교한다."
+
+msgid "Structural diff"
+msgstr "구조 비교"
+
+msgid "`reflect::diffStruct`"
+msgstr "`reflect::diffStruct`"
+
+msgid "Lists the declared fields that differ when the shadow world diverges."
+msgstr "그림자 월드가 갈라지면 다른 선언 필드를 나열한다."
+
+msgid "Checkpoints and replay"
+msgstr "체크포인트와 재실행"
+
+msgid "`Simulation::seek`, `takeSnapshot`"
+msgstr "`Simulation::seek`, `takeSnapshot`"
+
+msgid "Periodic full snapshots plus every tick's inputs. A past tick is rebuilt from the nearest earlier snapshot by replaying inputs."
+msgstr "주기적인 전체 스냅샷과 매 틱의 입력. 과거 틱은 가장 가까운 앞 스냅샷에서 입력을 다시 돌려 만든다."
+
+msgid "Bounded history"
+msgstr "크기가 정해진 기록"
+
+msgid "`takeSnapshot`"
+msgstr "`takeSnapshot`"
+
+msgid "Keeps the newest 40 snapshots and drops inputs before the first one."
+msgstr "최신 스냅샷 40개를 남기고 첫 스냅샷 앞의 입력은 버린다."
+
+msgid "Verified restore"
+msgstr "확인하는 복원"
+
+msgid "`loadSnapshot`"
+msgstr "`loadSnapshot`"
+
+msgid "Compares the hash after loading with the hash saved with the snapshot, which exposes undeclared state."
+msgstr "불러온 뒤의 해시를 스냅샷과 함께 저장한 해시와 비교해, 선언하지 않은 상태를 드러낸다."
+
+msgid "Reflection-based serialization"
+msgstr "리플렉션 기반 직렬화"
+
+msgid "`saveSnapshot`"
+msgstr "`saveSnapshot`"
+
+msgid "Writes the declared state field by field, so padding and undeclared members never enter a snapshot."
+msgstr "선언한 상태를 필드마다 쓰므로, 패딩과 선언하지 않은 멤버가 스냅샷에 들어가지 않는다."
+
+msgid "Records and data"
+msgstr "기록과 데이터"
+
+msgid "Portable binary format"
+msgstr "이식 가능한 바이너리 형식"
+
+msgid "`InputRecordWriter`, `put` / `get`"
+msgstr "`InputRecordWriter`, `put` / `get`"
+
+msgid "Writes every number byte by byte in little endian, so a file is identical on every CPU and compiler."
+msgstr "모든 숫자를 리틀 엔디언으로 한 바이트씩 쓰므로, 어느 CPU와 컴파일러에서나 파일이 같다."
+
+msgid "Versioned format with old readers"
+msgstr "예전 버전도 읽는 버전 형식"
+
+msgid "`loadInputRecording`"
+msgstr "`loadInputRecording`"
+
+msgid "Reads versions 1 to 3, and stops at the first incomplete tick, so a cut-off file is still usable."
+msgstr "버전 1부터 3까지 읽고 처음 나오는 불완전한 틱에서 멈추므로, 잘린 파일도 쓸 수 있다."
+
+msgid "Golden-file comparison"
+msgstr "기준 파일 비교"
+
+msgid "`tools/ci_test.ps1`, `tools/ci_compare.ps1`"
+msgstr "`tools/ci_test.ps1`, `tools/ci_compare.ps1`"
+
+msgid "Every build replays the same recording and writes a hash log; the logs must match the reference build."
+msgstr "모든 빌드가 같은 기록을 재생하고 해시 로그를 쓴다. 로그는 기준 빌드와 같아야 한다."
+
+msgid "Content hash"
+msgstr "콘텐츠 해시"
+
+msgid "`contentHash`"
+msgstr "`contentHash`"
+
+msgid "One FNV-1a hash over scene, models, tuning, project settings and tables, compared before peers join."
+msgstr "씬, 모델, 튜닝, 프로젝트 설정, 표 위의 FNV-1a 해시 하나를 피어가 참가하기 전에 비교한다."
+
+msgid "Polling file watch"
+msgstr "폴링 파일 감시"
+
+msgid "`LiveTuning::poll`"
+msgstr "`LiveTuning::poll`"
+
+msgid "Checks the file time at most 4 times a second and reloads into a fresh value."
+msgstr "1초에 많아야 네 번 파일 시각을 보고, 새 값에 다시 읽는다."
+
+msgid "Lossless round trip of unknown data"
+msgstr "모르는 데이터를 잃지 않는 왕복"
+
+msgid "`loadProjectFile` / `saveProjectFile`"
+msgstr "`loadProjectFile` / `saveProjectFile`"
+
+msgid "Keeps `game.*` lines, unknown keys and the header comment as text and writes them back unchanged."
+msgstr "`game.*` 줄, 모르는 키, 머리 주석을 글자로 남겨 두었다가 그대로 다시 쓴다."
+
+msgid "Type-tagged binary blob"
+msgstr "타입 표시가 붙은 바이너리 덩어리"
+
+msgid "`setLoadout` / `readLoadout`"
+msgstr "`setLoadout` / `readLoadout`"
+
+msgid "The first 4 bytes are a hash of the type name, so a value of another type is refused."
+msgstr "앞 4바이트가 타입 이름의 해시라, 다른 타입의 값은 거절된다."
+
+msgid "Schema migration"
+msgstr "스키마 이전"
+
+msgid "`readSave` with `SaveMigrate`"
+msgstr "`readSave` with `SaveMigrate`"
+
+msgid "A version number in the file lets the game rewrite old lines before they are read by name."
+msgstr "파일의 버전 번호로, 이름으로 읽기 전에 게임이 예전 줄을 고칠 수 있다."
+
+msgid "Atomic file replace"
+msgstr "원자적 파일 교체"
+
+#, python-brace-format
+msgid "`writeTextFile` in {engine}`engine/src/mealkit/platform/win32/Paths.cpp`"
+msgstr "{engine}`engine/src/mealkit/platform/win32/Paths.cpp`의 `writeTextFile`"
+
+msgid "Writes a temporary file and renames it over the target, and keeps a `.bak` of the previous save."
+msgstr "임시 파일에 쓰고 대상 위로 이름을 바꾸며, 직전 세이브는 `.bak`으로 남긴다."
+
+msgid "Periodic averaging"
+msgstr "주기 평균"
+
+msgid "`FrameStats::update`"
+msgstr "`FrameStats::update`"
+
+msgid "Averages frame time over 0.25 seconds and keeps the worst frame, so all displays read one sample."
+msgstr "0.25초 동안 프레임 시간의 평균을 내고 가장 긴 프레임을 남겨, 모든 화면이 샘플 하나를 읽는다."
+
