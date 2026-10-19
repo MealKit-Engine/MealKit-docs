@@ -27,8 +27,8 @@ Code that works on every system with the standard library alone stays outside th
 
 `posix/` has only what the headless build needs on Linux and macOS: time, files, sockets and logging. CI builds it to compare tick hashes across platforms. The window, input, dialogs, images and DLL loading come with the editor port in stage 5.
 
-The first four rows are in `MEALKIT_CORE_SOURCES`, which the headless executable links as `mealkit_core`. The rest are in `MEALKIT_FRONT_SOURCES`, linked only by programs with a screen.
-The `platform/<os>/` files implement headers from several folders (`net/Socket.h` is one), so the folder order check ({engine}`tools/check_layers.ps1`) skips them and the platform check below looks at them instead.
+The first four rows are in `MEALKIT_CORE_SOURCES`, which the headless executable links as `mealkit_core`. The rest are in `MEALKIT_FRONT_SOURCES`, linked only by programs with a screen. `Input.h` and `Gamepad.h` are the exception: their types are read by the input actions in the core, so the headers are in the core list while `Window.cpp` and `Gamepad.cpp` stay on the screen side.
+The `platform/<os>/` files implement headers from several folders (`net/Socket.h` is one), so the folder order check ({engine}`tools/check_layers.ps1`) skips them and the platform check below looks at them instead. The same script also fails when a core file includes an engine header that is not in `MEALKIT_CORE_SOURCES`. The folder order cannot catch this inside one folder, such as a core file in `game/` including `game/Frontend.h`.
 
 ### The check_platform rule
 
