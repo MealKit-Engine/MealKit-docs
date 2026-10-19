@@ -85,8 +85,8 @@ msgstr "에디터는 게임 DLL의 **복사본**을 불러오므로, 에디터�
 msgid "If the game DLL is missing or older than the engine (compared with the engine import library `mealkit.lib` and the newest engine header), the editor builds the game code first when it opens the project."
 msgstr "게임 DLL이 없거나 엔진보다 오래되었으면(엔진 import lib `mealkit.lib`과 엔진 헤더 중 가장 새것과 비교) 에디터가 프로젝트를 열 때 게임 코드를 먼저 빌드한다."
 
-msgid "The boundary between the engine and game code is `mealkit::game::GameInstance` (`engine/src/mealkit/game/GameInstance.h`). The game implements it (engine services arrive as `GameContext&`) and exports the editor entry point with `MEALKIT_GAME_MODULE(name, class)`. When this contract changes, `kApiVersion` goes up and DLLs with another number are not loaded."
-msgstr "엔진과 게임 코드의 경계는 `mealkit::game::GameInstance`(`engine/src/mealkit/game/GameInstance.h`). 게임은 이것을 구현하고(엔진 서비스는 `GameContext&`로 받는다), `MEALKIT_GAME_MODULE(이름, 클래스)`로 에디터용 진입점을 내보낸다. 약속이 바뀌면 `kApiVersion`을 올리고, 다른 번호의 DLL은 불러오지 않는다."
+msgid "The boundary between the engine and game code is `mealkit::game::GameInstance` (`engine/src/mealkit/game/GameInstance.h`). The game implements it (engine services arrive as `GameContext&`) and exports the editor entry point with `MEALKIT_GAME_MODULE(name, class)`. The release exe's `main` belongs to the engine too: `app/main.cpp` is one line, `MEALKIT_GAME_MAIN(GameSession, Headless)`, and the engine handles the command line (`--help`), window, session, screen services and automated test output. When this contract changes, `kApiVersion` goes up and DLLs with another number are not loaded."
+msgstr "엔진과 게임 코드의 경계는 `mealkit::game::GameInstance`(`engine/src/mealkit/game/GameInstance.h`). 게임은 이것을 구현하고(엔진 서비스는 `GameContext&`로 받는다), `MEALKIT_GAME_MODULE(이름, 클래스)`로 에디터용 진입점을 내보낸다. 출시 exe의 `main`도 엔진 것이다: `app/main.cpp`는 `MEALKIT_GAME_MAIN(GameSession, Headless)` 한 줄이고, 명령줄(`--help`)·창·세션·화면 쪽 서비스·자동 시험 출력은 엔진이 한다. 약속이 바뀌면 `kApiVersion`을 올리고, 다른 번호의 DLL은 불러오지 않는다."
 
 msgid "The shipped exe uses the game class directly, so there is no DLL boundary cost."
 msgstr "출시 exe는 게임 클래스를 직접 쓰므로 DLL 경계 비용이 없다."
@@ -175,8 +175,8 @@ msgstr "카메라·입력·그리기. `sim/` 상태를 읽기만 하고 바꾸�
 msgid "`app/`"
 msgstr "`app/`"
 
-msgid "`GameSession` (the `GameInstance` implementation), `main.cpp`, `GameModule.cpp`, `Headless.cpp`"
-msgstr "`GameSession`(`GameInstance` 구현), `main.cpp`, `GameModule.cpp`, `Headless.cpp`"
+msgid "`GameSession` (the `GameInstance` implementation), `main.cpp` (`MEALKIT_GAME_MAIN`), `GameModule.cpp`, `Headless.cpp`"
+msgstr "`GameSession`(`GameInstance` 구현), `main.cpp`(`MEALKIT_GAME_MAIN`), `GameModule.cpp`, `Headless.cpp`"
 
 #, python-brace-format
 msgid "The rules for `sim/` are in the engine's {engine}`coding model <docs/CODING_MODEL.md>` (\"Determinism rules\"). See also {doc}`multiplayer`."
