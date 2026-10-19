@@ -1,0 +1,607 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, KingProtea99 and MealKit contributors. CC BY 4.0
+# This file is distributed under the same license as the MealKit package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: MealKit 0.4\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-19 13:10+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ko\n"
+"Language-Team: ko <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+msgid "Core"
+msgstr "코어"
+
+#, python-brace-format
+msgid "This page explains how the core folder works inside: the basic types, logging, time, math, deterministic math, random numbers, hashing and field declarations. Core is the base of the engine. Together with `platform` it is the first group in the folder order, and the two may include each other; every other folder comes after them (see \"엔진 폴더 사이 의존\" in {engine}`docs/CODING_MODEL.md`). The code is in {engine}`engine/src/mealkit/core`."
+msgstr "이 페이지는 코어 폴더가 안에서 어떻게 돌아가는지 설명한다: 기본 타입, 로그, 시간, 수학, 결정론 수학, 난수, 해시, 필드 선언. 코어는 엔진의 바탕이다. `platform`과 함께 폴더 순서의 첫 묶음이고, 둘은 서로 include할 수 있다. 다른 폴더는 모두 그 뒤에 온다({engine}`docs/CODING_MODEL.md`의 \"엔진 폴더 사이 의존\"). 코드는 {engine}`engine/src/mealkit/core`에 있다."
+
+#, python-brace-format
+msgid "Core is small on purpose. Most of it is header-only, and only `Log.cpp` and `Reflect.cpp` have source files. Functions that need the operating system (the clock, file reading, the debugger) are declared here or in `platform/` and implemented in `platform/win32/` or `platform/posix/` (see {doc}`platform`)."
+msgstr "코어는 일부러 작다. 대부분 헤더뿐이고 소스 파일은 `Log.cpp`와 `Reflect.cpp`만 있다. OS가 필요한 함수(시계, 파일 읽기, 디버거)는 여기나 `platform/`에 선언하고 `platform/win32/` 또는 `platform/posix/`에서 구현한다({doc}`platform` 참고)."
+
+msgid "Types"
+msgstr "타입"
+
+#, python-brace-format
+msgid "{engine}`engine/src/mealkit/core/Types.h` gives short names for fixed-size types: `u8` to `u64`, `i8` to `i64`, `f32` and `f64`. Engine and game code use these names, so sizes are the same on every compiler and platform. This matters for anything that is hashed, saved or sent over the network."
+msgstr "{engine}`engine/src/mealkit/core/Types.h`는 크기가 정해진 타입에 짧은 이름을 준다: `u8`~`u64`, `i8`~`i64`, `f32`, `f64`. 엔진과 게임 코드가 이 이름을 쓰므로 크기가 모든 컴파일러와 플랫폼에서 같다. 해시하거나 저장하거나 네트워크로 보내는 값에서 중요하다."
+
+msgid "Log"
+msgstr "로그"
+
+#, python-brace-format
+msgid "{engine}`engine/src/mealkit/core/Log.h` has three levels and four macros: `MEALKIT_INFO`, `MEALKIT_WARN`, `MEALKIT_ERROR` and `MEALKIT_FATAL`. They take a `printf` format."
+msgstr "{engine}`engine/src/mealkit/core/Log.h`에는 수준 세 개와 매크로 네 개가 있다: `MEALKIT_INFO`, `MEALKIT_WARN`, `MEALKIT_ERROR`, `MEALKIT_FATAL`. `printf` 형식을 받는다."
+
+msgid "Each line looks like `[  12.345][WARN ] message`: the time since the process started (`nowSeconds()`), the level, and the text. Info lines go to standard output, warnings and errors to standard error, and every line also goes to the debugger output window (`debugOutput`). A mutex keeps lines from different threads whole."
+msgstr "한 줄은 `[  12.345][WARN ] message` 모양이다: 프로세스 시작 이후 시간(`nowSeconds()`), 수준, 글. 정보 줄은 표준 출력, 경고와 오류는 표준 오류로 가고, 모든 줄은 디버거 출력 창(`debugOutput`)에도 간다. 뮤텍스가 여러 스레드의 줄이 섞이지 않게 한다."
+
+msgid "`MEALKIT_FATAL` writes the line, shows an error dialog, and ends the process at once with exit code 1. Automatic tests turn the dialog off with `log::setDialogs(false)`."
+msgstr "`MEALKIT_FATAL`은 줄을 쓰고 오류 대화상자를 띄운 뒤 종료 코드 1로 바로 프로세스를 끝낸다. 자동 테스트는 `log::setDialogs(false)`로 대화상자를 끈다."
+
+msgid "`MEALKIT_ASSERT(cond)` checks programmer mistakes. It exists in Debug and Editor builds (`MEALKIT_DEBUG` or `MEALKIT_ASSERTS`) and is removed from release builds. A failure writes an error line and stops in the debugger when one is attached."
+msgstr "`MEALKIT_ASSERT(cond)`는 프로그래머 실수를 검사한다. Debug와 Editor 빌드(`MEALKIT_DEBUG` 또는 `MEALKIT_ASSERTS`)에 있고 출시 빌드에서는 빠진다. 실패하면 오류 줄을 쓰고, 디버거가 붙어 있으면 그 자리에서 멈춘다."
+
+#, python-brace-format
+msgid "The engine does not use exceptions. A failing function returns `false` or an empty `std::optional` and logs the reason where it failed (\"실패 처리\" in {engine}`docs/CODING_MODEL.md`)."
+msgstr "엔진은 예외를 쓰지 않는다. 실패한 함수는 `false`나 빈 `std::optional`을 돌려주고, 실패한 곳에서 이유를 로그로 남긴다({engine}`docs/CODING_MODEL.md`의 \"실패 처리\")."
+
+msgid "Clock"
+msgstr "시계"
+
+#, python-brace-format
+msgid "{engine}`engine/src/mealkit/core/Clock.h` declares three things. The implementations are in `platform/win32/Clock.cpp` and `platform/posix/Clock.cpp`."
+msgstr "{engine}`engine/src/mealkit/core/Clock.h`는 세 가지를 선언한다. 구현은 `platform/win32/Clock.cpp`와 `platform/posix/Clock.cpp`에 있다."
+
+msgid "Function"
+msgstr "함수"
+
+msgid "Windows"
+msgstr "Windows"
+
+msgid "Linux and macOS"
+msgstr "Linux와 macOS"
+
+msgid "`nowSeconds()`"
+msgstr "`nowSeconds()`"
+
+msgid "`QueryPerformanceCounter`, counted from the first call"
+msgstr "`QueryPerformanceCounter`, 첫 호출부터 센다"
+
+msgid "`clock_gettime(CLOCK_MONOTONIC)`"
+msgstr "`clock_gettime(CLOCK_MONOTONIC)`"
+
+msgid "`sleepSeconds(s)`"
+msgstr "`sleepSeconds(s)`"
+
+msgid "a high-resolution waitable timer per thread (about 1 ms steps); `Sleep` if it cannot be made"
+msgstr "스레드마다 고해상도 대기 타이머 하나(약 1ms 단위). 만들 수 없으면 `Sleep`"
+
+msgid "`nanosleep`"
+msgstr "`nanosleep`"
+
+msgid "`FrameLimiter`"
+msgstr "`FrameLimiter`"
+
+msgid "sleeps with a high-resolution timer until 1 ms before the frame time, then spins for the last part"
+msgstr "고해상도 타이머로 프레임 시각 1ms 전까지 자고, 남은 부분은 스핀한다"
+
+msgid "the same with `nanosleep`"
+msgstr "같은 방식을 `nanosleep`으로"
+
+msgid "`FrameLimiter` limits the frame rate to save battery and heat on laptops. It keeps a target time for the next frame and adds one interval each frame. When the program falls more than one interval behind (for example after a long load), it moves the target to now instead of rushing to catch up."
+msgstr "`FrameLimiter`는 노트북의 배터리와 발열을 줄이려고 프레임 수를 제한한다. 다음 프레임의 목표 시각을 갖고 프레임마다 간격 하나를 더한다. 간격 하나보다 더 밀리면(예: 긴 로딩 뒤) 따라잡으려고 서두르지 않고 목표를 지금으로 옮긴다."
+
+msgid "Wall-clock time is never used in the simulation. The simulation counts ticks; only the screen side uses `dt`."
+msgstr "시뮬레이션은 실제 시각을 쓰지 않는다. 시뮬레이션은 틱을 세고, 화면 쪽만 `dt`를 쓴다."
+
+msgid "Math"
+msgstr "수학"
+
+#, python-brace-format
+msgid "{engine}`engine/src/mealkit/core/Math.h` has `Vec2`, `Vec3`, `Quat` and `Mat4` with the usual operations."
+msgstr "{engine}`engine/src/mealkit/core/Math.h`에는 `Vec2`, `Vec3`, `Quat`, `Mat4`와 흔한 연산이 있다."
+
+msgid "Row vectors (`v * M`) and a left-handed system: x right, y up, z forward."
+msgstr "행 벡터(`v * M`)와 왼손 좌표계: x 오른쪽, y 위, z 앞."
+
+msgid "Quaternion products follow Hamilton's rule: `a * b` applies `b` first, then `a`."
+msgstr "쿼터니언 곱은 해밀턴 규칙을 따른다: `a * b`는 `b`를 먼저, `a`를 나중에 적용한다."
+
+msgid "`rotate(q, v)` uses the short form `v + w·t + u × t` with `t = 2 (u × v)`, which needs no matrix."
+msgstr "`rotate(q, v)`는 `t = 2 (u × v)`로 짧은 식 `v + w·t + u × t`를 써서 행렬이 필요 없다."
+
+msgid "`integrate(q, ω, dt)` turns an angular velocity into a new rotation with `q + ½ (ω, 0) q dt`, then normalizes. It uses no trigonometry, so the simulation may use it."
+msgstr "`integrate(q, ω, dt)`는 각속도를 `q + ½ (ω, 0) q dt`로 새 회전으로 바꾸고 정규화한다. 삼각함수를 쓰지 않으므로 시뮬레이션에서 써도 된다."
+
+msgid "`nlerp` interpolates rotations for drawing. It flips one quaternion when their dot product is negative, so it takes the short way around."
+msgstr "`nlerp`는 그리기용으로 회전을 보간한다. 두 쿼터니언의 내적이 음수이면 하나를 뒤집어 짧은 쪽으로 돈다."
+
+msgid "`perspectiveReversedZ` puts the near plane at depth 1 and the far plane at 0. With a float depth buffer this spreads precision evenly over the distance."
+msgstr "`perspectiveReversedZ`는 가까운 면을 깊이 1, 먼 면을 0에 둔다. float 깊이 버퍼에서 정밀도가 거리 전체에 고르게 퍼진다."
+
+msgid "Functions that call `std::sin`, `std::cos` or `std::tan` (`quatFromAxisAngle`, `perspectiveReversedZ`) are for drawing and input only. The simulation uses the versions in DetMath."
+msgstr "`std::sin`, `std::cos`, `std::tan`을 부르는 함수(`quatFromAxisAngle`, `perspectiveReversedZ`)는 그리기와 입력에만 쓴다. 시뮬레이션은 DetMath의 함수를 쓴다."
+
+msgid "DetMath"
+msgstr "DetMath"
+
+#, python-brace-format
+msgid "Lockstep needs every computer to get the same bits from the same simulation (\"결정론 규칙\" in {engine}`docs/CODING_MODEL.md`). The basic IEEE 754 operations (`+ - * /` and `sqrt`) are required to be correctly rounded, so with `/fp:precise` (no FMA contraction) they give the same result on every CPU. CRT functions such as `sin`, `cos`, `atan2`, `pow` and `exp` have no such rule: different CRT versions and CPUs may take different code paths and return different last bits. That is why they are banned in `sim/` and SimCheck reports them."
+msgstr "락스텝은 모든 컴퓨터가 같은 시뮬레이션에서 같은 비트를 얻어야 한다({engine}`docs/CODING_MODEL.md`의 \"결정론 규칙\"). IEEE 754 기본 연산(`+ - * /`와 `sqrt`)은 정확히 반올림하도록 정해져 있어서, `/fp:precise`(FMA 축약 없음) 아래에서는 어느 CPU에서나 결과가 같다. `sin`, `cos`, `atan2`, `pow`, `exp` 같은 CRT 함수에는 그런 규칙이 없다: CRT 버전과 CPU에 따라 다른 코드 경로를 타고 마지막 비트가 달라질 수 있다. 그래서 `sim/`에서 금지되고 SimCheck가 알린다."
+
+#, python-brace-format
+msgid "{engine}`engine/src/mealkit/core/DetMath.h` gives replacements built only from the basic operations, integer conversion and `std::sqrt`:"
+msgstr "{engine}`engine/src/mealkit/core/DetMath.h`는 기본 연산, 정수 변환, `std::sqrt`만으로 만든 대체 함수를 준다:"
+
+msgid "How it works"
+msgstr "동작"
+
+msgid "`detSin`, `detCos`"
+msgstr "`detSin`, `detCos`"
+
+msgid "Range reduction: split `x` into a multiple `k` of π/2 and a remainder `r` with abs(r) ≤ π/4. π/2 is subtracted in two parts (`1.5703125` plus a small rest) so the remainder keeps its precision. The low two bits of `k` pick the quadrant, and a short polynomial computes sin or cos of `r`."
+msgstr "범위 줄이기: `x`를 π/2의 정수 배 `k`와 나머지 `r`(abs(r) ≤ π/4)로 나눈다. π/2는 두 부분(`1.5703125`와 작은 나머지)으로 나눠 빼서 나머지의 정밀도를 지킨다. `k`의 아래 두 비트가 사분면을 고르고, 짧은 다항식이 `r`의 sin이나 cos를 계산한다."
+
+msgid "`detAtan`, `detAtan2`"
+msgstr "`detAtan`, `detAtan2`"
+
+msgid "For `x > tan(3π/8)` it uses `π/2 + atan(-1/x)`, for `x > tan(π/8)` it uses `π/4 + atan((x-1)/(x+1))`, so the polynomial only sees small values. `detAtan2` follows the CRT rules: the result is in [-π, π] and (0, 0) gives 0."
+msgstr "`x > tan(3π/8)`이면 `π/2 + atan(-1/x)`, `x > tan(π/8)`이면 `π/4 + atan((x-1)/(x+1))`을 써서 다항식에는 작은 값만 들어간다. `detAtan2`는 CRT 규약을 따른다: 결과는 [-π, π]이고 (0, 0)이면 0이다."
+
+msgid "`detQuatFromAxisAngle`, `detYawQuat`"
+msgstr "`detQuatFromAxisAngle`, `detYawQuat`"
+
+msgid "Rotation from an axis and angle with `detSin` and `detCos`. `detYawQuat(yaw)` turns around y; yaw 0 faces +z and a larger yaw turns toward +x."
+msgstr "`detSin`과 `detCos`로 축과 각도에서 회전을 만든다. `detYawQuat(yaw)`는 y축으로 돈다. yaw 0은 +z를 보고, yaw가 커지면 +x 쪽으로 돈다."
+
+msgid "The polynomial coefficients are the minimax fits of the Cephes library (`sinf`, `cosf`, `atanf`). Compared with the CRT, the error is about 6e-8 for sin and cos and 2.4e-7 for atan2 (for abs(x) ≤ 100 radians), and angles must stay below 2^14 radians."
+msgstr "다항식 계수는 Cephes 라이브러리(`sinf`, `cosf`, `atanf`)의 최소최대 근사다. CRT와의 차이는 sin·cos 약 6e-8, atan2 2.4e-7이고(abs(x) ≤ 100 라디안), 각도는 2^14 라디안보다 작아야 한다."
+
+#, python-brace-format
+msgid "The unit test `det_math` in {engine}`engine/tests/Tests.cpp` measures the worst error against the CRT and prints `detmath-bits <hash>`, a hash of every result bit. That hash must be the same in every build (Release, Editor, clang-cl) and on every CI platform."
+msgstr "{engine}`engine/tests/Tests.cpp`의 단위 테스트 `det_math`는 CRT와의 최대 오차를 재고, 모든 결과 비트의 해시 `detmath-bits <hash>`를 출력한다. 이 해시는 모든 빌드(Release, Editor, clang-cl)와 모든 CI 플랫폼에서 같아야 한다."
+
+msgid "Random"
+msgstr "난수"
+
+#, python-brace-format
+msgid "`Pcg32` in {engine}`engine/src/mealkit/core/Random.h` is the only random number generator allowed in the simulation."
+msgstr "{engine}`engine/src/mealkit/core/Random.h`의 `Pcg32`가 시뮬레이션에서 쓸 수 있는 유일한 난수 생성기다."
+
+msgid "PCG32 keeps a 64-bit state and advances it with a linear congruential step (`state = state × 6364136223846793005 + inc`). The output is not the state itself: it shifts and XORs the old state down to 32 bits and then rotates them by an amount taken from the top 5 bits (\"XSH RR\"). It uses only integer operations, so the sequence is the same everywhere."
+msgstr "PCG32는 64비트 상태를 갖고 선형 합동 단계(`state = state × 6364136223846793005 + inc`)로 진행한다. 출력은 상태 자체가 아니다: 이전 상태를 시프트·XOR해 32비트로 줄이고, 위쪽 5비트에서 얻은 양만큼 회전한다(\"XSH RR\"). 정수 연산만 쓰므로 수열이 어디서나 같다."
+
+msgid "`next01()` takes the top 24 bits and multiplies by 2^-24. A 24-bit integer fits a float exactly, so the result is deterministic and in [0, 1)."
+msgstr "`next01()`은 위쪽 24비트를 가져와 2^-24를 곱한다. 24비트 정수는 float에 정확히 들어가므로 결과는 결정론적이고 [0, 1) 안이다."
+
+msgid "`range(lo, hi)` and `below(n)` build on these."
+msgstr "`range(lo, hi)`와 `below(n)`은 이것들 위에 만든다."
+
+msgid "`Pcg32` is itself a `MEALKIT_STRUCT` with `state` and `inc` as fields. Put it in `WorldState` and the generator's state is hashed, saved in snapshots and shown in the State panel like any other field."
+msgstr "`Pcg32` 자체가 `state`와 `inc`를 필드로 가진 `MEALKIT_STRUCT`다. `WorldState`에 넣으면 생성기 상태도 다른 필드처럼 해시되고, 스냅샷에 저장되고, [상태] 패널에 보인다."
+
+msgid "Do not take random numbers for effects from the simulation's generator: drawing would then change the simulation's sequence."
+msgstr "연출용 난수를 시뮬레이션의 생성기에서 꺼내지 않는다: 그러면 그리기가 시뮬레이션의 수열을 바꾼다."
+
+msgid "Hash"
+msgstr "해시"
+
+#, python-brace-format
+msgid "{engine}`engine/src/mealkit/core/Hash.h` has the 64-bit FNV-1a hash: for each byte, XOR it into the value and multiply by the FNV prime."
+msgstr "{engine}`engine/src/mealkit/core/Hash.h`에는 64비트 FNV-1a 해시가 있다: 바이트마다 값에 XOR하고 FNV 소수를 곱한다."
+
+msgid "`fnv1a(text)` is `constexpr` and hashes a string. The engine uses it to make stable ids from type names (commands, loadouts) and, from the compile date and time, the build id that lockstep peers compare when they connect."
+msgstr "`fnv1a(text)`는 `constexpr`이고 문자열을 해시한다. 엔진은 이것으로 타입 이름에서 안정된 id(명령, 로드아웃)를 만들고, 컴파일 날짜와 시각에서 락스텝 피어가 접속할 때 비교하는 빌드 id를 만든다."
+
+msgid "`Hasher` hashes values one at a time. `add(v)` accepts only trivially copyable types."
+msgstr "`Hasher`는 값을 하나씩 해시한다. `add(v)`는 trivially copyable 타입만 받는다."
+
+msgid "The state hash that detects desyncs is built with `Hasher` field by field (`reflect::hashStruct`), never over a whole struct. Padding bytes between fields can hold any value, so hashing a struct's raw memory could give different hashes for equal states."
+msgstr "디싱크를 찾는 상태 해시는 `Hasher`로 필드를 하나씩 넣어 만들고(`reflect::hashStruct`), 구조체 전체를 한 번에 넣지 않는다. 필드 사이의 패딩 바이트에는 아무 값이나 있을 수 있어서, 구조체 메모리를 그대로 해시하면 같은 상태에서 다른 해시가 나올 수 있다."
+
+msgid "Reflect"
+msgstr "Reflect"
+
+#, python-brace-format
+msgid "{engine}`engine/src/mealkit/core/Reflect.h` is the field declaration system. A struct declares its fields once, and the editor inspector, text files (`.scene` object fields, `.tuning`, `.table`, `mealkit.project`), the state hash, snapshots and the State panel all use that one declaration (\"데이터와 설정\" in {engine}`docs/CODING_MODEL.md`)."
+msgstr "{engine}`engine/src/mealkit/core/Reflect.h`는 필드 선언 체계다. 구조체가 필드를 한 번 선언하면 에디터 인스펙터, 텍스트 파일(`.scene` 오브젝트 필드, `.tuning`, `.table`, `mealkit.project`), 상태 해시, 스냅샷, [상태] 패널이 모두 그 선언 하나를 쓴다({engine}`docs/CODING_MODEL.md`의 \"데이터와 설정\")."
+
+msgid "Declaring"
+msgstr "선언"
+
+#, python-brace-format
+msgid ""
+"MEALKIT_STRUCT(Tuning) {\n"
+"    MEALKIT_FIELD(f32, playerSpeed, 7.0f, \"Move speed\");\n"
+"    MEALKIT_FIELD(Ticks, respawn, Ticks::seconds(1.5f), \"Respawn delay\");\n"
+"};\n"
+"MEALKIT_ENUM(EventKind, u8, Push, Bounce, Spawn);\n"
+msgstr ""
+"MEALKIT_STRUCT(Tuning) {\n"
+"    MEALKIT_FIELD(f32, playerSpeed, 7.0f, \"Move speed\");\n"
+"    MEALKIT_FIELD(Ticks, respawn, Ticks::seconds(1.5f), \"Respawn delay\");\n"
+"};\n"
+"MEALKIT_ENUM(EventKind, u8, Push, Bounce, Spawn);\n"
+
+msgid "Macro"
+msgstr "매크로"
+
+msgid "What it declares"
+msgstr "선언하는 것"
+
+msgid "`MEALKIT_STRUCT(Name)`"
+msgstr "`MEALKIT_STRUCT(Name)`"
+
+msgid "A struct with declared fields."
+msgstr "필드를 선언한 구조체."
+
+msgid "`MEALKIT_OBJECT(Name)`"
+msgstr "`MEALKIT_OBJECT(Name)`"
+
+msgid "The same, and it is registered as a scene object kind (the editor's Add menu). `kObjectLabel` and `kObjectFlags` are optional."
+msgstr "같은 것이고, 씬 오브젝트 종류(에디터 [추가] 메뉴)로 등록된다. `kObjectLabel`과 `kObjectFlags`는 선택이다."
+
+msgid "`MEALKIT_VIEWMODEL(Name)`"
+msgstr "`MEALKIT_VIEWMODEL(Name)`"
+
+msgid "The same, and it is registered as a view model for game screen UI."
+msgstr "같은 것이고, 게임 화면 UI의 뷰 모델로 등록된다."
+
+msgid "`MEALKIT_FIELD(Type, name, default, label)`"
+msgstr "`MEALKIT_FIELD(Type, name, default, label)`"
+
+msgid "A member with a default value and an editor label."
+msgstr "기본값과 에디터 표시 이름이 있는 멤버."
+
+msgid "`MEALKIT_VIEW_FIELD`, `MEALKIT_FIELD_FLAGS`"
+msgstr "`MEALKIT_VIEW_FIELD`, `MEALKIT_FIELD_FLAGS`"
+
+msgid "A field with flags: `kFieldView` leaves it out of the content hash, `kFieldReadOnly` shows it without a widget."
+msgstr "플래그가 있는 필드: `kFieldView`는 콘텐츠 해시에서 빼고, `kFieldReadOnly`는 위젯 없이 보여 준다."
+
+msgid "`MEALKIT_ARRAY(Type, count, name, label)`"
+msgstr "`MEALKIT_ARRAY(Type, count, name, label)`"
+
+msgid "A `std::array` field. `MEALKIT_LIST` adds a count field next to it for UI lists."
+msgstr "`std::array` 필드. `MEALKIT_LIST`는 UI 목록용으로 옆에 개수 필드를 더한다."
+
+msgid "`MEALKIT_ENUM(Name, Underlying, A, B, ...)`"
+msgstr "`MEALKIT_ENUM(Name, Underlying, A, B, ...)`"
+
+msgid "An `enum class` whose value names appear in files and the editor. Values count up from 0."
+msgstr "값 이름이 파일과 에디터에 보이는 `enum class`. 값은 0부터 차례로 센다."
+
+msgid "`MEALKIT_TABLE(Row, path, flags)`"
+msgstr "`MEALKIT_TABLE(Row, path, flags)`"
+
+msgid "Registers a definition data table with a `MEALKIT_STRUCT` row type."
+msgstr "`MEALKIT_STRUCT` 행 타입으로 정의 데이터 표를 등록한다."
+
+msgid "Supported field types are `bool`, integers and enums, `f32`, `Vec3`, `Quat`, pool ids, `std::string`, `Ticks`, `Color`, `RowRef<Row>`, other declared structs, arrays and `sim::Pool<T>`. Any other type fails to compile with a message that points to `Reflect.h`."
+msgstr "쓸 수 있는 필드 타입은 `bool`, 정수와 enum, `f32`, `Vec3`, `Quat`, Pool id, `std::string`, `Ticks`, `Color`, `RowRef<Row>`, 선언된 다른 구조체, 배열, `sim::Pool<T>`다. 다른 타입은 `Reflect.h`를 가리키는 메시지와 함께 컴파일에 실패한다."
+
+msgid "How the declaration becomes data"
+msgstr "선언이 데이터가 되는 방법"
+
+msgid "C++ has no reflection, so the macros build it from three small tricks:"
+msgstr "C++에는 리플렉션이 없어서, 매크로가 작은 기법 세 가지로 만든다:"
+
+msgid "`MEALKIT_STRUCT` reads `__COUNTER__` once and stores it in a function next to the struct. The struct also inherits from `Reflected<Name>`, which gives the fields a `MealkitSelf` type to refer to."
+msgstr "`MEALKIT_STRUCT`는 `__COUNTER__`를 한 번 읽어 구조체 옆의 함수에 담는다. 구조체는 `Reflected<Name>`도 상속해, 필드가 가리킬 `MealkitSelf` 타입을 얻는다."
+
+msgid "Each `MEALKIT_FIELD` declares the member and a static function `mealkitField(FieldSlot<N>)`, where `N` is `__COUNTER__` minus the struct's start. So the first field gets slot 0, the next slot 1, and so on. The function returns the member pointer, name, label and flags."
+msgstr "`MEALKIT_FIELD`마다 멤버와 정적 함수 `mealkitField(FieldSlot<N>)`을 선언한다. `N`은 `__COUNTER__`에서 구조체의 시작 값을 뺀 것이다. 그래서 첫 필드는 슬롯 0, 다음은 슬롯 1을 받는다. 이 함수는 멤버 포인터, 이름, 표시 이름, 플래그를 돌려준다."
+
+msgid "`forEachField<T>` calls `mealkitField(FieldSlot<0>)`, then slot 1, and stops at the first slot that does not exist (a `requires` check). This visits the fields in declaration order at compile time."
+msgstr "`forEachField<T>`는 `mealkitField(FieldSlot<0>)`, 다음에 슬롯 1을 부르고, 없는 슬롯을 처음 만나면 멈춘다(`requires` 검사). 이렇게 컴파일 시간에 필드를 선언 순서대로 돈다."
+
+msgid "`typeOf<T>()` runs once per type (a function-local static). It creates one default instance, measures each field's offset from the member pointer, and fills a `TypeInfo`: the type name, label, size, flags, the list of `FieldInfo` (name, label, offset, flags, value description) and `create`/`destroy`/`copy` functions. `valueOf<V>()` describes one value type as a `ValueInfo` with a `Kind` (Bool, Int, Float, Vec3, Struct, Array, Container, String, Ticks, Color, RowRef, ...)."
+msgstr "`typeOf<T>()`는 타입마다 한 번 돈다(함수 안 정적 변수). 기본값 인스턴스 하나를 만들고, 멤버 포인터로 필드마다 위치(offset)를 재서 `TypeInfo`를 채운다: 타입 이름, 표시 이름, 크기, 플래그, `FieldInfo` 목록(이름, 표시 이름, 위치, 플래그, 값 설명), `create`/`destroy`/`copy` 함수. `valueOf<V>()`는 값 타입 하나를 `Kind`(Bool, Int, Float, Vec3, Struct, Array, Container, String, Ticks, Color, RowRef, ...)가 있는 `ValueInfo`로 설명한다."
+
+msgid "Because the order of fields is the order of `__COUNTER__`, the declaration order is also the order of saving and hashing. No other macro that uses `__COUNTER__` may sit between field declarations."
+msgstr "필드 순서가 `__COUNTER__` 순서이므로, 선언 순서가 곧 저장과 해시 순서다. 필드 선언 사이에 `__COUNTER__`를 쓰는 다른 매크로를 두면 안 된다."
+
+msgid "The `create` and `destroy` functions are compiled into the module that defines the type. When the editor makes an instance of a game DLL type (`reflect::Instance`), the memory comes from and goes back to that module."
+msgstr "`create`와 `destroy` 함수는 타입을 정의한 모듈 안에 컴파일된다. 에디터가 게임 DLL 타입의 인스턴스(`reflect::Instance`)를 만들면 메모리는 그 모듈에서 오고 그 모듈로 돌아간다."
+
+msgid "Functions that use the description"
+msgstr "설명을 쓰는 함수"
+
+#, python-brace-format
+msgid "All of these live in {engine}`engine/src/mealkit/core/Reflect.cpp` and walk a `TypeInfo` recursively. They work on any declared type without knowing it as a C++ type, which is how the editor edits game structs."
+msgstr "모두 {engine}`engine/src/mealkit/core/Reflect.cpp`에 있고 `TypeInfo`를 재귀로 돈다. C++ 타입으로 몰라도 선언된 타입이면 무엇이든 다루므로, 에디터가 이것으로 게임 구조체를 편집한다."
+
+msgid "What it does"
+msgstr "하는 일"
+
+msgid "`hashStruct`, `hashOf`"
+msgstr "`hashStruct`, `hashOf`"
+
+msgid "Adds each field to a `Hasher`: scalars as their bytes, strings as length plus bytes, `RowRef` by its id, pools as slot bookkeeping plus each live item. Fields with flags in `skipFlags` are left out (the content hash skips `kFieldView`)."
+msgstr "필드마다 `Hasher`에 넣는다: 스칼라는 바이트, 문자열은 길이와 바이트, `RowRef`는 id, Pool은 슬롯 관리 정보와 살아 있는 항목. `skipFlags`의 플래그가 있는 필드는 뺀다(콘텐츠 해시는 `kFieldView`를 뺀다)."
+
+msgid "`saveStruct`, `loadStruct`"
+msgstr "`saveStruct`, `loadStruct`"
+
+msgid "Binary snapshots with `ByteWriter` and `ByteReader`, field by field. They are only read back by the same build in the same process (rewind, shadow simulation), so there is no version header."
+msgstr "`ByteWriter`와 `ByteReader`로 필드마다 쓰는 바이너리 스냅샷. 같은 프로세스의 같은 빌드만 다시 읽으므로(되감기, 그림자 시뮬레이션) 버전 머리글이 없다."
+
+msgid "`toText`, `fromText`, `setFromText`"
+msgstr "`toText`, `fromText`, `setFromText`"
+
+msgid "Text as `path value` lines. A path is a field name, `a.b` for nested structs and `a[2]` for arrays. Pools are not written as text."
+msgstr "`경로 값` 줄의 텍스트. 경로는 필드 이름이고, 중첩 구조체는 `a.b`, 배열은 `a[2]`다. Pool은 텍스트로 쓰지 않는다."
+
+msgid "`saveTextFile`, `loadTextFile`"
+msgstr "`saveTextFile`, `loadTextFile`"
+
+msgid "Text files such as `.tuning`. `#` starts a comment. A key the type does not know, or a value that does not parse, is logged as a warning and skipped, so an old file still loads after fields are added or removed. Writing goes through `writeTextFile`, which replaces the file in one step."
+msgstr "`.tuning` 같은 텍스트 파일. `#`은 주석을 연다. 타입이 모르는 키나 읽을 수 없는 값은 경고로 남기고 건너뛰므로, 필드를 더하거나 지운 뒤에도 예전 파일이 열린다. 쓰기는 파일을 한 번에 바꿔 넣는 `writeTextFile`을 거친다."
+
+msgid "`diffStruct`"
+msgstr "`diffStruct`"
+
+msgid "Walks two values of the same type and lists the differing fields as `path: a -> b`, at most 32 lines. Pools also report slots that became alive or free, and differences only in their slot bookkeeping. The editor shows this when the shadow simulation diverges."
+msgstr "같은 타입의 두 값을 돌며 다른 필드를 `path: a -> b`로 최대 32줄 적는다. Pool은 살아나거나 비워진 슬롯과, 슬롯 관리 정보만 다른 경우도 알린다. 그림자 시뮬레이션이 갈라지면 에디터가 이것을 보여 준다."
+
+msgid "`resolvePath`, `formatScalar`"
+msgstr "`resolvePath`, `formatScalar`"
+
+msgid "Find one value by path, and turn one value into text."
+msgstr "경로로 값 하나를 찾고, 값 하나를 글자로 바꾼다."
+
+msgid "Text formats of special values:"
+msgstr "특별한 값의 텍스트 형식:"
+
+#, python-format
+msgid "Floats are written with `%.9g`, enough digits that reading the text gives back the exact same float."
+msgstr "float는 `%.9g`로 쓴다. 글자를 다시 읽으면 정확히 같은 float가 되는 자릿수다."
+
+#, python-format
+msgid "`Ticks` are whole ticks in memory and seconds in files. Reading rounds once with the project's tick rate (`reflect::setTickRate`, set when the project opens). Writing uses `%.6g` seconds, which reads back to the same tick."
+msgstr "`Ticks`는 메모리에서는 정수 틱, 파일에서는 초다. 읽을 때 프로젝트 틱레이트(`reflect::setTickRate`, 프로젝트를 열 때 정한다)로 한 번 반올림한다. 쓸 때는 `%.6g` 초를 쓰고, 다시 읽으면 같은 틱이 된다."
+
+msgid "`Color` is RGBA8 in memory and `#RRGGBB` or `#RRGGBBAA` in files."
+msgstr "`Color`는 메모리에서는 RGBA8, 파일에서는 `#RRGGBB` 또는 `#RRGGBBAA`다."
+
+msgid "Enums are written by name. Reading accepts the name or the number."
+msgstr "enum은 이름으로 쓴다. 읽을 때는 이름과 숫자 모두 받는다."
+
+msgid "`RowRef<Row>` is written as the row id. After loading, `data::resolveRows` fills in the row number that `sim/` reads."
+msgstr "`RowRef<Row>`는 행 id로 쓴다. 불러온 뒤 `data::resolveRows`가 `sim/`이 읽는 행 번호를 채운다."
+
+msgid "Strings are allowed in settings, tuning and scene fields but not in simulation state: state is copied and hashed as bytes. `hasStringField<V>()` lets `game::Simulation` check this at compile time."
+msgstr "문자열은 설정, 튜닝, 씬 필드에는 쓸 수 있지만 시뮬레이션 상태에는 쓸 수 없다: 상태는 바이트로 복사하고 해시한다. `game::Simulation`은 `hasStringField<V>()`로 이것을 컴파일 시간에 검사한다."
+
+msgid "Registration lists"
+msgstr "등록 목록"
+
+#, python-brace-format
+msgid "`MEALKIT_OBJECT`, `MEALKIT_VIEWMODEL` and `MEALKIT_TABLE` add the type to a list in an `inline` variable initializer (`moduleObjectTypes()`, `moduleViewModels()`, `moduleTables()`). Each list belongs to the module (game exe or game DLL) that declares the types. `mealkit.dll` never reads these lists itself; a game DLL hands them to the editor through `MEALKIT_GAME_MODULE` (see {doc}`editor`)."
+msgstr "`MEALKIT_OBJECT`, `MEALKIT_VIEWMODEL`, `MEALKIT_TABLE`은 `inline` 변수 초기화에서 타입을 목록(`moduleObjectTypes()`, `moduleViewModels()`, `moduleTables()`)에 넣는다. 목록은 타입을 선언한 모듈(게임 exe 또는 게임 DLL)마다 따로 있다. `mealkit.dll`은 이 목록을 직접 읽지 않고, 게임 DLL이 `MEALKIT_GAME_MODULE`로 에디터에 넘긴다({doc}`editor` 참고)."
+
+msgid "Version"
+msgstr "버전"
+
+#, python-brace-format
+msgid "{engine}`engine/src/mealkit/core/Version.h` has `kEngineVersion` and `kDocsUrl`. CMake passes the version from the repository's `VERSION` file as `MEALKIT_VERSION`. The editor compares it with `engineVersion` in a project's `mealkit.project` and offers `tools\\upgrade_project.ps1` when they differ. Messages build documentation links from `kDocsUrl`, which points to the documentation of this engine version."
+msgstr "{engine}`engine/src/mealkit/core/Version.h`에는 `kEngineVersion`과 `kDocsUrl`이 있다. CMake가 저장소의 `VERSION` 파일 값을 `MEALKIT_VERSION`으로 넘긴다. 에디터는 이것을 프로젝트 `mealkit.project`의 `engineVersion`과 비교해, 다르면 `tools\\upgrade_project.ps1`을 권한다. 메시지는 `kDocsUrl`로 문서 링크를 만들고, 이 주소는 이 엔진 버전의 문서를 가리킨다."
+
+msgid "Profile"
+msgstr "프로파일"
+
+#, python-brace-format
+msgid "{engine}`engine/src/mealkit/core/Profile.h` has two markers for the Tracy profiler: `MEALKIT_ZONE(\"name\")` times the current scope and `MEALKIT_FRAME_MARK()` marks the end of a frame. Using them is described in {doc}`../../manual/performance`."
+msgstr "{engine}`engine/src/mealkit/core/Profile.h`에는 Tracy 프로파일러용 마커 두 개가 있다: `MEALKIT_ZONE(\"name\")`은 현재 스코프의 시간을 재고, `MEALKIT_FRAME_MARK()`는 프레임의 끝을 표시한다. 쓰는 법은 {doc}`../../manual/performance`에 있다."
+
+msgid "The markers always include the Tracy header, but only `build.bat Profile` (`MEALKIT_PROFILE=ON`) compiles the Tracy client and defines `TRACY_ENABLE`. In every other build the Tracy macros expand to nothing, so the markers cost nothing. The profile build sets `TRACY_ON_DEMAND` (collect only while the profiler is connected) and `TRACY_ONLY_LOCALHOST` (accept connections only from 127.0.0.1, so no firewall prompt appears)."
+msgstr "마커는 항상 Tracy 헤더를 include하지만, `build.bat Profile`(`MEALKIT_PROFILE=ON`)만 Tracy 클라이언트를 컴파일하고 `TRACY_ENABLE`을 정의한다. 다른 빌드에서는 Tracy 매크로가 비어 있어 마커에 비용이 없다. 프로파일 빌드는 `TRACY_ON_DEMAND`(프로파일러가 붙어 있을 때만 수집)와 `TRACY_ONLY_LOCALHOST`(127.0.0.1에서만 접속을 받아 방화벽 창이 뜨지 않음)를 켠다."
+
+msgid "Techniques used"
+msgstr "쓰인 기법"
+
+msgid "The algorithms and patterns behind the parts above, with where to find them in the code."
+msgstr "위 부분들 뒤에 있는 알고리즘과 패턴, 그리고 코드에서 찾을 곳."
+
+msgid "Determinism"
+msgstr "결정론"
+
+msgid "Technique"
+msgstr "기법"
+
+msgid "Where"
+msgstr "위치"
+
+msgid "Correctly rounded basic operations only"
+msgstr "정확히 반올림되는 기본 연산만"
+
+msgid "`DetMath.h`, `Math.h`"
+msgstr "`DetMath.h`, `Math.h`"
+
+msgid "Simulation math uses `+ - * /` and `sqrt`, which IEEE 754 defines bit for bit, under `/fp:precise` with no FMA contraction."
+msgstr "시뮬레이션 수학은 IEEE 754가 비트 단위로 정한 `+ - * /`와 `sqrt`만, FMA 축약 없는 `/fp:precise` 아래에서 쓴다."
+
+msgid "Range reduction with split π/2 (Cody–Waite)"
+msgstr "π/2를 나눠 빼는 범위 줄이기 (Cody–Waite)"
+
+msgid "`detail::detReduce`"
+msgstr "`detail::detReduce`"
+
+msgid "Subtracts `k·π/2` in two parts, a short exact part and a small rest, so the remainder keeps its precision for large angles."
+msgstr "`k·π/2`를 짧은 정확한 부분과 작은 나머지 두 번에 나눠 빼서, 큰 각도에서도 나머지의 정밀도를 지킨다."
+
+msgid "Minimax polynomials"
+msgstr "최소최대 다항식"
+
+msgid "`detSinPoly`, `detCosPoly`, `detAtanPositive`"
+msgstr "`detSinPoly`, `detCosPoly`, `detAtanPositive`"
+
+msgid "Short polynomials with Cephes coefficients approximate sin, cos and atan on a small interval, evaluated in Horner form."
+msgstr "Cephes 계수의 짧은 다항식이 작은 구간에서 sin, cos, atan을 근사하고, 호너 방식으로 계산한다."
+
+msgid "Argument folding for atan"
+msgstr "atan의 인자 접기"
+
+msgid "`detAtanPositive`"
+msgstr "`detAtanPositive`"
+
+msgid "Uses atan(x) = π/2 + atan(-1/x) and atan(x) = π/4 + atan((x-1)/(x+1)) to keep the polynomial's input small."
+msgstr "atan(x) = π/2 + atan(-1/x)와 atan(x) = π/4 + atan((x-1)/(x+1))로 다항식의 입력을 작게 유지한다."
+
+msgid "Bit hash of results as a test"
+msgstr "결과 비트 해시로 시험"
+
+msgid "`det_math` in `Tests.cpp`"
+msgstr "`Tests.cpp`의 `det_math`"
+
+msgid "Hashes every result bit, so CI can compare builds and platforms with one number."
+msgstr "모든 결과 비트를 해시해, CI가 빌드와 플랫폼을 숫자 하나로 비교한다."
+
+msgid "Trig-free rotation integration"
+msgstr "삼각함수 없는 회전 적분"
+
+msgid "`integrate` in `Math.h`"
+msgstr "`Math.h`의 `integrate`"
+
+msgid "Integrates angular velocity with the quaternion derivative and normalizes, with no sin or cos."
+msgstr "쿼터니언 도함수로 각속도를 적분하고 정규화한다. sin과 cos가 없다."
+
+msgid "Permuted congruential generator (PCG32)"
+msgstr "순열 합동 생성기 (PCG32)"
+
+msgid "`Pcg32`"
+msgstr "`Pcg32`"
+
+msgid "A 64-bit LCG step plus an XOR-shift and a data-dependent rotation for output. Small, fast, integer only, and its state is a declared field."
+msgstr "64비트 LCG 단계에 출력용 XOR 시프트와 값에 따른 회전을 더한다. 작고 빠르고 정수만 쓰며, 상태가 선언된 필드다."
+
+msgid "Exact int-to-float for [0, 1)"
+msgstr "[0, 1)로 정확한 정수→float 변환"
+
+msgid "`Pcg32::next01`"
+msgstr "`Pcg32::next01`"
+
+msgid "24 random bits fit a float mantissa exactly, so no rounding differs between machines."
+msgstr "난수 24비트는 float 가수에 정확히 들어가므로, 기계마다 다른 반올림이 없다."
+
+msgid "Hashing and data"
+msgstr "해시와 데이터"
+
+msgid "FNV-1a"
+msgstr "FNV-1a"
+
+msgid "`fnv1a`, `Hasher`"
+msgstr "`fnv1a`, `Hasher`"
+
+msgid "XOR each byte into the hash, then multiply by the FNV prime. Simple and fast enough to hash the whole state every tick."
+msgstr "바이트마다 해시에 XOR하고 FNV 소수를 곱한다. 단순하고, 매 틱 상태 전체를 해시할 만큼 빠르다."
+
+msgid "Field-by-field hashing"
+msgstr "필드 단위 해시"
+
+msgid "`reflect::hashStruct`"
+msgstr "`reflect::hashStruct`"
+
+msgid "Hashes declared fields one at a time so struct padding never enters the hash."
+msgstr "선언된 필드를 하나씩 해시해 구조체 패딩이 해시에 들어가지 않는다."
+
+msgid "Compile-time field list with `__COUNTER__`"
+msgstr "`__COUNTER__`로 만든 컴파일 시간 필드 목록"
+
+msgid "`MEALKIT_FIELD`, `forEachField`"
+msgstr "`MEALKIT_FIELD`, `forEachField`"
+
+msgid "Each field gets a numbered static function; a recursive template visits the numbers in order until one is missing."
+msgstr "필드마다 번호가 붙은 정적 함수가 생기고, 재귀 템플릿이 번호가 빌 때까지 차례로 돈다."
+
+msgid "Run-time type description"
+msgstr "실행 중 타입 설명"
+
+msgid "`TypeInfo`, `ValueInfo`, `typeOf<T>()`"
+msgstr "`TypeInfo`, `ValueInfo`, `typeOf<T>()`"
+
+msgid "Built once per type from the compile-time list, with offsets measured on a default instance. Generic code then works through offsets and `Kind`."
+msgstr "컴파일 시간 목록에서 타입마다 한 번 만들고, 위치는 기본값 인스턴스에서 잰다. 그 뒤 범용 코드는 위치와 `Kind`로 일한다."
+
+msgid "Text serialization by path"
+msgstr "경로 기반 텍스트 직렬화"
+
+msgid "`toText`, `fromText`, `loadTextFile`"
+msgstr "`toText`, `fromText`, `loadTextFile`"
+
+msgid "`path value` lines keyed by field name, so files survive added, removed and reordered fields. Unknown keys become warnings."
+msgstr "필드 이름을 키로 한 `경로 값` 줄이라, 필드를 더하거나 지우거나 순서를 바꿔도 파일이 살아남는다. 모르는 키는 경고가 된다."
+
+msgid "Round-trip float text"
+msgstr "되읽어도 같은 float 텍스트"
+
+msgid "`formatScalar`"
+msgstr "`formatScalar`"
+
+#, python-format
+msgid "`%.9g` is enough digits to read back the same `float`."
+msgstr "`%.9g`는 같은 `float`를 다시 읽기에 충분한 자릿수다."
+
+msgid "Binary snapshots"
+msgstr "바이너리 스냅샷"
+
+msgid "`saveStruct`, `loadStruct`, `ByteWriter`, `ByteReader`"
+msgstr "`saveStruct`, `loadStruct`, `ByteWriter`, `ByteReader`"
+
+msgid "Field-by-field binary copies for rewind and the shadow simulation. The reader checks bounds and reports a short buffer as failure."
+msgstr "되감기와 그림자 시뮬레이션을 위한 필드 단위 바이너리 복사. 읽는 쪽은 범위를 검사하고, 버퍼가 모자라면 실패로 알린다."
+
+msgid "Structural diff"
+msgstr "구조 비교 (diff)"
+
+msgid "Recursive comparison of two values of the same type that names each differing field by path."
+msgstr "같은 타입의 두 값을 재귀로 비교해, 다른 필드마다 경로로 이름을 붙인다."
+
+msgid "Self-registration"
+msgstr "자기 등록"
+
+msgid "`MEALKIT_OBJECT`, `MEALKIT_TABLE`, `MEALKIT_VIEWMODEL`"
+msgstr "`MEALKIT_OBJECT`, `MEALKIT_TABLE`, `MEALKIT_VIEWMODEL`"
+
+msgid "An `inline const bool` initializer adds the type to a per-module list before `main`, with no central list to edit."
+msgstr "`inline const bool` 초기화가 `main` 전에 타입을 모듈별 목록에 넣으므로, 고칠 중앙 목록이 없다."
+
+msgid "Other"
+msgstr "기타"
+
+msgid "Hybrid sleep and spin"
+msgstr "잠자기와 스핀 섞기"
+
+msgid "`FrameLimiter::wait`"
+msgstr "`FrameLimiter::wait`"
+
+msgid "Sleeps with a high-resolution timer until 1 ms before the target, then spins, for an even frame rate without burning a core."
+msgstr "목표 1ms 전까지 고해상도 타이머로 자고 그다음 스핀해, 코어 하나를 다 쓰지 않고도 프레임 간격이 고르다."
+
+msgid "Resynchronizing frame target"
+msgstr "프레임 목표 다시 맞추기"
+
+msgid "When far behind, moves the target to now instead of running frames back to back."
+msgstr "크게 밀리면 프레임을 연달아 돌리지 않고 목표를 지금으로 옮긴다."
+
+msgid "Compiled-out markers"
+msgstr "컴파일에서 빠지는 마커"
+
+msgid "`Profile.h`"
+msgstr "`Profile.h`"
+
+msgid "Tracy macros are empty unless `TRACY_ENABLE` is defined, so normal builds have no profiling cost."
+msgstr "`TRACY_ENABLE`이 정의되지 않으면 Tracy 매크로가 비어 있어, 일반 빌드에는 프로파일링 비용이 없다."
+
