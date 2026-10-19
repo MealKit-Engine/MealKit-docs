@@ -32,6 +32,7 @@ The example game is called `sandbox`. In a game project, the executables carry t
 | `--ui-press <frame:node,...>` | Press the UI widget with that node name at that frame (screen flow tests, e.g. `20:start,50:solo`) |
 | `--system-info` | Print CPU and GPU features and exit (exit code 2 below the minimum spec) |
 | `--any-build` | Host: accept peers running a different build (compiler comparison tests) |
+| `--net-lag <ms>`, `--net-jitter <ms>`, `--net-loss <%>` | Simulate a slow, uneven or lossy connection for this process: added round trip time, extra random delay per packet, share of packets dropped (testing) |
 | `--hash-log <file>` | Write `<tick> <hash>` for every tick |
 | `--record-inputs <file>` | Save confirmed inputs and hashes (replay with `--headless --replay-inputs`) |
 | `--mute` | Start with sound off (automated tests) |
@@ -48,7 +49,7 @@ The example game is called `sandbox`. In a game project, the executables carry t
 | `--host [port]`, `--join <addr[:port]>`, `--local` | Networking, as in the game |
 | `--players <n>`, `--auto-start <n>` | Maximum players; host starts when n players are in the lobby (default: `--players`) |
 | `--match-data <n>` | Game-defined match value sent by the host (example: number of boxes, 0 = the scene's) |
-| `--delay`, `--seed`, `--threads`, `--scene`, `--tuning`, `--shadow`, `--hash-log`, `--record-inputs`, `--any-build` | As in the game |
+| `--delay`, `--seed`, `--threads`, `--scene`, `--tuning`, `--shadow`, `--hash-log`, `--record-inputs`, `--any-build`, `--net-lag`, `--net-jitter`, `--net-loss` | As in the game |
 | `--replay-inputs <file>` | Replay a recorded match and compare every tick hash (no network) |
 
 Window options (`--bot`, `--vsync`, `--fps`, `--size`, `--debug`, `--mute`, `--debug-ui`, `--settings`, `--lang`) are accepted and ignored.
@@ -83,7 +84,7 @@ For example: `MealKitEditor.exe --project . --frames 60 --select 5 --capture out
 | `rename_project.ps1 -Project <folder> -Name <name>` | Rename a project (and its exe) |
 | `upgrade_project.ps1 -Project <folder> [-Source]` | Upgrade a project to the current engine template (`-Source` replaces the game code with the example code, with a backup) |
 | `check.ps1 [-Quick]` | Full check: builds, unit tests, determinism tests, captures |
-| `mp_test.ps1 -Clients <n> -Ticks <t> [-Headless] [-Exe <path>] [-ClientExe <path>]` | Multiplayer determinism test |
+| `mp_test.ps1 -Clients <n> -Ticks <t> [-Headless] [-Exe <path>] [-ClientExe <path>] [-Lag <ms>] [-Jitter <ms>] [-Loss <%>]` | Multiplayer determinism test (`-Lag`, `-Jitter`, `-Loss` pass the network simulation options to every peer) |
 | `record_replay.ps1` | Remake the committed input recordings after an intended simulation change |
 | `ci_test.ps1`, `ci_compare.ps1` | What CI runs for each build, and the comparison between builds |
 | `check_platform.ps1`, `check_strings.ps1` | OS calls outside the platform layer; editor translations |

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-19 18:29+0900\n"
+"POT-Creation-Date: 2026-10-19 18:38+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ko\n"
@@ -57,6 +57,13 @@ msgstr "`online::Service::createTransport()`"
 
 msgid "A platform relay such as Steam. `hostWith()` and `joinWith()` take any transport."
 msgstr "Steam 같은 플랫폼 릴레이. `hostWith()`와 `joinWith()`는 어떤 전송 계층이든 받는다."
+
+msgid "Simulated network conditions"
+msgstr "네트워크 상태 흉내"
+
+#, python-brace-format
+msgid "{engine}`engine/src/mealkit/net/Conditions.h` wraps any transport (UDP or a platform relay) when `setConditions` was given lag, jitter or loss before `host` or `join`. Each packet sent and each packet received is dropped with the loss chance, otherwise kept in a queue until half the lag plus a random part of the jitter has passed; packets can therefore arrive out of order, as on the internet. The session above does not change, so the resend and duplicate paths are tested as they are."
+msgstr "`host`나 `join` 전에 `setConditions`로 지연·흔들림·손실을 주면 {engine}`engine/src/mealkit/net/Conditions.h`가 어떤 전송(UDP나 플랫폼 릴레이)이든 감싼다. 보내는 패킷과 받는 패킷마다 손실 확률로 버리고, 나머지는 지연의 반에 흔들림의 무작위 일부를 더한 시간만큼 큐에 둔다. 그래서 인터넷처럼 순서가 바뀌어 올 수 있다. 위의 세션은 바뀌지 않으므로 재전송·중복 전송 경로를 있는 그대로 시험한다."
 
 msgid "Lockstep"
 msgstr "락스텝"

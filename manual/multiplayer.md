@@ -23,6 +23,7 @@ sandbox.exe --help                   :: all options
 - Every player must use **the same executable, the same scene and the same model files**. Otherwise the connection is refused (this protects determinism).
 - To connect from another PC over UDP, allow `sandbox.exe` in the host's firewall, and set up port forwarding across the internet. With Steam neither is needed.
 - To test with several windows on one PC, use `--host --local` so the firewall prompt does not appear. Rooms hosted with `--local` are announced on 127.0.0.1 only, so other windows on the same PC still list them.
+- To try a match as it feels over the internet without a second PC, add `--net-lag 120 --net-jitter 30 --net-loss 2` to each window (added round trip time, extra random delay, dropped packets).
 - Rooms announce themselves on the local network every second while they wait in the lobby (UDP port 27199). The join screen lists rooms of the same game; a room with a different version or different game data is grayed out.
 
 Game controls in the example: `WASD` or a gamepad's left stick move, `Space` jump, left click push, right drag or right stick camera, wheel zoom, `F8` debug shockwave, `Enter` chat, `Esc` or `Start` pause menu, `V` vsync, `F12` screenshot. The bindings are in `assets/input.bindings` (see {doc}`input`).

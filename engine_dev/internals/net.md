@@ -19,6 +19,10 @@ The lockstep session never uses a socket directly. It uses `net::Transport` ({en
 | `UdpTransport` | IP and port directly: LAN, development, tests on one PC. `host()` and `join()` make one. |
 | `online::Service::createTransport()` | A platform relay such as Steam. `hostWith()` and `joinWith()` take any transport. |
 
+### Simulated network conditions
+
+{engine}`engine/src/mealkit/net/Conditions.h` wraps any transport (UDP or a platform relay) when `setConditions` was given lag, jitter or loss before `host` or `join`. Each packet sent and each packet received is dropped with the loss chance, otherwise kept in a queue until half the lag plus a random part of the jitter has passed; packets can therefore arrive out of order, as on the internet. The session above does not change, so the resend and duplicate paths are tested as they are.
+
 ## Lockstep
 
 `net::LockstepSession` ({engine}`engine/src/mealkit/net/Lockstep.cpp`) runs deterministic lockstep. Every peer runs the same simulation, and the network carries only each tick's player inputs.

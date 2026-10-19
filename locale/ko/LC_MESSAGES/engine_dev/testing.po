@@ -3,8 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: MealKit\n"
-"POT-Creation-Date: 2026-10-18 16:06+0900\n"
+"Project-Id-Version:  MealKit\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-10-19 18:38+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -45,6 +46,9 @@ msgstr "powershell -ExecutionPolicy Bypass -File tools\\mp_test.ps1 -Clients 3 -
 
 msgid "This connects clang-cl clients to an MSVC host to see that **the result does not depend on the compiler** (swap with `-Exe` for the other direction). Normally a different executable is refused, so for this test the host accepts other builds with `--any-build`."
 msgstr "MSVC 빌드 호스트에 clang-cl 빌드 클라이언트를 붙여 **컴파일러가 달라도 결과가 같은지** 본다(`-Exe`와 바꿔 반대 방향도). 보통은 실행 파일이 다르면 접속이 거부되므로, 이때 호스트는 시험용 `--any-build`로 다른 빌드를 받는다."
+
+msgid "`-Lag <ms> -Jitter <ms> -Loss <%>` gives every peer a slow, uneven and lossy connection (`--net-lag`, `--net-jitter`, `--net-loss`), so the resend paths run as they would over the internet. The result must still be identical; only the speed changes (when the round trip is longer than the input delay, the match waits for inputs)."
+msgstr "`-Lag <ms> -Jitter <ms> -Loss <%>`는 모든 피어에 느리고 흔들리고 패킷을 잃는 연결을 준다(`--net-lag`, `--net-jitter`, `--net-loss`). 그래서 재전송 경로가 인터넷에서처럼 돈다. 결과는 여전히 같아야 하고 속도만 바뀐다(왕복 시간이 입력 지연보다 길면 매치가 입력을 기다린다)."
 
 msgid "With `-Headless`, every peer runs without a window (`--headless`). It runs as fast as inputs allow: 900 ticks take about 5 seconds (about 30 seconds with windows)."
 msgstr "`-Headless`를 붙이면 모든 피어가 창 없이(`--headless`) 돈다. 입력이 허락하는 만큼 빨리 돌아 900틱이 약 5초다(창 모드는 약 30초)."

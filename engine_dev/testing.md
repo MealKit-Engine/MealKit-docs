@@ -25,6 +25,8 @@ powershell -ExecutionPolicy Bypass -File tools\mp_test.ps1 -Clients 3 -Ticks 900
 This connects clang-cl clients to an MSVC host to see that **the result does not depend on the compiler** (swap with `-Exe` for the other direction).
 Normally a different executable is refused, so for this test the host accepts other builds with `--any-build`.
 
+`-Lag <ms> -Jitter <ms> -Loss <%>` gives every peer a slow, uneven and lossy connection (`--net-lag`, `--net-jitter`, `--net-loss`), so the resend paths run as they would over the internet. The result must still be identical; only the speed changes (when the round trip is longer than the input delay, the match waits for inputs).
+
 With `-Headless`, every peer runs without a window (`--headless`). It runs as fast as inputs allow: 900 ticks take about 5 seconds (about 30 seconds with windows).
 
 Inside one process: `sandbox.exe --bot --exit-tick 900 --shadow --rewind-test --vsync 0` must print `SHADOW ok` and `REWIND ok`.

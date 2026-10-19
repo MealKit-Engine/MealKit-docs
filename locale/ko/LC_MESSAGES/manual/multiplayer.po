@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-19 18:29+0900\n"
+"POT-Creation-Date: 2026-10-19 18:38+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -56,6 +56,9 @@ msgstr "UDP로 다른 PC에서 접속하려면 호스트 방화벽에서 `sandbo
 
 msgid "To test with several windows on one PC, use `--host --local` so the firewall prompt does not appear. Rooms hosted with `--local` are announced on 127.0.0.1 only, so other windows on the same PC still list them."
 msgstr "한 PC에서 창 여러 개로 시험할 때는 `--host --local`을 써서 방화벽 확인 창이 뜨지 않게 한다. `--local`로 연 방은 127.0.0.1로만 알려도 같은 PC의 다른 창 목록에는 나온다."
+
+msgid "To try a match as it feels over the internet without a second PC, add `--net-lag 120 --net-jitter 30 --net-loss 2` to each window (added round trip time, extra random delay, dropped packets)."
+msgstr "두 번째 PC 없이 인터넷에서의 느낌으로 매치를 해 보려면 창마다 `--net-lag 120 --net-jitter 30 --net-loss 2`를 붙인다(늘어난 왕복 시간, 무작위 추가 지연, 잃는 패킷)."
 
 msgid "Rooms announce themselves on the local network every second while they wait in the lobby (UDP port 27199). The join screen lists rooms of the same game; a room with a different version or different game data is grayed out."
 msgstr "방은 로비에서 기다리는 동안 1초마다 같은 네트워크에 자신을 알린다(UDP 포트 27199). 참가 화면은 같은 게임의 방을 보이고, 버전이나 게임 데이터가 다른 방은 회색이다."

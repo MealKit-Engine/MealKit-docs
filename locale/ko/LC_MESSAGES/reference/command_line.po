@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-19 18:29+0900\n"
+"POT-Creation-Date: 2026-10-19 18:38+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -187,6 +187,12 @@ msgstr "`--any-build`"
 msgid "Host: accept peers running a different build (compiler comparison tests)"
 msgstr "호스트: 다른 빌드의 피어도 받기 (컴파일러 비교 시험)"
 
+msgid "`--net-lag <ms>`, `--net-jitter <ms>`, `--net-loss <%>`"
+msgstr "`--net-lag <ms>`, `--net-jitter <ms>`, `--net-loss <%>`"
+
+msgid "Simulate a slow, uneven or lossy connection for this process: added round trip time, extra random delay per packet, share of packets dropped (testing)"
+msgstr "이 프로세스의 연결을 느리거나 흔들리거나 패킷을 잃게 흉내 낸다: 늘어난 왕복 시간, 패킷마다 무작위 추가 지연, 버리는 패킷 비율(시험용)"
+
 msgid "`--hash-log <file>`"
 msgstr "`--hash-log <file>`"
 
@@ -253,8 +259,8 @@ msgstr "`--match-data <n>`"
 msgid "Game-defined match value sent by the host (example: number of boxes, 0 = the scene's)"
 msgstr "호스트가 보내는 게임 정의 매치 값 (예제: 상자 수, 0 = 씬의 값)"
 
-msgid "`--delay`, `--seed`, `--threads`, `--scene`, `--tuning`, `--shadow`, `--hash-log`, `--record-inputs`, `--any-build`"
-msgstr "`--delay`, `--seed`, `--threads`, `--scene`, `--tuning`, `--shadow`, `--hash-log`, `--record-inputs`, `--any-build`"
+msgid "`--delay`, `--seed`, `--threads`, `--scene`, `--tuning`, `--shadow`, `--hash-log`, `--record-inputs`, `--any-build`, `--net-lag`, `--net-jitter`, `--net-loss`"
+msgstr "`--delay`, `--seed`, `--threads`, `--scene`, `--tuning`, `--shadow`, `--hash-log`, `--record-inputs`, `--any-build`, `--net-lag`, `--net-jitter`, `--net-loss`"
 
 msgid "As in the game"
 msgstr "게임과 같다"
@@ -391,11 +397,11 @@ msgstr "`check.ps1 [-Quick]`"
 msgid "Full check: builds, unit tests, determinism tests, captures"
 msgstr "전체 검증: 빌드, 단위 테스트, 결정론 테스트, 캡처"
 
-msgid "`mp_test.ps1 -Clients <n> -Ticks <t> [-Headless] [-Exe <path>] [-ClientExe <path>]`"
-msgstr "`mp_test.ps1 -Clients <n> -Ticks <t> [-Headless] [-Exe <path>] [-ClientExe <path>]`"
+msgid "`mp_test.ps1 -Clients <n> -Ticks <t> [-Headless] [-Exe <path>] [-ClientExe <path>] [-Lag <ms>] [-Jitter <ms>] [-Loss <%>]`"
+msgstr "`mp_test.ps1 -Clients <n> -Ticks <t> [-Headless] [-Exe <path>] [-ClientExe <path>] [-Lag <ms>] [-Jitter <ms>] [-Loss <%>]`"
 
-msgid "Multiplayer determinism test"
-msgstr "멀티플레이 결정론 테스트"
+msgid "Multiplayer determinism test (`-Lag`, `-Jitter`, `-Loss` pass the network simulation options to every peer)"
+msgstr "멀티플레이 결정론 시험(`-Lag`, `-Jitter`, `-Loss`는 모든 피어에 네트워크 흉내 옵션을 넘긴다)"
 
 msgid "`record_replay.ps1`"
 msgstr "`record_replay.ps1`"
