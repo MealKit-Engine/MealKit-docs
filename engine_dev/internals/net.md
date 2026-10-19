@@ -91,12 +91,13 @@ A loadout is at most 128 bytes (`kMaxLoadoutBytes`), so the start packet holds 8
 
 ### Who can join
 
-The connect request carries two values, and the host refuses a peer when one differs:
+The connect request carries what must be equal for the same simulation, and the host refuses a peer, with the reason, when one differs:
 
-- **Build id**: a hash of the compile date and time. Determinism needs the same machine code, so only the same executable can join. `setAcceptOtherBuilds` turns this off for compiler comparison tests (`mp_test -ClientExe`).
-- **Content hash**: set with `setContentHash` before `host` or `join`. `game::contentHash` ({engine}`engine/src/mealkit/game/GameData.cpp`) builds it from the scene, models, tuning, project settings and simulation tables, so peers with different data are refused before the match.
+- **Determinism group** (`determinismGroup()`): the compiler and CPU, such as `msvc-x64`, `clang-x64` or `clang-arm64`. Until determinism between platforms is checked on real devices (stage 5), different groups do not play together. Reason `Platform`, with the host's group.
+- **Simulation version** (`setBuild`): the game version plus a hash of the sources that reach the simulation (the game's `sim/` and headless file, the engine core folders and the Jolt version), made at build time (see {doc}`game`). Executables built from the same sources give the same value even on another OS, which is what cross-play needs; view code can change freely. Without a value the session falls back to `buildId()`, a hash of the compile time. Reason `Version`, with the host's game version.
+- **Content hash** (`setContentHash`): built by `game::loadMatchData` from the scene, models, tuning, project settings and simulation tables. The five parts are also sent (`setContentParts`), so the reason `Content` says which ones differ.
 
-The host also refuses a peer when the session is full or the match has already started.
+`setAcceptOtherBuilds` skips the first two for compiler comparison tests (`mp_test -ClientExe`). The host also refuses a peer when the session is full or the match has already started. The client keeps the answer in `rejectInfo()`, and a game turns it into its own text.
 
 ### Commands
 

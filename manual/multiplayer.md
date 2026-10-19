@@ -20,7 +20,7 @@ sandbox.exe --system-info            :: print CPU and GPU features (exit code 2 
 sandbox.exe --help                   :: all options
 ```
 
-- Every player must use **the same executable, the same scene and the same model files**. Otherwise the connection is refused (this protects determinism).
+- Every player must run **the same game version** (the same simulation code, built for the same kind of platform) **with the same data** (scene, models, tuning, project settings, tables). Otherwise joining is refused and the player is told why: for example "Your game version differs from the host (yours 1.2 / host 1.3)" or "Your game data differs from the host: tuning". The version is shown on the title screen and in the lobby, and rooms of another version are marked in the join list.
 - To connect from another PC over UDP, allow `sandbox.exe` in the host's firewall, and set up port forwarding across the internet. With Steam neither is needed.
 - To test with several windows on one PC, use `--host --local` so the firewall prompt does not appear. Rooms hosted with `--local` are announced on 127.0.0.1 only, so other windows on the same PC still list them.
 - To make the input delay less noticeable, the example draws your own character ahead by the inputs it has sent but not yet run (only on your screen; the simulation is unchanged). Set `prediction.enabled` in `assets/view.tuning` to compare.

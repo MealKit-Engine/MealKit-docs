@@ -18,6 +18,6 @@ The shipped exe stays a single static file and never links the editor. Dear ImGu
 
 - In the editor: **Build → Release Build** (`Ctrl+B`). It builds in the background while the editor stays open and shows the log. Unsaved scenes are saved first.
 - From the command line: `build.bat Export` in the project folder.
-- Result: `export\<game>\` with `<game>.exe`, `assets\`, `steam_api64.dll` and `THIRD_PARTY_NOTICES.txt` (plus `steam_appid.txt` when the app ID is 480). Distribute the whole folder.
+- Result: `export\<game>\` (or `export\<game>-<version>\` when `exportVersionFolder` is on in `mealkit.project`) with `<game>.exe`, `assets\`, `steam_api64.dll` and `THIRD_PARTY_NOTICES.txt` (plus `steam_appid.txt` when the app ID is 480). Distribute the whole folder.
 
 The executable size budget is 5 MB on every platform, without assets.

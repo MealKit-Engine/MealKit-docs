@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-19 19:04+0900\n"
+"POT-Creation-Date: 2026-10-19 19:42+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ko\n"
@@ -193,18 +193,21 @@ msgstr "10초 동안 아무것도 보내지 않은 피어는 시간 초과가 �
 msgid "Who can join"
 msgstr "누가 참가할 수 있나"
 
-msgid "The connect request carries two values, and the host refuses a peer when one differs:"
-msgstr "접속 요청에는 값 두 개가 실리고, 하나라도 다르면 호스트가 그 피어를 거부한다:"
+msgid "The connect request carries what must be equal for the same simulation, and the host refuses a peer, with the reason, when one differs:"
+msgstr "접속 요청은 같은 시뮬레이션이려면 같아야 하는 것을 싣고, 호스트는 하나라도 다르면 이유와 함께 거부한다:"
 
-msgid "**Build id**: a hash of the compile date and time. Determinism needs the same machine code, so only the same executable can join. `setAcceptOtherBuilds` turns this off for compiler comparison tests (`mp_test -ClientExe`)."
-msgstr "**빌드 id**: 컴파일 날짜와 시각의 해시. 결정론은 같은 기계어 코드를 전제로 하므로 같은 실행 파일끼리만 참가할 수 있다. `setAcceptOtherBuilds`는 컴파일러 비교 시험(`mp_test -ClientExe`)용으로 이 검사를 끈다."
+msgid "**Determinism group** (`determinismGroup()`): the compiler and CPU, such as `msvc-x64`, `clang-x64` or `clang-arm64`. Until determinism between platforms is checked on real devices (stage 5), different groups do not play together. Reason `Platform`, with the host's group."
+msgstr "**결정론 그룹**(`determinismGroup()`): 컴파일러와 CPU. 예: `msvc-x64`, `clang-x64`, `clang-arm64`. 플랫폼 사이 결정론을 실기기에서 확인하기 전까지(5단계) 그룹이 다르면 같이 하지 않는다. 이유 `Platform`, 호스트의 그룹과 함께."
 
 #, python-brace-format
-msgid "**Content hash**: set with `setContentHash` before `host` or `join`. `game::contentHash` ({engine}`engine/src/mealkit/game/GameData.cpp`) builds it from the scene, models, tuning, project settings and simulation tables, so peers with different data are refused before the match."
-msgstr "**콘텐츠 해시**: `host`나 `join` 전에 `setContentHash`로 정한다. `game::contentHash`({engine}`engine/src/mealkit/game/GameData.cpp`)가 씬, 모델, 튜닝, 프로젝트 설정, 시뮬레이션 표로 만든다. 그래서 데이터가 다른 피어는 매치 전에 거부된다."
+msgid "**Simulation version** (`setBuild`): the game version plus a hash of the sources that reach the simulation (the game's `sim/` and headless file, the engine core folders and the Jolt version), made at build time (see {doc}`game`). Executables built from the same sources give the same value even on another OS, which is what cross-play needs; view code can change freely. Without a value the session falls back to `buildId()`, a hash of the compile time. Reason `Version`, with the host's game version."
+msgstr "**시뮬레이션 버전**(`setBuild`): 게임 버전에 시뮬레이션에 닿는 소스(게임의 `sim/`과 헤드리스 파일, 엔진 코어 폴더, Jolt 버전)의 해시를 더한 것으로, 빌드할 때 만든다({doc}`game` 참고). 같은 소스로 빌드한 실행 파일은 다른 OS에서도 같은 값이라 크로스플레이에 필요한 것이 되고, 화면 코드는 자유롭게 바뀌어도 된다. 값이 없으면 세션은 컴파일 시각의 해시 `buildId()`를 쓴다. 이유 `Version`, 호스트의 게임 버전과 함께."
 
-msgid "The host also refuses a peer when the session is full or the match has already started."
-msgstr "세션이 가득 찼거나 매치가 이미 시작되었을 때도 호스트는 피어를 거부한다."
+msgid "**Content hash** (`setContentHash`): built by `game::loadMatchData` from the scene, models, tuning, project settings and simulation tables. The five parts are also sent (`setContentParts`), so the reason `Content` says which ones differ."
+msgstr "**콘텐츠 해시**(`setContentHash`): `game::loadMatchData`가 씬, 모델, 튜닝, 프로젝트 설정, 시뮬레이션 표로 만든다. 다섯 구성도 같이 보내므로(`setContentParts`) 이유 `Content`가 무엇이 다른지 알려 준다."
+
+msgid "`setAcceptOtherBuilds` skips the first two for compiler comparison tests (`mp_test -ClientExe`). The host also refuses a peer when the session is full or the match has already started. The client keeps the answer in `rejectInfo()`, and a game turns it into its own text."
+msgstr "`setAcceptOtherBuilds`는 컴파일러 비교 시험(`mp_test -ClientExe`)을 위해 앞의 둘을 건너뛴다. 호스트는 세션이 가득 찼거나 매치가 이미 시작됐을 때도 거부한다. 클라이언트는 그 답을 `rejectInfo()`에 갖고, 게임이 자기 글로 바꿔 보인다."
 
 msgid "Commands"
 msgstr "명령"

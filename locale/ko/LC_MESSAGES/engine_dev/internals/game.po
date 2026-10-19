@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-19 19:29+0900\n"
+"POT-Creation-Date: 2026-10-19 19:42+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ko\n"
@@ -196,6 +196,13 @@ msgstr ""
 
 msgid "`--rewind-test` pauses, seeks through the whole recorded range in steps of 37 ticks, returns to the live tick and checks that the hash is unchanged. The exit code is 0 for success, 2 for a network desync, 3 if the session ended early, 4 for a rewind failure and 5 for a shadow desync. The exe waits one more second before closing, so peers receive the last tick."
 msgstr "`--rewind-test`는 일시정지하고, 기록된 범위 전체를 37틱씩 건너며 찾아가고, 현재 틱으로 돌아와 해시가 그대로인지 확인한다. 종료 코드는 성공 0, 네트워크 디싱크 2, 세션이 일찍 끝남 3, 되감기 실패 4, 그림자 디싱크 5다. exe는 닫기 전에 1초 더 기다려 상대가 마지막 틱을 받게 한다."
+
+msgid "Build information"
+msgstr "빌드 정보"
+
+#, python-brace-format
+msgid "{engine}`engine/src/mealkit/game/BuildInfo.h` describes the running build: the game version (`version` in `mealkit.project`), the git commit of the project folder (`+` when files are changed) and the simulation version. `cmake/BuildInfo.cmake` writes them into `mealkit_build_info.h` on every build, rewriting the file only when it changes. The simulation version hashes the game version and every file that reaches the simulation, with line endings made LF and paths made relative, so another OS or compiler gets the same value from the same sources. Only game targets see that header, so the engine macros that expand in game code (`MEALKIT_GAME_MAIN`, `MEALKIT_GAME_MODULE`, `MEALKIT_HEADLESS_GAME`) read it through `MEALKIT_THIS_BUILD` and pass it to the engine (`GameMainSpec::build`, `GameModule::build`). The exe logs it at start and shows the version in the window title."
+msgstr "{engine}`engine/src/mealkit/game/BuildInfo.h`는 지금 빌드를 설명한다: 게임 버전(`mealkit.project`의 `version`), 프로젝트 폴더의 git 커밋(고친 파일이 있으면 `+`), 시뮬레이션 버전. `cmake/BuildInfo.cmake`가 빌드마다 `mealkit_build_info.h`에 쓰고, 바뀔 때만 파일을 다시 쓴다. 시뮬레이션 버전은 게임 버전과 시뮬레이션에 닿는 모든 파일을 줄바꿈을 LF로, 경로를 상대 경로로 맞춰 해시하므로 같은 소스면 다른 OS나 컴파일러에서도 같은 값이다. 이 헤더는 게임 타깃만 보므로, 게임 코드에서 펼쳐지는 엔진 매크로(`MEALKIT_GAME_MAIN`, `MEALKIT_GAME_MODULE`, `MEALKIT_HEADLESS_GAME`)가 `MEALKIT_THIS_BUILD`로 읽어 엔진에 넘긴다(`GameMainSpec::build`, `GameModule::build`). exe는 시작할 때 로그에 남기고 창 제목에 버전을 보인다."
 
 msgid "Match service"
 msgstr "매치 서비스"

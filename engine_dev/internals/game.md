@@ -82,6 +82,11 @@ REWIND ok|FAIL ticks=<a>..<b> memory=<MB> ...  (with --rewind-test)
 `--rewind-test` pauses, seeks through the whole recorded range in steps of 37 ticks, returns to the live tick and checks that the hash is unchanged. The exit code is 0 for success, 2 for a network desync, 3 if the session ended early, 4 for a rewind failure and 5 for a shadow desync.
 The exe waits one more second before closing, so peers receive the last tick.
 
+## Build information
+
+{engine}`engine/src/mealkit/game/BuildInfo.h` describes the running build: the game version (`version` in `mealkit.project`), the git commit of the project folder (`+` when files are changed) and the simulation version. `cmake/BuildInfo.cmake` writes them into `mealkit_build_info.h` on every build, rewriting the file only when it changes. The simulation version hashes the game version and every file that reaches the simulation, with line endings made LF and paths made relative, so another OS or compiler gets the same value from the same sources.
+Only game targets see that header, so the engine macros that expand in game code (`MEALKIT_GAME_MAIN`, `MEALKIT_GAME_MODULE`, `MEALKIT_HEADLESS_GAME`) read it through `MEALKIT_THIS_BUILD` and pass it to the engine (`GameMainSpec::build`, `GameModule::build`). The exe logs it at start and shows the version in the window title.
+
 ## Match service
 
 `game::MatchService` ({engine}`engine/src/mealkit/game/MatchService.h`) owns the lockstep session and is what a game's menus call through `ctx.match`: `playOffline`, `host`, `hostOnline`, `join`, `joinOnline`, `start`, `returnToLobby`, `leave`, `setBrowsing` and `rooms`. The exe, editor play and player windows each create one; the command line uses the same calls.
