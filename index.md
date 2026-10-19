@@ -54,9 +54,15 @@ cookbook/index
 :caption: Engine development
 
 engine_dev/source_layout
-engine_dev/editor_internals
 engine_dev/testing
 engine_dev/contributing
+```
+
+```{toctree}
+:maxdepth: 2
+:caption: "Internals: game boundary"
+
+engine_dev/internals/editor
 ```
 
 ```{toctree}

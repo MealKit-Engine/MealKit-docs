@@ -48,4 +48,4 @@ Scenes are saved as human-readable `.scene` text: each object is its kind name p
 Play mode runs the game inside the editor with the scene being edited. It can run several players at once, pause, and rewind.
 For automated checks, the editor also runs from the command line (see {doc}`../reference/command_line`).
 
-How the editor works inside (game DLL loading, hot reload, play mode, rewind) is in {doc}`../engine_dev/editor_internals`.
+How the editor works inside (game DLL loading, hot reload, play mode, rewind) is in {doc}`../engine_dev/internals/editor`.
