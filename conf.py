@@ -20,7 +20,7 @@ extensions = [
 # 원본 Markdown(MyST)만 문서로 읽는다
 source_suffix = {".md": "markdown"}
 root_doc = "index"
-exclude_patterns = ["_build", ".venv", "README.md", "LICENSE.md", "tools", "locale", ".github"]
+exclude_patterns = ["_build", ".venv", "README.md", "LICENSE.md", "tools", "locale", ".github", ".claude"]
 
 myst_enable_extensions = ["deflist", "colon_fence"]
 myst_heading_anchors = 3
