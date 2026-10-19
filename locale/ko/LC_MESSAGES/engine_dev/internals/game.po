@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-19 13:07+0900\n"
+"POT-Creation-Date: 2026-10-19 15:18+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ko\n"
@@ -27,8 +27,8 @@ msgid "This page explains how the game folder works inside: the boundary between
 msgstr "이 페이지는 game 폴더가 안에서 어떻게 돌아가는지 설명한다: 엔진과 게임 코드 사이의 경계, 출시 exe의 메인 루프, 시뮬레이션 실행기, 헤드리스 실행, 입력 기록, 그리고 작은 데이터 서비스들(튜닝, 프로젝트 설정, 매치 시작 데이터, 세이브, 성능 숫자). 코드는 {engine}`engine/src/mealkit/game`에 있다. `game`은 폴더 순서에서 `editor` 바로 앞의 엔진 폴더라({engine}`docs/CODING_MODEL.md` \"엔진 폴더 사이 의존\"), 다른 엔진 폴더를 모두 include할 수 있고 이것을 include하는 것은 에디터뿐이다."
 
 #, python-brace-format
-msgid "Part of the folder belongs to the engine core (`mealkit_core`), which runs without a window: `GameInstance.h`, `GameContext.h`, `GameData`, `Headless`, `InputRecord`, `ProjectSettings`, `Save`, `Loadout.h`, `WorldSnapshot.h`, `SimDebug.h` and `Simulation.h`. The rest needs the screen side and is only in the windowed engine: `Frontend`, `GameMain` and `FrameStats` ({engine}`engine/CMakeLists.txt`)."
-msgstr "폴더의 일부는 창 없이 도는 엔진 코어(`mealkit_core`)에 속한다: `GameInstance.h`, `GameContext.h`, `GameData`, `Headless`, `InputRecord`, `ProjectSettings`, `Save`, `Loadout.h`, `WorldSnapshot.h`, `SimDebug.h`, `Simulation.h`. 나머지는 화면 쪽이 필요해 창 있는 엔진에만 있다: `Frontend`, `GameMain`, `FrameStats`({engine}`engine/CMakeLists.txt`)."
+msgid "Part of the folder belongs to the engine core (`mealkit_core`), which runs without a window: `GameInstance.h`, `GameContext.h`, `GameData`, `GameOptions`, `Headless`, `InputRecord`, `ProjectSettings`, `Save`, `Loadout.h`, `WorldSnapshot.h`, `SimDebug.h` and `Simulation.h`. The rest needs the screen side and is only in the windowed engine: `Frontend`, `GameMain` and `FrameStats` ({engine}`engine/CMakeLists.txt`)."
+msgstr "폴더의 일부는 창 없이 도는 엔진 코어(`mealkit_core`)에 속한다: `GameInstance.h`, `GameContext.h`, `GameData`, `GameOptions`, `Headless`, `InputRecord`, `ProjectSettings`, `Save`, `Loadout.h`, `WorldSnapshot.h`, `SimDebug.h`, `Simulation.h`. 나머지는 화면 쪽이 필요해 창 있는 엔진에만 있다: `Frontend`, `GameMain`, `FrameStats`({engine}`engine/CMakeLists.txt`)."
 
 #, python-brace-format
 msgid "How to use these from a game is in {doc}`../../manual/projects`, {doc}`../../manual/multiplayer` and {doc}`../../manual/settings`. How the editor uses them is in {doc}`editor`."
@@ -125,20 +125,14 @@ msgstr "매크로가 `main`을 만든다({engine}`engine/src/mealkit/game/GameMa
 msgid "`runGame` starts in this order:"
 msgstr "`runGame`은 이 순서로 시작한다:"
 
-msgid "Parse the command line (`--help` lists the options). `--system-info` prints the CPU and GPU and exits."
-msgstr "명령줄을 읽는다(`--help`가 옵션을 보여 준다). `--system-info`는 CPU와 GPU를 출력하고 끝낸다."
-
-msgid "Read `mealkit.project` and the game's `game.*` lines, then apply the headless defaults."
-msgstr "`mealkit.project`와 게임의 `game.*` 줄을 읽고, 헤드리스 기본값을 적용한다."
-
-msgid "Load the start scene (or `--scene`). Without a scene file it uses a built-in arena."
-msgstr "시작 씬(또는 `--scene`)을 불러온다. 씬 파일이 없으면 내장 경기장을 쓴다."
+msgid "Parse the command line with `parseGameArgs` (`--help` lists the options). `--system-info` prints the CPU and GPU and exits."
+msgstr "`parseGameArgs`로 명령줄을 읽는다(`--help`가 옵션을 보여 준다). `--system-info`는 CPU와 GPU를 출력하고 끝낸다."
 
 msgid "Create the window, the renderer and the model cache."
 msgstr "창, 렌더러, 모델 캐시를 만든다."
 
-msgid "Load the tuning and set the content hash on the lockstep session."
-msgstr "튜닝을 읽고 락스텝 세션에 콘텐츠 해시를 정한다."
+msgid "Call `loadMatchData` (see \"Match data and tuning\" below): `mealkit.project` with the game's `game.*` lines, the start scene (or `--scene`), the tuning and the content hash. Then apply the headless defaults and set the content hash on the lockstep session."
+msgstr "`loadMatchData`를 부른다(아래 \"매치 데이터와 튜닝\"): 게임의 `game.*` 줄을 포함한 `mealkit.project`, 시작 씬(또는 `--scene`), 튜닝, 콘텐츠 해시. 그다음 헤드리스 기본값을 적용하고 락스텝 세션에 콘텐츠 해시를 넣는다."
 
 msgid "Open the session: offline, host, join, or a Steam lobby (opened later, when the lobby is ready)."
 msgstr "세션을 연다: 혼자, 호스트, 참가, 또는 Steam 로비(로비가 준비되면 나중에 연다)."
@@ -333,8 +327,8 @@ msgstr "매크로는 `mealkitHeadlessMain`을 정의하고, 출시 exe가 `--hea
 msgid "The headless loop is like `runGame` without drawing:"
 msgstr "헤드리스 루프는 그리기가 없는 `runGame`과 비슷하다:"
 
-msgid "`loadHeadlessData` reads the project, the scene (and its flattened copy for the simulation), the tuning and the models (CPU data only), and builds the same content hash as the exe, so a headless peer can join a windowed one."
-msgstr "`loadHeadlessData`가 프로젝트, 씬(과 시뮬레이션용 평평한 사본), 튜닝, 모델(CPU 데이터만)을 읽고 exe와 같은 콘텐츠 해시를 만든다. 그래서 헤드리스 피어가 창 있는 피어에 참가할 수 있다."
+msgid "`loadMatchData` reads the project, the scene, the tuning and the models (CPU data only) and builds the content hash, the same call the exe makes, so a headless peer can join a windowed one. The loop flattens the scene once for the simulation."
+msgstr "`loadMatchData`가 프로젝트, 씬, 튜닝, 모델(CPU 데이터만)을 읽고 콘텐츠 해시를 만든다. exe와 같은 호출이라 헤드리스 피어가 창 있는 피어에 참가할 수 있다. 루프는 시뮬레이션용으로 씬을 한 번 평평하게 펼친다."
 
 msgid "The host starts the match when `--auto-start` players are in the lobby."
 msgstr "호스트는 `--auto-start` 인원이 로비에 모이면 매치를 시작한다."
@@ -378,6 +372,9 @@ msgstr "매치 데이터와 튜닝"
 #, python-brace-format
 msgid "{engine}`engine/src/mealkit/game/GameData.h` loads what a match is made of, the same way in the exe, the headless binary and the editor."
 msgstr "{engine}`engine/src/mealkit/game/GameData.h`는 매치를 이루는 것을 exe, 헤드리스 실행 파일, 에디터에서 같은 방법으로 읽는다."
+
+msgid "`loadMatchData` is the one call that loads a match: the project settings (found next to the exe, or given by the editor), the game's `game.*` values, the scene (a given scene, a given file, or the start scene; a built-in arena if there is no file), the tuning, and the content hash. The game types come in a `GameTypes` value: `gameTypes(module)` for the exe and the editor, the game class for the headless binary. Because the exe, the headless binary, editor play and the player windows all call it, they cannot pass different things to the hash."
+msgstr "`loadMatchData`는 매치를 읽는 단 하나의 호출이다: 프로젝트 설정(exe 옆에서 찾거나 에디터가 넘긴다), 게임의 `game.*` 값, 씬(넘긴 씬, 넘긴 파일, 또는 시작 씬. 파일이 없으면 기본 아레나), 튜닝, 콘텐츠 해시. 게임 타입은 `GameTypes` 값으로 받는다: exe와 에디터는 `gameTypes(module)`, 헤드리스 실행 파일은 게임 클래스에서. exe, 헤드리스 실행 파일, 에디터 플레이, 참가 창이 모두 이것을 부르므로 해시에 서로 다른 것을 넘길 수 없다."
 
 msgid "`loadTuning` reads `assets/game.tuning` (or a given path) into the game's tuning type. A missing file keeps the declared defaults and logs a warning."
 msgstr "`loadTuning`은 `assets/game.tuning`(또는 준 경로)을 게임의 튜닝 타입으로 읽는다. 파일이 없으면 선언의 기본값을 두고 경고를 남긴다."

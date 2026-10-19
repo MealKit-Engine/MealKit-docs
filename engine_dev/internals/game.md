@@ -3,7 +3,7 @@
 This page explains how the game folder works inside: the boundary between the engine and game code, the main loop of the shipped exe, the simulation runner, headless runs, input recordings and the small data services (tuning, project settings, match start data, saves, performance numbers).
 The code is in {engine}`engine/src/mealkit/game`. `game` is the last engine folder before `editor` in the layer order ({engine}`docs/CODING_MODEL.md` "엔진 폴더 사이 의존"), so it may include every other engine folder, and only the editor includes it.
 
-Part of the folder belongs to the engine core (`mealkit_core`), which runs without a window: `GameInstance.h`, `GameContext.h`, `GameData`, `Headless`, `InputRecord`, `ProjectSettings`, `Save`, `Loadout.h`, `WorldSnapshot.h`, `SimDebug.h` and `Simulation.h`.
+Part of the folder belongs to the engine core (`mealkit_core`), which runs without a window: `GameInstance.h`, `GameContext.h`, `GameData`, `GameOptions`, `Headless`, `InputRecord`, `ProjectSettings`, `Save`, `Loadout.h`, `WorldSnapshot.h`, `SimDebug.h` and `Simulation.h`.
 The rest needs the screen side and is only in the windowed engine: `Frontend`, `GameMain` and `FrameStats` ({engine}`engine/CMakeLists.txt`).
 
 How to use these from a game is in {doc}`../../manual/projects`, {doc}`../../manual/multiplayer` and {doc}`../../manual/settings`. How the editor uses them is in {doc}`editor`.
@@ -48,13 +48,11 @@ The macro writes `main` ({engine}`engine/src/mealkit/game/GameMain.h`). If the a
 
 `runGame` starts in this order:
 
-1. Parse the command line (`--help` lists the options). `--system-info` prints the CPU and GPU and exits.
-2. Read `mealkit.project` and the game's `game.*` lines, then apply the headless defaults.
-3. Load the start scene (or `--scene`). Without a scene file it uses a built-in arena.
-4. Create the window, the renderer and the model cache.
-5. Load the tuning and set the content hash on the lockstep session.
-6. Open the session: offline, host, join, or a Steam lobby (opened later, when the lobby is ready).
-7. Create the game, start audio and feedback, and initialize the `Frontend`.
+1. Parse the command line with `parseGameArgs` (`--help` lists the options). `--system-info` prints the CPU and GPU and exits.
+2. Create the window, the renderer and the model cache.
+3. Call `loadMatchData` (see "Match data and tuning" below): `mealkit.project` with the game's `game.*` lines, the start scene (or `--scene`), the tuning and the content hash. Then apply the headless defaults and set the content hash on the lockstep session.
+4. Open the session: offline, host, join, or a Steam lobby (opened later, when the lobby is ready).
+5. Create the game, start audio and feedback, and initialize the `Frontend`.
 
 Then it runs one loop. Each frame:
 
@@ -167,7 +165,7 @@ That target is built from `sim/` and `Headless.cpp` only and links only `mealkit
 
 The headless loop is like `runGame` without drawing:
 
-- `loadHeadlessData` reads the project, the scene (and its flattened copy for the simulation), the tuning and the models (CPU data only), and builds the same content hash as the exe, so a headless peer can join a windowed one.
+- `loadMatchData` reads the project, the scene, the tuning and the models (CPU data only) and builds the content hash, the same call the exe makes, so a headless peer can join a windowed one. The loop flattens the scene once for the simulation.
 - The host starts the match when `--auto-start` players are in the lobby.
 - Every iteration passes a frame time of 8 ticks, so the runner catches up as fast as possible.
 - Offline runs never sleep. Network runs sleep 1 ms only when no tick ran in that iteration (waiting for input), so peers on a runner with few cores leave time for each other's physics threads.
@@ -194,6 +192,7 @@ Feeding one recorded file to every build, instead of running bots on each, is wh
 
 {engine}`engine/src/mealkit/game/GameData.h` loads what a match is made of, the same way in the exe, the headless binary and the editor.
 
+- `loadMatchData` is the one call that loads a match: the project settings (found next to the exe, or given by the editor), the game's `game.*` values, the scene (a given scene, a given file, or the start scene; a built-in arena if there is no file), the tuning, and the content hash. The game types come in a `GameTypes` value: `gameTypes(module)` for the exe and the editor, the game class for the headless binary. Because the exe, the headless binary, editor play and the player windows all call it, they cannot pass different things to the hash.
 - `loadTuning` reads `assets/game.tuning` (or a given path) into the game's tuning type. A missing file keeps the declared defaults and logs a warning.
 - `LiveTuning` holds the display tuning (`assets/view.tuning`). `poll` checks the file time at most every 0.25 seconds and reads the file again when it changed. It reads into a fresh value, so a deleted line goes back to its default. If the file does not exist yet, it watches the path next to `game.tuning`.
 - `contentHash` is the hash peers compare before a match. It hashes the parts of the scene that affect the game, the model files, the tuning values, the project settings except view fields, and the simulation tables.
