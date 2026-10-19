@@ -3,8 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: MealKit\n"
-"POT-Creation-Date: 2026-10-18 16:06+0900\n"
+"Project-Id-Version:  MealKit\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-10-20 00:37+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -28,6 +29,8 @@ msgid ""
 "build.bat Profile    :: Release + Tracy profiling\n"
 "build.bat Export     :: release folder export\\sandbox\\\n"
 "build.bat ClangCL    :: clang-cl Release: build\\ClangCL\\bin (to compare determinism with the MSVC build, not shipped)\n"
+"build.bat Vulkan     :: Release with the Vulkan graphics backend: build\\Vulkan\\bin (to compare with Direct3D 12, not shipped on Windows)\n"
+"build.bat VulkanEditor :: the editor with the Vulkan backend: build\\VulkanEditor\\bin\n"
 msgstr ""
 "build.bat Editor     :: 범용 에디터: build\\Editor\\bin\\MealKitEditor.exe + mealkit.dll + sandbox_game.dll\n"
 "build.bat            :: Release: build\\Release\\bin\\sandbox.exe (출시용 게임, 엔진 정적 링크) + sandbox_headless.exe (창 없는 시뮬레이션)\n"
@@ -35,13 +38,19 @@ msgstr ""
 "build.bat Profile    :: Release + Tracy 프로파일링\n"
 "build.bat Export     :: 출시 폴더 export\\sandbox\\\n"
 "build.bat ClangCL    :: clang-cl Release: build\\ClangCL\\bin (MSVC 빌드와 결정론 비교용, 출시하지 않는다)\n"
+"build.bat Vulkan     :: Vulkan 그래픽 백엔드 Release: build\\Vulkan\\bin (Direct3D 12와 비교용, Windows에서는 출시하지 않는다)\n"
+"build.bat VulkanEditor :: Vulkan 백엔드 에디터: build\\VulkanEditor\\bin\n"
 
 msgid "`build.bat` calls `tools\\build_project.bat`, which loads the Visual Studio environment (vcvars64) and builds with Ninja into `build\\<Config>`. `ClangCL` needs the Visual Studio component \"C++ Clang tools for Windows\" (clang-cl on PATH; otherwise it is looked up in Visual Studio installations, preview versions included)."
 msgstr "`build.bat`은 `tools\\build_project.bat`을 부르고, 이것이 Visual Studio 환경(vcvars64)을 불러와 `build\\<Config>`에 Ninja로 빌드한다. `ClangCL`은 Visual Studio의 \"C++ Clang tools for Windows\" 구성 요소가 필요하다(PATH의 clang-cl, 없으면 미리 보기 버전을 포함한 Visual Studio 설치에서 찾는다)."
 
+msgid "The first build downloads a pinned version of the DXC shader compiler (about 32 MB, checked against a SHA-256 hash) into `%LOCALAPPDATA%\\MealKit\\tools`; later builds reuse it. The DXC in the Windows SDK cannot make Vulkan shaders, so it is not used. Every build compiles each shader for both Direct3D 12 (DXIL) and Vulkan (SPIR-V), so a shader that breaks either backend fails the build. To use another DXC with SPIR-V support, pass `-DMEALKIT_SHADER_DXC=<path to dxc.exe>` to CMake. The `Vulkan` builds need no Vulkan SDK: the headers are in `third_party`, and the Vulkan loader comes with the GPU driver."
+msgstr "처음 빌드할 때 고정 버전의 DXC 셰이더 컴파일러(약 32 MB, SHA-256 해시로 확인)를 `%LOCALAPPDATA%\\MealKit\\tools`에 받고, 다음 빌드부터는 그것을 쓴다. Windows SDK의 DXC는 Vulkan 셰이더를 만들지 못해서 쓰지 않는다. 모든 빌드가 셰이더마다 Direct3D 12(DXIL)와 Vulkan(SPIR-V)을 둘 다 컴파일하므로, 어느 백엔드에서든 깨지는 셰이더는 빌드를 실패시킨다. SPIR-V를 지원하는 다른 DXC를 쓰려면 CMake에 `-DMEALKIT_SHADER_DXC=<dxc.exe 경로>`를 넘긴다. `Vulkan` 빌드에는 Vulkan SDK가 필요 없다: 헤더는 `third_party`에 있고, Vulkan 로더는 GPU 드라이버와 같이 깔린다."
+
 msgid "Each game project has its own `build.bat` that takes the same arguments (its build folder is `build\\` inside the project). A project's `build.bat Editor` builds only the game DLL, and builds the engine editor first if it is out of date. Close the editor before rebuilding the engine (`mealkit.dll`): while it runs, the file is locked and linking fails. The game DLL can be rebuilt with the editor open."
 msgstr "게임 프로젝트에도 같은 인자를 받는 자기 `build.bat`이 있다(빌드 폴더는 프로젝트 안의 `build\\`). 프로젝트의 `build.bat Editor`는 게임 DLL만 만들고, 엔진 에디터 빌드가 오래되었으면 그것부터 빌드한다. 엔진(`mealkit.dll`)을 다시 빌드할 때는 에디터를 닫는다(실행 중이면 파일이 잠겨 링크가 실패한다). 게임 DLL은 에디터가 켜져 있어도 된다."
 
+#, python-brace-format
 msgid "To open the editor after building, see {doc}`first_project`."
 msgstr "빌드한 뒤 에디터를 여는 방법은 {doc}`first_project`에 있다."
 

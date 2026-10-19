@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-20 00:09+0900\n"
+"POT-Creation-Date: 2026-10-20 00:37+0900\n"
 "PO-Revision-Date: 2026-10-19 13:15+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -58,6 +58,27 @@ msgid "Draws Dear ImGui with its stock DX12 backend (debug UI builds only)."
 msgstr "Dear ImGui를 기본 DX12 백엔드로 그린다(디버그 UI 빌드만)."
 
 #, python-brace-format
+msgid "{engine}`engine/src/mealkit/rhi/vulkan/VkDevice.cpp`"
+msgstr "{engine}`engine/src/mealkit/rhi/vulkan/VkDevice.cpp`"
+
+msgid "The Vulkan 1.3 backend (`build.bat Vulkan`, `VulkanEditor`)."
+msgstr "Vulkan 1.3 백엔드 (`build.bat Vulkan`, `VulkanEditor`)."
+
+#, python-brace-format
+msgid "{engine}`engine/src/mealkit/rhi/vulkan/VkImGui.cpp`"
+msgstr "{engine}`engine/src/mealkit/rhi/vulkan/VkImGui.cpp`"
+
+msgid "Draws Dear ImGui with its stock Vulkan backend."
+msgstr "Dear ImGui를 기본 Vulkan 백엔드로 그린다."
+
+#, python-brace-format
+msgid "{engine}`engine/src/mealkit/rhi/vulkan/VkLibs.cpp`"
+msgstr "{engine}`engine/src/mealkit/rhi/vulkan/VkLibs.cpp`"
+
+msgid "The implementations of volk (Vulkan loader) and the Vulkan Memory Allocator."
+msgstr "volk(Vulkan 로더)와 Vulkan Memory Allocator의 구현."
+
+#, python-brace-format
 msgid "{engine}`engine/src/mealkit/render/Renderer.h`"
 msgstr "{engine}`engine/src/mealkit/render/Renderer.h`"
 
@@ -107,8 +128,8 @@ msgid "The 2D UI shader: rounded boxes, gradients, shadows, images and SDF text.
 msgstr "2D UI 셰이더: 둥근 상자, 그라디언트, 그림자, 이미지, SDF 글자."
 
 #, python-brace-format
-msgid "The shaders are compiled at build time by DXC into header files with byte arrays (`g_ForwardVS.h`, `g_UiPS.h`, ...), see {engine}`engine/CMakeLists.txt`. They use shader model 6.6 profiles (`vs_6_6`, `ps_6_6`), the minimum spec. Debug builds keep debug information (`-Zi -Qembed_debug -Od`), other builds are optimized and stripped (`-O3 -Qstrip_debug -Qstrip_reflect`). The game therefore needs no shader compiler at run time and no shader files next to the exe."
-msgstr "셰이더는 빌드 때 DXC가 바이트 배열을 담은 헤더 파일(`g_ForwardVS.h`, `g_UiPS.h`, ...)로 컴파일한다({engine}`engine/CMakeLists.txt` 참고). 최소 사양인 셰이더 모델 6.6 프로필(`vs_6_6`, `ps_6_6`)을 쓴다. Debug 빌드는 디버그 정보를 남기고(`-Zi -Qembed_debug -Od`), 나머지 빌드는 최적화하고 정보를 뺀다(`-O3 -Qstrip_debug -Qstrip_reflect`). 그래서 게임은 실행 중에 셰이더 컴파일러가 필요 없고, exe 옆에 셰이더 파일도 없다."
+msgid "The shaders are compiled at build time by DXC into header files with byte arrays (`g_ForwardVS.h`, `g_UiPS.h`, ...), see {engine}`engine/CMakeLists.txt`. Every build makes both DXIL (Direct3D 12) and SPIR-V (Vulkan 1.3); the header for the build's backend is in `shaders/`, the other one in `shaders/other/` only to check that it compiles. DXC is a pinned release that the build downloads once ({engine}`cmake/Dxc.cmake`). They use shader model 6.6 profiles (`vs_6_6`, `ps_6_6`), the minimum spec. Debug builds keep debug information (`-Zi -Qembed_debug -Od`), other builds are optimized and stripped (`-O3 -Qstrip_debug -Qstrip_reflect`). The game therefore needs no shader compiler at run time and no shader files next to the exe."
+msgstr "셰이더는 빌드 때 DXC가 바이트 배열을 담은 헤더 파일(`g_ForwardVS.h`, `g_UiPS.h`, ...)로 컴파일한다({engine}`engine/CMakeLists.txt` 참고). 모든 빌드가 DXIL(Direct3D 12)과 SPIR-V(Vulkan 1.3)를 둘 다 만든다. 빌드의 백엔드 것은 `shaders/`에, 다른 쪽은 컴파일되는지 확인하려고만 `shaders/other/`에 둔다. DXC는 빌드가 한 번 받아 두는 고정 버전 릴리스다({engine}`cmake/Dxc.cmake`). 최소 사양인 셰이더 모델 6.6 프로필(`vs_6_6`, `ps_6_6`)을 쓴다. Debug 빌드는 디버그 정보를 남기고(`-Zi -Qembed_debug -Od`), 나머지 빌드는 최적화하고 정보를 뺀다(`-O3 -Qstrip_debug -Qstrip_reflect`). 그래서 게임은 실행 중에 셰이더 컴파일러가 필요 없고, exe 옆에 셰이더 파일도 없다."
 
 msgid "The RHI layer"
 msgstr "RHI 층"
@@ -171,6 +192,87 @@ msgstr "셰이더는 링에서 구조체를 `Load`로 필드마다 읽으므로,
 
 msgid "A `CommandList` binds one of two targets: `beginScene` (the back buffer's sRGB view plus depth, cleared) and `beginOverlay` (the plain view, no depth). A copy into a texture unbinds the target, so the caller binds it again after copies."
 msgstr "`CommandList`는 두 대상 중 하나를 묶는다: `beginScene`(백버퍼의 sRGB 뷰와 깊이, 지운다)과 `beginOverlay`(변환 없는 뷰, 깊이 없음). 텍스처로 복사하면 묶인 대상이 풀리므로, 부르는 쪽이 복사 뒤에 다시 묶는다."
+
+msgid "The Vulkan backend"
+msgstr "Vulkan 백엔드"
+
+msgid "`MEALKIT_RHI` (CMake, set by `build.bat Vulkan` and `VulkanEditor`) chooses the backend. Direct3D 12 is the reference backend and the one shipped on Windows; the Vulkan backend has the same features, and new graphics features are built for both in the same piece of work. The build needs no Vulkan SDK: the headers are in `third_party/vulkan-headers`, volk loads `vulkan-1.dll` (installed with the GPU driver) at run time, and the Vulkan Memory Allocator places buffers and images."
+msgstr "백엔드는 `MEALKIT_RHI`(CMake, `build.bat Vulkan`과 `VulkanEditor`가 정한다)로 고른다. Direct3D 12가 기준 백엔드이고 Windows에서 출시하는 것도 이것이다. Vulkan 백엔드도 기능이 같고, 새 그래픽 기능은 같은 작업에서 두 백엔드에 같이 만든다. 빌드에 Vulkan SDK가 필요 없다: 헤더는 `third_party/vulkan-headers`에 있고, volk가 실행 중에 `vulkan-1.dll`(GPU 드라이버가 깐다)을 불러오고, Vulkan Memory Allocator가 버퍼와 이미지 자리를 잡는다."
+
+msgid "The DX12 shapes map to Vulkan like this:"
+msgstr "DX12 모양은 Vulkan에서 이렇게 된다:"
+
+msgid "RHI"
+msgstr "RHI"
+
+msgid "Direct3D 12"
+msgstr "Direct3D 12"
+
+msgid "Vulkan"
+msgstr "Vulkan"
+
+msgid "Push constants"
+msgstr "푸시 상수"
+
+msgid "Root constants (16 values)"
+msgstr "루트 상수 (값 16개)"
+
+msgid "Push constant range of 64 bytes"
+msgstr "64바이트 푸시 상수 범위"
+
+msgid "Buffer and texture arrays"
+msgstr "버퍼·텍스처 배열"
+
+msgid "Two descriptor tables in one shader-visible heap"
+msgstr "셰이더가 보는 힙 하나 안의 디스크립터 표 두 개"
+
+msgid "One descriptor set: storage buffer array and sampled image array (descriptor indexing, partially bound, update after bind)"
+msgstr "디스크립터 세트 하나: 스토리지 버퍼 배열과 샘플 이미지 배열 (descriptor indexing, partially bound, update after bind)"
+
+msgid "Static sampler"
+msgstr "정적 샘플러"
+
+msgid "Immutable sampler in the same set"
+msgstr "같은 세트의 고정(immutable) 샘플러"
+
+msgid "`beginScene`, `beginOverlay`"
+msgstr "`beginScene`, `beginOverlay`"
+
+msgid "`OMSetRenderTargets` with the sRGB or plain view"
+msgstr "sRGB 뷰나 변환 없는 뷰로 `OMSetRenderTargets`"
+
+msgid "Dynamic rendering with an sRGB or UNORM view of the same swapchain image (`VK_KHR_swapchain_mutable_format`)"
+msgstr "같은 스왑 체인 이미지의 sRGB 뷰나 UNORM 뷰로 dynamic rendering (`VK_KHR_swapchain_mutable_format`)"
+
+msgid "Texture barriers"
+msgstr "텍스처 배리어"
+
+msgid "Resource state transitions"
+msgstr "리소스 상태 전환"
+
+msgid "Image layout transitions (synchronization2)"
+msgstr "이미지 레이아웃 전환 (synchronization2)"
+
+msgid "Frame pacing"
+msgstr "프레임 속도 맞추기"
+
+msgid "Frame latency waitable object"
+msgstr "프레임 지연 대기 객체"
+
+msgid "One fence per frame in flight"
+msgstr "동시 처리 프레임마다 펜스 하나"
+
+msgid "Vsync off"
+msgstr "수직동기 끔"
+
+msgid "`ALLOW_TEARING`"
+msgstr "`ALLOW_TEARING`"
+
+msgid "`IMMEDIATE` present mode, otherwise `MAILBOX`"
+msgstr "`IMMEDIATE` 프레젠트 방식, 없으면 `MAILBOX`"
+
+msgid "Vulkan's clip space has y pointing down. `setViewport` gives the viewport a negative height, so the same shaders and the same clockwise front faces as Direct3D 12 produce the same image. A copy or a barrier ends the current dynamic rendering pass (Vulkan does not allow them inside one), which is why the RHI asks callers to bind the target again after copies. With `--debug`, the Vulkan backend turns on `VK_LAYER_KHRONOS_validation` when the Vulkan SDK is installed and sends its warnings and errors to the engine log as `[Vulkan]` lines. The minimum spec for this backend is Vulkan 1.3 with descriptor indexing, dynamic rendering, synchronization2, demote to helper invocation and `VK_KHR_swapchain_mutable_format`; Intel 11th gen integrated graphics has them. Profile builds do not time the GPU with Tracy on Vulkan yet."
+msgstr "Vulkan의 클립 공간은 y가 아래를 향한다. `setViewport`가 뷰포트 높이를 음수로 주므로, Direct3D 12와 같은 셰이더, 같은 시계 방향 앞면으로 같은 그림이 나온다. 복사나 배리어는 지금의 dynamic rendering 패스를 끝낸다(Vulkan은 패스 안에서 허용하지 않는다). 그래서 RHI는 복사 뒤에 부르는 쪽이 대상을 다시 묶게 한다. `--debug`를 주면 Vulkan SDK가 깔려 있을 때 `VK_LAYER_KHRONOS_validation`을 켜고, 경고와 오류를 `[Vulkan]` 줄로 엔진 로그에 보낸다. 이 백엔드의 최소 사양은 descriptor indexing, dynamic rendering, synchronization2, demote to helper invocation, `VK_KHR_swapchain_mutable_format`을 갖춘 Vulkan 1.3이고, Intel 11세대 내장 그래픽에 모두 있다. 프로파일 빌드는 Vulkan에서 아직 Tracy로 GPU 시간을 재지 않는다."
 
 msgid "Starting up"
 msgstr "시작"

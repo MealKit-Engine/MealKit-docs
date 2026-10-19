@@ -13,3 +13,5 @@ The reasons for the minimum spec are in the {engine}`decision log <docs/DECISION
 - Visual Studio 2022 or Build Tools 2022 with the "Desktop development with C++" workload (includes CMake).
 - Python 3, only to regenerate the sample models.
 - For the `ClangCL` comparison build: the Visual Studio component "C++ Clang tools for Windows".
+- An internet connection for the first build, which downloads the DXC shader compiler (about 32 MB) once.
+- For the `Vulkan` and `VulkanEditor` builds: a GPU driver with Vulkan 1.3. The Vulkan SDK is only needed for the validation layer (`--debug`).

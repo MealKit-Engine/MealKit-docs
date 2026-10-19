@@ -13,6 +13,9 @@ The frame budget and the profiler are in {doc}`../../manual/performance`. The co
 | {engine}`engine/src/mealkit/rhi/Rhi.h` | The RHI: `Device`, `CommandList`, buffer, texture and pipeline handles, GPU information and the debug UI drawing functions. No graphics API type appears in it. |
 | {engine}`engine/src/mealkit/rhi/dx12/Dx12Device.cpp` | The Direct3D 12 backend. Only files in `rhi/<api>/` include graphics API headers. |
 | {engine}`engine/src/mealkit/rhi/dx12/Dx12ImGui.cpp` | Draws Dear ImGui with its stock DX12 backend (debug UI builds only). |
+| {engine}`engine/src/mealkit/rhi/vulkan/VkDevice.cpp` | The Vulkan 1.3 backend (`build.bat Vulkan`, `VulkanEditor`). |
+| {engine}`engine/src/mealkit/rhi/vulkan/VkImGui.cpp` | Draws Dear ImGui with its stock Vulkan backend. |
+| {engine}`engine/src/mealkit/rhi/vulkan/VkLibs.cpp` | The implementations of volk (Vulkan loader) and the Vulkan Memory Allocator. |
 | {engine}`engine/src/mealkit/render/Renderer.h` | `Renderer`, the per-frame values (`FrameParams`), the 48-byte `InstanceData`, the 112-byte `UiQuad` and `RenderStats`. |
 | {engine}`engine/src/mealkit/render/Renderer.cpp` | The forward renderer, written only against the RHI. |
 | {engine}`engine/src/mealkit/render/DrawList.h` | Collects instances per mesh for one frame. |
@@ -22,6 +25,7 @@ The frame budget and the profiler are in {doc}`../../manual/performance`. The co
 | {engine}`engine/shaders/Ui.hlsl` | The 2D UI shader: rounded boxes, gradients, shadows, images and SDF text. |
 
 The shaders are compiled at build time by DXC into header files with byte arrays (`g_ForwardVS.h`, `g_UiPS.h`, ...), see {engine}`engine/CMakeLists.txt`.
+Every build makes both DXIL (Direct3D 12) and SPIR-V (Vulkan 1.3); the header for the build's backend is in `shaders/`, the other one in `shaders/other/` only to check that it compiles. DXC is a pinned release that the build downloads once ({engine}`cmake/Dxc.cmake`).
 They use shader model 6.6 profiles (`vs_6_6`, `ps_6_6`), the minimum spec. Debug builds keep debug information (`-Zi -Qembed_debug -Od`), other builds are optimized and stripped (`-O3 -Qstrip_debug -Qstrip_reflect`).
 The game therefore needs no shader compiler at run time and no shader files next to the exe.
 
@@ -44,6 +48,29 @@ Shaders read structures from the ring field by field with `Load`, so the C++ lay
 The reasons for this shape (instead of root descriptors or `ResourceDescriptorHeap[]`) are in {engine}`docs/DECISIONS.md` (2026-10-19).
 
 A `CommandList` binds one of two targets: `beginScene` (the back buffer's sRGB view plus depth, cleared) and `beginOverlay` (the plain view, no depth). A copy into a texture unbinds the target, so the caller binds it again after copies.
+
+## The Vulkan backend
+
+`MEALKIT_RHI` (CMake, set by `build.bat Vulkan` and `VulkanEditor`) chooses the backend. Direct3D 12 is the reference backend and the one shipped on Windows; the Vulkan backend has the same features, and new graphics features are built for both in the same piece of work.
+The build needs no Vulkan SDK: the headers are in `third_party/vulkan-headers`, volk loads `vulkan-1.dll` (installed with the GPU driver) at run time, and the Vulkan Memory Allocator places buffers and images.
+
+The DX12 shapes map to Vulkan like this:
+
+| RHI | Direct3D 12 | Vulkan |
+|---|---|---|
+| Push constants | Root constants (16 values) | Push constant range of 64 bytes |
+| Buffer and texture arrays | Two descriptor tables in one shader-visible heap | One descriptor set: storage buffer array and sampled image array (descriptor indexing, partially bound, update after bind) |
+| Fixed sampler | Static sampler | Immutable sampler in the same set |
+| `beginScene`, `beginOverlay` | `OMSetRenderTargets` with the sRGB or plain view | Dynamic rendering with an sRGB or UNORM view of the same swapchain image (`VK_KHR_swapchain_mutable_format`) |
+| Texture barriers | Resource state transitions | Image layout transitions (synchronization2) |
+| Frame pacing | Frame latency waitable object | One fence per frame in flight |
+| Vsync off | `ALLOW_TEARING` | `IMMEDIATE` present mode, otherwise `MAILBOX` |
+
+Vulkan's clip space has y pointing down. `setViewport` gives the viewport a negative height, so the same shaders and the same clockwise front faces as Direct3D 12 produce the same image.
+A copy or a barrier ends the current dynamic rendering pass (Vulkan does not allow them inside one), which is why the RHI asks callers to bind the target again after copies.
+With `--debug`, the Vulkan backend turns on `VK_LAYER_KHRONOS_validation` when the Vulkan SDK is installed and sends its warnings and errors to the engine log as `[Vulkan]` lines.
+The minimum spec for this backend is Vulkan 1.3 with descriptor indexing, dynamic rendering, synchronization2, demote to helper invocation and `VK_KHR_swapchain_mutable_format`; Intel 11th gen integrated graphics has them.
+Profile builds do not time the GPU with Tracy on Vulkan yet.
 
 ## Starting up
 

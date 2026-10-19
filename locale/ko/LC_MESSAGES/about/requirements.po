@@ -3,8 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: MealKit\n"
-"POT-Creation-Date: 2026-10-18 16:06+0900\n"
+"Project-Id-Version:  MealKit\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-10-20 00:37+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -30,6 +31,7 @@ msgstr "**Intel 11세대(Xe) 내장 그래픽 이상**: Direct3D 12, Shader Mode
 msgid "A CPU with SSE4.2."
 msgstr "SSE4.2를 지원하는 CPU."
 
+#, python-brace-format
 msgid "The reasons for the minimum spec are in the {engine}`decision log <docs/DECISIONS.md>`. `sandbox.exe --system-info` prints the CPU and GPU features and exits with code 2 below the minimum spec."
 msgstr "최소 사양 결정과 이유는 {engine}`결정 기록 <docs/DECISIONS.md>`에 있다. `sandbox.exe --system-info`는 CPU·GPU 기능을 출력하고, 최소 사양 미달이면 종료 코드 2로 끝난다."
 
@@ -44,4 +46,10 @@ msgstr "Python 3 (샘플 모델을 다시 만들 때만)."
 
 msgid "For the `ClangCL` comparison build: the Visual Studio component \"C++ Clang tools for Windows\"."
 msgstr "`ClangCL` 비교 빌드: Visual Studio 구성 요소 \"C++ Clang tools for Windows\"."
+
+msgid "An internet connection for the first build, which downloads the DXC shader compiler (about 32 MB) once."
+msgstr "처음 빌드할 때 인터넷 연결 (DXC 셰이더 컴파일러, 약 32 MB를 한 번 받는다)."
+
+msgid "For the `Vulkan` and `VulkanEditor` builds: a GPU driver with Vulkan 1.3. The Vulkan SDK is only needed for the validation layer (`--debug`)."
+msgstr "`Vulkan`·`VulkanEditor` 빌드: Vulkan 1.3을 지원하는 GPU 드라이버. Vulkan SDK는 검증 레이어(`--debug`)에만 필요하다."
 
