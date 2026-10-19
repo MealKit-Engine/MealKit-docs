@@ -41,7 +41,7 @@ In the example, the match area's floor is the fall height and its top is where f
 ### Definition tables
 
 A table has a row type declared with `MEALKIT_STRUCT` and is registered with `MEALKIT_TABLE(Row, "tables/props.table", 0)`. The file has a `row <id>` line followed by that row's values.
-Other data points at a row with a `RowRef<Row>` field (the row id in files, a dropdown in the editor). The game reads tables with `game::loadTable` when a match starts, and simulation code reads rows by number.
+Other data points at a row with a `RowRef<Row>` field (the row id in files, a dropdown in the editor). The game reads tables with `data::loadTable` when a match starts, and simulation code reads rows by number.
 In the Tables panel (View > Tables, `Ctrl+T`) you add, copy, delete and reorder rows, edit cells, and see every reference to a missing row id. **CSV import and export** let you balance a table in Google Sheets or Excel: the first column is `id` and the other columns are the field paths. Importing replaces the table.
 A table registered with `reflect::kTableView` is display-only and stays out of the content hash.
 
