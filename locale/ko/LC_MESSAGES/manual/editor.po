@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-19 08:05+0900\n"
+"POT-Creation-Date: 2026-10-19 12:31+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -163,4 +163,8 @@ msgstr "플레이 모드"
 #, python-brace-format
 msgid "Play mode runs the game inside the editor with the scene being edited. It can run several players at once, pause, and rewind. For automated checks, the editor also runs from the command line (see {doc}`../reference/command_line`)."
 msgstr "플레이 모드는 편집 중인 씬으로 에디터 안에서 게임을 돌린다. 여러 명을 같이 돌리고, 일시정지하고, 되감을 수 있다. 자동 검사용으로 에디터를 명령줄에서도 실행할 수 있다({doc}`../reference/command_line`)."
+
+#, python-brace-format
+msgid "How the editor works inside (game DLL loading, hot reload, play mode, rewind) is in {doc}`../engine_dev/editor_internals`."
+msgstr "에디터가 안에서 어떻게 돌아가는지(게임 DLL 불러오기, 핫 리로드, 플레이 모드, 되감기)는 {doc}`../engine_dev/editor_internals`에 있다."
 
