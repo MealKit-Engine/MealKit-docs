@@ -17,6 +17,7 @@ Events live in `assets/sounds.table`, a definition table edited in the Tables pa
 | `bus` | Mix bus: `music`, `sfx`, `ui`, `voice` |
 | `loop`, `stream` | Loop; stream from disk instead of loading into memory (music) |
 | `priority`, `maxInstances`, `steal`, `cooldown` | Voice management (below) |
+| `subtitle`, `subtitleSeconds` | A game string key shown at the bottom of the screen when the sound plays (players turn subtitles on or off in the settings), and for how long. Plays of the same key share one line. The screen is `assets/ui/subtitles.ui` |
 
 The table is reloaded when the file changes. The engine moves the listener with the camera.
 

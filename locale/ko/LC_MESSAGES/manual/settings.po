@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-19 18:53+0900\n"
+"POT-Creation-Date: 2026-10-19 19:18+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ko\n"
@@ -61,8 +61,12 @@ msgstr "버튼 액션마다 한 줄: 누른 다음 새 키를 누른다(Esc는 �
 msgid "Game"
 msgstr "게임"
 
-msgid "Language, interface size, subtitles, network status (ping and the player a match is waiting for)"
-msgstr "언어, 인터페이스 크기, 자막, 네트워크 상태 (핑, 매치가 기다리는 플레이어)"
+msgid "Language, interface size, subtitles, network status (ping and the player a match is waiting for), screen shake, screen flashes, hit stop"
+msgstr "언어, 인터페이스 크기, 자막, 네트워크 상태(핑, 매치가 기다리는 플레이어), 화면 흔들림, 화면 번쩍임, 화면 정지"
+
+#, python-brace-format
+msgid "**Accessibility**: screen shake and screen flashes scale what the feedback table does (0 % turns them off), and hit stop can be turned off; these change only the picture. Subtitles show a line at the bottom of the screen while a sound with a subtitle plays (see {doc}`sound`). Color-blind modes come with the color grading of stage 2."
+msgstr "**접근성**: 화면 흔들림과 화면 번쩍임은 연출 표가 하는 것에 배율을 곱하고(0 %면 끈다), 화면 정지는 끌 수 있다. 바뀌는 것은 그림뿐이다. 자막은 자막이 있는 소리가 나는 동안 화면 아래에 한 줄을 보인다({doc}`sound` 참고). 색맹 모드는 2단계 색 보정과 함께 온다."
 
 msgid "Fullscreen is a borderless window the size of the monitor. Render scale, graphics quality and brightness are stored now and used by the graphics features of stage 2. When the resolution or window mode changes, a box asks to keep it and reverts after 15 seconds without an answer."
 msgstr "전체 화면은 모니터 크기의 테두리 없는 창이다. 렌더 배율, 그래픽 품질, 밝기는 지금은 저장만 하고 2단계 그래픽 기능이 쓴다. 해상도나 창 모드를 바꾸면 유지할지 묻는 창이 뜨고, 15초 안에 답하지 않으면 되돌린다."

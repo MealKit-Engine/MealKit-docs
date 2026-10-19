@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-19 19:11+0900\n"
+"POT-Creation-Date: 2026-10-19 19:18+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ko\n"
@@ -228,6 +228,9 @@ msgstr "`afterBuildFrame`은 월드 위 UI에 카메라를 넘기고, 소리 듣
 
 msgid "`renderUi` draws the game UI after the 3D scene and before the debug UI."
 msgstr "`renderUi`는 3D 장면 다음, 디버그 UI 전에 게임 UI를 그린다."
+
+msgid "Subtitles: while the audio engine has subtitle lines and the player setting is on, `update` opens the standard screen `ui/subtitles.ui` (when the project has it) at layer 5 and fills `SubtitlesVm` with the last four lines from the string table."
+msgstr "자막: 오디오 엔진에 자막 줄이 있고 플레이어 설정이 켜져 있는 동안 `update`가 표준 화면 `ui/subtitles.ui`(프로젝트에 있으면)를 층 5에 열고 `SubtitlesVm`을 문자열 표의 최근 네 줄로 채운다."
 
 msgid "The editor passes `nullptr` for the display window, so player settings such as window mode and frame cap do not change the editor window."
 msgstr "에디터는 화면 창에 `nullptr`을 넘기므로, 창 모드나 프레임 제한 같은 플레이어 설정이 에디터 창을 바꾸지 않는다."

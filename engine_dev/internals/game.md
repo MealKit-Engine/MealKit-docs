@@ -99,6 +99,7 @@ It owns the input actions and gamepads, the game strings, the game UI system, th
 - `update` runs before `game.update` every frame. The UI updates first: if it wants the mouse or keyboard, the frame's permission flags are turned off, so a click on a button does not also reach the game. Then the settings screen updates, and last the input actions are sampled.
 - `afterBuildFrame` passes the camera to world-space UI, puts the audio listener at the camera, and adds the feedback screen tint.
 - `renderUi` draws the game UI after the 3D scene and before the debug UI.
+- Subtitles: while the audio engine has subtitle lines and the player setting is on, `update` opens the standard screen `ui/subtitles.ui` (when the project has it) at layer 5 and fills `SubtitlesVm` with the last four lines from the string table.
 
 The editor passes `nullptr` for the display window, so player settings such as window mode and frame cap do not change the editor window.
 

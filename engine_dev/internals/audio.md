@@ -69,6 +69,10 @@ Once per frame, `Engine::update` does three steps.
 
 Every dropped request is added to a list of the last 64 drops with its reason. The editor's Sounds panel shows that list, the voices (`voices()`) and the bus meters.
 
+## Subtitles
+
+An event with a `subtitle` string key adds a line to `subtitles()` when it is played: the key and the seconds left (`subtitleSeconds`). A second play of the same key only extends the time, so a burst of pushes is one line. `update` counts the lines down and removes them. The list does not depend on the volume, so the lines appear when the sound is muted. `game::Frontend` shows them (below).
+
 ## Buses
 
 Buses are miniaudio sound groups. `master`, `music`, `sfx`, `ui` and `voice` are made at start; any other bus name in the table makes a new bus under `master`.

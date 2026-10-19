@@ -57,6 +57,8 @@ The flash color is turned into linear color by squaring, the same gamma 2.0 appr
 `hitStop()` is true until the latest hit stop ends. While it is true, the game's view stops its own clock, interpolation and effects.
 **The simulation does not stop.** Lockstep peers must keep running the same ticks, so a pause in the simulation would desync. Only the picture freezes for a moment.
 
+`setAccessibility(shake, flash, hitStop)` comes from the player settings (the settings service calls it): the shake offset and the flash amount are multiplied by 0..1, and `hitStop()` stays false when hit stop is off. The table itself is not changed.
+
 ## Editor support
 
 - `preview(kind, position)` fires a row at full strength, for the preview in the editor's Feedback panel.

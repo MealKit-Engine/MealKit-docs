@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-18 22:45+0900\n"
+"POT-Creation-Date: 2026-10-19 19:18+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ko\n"
@@ -84,6 +84,12 @@ msgstr "`priority`, `maxInstances`, `steal`, `cooldown`"
 
 msgid "Voice management (below)"
 msgstr "목소리 관리(아래)"
+
+msgid "`subtitle`, `subtitleSeconds`"
+msgstr "`subtitle`, `subtitleSeconds`"
+
+msgid "A game string key shown at the bottom of the screen when the sound plays (players turn subtitles on or off in the settings), and for how long. Plays of the same key share one line. The screen is `assets/ui/subtitles.ui`"
+msgstr "소리가 날 때 화면 아래에 보일 게임 문자열 키(플레이어가 설정에서 자막을 켜고 끈다)와 보이는 시간. 같은 키의 재생은 한 줄을 같이 쓴다. 화면은 `assets/ui/subtitles.ui`"
 
 msgid "The table is reloaded when the file changes. The engine moves the listener with the camera."
 msgstr "파일이 바뀌면 표를 다시 읽는다. 듣는 위치는 엔진이 카메라에 맞춰 옮긴다."

@@ -10,7 +10,9 @@ Every game gets the same settings without writing them: display, audio, controls
 | Audio | Master, music, effects, interface and voice volume (the audio buses), mute when the window is in the background |
 | Controls | Mouse and gamepad sensitivity, invert Y |
 | Keys | One row per button action: press it, then press the new key (Esc cancels). A key used by another action is marked. Reset restores the project's keys |
-| Game | Language, interface size, subtitles, network status (ping and the player a match is waiting for) |
+| Game | Language, interface size, subtitles, network status (ping and the player a match is waiting for), screen shake, screen flashes, hit stop |
+
+**Accessibility**: screen shake and screen flashes scale what the feedback table does (0 % turns them off), and hit stop can be turned off; these change only the picture. Subtitles show a line at the bottom of the screen while a sound with a subtitle plays (see {doc}`sound`). Color-blind modes come with the color grading of stage 2.
 
 Fullscreen is a borderless window the size of the monitor. Render scale, graphics quality and brightness are stored now and used by the graphics features of stage 2.
 When the resolution or window mode changes, a box asks to keep it and reverts after 15 seconds without an answer.
