@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-19 18:29+0900\n"
+"POT-Creation-Date: 2026-10-20 00:09+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ko\n"
@@ -141,6 +141,15 @@ msgstr "`platform/Gamepad.h`"
 msgid "`Gamepad.cpp`"
 msgstr "`Gamepad.cpp`"
 
+msgid "Debug UI window side (Dear ImGui)"
+msgstr "디버그 UI 창 쪽 (Dear ImGui)"
+
+msgid "`platform/ImGuiPlatform.h`"
+msgstr "`platform/ImGuiPlatform.h`"
+
+msgid "`ImGuiPlatform.cpp`"
+msgstr "`ImGuiPlatform.cpp`"
+
 msgid "`posix/` has only what the headless build needs on Linux and macOS: time, files, sockets and logging. CI builds it to compare tick hashes across platforms. The window, input, dialogs, images and DLL loading come with the editor port in stage 5."
 msgstr "`posix/`에는 Linux와 macOS 헤드리스 빌드에 필요한 것만 있다: 시간, 파일, 소켓, 로그. CI가 이것을 빌드해 플랫폼 사이 틱 해시를 비교한다. 창, 입력, 대화상자, 그림, DLL 불러오기는 5단계 에디터 이식 때 생긴다."
 
@@ -161,8 +170,8 @@ msgstr "OS나 그래픽 헤더: `<windows.h>`, `<winsock2.h>`, `<dwmapi.h>`, `<x
 msgid "a typical system call, such as `MultiByteToWideChar`, `LoadLibrary`, `CreateProcess`, `QueryPerformanceCounter`, `WSAStartup`, `getenv` or `dlopen`."
 msgstr "대표적인 시스템 호출: `MultiByteToWideChar`, `LoadLibrary`, `CreateProcess`, `QueryPerformanceCounter`, `WSAStartup`, `getenv`, `dlopen` 등"
 
-msgid "Two files are allowed until the RHI layer arrives in stage 2: `render/Renderer.cpp` (DX12) and `debug/ImGuiLayer.cpp` (the ImGui Win32 and DX12 backends). The script prints them on every run. When a port to another system starts, only `platform/<os>/` and the RHI backend need new code."
-msgstr "RHI 층이 생기는 2단계까지 두 파일은 예외다: `render/Renderer.cpp`(DX12)와 `debug/ImGuiLayer.cpp`(ImGui Win32·DX12 백엔드). 스크립트는 실행할 때마다 이 둘을 출력한다. 다른 OS로 이식을 시작하면 `platform/<os>/`와 RHI 백엔드만 새로 쓰면 된다."
+msgid "Graphics API headers (`<d3d12.h>`, `<dxgi*.h>`, `<vulkan/...>` and the like) are allowed only in the RHI backend folders `rhi/<api>/`. A backend handles window handles and events, so it may also include operating system headers, but the system calls above still go through the platform layer. When a port to another system starts, only `platform/<os>/` and the RHI backend need new code."
+msgstr "그래픽 API 헤더(`<d3d12.h>`, `<dxgi*.h>`, `<vulkan/...>` 등)는 RHI 백엔드 폴더 `rhi/<api>/` 안에서만 쓸 수 있다. 백엔드는 창 핸들과 이벤트를 다루므로 운영 체제 헤더도 include할 수 있지만, 위의 시스템 호출은 여전히 플랫폼 계층을 거친다. 다른 시스템으로 옮길 때는 `platform/<os>/`와 RHI 백엔드만 새로 짜면 된다."
 
 #, python-brace-format
 msgid "`Window` ({engine}`engine/src/mealkit/platform/win32/Window.cpp`) is one Win32 window."
@@ -502,8 +511,8 @@ msgstr "경계의 정적 검사"
 msgid "`tools/check_platform.ps1`"
 msgstr "`tools/check_platform.ps1`"
 
-msgid "Regular expressions find system headers and calls outside `platform/<os>/`, with a short, printed list of exceptions."
-msgstr "정규식으로 `platform/<os>/` 밖의 시스템 헤더와 호출을 찾고, 예외는 짧은 목록으로 출력한다."
+msgid "Regular expressions find system headers and calls outside `platform/<os>/` and graphics API headers outside `rhi/<api>/`."
+msgstr "정규식으로 `platform/<os>/` 밖의 시스템 헤더와 호출, `rhi/<api>/` 밖의 그래픽 API 헤더를 찾는다."
 
 msgid "Files"
 msgstr "파일"

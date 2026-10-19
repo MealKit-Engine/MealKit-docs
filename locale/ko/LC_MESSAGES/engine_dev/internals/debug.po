@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-19 13:15+0900\n"
+"POT-Creation-Date: 2026-10-20 00:09+0900\n"
 "PO-Revision-Date: 2026-10-19 13:15+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -65,8 +65,8 @@ msgid "ImGuiLayer"
 msgstr "ImGuiLayer"
 
 #, python-brace-format
-msgid "`debug::ImGuiLayer` ({engine}`engine/src/mealkit/debug/ImGuiLayer.h`) connects ImGui's Win32 and DX12 backends to a MealKit `Window` and `Renderer`."
-msgstr "`debug::ImGuiLayer`({engine}`engine/src/mealkit/debug/ImGuiLayer.h`)는 ImGui의 Win32·DX12 백엔드를 MealKit의 `Window`와 `Renderer`에 잇는다."
+msgid "`debug::ImGuiLayer` ({engine}`engine/src/mealkit/debug/ImGuiLayer.h`) connects Dear ImGui to a MealKit `Window` and `Renderer`. The window side (ImGui's Win32 backend) is in the platform layer ({engine}`engine/src/mealkit/platform/ImGuiPlatform.h`), and the drawing side (ImGui's DX12 backend) is in the RHI backend (`rhi::imguiInit`, `imguiRender` in {engine}`engine/src/mealkit/rhi/Rhi.h`), so the layer itself calls no OS or graphics API."
+msgstr "`debug::ImGuiLayer`({engine}`engine/src/mealkit/debug/ImGuiLayer.h`)는 Dear ImGui를 MealKit `Window`와 `Renderer`에 연결한다. 창 쪽(ImGui Win32 백엔드)은 플랫폼 계층({engine}`engine/src/mealkit/platform/ImGuiPlatform.h`)에, 그리기 쪽(ImGui DX12 백엔드)은 RHI 백엔드({engine}`engine/src/mealkit/rhi/Rhi.h`의 `rhi::imguiInit`, `imguiRender`)에 있어서, 이 층 자체는 OS나 그래픽 API를 부르지 않는다."
 
 #, python-brace-format
 msgid "`init` ({engine}`engine/src/mealkit/debug/ImGuiLayer.cpp`):"
@@ -81,14 +81,14 @@ msgstr "창의 DPI 배율을 읽어 스타일과 글꼴을 그만큼 키운다. 
 msgid "Loads Segoe UI for Latin text and merges Malgun Gothic for Korean, both at 16 pixels. Malgun Gothic alone would show the backslash as ₩. An icon font is merged on top: Segoe Fluent Icons on Windows 11, Segoe MDL2 Assets on Windows 10 (the same code points), moved down 3 pixels to sit in the middle of a Korean line. ImGui 1.92 builds glyphs when they are first used, so the full Hangul range is not baked in advance."
 msgstr "라틴 글자용 Segoe UI를 읽고 한글용 맑은 고딕을 합친다. 둘 다 16픽셀이다. 맑은 고딕만 쓰면 역슬래시가 ₩로 보인다. 그 위에 아이콘 글꼴을 합친다: Windows 11은 Segoe Fluent Icons, Windows 10은 Segoe MDL2 Assets(코드 포인트가 같다). 한글 줄 가운데에 오도록 3픽셀 내린다. ImGui 1.92는 글자를 처음 쓸 때 만들므로 한글 전체 범위를 미리 굽지 않는다."
 
-msgid "Starts the Win32 backend and installs a message hook on the window, so ImGui sees the window messages."
-msgstr "Win32 백엔드를 시작하고 창에 메시지 훅을 달아 ImGui가 창 메시지를 보게 한다."
+msgid "Starts the platform part (`imguiPlatformInit`), which starts the Win32 backend and installs a message hook on the window, so ImGui sees the window messages."
+msgstr "플랫폼 쪽(`imguiPlatformInit`)을 시작한다. 이것이 Win32 백엔드를 시작하고 창에 메시지 훅을 달아 ImGui가 창 메시지를 보게 한다."
 
-msgid "Starts the DX12 backend with the renderer's `NativeHandles`: device, queue, frames in flight, and the overlay render target format (no gamma conversion, the same view the game UI uses)."
-msgstr "렌더러의 `NativeHandles`로 DX12 백엔드를 시작한다: 장치, 큐, 동시 처리 프레임 수, 오버레이 렌더 타깃 형식(감마 변환 없음, 게임 UI가 쓰는 것과 같은 뷰)."
+msgid "Starts the drawing part with the renderer's RHI device (`rhi::imguiInit`). The DX12 backend gets the device, queue, frames in flight, and the overlay render target format (no gamma conversion, the same view the game UI uses)."
+msgstr "렌더러의 RHI 장치로 그리기 쪽을 시작한다(`rhi::imguiInit`). DX12 백엔드는 장치, 큐, 동시 처리 프레임 수, 오버레이 렌더 타깃 형식(감마 변환 없음, 게임 UI가 쓰는 것과 같은 뷰)을 받는다."
 
-msgid "The DX12 backend needs shader-visible descriptors for its font texture and for user textures. The layer creates its own heap of 64 descriptors and gives the backend allocate and free callbacks that work on a list of free slots."
-msgstr "DX12 백엔드는 글꼴 텍스처와 사용자 텍스처에 셰이더가 보는 디스크립터가 필요하다. 이 층은 디스크립터 64개짜리 자기 힙을 만들고, 빈 자리 목록으로 동작하는 할당·해제 콜백을 백엔드에 준다."
+msgid "The DX12 backend needs shader-visible descriptors for its font texture and for user textures. It borrows them from the texture slots of the device's bindless descriptor heap, through allocate and free callbacks that work on the device's list of free slots."
+msgstr "DX12 백엔드는 글꼴 텍스처와 사용자 텍스처에 셰이더가 보는 디스크립터가 필요하다. 장치의 bindless 디스크립터 힙의 텍스처 칸에서 빌리고, 장치의 빈 자리 목록으로 동작하는 할당·해제 콜백을 쓴다."
 
 msgid "Each frame:"
 msgstr "매 프레임:"
@@ -96,8 +96,8 @@ msgstr "매 프레임:"
 msgid "`newFrame` deletes textures that were released and that the backend has finished with, then starts a new ImGui frame."
 msgstr "`newFrame`은 놓아준 텍스처 중 백엔드가 다 쓴 것을 지우고 새 ImGui 프레임을 시작한다."
 
-msgid "`render(renderer, frameActive)` always calls `ImGui::Render()`, so the ImGui frame is closed even when nothing is drawn (a minimized window). When the renderer's frame is open, it binds the overlay view (`beginOverlay`), sets its descriptor heap and records ImGui's draw data into the renderer's command list."
-msgstr "`render(renderer, frameActive)`는 언제나 `ImGui::Render()`를 불러, 아무것도 그리지 않을 때(창 최소화)도 ImGui 프레임을 닫는다. 렌더러 프레임이 열려 있으면 오버레이 뷰를 묶고(`beginOverlay`), 디스크립터 힙을 정하고, ImGui 그리기 데이터를 렌더러의 명령 리스트에 기록한다."
+msgid "`render(renderer, frameActive)` always calls `ImGui::Render()`, so the ImGui frame is closed even when nothing is drawn (a minimized window). When the renderer's frame is open, it binds the overlay view (`beginOverlay`) and records ImGui's draw data into the renderer's command list (`rhi::imguiRender`)."
+msgstr "`render(renderer, frameActive)`는 언제나 `ImGui::Render()`를 불러, 아무것도 그리지 않을 때(창 최소화)도 ImGui 프레임을 닫는다. 렌더러 프레임이 열려 있으면 오버레이 뷰를 묶고(`beginOverlay`) ImGui 그리기 데이터를 렌더러의 명령 리스트에 기록한다(`rhi::imguiRender`)."
 
 msgid "`createTexture` makes an RGBA texture that `ImGui::Image` can draw; the backend uploads it in the next frame. `releaseTexture` only marks it, and it is deleted a few frames later when the backend reports that the GPU is done with it."
 msgstr "`createTexture`는 `ImGui::Image`로 그릴 RGBA 텍스처를 만들고, 백엔드가 다음 프레임에 올린다. `releaseTexture`는 표시만 하고, 몇 프레임 뒤 백엔드가 GPU가 다 썼다고 알리면 지운다."
@@ -157,20 +157,20 @@ msgstr "전처리기가 출시 빌드에서 디버그 UI 코드를 빼서, 출�
 msgid "Backend adapter"
 msgstr "백엔드 어댑터"
 
-msgid "`ImGuiLayer::init`"
-msgstr "`ImGuiLayer::init`"
+msgid "`ImGuiPlatform.cpp`, `Dx12ImGui.cpp`"
+msgstr "`ImGuiPlatform.cpp`, `Dx12ImGui.cpp`"
 
-msgid "Plugs ImGui's stock Win32 and DX12 backends into the engine's window message hook and the renderer's native handles."
-msgstr "ImGui 기본 Win32·DX12 백엔드를 엔진 창의 메시지 훅과 렌더러의 원시 핸들에 꽂는다."
+msgid "Plugs ImGui's stock Win32 and DX12 backends into the engine's window message hook and the RHI device."
+msgstr "ImGui 기본 Win32·DX12 백엔드를 엔진 창의 메시지 훅과 RHI 장치에 꽂는다."
 
 msgid "Free-list descriptor allocator"
 msgstr "빈 자리 목록 디스크립터 할당자"
 
-msgid "`ImGuiLayerAccess::alloc` / `free`"
-msgstr "`ImGuiLayerAccess::alloc` / `free`"
+msgid "`allocSrv` / `freeSrv` in `Dx12ImGui.cpp`"
+msgstr "`Dx12ImGui.cpp`의 `allocSrv` / `freeSrv`"
 
-msgid "A fixed heap of 64 descriptors whose free slots are kept on a stack."
-msgstr "디스크립터 64개의 고정 힙이고, 빈 자리를 스택에 둔다."
+msgid "Texture slots of the bindless heap whose free slots are kept on a stack."
+msgstr "bindless 힙의 텍스처 칸이고, 빈 자리를 스택에 둔다."
 
 msgid "Deferred destruction"
 msgstr "미룬 해제"

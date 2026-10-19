@@ -24,6 +24,7 @@ Code that works on every system with the standard library alone stays outside th
 | File dialogs | `platform/FileDialog.h` | `FileDialog.cpp` | - |
 | Images | `platform/Image.h` | `Image.cpp` | - |
 | Gamepads | `platform/Gamepad.h` | `Gamepad.cpp` | - |
+| Debug UI window side (Dear ImGui) | `platform/ImGuiPlatform.h` | `ImGuiPlatform.cpp` | - |
 
 `posix/` has only what the headless build needs on Linux and macOS: time, files, sockets and logging. CI builds it to compare tick hashes across platforms. The window, input, dialogs, images and DLL loading come with the editor port in stage 5.
 
@@ -37,7 +38,7 @@ The `platform/<os>/` files implement headers from several folders (`net/Socket.h
 - an operating system or graphics header, such as `<windows.h>`, `<winsock2.h>`, `<dwmapi.h>`, `<xinput.h>`, `<d3d12.h>`, `<unistd.h>`, `<dlfcn.h>` or `<sys/...>`;
 - a typical system call, such as `MultiByteToWideChar`, `LoadLibrary`, `CreateProcess`, `QueryPerformanceCounter`, `WSAStartup`, `getenv` or `dlopen`.
 
-Two files are allowed until the RHI layer arrives in stage 2: `render/Renderer.cpp` (DX12) and `debug/ImGuiLayer.cpp` (the ImGui Win32 and DX12 backends). The script prints them on every run.
+Graphics API headers (`<d3d12.h>`, `<dxgi*.h>`, `<vulkan/...>` and the like) are allowed only in the RHI backend folders `rhi/<api>/`. A backend handles window handles and events, so it may also include operating system headers, but the system calls above still go through the platform layer.
 When a port to another system starts, only `platform/<os>/` and the RHI backend need new code.
 
 ## Window and input
@@ -182,7 +183,7 @@ The algorithms and patterns behind the parts above, with where to find them in t
 |---|---|---|
 | One implementation per build | {engine}`engine/CMakeLists.txt` | Shared headers, and CMake picks `win32/` or `posix/` source files. No virtual calls and no `#ifdef` in callers. |
 | Opaque handles | `Window`, `ChildProcess`, `UdpSocket` | System handles are stored as `void*` or `u64`, so headers never include system headers. |
-| Static check of the boundary | `tools/check_platform.ps1` | Regular expressions find system headers and calls outside `platform/<os>/`, with a short, printed list of exceptions. |
+| Static check of the boundary | `tools/check_platform.ps1` | Regular expressions find system headers and calls outside `platform/<os>/` and graphics API headers outside `rhi/<api>/`. |
 
 ### Files
 
