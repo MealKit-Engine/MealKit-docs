@@ -23,7 +23,9 @@ The engine repository itself is also an example game project (top-level `mealkit
 
 ## Project settings
 
-`mealkit.project` holds the project settings: `name`, `engine`, `engineVersion`, `scene`, and game entries (`game.*`). Edit them in the editor under File > Project Settings.
+`mealkit.project` holds the project settings: `name`, `engine`, `engineVersion`, `scene`, `tickRate`, the input delay range, and game entries (`game.*`). Edit them in the editor under File > Project Settings.
+
+`tickRate` is the number of simulation ticks per second: 30 (default) or 60. 60 makes controls and collisions finer but doubles the simulation CPU and the input packets, so it suits games with few moving objects. Time values in tuning, tables and scenes are written in seconds, so changing it needs no data changes; every player must use the same value (it is part of the content hash). The editor applies a new value from the next play.
 To rename a project (the name is also the exe name), use the project manager or `tools\rename_project.ps1 -Project <folder> -Name <new name>`.
 
 ## Folder layout

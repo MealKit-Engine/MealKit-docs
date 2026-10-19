@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-18 18:20+0900\n"
+"POT-Creation-Date: 2026-10-19 19:29+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -97,8 +97,11 @@ msgstr "엔진 저장소 자신도 예제 게임 프로젝트다(최상위 `meal
 msgid "Project settings"
 msgstr "프로젝트 설정"
 
-msgid "`mealkit.project` holds the project settings: `name`, `engine`, `engineVersion`, `scene`, and game entries (`game.*`). Edit them in the editor under File > Project Settings. To rename a project (the name is also the exe name), use the project manager or `tools\\rename_project.ps1 -Project <folder> -Name <new name>`."
-msgstr "`mealkit.project`에 프로젝트 설정이 있다: `name`, `engine`, `engineVersion`, `scene`, 게임 항목(`game.*`). 에디터 [파일] > [프로젝트 설정]에서 고친다. 프로젝트 이름(= exe 이름)은 프로젝트 관리자나 `tools\\rename_project.ps1 -Project <폴더> -Name <새 이름>`으로 바꾼다."
+msgid "`mealkit.project` holds the project settings: `name`, `engine`, `engineVersion`, `scene`, `tickRate`, the input delay range, and game entries (`game.*`). Edit them in the editor under File > Project Settings."
+msgstr "`mealkit.project`는 프로젝트 설정을 담는다: `name`, `engine`, `engineVersion`, `scene`, `tickRate`, 입력 지연 범위, 게임 항목(`game.*`). 에디터의 [파일] > [프로젝트 설정]에서 고친다."
+
+msgid "`tickRate` is the number of simulation ticks per second: 30 (default) or 60. 60 makes controls and collisions finer but doubles the simulation CPU and the input packets, so it suits games with few moving objects. Time values in tuning, tables and scenes are written in seconds, so changing it needs no data changes; every player must use the same value (it is part of the content hash). The editor applies a new value from the next play. To rename a project (the name is also the exe name), use the project manager or `tools\\rename_project.ps1 -Project <folder> -Name <new name>`."
+msgstr "`tickRate`는 초당 시뮬레이션 틱 수다: 30(기본) 또는 60. 60은 조작과 충돌이 더 정밀하지만 시뮬레이션 CPU와 입력 패킷이 2배라, 움직이는 물체가 적은 게임에 맞다. 튜닝·표·씬의 시간 값은 초로 적혀 있어 바꿔도 데이터를 고칠 필요가 없고, 모든 플레이어가 같은 값을 써야 한다(콘텐츠 해시에 들어간다). 에디터는 새 값을 다음 플레이부터 쓴다. 프로젝트 이름(exe 이름이기도 하다)을 바꾸려면 프로젝트 관리자나 `tools\\rename_project.ps1 -Project <folder> -Name <new name>`을 쓴다."
 
 msgid "Folder layout"
 msgstr "폴더 구조"
