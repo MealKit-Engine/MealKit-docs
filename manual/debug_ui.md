@@ -6,7 +6,7 @@ Screens for development (performance numbers, cheat buttons, state views) are wr
 
 | Build | How |
 |---|---|
-| Development game (`build.bat`, `Debug`, `Profile`) | Press `F1` to show or hide the overlay (`--debug-ui` starts with it shown). The engine window "MealKit" shows frame time, simulation time, network and audio numbers |
+| Development game (`build.bat`, `Debug`, `Profile`) | Press `F1` to show or hide the overlay (`--debug-ui` starts with it shown). The engine window "MealKit" shows average and worst frame time, simulation time, draw calls, network and audio numbers (the same numbers as the window title) |
 | Editor play mode | Always, as windows over the editor |
 | Release build (`build.bat Export`) | Not there: ImGui is not compiled in |
 

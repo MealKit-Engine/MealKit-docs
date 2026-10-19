@@ -37,8 +37,8 @@ msgstr "방법"
 msgid "Development game (`build.bat`, `Debug`, `Profile`)"
 msgstr "개발용 게임(`build.bat`, `Debug`, `Profile`)"
 
-msgid "Press `F1` to show or hide the overlay (`--debug-ui` starts with it shown). The engine window \"MealKit\" shows frame time, simulation time, network and audio numbers"
-msgstr "`F1`로 오버레이를 켜고 끈다(`--debug-ui`는 켠 채로 시작). 엔진 창 \"MealKit\"이 프레임 시간, 시뮬레이션 시간, 네트워크와 소리 숫자를 보여 준다"
+msgid "Press `F1` to show or hide the overlay (`--debug-ui` starts with it shown). The engine window \"MealKit\" shows average and worst frame time, simulation time, draw calls, network and audio numbers (the same numbers as the window title)"
+msgstr "`F1`로 오버레이를 켜고 끈다(`--debug-ui`는 켠 채로 시작). 엔진 창 \"MealKit\"이 평균·최악 프레임 시간, 시뮬레이션 시간, 드로우 콜, 네트워크와 소리 숫자를 보여 준다(창 제목과 같은 숫자)"
 
 msgid "Editor play mode"
 msgstr "에디터 플레이 모드"
