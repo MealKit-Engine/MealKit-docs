@@ -1,0 +1,276 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, KingProtea99 and MealKit contributors. CC BY 4.0
+# This file is distributed under the same license as the MealKit package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: MealKit 0.4\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-19 13:08+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ko\n"
+"Language-Team: ko <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+msgid "Sim"
+msgstr "시뮬레이션"
+
+#, python-brace-format
+msgid "This page explains the small tools that game simulation code (`sim/`) is built from: the object pool, the tick timer, tick events, confirmed commands and definition tables. `sim` comes after `net` and `physics` in the layer order (see \"엔진 폴더 사이 의존\" in {engine}`docs/CODING_MODEL.md`). It is header-only, and game `sim/` code uses these tools instead of writing its own (rule 1 of \"강제하는 방법\" in {engine}`docs/CODING_MODEL.md`). The code is in {engine}`engine/src/mealkit/sim`."
+msgstr "이 페이지는 게임 시뮬레이션 코드(`sim/`)를 짜는 작은 도구들을 설명한다: 객체 풀, 틱 타이머, 틱 이벤트, 확정 명령, 정의 데이터 표. `sim`은 계층 순서에서 `net`과 `physics` 다음이다({engine}`docs/CODING_MODEL.md`의 \"엔진 폴더 사이 의존\" 참고). 헤더만 있고, 게임 `sim/` 코드는 같은 일을 직접 만들지 않고 이 도구를 쓴다({engine}`docs/CODING_MODEL.md`의 \"강제하는 방법\" 1). 코드는 {engine}`engine/src/mealkit/sim`에 있다."
+
+msgid "The engine has no `World` type. Each game declares its own `World` with a `WorldState` of `MEALKIT_FIELD`s and a `step()` that calls its systems in order. The tools on this page are the pieces that go into that state."
+msgstr "엔진에는 `World` 타입이 없다. 게임마다 `MEALKIT_FIELD`로 된 `WorldState`와 시스템을 순서대로 부르는 `step()`을 가진 자기 `World`를 선언한다. 이 페이지의 도구는 그 상태에 들어가는 부품이다."
+
+msgid "Pool"
+msgstr "풀"
+
+#, python-brace-format
+msgid "`sim::Pool<T>` ({engine}`engine/src/mealkit/sim/Pool.h`) stores every object that appears and disappears during a match. Why all simulation objects come from a pool is in \"생성과 파괴\" in {engine}`docs/CODING_MODEL.md`."
+msgstr "`sim::Pool<T>`({engine}`engine/src/mealkit/sim/Pool.h`)는 매치 중에 생기고 사라지는 모든 객체를 담는다. 시뮬레이션 객체를 모두 풀에서 만드는 이유는 {engine}`docs/CODING_MODEL.md`의 \"생성과 파괴\"에 있다."
+
+msgid "Ids with generations"
+msgstr "세대 번호가 붙은 id"
+
+msgid "An item is found by `sim::Id<T>`: a slot number and a generation number. Every slot has a generation that starts at 1 and goes up by one each time the slot is freed (it skips 0 when it wraps around). `get(id)` returns the item only when the id's generation equals the slot's generation. An id kept after its object was destroyed therefore returns `nullptr`, even when the slot holds a new object. Generation 0 means an invalid id."
+msgstr "항목은 `sim::Id<T>`로 찾는다: 슬롯 번호와 세대 번호. 슬롯마다 세대가 있고, 1부터 시작해 슬롯이 비워질 때마다 하나씩 오른다(한 바퀴 돌면 0을 건너뛴다). `get(id)`는 id의 세대가 슬롯의 세대와 같을 때만 항목을 돌려준다. 그래서 객체가 지워진 뒤에도 남아 있던 id는 슬롯에 새 객체가 있어도 `nullptr`을 돌려준다. 세대 0은 무효 id다."
+
+msgid "Looking up an object is one array access and one comparison, and an id is two plain numbers, so it can be stored in any state field and hashed."
+msgstr "객체 조회는 배열 접근 한 번과 비교 한 번이고, id는 평범한 숫자 두 개라 어떤 상태 필드에도 저장하고 해시할 수 있다."
+
+msgid "Fixed capacity"
+msgstr "고정 용량"
+
+msgid "`init(capacity)` allocates everything once, when the match starts. After that the pool never allocates. When it is full, `create` returns an invalid id and `MEALKIT_ASSERT` fires. Every peer runs the same code, so every peer fails in the same way."
+msgstr "`init(capacity)`가 매치를 시작할 때 모든 것을 한 번에 할당한다. 그 뒤로 풀은 할당하지 않는다. 가득 차면 `create`가 무효 id를 돌려주고 `MEALKIT_ASSERT`가 걸린다. 모든 피어가 같은 코드를 돌리므로 모든 피어가 똑같이 실패한다."
+
+msgid "Slot states and the end of a tick"
+msgstr "슬롯 상태와 틱 끝"
+
+msgid "Each slot is `Free`, `New`, `Alive` or `Dying`:"
+msgstr "슬롯은 `Free`, `New`, `Alive`, `Dying` 중 하나다:"
+
+msgid "Call"
+msgstr "호출"
+
+msgid "Effect"
+msgstr "결과"
+
+msgid "`create(value)`"
+msgstr "`create(value)`"
+
+msgid "Takes the next free slot and marks it `New`. The id works with `get` at once, so a projectile made this tick can be used this tick."
+msgstr "다음 빈 슬롯을 가져와 `New`로 표시한다. id는 바로 `get`에 쓸 수 있어, 이번 틱에 만든 발사체를 이번 틱에 쓸 수 있다."
+
+msgid "iteration `for (auto [id, item] : pool)`"
+msgstr "순회 `for (auto [id, item] : pool)`"
+
+msgid "Visits only `Alive` slots, in slot order. Objects made this tick are not visited until the next tick."
+msgstr "`Alive` 슬롯만 슬롯 순서로 돈다. 이번 틱에 만든 객체는 다음 틱까지 나오지 않는다."
+
+msgid "`destroy(id)`"
+msgstr "`destroy(id)`"
+
+msgid "Only marks the slot `Dying`. From then on `get` and iteration skip it."
+msgstr "슬롯을 `Dying`으로 표시만 한다. 그 뒤로 `get`과 순회에서 빠진다."
+
+msgid "`endTick(onDestroy)`"
+msgstr "`endTick(onDestroy)`"
+
+msgid "Called once at the end of `World::step()`. Sorts this tick's destroyed slots by slot number, calls `onDestroy(item)` for each (for example to destroy its physics body), frees them and raises their generation. Then all `New` slots become `Alive`."
+msgstr "`World::step()` 끝에서 한 번 부른다. 이번 틱에 지운 슬롯을 슬롯 번호로 정렬하고, 각각 `onDestroy(item)`을 부른 뒤(예: 물리 바디 지우기) 비우고 세대를 올린다. 그다음 모든 `New` 슬롯이 `Alive`가 된다."
+
+msgid "Because creating does not change what the current loop visits and destroying does not free a slot until the tick ends, systems can create and destroy objects while iterating. A slot is never reused within the same tick."
+msgstr "만들어도 지금 도는 순회가 바뀌지 않고, 지워도 틱이 끝날 때까지 슬롯이 비워지지 않으므로, 시스템은 순회 도중에 객체를 만들고 지울 수 있다. 같은 틱 안에서 슬롯이 다시 쓰이는 일은 없다."
+
+msgid "Fixed order"
+msgstr "고정된 순서"
+
+msgid "Everything that decides order is the same on every peer:"
+msgstr "순서를 정하는 것은 모두 모든 피어에서 같다:"
+
+msgid "Iteration goes by slot number, not by creation time or memory address."
+msgstr "순회는 만든 시각이나 메모리 주소가 아니라 슬롯 번호 순서다."
+
+msgid "Free slots are a stack. `init` fills it so that slot 0 is used first. Freed slots are pushed back in slot order, because `endTick` sorts them first, whatever order `destroy` was called in."
+msgstr "빈 슬롯은 스택이다. `init`은 0번 슬롯부터 쓰이게 채운다. `destroy`를 부른 순서와 관계없이 `endTick`이 먼저 정렬하므로, 비운 슬롯은 슬롯 순서로 다시 쌓인다."
+
+msgid "`onDestroy` runs in slot order, so physics bodies are destroyed in the same order everywhere."
+msgstr "`onDestroy`는 슬롯 순서로 불리므로 물리 바디도 어디서나 같은 순서로 지워진다."
+
+msgid "Hash and snapshot"
+msgstr "해시와 스냅샷"
+
+msgid "`hashState` adds the capacity, the count, every slot's generation and state, and the free list. The items' fields are added by the game through their field declarations, one by one, so struct padding never enters the hash. `Pool` describes itself to the reflection system (`reflectOps`), so a `Pool` field in `WorldState` is hashed, saved in snapshots and shown in the editor's State panel without game code. `T` must be trivially copyable, so an item holds no pointers to owned memory and can be copied as bytes."
+msgstr "`hashState`는 용량, 개수, 슬롯마다의 세대와 상태, 빈 슬롯 목록을 넣는다. 항목의 필드는 게임이 필드 선언을 따라 하나씩 넣으므로 구조체 패딩이 해시에 섞이지 않는다. `Pool`은 리플렉션 시스템에 자기를 설명하므로(`reflectOps`), `WorldState`의 `Pool` 필드는 게임 코드 없이 해시되고, 스냅샷에 저장되고, 에디터 [상태] 패널에 보인다. `T`는 trivially copyable이어야 한다. 그래서 항목은 소유한 메모리를 가리키는 포인터가 없고 바이트로 복사할 수 있다."
+
+msgid "Tick timer"
+msgstr "틱 타이머"
+
+#, python-brace-format
+msgid "`sim::TickTimer` ({engine}`engine/src/mealkit/sim/TickTimer.h`) is \"ready N ticks from now\". It stores one number, `readyTick`:"
+msgstr "`sim::TickTimer`({engine}`engine/src/mealkit/sim/TickTimer.h`)는 \"지금부터 N틱 뒤 준비\"다. 숫자 하나 `readyTick`만 저장한다:"
+
+msgid "`start(now, ticks)` sets `readyTick = now + ticks`."
+msgstr "`start(now, ticks)`는 `readyTick = now + ticks`로 정한다."
+
+msgid "`ready(now)` is `now >= readyTick`."
+msgstr "`ready(now)`는 `now >= readyTick`이다."
+
+msgid "`remaining(now)` is the ticks left, or 0."
+msgstr "`remaining(now)`는 남은 틱 수, 또는 0이다."
+
+#, python-brace-format
+msgid "It does not count down every tick and holds no float time. It is a `MEALKIT_STRUCT`, so a timer field in the state is hashed and saved by itself. Durations come from data in seconds and are rounded to ticks once when loaded (the `Ticks` field type), so `sim/` code only sees whole ticks. See \"시간이 걸리는 일\" and \"시간 값\" in {engine}`docs/CODING_MODEL.md`."
+msgstr "매 틱 줄여 나가지 않고 실수 시간도 없다. `MEALKIT_STRUCT`라서 상태에 넣은 타이머 필드는 저절로 해시·저장된다. 지속 시간은 데이터에 초로 적고 불러올 때 한 번 틱으로 반올림하므로(`Ticks` 필드 타입), `sim/` 코드는 정수 틱만 본다. {engine}`docs/CODING_MODEL.md`의 \"시간이 걸리는 일\"과 \"시간 값\"을 참고한다."
+
+msgid "Tick events"
+msgstr "틱 이벤트"
+
+#, python-brace-format
+msgid "`sim::TickEvents<T, N>` ({engine}`engine/src/mealkit/sim/TickEvents.h`) is how the simulation tells the view that something happened (a hit, an impact, a sound). It is a fixed array of `N` items with a count:"
+msgstr "`sim::TickEvents<T, N>`({engine}`engine/src/mealkit/sim/TickEvents.h`)은 시뮬레이션이 화면에 무슨 일이 있었는지(맞음, 충돌, 소리) 알리는 방법이다. 항목 `N`개짜리 고정 배열과 개수다:"
+
+msgid "`sim/` code only writes: `world.events.push(event)`. It never reads the events."
+msgstr "`sim/` 코드는 쓰기만 한다: `world.events.push(event)`. 이벤트를 읽지 않는다."
+
+msgid "`World::step()` clears the array at the start of each tick."
+msgstr "`World::step()`이 틱 시작 때 배열을 비운다."
+
+msgid "After every `step()`, the game session moves the events into a queue on the view side, so no event is lost when one frame runs several ticks."
+msgstr "`step()`이 끝날 때마다 게임 세션이 이벤트를 화면 쪽 큐로 옮기므로, 한 프레임에 틱이 여러 번 돌아도 이벤트가 빠지지 않는다."
+
+msgid "Events are not part of the state hash, because the simulation never reads them. When the array is full, `push` asserts and drops the event, which only loses a visual effect."
+msgstr "시뮬레이션이 읽지 않으므로 이벤트는 상태 해시에 들어가지 않는다. 배열이 가득 차면 `push`가 assert를 걸고 이벤트를 버린다. 화면 효과 하나만 빠진다."
+
+msgid "Commands"
+msgstr "명령"
+
+#, python-brace-format
+msgid "{engine}`engine/src/mealkit/sim/Commands.h` puts types on top of the confirmed command channel of `net::LockstepSession` (see {doc}`net`). Commands are for things that are not player input: cheats, input delay changes, votes."
+msgstr "{engine}`engine/src/mealkit/sim/Commands.h`는 `net::LockstepSession`의 확정 명령 채널 위에 타입을 붙인다({doc}`net` 참고). 명령은 플레이어 입력이 아닌 것에 쓴다: 치트, 입력 지연 변경, 투표."
+
+msgid "A command type is a `MEALKIT_STRUCT` that is trivially copyable (no strings, containers or pointers)."
+msgstr "명령 타입은 trivially copyable한 `MEALKIT_STRUCT`다(문자열, 컨테이너, 포인터 없음)."
+
+msgid "`sim::sendCommand(session, command)` is called on the view side. It writes a 4-byte type id followed by the struct bytes. The type id is the FNV-1a hash of the type's declared name."
+msgstr "`sim::sendCommand(session, command)`는 화면 쪽에서 부른다. 4바이트 타입 id 뒤에 구조체 바이트를 쓴다. 타입 id는 타입의 선언 이름의 FNV-1a 해시다."
+
+msgid "`sim::forEachCommand(inputs, f)` is called at the start of `World::step()`. It gives each command with its player slot, in player order and then send order. `c.read(out)` copies the bytes when the type id and size match."
+msgstr "`sim::forEachCommand(inputs, f)`는 `World::step()` 맨 앞에서 부른다. 명령마다 플레이어 슬롯과 함께 플레이어 번호 → 보낸 순서로 넘겨준다. `c.read(out)`는 타입 id와 크기가 맞으면 바이트를 복사한다."
+
+#, python-brace-format
+msgid "Commands are copied as bytes, so they mean the same only between the same builds. Lockstep already needs the same build. They go into input recordings, rewind and the shadow simulation together with the inputs. See \"시뮬레이션에 넣는 입력 외 명령\" in {engine}`docs/CODING_MODEL.md`."
+msgstr "명령은 바이트로 복사되므로 같은 빌드끼리만 뜻이 같다. 락스텝은 이미 같은 빌드를 전제로 한다. 명령은 입력과 함께 입력 기록, 되감기, 그림자 시뮬레이션에 들어간다. {engine}`docs/CODING_MODEL.md`의 \"시뮬레이션에 넣는 입력 외 명령\"을 참고한다."
+
+msgid "Table"
+msgstr "표"
+
+#, python-brace-format
+msgid "`sim::Table<Row>` ({engine}`engine/src/mealkit/sim/Table.h`) holds a definition table in memory: row names (`ids`) and row values (`rows`), both in file order. `sim/` code reads rows by number (`table[index]`, or `table.get(ref)` for a `RowRef`). `find(name)` searches by name and is meant for loading and the view side, not for code inside a tick."
+msgstr "`sim::Table<Row>`({engine}`engine/src/mealkit/sim/Table.h`)는 메모리에 있는 정의 데이터 표다: 행 이름(`ids`)과 행 값(`rows`), 둘 다 파일 순서. `sim/` 코드는 행을 번호로 읽는다(`table[index]`, `RowRef`면 `table.get(ref)`). `find(name)`은 이름으로 찾는 함수로, 불러올 때와 화면 쪽용이지 틱 안의 코드용이 아니다."
+
+#, python-brace-format
+msgid "A table is not part of `WorldState`. The game copies it into its `World` when the match starts, and its contents enter the content hash instead of the state hash. Reading table files is the job of {doc}`data`."
+msgstr "표는 `WorldState`의 일부가 아니다. 게임이 매치를 시작할 때 자기 `World`에 복사하고, 내용은 상태 해시 대신 콘텐츠 해시에 들어간다. 표 파일 읽기는 {doc}`data`가 맡는다."
+
+msgid "Techniques used"
+msgstr "쓰인 기법"
+
+msgid "Technique"
+msgstr "기법"
+
+msgid "Where"
+msgstr "위치"
+
+msgid "What it does"
+msgstr "하는 일"
+
+msgid "Generational indices (slot map)"
+msgstr "세대 인덱스 (슬롯 맵)"
+
+msgid "`Pool`, `sim::Id`"
+msgstr "`Pool`, `sim::Id`"
+
+msgid "A slot number plus a generation. Lookups are O(1), and a stale id is detected instead of reaching a reused slot."
+msgstr "슬롯 번호 + 세대. 조회는 O(1)이고, 오래된 id는 다시 쓰인 슬롯에 닿지 않고 감지된다."
+
+msgid "Preallocated pool"
+msgstr "미리 할당한 풀"
+
+msgid "`Pool::init`"
+msgstr "`Pool::init`"
+
+msgid "All memory is taken at match start, so ticks never allocate."
+msgstr "모든 메모리를 매치 시작 때 잡아 틱 안에서는 할당하지 않는다."
+
+msgid "Deferred destruction"
+msgstr "지연 삭제"
+
+msgid "`Pool::destroy`, `endTick`"
+msgstr "`Pool::destroy`, `endTick`"
+
+msgid "Removal is a mark, and freeing happens once per tick, which makes create and destroy safe while iterating."
+msgstr "삭제는 표시이고 비우기는 틱마다 한 번이라, 순회 중의 생성·삭제가 안전하다."
+
+msgid "Deferred insertion into iteration"
+msgstr "순회에 늦게 넣기"
+
+msgid "`Slot::New`"
+msgstr "`Slot::New`"
+
+msgid "Objects made this tick wait one tick before loops visit them, so a loop never sees objects added during itself."
+msgstr "이번 틱에 만든 객체는 한 틱 기다린 뒤 순회에 나온다. 그래서 순회는 자기가 도는 동안 더해진 객체를 보지 않는다."
+
+msgid "Deterministic free list"
+msgstr "결정론적 빈 목록"
+
+msgid "`m_free`, `sortSlots`"
+msgstr "`m_free`, `sortSlots`"
+
+msgid "A stack of free slots refilled in slot order (insertion sort, since few slots die per tick). Slot reuse is the same on every peer."
+msgstr "빈 슬롯 스택을 슬롯 순서로 다시 채운다(한 틱에 사라지는 슬롯은 적어 삽입 정렬). 슬롯 재사용이 모든 피어에서 같다."
+
+msgid "Absolute-time timer"
+msgstr "절대 시각 타이머"
+
+msgid "`TickTimer`"
+msgstr "`TickTimer`"
+
+msgid "Stores the tick when it becomes ready instead of a countdown, so it needs no update and is one integer to hash."
+msgstr "줄어드는 카운트다운 대신 준비되는 틱을 저장하므로 갱신이 필요 없고 해시할 정수가 하나다."
+
+msgid "Write-only event buffer"
+msgstr "쓰기 전용 이벤트 버퍼"
+
+msgid "`TickEvents`"
+msgstr "`TickEvents`"
+
+msgid "A fixed array cleared each tick. The simulation never reads it, so it stays out of the state hash."
+msgstr "틱마다 비우는 고정 배열. 시뮬레이션이 읽지 않으므로 상태 해시 밖에 둔다."
+
+msgid "Type tag by name hash"
+msgstr "이름 해시로 붙인 타입 표시"
+
+msgid "`commandType`"
+msgstr "`commandType`"
+
+msgid "FNV-1a of the reflected type name identifies a command type without a central registry."
+msgstr "리플렉션 타입 이름의 FNV-1a로 명령 타입을 구분하므로 중앙 등록소가 없다."
+
+msgid "Field-by-field hashing"
+msgstr "필드 하나씩 해시"
+
+msgid "`Pool::hashState`, reflection"
+msgstr "`Pool::hashState`, 리플렉션"
+
+msgid "Only declared values enter the hash, never struct padding."
+msgstr "선언한 값만 해시에 들어가고 구조체 패딩은 들어가지 않는다."
+

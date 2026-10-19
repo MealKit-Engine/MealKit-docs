@@ -34,6 +34,9 @@ msgstr "엔진 개발"
 msgid "Internals: foundation"
 msgstr "내부 구조: 기반"
 
+msgid "Internals: simulation"
+msgstr "내부 구조: 시뮬레이션"
+
 msgid "Internals: game boundary"
 msgstr "내부 구조: 게임 경계"
 

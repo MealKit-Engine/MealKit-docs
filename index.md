@@ -68,6 +68,16 @@ engine_dev/internals/platform
 
 ```{toctree}
 :maxdepth: 2
+:caption: "Internals: simulation"
+
+engine_dev/internals/net
+engine_dev/internals/physics
+engine_dev/internals/sim
+engine_dev/internals/data
+```
+
+```{toctree}
+:maxdepth: 2
 :caption: "Internals: game boundary"
 
 engine_dev/internals/game
