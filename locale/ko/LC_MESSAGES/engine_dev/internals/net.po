@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-19 18:38+0900\n"
+"POT-Creation-Date: 2026-10-19 18:53+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ko\n"
@@ -200,6 +200,12 @@ msgstr "명령"
 #, python-brace-format
 msgid "Besides the 8-byte inputs, a peer can send a confirmed command of up to 200 bytes (`submitCommand`), for cheats, input delay changes or votes. The client keeps sending it until the host confirms it. The host puts waiting commands into the next tick it finalizes, in player order and then in the order they were sent. A tick holds up to 256 bytes of commands, including a 2-byte header per command. What does not fit goes into the next tick. Commands then travel with that tick's inputs, so every peer runs them on the same tick. The typed layer on top is `sim::sendCommand` (see {doc}`sim`)."
 msgstr "8바이트 입력과 별도로, 피어는 최대 200바이트의 확정 명령을 보낼 수 있다(`submitCommand`). 치트, 입력 지연 변경, 투표에 쓴다. 클라이언트는 호스트가 확인할 때까지 명령을 계속 다시 보낸다. 호스트는 기다리는 명령을 다음에 확정하는 틱에 플레이어 번호 → 보낸 순서로 싣는다. 한 틱에는 명령마다 머리 2바이트를 포함해 256바이트까지 실리고, 넘치는 것은 다음 틱으로 간다. 명령은 그 틱의 입력과 함께 가므로 모든 피어가 같은 틱에 실행한다. 그 위의 타입 있는 계층이 `sim::sendCommand`다({doc}`sim` 참고)."
+
+msgid "Ping and waiting"
+msgstr "핑과 기다림"
+
+msgid "The host measures the round trip time to each client in the lobby and during the match: it puts its own time in each lobby and bundle packet, the client returns the last one it got in its connect requests and input packets, and the host averages the difference per client. The host sends every player's value in the lobby list and in each bundle, so `pingMs(player)` is the same on every peer. When the host's confirmed tick has not moved for 0.15 seconds, the host puts the players whose inputs for that tick are missing into each bundle (`waitingFor()`). A client that gets no bundle for 0.3 seconds reports the host instead. During a match the host also sends the lobby list every 0.5 seconds as a **roster** packet, which updates names and pings without sending anyone back to the lobby; a client that joined just before an automatic start still learns the names this way."
+msgstr "호스트는 로비와 매치 동안 클라이언트마다 왕복 시간을 잰다: 로비·묶음 패킷마다 자기 시각을 넣고, 클라이언트는 받은 마지막 시각을 접속 요청·입력 패킷에 되돌려 주고, 호스트가 그 차이를 클라이언트마다 평균한다. 호스트는 모두의 값을 로비 명단과 묶음마다 실어 보내므로 `pingMs(player)`는 모든 피어에서 같다. 호스트의 확정 틱이 0.15초 동안 나아가지 않으면, 그 틱의 입력이 없는 플레이어를 묶음마다 싣는다(`waitingFor()`). 묶음을 0.3초 동안 받지 못한 클라이언트는 대신 호스트를 기다린다고 알린다. 매치 중에도 호스트는 0.5초마다 로비 명단을 **명단(roster)** 패킷으로 보내, 아무도 로비로 보내지 않고 이름과 핑만 갱신한다. 자동 시작 직전에 들어온 클라이언트도 이렇게 이름을 안다."
 
 msgid "Chat"
 msgstr "채팅"

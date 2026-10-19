@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-19 13:15+0900\n"
+"POT-Creation-Date: 2026-10-19 18:53+0900\n"
 "PO-Revision-Date: 2026-10-19 13:15+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -61,8 +61,8 @@ msgstr "마우스 감도, 마우스 Y 반전, 게임패드 감도, 게임패드 
 msgid "`gameplay`"
 msgstr "`gameplay`"
 
-msgid "language, interface scale, subtitles"
-msgstr "언어, 인터페이스 배율, 자막"
+msgid "language, interface scale, subtitles, network status"
+msgstr "언어, 인터페이스 크기, 자막, 네트워크 상태"
 
 msgid "There is no separate file schema: the field declarations give the names, types and defaults. `settings.ini` is written and read with the reflection text functions (`reflect::saveTextFile`, `loadTextFile`) as `path value` lines, for example `display.vsync true`. The file is in the user folder (`game::userFolder`), next to the player's key bindings. A field the file does not have keeps its default, so new settings in a game update need no file migration."
 msgstr "따로 된 파일 스키마는 없다: 필드 선언이 이름, 타입, 기본값을 준다. `settings.ini`는 필드 선언의 글자 함수(`reflect::saveTextFile`, `loadTextFile`)로 `경로 값` 줄을 쓰고 읽는다. 예를 들어 `display.vsync true`. 파일은 사용자 폴더(`game::userFolder`)에 플레이어의 키 바인딩과 나란히 있다. 파일에 없는 필드는 기본값을 지키므로, 게임 업데이트로 설정이 늘어도 파일을 옮겨 적을 필요가 없다."
@@ -123,8 +123,8 @@ msgid "`input::Actions::setLookSettings`"
 msgstr "`input::Actions::setLookSettings`"
 
 #, python-brace-format
-msgid "Render scale, graphics preset, field of view, brightness and subtitles are stored and shown on the settings screen, but the engine does not apply them itself; a game reads them with `ctx.settings.values()`. Muting in the background is read by the engine loop every frame ({engine}`engine/src/mealkit/game/GameMain.cpp`)."
-msgstr "렌더 배율, 그래픽 프리셋, 시야각, 밝기, 자막은 저장하고 설정 화면에 보이지만 엔진이 직접 적용하지 않는다. 게임이 `ctx.settings.values()`로 읽는다. 뒤로 가면 음소거는 엔진 루프가 매 프레임 읽는다({engine}`engine/src/mealkit/game/GameMain.cpp`)."
+msgid "Render scale, graphics preset, field of view, brightness, subtitles and the network status are stored and shown on the settings screen, but the engine does not apply them itself; a game reads them with `ctx.settings.values()`. Muting in the background is read by the engine loop every frame ({engine}`engine/src/mealkit/game/GameMain.cpp`)."
+msgstr "렌더 배율, 그래픽 품질, 시야각, 밝기, 자막, 네트워크 상태는 저장되고 설정 화면에 보이지만 엔진이 직접 적용하지 않는다. 게임이 `ctx.settings.values()`로 읽는다. 창이 뒤에 있을 때 음소거는 엔진 루프가 매 프레임 읽는다({engine}`engine/src/mealkit/game/GameMain.cpp`)."
 
 msgid "Every change goes through `change()`: it applies the new values and saves the file at once."
 msgstr "바꿀 때마다 `change()`를 거친다: 새 값을 적용하고 바로 파일을 저장한다."

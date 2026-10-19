@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-19 18:38+0900\n"
+"POT-Creation-Date: 2026-10-19 18:53+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -108,6 +108,9 @@ msgstr "`phase()`, `error()`"
 
 msgid "Which screen to show: menu, connecting, lobby, match or ended (with the reason)"
 msgstr "보일 화면: 메뉴, 접속 중, 로비, 매치, 끊김(이유와 함께)"
+
+msgid "During a match the example shows each player's ping next to their name and, when the match waits for someone's inputs for more than 0.15 seconds, \"Waiting for P3...\" at the top. `ctx.session.pingMs(player)` is the round trip time the host measured to each player (the lobby list has it too, `LobbyMember::pingMs`), and `ctx.session.waitingFor()` is the set of players the match waits for. Players can turn the display off in the settings (Game, network status)."
+msgstr "매치 중 예제는 이름 옆에 플레이어마다 핑을 보이고, 매치가 누군가의 입력을 0.15초 넘게 기다리면 위쪽에 \"P3 기다리는 중...\"을 보인다. `ctx.session.pingMs(player)`는 호스트가 잰 플레이어별 왕복 시간이고(로비 명단에도 `LobbyMember::pingMs`로 있다), `ctx.session.waitingFor()`는 매치가 기다리는 플레이어 묶음이다. 플레이어는 설정(게임, 네트워크 상태)에서 표시를 끌 수 있다."
 
 msgid "In the lobby, `ctx.session` has the players (`lobbyMembers()`: name, ready, host, the loadout they picked), `setLocalName`, `setLocalReady` and the chat (`sendChat`, `chatLog`). Chat lines go through the host, so everyone sees them in the same order; they are not part of the match and are not recorded. When the match must end is decided by the simulation (the example's `MatchPhase`: countdown, playing, finished), so every peer shows the results on the same tick. The engine calls `GameInstance::start` one frame after the session starts the match (so the loading screen is drawn) and `GameInstance::stop` when the match is over. A game that draws these screens returns `true` from `GameInstance::menus()`; the engine then leaves `Esc` and `Enter` to the game."
 msgstr "로비에서는 `ctx.session`에 사람 목록(`lobbyMembers()`: 이름, 준비, 방장, 고른 로드아웃), `setLocalName`, `setLocalReady`, 채팅(`sendChat`, `chatLog`)이 있다. 채팅 줄은 호스트를 거쳐 모두 같은 순서로 보고, 매치의 일부가 아니라 기록되지 않는다. 매치가 언제 끝나는지는 시뮬레이션이 정하므로(예제의 `MatchPhase`: 카운트다운, 경기, 끝) 모든 피어가 같은 틱에 결과를 보인다. 엔진은 세션이 매치를 시작하고 한 프레임 뒤(로딩 화면을 그리게) `GameInstance::start`를, 매치가 끝나면 `GameInstance::stop`을 부른다. 이 화면들을 그리는 게임은 `GameInstance::menus()`에서 `true`를 돌려주고, 그러면 엔진은 `Esc`와 `Enter`를 게임에 맡긴다."

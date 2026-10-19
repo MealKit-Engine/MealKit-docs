@@ -97,6 +97,12 @@ Besides the 8-byte inputs, a peer can send a confirmed command of up to 200 byte
 The host puts waiting commands into the next tick it finalizes, in player order and then in the order they were sent. A tick holds up to 256 bytes of commands, including a 2-byte header per command. What does not fit goes into the next tick.
 Commands then travel with that tick's inputs, so every peer runs them on the same tick. The typed layer on top is `sim::sendCommand` (see {doc}`sim`).
 
+### Ping and waiting
+
+The host measures the round trip time to each client in the lobby and during the match: it puts its own time in each lobby and bundle packet, the client returns the last one it got in its connect requests and input packets, and the host averages the difference per client. The host sends every player's value in the lobby list and in each bundle, so `pingMs(player)` is the same on every peer.
+When the host's confirmed tick has not moved for 0.15 seconds, the host puts the players whose inputs for that tick are missing into each bundle (`waitingFor()`). A client that gets no bundle for 0.3 seconds reports the host instead.
+During a match the host also sends the lobby list every 0.5 seconds as a **roster** packet, which updates names and pings without sending anyone back to the lobby; a client that joined just before an automatic start still learns the names this way.
+
 ### Chat
 
 `sendChat` sends one line of up to 120 bytes, at most one every 0.5 seconds. A client keeps its unconfirmed lines and sends them every 0.1 seconds in a chat packet together with the index of the last relayed line it has. The host numbers each line it accepts, adds it to its own log and relays it to every client the same way, until each confirms it.

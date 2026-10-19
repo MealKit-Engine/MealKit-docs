@@ -15,7 +15,7 @@ The settings are one `MEALKIT_STRUCT` with four sections ({engine}`engine/src/me
 | `display` | window mode, width, height, vsync, frame limit, render scale, graphics preset, field of view, brightness |
 | `audio` | master, music, effects, interface and voice volume, mute in the background |
 | `controls` | mouse sensitivity, invert mouse Y, gamepad sensitivity, invert gamepad Y |
-| `gameplay` | language, interface scale, subtitles |
+| `gameplay` | language, interface scale, subtitles, network status |
 
 There is no separate file schema: the field declarations give the names, types and defaults. `settings.ini` is written and read with the reflection text functions (`reflect::saveTextFile`, `loadTextFile`) as `path value` lines, for example `display.vsync true`.
 The file is in the user folder (`game::userFolder`), next to the player's key bindings. A field the file does not have keeps its default, so new settings in a game update need no file migration.
@@ -35,7 +35,7 @@ The file is in the user folder (`game::userFolder`), next to the player's key bi
 | interface scale | `ui::System::setScale` |
 | sensitivity and invert | `input::Actions::setLookSettings` |
 
-Render scale, graphics preset, field of view, brightness and subtitles are stored and shown on the settings screen, but the engine does not apply them itself; a game reads them with `ctx.settings.values()`.
+Render scale, graphics preset, field of view, brightness, subtitles and the network status are stored and shown on the settings screen, but the engine does not apply them itself; a game reads them with `ctx.settings.values()`.
 Muting in the background is read by the engine loop every frame ({engine}`engine/src/mealkit/game/GameMain.cpp`).
 
 Every change goes through `change()`: it applies the new values and saves the file at once.
