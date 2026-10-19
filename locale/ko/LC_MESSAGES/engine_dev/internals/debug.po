@@ -1,0 +1,207 @@
+# Korean translation of the MealKit documentation.
+# This file is distributed under the same license as the MealKit documentation (CC BY 4.0).
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: MealKit 0.4\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-19 13:15+0900\n"
+"PO-Revision-Date: 2026-10-19 13:15+0900\n"
+"Last-Translator: KingProtea99\n"
+"Language: ko\n"
+"Language-Team: Korean\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+msgid "Debug"
+msgstr "디버그"
+
+#, python-brace-format
+msgid "This page explains how Dear ImGui is connected to the engine's window and renderer, and how the F1 overlay of development builds works. How to write debug windows for a game is in {doc}`../../manual/debug_ui`. The code is in {engine}`engine/src/mealkit/debug`."
+msgstr "이 페이지는 Dear ImGui를 엔진의 창과 렌더러에 어떻게 잇는지, 개발 빌드의 F1 오버레이가 어떻게 동작하는지 설명한다. 게임의 디버그 창 쓰는 법은 {doc}`../../manual/debug_ui`에 있다. 코드는 {engine}`engine/src/mealkit/debug`에 있다."
+
+#, python-brace-format
+msgid "`debug` comes after `online` and before `input` in the folder order of {engine}`docs/CODING_MODEL.md` (\"엔진 폴더 사이 의존\"). It uses `platform` (the window) and `render` (the device and the command list). Debug UI is only for development tools; game UI is a different system (see {doc}`ui`). Why the two are separate is in {engine}`docs/CODING_MODEL.md` (\"코드로 짜는 UI\")."
+msgstr "`debug`는 {engine}`docs/CODING_MODEL.md`(\"엔진 폴더 사이 의존\")의 폴더 순서에서 `online` 다음, `input` 앞이다. `platform`(창)과 `render`(장치와 명령 리스트)를 쓴다. 디버그 UI는 개발 도구 전용이고, 게임 UI는 다른 시스템이다({doc}`ui` 참고). 둘을 나눈 이유는 {engine}`docs/CODING_MODEL.md`(\"코드로 짜는 UI\")에 있다."
+
+msgid "When it is built"
+msgstr "언제 빌드되나"
+
+#, python-brace-format
+msgid "The folder and Dear ImGui are compiled only when `MEALKIT_DEBUG_UI` is on ({engine}`cmake/MealKit.cmake`, {engine}`engine/CMakeLists.txt`):"
+msgstr "이 폴더와 Dear ImGui는 `MEALKIT_DEBUG_UI`가 켜졌을 때만 컴파일된다({engine}`cmake/MealKit.cmake`, {engine}`engine/CMakeLists.txt`):"
+
+msgid "Build"
+msgstr "빌드"
+
+msgid "Debug UI"
+msgstr "디버그 UI"
+
+msgid "Editor"
+msgstr "에디터"
+
+msgid "Always on. ImGui is inside `mealkit.dll`, so the editor and the game DLL share one ImGui and one context."
+msgstr "항상 켜짐. ImGui가 `mealkit.dll` 안에 있어서 에디터와 게임 DLL이 ImGui 하나와 컨텍스트 하나를 같이 쓴다."
+
+msgid "Development game exe"
+msgstr "개발용 게임 exe"
+
+msgid "On by default. ImGui is linked into the static engine library."
+msgstr "기본으로 켜짐. ImGui가 정적 엔진 라이브러리에 링크된다."
+
+msgid "Release (`build.bat Export`)"
+msgstr "출시 (`build.bat Export`)"
+
+msgid "Off. The exe contains no ImGui at all."
+msgstr "꺼짐. exe에 ImGui가 전혀 없다."
+
+msgid "ImGui's own sources are compiled as a separate object library with warnings off, then added to the engine target, so the engine's strict warning level does not apply to outside code. The engine target passes `MEALKIT_DEBUG_UI=1` and the ImGui include path on to the game, which wraps its debug code in `#if MEALKIT_DEBUG_UI`."
+msgstr "ImGui 소스는 경고를 끈 별도 오브젝트 라이브러리로 컴파일한 뒤 엔진 타깃에 넣는다. 그래서 엔진의 엄격한 경고 수준이 외부 코드에 걸리지 않는다. 엔진 타깃은 `MEALKIT_DEBUG_UI=1`과 ImGui include 경로를 게임에 넘기고, 게임은 디버그 코드를 `#if MEALKIT_DEBUG_UI`로 감싼다."
+
+msgid "ImGuiLayer"
+msgstr "ImGuiLayer"
+
+#, python-brace-format
+msgid "`debug::ImGuiLayer` ({engine}`engine/src/mealkit/debug/ImGuiLayer.h`) connects ImGui's Win32 and DX12 backends to a MealKit `Window` and `Renderer`."
+msgstr "`debug::ImGuiLayer`({engine}`engine/src/mealkit/debug/ImGuiLayer.h`)는 ImGui의 Win32·DX12 백엔드를 MealKit의 `Window`와 `Renderer`에 잇는다."
+
+#, python-brace-format
+msgid "`init` ({engine}`engine/src/mealkit/debug/ImGuiLayer.cpp`):"
+msgstr "`init` ({engine}`engine/src/mealkit/debug/ImGuiLayer.cpp`):"
+
+msgid "Creates the ImGui context with keyboard navigation and docking. When an ini path is given, window positions are saved there (the editor does this, the game overlay does not)."
+msgstr "키보드 탐색과 도킹을 켠 ImGui 컨텍스트를 만든다. ini 경로를 주면 창 위치를 거기에 저장한다(에디터는 주고, 게임 오버레이는 주지 않는다)."
+
+msgid "Reads the window's DPI scale and scales the style and the fonts by it. The style is ImGui's dark style with MealKit's own colors and rounding."
+msgstr "창의 DPI 배율을 읽어 스타일과 글꼴을 그만큼 키운다. 스타일은 ImGui의 어두운 스타일에 MealKit의 색과 둥글기를 더한 것이다."
+
+msgid "Loads Segoe UI for Latin text and merges Malgun Gothic for Korean, both at 16 pixels. Malgun Gothic alone would show the backslash as ₩. An icon font is merged on top: Segoe Fluent Icons on Windows 11, Segoe MDL2 Assets on Windows 10 (the same code points), moved down 3 pixels to sit in the middle of a Korean line. ImGui 1.92 builds glyphs when they are first used, so the full Hangul range is not baked in advance."
+msgstr "라틴 글자용 Segoe UI를 읽고 한글용 맑은 고딕을 합친다. 둘 다 16픽셀이다. 맑은 고딕만 쓰면 역슬래시가 ₩로 보인다. 그 위에 아이콘 글꼴을 합친다: Windows 11은 Segoe Fluent Icons, Windows 10은 Segoe MDL2 Assets(코드 포인트가 같다). 한글 줄 가운데에 오도록 3픽셀 내린다. ImGui 1.92는 글자를 처음 쓸 때 만들므로 한글 전체 범위를 미리 굽지 않는다."
+
+msgid "Starts the Win32 backend and installs a message hook on the window, so ImGui sees the window messages."
+msgstr "Win32 백엔드를 시작하고 창에 메시지 훅을 달아 ImGui가 창 메시지를 보게 한다."
+
+msgid "Starts the DX12 backend with the renderer's `NativeHandles`: device, queue, frames in flight, and the overlay render target format (no gamma conversion, the same view the game UI uses)."
+msgstr "렌더러의 `NativeHandles`로 DX12 백엔드를 시작한다: 장치, 큐, 동시 처리 프레임 수, 오버레이 렌더 타깃 형식(감마 변환 없음, 게임 UI가 쓰는 것과 같은 뷰)."
+
+msgid "The DX12 backend needs shader-visible descriptors for its font texture and for user textures. The layer creates its own heap of 64 descriptors and gives the backend allocate and free callbacks that work on a list of free slots."
+msgstr "DX12 백엔드는 글꼴 텍스처와 사용자 텍스처에 셰이더가 보는 디스크립터가 필요하다. 이 층은 디스크립터 64개짜리 자기 힙을 만들고, 빈 자리 목록으로 동작하는 할당·해제 콜백을 백엔드에 준다."
+
+msgid "Each frame:"
+msgstr "매 프레임:"
+
+msgid "`newFrame` deletes textures that were released and that the backend has finished with, then starts a new ImGui frame."
+msgstr "`newFrame`은 놓아준 텍스처 중 백엔드가 다 쓴 것을 지우고 새 ImGui 프레임을 시작한다."
+
+msgid "`render(renderer, frameActive)` always calls `ImGui::Render()`, so the ImGui frame is closed even when nothing is drawn (a minimized window). When the renderer's frame is open, it binds the overlay view (`beginOverlay`), sets its descriptor heap and records ImGui's draw data into the renderer's command list."
+msgstr "`render(renderer, frameActive)`는 언제나 `ImGui::Render()`를 불러, 아무것도 그리지 않을 때(창 최소화)도 ImGui 프레임을 닫는다. 렌더러 프레임이 열려 있으면 오버레이 뷰를 묶고(`beginOverlay`), 디스크립터 힙을 정하고, ImGui 그리기 데이터를 렌더러의 명령 리스트에 기록한다."
+
+msgid "`createTexture` makes an RGBA texture that `ImGui::Image` can draw; the backend uploads it in the next frame. `releaseTexture` only marks it, and it is deleted a few frames later when the backend reports that the GPU is done with it."
+msgstr "`createTexture`는 `ImGui::Image`로 그릴 RGBA 텍스처를 만들고, 백엔드가 다음 프레임에 올린다. `releaseTexture`는 표시만 하고, 몇 프레임 뒤 백엔드가 GPU가 다 썼다고 알리면 지운다."
+
+msgid "The F1 overlay"
+msgstr "F1 오버레이"
+
+#, python-brace-format
+msgid "In a development game exe, the engine's main loop ({engine}`engine/src/mealkit/game/GameMain.cpp`) owns one `ImGuiLayer`:"
+msgstr "개발용 게임 exe에서는 엔진의 메인 루프({engine}`engine/src/mealkit/game/GameMain.cpp`)가 `ImGuiLayer`를 하나 갖는다:"
+
+msgid "It is created the first time `F1` is pressed, or at start with `--debug-ui`. Creating it reads fonts, so a session that never opens the overlay does not pay for it."
+msgstr "`F1`을 처음 누를 때, 또는 `--debug-ui`면 시작할 때 만든다. 만들 때 글꼴을 읽으므로, 오버레이를 한 번도 열지 않는 세션은 그 비용을 내지 않는다."
+
+msgid "`F1` shows and hides it. While it is shown and ImGui wants the keyboard or the mouse (`WantCaptureKeyboard`, `WantCaptureMouse`), the game does not get that input."
+msgstr "`F1`이 보이고 숨긴다. 보이는 동안 ImGui가 키보드나 마우스를 원하면(`WantCaptureKeyboard`, `WantCaptureMouse`) 게임은 그 입력을 받지 않는다."
+
+msgid "The window \"MealKit\" sits at the bottom left and sizes itself to its content. It shows the performance lines of `game::FrameStats` (frame time, draw calls, network and sound numbers, one line per item) and the reminder `F1: hide | V: vsync | F12: screenshot`. The text is refreshed once per report period of 0.25 seconds."
+msgstr "\"MealKit\" 창은 왼쪽 아래에 있고 내용에 맞춰 크기를 정한다. `game::FrameStats`의 성능 줄(프레임 시간, 드로우 콜, 네트워크와 소리 숫자, 항목마다 한 줄)과 안내 `F1: hide | V: vsync | F12: screenshot`을 보여 준다. 글자는 보고 주기 0.25초마다 한 번 새로 고친다."
+
+msgid "Then the game's own `GameInstance::debugUi(ctx)` runs inside the same ImGui frame."
+msgstr "그다음 게임의 `GameInstance::debugUi(ctx)`가 같은 ImGui 프레임 안에서 돈다."
+
+msgid "The overlay is drawn after the 3D scene and after the game UI, so it is always on top."
+msgstr "오버레이는 3D 장면과 게임 UI 다음에 그려서 언제나 맨 위에 있다."
+
+msgid "Techniques used"
+msgstr "쓰인 기법"
+
+msgid "Technique"
+msgstr "기법"
+
+msgid "Where"
+msgstr "위치"
+
+msgid "What it does"
+msgstr "하는 일"
+
+msgid "Immediate mode GUI"
+msgstr "즉시 모드 GUI"
+
+msgid "Dear ImGui"
+msgstr "Dear ImGui"
+
+msgid "The debug UI is rebuilt from data every frame, so debug windows need no saved widget state."
+msgstr "디버그 UI를 매 프레임 데이터에서 다시 만들므로, 디버그 창이 위젯 상태를 저장할 필요가 없다."
+
+msgid "Compile-time feature switch"
+msgstr "컴파일 때 기능 스위치"
+
+msgid "`MEALKIT_DEBUG_UI`"
+msgstr "`MEALKIT_DEBUG_UI`"
+
+msgid "Debug UI code is removed from release builds by the preprocessor, which keeps ImGui out of the shipped exe."
+msgstr "전처리기가 출시 빌드에서 디버그 UI 코드를 빼서, 출시 exe에 ImGui가 들어가지 않는다."
+
+msgid "Backend adapter"
+msgstr "백엔드 어댑터"
+
+msgid "`ImGuiLayer::init`"
+msgstr "`ImGuiLayer::init`"
+
+msgid "Plugs ImGui's stock Win32 and DX12 backends into the engine's window message hook and the renderer's native handles."
+msgstr "ImGui 기본 Win32·DX12 백엔드를 엔진 창의 메시지 훅과 렌더러의 원시 핸들에 꽂는다."
+
+msgid "Free-list descriptor allocator"
+msgstr "빈 자리 목록 디스크립터 할당자"
+
+msgid "`ImGuiLayerAccess::alloc` / `free`"
+msgstr "`ImGuiLayerAccess::alloc` / `free`"
+
+msgid "A fixed heap of 64 descriptors whose free slots are kept on a stack."
+msgstr "디스크립터 64개의 고정 힙이고, 빈 자리를 스택에 둔다."
+
+msgid "Deferred destruction"
+msgstr "미룬 해제"
+
+msgid "`releaseTexture`, `newFrame`"
+msgstr "`releaseTexture`, `newFrame`"
+
+msgid "A texture is deleted only after the backend says the GPU stopped using it, which avoids freeing memory still in flight."
+msgstr "백엔드가 GPU가 쓰기를 마쳤다고 할 때만 텍스처를 지워서, 아직 쓰이는 메모리를 풀지 않는다."
+
+msgid "Font merging"
+msgstr "글꼴 합치기"
+
+msgid "`init`"
+msgstr "`init`"
+
+msgid "Several fonts form one ImGui font: Latin, Korean and icons, each from the font best suited for it."
+msgstr "글꼴 여러 개가 ImGui 글꼴 하나가 된다: 라틴 글자, 한글, 아이콘을 각각 가장 알맞은 글꼴에서."
+
+msgid "Lazy start"
+msgstr "늦은 시작"
+
+msgid "`GameMain.cpp`"
+msgstr "`GameMain.cpp`"
+
+msgid "The overlay and its fonts are created on first use."
+msgstr "오버레이와 글꼴을 처음 쓸 때 만든다."
+
+msgid "Input capture"
+msgstr "입력 가로채기"
+
+msgid "ImGui's `WantCapture*` flags decide whether the game sees keys and the mouse this frame."
+msgstr "ImGui의 `WantCapture*` 플래그가 이번 프레임에 게임이 키와 마우스를 볼지 정한다."
+

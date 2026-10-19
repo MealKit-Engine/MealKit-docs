@@ -1,0 +1,568 @@
+# Korean translation of the MealKit documentation.
+# This file is distributed under the same license as the MealKit documentation (CC BY 4.0).
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: MealKit 0.4\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-19 13:15+0900\n"
+"PO-Revision-Date: 2026-10-19 13:15+0900\n"
+"Last-Translator: KingProtea99\n"
+"Language: ko\n"
+"Language-Team: Korean\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+msgid "UI"
+msgstr "UI"
+
+#, python-brace-format
+msgid "This page explains how game screen UI works inside: how a `.ui` file is read, how the layout is computed, how view models and actions connect it to game code, how text and images are baked, and how a frame of UI is drawn. How to write screens is in {doc}`../../manual/ui`. The code is in {engine}`engine/src/mealkit/ui`; the shader is described in {doc}`render`."
+msgstr "이 페이지는 게임 화면 UI가 안에서 어떻게 돌아가는지 설명한다: `.ui` 파일을 어떻게 읽는지, 배치를 어떻게 계산하는지, 뷰 모델과 액션이 게임 코드와 어떻게 잇는지, 글자와 이미지를 어떻게 굽는지, UI 한 프레임을 어떻게 그리는지. 화면 쓰는 법은 {doc}`../../manual/ui`에 있다. 코드는 {engine}`engine/src/mealkit/ui`에 있고, 셰이더는 {doc}`render`에서 설명한다."
+
+#, python-brace-format
+msgid "`ui` comes after `audio` and before `feedback` in the folder order of {engine}`docs/CODING_MODEL.md` (\"엔진 폴더 사이 의존\"). It uses `loc` for text, `input` for keyboard and gamepad navigation and `render` for the atlases and the draw call. Screens are designed in Penpot and exported to `.ui` by a plugin; until the plugin exists, `.ui` files are written by hand. Why is in {engine}`docs/CODING_MODEL.md` (\"게임 UI를 만드는 방법\")."
+msgstr "`ui`는 {engine}`docs/CODING_MODEL.md`(\"엔진 폴더 사이 의존\")의 폴더 순서에서 `audio` 다음, `feedback` 앞이다. 글자에 `loc`, 키보드·게임패드 탐색에 `input`, 아틀라스와 드로우 콜에 `render`를 쓴다. 화면은 Penpot에서 디자인하고 플러그인이 `.ui`로 내보낸다. 플러그인이 생기기 전까지 `.ui` 파일은 손으로 쓴다. 이유는 {engine}`docs/CODING_MODEL.md`(\"게임 UI를 만드는 방법\")에 있다."
+
+msgid "Files"
+msgstr "파일"
+
+msgid "File"
+msgstr "파일"
+
+msgid "Holds"
+msgstr "내용"
+
+#, python-brace-format
+msgid "{engine}`engine/src/mealkit/ui/Document.h`"
+msgstr "{engine}`engine/src/mealkit/ui/Document.h`"
+
+msgid "The `.ui` file model (`Document`, `Node`) and the theme."
+msgstr "`.ui` 파일 모델(`Document`, `Node`)과 테마."
+
+#, python-brace-format
+msgid "{engine}`engine/src/mealkit/ui/Document.cpp`"
+msgstr "{engine}`engine/src/mealkit/ui/Document.cpp`"
+
+msgid "The `.ui` and theme parser."
+msgstr "`.ui`와 테마 해석기."
+
+#, python-brace-format
+msgid "{engine}`engine/src/mealkit/ui/Ui.h`"
+msgstr "{engine}`engine/src/mealkit/ui/Ui.h`"
+
+msgid "`ui::System`, the runtime that games use (`ctx.ui`)."
+msgstr "게임이 쓰는 런타임 `ui::System`(`ctx.ui`)."
+
+#, python-brace-format
+msgid "{engine}`engine/src/mealkit/ui/Ui.cpp`"
+msgstr "{engine}`engine/src/mealkit/ui/Ui.cpp`"
+
+msgid "Bindings, layout, text shaping, input and drawing."
+msgstr "바인딩, 배치, 글자 모양 잡기, 입력, 그리기."
+
+#, python-brace-format
+msgid "{engine}`engine/src/mealkit/ui/Atlas.h`"
+msgstr "{engine}`engine/src/mealkit/ui/Atlas.h`"
+
+msgid "Fonts and images in the two UI atlases."
+msgstr "UI 아틀라스 두 장의 글꼴과 이미지."
+
+#, python-brace-format
+msgid "{engine}`engine/src/mealkit/ui/Atlas.cpp`"
+msgstr "{engine}`engine/src/mealkit/ui/Atlas.cpp`"
+
+msgid "Glyph SDF baking, image loading, atlas packing."
+msgstr "글자 SDF 굽기, 이미지 불러오기, 아틀라스 채우기."
+
+msgid "The .ui format"
+msgstr ".ui 형식"
+
+msgid "One line is one property, `name value...`. Lines starting with `#` are comments."
+msgstr "한 줄이 속성 하나다(`이름 값...`). `#`로 시작하는 줄은 주석이다."
+
+msgid "`board <name> <width> <height>` opens the root at the top of the file. Its size is the design resolution in logical units (usually 1920 × 1080)."
+msgstr "`board <이름> <너비> <높이>`가 파일 맨 위에서 뿌리를 연다. 크기는 논리 단위의 디자인 해상도다(보통 1920 × 1080)."
+
+msgid "`frame`, `text` and `image` open child nodes, and `end` closes the last open node."
+msgstr "`frame`, `text`, `image`가 자식 노드를 열고, `end`가 마지막으로 연 노드를 닫는다."
+
+msgid "`use <name> <component.ui>` puts the board of another file here as a frame. `set <child> <property> <value>` inside it changes a property of one of the component's nodes."
+msgstr "`use <이름> <컴포넌트.ui>`는 다른 파일의 보드를 이 자리에 frame으로 넣는다. 그 안의 `set <자식> <속성> <값>`은 컴포넌트 노드 하나의 속성을 바꾼다."
+
+msgid "Board-level lines: `navigation` (keyboard and gamepad move between widgets), `firstFocus <node>` and `back <action>`."
+msgstr "보드 줄: `navigation`(키보드·게임패드로 위젯 사이를 옮긴다), `firstFocus <노드>`, `back <액션>`."
+
+msgid "Colors are `#RRGGBB` or `#RRGGBBAA`, or a theme token `$name` from `assets/ui/theme.ui` (`color <name> #...` and `number <name> <value>` lines). Number tokens are replaced when the file is read; color tokens are looked up when the screen is loaded."
+msgstr "색은 `#RRGGBB`나 `#RRGGBBAA`, 또는 `assets/ui/theme.ui`의 테마 토큰 `$이름`이다(`color <이름> #...`과 `number <이름> <값>` 줄). 숫자 토큰은 파일을 읽을 때 바꾸고, 색 토큰은 화면을 불러올 때 찾는다."
+
+#, python-brace-format
+msgid "`parseDocument` ({engine}`engine/src/mealkit/ui/Document.cpp`) keeps a stack of open nodes. A property line goes to the node on top of the stack through `applyProperty`, the same function that later applies state overrides (`on hover ...`). Errors are collected as `file(line): message` and the parser continues, so a screen with one typo still shows. A missing `end`, a second board or a property outside a node are errors."
+msgstr "`parseDocument`({engine}`engine/src/mealkit/ui/Document.cpp`)는 열린 노드의 스택을 둔다. 속성 줄은 `applyProperty`로 스택 맨 위 노드에 간다. 나중에 상태 덮어쓰기(`on hover ...`)를 적용하는 것도 같은 함수다. 오류는 `file(line): message`로 모으고 해석을 이어 가므로, 오타 하나가 있는 화면도 보인다. 빠진 `end`, 두 번째 보드, 노드 밖의 속성은 오류다."
+
+msgid "Components are read recursively. The nesting stops at depth 8, so two components that use each other cannot loop forever."
+msgstr "컴포넌트는 재귀로 읽는다. 중첩은 깊이 8에서 멈추므로, 서로를 쓰는 두 컴포넌트가 끝없이 돌지 않는다."
+
+msgid "A file whose first line is `# MealKit UI exported from Penpot` is marked as exported, and the editor's UI panel shows it as not to be edited by hand."
+msgstr "첫 줄이 `# MealKit UI exported from Penpot`인 파일은 내보낸 것으로 표시되고, 에디터 [UI] 패널이 손으로 고치지 말라고 보여 준다."
+
+msgid "Nodes as a flat tree"
+msgstr "평평한 트리로 둔 노드"
+
+msgid "The nodes are stored in one array in depth-first order, `[0]` is the board. Each node has its `parent` index and an `end` index: its subtree is exactly the range `[i + 1, end)`. `computeEnds` fills `end` in one pass with a stack. With this layout, \"all children of i\" is a loop `c = i + 1; c < end; c = nodes[c].end`, without child lists or pointers."
+msgstr "노드는 깊이 우선 순서의 배열 하나에 있고 `[0]`이 보드다. 노드마다 `parent` 번호와 `end` 번호가 있다: 하위 트리는 정확히 `[i + 1, end)` 범위다. `computeEnds`가 스택으로 한 번에 `end`를 채운다. 이 배치에서 \"i의 모든 자식\"은 자식 목록이나 포인터 없이 `c = i + 1; c < end; c = nodes[c].end` 반복이다."
+
+msgid "Screens and view models"
+msgstr "화면과 뷰 모델"
+
+#, python-brace-format
+msgid "`ui::System` ({engine}`engine/src/mealkit/ui/Ui.h`) holds the open screens. `open(path, layer)` loads a file; a higher layer is drawn on top and gets input first."
+msgstr "`ui::System`({engine}`engine/src/mealkit/ui/Ui.h`)이 열린 화면을 갖는다. `open(path, layer)`가 파일을 불러온다. 층이 높은 화면이 위에 그려지고 입력을 먼저 받는다."
+
+msgid "Game code connects to a screen in one direction only:"
+msgstr "게임 코드는 화면과 한 방향으로만 잇는다:"
+
+msgid "`bind(screen, viewModel)` gives the screen a `MEALKIT_VIEWMODEL` value (a type description and a pointer, `reflect::View`). The game fills this value every frame from its state."
+msgstr "`bind(screen, viewModel)`이 화면에 `MEALKIT_VIEWMODEL` 값(타입 설명과 포인터, `reflect::View`)을 준다. 게임은 매 프레임 자기 상태에서 이 값을 채운다."
+
+msgid "The screen reads fields by path. A node's bindings are `visible`, `disabled` (both may start with `!` to invert), a width ratio (0..1, for health bars) and a color."
+msgstr "화면은 경로로 필드를 읽는다. 노드의 바인딩은 `visible`, `disabled`(둘 다 `!`로 시작하면 반대), 너비 비율(0..1, 체력 막대용), 색이다."
+
+#, python-brace-format
+msgid "Text may contain `{field}` or `{field:format}`. Formats are `n` (thousands separators), `n1` or `f2` (decimals), `time` (minutes:seconds) and `pct` (0..1 as percent). Enum fields show their value name. `{option}` is the current choice of the nearest select widget."
+msgstr "글자에는 `{필드}`나 `{필드:서식}`을 넣을 수 있다. 서식은 `n`(천 단위 구분), `n1`이나 `f2`(소수 자리), `time`(분:초), `pct`(0..1을 퍼센트로)다. enum 필드는 값 이름을 보여 준다. `{option}`은 가장 가까운 선택 위젯의 지금 선택이다."
+
+msgid "A `list` widget repeats its first child once per element of a `MEALKIT_LIST` array. The count is the field `<name>Count` when it exists. Inside a list item, paths are looked up first in the element, then in the view model."
+msgstr "`list` 위젯은 `MEALKIT_LIST` 배열의 원소마다 첫 자식을 한 번씩 되풀이한다. 개수는 `<이름>Count` 필드가 있으면 그 값이다. 목록 항목 안에서는 경로를 먼저 그 원소에서, 그다음 뷰 모델에서 찾는다."
+
+msgid "Input widgets (toggle, slider, select) write their value into their own view model field and send an action. They never change game state themselves."
+msgstr "입력 위젯(토글, 슬라이더, 선택)은 자기 뷰 모델 필드에 값을 쓰고 액션을 낸다. 게임 상태를 직접 고치지 않는다."
+
+msgid "A path that does not exist is a binding error: it is logged once and listed in the editor's UI panel (`info()`)."
+msgstr "없는 경로는 바인딩 오류다: 로그에 한 번 쓰고 에디터 [UI] 패널에 나온다(`info()`)."
+
+msgid "Expanding the tree"
+msgstr "트리 펼치기"
+
+msgid "The file's nodes are the template. Each frame works on a second array, the run-time nodes (`RNode`), made by `rebuild`: one per file node, plus one copy of the list template per list element. When a list's count changes, the run-time array is built again. Focus, scroll position and state blending are carried over by matching the file node and the list index, so the screen does not jump."
+msgstr "파일의 노드는 틀이다. 매 프레임은 `rebuild`가 만든 두 번째 배열, 실행 노드(`RNode`)로 일한다: 파일 노드마다 하나, 그리고 목록 원소마다 목록 틀 사본 하나. 목록 개수가 바뀌면 실행 배열을 다시 만든다. 포커스, 스크롤 위치, 상태 섞기는 파일 노드와 목록 번호를 맞춰 이어 가므로 화면이 튀지 않는다."
+
+msgid "Layout"
+msgstr "배치"
+
+msgid "`prepare` computes the scale of a screen as min(viewport width / board width, viewport height / board height) × UI scale (the setting, clamped to 0.25..4). The root then covers the whole viewport in logical units, so a 16:9 design fills a wider screen without stretching."
+msgstr "`prepare`는 화면 배율을 min(뷰포트 너비 / 보드 너비, 뷰포트 높이 / 보드 높이) × UI 배율(설정 값, 0.25..4로 자른다)로 계산한다. 그러면 뿌리가 논리 단위로 뷰포트 전체를 덮으므로, 16:9 디자인이 더 넓은 화면을 늘이지 않고 채운다."
+
+msgid "Each node has a width and a height mode: a fixed number, `hug` (the size of its content) or `fill` (take the free space)."
+msgstr "노드마다 너비와 높이 방식이 있다: 고정 숫자, `hug`(내용 크기), `fill`(남는 자리 차지)."
+
+msgid "**Children of a node without layout** are placed by constraints, separately for each axis (`placeConstrained`):"
+msgstr "**레이아웃이 없는 노드의 자식**은 축마다 따로 제약으로 놓는다(`placeConstrained`):"
+
+msgid "Constraint"
+msgstr "제약"
+
+msgid "Result when the parent grows"
+msgstr "부모가 커질 때"
+
+msgid "Start (`left`, `top`)"
+msgstr "Start (`left`, `top`)"
+
+msgid "Keeps the distance to the start edge."
+msgstr "시작 쪽 가장자리까지의 거리를 지킨다."
+
+msgid "End (`right`, `bottom`)"
+msgstr "End (`right`, `bottom`)"
+
+msgid "Keeps the distance to the end edge."
+msgstr "끝 쪽 가장자리까지의 거리를 지킨다."
+
+msgid "Both (`leftright`, `topbottom`)"
+msgstr "Both (`leftright`, `topbottom`)"
+
+msgid "Keeps both distances, so the node grows."
+msgstr "두 거리를 다 지키므로 노드가 커진다."
+
+msgid "Center"
+msgstr "Center"
+
+msgid "Keeps the offset from the center."
+msgstr "가운데에서의 거리를 지킨다."
+
+msgid "Scale"
+msgstr "Scale"
+
+msgid "Position and size grow by the same ratio as the parent."
+msgstr "위치와 크기가 부모와 같은 비율로 커진다."
+
+msgid "**Children of a flex node** (`layout row` or `layout column`) follow a subset of CSS flexbox (`flex`):"
+msgstr "**flex 노드의 자식**(`layout row`나 `layout column`)은 CSS flexbox의 일부를 따른다(`flex`):"
+
+msgid "Each child's size along the main axis is measured: fixed, its content size for `hug`, its minimum for `fill`. Margins are added."
+msgstr "자식마다 주축 크기를 잰다: 고정, `hug`는 내용 크기, `fill`은 최소 크기. 여백을 더한다."
+
+msgid "With `wrap`, children go to a new line when the next one does not fit. `reverse` reverses the order."
+msgstr "`wrap`이면 다음 자식이 들어가지 않을 때 새 줄로 넘긴다. `reverse`는 순서를 뒤집는다."
+
+msgid "On each line, free space is shared equally by the `fill` children, clamped to their minimum and maximum."
+msgstr "줄마다 남는 자리를 `fill` 자식이 똑같이 나눈다. 최소·최대 크기로 자른다."
+
+msgid "On the cross axis, children align by `alignItems` or their own `alignSelf` (start, center, end, stretch). A single line without wrap uses the whole cross size."
+msgstr "교차축에서는 `alignItems`나 자식의 `alignSelf`(start, center, end, stretch)로 맞춘다. wrap이 없는 한 줄은 교차축 크기 전체를 쓴다."
+
+msgid "Free main-axis space is placed by `justify`: start, center, end, space-between, space-around, space-evenly. With several lines, `alignContent` places the lines in the same ways."
+msgstr "주축의 남는 자리는 `justify`로 놓는다: start, center, end, space-between, space-around, space-evenly. 줄이 여럿이면 `alignContent`가 같은 방식으로 줄을 놓는다."
+
+msgid "Content size (`intrinsic`) is measured from the bottom up: a text node from its shaped text, a flex node from its children plus gaps and padding. Nodes marked `absolute` inside a flex node are placed by constraints instead. A hidden parent hides all its children."
+msgstr "내용 크기(`intrinsic`)는 아래에서 위로 잰다: 글자 노드는 모양 잡은 글자에서, flex 노드는 자식과 간격·안쪽 여백에서. flex 노드 안에서 `absolute`로 표시한 노드는 대신 제약으로 놓는다. 숨은 부모는 모든 자식을 숨긴다."
+
+msgid "A `scroll` widget moves its children by its scroll offset and records how far its content reaches, which limits scrolling."
+msgstr "`scroll` 위젯은 스크롤 위치만큼 자식을 옮기고 내용이 어디까지 닿는지 기록해서 스크롤 범위를 정한다."
+
+msgid "Text"
+msgstr "글자"
+
+msgid "Text is drawn from glyphs baked at run time, so any character in any font file can be shown (`Atlas.cpp`)."
+msgstr "글자는 실행 중에 구운 글자 모양으로 그리므로, 어느 글꼴 파일의 어느 글자든 보여 줄 수 있다(`Atlas.cpp`)."
+
+msgid "**Fonts** are the `.ttf`, `.otf` and `.ttc` files in `assets/fonts`, named by file name (`Pretendard-Medium`). A node names its font; an unknown name falls back to the first font."
+msgstr "**글꼴**은 `assets/fonts`의 `.ttf`, `.otf`, `.ttc` 파일이고 파일 이름으로 부른다(`Pretendard-Medium`). 노드가 글꼴 이름을 정하고, 모르는 이름은 첫 글꼴을 쓴다."
+
+msgid "**Shaping** (`shapeGlyphs`) decodes UTF-8, reads style tags `<1>...</1>` into runs (a `span` line gives tag 1 its font, size, color or decoration), applies upper or lower case transforms, kerning and letter spacing. For each character, when the node's font does not have it, the other fonts are searched, so a Latin font with a Korean fallback works without extra settings."
+msgstr "**모양 잡기**(`shapeGlyphs`)는 UTF-8을 풀고, 스타일 태그 `<1>...</1>`을 구간으로 읽고(`span` 줄이 태그 1의 글꼴·크기·색·장식을 정한다), 대소문자 바꾸기, 커닝, 자간을 적용한다. 노드의 글꼴에 없는 글자는 다른 글꼴에서 찾으므로, 라틴 글꼴에 한글 글꼴을 따로 설정하지 않아도 된다."
+
+msgid "**Line breaking** (`breakLines`) breaks at spaces. With the `syllable` wrap mode (the default) it may also break before or after any wide character (Hangul, CJK ideographs, kana and full-width forms), which is how Korean and Japanese text wraps. Spaces at the start of a new line are dropped. With `maxLines` or a fixed height, extra lines are cut, and with `overflow ellipsis` the last line is shortened until \"…\" fits. The shaped result is cached per node and only redone when the text or the wrap width changes."
+msgstr "**줄 나누기**(`breakLines`)는 공백에서 나눈다. `syllable` 줄바꿈 방식(기본)이면 넓은 글자(한글, 한자, 가나, 전각 문자)의 앞이나 뒤에서도 나눌 수 있다. 한국어와 일본어 글은 이렇게 줄을 바꾼다. 새 줄 앞의 공백은 버린다. `maxLines`나 고정 높이가 있으면 넘치는 줄을 자르고, `overflow ellipsis`면 \"…\"이 들어갈 때까지 마지막 줄을 줄인다. 모양 잡은 결과는 노드마다 캐시하고, 글자나 줄바꿈 너비가 바뀔 때만 다시 한다."
+
+msgid "**Baking** (`Atlas::Impl::bake`): a glyph is baked once, at 40 pixels per em with 6 pixels of padding, as a **signed distance field**: each atlas pixel holds the distance to the nearest outline edge, 128 on the edge. The engine computes the field itself: it flattens the glyph outline into line segments (8 steps per quadratic curve, 10 per cubic curve), then for each pixel finds the nearest segment and decides inside or outside with the winding number. stb_truetype's own `stbtt_GetGlyphSDF` is not used because it skips cubic curves, which `.otf` (CFF) fonts use, and round strokes would disappear. One baked size serves every text size: the shader turns distance into coverage with a scale per glyph."
+msgstr "**굽기**(`Atlas::Impl::bake`): 글자는 한 번, em당 40픽셀에 여백 6픽셀로 **부호 거리 필드**로 굽는다: 아틀라스 픽셀마다 가장 가까운 윤곽선까지의 거리를 담고, 윤곽선 위가 128이다. 거리 필드는 엔진이 직접 계산한다: 글자 윤곽을 선분으로 펴고(2차 곡선은 8걸음, 3차 곡선은 10걸음), 픽셀마다 가장 가까운 선분을 찾고 감김 수로 안팎을 정한다. stb_truetype의 `stbtt_GetGlyphSDF`는 `.otf`(CFF) 글꼴이 쓰는 3차 곡선을 빼먹어 둥근 획이 사라지므로 쓰지 않는다. 구운 크기 하나가 모든 글자 크기에 쓰인다: 셰이더가 글자마다 배율로 거리를 덮는 정도로 바꾼다."
+
+#, python-format
+msgid "**Packing**: glyphs and images go into 2048 × 2048 atlases with a shelf packer. A glyph goes on the first shelf whose height is between 75 % and 100 % of its height, otherwise a new shelf is opened below. Each item keeps one pixel of space for linear filtering. When the glyph atlas is full, it is cleared and glyphs are baked again as they are used (with a warning). Images are PNG files read with stb_image, placed once in the image atlas."
+msgstr "**채우기**: 글자와 이미지는 선반 배치로 2048 × 2048 아틀라스에 들어간다. 글자는 높이가 자기 높이의 75 %~100 %인 첫 선반에 놓고, 없으면 아래에 새 선반을 연다. 항목마다 선형 필터를 위해 1픽셀 띄운다. 글자 아틀라스가 차면 비우고 쓰이는 대로 다시 굽는다(경고). 이미지는 stb_image로 읽는 PNG 파일이고 이미지 아틀라스에 한 번 놓는다."
+
+msgid "Input"
+msgstr "입력"
+
+msgid "`System::update` runs before the game's update, every frame. It goes through screens from the highest layer down."
+msgstr "`System::update`는 매 프레임 게임 update 전에 돈다. 가장 높은 층부터 아래로 화면을 훑는다."
+
+msgid "**Mouse**: the hit test walks the run-time nodes from the last to the first, which is the reverse of drawing order, so the topmost node wins. Nodes outside a clipping parent are skipped. A widget under the mouse takes it. A frame with a visible fill also takes it, so clicking on a panel does not reach the game behind it. A button is activated when the mouse is released over the same node it was pressed on. A slider follows the mouse while held. The wheel scrolls the innermost scroll area under the mouse by 60 logical units per step."
+msgstr "**마우스**: 맞춤 검사는 실행 노드를 마지막부터 처음으로 훑는다. 그리는 순서의 반대라 가장 위 노드가 이긴다. 자르는 부모 밖의 노드는 건너뛴다. 마우스 아래 위젯이 마우스를 가져간다. 보이는 채우기가 있는 frame도 가져가므로, 판 위를 눌러도 뒤의 게임에 닿지 않는다. 버튼은 누른 노드 위에서 마우스를 뗄 때 실행된다. 슬라이더는 누르고 있는 동안 마우스를 따라간다. 휠은 마우스 아래 가장 안쪽 스크롤 영역을 한 칸에 논리 단위 60만큼 움직인다."
+
+#, python-brace-format
+msgid "**Keyboard and gamepad** use the input actions `ui.up`, `ui.down`, `ui.left`, `ui.right`, `ui.confirm` and `ui.back` (see {doc}`input`), on the highest screen that has `navigation` and a widget to focus:"
+msgstr "**키보드와 게임패드**는 입력 액션 `ui.up`, `ui.down`, `ui.left`, `ui.right`, `ui.confirm`, `ui.back`을 쓴다({doc}`input` 참고). `navigation`이 있고 포커스할 위젯이 있는 가장 높은 화면에서:"
+
+msgid "The first direction press focuses `firstFocus` or the first widget."
+msgstr "처음 방향을 누르면 `firstFocus`나 첫 위젯에 포커스를 준다."
+
+msgid "A direction moves to the node named in `focusUp` (and so on) if set, otherwise to the nearest widget in that direction: the score is the distance along the direction plus twice the sideways distance, and widgets behind are ignored."
+msgstr "방향은 `focusUp` 등에 이름이 있으면 그 노드로, 없으면 그 방향의 가장 가까운 위젯으로 옮긴다: 점수는 방향을 따른 거리 더하기 옆 거리의 두 배이고, 뒤쪽 위젯은 무시한다."
+
+msgid "Left and right on a slider or a select change its value instead of moving."
+msgstr "슬라이더나 선택 위젯에서 왼쪽·오른쪽은 옮기지 않고 값을 바꾼다."
+
+msgid "`ui.back` sends the board's `back` action."
+msgstr "`ui.back`은 보드의 `back` 액션을 낸다."
+
+msgid "The focus ring is drawn only after keyboard or gamepad use; moving the mouse hides it. `wantsMouse()` and `wantsKeyboard()` tell the engine to hide that input from the game this frame."
+msgstr "포커스 표시는 키보드나 게임패드를 쓴 뒤에만 그리고, 마우스를 움직이면 숨긴다. `wantsMouse()`와 `wantsKeyboard()`가 이번 프레임에 그 입력을 게임에서 숨기라고 엔진에 알린다."
+
+msgid "`actions()` lists what widgets sent this frame: action name, screen, node name, changed field and list index. Buttons send their action; input widgets send their action or `changed`."
+msgstr "`actions()`는 이번 프레임에 위젯이 낸 것을 나열한다: 액션 이름, 화면, 노드 이름, 바뀐 필드, 목록 번호. 버튼은 자기 액션을, 입력 위젯은 자기 액션이나 `changed`를 낸다."
+
+msgid "States"
+msgstr "상태"
+
+msgid "A node can override its look with `on hover`, `on pressed`, `on focus`, `on disabled` or `on checked` lines. When the screen is loaded, the full look for each state is built in advance by applying those lines to a copy of the node. Each frame, a blend value per state moves toward 1 when the state is active and toward 0 when it is not, at the speed 1 / `transition` seconds (default 0.1). The drawn look is the normal look blended toward each state's look, so colors fade instead of jumping."
+msgstr "노드는 `on hover`, `on pressed`, `on focus`, `on disabled`, `on checked` 줄로 모습을 덮어쓸 수 있다. 화면을 불러올 때 노드 사본에 그 줄을 적용해 상태마다의 모습을 미리 만든다. 매 프레임 상태마다 섞는 값이 상태가 켜졌으면 1로, 아니면 0으로 1 / `transition`초 속도(기본 0.1)로 움직인다. 그리는 모습은 기본 모습을 상태마다의 모습 쪽으로 섞은 것이라, 색이 튀지 않고 서서히 바뀐다."
+
+msgid "Drawing"
+msgstr "그리기"
+
+msgid "`System::render` runs after the 3D scene and before the debug UI. It turns everything into one array of `render::UiQuad` and calls `Renderer::drawUi` once, so all UI is **one draw call**."
+msgstr "`System::render`는 3D 장면 다음, 디버그 UI 전에 돈다. 모든 것을 `render::UiQuad` 배열 하나로 바꾸고 `Renderer::drawUi`를 한 번 부르므로, UI 전체가 **드로우 콜 하나**다."
+
+msgid "**World UI** first (name tags, damage numbers): the game calls `drawAt(template, worldPosition, viewModel)` while it builds the frame. The position is projected with the frame's camera; points behind the camera or outside the screen are skipped, or clamped to the screen edge when asked. The template is laid out at its own board size and scaled against 1920 × 1080."
+msgstr "**월드 위 UI** 먼저(이름표, 데미지 숫자): 게임이 프레임을 만들면서 `drawAt(template, worldPosition, viewModel)`을 부른다. 위치는 그 프레임의 카메라로 투영한다. 카메라 뒤나 화면 밖의 점은 건너뛰고, 원하면 화면 가장자리에 붙인다. 틀은 자기 보드 크기로 배치하고 1920 × 1080 기준으로 배율을 맞춘다."
+
+msgid "**Screens** next, from the lowest layer up."
+msgstr "그다음 **화면**을 가장 낮은 층부터 위로."
+
+msgid "`emitNode` walks the run-time tree. For each visible node it adds, in order: shadows, the frame's fill and stroke (a rounded box with a radius per corner), the image, the text glyphs, and the focus ring. Then it draws the children."
+msgstr "`emitNode`는 실행 트리를 돈다. 보이는 노드마다 차례로 그림자, frame의 채우기와 테두리(모서리마다 반지름이 있는 둥근 상자), 이미지, 글자, 포커스 표시를 더한다. 그다음 자식을 그린다."
+
+msgid "Opacity multiplies down the tree."
+msgstr "불투명도는 트리를 따라 내려가며 곱한다."
+
+msgid "A node with `clip` narrows the clip rectangle for its children; every quad carries its clip rectangle and the shader discards pixels outside it."
+msgstr "`clip`이 있는 노드는 자식의 자르기 사각형을 좁힌다. 사각형마다 자르기 사각형을 갖고, 셰이더가 그 밖의 픽셀을 버린다."
+
+msgid "An image with `slice` margins becomes nine quads (nine-slice scaling): the corners keep their size and the edges and middle stretch."
+msgstr "`slice` 여백이 있는 이미지는 사각형 아홉 개가 된다(9-slice): 모서리는 크기를 지키고 가장자리와 가운데가 늘어난다."
+
+msgid "Each glyph quad gets its atlas rectangle and the SDF scale for its size. Underline and strike-through are thin extra quads."
+msgstr "글자 사각형마다 아틀라스 사각형과 그 크기의 SDF 배율을 받는다. 밑줄과 취소선은 얇은 사각형을 더 그린다."
+
+msgid "Reloading"
+msgstr "다시 읽기"
+
+msgid "Every 0.25 seconds the system checks the write times of the theme, every open screen file, the fonts and the images. A changed screen is loaded again with its bindings kept; a changed theme reloads every screen."
+msgstr "0.25초마다 테마, 열린 모든 화면 파일, 글꼴, 이미지의 수정 시각을 본다. 바뀐 화면은 바인딩을 지킨 채 다시 불러오고, 테마가 바뀌면 모든 화면을 다시 불러온다."
+
+msgid "Techniques used"
+msgstr "쓰인 기법"
+
+msgid "Data and layout"
+msgstr "데이터와 배치"
+
+msgid "Technique"
+msgstr "기법"
+
+msgid "Where"
+msgstr "위치"
+
+msgid "What it does"
+msgstr "하는 일"
+
+msgid "Line-based markup with a node stack"
+msgstr "노드 스택을 쓰는 줄 단위 마크업"
+
+msgid "`Parser::parse`"
+msgstr "`Parser::parse`"
+
+msgid "One property per line and `end` to close, parsed with a stack of open nodes. Errors are collected with line numbers and parsing continues."
+msgstr "한 줄에 속성 하나, 닫을 때 `end`. 열린 노드의 스택으로 해석한다. 오류는 줄 번호와 함께 모으고 해석을 이어 간다."
+
+msgid "Components by inclusion"
+msgstr "포함으로 만드는 컴포넌트"
+
+msgid "`Parser::include`"
+msgstr "`Parser::include`"
+
+msgid "`use` copies another file's nodes into the tree with a depth limit against cycles; `set` overrides properties inside."
+msgstr "`use`가 순환을 막는 깊이 제한과 함께 다른 파일의 노드를 트리에 복사하고, `set`이 그 안의 속성을 덮어쓴다."
+
+msgid "Design tokens"
+msgstr "디자인 토큰"
+
+msgid "`Theme`, `$name`"
+msgstr "`Theme`, `$name`"
+
+msgid "Colors and numbers are named once in a theme file and referenced by name."
+msgstr "색과 숫자를 테마 파일에 한 번 이름 짓고 이름으로 쓴다."
+
+msgid "Flat tree with subtree ranges"
+msgstr "하위 트리 범위를 쓰는 평평한 트리"
+
+msgid "`Node::end`, `computeEnds`"
+msgstr "`Node::end`, `computeEnds`"
+
+msgid "Nodes in depth-first order with an end index: a subtree is a contiguous range, and children are found by jumping over subtrees."
+msgstr "깊이 우선 순서의 노드에 끝 번호: 하위 트리는 이어진 범위이고, 자식은 하위 트리를 건너뛰며 찾는다."
+
+msgid "Template expansion"
+msgstr "틀 펼치기"
+
+msgid "`rebuild`, `buildSubtree`"
+msgstr "`rebuild`, `buildSubtree`"
+
+msgid "List templates are repeated per array element into a separate run-time array, keeping focus and scroll by identity."
+msgstr "목록 틀을 배열 원소마다 따로 된 실행 배열에 되풀이하고, 포커스와 스크롤은 같은 노드로 이어 간다."
+
+msgid "One-way view model binding"
+msgstr "한 방향 뷰 모델 바인딩"
+
+msgid "`bind`, `resolve`"
+msgstr "`bind`, `resolve`"
+
+msgid "The UI reads named fields through reflection; only input widgets write, and only into their own field."
+msgstr "UI는 필드 선언으로 이름 있는 필드를 읽는다. 쓰는 것은 입력 위젯뿐이고, 자기 필드에만 쓴다."
+
+msgid "Value formatting"
+msgstr "값 서식"
+
+msgid "`formatValue`"
+msgstr "`formatValue`"
+
+msgid "Thousands separators, fixed decimals, minutes and seconds and percent from a short format code."
+msgstr "짧은 서식 코드로 천 단위 구분, 고정 소수 자리, 분과 초, 퍼센트."
+
+msgid "Constraint layout"
+msgstr "제약 배치"
+
+msgid "`placeConstrained`"
+msgstr "`placeConstrained`"
+
+msgid "Start, end, both, center and scale rules per axis, like design tools' constraints."
+msgstr "디자인 도구의 제약처럼 축마다 시작, 끝, 양쪽, 가운데, 비율 규칙."
+
+msgid "Flexbox subset"
+msgstr "flexbox 일부"
+
+msgid "`flex`, `intrinsic`"
+msgstr "`flex`, `intrinsic`"
+
+msgid "Main and cross axes, wrapping, gaps, grow, alignment and justify modes. Content sizes are measured bottom up."
+msgstr "주축과 교차축, 줄바꿈, 간격, 늘리기, 맞춤과 배분 방식. 내용 크기는 아래에서 위로 잰다."
+
+msgid "Uniform fit scaling"
+msgstr "비율을 지키는 맞춤 배율"
+
+msgid "`prepare`"
+msgstr "`prepare`"
+
+msgid "One scale from the smaller of the two axis ratios, so the design keeps its proportions on every screen."
+msgstr "두 축 비율 중 작은 것으로 배율 하나를 정해, 어느 화면에서나 디자인 비율이 그대로다."
+
+msgid "Text and images"
+msgstr "글자와 이미지"
+
+msgid "Run-time glyph baking"
+msgstr "실행 중 글자 굽기"
+
+msgid "`Atlas::glyph`, `bake`"
+msgstr "`Atlas::glyph`, `bake`"
+
+msgid "Only characters that are used are baked, so fonts with thousands of Hangul syllables cost only what is shown."
+msgstr "쓰는 글자만 구우므로, 한글 음절이 수천 개인 글꼴도 보이는 만큼만 비용이 든다."
+
+msgid "Signed distance fields from flattened outlines"
+msgstr "편 윤곽선에서 만드는 부호 거리 필드"
+
+msgid "`flatten`, `bake`"
+msgstr "`flatten`, `bake`"
+
+msgid "Curves become line segments; each pixel stores the distance to the nearest segment, with inside and outside from the winding number."
+msgstr "곡선을 선분으로 바꾸고, 픽셀마다 가장 가까운 선분까지의 거리를 저장하며, 안팎은 감김 수로 정한다."
+
+msgid "Font fallback per character"
+msgstr "글자마다 다른 글꼴로 대신"
+
+msgid "`Atlas::glyph`"
+msgstr "`Atlas::glyph`"
+
+msgid "A missing character is taken from another font."
+msgstr "없는 글자를 다른 글꼴에서 가져온다."
+
+msgid "Syllable-level line breaking"
+msgstr "음절 단위 줄 나누기"
+
+msgid "`breakLines`, `isWide`"
+msgstr "`breakLines`, `isWide`"
+
+msgid "Allows breaks between wide characters, as Korean, Chinese and Japanese text needs."
+msgstr "한국어, 중국어, 일본어 글이 필요로 하는 대로 넓은 글자 사이에서 나눌 수 있게 한다."
+
+msgid "Ellipsis truncation"
+msgstr "말줄임 자르기"
+
+msgid "`breakLines`"
+msgstr "`breakLines`"
+
+msgid "Removes characters from the last kept line until \"…\" fits."
+msgstr "\"…\"이 들어갈 때까지 마지막 남긴 줄에서 글자를 뺀다."
+
+msgid "Shaping cache"
+msgstr "모양 잡기 캐시"
+
+msgid "`shapeText`"
+msgstr "`shapeText`"
+
+msgid "Keeps the shaped text until the text or the wrap width changes."
+msgstr "글자나 줄바꿈 너비가 바뀔 때까지 모양 잡은 글자를 둔다."
+
+msgid "Shelf packing"
+msgstr "선반 배치"
+
+msgid "`Shelves::place`"
+msgstr "`Shelves::place`"
+
+msgid "Rows of similar height in a fixed atlas, fast and good enough for glyphs and icons of similar sizes."
+msgstr "고정 아틀라스에 높이가 비슷한 줄을 쌓는다. 크기가 비슷한 글자와 아이콘에는 빠르고 충분하다."
+
+msgid "Rebuild on overflow"
+msgstr "넘치면 다시 만들기"
+
+msgid "`bake`"
+msgstr "`bake`"
+
+msgid "A full glyph atlas is cleared and refilled with the glyphs in use."
+msgstr "가득 찬 글자 아틀라스를 비우고 쓰는 글자로 다시 채운다."
+
+msgid "Nine-slice scaling"
+msgstr "9-slice 늘이기"
+
+msgid "`emitNode`"
+msgstr "`emitNode`"
+
+msgid "Splits an image into 3 × 3 parts so borders keep their size when the box grows."
+msgstr "이미지를 3 × 3 조각으로 나눠, 상자가 커져도 테두리가 크기를 지킨다."
+
+msgid "Interaction and drawing"
+msgstr "조작과 그리기"
+
+msgid "Reverse-order hit testing"
+msgstr "역순 맞춤 검사"
+
+msgid "`hit`"
+msgstr "`hit`"
+
+msgid "Tests nodes from last drawn to first, so the topmost node gets the click; clipped parents hide their children from the mouse."
+msgstr "마지막에 그린 노드부터 처음으로 검사해 가장 위 노드가 클릭을 받는다. 자르는 부모는 자식을 마우스에서 숨긴다."
+
+msgid "Input capture between layers"
+msgstr "층 사이 입력 가로채기"
+
+msgid "`update`, `wantsMouse`"
+msgstr "`update`, `wantsMouse`"
+
+msgid "The highest screen that uses the mouse or keyboard takes it from screens below and from the game."
+msgstr "마우스나 키보드를 쓰는 가장 높은 화면이 아래 화면과 게임에서 그 입력을 가져간다."
+
+msgid "Spatial focus navigation"
+msgstr "공간 포커스 탐색"
+
+msgid "`neighbor`"
+msgstr "`neighbor`"
+
+msgid "Picks the nearest widget in a direction by distance with a sideways penalty, unless the file names the next widget."
+msgstr "파일이 다음 위젯 이름을 정하지 않았으면, 옆으로 벗어난 만큼 벌점을 준 거리로 그 방향의 가장 가까운 위젯을 고른다."
+
+msgid "Precomputed state looks with blending"
+msgstr "미리 만든 상태 모습과 섞기"
+
+msgid "`loadScreen`, `update`, `lerpVisual`"
+msgstr "`loadScreen`, `update`, `lerpVisual`"
+
+msgid "Builds each state's look once, then blends toward it over the transition time."
+msgstr "상태마다의 모습을 한 번 만들고, 전환 시간 동안 그쪽으로 섞는다."
+
+msgid "World-to-screen projection"
+msgstr "월드 좌표에서 화면 좌표로 투영"
+
+msgid "`System::render`"
+msgstr "`System::render`"
+
+msgid "Projects a 3D point with the view-projection matrix and divides by w; handles points behind the camera and clamps to edges."
+msgstr "뷰-투영 행렬로 3D 점을 투영하고 w로 나눈다. 카메라 뒤의 점을 처리하고 가장자리에 붙인다."
+
+msgid "Single batched draw"
+msgstr "한 번에 묶어 그리기"
+
+msgid "All screens, world UI and text become one quad array and one draw call."
+msgstr "모든 화면, 월드 위 UI, 글자가 사각형 배열 하나와 드로우 콜 하나가 된다."
+
+msgid "Per-quad clipping"
+msgstr "사각형마다 자르기"
+
+msgid "`emitNode`, `Ui.hlsl`"
+msgstr "`emitNode`, `Ui.hlsl`"
+
+msgid "Each quad carries its clip rectangle, so clipping needs no extra draw calls or scissor changes."
+msgstr "사각형마다 자르기 사각형을 갖고 있어서, 자르기에 드로우 콜이나 시저 변경이 더 필요 없다."
+
