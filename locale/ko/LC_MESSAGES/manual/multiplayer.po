@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-19 19:04+0900\n"
+"POT-Creation-Date: 2026-10-19 19:11+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -56,6 +56,9 @@ msgstr "UDP로 다른 PC에서 접속하려면 호스트 방화벽에서 `sandbo
 
 msgid "To test with several windows on one PC, use `--host --local` so the firewall prompt does not appear. Rooms hosted with `--local` are announced on 127.0.0.1 only, so other windows on the same PC still list them."
 msgstr "한 PC에서 창 여러 개로 시험할 때는 `--host --local`을 써서 방화벽 확인 창이 뜨지 않게 한다. `--local`로 연 방은 127.0.0.1로만 알려도 같은 PC의 다른 창 목록에는 나온다."
+
+msgid "To make the input delay less noticeable, the example draws your own character ahead by the inputs it has sent but not yet run (only on your screen; the simulation is unchanged). Set `prediction.enabled` in `assets/view.tuning` to compare."
+msgstr "입력 지연이 덜 느껴지도록 예제는 내 캐릭터를 보냈지만 아직 실행되지 않은 입력만큼 앞서 그린다(내 화면에서만, 시뮬레이션은 그대로). 비교하려면 `assets/view.tuning`의 `prediction.enabled`를 바꾼다."
 
 msgid "The **input delay** (time between pressing a key and the character moving, which hides the network round trip) is chosen by the host from the players' ping, between `inputDelayMinMs` (60) and `inputDelayMaxMs` (270) in `mealkit.project`, and follows the connection during the match. The lobby warns about players whose ping is above the maximum. `--delay <ticks>` fixes it."
 msgstr "**입력 지연**(키를 누르고 캐릭터가 움직이기까지의 시간, 네트워크 왕복을 가린다)은 호스트가 플레이어들의 핑으로 `mealkit.project`의 `inputDelayMinMs`(60)와 `inputDelayMaxMs`(270) 사이에서 정하고, 매치 중에도 연결을 따라간다. 로비는 핑이 최대값보다 큰 플레이어를 경고한다. `--delay <ticks>`로 고정한다."

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-19 19:04+0900\n"
+"POT-Creation-Date: 2026-10-19 19:11+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ko\n"
@@ -278,6 +278,12 @@ msgstr "보간"
 
 msgid "The screen draws between two ticks. `previous()` is the state before the last tick, and `alpha()` is the accumulator divided by the tick length, clamped to 0..1. The view lerps positions from `previous` to the current state with `alpha`. When paused, `alpha` is 1, so the screen shows the exact tick."
 msgstr "화면은 두 틱 사이를 그린다. `previous()`는 마지막 틱 전의 상태이고, `alpha()`는 누산기를 틱 길이로 나눈 값을 0..1로 자른 것이다. 화면은 위치를 `previous`에서 현재 상태로 `alpha`만큼 보간한다. 일시정지 중에는 `alpha`가 1이라 화면이 정확히 그 틱을 보여 준다."
+
+msgid "Pending inputs"
+msgstr "보낸 입력"
+
+msgid "The runner keeps the local inputs it has sent but not yet run (`forEachPendingInput(f)`, target tick order). With an input delay of n ticks there are n of them. A game uses them to draw only its own character ahead by those inputs, which hides the input delay without touching the simulation: the example adds the moves of the pending inputs (speed × one tick each, capped at 1.5 m) to its own character, camera and name tag, and eases toward that offset (`view.tuning` `prediction`). When the confirmed state catches up, the offset shrinks on its own. Pushes, jumps and collisions with others still appear when they are confirmed."
+msgstr "실행기는 보냈지만 아직 실행하지 않은 내 입력을 갖고 있다(`forEachPendingInput(f)`, 목표 틱 순). 입력 지연이 n틱이면 n개다. 게임은 이것으로 자기 캐릭터만 그 입력만큼 앞서 그려 시뮬레이션을 건드리지 않고 입력 지연을 가린다: 예제는 아직 실행 안 된 입력들의 이동(각각 속도 × 한 틱, 최대 1.5 m)을 자기 캐릭터·카메라·이름표에 더하고 그 차이로 부드럽게 따라간다(`view.tuning` `prediction`). 확정 상태가 따라오면 차이는 저절로 줄어든다. 밀치기·점프·다른 것과의 충돌은 확정된 뒤에 보인다."
 
 msgid "Shadow simulation"
 msgstr "그림자 시뮬레이션"

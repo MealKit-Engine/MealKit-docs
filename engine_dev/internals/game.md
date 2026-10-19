@@ -129,6 +129,10 @@ The rules behind the order are in {engine}`docs/CODING_MODEL.md` "흐름".
 The screen draws between two ticks. `previous()` is the state before the last tick, and `alpha()` is the accumulator divided by the tick length, clamped to 0..1.
 The view lerps positions from `previous` to the current state with `alpha`. When paused, `alpha` is 1, so the screen shows the exact tick.
 
+### Pending inputs
+
+The runner keeps the local inputs it has sent but not yet run (`forEachPendingInput(f)`, target tick order). With an input delay of n ticks there are n of them. A game uses them to draw only its own character ahead by those inputs, which hides the input delay without touching the simulation: the example adds the moves of the pending inputs (speed × one tick each, capped at 1.5 m) to its own character, camera and name tag, and eases toward that offset (`view.tuning` `prediction`). When the confirmed state catches up, the offset shrinks on its own. Pushes, jumps and collisions with others still appear when they are confirmed.
+
 ### Shadow simulation
 
 With `PlayOptions::shadow`, `start` creates a second `World` and resets it with the same reset function (with one physics thread, which does not change the result).
