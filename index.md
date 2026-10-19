@@ -60,6 +60,23 @@ engine_dev/contributing
 
 ```{toctree}
 :maxdepth: 2
+:caption: "Internals: screen"
+
+engine_dev/internals/loc
+engine_dev/internals/scene
+engine_dev/internals/render
+engine_dev/internals/asset
+engine_dev/internals/online
+engine_dev/internals/debug
+engine_dev/internals/input
+engine_dev/internals/audio
+engine_dev/internals/ui
+engine_dev/internals/feedback
+engine_dev/internals/settings
+```
+
+```{toctree}
+:maxdepth: 2
 :caption: "Internals: game boundary"
 
 engine_dev/internals/editor

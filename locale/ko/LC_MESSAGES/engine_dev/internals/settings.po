@@ -1,0 +1,289 @@
+# Korean translation of the MealKit documentation.
+# This file is distributed under the same license as the MealKit documentation (CC BY 4.0).
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: MealKit 0.4\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-19 13:15+0900\n"
+"PO-Revision-Date: 2026-10-19 13:15+0900\n"
+"Last-Translator: KingProtea99\n"
+"Language: ko\n"
+"Language-Team: Korean\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+msgid "Settings"
+msgstr "설정"
+
+#, python-brace-format
+msgid "This page explains how player settings work inside: the `settings.ini` file, how each setting reaches the engine, and how the standard settings screen is built from the setting declarations. How players and games use settings is in {doc}`../../manual/settings`. The code is in {engine}`engine/src/mealkit/settings`."
+msgstr "이 페이지는 플레이어 설정이 안에서 어떻게 돌아가는지 설명한다: `settings.ini` 파일, 설정마다 엔진에 닿는 길, 설정 선언에서 표준 설정 화면을 만드는 방법. 플레이어와 게임이 설정을 쓰는 법은 {doc}`../../manual/settings`에 있다. 코드는 {engine}`engine/src/mealkit/settings`에 있다."
+
+#, python-brace-format
+msgid "`settings` is the last folder of the screen side. It comes after `feedback` and before `game` in the folder order of {engine}`docs/CODING_MODEL.md` (\"엔진 폴더 사이 의존\"), because it applies values to almost everything before it: the window, the renderer, sound, text, UI and input. The simulation never reads settings. SimCheck blocks `mealkit/settings/` headers in `sim/`, and settings are not part of the content hash."
+msgstr "`settings`는 화면 쪽의 마지막 폴더다. {engine}`docs/CODING_MODEL.md`(\"엔진 폴더 사이 의존\")의 폴더 순서에서 `feedback` 다음, `game` 앞이다. 앞의 거의 모든 것, 즉 창, 렌더러, 소리, 글자, UI, 입력에 값을 적용하기 때문이다. 시뮬레이션은 설정을 읽지 않는다. SimCheck가 `sim/`에서 `mealkit/settings/` 헤더를 막고, 설정은 콘텐츠 해시에 들어가지 않는다."
+
+msgid "The declaration is the schema"
+msgstr "선언이 곧 스키마"
+
+#, python-brace-format
+msgid "The settings are one `MEALKIT_STRUCT` with four sections ({engine}`engine/src/mealkit/settings/Settings.h`):"
+msgstr "설정은 네 부분으로 된 `MEALKIT_STRUCT` 하나다({engine}`engine/src/mealkit/settings/Settings.h`):"
+
+msgid "Section"
+msgstr "부분"
+
+msgid "Fields"
+msgstr "필드"
+
+msgid "`display`"
+msgstr "`display`"
+
+msgid "window mode, width, height, vsync, frame limit, render scale, graphics preset, field of view, brightness"
+msgstr "창 모드, 너비, 높이, 수직동기, 프레임 제한, 렌더 배율, 그래픽 프리셋, 시야각, 밝기"
+
+msgid "`audio`"
+msgstr "`audio`"
+
+msgid "master, music, effects, interface and voice volume, mute in the background"
+msgstr "전체·음악·효과음·인터페이스·음성 볼륨, 뒤로 가면 음소거"
+
+msgid "`controls`"
+msgstr "`controls`"
+
+msgid "mouse sensitivity, invert mouse Y, gamepad sensitivity, invert gamepad Y"
+msgstr "마우스 감도, 마우스 Y 반전, 게임패드 감도, 게임패드 Y 반전"
+
+msgid "`gameplay`"
+msgstr "`gameplay`"
+
+msgid "language, interface scale, subtitles"
+msgstr "언어, 인터페이스 배율, 자막"
+
+msgid "There is no separate file schema: the field declarations give the names, types and defaults. `settings.ini` is written and read with the reflection text functions (`reflect::saveTextFile`, `loadTextFile`) as `path value` lines, for example `display.vsync true`. The file is in the user folder (`game::userFolder`), next to the player's key bindings. A field the file does not have keeps its default, so new settings in a game update need no file migration."
+msgstr "따로 된 파일 스키마는 없다: 필드 선언이 이름, 타입, 기본값을 준다. `settings.ini`는 필드 선언의 글자 함수(`reflect::saveTextFile`, `loadTextFile`)로 `경로 값` 줄을 쓰고 읽는다. 예를 들어 `display.vsync true`. 파일은 사용자 폴더(`game::userFolder`)에 플레이어의 키 바인딩과 나란히 있다. 파일에 없는 필드는 기본값을 지키므로, 게임 업데이트로 설정이 늘어도 파일을 옮겨 적을 필요가 없다."
+
+msgid "Applying settings"
+msgstr "설정 적용"
+
+#, python-brace-format
+msgid "`settings::Service` ({engine}`engine/src/mealkit/settings/Settings.cpp`) is created once by the engine (the release exe, editor play, player windows). `init(targets, file)` reads the file and applies everything. `Targets` lists where to apply values; a missing target is skipped. In editor play the window is not given, so a setting never changes the editor's own window."
+msgstr "`settings::Service`({engine}`engine/src/mealkit/settings/Settings.cpp`)는 엔진(출시 exe, 에디터 플레이, 참가 창)이 하나 만든다. `init(targets, file)`이 파일을 읽고 모두 적용한다. `Targets`는 값을 적용할 곳의 목록이고, 없는 곳은 건너뛴다. 에디터 플레이에서는 창을 주지 않으므로 설정이 에디터 자신의 창을 바꾸지 않는다."
+
+msgid "Setting"
+msgstr "설정"
+
+msgid "Applied to"
+msgstr "적용하는 곳"
+
+msgid "window mode, width, height"
+msgstr "창 모드, 너비, 높이"
+
+msgid "`Window::setMode` (only when they changed, or at start)"
+msgstr "`Window::setMode`(바뀌었을 때, 또는 시작할 때만)"
+
+msgid "vsync"
+msgstr "수직동기"
+
+msgid "`Renderer::setVsync`"
+msgstr "`Renderer::setVsync`"
+
+msgid "frame limit"
+msgstr "프레임 제한"
+
+msgid "`FrameLimiter::setTargetFps`"
+msgstr "`FrameLimiter::setTargetFps`"
+
+msgid "volumes"
+msgstr "볼륨"
+
+msgid "`audio::Engine::setBusVolume` for the buses `master`, `music`, `sfx`, `ui`, `voice`"
+msgstr "버스 `master`, `music`, `sfx`, `ui`, `voice`에 `audio::Engine::setBusVolume`"
+
+msgid "language"
+msgstr "언어"
+
+msgid "`loc::Strings::load(language, project language)`; empty means the project language"
+msgstr "`loc::Strings::load(언어, 프로젝트 언어)`. 비어 있으면 프로젝트 언어"
+
+msgid "interface scale"
+msgstr "인터페이스 배율"
+
+msgid "`ui::System::setScale`"
+msgstr "`ui::System::setScale`"
+
+msgid "sensitivity and invert"
+msgstr "감도와 반전"
+
+msgid "`input::Actions::setLookSettings`"
+msgstr "`input::Actions::setLookSettings`"
+
+#, python-brace-format
+msgid "Render scale, graphics preset, field of view, brightness and subtitles are stored and shown on the settings screen, but the engine does not apply them itself; a game reads them with `ctx.settings.values()`. Muting in the background is read by the engine loop every frame ({engine}`engine/src/mealkit/game/GameMain.cpp`)."
+msgstr "렌더 배율, 그래픽 프리셋, 시야각, 밝기, 자막은 저장하고 설정 화면에 보이지만 엔진이 직접 적용하지 않는다. 게임이 `ctx.settings.values()`로 읽는다. 뒤로 가면 음소거는 엔진 루프가 매 프레임 읽는다({engine}`engine/src/mealkit/game/GameMain.cpp`)."
+
+msgid "Every change goes through `change()`: it applies the new values and saves the file at once."
+msgstr "바꿀 때마다 `change()`를 거친다: 새 값을 적용하고 바로 파일을 저장한다."
+
+msgid "Confirming display changes"
+msgstr "화면 변경 확인"
+
+msgid "A new window mode or resolution can leave the player with a black or unusable screen. So when one of them changes, the service remembers the previous display settings and starts a 15-second countdown. The screen shows \"keep\" and \"revert\" with the seconds left. If the player does not keep the change in time, `update` puts the previous values back, applies and saves them."
+msgstr "새 창 모드나 해상도 때문에 화면이 검거나 쓸 수 없게 될 수 있다. 그래서 둘 중 하나가 바뀌면 서비스가 이전 화면 설정을 기억하고 15초를 센다. 화면에 남은 초와 함께 \"유지\"와 \"되돌리기\"가 나온다. 플레이어가 시간 안에 유지하지 않으면 `update`가 이전 값을 되돌려 적용하고 저장한다."
+
+msgid "The standard settings screen"
+msgstr "표준 설정 화면"
+
+#, python-brace-format
+msgid "The engine opens `assets/ui/settings.ui` when any screen sends the action `settings.open`, or when the game calls `ctx.settings.open()`. It is a normal UI screen (see {doc}`ui`) on layer 100, above game screens."
+msgstr "어느 화면이든 `settings.open` 액션을 내거나 게임이 `ctx.settings.open()`을 부르면 엔진이 `assets/ui/settings.ui`를 연다. 평범한 UI 화면이고({doc}`ui` 참고) 게임 화면 위인 층 100에 있다."
+
+msgid "The screen is bound to an engine view model, `SettingsVm`:"
+msgstr "화면은 엔진 뷰 모델 `SettingsVm`에 묶인다:"
+
+msgid "`tabs`: a list of tabs (`label`, `active`): display, audio, controls, keys, gameplay."
+msgstr "`tabs`: 탭 목록(`label`, `active`): 화면, 소리, 조작, 키, 게임플레이."
+
+msgid "`rows`: a list of up to 40 rows. Each row has a label, a value text, `on` for toggles, `value01` for sliders (0..1), flags for its kind (`isToggle`, `isSlider`, `isChoice`, `isKey`) and `warning`."
+msgstr "`rows`: 줄 최대 40개의 목록. 줄마다 이름, 값 글자, 토글용 `on`, 슬라이더용 `value01`(0..1), 종류 플래그(`isToggle`, `isSlider`, `isChoice`, `isKey`), `warning`이 있다."
+
+msgid "`confirm` and `confirmText` for the display countdown."
+msgstr "화면 변경 카운트다운용 `confirm`과 `confirmText`."
+
+msgid "So `settings.ui` contains only one row template per kind, shown or hidden by those flags. The rows are not written in the file; they come from tables in the code that name a setting path and a kind (with minimum, maximum and step for sliders). Labels come from the string table: `settings.tab.<tab>`, `settings.<path>`, and `settings.<path>.<value>` for enum choices."
+msgstr "그래서 `settings.ui`에는 종류마다 줄 틀 하나만 있고, 그 플래그로 보이거나 숨는다. 줄은 파일에 쓰지 않는다. 설정 경로와 종류(슬라이더는 최소·최대·걸음)를 적은 코드 안의 표에서 온다. 이름은 문자열 표에서 온다: `settings.tab.<탭>`, `settings.<경로>`, enum 선택지는 `settings.<경로>.<값>`."
+
+msgid "Choice rows get their choices from the data:"
+msgstr "선택 줄은 데이터에서 선택지를 받는다:"
+
+msgid "resolution: the display sizes the window reports,"
+msgstr "해상도: 창이 알려 주는 화면 크기들,"
+
+msgid "frame limit: none, 30, 60, 120, 144, 240,"
+msgstr "프레임 제한: 없음, 30, 60, 120, 144, 240,"
+
+msgid "language: every file in `assets/strings`, labelled `language.<code>`,"
+msgstr "언어: `assets/strings`의 모든 파일, 이름은 `language.<코드>`,"
+
+msgid "enums (window mode, preset): the enum's value names."
+msgstr "enum(창 모드, 프리셋): enum의 값 이름들."
+
+msgid "`update` runs every frame after the UI update and before the game. It handles the screen's actions: `settings.tab`, `settings.changed` (a toggle or slider wrote into the view model; the value is read back, slider values are mapped to the range and rounded to the step), `settings.prev` and `settings.next` (choices), `settings.reset` (the current tab back to defaults), `settings.keep`, `settings.revert`, `settings.rebind` and `settings.close`. Then it fills the view model again from the current values."
+msgstr "`update`는 매 프레임 UI 갱신 다음, 게임 전에 돈다. 화면의 액션을 처리한다: `settings.tab`, `settings.changed`(토글이나 슬라이더가 뷰 모델에 썼다. 값을 다시 읽고, 슬라이더 값은 범위로 옮기고 걸음으로 반올림한다), `settings.prev`와 `settings.next`(선택), `settings.reset`(지금 탭을 기본값으로), `settings.keep`, `settings.revert`, `settings.rebind`, `settings.close`. 그다음 지금 값으로 뷰 모델을 다시 채운다."
+
+msgid "Key rows"
+msgstr "키 줄"
+
+#, python-brace-format
+msgid "The keys tab lists every `Button` action whose name does not start with `ui.` (see {doc}`input`). Each row shows the bound keys and mouse buttons. When another button action uses the same keys, the row is marked with a warning."
+msgstr "키 탭은 이름이 `ui.`로 시작하지 않는 모든 `Button` 액션을 나열한다({doc}`input` 참고). 줄마다 묶인 키와 마우스 버튼을 보여 준다. 다른 버튼 액션이 같은 키를 쓰면 그 줄에 경고를 표시한다."
+
+msgid "After `settings.rebind`, the row waits for the next key press:"
+msgstr "`settings.rebind` 다음, 그 줄은 다음 키 누름을 기다린다:"
+
+msgid "`Escape` cancels. `Escape` and `Enter` themselves cannot be bound, because they operate the menus."
+msgstr "`Escape`는 취소한다. `Escape`와 `Enter` 자체는 메뉴를 조작하므로 묶을 수 없다."
+
+msgid "Any other key with a name becomes the action's only key. The new binding is saved at once to the player's `input.bindings` file, which holds only rows that differ from the project."
+msgstr "이름 있는 다른 키는 그 액션의 유일한 키가 된다. 새 바인딩은 바로 플레이어의 `input.bindings` 파일에 저장되고, 이 파일은 프로젝트와 다른 행만 담는다."
+
+msgid "Resetting the keys tab puts every action back to the project's bindings and saves the player file (which removes it when nothing differs)."
+msgstr "키 탭을 초기화하면 모든 액션을 프로젝트 바인딩으로 되돌리고 플레이어 파일을 저장한다(다른 것이 없으면 파일을 지운다)."
+
+msgid "Techniques used"
+msgstr "쓰인 기법"
+
+msgid "Technique"
+msgstr "기법"
+
+msgid "Where"
+msgstr "위치"
+
+msgid "What it does"
+msgstr "하는 일"
+
+msgid "Schema from field declarations"
+msgstr "필드 선언이 스키마"
+
+msgid "`MEALKIT_STRUCT(Settings)`"
+msgstr "`MEALKIT_STRUCT(Settings)`"
+
+msgid "One declaration gives the file format, the defaults and the paths the screen uses."
+msgstr "선언 하나가 파일 형식, 기본값, 화면이 쓰는 경로를 준다."
+
+msgid "Reflection text serialization"
+msgstr "필드 선언 글자 직렬화"
+
+msgid "`reflect::saveTextFile` / `loadTextFile`"
+msgstr "`reflect::saveTextFile` / `loadTextFile`"
+
+msgid "Writes and reads `path value` lines; missing fields keep their defaults."
+msgstr "`경로 값` 줄을 쓰고 읽는다. 없는 필드는 기본값을 지킨다."
+
+msgid "Apply on change"
+msgstr "바꾸면 바로 적용"
+
+msgid "`Impl::change`, `apply`"
+msgstr "`Impl::change`, `apply`"
+
+msgid "Each change is applied and saved at once, so there is no separate apply button and nothing is lost on a crash."
+msgstr "바꿀 때마다 바로 적용하고 저장하므로, 따로 적용 버튼이 없고 프로그램이 죽어도 잃지 않는다."
+
+msgid "Optional targets"
+msgstr "선택적 적용 대상"
+
+msgid "`Service::Targets`"
+msgstr "`Service::Targets`"
+
+msgid "Values are applied only to the systems that exist, so the same service works in the game, editor play and tests."
+msgstr "있는 시스템에만 값을 적용하므로, 같은 서비스가 게임, 에디터 플레이, 시험에서 동작한다."
+
+msgid "Timed confirm with rollback"
+msgstr "시간 제한 확인과 되돌리기"
+
+msgid "`confirming`, `revert`"
+msgstr "`confirming`, `revert`"
+
+msgid "Risky display changes revert after 15 seconds unless the player keeps them."
+msgstr "위험한 화면 변경은 플레이어가 유지하지 않으면 15초 뒤 되돌린다."
+
+msgid "Rows generated from data"
+msgstr "데이터에서 만드는 줄"
+
+msgid "`buildRows`, `fillVm`"
+msgstr "`buildRows`, `fillVm`"
+
+msgid "Rows come from tables of setting paths and from enum names, display sizes and string files, not from the `.ui` file."
+msgstr "줄은 `.ui` 파일이 아니라 설정 경로 표, enum 이름, 화면 크기, 문자열 파일에서 온다."
+
+msgid "View model list binding"
+msgstr "뷰 모델 목록 바인딩"
+
+msgid "`SettingsVm`"
+msgstr "`SettingsVm`"
+
+msgid "One row template per kind in `settings.ui` is repeated for every row through a `MEALKIT_LIST`."
+msgstr "`settings.ui`의 종류별 줄 틀 하나를 `MEALKIT_LIST`로 줄마다 되풀이한다."
+
+msgid "Key capture for rebinding"
+msgstr "키 바꾸기용 키 잡기"
+
+msgid "`Service::update`"
+msgstr "`Service::update`"
+
+msgid "Waits for the next key press and writes it into the action's binding, with menu keys excluded."
+msgstr "다음 키 누름을 기다려 액션 바인딩에 쓴다. 메뉴 키는 뺀다."
+
+msgid "Duplicate binding warning"
+msgstr "같은 키 경고"
+
+msgid "`fillVm`"
+msgstr "`fillVm`"
+
+msgid "Marks rows whose keys another button action also uses."
+msgstr "다른 버튼 액션도 쓰는 키의 줄을 표시한다."
+

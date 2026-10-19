@@ -1,0 +1,310 @@
+# Korean translation of the MealKit documentation.
+# This file is distributed under the same license as the MealKit documentation (CC BY 4.0).
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: MealKit 0.4\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-19 13:15+0900\n"
+"PO-Revision-Date: 2026-10-19 13:15+0900\n"
+"Last-Translator: KingProtea99\n"
+"Language: ko\n"
+"Language-Team: Korean\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+msgid "Audio"
+msgstr "오디오"
+
+#, python-brace-format
+msgid "This page explains how sound works inside: the sound event table, how a play request becomes a voice, how the engine chooses which voices are mixed, and how buses and 3D position work. How to write sound events is in {doc}`../../manual/sound`. The code is in {engine}`engine/src/mealkit/audio`."
+msgstr "이 페이지는 소리가 안에서 어떻게 돌아가는지 설명한다: 소리 이벤트 표, 재생 요청이 목소리가 되는 과정, 엔진이 믹싱할 목소리를 고르는 방법, 버스와 3D 위치. 소리 이벤트 쓰는 법은 {doc}`../../manual/sound`에 있다. 코드는 {engine}`engine/src/mealkit/audio`에 있다."
+
+#, python-brace-format
+msgid "`audio` comes after `input` and before `ui` in the folder order of {engine}`docs/CODING_MODEL.md` (\"엔진 폴더 사이 의존\"). `feedback` comes after it and plays sounds through it. Sound is view side only: the simulation leaves tick events, and the view plays sounds for them. SimCheck blocks `audio/` headers in `sim/`. The design is in {engine}`docs/CODING_MODEL.md` (\"소리를 내는 방법\")."
+msgstr "`audio`는 {engine}`docs/CODING_MODEL.md`(\"엔진 폴더 사이 의존\")의 폴더 순서에서 `input` 다음, `ui` 앞이다. 뒤에 오는 `feedback`이 이것으로 소리를 낸다. 소리는 화면 쪽 전용이다: 시뮬레이션은 틱 이벤트만 남기고, 화면이 그 이벤트에 소리를 낸다. SimCheck가 `sim/`에서 `audio/` 헤더를 막는다. 설계는 {engine}`docs/CODING_MODEL.md`(\"소리를 내는 방법\")에 있다."
+
+msgid "miniaudio"
+msgstr "miniaudio"
+
+#, python-brace-format
+msgid "`audio` is a thin layer over miniaudio. {engine}`engine/src/mealkit/audio/MiniaudioConfig.h` sets it up, and {engine}`engine/src/mealkit/audio/MiniaudioImpl.cpp` is the only file with the implementation:"
+msgstr "`audio`는 miniaudio 위의 얇은 층이다. {engine}`engine/src/mealkit/audio/MiniaudioConfig.h`가 설정을 하고, 구현이 들어 있는 파일은 {engine}`engine/src/mealkit/audio/MiniaudioImpl.cpp` 하나뿐이다:"
+
+msgid "Decoders: WAV (sound effects, decoded into memory) and Ogg Vorbis through stb_vorbis (music, streamed from disk). MP3, FLAC, encoding and generators are compiled out."
+msgstr "디코더: WAV(효과음, 메모리에 풀어 둔다)와 stb_vorbis를 쓰는 Ogg Vorbis(배경음, 디스크에서 스트리밍). MP3, FLAC, 인코딩, 생성기는 컴파일에서 뺀다."
+
+msgid "One device backend per platform: WASAPI on Windows. Other platforms will turn on their own backend in stage 5."
+msgstr "장치 백엔드는 플랫폼마다 하나: Windows는 WASAPI. 다른 플랫폼은 5단계에서 그 플랫폼 백엔드를 켠다."
+
+#, python-brace-format
+msgid "Why the engine uses miniaudio instead of SDL is in {engine}`docs/DECISIONS.md` (2026-10-18)."
+msgstr "SDL 대신 miniaudio를 쓰는 이유는 {engine}`docs/DECISIONS.md`(2026-10-18)에 있다."
+
+#, python-brace-format
+msgid "`Engine::init` ({engine}`engine/src/mealkit/audio/Audio.cpp`) opens the default output device with one listener and **mixes in stereo**; miniaudio converts to the device's channel layout (7.1 and so on), so the mixing cost does not grow with the speaker count. When there is no output device, `init` returns `false`, every later call does nothing, and the game runs without sound."
+msgstr "`Engine::init`({engine}`engine/src/mealkit/audio/Audio.cpp`)은 리스너 하나로 기본 출력 장치를 열고 **스테레오로 섞는다**. 장치의 채널 배치(7.1 등)로는 miniaudio가 바꾸므로, 스피커 수가 늘어도 섞는 비용이 늘지 않는다. 출력 장치가 없으면 `init`이 `false`를 돌려주고, 그 뒤 호출은 모두 아무것도 하지 않으며, 게임은 소리 없이 돈다."
+
+msgid "Sound events"
+msgstr "소리 이벤트"
+
+#, python-brace-format
+msgid "A game plays an event name, never a file: `ctx.audio.play(\"hit\", position, {{\"speed\", 6.0f}})`. Events are rows of `assets/sounds.table` with the row type `audio::SoundEvent` ({engine}`engine/src/mealkit/audio/Audio.h`): clips, container, a parameter and its curve, random volume and pitch, distances, bus, loop, stream, priority, instance limit, steal rule and cooldown."
+msgstr "게임은 파일이 아니라 이벤트 이름을 재생한다: `ctx.audio.play(\"hit\", position, {{\"speed\", 6.0f}})`. 이벤트는 `assets/sounds.table`의 행이고 행 타입은 `audio::SoundEvent`다({engine}`engine/src/mealkit/audio/Audio.h`): 클립, 컨테이너, 파라미터와 그 곡선, 무작위 볼륨·피치, 거리, 버스, 반복, 스트리밍, 우선순위, 동시 재생 상한, 끊을 규칙, 쿨다운."
+
+msgid "The table is view-only (`kTableView`), outside the content hash. Every 0.25 seconds `update` checks its write time and reads it again when it changed, so an edit is heard during play."
+msgstr "표는 보기 전용(`kTableView`)이라 콘텐츠 해시 밖이다. `update`가 0.25초마다 수정 시각을 보고 바뀌었으면 다시 읽으므로, 플레이 중에 고친 것이 바로 들린다."
+
+msgid "On reload, each event keeps its last play time (for the cooldown) and its last clip. Playing sounds find their row again by name; a sound whose event was removed stops."
+msgstr "다시 읽어도 이벤트마다 마지막 재생 시각(쿨다운용)과 마지막 클립을 이어 간다. 재생 중인 소리는 이름으로 자기 행을 다시 찾고, 이벤트가 지워진 소리는 멈춘다."
+
+msgid "Clips that are not streamed are decoded into memory when the table is read (`MA_SOUND_FLAG_DECODE`). Playing one makes a copy of the decoded sound (`ma_sound_init_copy`), so no disk read happens during play. Streamed clips are opened from the file each time they start."
+msgstr "스트리밍하지 않는 클립은 표를 읽을 때 메모리에 풀어 둔다(`MA_SOUND_FLAG_DECODE`). 재생할 때는 풀어 둔 소리의 사본을 만들므로(`ma_sound_init_copy`) 플레이 중에 디스크를 읽지 않는다. 스트리밍 클립은 시작할 때마다 파일에서 연다."
+
+msgid "Voices"
+msgstr "목소리"
+
+msgid "The engine has 256 voice slots. Each slot is a `Voice`: the event, its position and parameters, its state and up to 4 layers (miniaudio sounds). A voice is **real** when miniaudio mixes it, or **virtual** when it only counts its play position. At most `maxVoices` voices are real; the default is 32, from the project setting `audioVoices`."
+msgstr "엔진에는 목소리 자리가 256개 있다. 자리마다 `Voice`가 있다: 이벤트, 위치와 파라미터, 상태, 레이어 최대 4개(miniaudio 소리). miniaudio가 섞으면 **실제** 목소리, 재생 위치만 세면 **가상** 목소리다. 실제 목소리는 최대 `maxVoices`개이고, 기본값은 프로젝트 설정 `audioVoices`의 32다."
+
+msgid "`play` and `play2D` only take a free slot and mark it pending. They return a `Handle` (slot index and generation number). When a sound ends, its slot's generation goes up, so an old handle stops working instead of controlling a new sound. With no free slot the request is dropped (`voice limit`), and an unknown event name is dropped too (`missing event`)."
+msgstr "`play`와 `play2D`는 빈 자리를 잡아 대기로 표시하기만 한다. `Handle`(자리 번호와 세대 번호)을 돌려준다. 소리가 끝나면 그 자리의 세대가 올라가므로, 예전 핸들은 새 소리를 조종하지 않고 그냥 듣지 않게 된다. 빈 자리가 없으면 요청을 버리고(`voice limit`), 모르는 이벤트 이름도 버린다(`missing event`)."
+
+msgid "Once per frame, `Engine::update` does three steps."
+msgstr "`Engine::update`는 프레임마다 한 번 세 단계를 한다."
+
+msgid "1. Starting pending requests"
+msgstr "1. 대기 중인 요청 시작"
+
+msgid "`startPending` sorts the pending requests by event, then by strength (the value of the event's curve parameter, or its volume). For each event:"
+msgstr "`startPending`은 대기 요청을 이벤트 순, 그다음 세기(이벤트 곡선 파라미터 값, 없으면 볼륨) 순으로 정렬한다. 이벤트마다:"
+
+msgid "While the cooldown runs, requests are dropped (`cooldown`)."
+msgstr "쿨다운 동안은 요청을 버린다(`cooldown`)."
+
+msgid "When more requests for one event arrive in the same frame than `maxInstances`, only the strongest ones are kept (`same frame`). Ten hits in one frame do not play ten sounds."
+msgstr "한 이벤트의 요청이 한 프레임에 `maxInstances`보다 많이 오면 센 것만 남긴다(`same frame`). 한 프레임에 타격이 열 번 나도 소리가 열 개 나지 않는다."
+
+msgid "When the event already has `maxInstances` voices, one is stolen: the oldest or the quietest, by the `steal` field. With `steal = none` the new request is dropped (`max instances`)."
+msgstr "이벤트가 이미 목소리를 `maxInstances`개 갖고 있으면 하나를 뺏는다: `steal` 필드에 따라 가장 오래된 것이나 가장 작은 것. `steal = none`이면 새 요청을 버린다(`max instances`)."
+
+msgid "`start` picks a random volume and pitch inside the ranges and chooses the clip. A `switch` container rounds the parameter to a clip index. A `random` container never picks the clip it played last time (it draws from the other clips)."
+msgstr "`start`가 범위 안에서 무작위 볼륨과 피치를 고르고 클립을 정한다. `switch` 컨테이너는 파라미터를 반올림해 클립 번호로 쓴다. `random` 컨테이너는 지난번 클립을 다시 고르지 않는다(나머지 클립에서 뽑는다)."
+
+msgid "2. Choosing real voices"
+msgstr "2. 실제 목소리 고르기"
+
+msgid "`manageVoices`:"
+msgstr "`manageVoices`:"
+
+msgid "Releases voices that finished or faded out."
+msgstr "끝났거나 페이드가 끝난 목소리를 놓아준다."
+
+msgid "Computes each voice's **audibility**: volume × curve volume × distance attenuation. Distance attenuation is linear: 1 inside `minDistance`, 0 beyond `maxDistance`."
+msgstr "목소리마다 **들리는 크기**를 계산한다: 볼륨 × 곡선 볼륨 × 거리 감쇠. 거리 감쇠는 선형이다: `minDistance` 안은 1, `maxDistance` 밖은 0."
+
+msgid "Sorts voices by (priority + 1) × audibility, newest first on ties."
+msgstr "목소리를 (우선순위 + 1) × 들리는 크기로 정렬하고, 같으면 새것을 앞에 둔다."
+
+msgid "Walks the list. The first `maxVoices` voices with audibility of at least 0.002 are real: a new or returning voice is created in miniaudio, an existing one gets its new volume, pitch, position and filter."
+msgstr "목록을 훑는다. 들리는 크기가 0.002 이상인 앞의 `maxVoices`개가 실제 목소리다: 새로 시작하거나 돌아오는 목소리는 miniaudio에 만들고, 이미 있는 것은 새 볼륨·피치·위치·필터를 받는다."
+
+msgid "Any other voice: a one-shot sound is dropped (`inaudible` or `voice limit`); a loop becomes virtual. Its play position is saved and its miniaudio sound is freed. A virtual voice advances its position by `dt × pitch` each frame, and when it becomes real again it continues from that position (modulo the clip length), so a far-away engine hum does not restart from the beginning."
+msgstr "나머지 목소리: 한 번 나는 소리는 버리고(`inaudible`이나 `voice limit`), 반복 소리는 가상이 된다. 재생 위치를 저장하고 miniaudio 소리를 푼다. 가상 목소리는 프레임마다 위치를 `dt × 피치`만큼 나아가고, 다시 실제가 되면 그 위치(클립 길이로 나눈 나머지)에서 잇는다. 그래서 멀리 있던 엔진 소리가 처음부터 다시 시작하지 않는다."
+
+msgid "3. Applying parameters"
+msgstr "3. 파라미터 적용"
+
+msgid "`apply` turns the event row into miniaudio values for each real voice:"
+msgstr "`apply`는 실제 목소리마다 이벤트 행을 miniaudio 값으로 바꾼다:"
+
+msgid "Volume = volume × random scale × lerp(`volumeAtMin`, `volumeAtMax`, t) × fade, where t is the parameter's position between `paramMin` and `paramMax`."
+msgstr "볼륨 = 볼륨 × 무작위 배율 × lerp(`volumeAtMin`, `volumeAtMax`, t) × 페이드. t는 `paramMin`과 `paramMax` 사이에서 파라미터의 위치다."
+
+msgid "Pitch the same way with the pitch fields (never below 0.01)."
+msgstr "피치도 피치 필드로 같은 식이다(0.01보다 작아지지 않는다)."
+
+msgid "With a low-pass curve, each layer runs through a second-order low-pass filter node. The cutoff is lerped the same way, and the filter is rebuilt only when the cutoff moves by more than 1 Hz."
+msgstr "로우패스 곡선이 있으면 레이어마다 2차 로우패스 필터 노드를 거친다. 차단 주파수도 같은 식으로 섞고, 1 Hz보다 크게 바뀔 때만 필터를 다시 만든다."
+
+msgid "A `blend` container plays up to 4 clips together and crossfades neighbours by the parameter: layer i gets weight max(0, 1 − |t × (n − 1) − i|)."
+msgstr "`blend` 컨테이너는 클립을 최대 4개 같이 내고 파라미터로 이웃끼리 크로스페이드한다: 레이어 i의 무게는 max(0, 1 − |t × (n − 1) − i|)다."
+
+msgid "`stop(handle, fade)` fades the volume to 0 over the given time, then the voice is released."
+msgstr "`stop(handle, fade)`는 주어진 시간 동안 볼륨을 0으로 줄이고 목소리를 놓아준다."
+
+msgid "Every dropped request is added to a list of the last 64 drops with its reason. The editor's Sounds panel shows that list, the voices (`voices()`) and the bus meters."
+msgstr "버린 요청은 모두 이유와 함께 최근 64개 목록에 들어간다. 에디터 [소리] 패널이 그 목록, 목소리(`voices()`), 버스 미터를 보여 준다."
+
+msgid "Buses"
+msgstr "버스"
+
+msgid "Buses are miniaudio sound groups. `master`, `music`, `sfx`, `ui` and `voice` are made at start; any other bus name in the table makes a new bus under `master`."
+msgstr "버스는 miniaudio 소리 그룹이다. `master`, `music`, `sfx`, `ui`, `voice`는 시작할 때 만들고, 표에 다른 버스 이름이 있으면 `master` 아래에 새 버스를 만든다."
+
+msgid "Each bus is wired as: bus group → meter node → master group → master meter → device. The meter node is a custom miniaudio node that copies samples through and keeps the peak, which falls by 3 % per audio block. It runs on the audio thread and stores the peak in an atomic value that the main thread reads; this is the only data the audio thread writes."
+msgstr "버스는 이렇게 이어진다: 버스 그룹 → 미터 노드 → master 그룹 → master 미터 → 장치. 미터 노드는 샘플을 그대로 넘기며 최댓값을 기억하는 직접 만든 miniaudio 노드이고, 최댓값은 오디오 블록마다 3 %씩 떨어진다. 오디오 스레드에서 돌고 최댓값을 메인 스레드가 읽는 atomic 값에 저장한다. 오디오 스레드가 쓰는 데이터는 이것뿐이다."
+
+msgid "`setBusVolume` sets a group's volume (the settings screen does this). `setMuted` sets the whole engine's volume to 0, for example when the window is in the background."
+msgstr "`setBusVolume`은 그룹의 볼륨을 정한다(설정 화면이 한다). `setMuted`는 엔진 전체 볼륨을 0으로 한다. 예를 들어 창이 뒤로 갔을 때."
+
+msgid "3D sound"
+msgstr "3D 소리"
+
+#, python-brace-format
+msgid "Every frame `game::Frontend` passes the camera position and forward direction to `setListener` ({engine}`engine/src/mealkit/game/Frontend.cpp`). Spatial voices get their position each time parameters are applied. MealKit uses a left-handed coordinate system and miniaudio a right-handed one, so z is negated for the listener and every sound position. miniaudio then does panning and attenuation (linear model with the event's minimum and maximum distance). The engine computes the same linear attenuation itself for audibility, so the choice of real voices matches what is heard."
+msgstr "`game::Frontend`가 프레임마다 카메라 위치와 앞 방향을 `setListener`에 넘긴다({engine}`engine/src/mealkit/game/Frontend.cpp`). 공간 목소리는 파라미터를 적용할 때마다 위치를 받는다. MealKit은 왼손 좌표계, miniaudio는 오른손 좌표계라서 리스너와 모든 소리 위치의 z를 뒤집는다. 그다음 miniaudio가 좌우 배치와 감쇠를 한다(이벤트의 최소·최대 거리를 쓰는 선형 모델). 엔진도 들리는 크기에 같은 선형 감쇠를 직접 계산하므로, 실제 목소리 선택이 들리는 것과 맞는다."
+
+msgid "Randomness here (volume, pitch, clip choice) uses a `Pcg32` seeded from the clock. It is view side only, so it does not need to be deterministic."
+msgstr "여기의 무작위(볼륨, 피치, 클립 고르기)는 시계로 씨앗을 정한 `Pcg32`를 쓴다. 화면 쪽 전용이라 결정론적일 필요가 없다."
+
+msgid "Techniques used"
+msgstr "쓰인 기법"
+
+msgid "Technique"
+msgstr "기법"
+
+msgid "Where"
+msgstr "위치"
+
+msgid "What it does"
+msgstr "하는 일"
+
+msgid "Event-based sound"
+msgstr "이벤트 기반 소리"
+
+msgid "`SoundEvent`, `Engine::play`"
+msgstr "`SoundEvent`, `Engine::play`"
+
+msgid "Game code names an event; how it sounds is data in a table that sound designers edit."
+msgstr "게임 코드는 이벤트 이름만 말하고, 어떻게 들릴지는 사운드 디자이너가 고치는 표의 데이터다."
+
+msgid "Fixed slot pool with generations"
+msgstr "세대 번호가 있는 고정 자리 풀"
+
+msgid "`Voice`, `Handle`"
+msgstr "`Voice`, `Handle`"
+
+msgid "256 preallocated slots. A generation number per slot makes old handles harmless, like the simulation's pool ids."
+msgstr "미리 잡은 자리 256개. 자리마다 세대 번호가 있어서 시뮬레이션 풀 id처럼 예전 핸들이 해가 없다."
+
+msgid "Deferred start"
+msgstr "미룬 시작"
+
+msgid "`request`, `startPending`"
+msgstr "`request`, `startPending`"
+
+msgid "Requests wait until the next update, so all requests of one frame are seen together before any starts."
+msgstr "요청은 다음 update까지 기다리므로, 시작하기 전에 한 프레임의 요청을 모두 같이 본다."
+
+msgid "Same-frame grouping"
+msgstr "같은 프레임 묶기"
+
+msgid "`startPending`"
+msgstr "`startPending`"
+
+msgid "Sorts one frame's requests by strength and keeps only as many as the instance limit."
+msgstr "한 프레임의 요청을 세기로 정렬해 동시 재생 상한만큼만 남긴다."
+
+msgid "Voice stealing"
+msgstr "목소리 뺏기"
+
+msgid "When an event is at its limit, the oldest or quietest voice of that event is stopped for the new one."
+msgstr "이벤트가 상한에 닿으면 그 이벤트의 가장 오래되거나 가장 작은 목소리를 멈추고 새것을 낸다."
+
+msgid "No immediate repeat"
+msgstr "바로 반복하지 않기"
+
+msgid "`start`"
+msgstr "`start`"
+
+msgid "Random containers draw from the clips other than the last one."
+msgstr "무작위 컨테이너는 마지막 클립을 뺀 나머지에서 뽑는다."
+
+msgid "Virtual voices"
+msgstr "가상 목소리"
+
+msgid "`manageVoices`"
+msgstr "`manageVoices`"
+
+msgid "Inaudible or over-limit loops stop mixing but keep counting their position, and resume in place."
+msgstr "들리지 않거나 상한 밖인 반복 소리는 섞지 않지만 위치는 계속 세고, 그 자리에서 다시 시작한다."
+
+msgid "Priority × audibility ranking"
+msgstr "우선순위 × 들리는 크기 순위"
+
+msgid "Chooses the voices to mix by importance times estimated loudness."
+msgstr "중요도 곱하기 어림한 크기로 섞을 목소리를 고른다."
+
+msgid "Linear distance attenuation"
+msgstr "선형 거리 감쇠"
+
+msgid "`estimate`, `ma_attenuation_model_linear`"
+msgstr "`estimate`, `ma_attenuation_model_linear`"
+
+msgid "Full volume inside the minimum distance, silent beyond the maximum. The same model is used for ranking and for mixing."
+msgstr "최소 거리 안은 최대 볼륨, 최대 거리 밖은 무음. 순위와 믹싱에 같은 모델을 쓴다."
+
+msgid "Parameter curves"
+msgstr "파라미터 곡선"
+
+msgid "`apply`"
+msgstr "`apply`"
+
+msgid "One parameter drives volume, pitch and low-pass cutoff by linear interpolation."
+msgstr "파라미터 하나가 선형 보간으로 볼륨, 피치, 로우패스 차단 주파수를 움직인다."
+
+msgid "Crossfade blend container"
+msgstr "크로스페이드 블렌드 컨테이너"
+
+msgid "Triangle weights between neighbouring clips make a smooth blend along the parameter."
+msgstr "이웃 클립 사이의 삼각형 무게가 파라미터를 따라 부드럽게 섞는다."
+
+msgid "Audio graph with groups"
+msgstr "그룹을 쓰는 오디오 그래프"
+
+msgid "`Impl::bus`"
+msgstr "`Impl::bus`"
+
+msgid "Buses are miniaudio sound groups chained to the master, so one volume change affects all sounds of a bus."
+msgstr "버스는 master에 이어진 miniaudio 소리 그룹이라, 볼륨 하나를 바꾸면 버스의 모든 소리가 바뀐다."
+
+msgid "Peak meter with decay"
+msgstr "떨어지는 최댓값 미터"
+
+msgid "`meterProcess`"
+msgstr "`meterProcess`"
+
+msgid "A pass-through node tracks the peak level and lets it fall slowly, read through an atomic."
+msgstr "통과 노드가 최대 크기를 기억하고 천천히 떨어뜨리며, atomic으로 읽는다."
+
+msgid "Decode once, copy to play"
+msgstr "한 번 풀고 복사해 재생"
+
+msgid "`decode`, `ma_sound_init_copy`"
+msgstr "`decode`, `ma_sound_init_copy`"
+
+msgid "Effects are decoded when the table loads; each play shares the decoded data."
+msgstr "효과음은 표를 읽을 때 풀고, 재생마다 풀어 둔 데이터를 같이 쓴다."
+
+msgid "Streaming"
+msgstr "스트리밍"
+
+msgid "`MA_SOUND_FLAG_STREAM`"
+msgstr "`MA_SOUND_FLAG_STREAM`"
+
+msgid "Long music is read from disk while it plays instead of being decoded into memory."
+msgstr "긴 음악은 메모리에 풀지 않고 재생하면서 디스크에서 읽는다."
+
+msgid "Handedness conversion"
+msgstr "좌표계 손 바꾸기"
+
+msgid "`setListener`, `apply`"
+msgstr "`setListener`, `apply`"
+
+msgid "Negates z so miniaudio's right-handed space matches MealKit's left-handed one."
+msgstr "z를 뒤집어 miniaudio의 오른손 공간을 MealKit의 왼손 공간에 맞춘다."
+

@@ -1,0 +1,480 @@
+# Korean translation of the MealKit documentation.
+# This file is distributed under the same license as the MealKit documentation (CC BY 4.0).
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: MealKit 0.4\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-19 13:15+0900\n"
+"PO-Revision-Date: 2026-10-19 13:15+0900\n"
+"Last-Translator: KingProtea99\n"
+"Language: ko\n"
+"Language-Team: Korean\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+msgid "Render"
+msgstr "렌더"
+
+#, python-brace-format
+msgid "This page explains how the DirectX 12 renderer works inside: how it starts, what one frame does, how instances reach the GPU, how the shaders light the scene, and how the 2D UI pass, screenshots and statistics work. The frame budget and the profiler are in {doc}`../../manual/performance`. The code is in {engine}`engine/src/mealkit/render` and the shaders in {engine}`engine/shaders`."
+msgstr "이 페이지는 DirectX 12 렌더러가 안에서 어떻게 돌아가는지 설명한다: 어떻게 시작하는지, 한 프레임에 무엇을 하는지, 인스턴스가 어떻게 GPU에 가는지, 셰이더가 장면을 어떻게 비추는지, 2D UI 패스·스크린샷·통계가 어떻게 동작하는지. 프레임 예산과 프로파일러는 {doc}`../../manual/performance`에 있다. 코드는 {engine}`engine/src/mealkit/render`, 셰이더는 {engine}`engine/shaders`에 있다."
+
+#, python-brace-format
+msgid "`render` comes after `scene` in the folder order of {engine}`docs/CODING_MODEL.md` (\"엔진 폴더 사이 의존\"). The `rhi` folder (a thin layer over the graphics API) will sit between them in stage 2; today the renderer calls Direct3D 12 directly. `asset`, `debug` and `ui` come after it and give it meshes, ImGui draw data and UI rectangles."
+msgstr "`render`는 {engine}`docs/CODING_MODEL.md`(\"엔진 폴더 사이 의존\")의 폴더 순서에서 `scene` 다음이다. 2단계에서 그 사이에 `rhi` 폴더(그래픽 API 위의 얇은 층)가 들어오고, 지금은 렌더러가 Direct3D 12를 바로 부른다. 뒤에 오는 `asset`, `debug`, `ui`가 메시, ImGui 그리기 데이터, UI 사각형을 넘긴다."
+
+msgid "Files"
+msgstr "파일"
+
+msgid "File"
+msgstr "파일"
+
+msgid "Holds"
+msgstr "내용"
+
+#, python-brace-format
+msgid "{engine}`engine/src/mealkit/render/Renderer.h`"
+msgstr "{engine}`engine/src/mealkit/render/Renderer.h`"
+
+msgid "`Renderer`, the per-frame values (`FrameParams`), the 48-byte `InstanceData`, the 112-byte `UiQuad`, GPU information and `RenderStats`."
+msgstr "`Renderer`, 프레임마다의 값(`FrameParams`), 48바이트 `InstanceData`, 112바이트 `UiQuad`, GPU 정보와 `RenderStats`."
+
+#, python-brace-format
+msgid "{engine}`engine/src/mealkit/render/Renderer.cpp`"
+msgstr "{engine}`engine/src/mealkit/render/Renderer.cpp`"
+
+msgid "The whole DX12 implementation. No D3D type appears in a header, so the rest of the engine never includes `d3d12.h`."
+msgstr "DX12 구현 전부. 헤더에는 D3D 타입이 나오지 않으므로, 엔진의 나머지는 `d3d12.h`를 include하지 않는다."
+
+#, python-brace-format
+msgid "{engine}`engine/src/mealkit/render/DrawList.h`"
+msgstr "{engine}`engine/src/mealkit/render/DrawList.h`"
+
+msgid "Collects instances per mesh for one frame."
+msgstr "한 프레임의 인스턴스를 메시별로 모은다."
+
+#, python-brace-format
+msgid "{engine}`engine/src/mealkit/render/Mesh.h`"
+msgstr "{engine}`engine/src/mealkit/render/Mesh.h`"
+
+msgid "The 28-byte `Vertex`, `MeshData` and the unit box."
+msgstr "28바이트 `Vertex`, `MeshData`, 한 변 1인 상자."
+
+#, python-brace-format
+msgid "{engine}`engine/shaders/Forward.hlsl`"
+msgstr "{engine}`engine/shaders/Forward.hlsl`"
+
+msgid "The 3D shader: instance transform, lighting and fog."
+msgstr "3D 셰이더: 인스턴스 변환, 조명, 안개."
+
+#, python-brace-format
+msgid "{engine}`engine/shaders/Ui.hlsl`"
+msgstr "{engine}`engine/shaders/Ui.hlsl`"
+
+msgid "The 2D UI shader: rounded boxes, gradients, shadows, images and SDF text."
+msgstr "2D UI 셰이더: 둥근 상자, 그라디언트, 그림자, 이미지, SDF 글자."
+
+#, python-brace-format
+msgid "The shaders are compiled at build time by DXC into header files with byte arrays (`g_ForwardVS.h`, `g_UiPS.h`, ...), see {engine}`engine/CMakeLists.txt`. They use shader model 6.0 profiles (`vs_6_0`, `ps_6_0`). Debug builds keep debug information (`-Zi -Qembed_debug -Od`), other builds are optimized and stripped (`-O3 -Qstrip_debug -Qstrip_reflect`). The game therefore needs no shader compiler at run time and no shader files next to the exe."
+msgstr "셰이더는 빌드 때 DXC가 바이트 배열을 담은 헤더 파일(`g_ForwardVS.h`, `g_UiPS.h`, ...)로 컴파일한다({engine}`engine/CMakeLists.txt` 참고). 셰이더 모델 6.0 프로필(`vs_6_0`, `ps_6_0`)을 쓴다. Debug 빌드는 디버그 정보를 남기고(`-Zi -Qembed_debug -Od`), 나머지 빌드는 최적화하고 정보를 뺀다(`-O3 -Qstrip_debug -Qstrip_reflect`). 그래서 게임은 실행 중에 셰이더 컴파일러가 필요 없고, exe 옆에 셰이더 파일도 없다."
+
+msgid "Starting up"
+msgstr "시작"
+
+msgid "`Renderer::init`:"
+msgstr "`Renderer::init`:"
+
+msgid "Creates a DXGI 1.6 factory and picks the first hardware adapter in high-performance order that can create a Direct3D 12 device (software adapters are skipped)."
+msgstr "DXGI 1.6 팩토리를 만들고, 고성능 우선 순서에서 Direct3D 12 장치를 만들 수 있는 첫 하드웨어 어댑터를 고른다(소프트웨어 어댑터는 건너뛴다)."
+
+msgid "Reads what the GPU supports (`describeGpu`): adapter name, driver version, feature level, highest shader model, resource binding tier, wave lane counts, mesh shader tier and whether memory is shared with the CPU (UMA, as on integrated graphics)."
+msgstr "GPU가 지원하는 것을 읽는다(`describeGpu`): 어댑터 이름, 드라이버 버전, 기능 수준, 가장 높은 셰이더 모델, 리소스 바인딩 티어, 웨이브 레인 수, 메시 셰이더 티어, 메모리를 CPU와 같이 쓰는지(내장 그래픽처럼 UMA인지)."
+
+msgid "Refuses GPUs below the minimum (`gpuMinimumError`): shader model 6.6 and resource binding tier 3, which Intel 11th gen integrated graphics has. The message names the driver version, because an old driver on a good GPU often reports a lower shader model."
+msgstr "최소 사양보다 낮은 GPU는 거부한다(`gpuMinimumError`): 셰이더 모델 6.6과 리소스 바인딩 티어 3, 즉 Intel 11세대 내장 그래픽이 가진 것. 좋은 GPU라도 오래된 드라이버면 셰이더 모델이 낮게 나오는 일이 많아서, 알림에 드라이버 버전을 적는다."
+
+msgid "Creates one direct command queue and a flip-model swap chain with 3 back buffers, a frame latency waitable object (at most 2 frames queued) and tearing support when the system has it."
+msgstr "직접 명령 큐 하나와 플립 모델 스왑 체인을 만든다: 백버퍼 3개, 프레임 지연 대기 객체(쌓이는 프레임은 최대 2개), 시스템이 지원하면 티어링."
+
+msgid "Creates two render target views per back buffer: an `R8G8B8A8_UNORM_SRGB` view for the 3D pass (the shader writes linear color and the hardware encodes gamma) and an `R8G8B8A8_UNORM` overlay view for UI and ImGui, whose colors are already sRGB."
+msgstr "백버퍼마다 렌더 타깃 뷰를 둘 만든다: 3D 패스용 `R8G8B8A8_UNORM_SRGB` 뷰(셰이더는 선형 색을 쓰고 하드웨어가 감마를 인코딩한다)와, 색이 이미 sRGB인 UI와 ImGui용 `R8G8B8A8_UNORM` 오버레이 뷰."
+
+msgid "Creates a 32-bit float depth buffer, the upload ring, the 3D pipeline and the UI pipeline."
+msgstr "32비트 실수 깊이 버퍼, 업로드 링, 3D 파이프라인, UI 파이프라인을 만든다."
+
+msgid "`queryGpu` does steps 1 and 2 without a window, for `--system-info`. With the debug layer on, D3D12 messages are sent to the engine log. Every D3D call goes through the `HR` macro: a failure stops the program with the error code and, after a device removal, the removal reason."
+msgstr "`queryGpu`는 1, 2단계를 창 없이 해서 `--system-info`에 쓴다. 디버그 레이어를 켜면 D3D12 메시지가 엔진 로그로 간다. 모든 D3D 호출은 `HR` 매크로를 거친다: 실패하면 오류 코드와, 장치가 제거되었으면 제거 이유를 알리고 프로그램을 멈춘다."
+
+msgid "Memory"
+msgstr "메모리"
+
+msgid "Two frames are in flight. Each has its own command allocator and fence value, so the CPU records frame N+1 while the GPU draws frame N."
+msgstr "프레임 두 개를 동시에 처리한다. 프레임마다 명령 할당자와 펜스 값이 따로 있어서, GPU가 프레임 N을 그리는 동안 CPU가 프레임 N+1을 기록한다."
+
+msgid "All data that changes every frame goes into **one upload buffer** of 8 MiB per frame (16 MiB in all), mapped once at start and never unmapped. `allocUpload` cuts pieces from the current frame's half with 256-byte alignment, which is what constant buffer views need. It is a bump allocator: the offset is reset at the start of the frame, and nothing is freed one by one. On integrated graphics the upload heap is the memory the GPU reads, so per-frame data is never copied. If a frame needs more than 8 MiB, the draw is skipped and a warning is written once."
+msgstr "매 프레임 바뀌는 데이터는 모두 프레임당 8 MiB(합쳐서 16 MiB)인 **업로드 버퍼 하나**에 들어간다. 시작할 때 한 번 매핑하고 풀지 않는다. `allocUpload`는 지금 프레임의 절반에서 256바이트 정렬로 조각을 잘라 준다. 상수 버퍼 뷰가 이 정렬을 요구한다. 범프 할당자라서 프레임을 시작할 때 오프셋을 되돌리고, 하나씩 풀지 않는다. 내장 그래픽에서는 업로드 힙이 곧 GPU가 읽는 메모리라 프레임 데이터를 복사하지 않는다. 한 프레임이 8 MiB보다 많이 필요하면 그 그리기를 건너뛰고 경고를 한 번 쓴다."
+
+msgid "Meshes do not change, so `createMesh` puts them in default-heap buffers, copied once from a temporary upload buffer at load time. When a mesh has at most 65,535 vertices, its indices are stored as 16-bit values to save memory bandwidth."
+msgstr "메시는 바뀌지 않으므로 `createMesh`가 기본 힙 버퍼에 넣고, 불러올 때 임시 업로드 버퍼에서 한 번 복사한다. 정점이 65,535개 이하인 메시는 메모리 대역폭을 아끼려고 인덱스를 16비트로 저장한다."
+
+msgid "One frame"
+msgstr "한 프레임"
+
+#, python-brace-format
+msgid "The engine loop ({engine}`engine/src/mealkit/game/GameMain.cpp`, and the editor in the same order) does:"
+msgstr "엔진 루프({engine}`engine/src/mealkit/game/GameMain.cpp`, 에디터도 같은 순서)는 다음을 한다:"
+
+msgid "`game->buildFrame` fills a `FrameParams` (camera, light, fog) and a `DrawList`."
+msgstr "`game->buildFrame`이 `FrameParams`(카메라, 빛, 안개)와 `DrawList`를 채운다."
+
+msgid "`Frontend::afterBuildFrame` adds the screen flash from the feedback table and gives the camera to the UI and sound."
+msgstr "`Frontend::afterBuildFrame`이 연출 표의 화면 번쩍임을 더하고 카메라를 UI와 소리에 넘긴다."
+
+msgid "`Renderer::beginFrame`, `DrawList::submit`, the game UI (`ui::System::render`), the debug UI, `Renderer::endFrame`."
+msgstr "`Renderer::beginFrame`, `DrawList::submit`, 게임 UI(`ui::System::render`), 디버그 UI, `Renderer::endFrame`."
+
+msgid "Inside the renderer:"
+msgstr "렌더러 안에서는:"
+
+msgid "`beginFrame` waits on the swap chain's latency object, so the CPU never runs more than two frames ahead and input lag does not build up. It waits for this frame slot's fence, resets the allocator and the command list, moves the back buffer to the render target state, clears color to the fog color (mixed with the flash, so the sky flashes too) and depth to 0. It sets the viewport (the whole window, or the scene view in the editor) and writes the 176-byte frame constants into the upload ring."
+msgstr "`beginFrame`은 스왑 체인의 지연 대기 객체를 기다린다. 그래서 CPU가 두 프레임보다 앞서 가지 않고 입력 지연이 쌓이지 않는다. 이 프레임 자리의 펜스를 기다리고, 할당자와 명령 리스트를 비우고, 백버퍼를 렌더 타깃 상태로 옮기고, 색은 안개 색(번쩍임과 섞어서 하늘도 번쩍인다)으로, 깊이는 0으로 지운다. 뷰포트(창 전체, 에디터에서는 씬 뷰)를 정하고 176바이트 프레임 상수를 업로드 링에 쓴다."
+
+msgid "`drawInstances(mesh, instances, count)` copies the instances into the upload ring, binds that address as a root shader resource view, binds the mesh's vertex and index buffers and calls `DrawIndexedInstanced` once."
+msgstr "`drawInstances(mesh, instances, count)`는 인스턴스를 업로드 링에 복사하고, 그 주소를 루트 셰이더 리소스 뷰로 묶고, 메시의 정점·인덱스 버퍼를 묶고, `DrawIndexedInstanced`를 한 번 부른다."
+
+msgid "`drawUi` draws all UI rectangles with one more draw call (see below)."
+msgstr "`drawUi`는 드로우 콜 하나를 더 써서 UI 사각형을 모두 그린다(아래 참고)."
+
+msgid "`endFrame` moves the back buffer to the present state, closes and executes the command list, calls `Present` (sync interval 1 with vsync, otherwise 0 and tearing allowed), signals the fence and moves to the next frame slot."
+msgstr "`endFrame`은 백버퍼를 프레젠트 상태로 옮기고, 명령 리스트를 닫아 실행하고, `Present`를 부르고(수직동기면 동기 간격 1, 아니면 0과 티어링 허용), 펜스에 신호를 주고 다음 프레임 자리로 넘어간다."
+
+msgid "Instances"
+msgstr "인스턴스"
+
+msgid "`render::DrawList` keeps one bucket (a `std::vector<InstanceData>`) per mesh id. `add` appends to a bucket, and `submit` draws every non-empty bucket with one draw call. `clear` empties the buckets but keeps their memory, so a steady frame allocates nothing."
+msgstr "`render::DrawList`는 메시 id마다 버킷(`std::vector<InstanceData>`) 하나를 둔다. `add`는 버킷에 붙이고, `submit`은 비어 있지 않은 버킷마다 드로우 콜 하나로 그린다. `clear`는 버킷을 비우되 메모리는 남기므로, 안정된 프레임은 아무것도 할당하지 않는다."
+
+msgid "An instance is 48 bytes and is copied to the GPU as it is (`static_assert` keeps the C++ and HLSL layouts equal):"
+msgstr "인스턴스는 48바이트이고 그대로 GPU에 복사된다(`static_assert`가 C++와 HLSL 배치를 같게 지킨다):"
+
+msgid "Bytes"
+msgstr "바이트"
+
+msgid "Field"
+msgstr "필드"
+
+msgid "12"
+msgstr "12"
+
+msgid "position"
+msgstr "위치"
+
+msgid "4"
+msgstr "4"
+
+msgid "color (RGBA8, sRGB)"
+msgstr "색 (RGBA8, sRGB)"
+
+msgid "16"
+msgstr "16"
+
+msgid "rotation (quaternion)"
+msgstr "회전 (쿼터니언)"
+
+msgid "scale"
+msgstr "크기"
+
+msgid "flags (`kInstanceChecker`, `kInstanceHighlight`)"
+msgstr "플래그 (`kInstanceChecker`, `kInstanceHighlight`)"
+
+msgid "The CPU builds no matrices. The vertex shader reads the instance from a `StructuredBuffer` with `SV_InstanceID` and computes the world position as rotate(rotation, position × scale) + position. The rotation uses the short form v + w·t + q×t with t = 2·(q×v). The normal is rotated after dividing by the scale, which keeps it correct for non-uniform scale."
+msgstr "CPU는 행렬을 만들지 않는다. 정점 셰이더가 `SV_InstanceID`로 `StructuredBuffer`에서 인스턴스를 읽고, 월드 위치를 rotate(회전, 위치 × 크기) + 위치로 계산한다. 회전은 짧은 식 v + w·t + q×t, t = 2·(q×v)를 쓴다. 법선은 크기로 나눈 뒤 돌려서, 축마다 크기가 달라도 맞게 나온다."
+
+msgid "A vertex is 28 bytes: position (12), normal (12) and an RGBA8 color (4) that holds the glTF material color."
+msgstr "정점은 28바이트다: 위치(12), 법선(12), glTF 재질 색을 담는 RGBA8 색(4)."
+
+msgid "Lighting (Forward.hlsl)"
+msgstr "조명 (Forward.hlsl)"
+
+msgid "Everything is drawn in one forward pass with back-face culling and reversed depth (depth cleared to 0, test `GREATER`), which spreads float depth precision more evenly over distance."
+msgstr "모든 것을 포워드 패스 하나로 그린다. 뒷면은 버리고 깊이는 뒤집는다(깊이를 0으로 지우고 `GREATER`로 비교). 그러면 실수 깊이의 정밀도가 거리에 따라 더 고르게 퍼진다."
+
+msgid "**Albedo** is the instance color times the vertex color. Both are sRGB bytes turned into linear color by squaring (a gamma 2.0 approximation, cheaper than the exact curve)."
+msgstr "**알베도**는 인스턴스 색 곱하기 정점 색이다. 둘 다 sRGB 바이트를 제곱해 선형 색으로 바꾼다(감마 2.0 근사, 정확한 곡선보다 싸다)."
+
+msgid "**Checker**: with flag bit 0 the albedo is darkened to 0.85 on every other 4 × 4 m cell of world x and z (the ground)."
+msgstr "**체커**: 플래그 비트 0이 켜지면 월드 x·z의 4 × 4 m 칸 하나 걸러 알베도를 0.85로 어둡게 한다(바닥)."
+
+msgid "**Sun** uses half Lambert: h = dot(n, sun) × 0.5 + 0.5, squared. Faces turned away from the sun are dark but not black, so shapes stay readable without shadows."
+msgstr "**태양**은 하프 램버트를 쓴다: h = dot(n, sun) × 0.5 + 0.5를 제곱한다. 태양 반대쪽 면도 어둡지만 검지 않아서, 그림자 없이도 모양이 읽힌다."
+
+msgid "**Ambient** is a hemisphere light: lerp(ground color, sky color, n.y × 0.5 + 0.5). Upward faces get the sky color, downward faces the ground color."
+msgstr "**환경광**은 반구 조명이다: lerp(땅색, 하늘색, n.y × 0.5 + 0.5). 위를 보는 면은 하늘색, 아래를 보는 면은 땅색을 받는다."
+
+msgid "Color = albedo × (sun color × h² + ambient)."
+msgstr "색 = 알베도 × (태양 색 × h² + 환경광)."
+
+msgid "**Selection**: with flag bit 1 (editor selection) the color is mixed 45 % with orange."
+msgstr "**선택**: 플래그 비트 1(에디터 선택)이 켜지면 색을 주황색과 45 % 섞는다."
+
+msgid "**Fog** is exponential: f = exp(−distance × density), color = lerp(fog color, color, f)."
+msgstr "**안개**는 지수 안개다: f = exp(−거리 × 밀도), 색 = lerp(안개 색, 색, f)."
+
+msgid "**Screen flash**: the result is mixed with the flash color by its amount."
+msgstr "**화면 번쩍임**: 결과를 번쩍임 색과 그 세기만큼 섞는다."
+
+msgid "There are no textures, shadow maps or post effects yet. This keeps the pass within the budget of integrated graphics."
+msgstr "아직 텍스처, 그림자 맵, 후처리 효과는 없다. 그래서 이 패스가 내장 그래픽 예산 안에 든다."
+
+msgid "UI pass (Ui.hlsl)"
+msgstr "UI 패스 (Ui.hlsl)"
+
+msgid "`ui` turns screens into a list of `UiQuad` values (112 bytes each, one rectangle) and calls `drawUi` once per frame."
+msgstr "`ui`가 화면을 `UiQuad` 값(하나에 112바이트, 사각형 하나)의 목록으로 바꾸고 프레임마다 `drawUi`를 한 번 부른다."
+
+msgid "The pass draws after 3D, into the overlay view, at the full back buffer resolution, without depth and without culling."
+msgstr "이 패스는 3D 다음에 오버레이 뷰로, 백버퍼 원래 해상도로, 깊이와 면 버리기 없이 그린다."
+
+msgid "There is no vertex buffer. Each rectangle is one instance, and the vertex shader makes its 6 corners from `SV_VertexID`, grown by a margin for anti-aliasing and shadow blur, and rotated around the box center."
+msgstr "정점 버퍼가 없다. 사각형 하나가 인스턴스 하나이고, 정점 셰이더가 `SV_VertexID`로 모서리 6개를 만든다. 안티에일리어싱과 그림자 흐림만큼 여백을 키우고, 상자 가운데를 중심으로 돌린다."
+
+msgid "The pixel shader computes a signed distance to a rounded box with a separate radius per corner. Coverage is saturate(0.5 − distance), which gives a one-pixel anti-aliased edge. On top of that it does solid, linear and radial fills, an inner stroke, blurred shadows (smoothstep over the blur width), images and text."
+msgstr "픽셀 셰이더는 모서리마다 반지름이 다른 둥근 상자까지의 부호 거리를 계산한다. 덮는 정도는 saturate(0.5 − 거리)라서 한 픽셀 폭의 부드러운 경계가 나온다. 그 위에 단색·선형·원형 채우기, 안쪽 테두리, 흐린 그림자(흐림 폭에 걸친 smoothstep), 이미지, 글자를 한다."
+
+msgid "Text samples a single-channel signed distance field atlas and turns the distance into coverage with the scale that `ui` passes per glyph, so one baked size stays sharp at every size."
+msgstr "글자는 채널 하나짜리 부호 거리 필드 아틀라스를 읽고, `ui`가 글자마다 넘긴 배율로 거리를 덮는 정도로 바꾼다. 그래서 한 크기로 구운 글자가 어느 크기에서나 선명하다."
+
+msgid "Output is premultiplied alpha, blended with `ONE, INV_SRC_ALPHA`. A clip rectangle per quad discards pixels outside it."
+msgstr "출력은 미리 곱한 알파이고 `ONE, INV_SRC_ALPHA`로 섞는다. 사각형마다 있는 자르기 사각형 밖의 픽셀은 버린다."
+
+msgid "The two atlases are 2048 × 2048 textures: `R8_UNORM` for glyph distance fields and `R8G8B8A8_UNORM` for images, both in one shader-visible descriptor heap with a linear clamp sampler. `updateUiAtlas` can be called at any time; it queues the pixels, split into pieces of about 1 MiB. At the next `drawUi` the queued pieces are copied through the upload ring into the textures (rows aligned to 256 bytes, data to 512 bytes, as D3D12 requires). Pieces that do not fit wait for the next frame."
+msgstr "아틀라스 둘은 2048 × 2048 텍스처다: 글자 거리 필드용 `R8_UNORM`과 이미지용 `R8G8B8A8_UNORM`. 둘 다 셰이더가 보는 디스크립터 힙 하나에 있고, 선형 클램프 샘플러를 쓴다. `updateUiAtlas`는 언제든 부를 수 있고, 픽셀을 약 1 MiB 조각으로 나눠 줄에 세운다. 다음 `drawUi`에서 기다리던 조각을 업로드 링을 거쳐 텍스처로 복사한다(D3D12가 요구하는 대로 줄은 256바이트, 데이터는 512바이트 정렬). 자리가 없는 조각은 다음 프레임을 기다린다."
+
+msgid "Screenshots"
+msgstr "스크린샷"
+
+msgid "`requestCapture(path)` marks the next frame. In `endFrame` the back buffer is copied into a readback buffer (layout from `GetCopyableFootprints`). After presenting, the renderer waits for that frame's fence, converts RGBA to BGRA and writes a PNG with the Windows Imaging Component. The game uses it for `F12` (`screenshot.png`) and for automatic captures in tests."
+msgstr "`requestCapture(path)`는 다음 프레임에 표시를 한다. `endFrame`에서 백버퍼를 리드백 버퍼로 복사한다(배치는 `GetCopyableFootprints`). 프레젠트한 뒤 그 프레임의 펜스를 기다리고, RGBA를 BGRA로 바꿔 Windows Imaging Component로 PNG를 쓴다. 게임은 `F12`(`screenshot.png`)와 시험의 자동 캡처에 이것을 쓴다."
+
+msgid "Statistics"
+msgstr "통계"
+
+#, python-brace-format
+msgid "`RenderStats` holds `drawCalls` and `instances`. `beginFrame` resets them, every `drawInstances` adds one draw call and its instance count, and `drawUi` adds one draw call. The renderer only measures. `game::FrameStats` reads `stats()` once per frame and makes the numbers in the window title, the F1 overlay and the perf log, as decided in {engine}`docs/CODING_MODEL.md` (\"성능 숫자 모으기와 보여 주기\"). Profile builds also time the GPU frame with Tracy's D3D12 zones."
+msgstr "`RenderStats`는 `drawCalls`와 `instances`를 갖는다. `beginFrame`이 비우고, `drawInstances`마다 드로우 콜 하나와 인스턴스 수를 더하고, `drawUi`가 드로우 콜 하나를 더한다. 렌더러는 재기만 한다. {engine}`docs/CODING_MODEL.md`(\"성능 숫자 모으기와 보여 주기\")에서 정한 대로 `game::FrameStats`가 프레임마다 `stats()`를 한 번 읽어 창 제목, F1 오버레이, perf 로그의 숫자를 만든다. Profile 빌드는 Tracy의 D3D12 구간으로 GPU 프레임 시간도 잰다."
+
+#, python-brace-format
+msgid "`native()` gives the device, queue, command list, frame count and overlay format to the ImGui layer (see {doc}`debug`), so it can draw into the same frame."
+msgstr "`native()`는 장치, 큐, 명령 리스트, 프레임 수, 오버레이 형식을 ImGui 층에 넘겨({doc}`debug` 참고) 같은 프레임에 그릴 수 있게 한다."
+
+msgid "Techniques used"
+msgstr "쓰인 기법"
+
+msgid "Frame structure"
+msgstr "프레임 구조"
+
+msgid "Technique"
+msgstr "기법"
+
+msgid "Where"
+msgstr "위치"
+
+msgid "What it does"
+msgstr "하는 일"
+
+msgid "Frames in flight with fences"
+msgstr "펜스로 여러 프레임 동시 처리"
+
+msgid "`Renderer::Impl::frames`, `waitForFence`"
+msgstr "`Renderer::Impl::frames`, `waitForFence`"
+
+msgid "Two command allocators and fence values let the CPU record one frame while the GPU draws the previous one."
+msgstr "명령 할당자 둘과 펜스 값으로 GPU가 앞 프레임을 그리는 동안 CPU가 다음 프레임을 기록한다."
+
+msgid "Frame latency waitable swap chain"
+msgstr "프레임 지연 대기 스왑 체인"
+
+msgid "`beginFrame`"
+msgstr "`beginFrame`"
+
+msgid "Waits until the swap chain can take a frame, with at most 2 queued, to keep input lag low."
+msgstr "스왑 체인이 프레임을 받을 수 있을 때까지 기다리고 쌓이는 프레임을 2개로 막아, 입력 지연을 낮게 지킨다."
+
+msgid "Flip model with tearing"
+msgstr "티어링을 쓰는 플립 모델"
+
+msgid "`init`, `endFrame`"
+msgstr "`init`, `endFrame`"
+
+msgid "`FLIP_DISCARD` with 3 buffers. With vsync off and tearing supported, frames are presented at once."
+msgstr "버퍼 3개의 `FLIP_DISCARD`. 수직동기를 끄고 티어링을 지원하면 프레임을 바로 내보낸다."
+
+msgid "Persistently mapped upload ring"
+msgstr "계속 매핑해 둔 업로드 링"
+
+msgid "`allocUpload`"
+msgstr "`allocUpload`"
+
+msgid "One mapped buffer split into a half per frame. Allocation is a 256-byte aligned bump of an offset, reset every frame. On UMA GPUs it needs no copy."
+msgstr "매핑한 버퍼 하나를 프레임마다 절반씩 나눈다. 할당은 오프셋을 256바이트 정렬로 밀어 가는 것이고 프레임마다 되돌린다. UMA GPU에서는 복사가 필요 없다."
+
+msgid "Two views of one back buffer"
+msgstr "백버퍼 하나에 뷰 둘"
+
+msgid "`createSwapchainResources`"
+msgstr "`createSwapchainResources`"
+
+msgid "An sRGB view lets the hardware do gamma encoding for 3D. A plain view lets UI and ImGui write sRGB colors unchanged."
+msgstr "sRGB 뷰로 하드웨어가 3D의 감마 인코딩을 한다. 평범한 뷰로 UI와 ImGui가 sRGB 색을 그대로 쓴다."
+
+msgid "Reversed depth"
+msgstr "뒤집은 깊이"
+
+msgid "`createPipeline`"
+msgstr "`createPipeline`"
+
+msgid "Depth is cleared to 0 and tested with `GREATER`, which gives float depth more even precision over distance."
+msgstr "깊이를 0으로 지우고 `GREATER`로 비교해, 실수 깊이의 정밀도를 거리에 따라 더 고르게 한다."
+
+msgid "Build-time shader compilation"
+msgstr "빌드 때 셰이더 컴파일"
+
+msgid "`mealkit_shader` in `engine/CMakeLists.txt`"
+msgstr "`engine/CMakeLists.txt`의 `mealkit_shader`"
+
+msgid "DXC turns HLSL into byte arrays in headers, so the exe carries its shaders and needs no compiler."
+msgstr "DXC가 HLSL을 헤더 안의 바이트 배열로 바꾸므로, exe가 셰이더를 품고 컴파일러가 필요 없다."
+
+msgid "Drawing"
+msgstr "그리기"
+
+msgid "Instanced drawing per mesh"
+msgstr "메시별 인스턴스 그리기"
+
+msgid "`DrawList`, `drawInstances`"
+msgstr "`DrawList`, `drawInstances`"
+
+msgid "All instances of a mesh are one draw call. Buckets keep their memory between frames."
+msgstr "한 메시의 인스턴스는 모두 드로우 콜 하나다. 버킷은 프레임 사이에 메모리를 남긴다."
+
+msgid "Shader-side transforms"
+msgstr "셰이더 쪽 변환"
+
+msgid "`VSMain` in `Forward.hlsl`"
+msgstr "`Forward.hlsl`의 `VSMain`"
+
+msgid "The CPU writes position, quaternion and scale; the vertex shader rotates with the quaternion formula, so no matrices are built per object."
+msgstr "CPU는 위치, 쿼터니언, 크기를 쓰고 정점 셰이더가 쿼터니언 식으로 돌린다. 그래서 물체마다 행렬을 만들지 않는다."
+
+msgid "Root shader resource view per draw"
+msgstr "그리기마다 루트 셰이더 리소스 뷰"
+
+msgid "`drawInstances`"
+msgstr "`drawInstances`"
+
+msgid "The instance buffer is bound by GPU address, with no descriptor to create."
+msgstr "인스턴스 버퍼를 GPU 주소로 묶어서 만들 디스크립터가 없다."
+
+msgid "16-bit indices"
+msgstr "16비트 인덱스"
+
+msgid "`createMesh`"
+msgstr "`createMesh`"
+
+msgid "Meshes with at most 65,535 vertices use half the index memory."
+msgstr "정점이 65,535개 이하인 메시는 인덱스 메모리를 절반만 쓴다."
+
+msgid "Half Lambert lighting"
+msgstr "하프 램버트 조명"
+
+msgid "`PSMain` in `Forward.hlsl`"
+msgstr "`Forward.hlsl`의 `PSMain`"
+
+msgid "Wraps the diffuse term to 0..1 and squares it, so shadowed sides keep some shape."
+msgstr "확산광 항을 0..1로 감싸 제곱해서, 그늘진 면도 모양이 남는다."
+
+msgid "Hemisphere ambient light"
+msgstr "반구 환경광"
+
+msgid "`PSMain`"
+msgstr "`PSMain`"
+
+msgid "Blends a ground and a sky color by the normal's height, a cheap stand-in for light from the surroundings."
+msgstr "법선의 높이로 땅색과 하늘색을 섞는다. 주변에서 오는 빛을 싸게 흉내 낸다."
+
+msgid "Exponential fog"
+msgstr "지수 안개"
+
+msgid "exp(−distance × density) hides the far end of the scene and gives depth."
+msgstr "exp(−거리 × 밀도)가 장면의 먼 끝을 가리고 깊이감을 준다."
+
+msgid "Gamma 2.0 approximation"
+msgstr "감마 2.0 근사"
+
+msgid "`unpackAlbedo`"
+msgstr "`unpackAlbedo`"
+
+msgid "Squares sRGB values instead of the exact curve; the hardware does the exact encoding on output."
+msgstr "정확한 곡선 대신 sRGB 값을 제곱한다. 출력할 때 정확한 인코딩은 하드웨어가 한다."
+
+msgid "UI and output"
+msgstr "UI와 출력"
+
+msgid "Vertex-buffer-free quads"
+msgstr "정점 버퍼 없는 사각형"
+
+msgid "`VSMain` in `Ui.hlsl`"
+msgstr "`Ui.hlsl`의 `VSMain`"
+
+msgid "Each rectangle is an instance and its corners come from `SV_VertexID`."
+msgstr "사각형 하나가 인스턴스 하나이고 모서리는 `SV_VertexID`에서 나온다."
+
+msgid "Signed distance shapes"
+msgstr "부호 거리 도형"
+
+msgid "`roundBox` in `Ui.hlsl`"
+msgstr "`Ui.hlsl`의 `roundBox`"
+
+msgid "Rounded boxes with a radius per corner, anti-aliased by turning distance into coverage."
+msgstr "모서리마다 반지름이 있는 둥근 상자. 거리를 덮는 정도로 바꿔 경계를 부드럽게 한다."
+
+msgid "SDF text"
+msgstr "SDF 글자"
+
+msgid "`PSMain` in `Ui.hlsl`"
+msgstr "`Ui.hlsl`의 `PSMain`"
+
+msgid "Glyph outlines stored as distance fields stay sharp when scaled."
+msgstr "거리 필드로 저장한 글자 윤곽은 키워도 선명하다."
+
+msgid "Premultiplied alpha"
+msgstr "미리 곱한 알파"
+
+msgid "UI pipeline"
+msgstr "UI 파이프라인"
+
+msgid "Blending with `ONE, INV_SRC_ALPHA` composes nested transparency correctly."
+msgstr "`ONE, INV_SRC_ALPHA`로 섞어 겹친 투명을 바르게 합친다."
+
+msgid "Queued atlas uploads"
+msgstr "줄 세운 아틀라스 업로드"
+
+msgid "`updateUiAtlas`, `flushUiUploads`"
+msgstr "`updateUiAtlas`, `flushUiUploads`"
+
+msgid "Atlas changes are queued on the CPU and copied in the next frame through the same upload ring."
+msgstr "아틀라스 변경을 CPU에 줄 세웠다가 다음 프레임에 같은 업로드 링으로 복사한다."
+
+msgid "Readback capture"
+msgstr "리드백 캡처"
+
+msgid "`endFrame`, `savePng`"
+msgstr "`endFrame`, `savePng`"
+
+msgid "Copies the back buffer to a readback heap and encodes it as PNG with WIC after the fence."
+msgstr "백버퍼를 리드백 힙으로 복사하고, 펜스를 기다린 뒤 WIC로 PNG를 만든다."
+
