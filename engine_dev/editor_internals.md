@@ -152,3 +152,59 @@ When a project opens, the editor also runs the folder layout check (`tools\check
 
 The editor UI is Dear ImGui with docking, drawn after the 3D scene by the same renderer. ImGui lives in `mealkit.dll`, so the game DLL draws its own debug windows (`GameInstance::debugUi`) into the same frame.
 UI text is written in English in the code with `tr()`, `trl()` and `trf()`, and translations are in `engine/res/strings/<language>.txt` ({engine}`engine/src/mealkit/editor/Strings.h`). `trl()` keeps the English text as the window ID, so the docking layout stays the same when the language changes.
+
+## Techniques used
+
+The algorithms and patterns behind the parts above, with where to find them in the code.
+
+### Scene view
+
+| Technique | Where | What it does |
+|---|---|---|
+| Ray casting from screen coordinates | `Editor::handlePicking` | Turns the mouse position into normalized device coordinates and builds a ray from the camera's field of view, aspect ratio and axes. |
+| Ray–oriented box test (slab method) | `rayBox` in `Editor.cpp` | Moves the ray into the box's local space with the inverse rotation, then intersects it with the three pairs of parallel planes (slabs). The ray hits when the entry distance is not greater than the exit distance. The nearest hit wins. |
+| Edge-only picking for areas | `areaEdges` | An area box is tested as 12 thin boxes along its edges, so clicks inside it reach the objects within. |
+| Matrix to position, rotation and scale | `decompose` in `Editor.cpp` | Scale is the length of each basis column. The rotation matrix becomes a quaternion with the trace method (Shepperd's method), which picks the largest diagonal term to stay numerically stable. |
+| Gizmo | ImGuizmo `Manipulate` | Draws the move, rotate and scale handles and returns a new matrix, which the editor decomposes back into the entity transform (with optional snapping). |
+| Reparenting in place | `Editor::reparent` | Keeps the world transform and computes the new value relative to the new parent, so the object does not move on screen. Moving an object under its own child is refused (a cycle check on the parent chain). |
+| Level of detail by screen size | `ModelCache::pickLod` | Estimates how much of the screen a model covers (bounding radius divided by distance) and picks one of the LODs made by meshoptimizer. |
+| Instanced drawing | `render::DrawList` | Collects instances per mesh and draws each mesh with one draw call. |
+
+### Editing data
+
+| Technique | Where | What it does |
+|---|---|---|
+| Run-time reflection | `reflect::TypeInfo`, `editor::drawFields` | Field declarations (`MEALKIT_FIELD`) describe names, types and offsets, so one generic widget set edits any game struct. |
+| Text serialization by field name | `reflect::toText` / `fromText` | Values are saved as `name = value` text. Names a type no longer declares are reported in the log instead of failing the load, and while a type is unavailable (during hot reload) the values are kept as text. |
+| Snapshot undo (memento) | `Editor::capture` / `restore` | Each undo step is a copy of the whole scene, taken once at the start of an edit. This is simple and always correct for scenes of this size, and the history is capped at 100 steps. |
+| Virtualized lists | `ImGuiListClipper` in `FieldEditor.cpp` | Large pools in the State panel draw only the visible rows. |
+| Immediate mode GUI | Dear ImGui | The whole editor UI is rebuilt from the current data every frame, so there is no widget state to keep in sync with the scene. |
+
+### Game code and processes
+
+| Technique | Where | What it does |
+|---|---|---|
+| Hot reload by copy | `GameModuleHost::load` | Loads a copy of the DLL so the original stays writable for the linker. The new module is loaded and checked before the old one is unloaded. |
+| Debounced file watching | `GameModuleHost::sourceChangedAndStable` | Polls the write time and reacts only when it is the same twice in a row, so a file still being written is not used. |
+| Versioned C ABI | `GameModule`, `kApiVersion` | The boundary is one `extern "C"` function returning a table of function pointers, checked with a version number. |
+| One process per player | `PlaySession::start` | Multiplayer play starts the editor again as player windows that talk over real UDP on `127.0.0.1`, so the network path is the same as a real match. |
+
+### Simulation and network
+
+| Technique | Where | What it does |
+|---|---|---|
+| Deterministic lockstep | `net::LockstepSession` | Peers exchange only inputs and run the same simulation. Editor play uses an input delay of 3 ticks. |
+| State hashing (FNV-1a) | `Hasher` in {engine}`engine/src/mealkit/core/Hash.h` | Hashes the declared state field by field (so struct padding never enters the hash). Equal hashes on the same tick mean equal states. |
+| Content hash | `game::contentHash` | Hashes the scene's collision data, models, tuning, project settings and tables, so peers with different data are refused before a match. |
+| Dual execution (shadow simulation) | `game::Simulation` | Runs a second copy of the world with the same inputs and compares hashes every tick to catch nondeterminism inside one process. |
+| Structural diff | `reflect::diffStruct` | Walks two values of the same declared type and lists the fields that differ, shown when the shadow simulation diverges. |
+| Checkpoints and replay | `game::Simulation::seek` | Periodic snapshots of the declared state and the Jolt physics state (`StateRecorder`) plus every tick's inputs. Seeking loads the nearest earlier snapshot and replays inputs, which costs far less memory than a snapshot per tick. |
+| Ring buffer of history | `takeSnapshot` | Keeps the newest 40 snapshots and drops inputs older than the first one, so memory stays bounded. |
+
+### Other
+
+| Technique | Where | What it does |
+|---|---|---|
+| Source-string localization | `tr()` in {engine}`engine/src/mealkit/editor/Strings.h` | The English text is the key and a missing translation shows the English text, like gettext. `trl()` adds `###` with the English text so ImGui window IDs do not change with the language. |
+| Background child processes | `ChildProcess` | Builds and checks run in hidden child processes whose output is read without blocking the editor frame. |
+| Autosave with recovery | `Editor::updateAutosave` | Writes a side file instead of the scene, and compares file times on open to offer recovery after a crash. |

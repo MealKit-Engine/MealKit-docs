@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-19 12:31+0900\n"
-"PO-Revision-Date: 2026-10-19 12:33+0900\n"
+"POT-Creation-Date: 2026-10-19 12:44+0900\n"
+"PO-Revision-Date: 2026-10-19 12:45+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
 "Language-Team: Korean\n"
@@ -333,4 +333,279 @@ msgstr "에디터 UI"
 #, python-brace-format
 msgid "The editor UI is Dear ImGui with docking, drawn after the 3D scene by the same renderer. ImGui lives in `mealkit.dll`, so the game DLL draws its own debug windows (`GameInstance::debugUi`) into the same frame. UI text is written in English in the code with `tr()`, `trl()` and `trf()`, and translations are in `engine/res/strings/<language>.txt` ({engine}`engine/src/mealkit/editor/Strings.h`). `trl()` keeps the English text as the window ID, so the docking layout stays the same when the language changes."
 msgstr "에디터 UI는 도킹을 쓰는 Dear ImGui이고, 같은 렌더러가 3D 장면 다음에 그린다. ImGui가 `mealkit.dll` 안에 있으므로 게임 DLL도 자기 디버그 창(`GameInstance::debugUi`)을 같은 프레임에 그린다. UI 글자는 코드에 영어로 `tr()`, `trl()`, `trf()`와 함께 쓰고, 번역은 `engine/res/strings/<언어>.txt`에 있다({engine}`engine/src/mealkit/editor/Strings.h`). `trl()`은 영어 원문을 창 ID로 남겨서, 언어를 바꿔도 도킹 배치가 그대로다."
+
+msgid "Techniques used"
+msgstr "쓰인 기법"
+
+msgid "The algorithms and patterns behind the parts above, with where to find them in the code."
+msgstr "위 내용 뒤에 있는 알고리즘과 기법, 그리고 코드에서 찾을 곳."
+
+msgid "Scene view"
+msgstr "씬 뷰"
+
+msgid "Technique"
+msgstr "기법"
+
+msgid "Where"
+msgstr "위치"
+
+msgid "What it does"
+msgstr "하는 일"
+
+msgid "Ray casting from screen coordinates"
+msgstr "화면 좌표에서 광선 쏘기"
+
+msgid "`Editor::handlePicking`"
+msgstr "`Editor::handlePicking`"
+
+msgid "Turns the mouse position into normalized device coordinates and builds a ray from the camera's field of view, aspect ratio and axes."
+msgstr "마우스 위치를 정규화 장치 좌표(NDC)로 바꾸고, 카메라의 시야각·화면 비율·축으로 광선을 만든다."
+
+msgid "Ray–oriented box test (slab method)"
+msgstr "광선–회전 상자 교차 검사 (slab 방법)"
+
+msgid "`rayBox` in `Editor.cpp`"
+msgstr "`Editor.cpp`의 `rayBox`"
+
+msgid "Moves the ray into the box's local space with the inverse rotation, then intersects it with the three pairs of parallel planes (slabs). The ray hits when the entry distance is not greater than the exit distance. The nearest hit wins."
+msgstr "역회전으로 광선을 상자의 로컬 공간으로 옮긴 뒤, 평행한 평면 세 쌍(slab)과 교차시킨다. 들어가는 거리가 나오는 거리보다 크지 않으면 맞은 것이다. 가장 가까이 맞은 것이 골라진다."
+
+msgid "Edge-only picking for areas"
+msgstr "영역은 모서리로만 고르기"
+
+msgid "`areaEdges`"
+msgstr "`areaEdges`"
+
+msgid "An area box is tested as 12 thin boxes along its edges, so clicks inside it reach the objects within."
+msgstr "영역 상자는 모서리를 따라 놓인 얇은 상자 12개로 검사한다. 그래서 안쪽을 누르면 그 안의 물체가 골라진다."
+
+msgid "Matrix to position, rotation and scale"
+msgstr "행렬을 위치·회전·크기로 나누기"
+
+msgid "`decompose` in `Editor.cpp`"
+msgstr "`Editor.cpp`의 `decompose`"
+
+msgid "Scale is the length of each basis column. The rotation matrix becomes a quaternion with the trace method (Shepperd's method), which picks the largest diagonal term to stay numerically stable."
+msgstr "크기는 기저 열 벡터마다의 길이다. 회전 행렬은 대각합(trace) 방법(Shepperd 방법)으로 쿼터니언이 된다. 수치적으로 안정되도록 가장 큰 대각 원소를 골라 계산한다."
+
+msgid "Gizmo"
+msgstr "기즈모"
+
+msgid "ImGuizmo `Manipulate`"
+msgstr "ImGuizmo `Manipulate`"
+
+msgid "Draws the move, rotate and scale handles and returns a new matrix, which the editor decomposes back into the entity transform (with optional snapping)."
+msgstr "이동·회전·크기 손잡이를 그리고 새 행렬을 돌려준다. 에디터는 그 행렬을 다시 엔티티 변환으로 나눈다(스냅은 선택)."
+
+msgid "Reparenting in place"
+msgstr "제자리에서 부모 바꾸기"
+
+msgid "`Editor::reparent`"
+msgstr "`Editor::reparent`"
+
+msgid "Keeps the world transform and computes the new value relative to the new parent, so the object does not move on screen. Moving an object under its own child is refused (a cycle check on the parent chain)."
+msgstr "월드 변환을 지키고 새 부모 기준 값을 다시 계산하므로 물체가 화면에서 움직이지 않는다. 물체를 자기 자식 아래로 옮기는 것은 거부한다(부모 사슬의 순환 검사)."
+
+msgid "Level of detail by screen size"
+msgstr "화면 크기로 LOD 고르기"
+
+msgid "`ModelCache::pickLod`"
+msgstr "`ModelCache::pickLod`"
+
+msgid "Estimates how much of the screen a model covers (bounding radius divided by distance) and picks one of the LODs made by meshoptimizer."
+msgstr "모델이 화면을 얼마나 차지하는지(경계 반지름 ÷ 거리) 어림하고, meshoptimizer가 만든 LOD 가운데 하나를 고른다."
+
+msgid "Instanced drawing"
+msgstr "인스턴싱 그리기"
+
+msgid "`render::DrawList`"
+msgstr "`render::DrawList`"
+
+msgid "Collects instances per mesh and draws each mesh with one draw call."
+msgstr "인스턴스를 메시별로 모아 메시마다 드로우 콜 한 번으로 그린다."
+
+msgid "Editing data"
+msgstr "데이터 편집"
+
+msgid "Run-time reflection"
+msgstr "실행 시간 리플렉션"
+
+msgid "`reflect::TypeInfo`, `editor::drawFields`"
+msgstr "`reflect::TypeInfo`, `editor::drawFields`"
+
+msgid "Field declarations (`MEALKIT_FIELD`) describe names, types and offsets, so one generic widget set edits any game struct."
+msgstr "필드 선언(`MEALKIT_FIELD`)이 이름·타입·오프셋을 설명하므로, 범용 위젯 한 벌로 어떤 게임 구조체든 고친다."
+
+msgid "Text serialization by field name"
+msgstr "필드 이름 기준 텍스트 직렬화"
+
+msgid "`reflect::toText` / `fromText`"
+msgstr "`reflect::toText` / `fromText`"
+
+msgid "Values are saved as `name = value` text. Names a type no longer declares are reported in the log instead of failing the load, and while a type is unavailable (during hot reload) the values are kept as text."
+msgstr "값은 `이름 = 값` 텍스트로 저장된다. 타입이 더 이상 선언하지 않는 이름은 읽기를 실패시키지 않고 로그로 알리며, 타입이 없는 동안(핫 리로드 중) 값은 텍스트로 보관된다."
+
+msgid "Snapshot undo (memento)"
+msgstr "스냅샷 되돌리기 (메멘토)"
+
+msgid "`Editor::capture` / `restore`"
+msgstr "`Editor::capture` / `restore`"
+
+msgid "Each undo step is a copy of the whole scene, taken once at the start of an edit. This is simple and always correct for scenes of this size, and the history is capped at 100 steps."
+msgstr "되돌리기 한 단계는 씬 전체의 사본이고, 편집이 시작될 때 한 번 찍는다. 이 정도 크기의 씬에서는 단순하고 항상 맞으며, 기록은 100단계까지다."
+
+msgid "Virtualized lists"
+msgstr "가상화 목록"
+
+msgid "`ImGuiListClipper` in `FieldEditor.cpp`"
+msgstr "`FieldEditor.cpp`의 `ImGuiListClipper`"
+
+msgid "Large pools in the State panel draw only the visible rows."
+msgstr "[상태] 패널의 큰 Pool은 보이는 줄만 그린다."
+
+msgid "Immediate mode GUI"
+msgstr "즉시 모드 GUI"
+
+msgid "Dear ImGui"
+msgstr "Dear ImGui"
+
+msgid "The whole editor UI is rebuilt from the current data every frame, so there is no widget state to keep in sync with the scene."
+msgstr "에디터 UI 전체를 매 프레임 지금 데이터로 다시 만든다. 그래서 씬과 맞춰 둘 위젯 상태가 없다."
+
+msgid "Game code and processes"
+msgstr "게임 코드와 프로세스"
+
+msgid "Hot reload by copy"
+msgstr "복사본으로 핫 리로드"
+
+msgid "`GameModuleHost::load`"
+msgstr "`GameModuleHost::load`"
+
+msgid "Loads a copy of the DLL so the original stays writable for the linker. The new module is loaded and checked before the old one is unloaded."
+msgstr "DLL 복사본을 불러와 원본은 링커가 계속 쓸 수 있게 둔다. 새 모듈을 불러와 확인한 뒤에 이전 것을 내린다."
+
+msgid "Debounced file watching"
+msgstr "디바운스한 파일 감시"
+
+msgid "`GameModuleHost::sourceChangedAndStable`"
+msgstr "`GameModuleHost::sourceChangedAndStable`"
+
+msgid "Polls the write time and reacts only when it is the same twice in a row, so a file still being written is not used."
+msgstr "수정 시각을 주기적으로 읽고 두 번 연속 같을 때만 반응한다. 그래서 아직 쓰고 있는 파일을 쓰지 않는다."
+
+msgid "Versioned C ABI"
+msgstr "버전이 있는 C ABI"
+
+msgid "`GameModule`, `kApiVersion`"
+msgstr "`GameModule`, `kApiVersion`"
+
+msgid "The boundary is one `extern \"C\"` function returning a table of function pointers, checked with a version number."
+msgstr "경계는 함수 포인터 표를 돌려주는 `extern \"C\"` 함수 하나이고, 버전 번호로 확인한다."
+
+msgid "One process per player"
+msgstr "플레이어마다 프로세스 하나"
+
+msgid "`PlaySession::start`"
+msgstr "`PlaySession::start`"
+
+msgid "Multiplayer play starts the editor again as player windows that talk over real UDP on `127.0.0.1`, so the network path is the same as a real match."
+msgstr "여러 명 플레이는 에디터를 참가 창으로 다시 띄우고, 참가 창은 `127.0.0.1` 위의 실제 UDP로 통신한다. 그래서 네트워크 경로가 실제 매치와 같다."
+
+msgid "Simulation and network"
+msgstr "시뮬레이션과 네트워크"
+
+msgid "Deterministic lockstep"
+msgstr "결정론 락스텝"
+
+msgid "`net::LockstepSession`"
+msgstr "`net::LockstepSession`"
+
+msgid "Peers exchange only inputs and run the same simulation. Editor play uses an input delay of 3 ticks."
+msgstr "피어는 입력만 주고받고 같은 시뮬레이션을 돌린다. 에디터 플레이의 입력 지연은 3틱이다."
+
+msgid "State hashing (FNV-1a)"
+msgstr "상태 해시 (FNV-1a)"
+
+#, python-brace-format
+msgid "`Hasher` in {engine}`engine/src/mealkit/core/Hash.h`"
+msgstr "{engine}`engine/src/mealkit/core/Hash.h`의 `Hasher`"
+
+msgid "Hashes the declared state field by field (so struct padding never enters the hash). Equal hashes on the same tick mean equal states."
+msgstr "선언된 상태를 필드 하나씩 해시한다(그래서 구조체 패딩이 해시에 섞이지 않는다). 같은 틱의 해시가 같으면 상태가 같다."
+
+msgid "Content hash"
+msgstr "콘텐츠 해시"
+
+msgid "`game::contentHash`"
+msgstr "`game::contentHash`"
+
+msgid "Hashes the scene's collision data, models, tuning, project settings and tables, so peers with different data are refused before a match."
+msgstr "씬 충돌 데이터, 모델, 튜닝, 프로젝트 설정, 표를 해시해서 데이터가 다른 피어를 매치 전에 거부한다."
+
+msgid "Dual execution (shadow simulation)"
+msgstr "이중 실행 (그림자 시뮬레이션)"
+
+msgid "`game::Simulation`"
+msgstr "`game::Simulation`"
+
+msgid "Runs a second copy of the world with the same inputs and compares hashes every tick to catch nondeterminism inside one process."
+msgstr "같은 입력으로 월드 사본을 하나 더 돌리고 매 틱 해시를 비교해, 한 프로세스 안에서 비결정성을 잡는다."
+
+msgid "Structural diff"
+msgstr "구조 비교 (diff)"
+
+msgid "`reflect::diffStruct`"
+msgstr "`reflect::diffStruct`"
+
+msgid "Walks two values of the same declared type and lists the fields that differ, shown when the shadow simulation diverges."
+msgstr "같은 선언 타입의 두 값을 훑어 다른 필드를 나열한다. 그림자 시뮬레이션이 갈라지면 이것을 보여 준다."
+
+msgid "Checkpoints and replay"
+msgstr "체크포인트와 재실행"
+
+msgid "`game::Simulation::seek`"
+msgstr "`game::Simulation::seek`"
+
+msgid "Periodic snapshots of the declared state and the Jolt physics state (`StateRecorder`) plus every tick's inputs. Seeking loads the nearest earlier snapshot and replays inputs, which costs far less memory than a snapshot per tick."
+msgstr "선언된 상태와 Jolt 물리 상태(`StateRecorder`)의 주기적 스냅샷, 그리고 매 틱의 입력을 남긴다. 특정 틱으로 갈 때는 그보다 앞의 가장 가까운 스냅샷을 불러와 입력을 다시 돌린다. 틱마다 스냅샷을 남기는 것보다 메모리가 훨씬 적게 든다."
+
+msgid "Ring buffer of history"
+msgstr "기록 링 버퍼"
+
+msgid "`takeSnapshot`"
+msgstr "`takeSnapshot`"
+
+msgid "Keeps the newest 40 snapshots and drops inputs older than the first one, so memory stays bounded."
+msgstr "가장 새 스냅샷 40개만 남기고 첫 스냅샷보다 오래된 입력은 버린다. 그래서 메모리 사용량에 상한이 있다."
+
+msgid "Other"
+msgstr "기타"
+
+msgid "Source-string localization"
+msgstr "원문 문자열 기준 지역화"
+
+#, python-brace-format
+msgid "`tr()` in {engine}`engine/src/mealkit/editor/Strings.h`"
+msgstr "{engine}`engine/src/mealkit/editor/Strings.h`의 `tr()`"
+
+msgid "The English text is the key and a missing translation shows the English text, like gettext. `trl()` adds `###` with the English text so ImGui window IDs do not change with the language."
+msgstr "gettext처럼 영어 원문이 키이고, 번역이 없으면 영어 원문이 보인다. `trl()`은 `###`와 영어 원문을 붙여 언어가 바뀌어도 ImGui 창 ID가 바뀌지 않게 한다."
+
+msgid "Background child processes"
+msgstr "백그라운드 자식 프로세스"
+
+msgid "`ChildProcess`"
+msgstr "`ChildProcess`"
+
+msgid "Builds and checks run in hidden child processes whose output is read without blocking the editor frame."
+msgstr "빌드와 검사는 창 없는 자식 프로세스로 돌고, 그 출력은 에디터 프레임을 막지 않고 읽는다."
+
+msgid "Autosave with recovery"
+msgstr "복구가 되는 자동 저장"
+
+msgid "`Editor::updateAutosave`"
+msgstr "`Editor::updateAutosave`"
+
+msgid "Writes a side file instead of the scene, and compares file times on open to offer recovery after a crash."
+msgstr "씬 파일 대신 옆 파일에 쓰고, 열 때 파일 시각을 비교해 크래시 뒤에 복구를 권한다."
 
