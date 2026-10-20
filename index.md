@@ -21,6 +21,7 @@ about/license
 
 getting_started/building_the_engine
 getting_started/first_project
+getting_started/first_gameplay
 getting_started/workflow
 getting_started/editor_quick_start
 ```
@@ -30,6 +31,7 @@ getting_started/editor_quick_start
 :caption: Manual
 
 manual/projects
+manual/game_code
 manual/editor
 manual/assets
 manual/sound

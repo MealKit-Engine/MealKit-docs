@@ -3,8 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: MealKit\n"
-"POT-Creation-Date: 2026-10-18 16:06+0900\n"
+"Project-Id-Version:  MealKit\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-10-21 01:29+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -49,7 +50,7 @@ msgid "Network (4 players, host sending)"
 msgstr "네트워크 (4인, 호스트 송신)"
 
 msgid "10 KB/s or less"
-msgstr "10 KB/s 이하"
+msgstr "10 KB/s"
 
 msgid "Game executable"
 msgstr "게임 실행 파일"
@@ -57,8 +58,109 @@ msgstr "게임 실행 파일"
 msgid "5 MB or less (without assets)"
 msgstr "5 MB 이하 (에셋 제외)"
 
+#, python-brace-format
 msgid "The current values are in the engine {engine}`roadmap <docs/ROADMAP.md>` (\"Performance budget\") and in {doc}`../about/introduction`."
 msgstr "현재 값은 엔진 {engine}`로드맵 <docs/ROADMAP.md>`(\"성능 예산\")과 {doc}`../about/introduction`에 있다."
+
+msgid "Reading the numbers"
+msgstr "숫자 읽기"
+
+msgid "The engine collects its performance numbers in one place, `game::FrameStats` (`mealkit/game/FrameStats.h`), and averages them over a quarter of a second. During a match the window title shows them as one line:"
+msgstr "엔진은 성능 숫자를 `game::FrameStats`(`mealkit/game/FrameStats.h`) 한 곳에 모아 0.25초마다 평균을 낸다. 매치 중에는 창 제목이 한 줄로 보여 준다:"
+
+msgid "60 fps 16.67 ms (worst 18.2) | sim 0.42 ms/tick | tick 812 | P1 of 3 | rtt 34 ms | net 1.2/2.4 KB/s | 41 draws 2318 inst | audio 6+12 voices 0.08 ms | in sync\n"
+msgstr "60 fps 16.67 ms (worst 18.2) | sim 0.42 ms/tick | tick 812 | P1 of 3 | rtt 34 ms | net 1.2/2.4 KB/s | 41 draws 2318 inst | audio 6+12 voices 0.08 ms | in sync\n"
+
+msgid "Meaning"
+msgstr "뜻"
+
+msgid "`fps`, `ms`, `worst`"
+msgstr "`fps`, `ms`, `worst`"
+
+msgid "Average frame rate and frame time, and the longest frame in the period"
+msgstr "평균 프레임 수와 프레임 시간, 그 주기 안에서 가장 긴 프레임"
+
+msgid "16.7 ms at 60 fps; a high `worst` is a hitch"
+msgstr "60 fps에서 16.7 ms. `worst`가 크면 끊김이다"
+
+msgid "`sim ms/tick`"
+msgstr "`sim ms/tick`"
+
+msgid "CPU time of one `World::step()`, averaged"
+msgstr "`World::step()` 한 번의 CPU 시간, 평균"
+
+msgid "4 ms"
+msgstr "4 ms"
+
+msgid "`tick`"
+msgstr "`tick`"
+
+msgid "The next tick to run"
+msgstr "다음에 실행할 틱"
+
+msgid "`P1 of 3`, `rtt`"
+msgstr "`P1 of 3`, `rtt`"
+
+msgid "This player and the player count, round trip time to the host"
+msgstr "이 플레이어와 플레이어 수, 호스트까지 왕복 시간"
+
+msgid "`net`"
+msgstr "`net`"
+
+msgid "Kilobytes sent and received per second"
+msgstr "초당 보낸·받은 킬로바이트"
+
+msgid "10 KB/s"
+msgstr "10 KB/s"
+
+msgid "`draws`, `inst`"
+msgstr "`draws`, `inst`"
+
+msgid "Draw calls and drawn instances"
+msgstr "드로우 콜과 그린 인스턴스 수"
+
+msgid "200 draw calls"
+msgstr "드로우 콜 200개"
+
+msgid "`audio`"
+msgstr "`audio`"
+
+msgid "Playing and virtual voices, mixing time"
+msgstr "재생 중인 목소리와 가상 목소리, 믹싱 시간"
+
+msgid "`in sync`, `DESYNC`"
+msgstr "`in sync`, `DESYNC`"
+
+msgid "Whether the state hashes of all peers agreed"
+msgstr "모든 피어의 상태 해시가 같았는지"
+
+msgid "The same numbers appear in other places:"
+msgstr "같은 숫자가 다른 곳에도 나온다:"
+
+#, python-brace-format
+msgid "**`F1` overlay** in development builds: one item per line ({doc}`debug_ui`)."
+msgstr "**`F1` 오버레이**(개발 빌드): 항목마다 한 줄({doc}`debug_ui`)."
+
+msgid "**Log**: a `perf: ...` line every two seconds in automated runs (`--exit-tick` or `--frames`), so a bot run leaves its numbers in the log."
+msgstr "**로그**: 자동 실행(`--exit-tick` 또는 `--frames`)에서 2초마다 `perf: ...` 한 줄. 봇 실행이 로그에 숫자를 남긴다."
+
+msgid "**Editor status bar**: the frame rate while editing; in play mode the players, tick, simulation time per tick, active physics bodies and sync state."
+msgstr "**에디터 상태 표시줄**: 편집 중에는 프레임 수, 플레이 모드에서는 플레이어, 틱, 틱당 시뮬레이션 시간, 활성 물리 바디 수, 동기 상태."
+
+msgid "With vsync on, the frame rate stops at the monitor's rate and the frame time hides spare time. Measure with `--vsync 0` (or press `V` in the game)."
+msgstr "수직 동기를 켜면 프레임 수가 모니터 주사율에서 멈추고 프레임 시간에 남는 시간이 가려진다. `--vsync 0`으로(게임에서는 `V`) 잰다."
+
+msgid "A heavier scene"
+msgstr "더 무거운 장면"
+
+msgid "To see how the simulation and drawing scale, the example accepts a box count that replaces the one in the scene:"
+msgstr "시뮬레이션과 그리기가 얼마나 버티는지 보려면, 예제에 씬의 상자 수 대신 쓸 수를 줄 수 있다:"
+
+msgid "build\\Release\\bin\\sandbox.exe --bot --bodies 8000 --vsync 0 --exit-tick 900\n"
+msgstr "build\\Release\\bin\\sandbox.exe --bot --bodies 8000 --vsync 0 --exit-tick 900\n"
+
+msgid "`--bot` plays by itself and `--exit-tick` ends the run, so the `perf:` lines in the log can be compared between builds. The count is match data chosen by the host, so every peer uses the same value (`--match-data` in the headless game)."
+msgstr "`--bot`은 혼자 플레이하고 `--exit-tick`은 실행을 끝내므로, 로그의 `perf:` 줄을 빌드끼리 비교할 수 있다. 이 수는 호스트가 정하는 매치 데이터라 모든 피어가 같은 값을 쓴다(헤드리스 게임은 `--match-data`)."
 
 msgid "Profiling (Tracy)"
 msgstr "프로파일링 (Tracy)"
