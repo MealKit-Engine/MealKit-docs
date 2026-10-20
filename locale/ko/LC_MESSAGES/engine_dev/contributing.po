@@ -3,8 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: MealKit\n"
-"POT-Creation-Date: 2026-10-18 16:06+0900\n"
+"Project-Id-Version:  MealKit\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-10-21 01:50+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -30,15 +31,18 @@ msgstr "기여는 [Developer Certificate of Origin](https://developercertificate
 msgid "Engine rules"
 msgstr "엔진 규칙"
 
+#, python-brace-format
 msgid "Follow the order of the {engine}`roadmap <docs/ROADMAP.md>` and the \"postponed\" table in the {engine}`decision log <docs/DECISIONS.md>`. When a decision changes, add a row to the decision log."
 msgstr "{engine}`로드맵 <docs/ROADMAP.md>` 순서와 {engine}`결정 기록 <docs/DECISIONS.md>`의 \"보류\" 표를 따른다. 결정이 바뀌면 결정 기록에 행을 더한다."
 
+#, python-brace-format
 msgid "Use only the answers in the {engine}`coding model <docs/CODING_MODEL.md>`. A design question that is not in its table gets a new row, agreed on before any code is written."
 msgstr "{engine}`코딩 방식 <docs/CODING_MODEL.md>`의 답만 쓴다. 표에 없는 설계 질문이면 코드를 짜기 전에 행을 추가하고 합의한다."
 
 msgid "OS APIs are called only in `mealkit/platform/<os>/`, graphics APIs only in `mealkit/rhi/`."
 msgstr "OS API는 `mealkit/platform/<os>/`, 그래픽 API는 `mealkit/rhi/` 안에서만 부른다."
 
+#, python-brace-format
 msgid "After changing simulation, physics or network code, run `tools\\mp_test.ps1` and confirm there is no desync. See {doc}`testing`."
 msgstr "시뮬레이션·물리·네트워크 코드를 바꾸면 `tools\\mp_test.ps1`로 디싱크가 없는지 확인한다. {doc}`testing`을 본다."
 
@@ -60,6 +64,7 @@ msgstr "출시 실행 파일 예산 5 MB 안에 들어가야 하고,"
 msgid "be copied into `third_party/` at a fixed version."
 msgstr "버전을 고정해 `third_party/`에 복사해 넣는다."
 
+#, python-brace-format
 msgid "When adding one, update {engine}`third_party/VERSIONS.txt` and `THIRD_PARTY_NOTICES.txt` together."
 msgstr "넣을 때는 {engine}`third_party/VERSIONS.txt`와 `THIRD_PARTY_NOTICES.txt`를 함께 고친다."
 
@@ -69,12 +74,19 @@ msgstr "문서"
 msgid "This documentation lives in its own repository (`MealKit-docs`). English is the source language and Korean is a gettext translation in `locale/ko/LC_MESSAGES/`."
 msgstr "이 문서는 별도 저장소(`MealKit-docs`)에 있다. 영어가 원문이고 한국어는 `locale/ko/LC_MESSAGES/`의 gettext 번역이다."
 
+msgid "The documentation has two parts. Pages about making a game go in the game developer guide (`getting_started/`, `manual/`, `cookbook/`, `reference/`), pages about working on the engine go in the engine developer guide (`engine_dev/`, `engine_dev/internals/`). Each section has an `index.md` that lists its pages; add a new page there."
+msgstr "문서는 두 부분이다. 게임 만들기 페이지는 게임 개발자 안내(`getting_started/`, `manual/`, `cookbook/`, `reference/`)에, 엔진 작업 페이지는 엔진 개발자 안내(`engine_dev/`, `engine_dev/internals/`)에 둔다. 묶음마다 페이지 목록을 담은 `index.md`가 있으니 새 페이지는 거기에 더한다."
+
+msgid "Module documentation will live in each module's own folder (`modules/<name>/docs/`) in the engine repository and be collected by the documentation build (stage 4 \"source modules\")."
+msgstr "모듈 문서는 엔진 저장소의 모듈 폴더(`modules/<이름>/docs/`)에 두고 문서 빌드가 모은다(4단계 \"소스 모듈\")."
+
 msgid "Change English and Korean in the same pull request. After editing a page, run `python tools/build.py update`: new sentences appear empty and changed sentences are marked fuzzy in the `.po` files. Translate them and remove the fuzzy flag."
 msgstr "영어와 한국어를 같은 PR에서 고친다. 페이지를 고친 뒤 `python tools/build.py update`를 돌리면 `.po` 파일에 새 문장은 빈 칸으로, 바뀐 문장은 fuzzy로 나온다. 번역하고 fuzzy 표시를 지운다."
 
 msgid "`python tools/build.py check` builds both languages with warnings as errors and fails on any untranslated, fuzzy or leftover message. CI runs the same check and a link check."
 msgstr "`python tools/build.py check`는 두 언어를 경고 = 오류로 빌드하고, 미번역·fuzzy·남은 문장이 하나라도 있으면 실패한다. CI도 같은 검사와 링크 검사를 돈다."
 
+#, python-brace-format
 msgid "Use the terms in the {doc}`../glossary`, which match the editor's Korean strings (`engine/res/strings/ko.txt`)."
 msgstr "용어는 에디터 한국어 문자열(`engine/res/strings/ko.txt`)과 맞춘 {doc}`../glossary`를 따른다."
 

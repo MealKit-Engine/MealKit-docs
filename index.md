@@ -6,6 +6,11 @@ Today it targets Windows and DirectX 12. Other platforms come in stage 5 of the 
 This documentation is written in English and translated into Korean. Rules that change together with engine code
 (the coding model, the determinism rules, the external library table) live in the engine repository, and these pages link to them.
 
+The documentation has two parts:
+
+- **Game developer guide**: making a game with MealKit. Start with {doc}`getting_started/index`, then look up topics in the {doc}`manual/index`.
+- **Engine developer guide**: working on the engine and the editor themselves. Start with {doc}`engine_dev/index`, then read {doc}`engine_dev/internals/index` folder by folder.
+
 ```{toctree}
 :maxdepth: 2
 :caption: About
@@ -17,96 +22,18 @@ about/license
 
 ```{toctree}
 :maxdepth: 2
-:caption: Getting started
+:caption: Game developer guide
 
-getting_started/building_the_engine
-getting_started/first_project
-getting_started/first_gameplay
-getting_started/workflow
-getting_started/editor_quick_start
-```
-
-```{toctree}
-:maxdepth: 2
-:caption: Manual
-
-manual/projects
-manual/game_code
-manual/editor
-manual/assets
-manual/sound
-manual/input
-manual/ui
-manual/settings
-manual/debug_ui
-manual/multiplayer
-manual/building_and_shipping
-manual/performance
-```
-
-```{toctree}
-:maxdepth: 2
-:caption: Cookbook
-
+getting_started/index
+manual/index
 cookbook/index
+reference/index
 ```
 
 ```{toctree}
 :maxdepth: 2
-:caption: Engine development
+:caption: Engine developer guide
 
-engine_dev/source_layout
-engine_dev/testing
-engine_dev/contributing
-```
-
-```{toctree}
-:maxdepth: 2
-:caption: "Internals: foundation"
-
-engine_dev/internals/core
-engine_dev/internals/platform
-```
-
-```{toctree}
-:maxdepth: 2
-:caption: "Internals: simulation"
-
-engine_dev/internals/net
-engine_dev/internals/physics
-engine_dev/internals/sim
-engine_dev/internals/data
-```
-
-```{toctree}
-:maxdepth: 2
-:caption: "Internals: screen"
-
-engine_dev/internals/loc
-engine_dev/internals/scene
-engine_dev/internals/render
-engine_dev/internals/asset
-engine_dev/internals/online
-engine_dev/internals/debug
-engine_dev/internals/input
-engine_dev/internals/audio
-engine_dev/internals/ui
-engine_dev/internals/feedback
-engine_dev/internals/settings
-```
-
-```{toctree}
-:maxdepth: 2
-:caption: "Internals: game boundary"
-
-engine_dev/internals/game
-engine_dev/internals/editor
-```
-
-```{toctree}
-:maxdepth: 2
-:caption: Reference
-
-reference/command_line
-glossary
+engine_dev/index
+engine_dev/internals/index
 ```

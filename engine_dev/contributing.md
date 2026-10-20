@@ -29,6 +29,8 @@ When adding one, update {engine}`third_party/VERSIONS.txt` and `THIRD_PARTY_NOTI
 
 This documentation lives in its own repository (`MealKit-docs`). English is the source language and Korean is a gettext translation in `locale/ko/LC_MESSAGES/`.
 
+- The documentation has two parts. Pages about making a game go in the game developer guide (`getting_started/`, `manual/`, `cookbook/`, `reference/`), pages about working on the engine go in the engine developer guide (`engine_dev/`, `engine_dev/internals/`). Each section has an `index.md` that lists its pages; add a new page there.
+- Module documentation will live in each module's own folder (`modules/<name>/docs/`) in the engine repository and be collected by the documentation build (stage 4 "source modules").
 - Change English and Korean in the same pull request. After editing a page, run `python tools/build.py update`: new sentences appear empty and changed sentences are marked fuzzy in the `.po` files. Translate them and remove the fuzzy flag.
 - `python tools/build.py check` builds both languages with warnings as errors and fails on any untranslated, fuzzy or leftover message. CI runs the same check and a link check.
 - Use the terms in the {doc}`../glossary`, which match the editor's Korean strings (`engine/res/strings/ko.txt`).

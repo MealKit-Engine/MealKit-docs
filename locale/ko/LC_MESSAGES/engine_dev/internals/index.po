@@ -1,0 +1,36 @@
+# Korean translation of the MealKit documentation.
+# This file is distributed under the same license as the MealKit documentation (CC BY 4.0).
+#
+msgid ""
+msgstr ""
+"Project-Id-Version:  MealKit\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-10-21 01:50+0900\n"
+"PO-Revision-Date: 2026-10-21 02:00+0900\n"
+"Last-Translator: KingProtea99\n"
+"Language: ko\n"
+"Language-Team: Korean\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+msgid "Internals"
+msgstr "내부 구조"
+
+#, python-brace-format
+msgid "How each engine folder works inside, one page per folder. The groups follow the folder order: a folder includes only folders in the same group or an earlier one (see \"엔진 폴더 사이 의존\" in {engine}`docs/CODING_MODEL.md`)."
+msgstr "엔진 폴더마다 안에서 어떻게 동작하는지 한 페이지씩 설명한다. 묶음은 폴더 순서를 따른다: 폴더는 같은 묶음이나 앞 묶음의 폴더만 include한다({engine}`docs/CODING_MODEL.md`의 \"엔진 폴더 사이 의존\" 참고)."
+
+msgid "Foundation"
+msgstr "기반"
+
+msgid "Simulation"
+msgstr "시뮬레이션"
+
+msgid "Screen"
+msgstr "화면"
+
+msgid "Game boundary"
+msgstr "게임 경계"

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-19 13:10+0900\n"
+"POT-Creation-Date: 2026-10-21 01:50+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -19,32 +19,11 @@ msgstr ""
 msgid "About"
 msgstr "소개"
 
-msgid "Getting started"
-msgstr "시작하기"
+msgid "Game developer guide"
+msgstr "게임 개발자 안내"
 
-msgid "Manual"
-msgstr "매뉴얼"
-
-msgid "Cookbook"
-msgstr "쿡북"
-
-msgid "Engine development"
-msgstr "엔진 개발"
-
-msgid "Internals: foundation"
-msgstr "내부 구조: 기반"
-
-msgid "Internals: simulation"
-msgstr "내부 구조: 시뮬레이션"
-
-msgid "Internals: screen"
-msgstr "내부 구조: 화면"
-
-msgid "Internals: game boundary"
-msgstr "내부 구조: 게임 경계"
-
-msgid "Reference"
-msgstr "레퍼런스"
+msgid "Engine developer guide"
+msgstr "엔진 개발자 안내"
 
 msgid "MealKit documentation"
 msgstr "MealKit 문서"
@@ -54,4 +33,15 @@ msgstr "MealKit은 Intel 내장 그래픽 사무용 PC에서도 가볍고 빠르
 
 msgid "This documentation is written in English and translated into Korean. Rules that change together with engine code (the coding model, the determinism rules, the external library table) live in the engine repository, and these pages link to them."
 msgstr "이 문서는 영어로 쓰고 한국어로 번역한다. 엔진 코드와 함께 바뀌는 약속(코딩 방식, 결정론 규칙, 외부 라이브러리 표)은 엔진 저장소에 있고, 이 문서는 그곳을 가리킨다."
+
+msgid "The documentation has two parts:"
+msgstr "문서는 두 부분으로 나뉜다:"
+
+#, python-brace-format
+msgid "**Game developer guide**: making a game with MealKit. Start with {doc}`getting_started/index`, then look up topics in the {doc}`manual/index`."
+msgstr "**게임 개발자 안내**: MealKit으로 게임을 만든다. {doc}`getting_started/index`부터 읽고, 주제별 내용은 {doc}`manual/index`에서 찾는다."
+
+#, python-brace-format
+msgid "**Engine developer guide**: working on the engine and the editor themselves. Start with {doc}`engine_dev/index`, then read {doc}`engine_dev/internals/index` folder by folder."
+msgstr "**엔진 개발자 안내**: 엔진과 에디터 자체를 고친다. {doc}`engine_dev/index`부터 읽고, {doc}`engine_dev/internals/index`를 폴더별로 읽는다."
 
