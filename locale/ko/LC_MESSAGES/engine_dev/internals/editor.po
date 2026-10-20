@@ -244,8 +244,8 @@ msgstr "세션은 오프라인으로 시작한다(`startOffline`): 소켓은 없
 msgid "Several players"
 msgstr "여러 명"
 
-msgid "With 2 to 4 players, the editor becomes the host on port 27215 and starts the same `MealKitEditor.exe` again in player window mode (`--player 127.0.0.1:27215`), one process per extra player. This is like Unity's Multiplayer Play Mode."
-msgstr "2~4명이면 에디터가 포트 27215에서 방장이 되고, 같은 `MealKitEditor.exe`를 참가 창 모드(`--player 127.0.0.1:27215`)로 더 띄운다. 추가 플레이어마다 프로세스가 하나다. Unity의 Multiplayer Play Mode와 비슷하다."
+msgid "With 2 to 4 players, the editor becomes the host on port 27215 and starts the same `MealKitEditor.exe` again in player window mode (`--player-window --join 127.0.0.1:27215`), one process per extra player. This is like Unity's Multiplayer Play Mode. A player window takes the same game options as the shipped exe and runs the same loop, `game::runGame`; only the window title, a muted start, no player files and no Steam login differ (`game::GameRunOptions`)."
+msgstr "2~4명이면 에디터가 포트 27215에서 방장이 되고, 같은 `MealKitEditor.exe`를 참가 창 모드(`--player-window --join 127.0.0.1:27215`)로 더 띄운다. 추가 플레이어마다 프로세스가 하나다. Unity의 Multiplayer Play Mode와 비슷하다. 참가 창은 출시 exe와 같은 게임 옵션을 받고 같은 루프 `game::runGame`을 돈다. 창 제목, 소리 끈 채 시작, 플레이어 파일 없음, Steam 로그인 안 함만 다르다(`game::GameRunOptions`)."
 
 msgid "The scene being edited is saved to `build\\Editor\\play\\play.scene`, and the player windows load that copy, so unsaved edits are included."
 msgstr "편집 중인 씬을 `build\\Editor\\play\\play.scene`에 저장하고 참가 창이 그 사본을 읽는다. 그래서 저장하지 않은 편집도 들어간다."

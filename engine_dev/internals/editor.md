@@ -110,7 +110,7 @@ Tuning changes from the Tuning panel apply to the running game at once.
 
 ### Several players
 
-With 2 to 4 players, the editor becomes the host on port 27215 and starts the same `MealKitEditor.exe` again in player window mode (`--player 127.0.0.1:27215`), one process per extra player. This is like Unity's Multiplayer Play Mode.
+With 2 to 4 players, the editor becomes the host on port 27215 and starts the same `MealKitEditor.exe` again in player window mode (`--player-window --join 127.0.0.1:27215`), one process per extra player. This is like Unity's Multiplayer Play Mode. A player window takes the same game options as the shipped exe and runs the same loop, `game::runGame`; only the window title, a muted start, no player files and no Steam login differ (`game::GameRunOptions`).
 
 - The scene being edited is saved to `build\Editor\play\play.scene`, and the player windows load that copy, so unsaved edits are included.
 - Every player builds the same content hash from the scene, models, tuning, project settings and tables. A peer with different data is refused, as in a real match.
