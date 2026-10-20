@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-19 19:29+0900\n"
+"POT-Creation-Date: 2026-10-20 21:08+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -357,6 +357,24 @@ msgstr "`--ui <file.ui>`"
 
 msgid "Start with the UI panel previewing this screen"
 msgstr "[UI] 패널에 이 화면을 미리 보며 시작"
+
+msgid "`--ui-check`"
+msgstr "`--ui-check`"
+
+msgid "Compare the screens exported from Penpot with Penpot's layout boxes, print `UI-CHECK` lines and exit (exit code 2 on a difference; with `--lang` for the text language)"
+msgstr "Penpot에서 내보낸 화면을 Penpot의 배치 상자와 비교하고 `UI-CHECK` 줄을 출력한 뒤 끝낸다(다르면 종료 코드 2, 글자 언어는 `--lang`)"
+
+msgid "`--ui-render <ui/x.ui> <png>`"
+msgstr "`--ui-render <ui/x.ui> <png>`"
+
+msgid "Draw one screen at half its board size, save it and exit (pixel comparison with the Penpot preview)"
+msgstr "화면 하나를 보드의 반 크기로 그려 저장하고 끝낸다(Penpot 미리보기와 픽셀 비교)"
+
+msgid "`--penpot-token <token>`"
+msgstr "`--penpot-token <토큰>`"
+
+msgid "Fixed token in the Penpot plugin address (automated tests; normally random per run)"
+msgstr "Penpot 플러그인 주소의 토큰을 고정한다(자동 시험용, 보통은 실행마다 무작위)"
 
 msgid "`--bodies <n>`, `--debug`"
 msgstr "`--bodies <n>`, `--debug`"

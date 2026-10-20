@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-19 18:29+0900\n"
+"POT-Creation-Date: 2026-10-20 21:07+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ko\n"
@@ -22,8 +22,8 @@ msgstr ""
 msgid "Game UI"
 msgstr "게임 화면 UI"
 
-msgid "The game's screens (HUD, menus, settings) are `.ui` files in `assets/ui/`. The engine lays them out and draws them in one 2D pass after the 3D scene. Later a Penpot plugin will export these files from a visual design; until then they are written by hand in the same format, and hand-written screens keep working when the plugin arrives."
-msgstr "게임 화면(HUD, 메뉴, 설정)은 `assets/ui/`의 `.ui` 파일이다. 엔진이 배치하고 3D 장면 다음의 2D 패스 하나로 그린다. 나중에 Penpot 플러그인이 시각 디자인에서 이 파일을 내보낸다. 그때까지는 같은 형식으로 손으로 쓰고, 손으로 쓴 화면은 플러그인이 생겨도 그대로 쓴다."
+msgid "The game's screens (HUD, menus, settings) are `.ui` files in `assets/ui/`. The engine lays them out and draws them in one 2D pass after the 3D scene. Screens are designed in Penpot and exported by the MealKit plugin (see [Designing in Penpot](#designing-in-penpot)), or written by hand in the same format. An exported file starts with `# MealKit UI exported from Penpot`; change those in Penpot, not by hand."
+msgstr "게임 화면(HUD, 메뉴, 설정)은 `assets/ui/`의 `.ui` 파일이다. 엔진이 배치하고 3D 장면 다음 2D 패스 하나로 그린다. 화면은 Penpot에서 디자인하고 MealKit 플러그인으로 내보내거나([Penpot에서 디자인하기](#designing-in-penpot)), 같은 형식으로 손으로 쓴다. 내보낸 파일은 첫 줄이 `# MealKit UI exported from Penpot`이고, 손으로 고치지 않고 Penpot에서 고친다."
 
 msgid "A screen file"
 msgstr "화면 파일"
@@ -88,6 +88,12 @@ msgstr "Flex 배치"
 msgid "`layout row|column [reverse] [wrap]`, `gap`, `padding`, `justify start|center|end|space-between|space-around|space-evenly`, `align`, `alignContent`, `alignSelf`"
 msgstr "`layout row|column [reverse] [wrap]`, `gap`, `padding`, `justify start|center|end|space-between|space-around|space-evenly`, `align`, `alignContent`, `alignSelf`"
 
+msgid "Grid layout"
+msgstr "Grid 레이아웃"
+
+msgid "`layout grid [row|column]` (the order that fills free cells), `columns` and `rows` with tracks `200` (fixed), `1fr` (a share of the free space), `auto` (fits the content) and `25%` (of the inner size), `gap <row> <column>`, `padding`, `justify` (columns, also `stretch`: auto tracks take the free space), `alignContent` (rows), `justifyItems`, `align`; on a child `cell <row> <column> [<row span> <column span>]` (from 1), `justifySelf`, `alignSelf`"
+msgstr "`layout grid [row|column]`(빈 칸을 채우는 순서), 트랙이 `200`(고정), `1fr`(남는 자리의 몫), `auto`(내용에 맞춤), `25%`(안쪽 크기 기준)인 `columns`와 `rows`, `gap <행> <열>`, `padding`, `justify`(열, `stretch`면 auto 트랙이 남는 자리를 나눠 갖는다), `alignContent`(행), `justifyItems`, `align`. 자식에는 `cell <행> <열> [<행 수> <열 수>]`(1부터), `justifySelf`, `alignSelf`"
+
 msgid "Look"
 msgstr "모양"
 
@@ -118,8 +124,189 @@ msgstr "보드 줄"
 msgid "`navigation` (keyboard and gamepad focus, for menus), `firstFocus <node>`, `back <action>`"
 msgstr "`navigation`(키보드·게임패드 포커스, 메뉴용), `firstFocus <노드>`, `back <액션>`"
 
+msgid "Other"
+msgstr "기타"
+
+msgid "`id <Penpot shape id>` (written by the plugin; the layout check finds nodes by it)"
+msgstr "`id <Penpot 도형 id>`(플러그인이 쓴다. 배치 비교가 이것으로 노드를 찾는다)"
+
 msgid "Colors are `#RRGGBB[AA]` or `$token` from the theme `assets/ui/theme.ui` (`color <name> #...`, `number <name> <value>`). Text with several styles uses numbered tags from the string table, `<1>...</1>`, styled by `span 1 ...`. Korean text breaks between syllables (`wrap syllable`, the default); `wrap word` breaks only at spaces. Characters missing from one font are taken from another font in `assets/fonts`. Files are reloaded within a quarter second when they change, also during play. Errors are logged as `file(line): ...`."
 msgstr "색은 `#RRGGBB[AA]` 또는 테마 `assets/ui/theme.ui`의 `$토큰`이다(`color <이름> #...`, `number <이름> <값>`). 여러 스타일 글자는 문자열 표의 번호 태그 `<1>...</1>`를 쓰고 `span 1 ...`로 꾸민다. 한글은 음절 사이에서 줄을 바꾸고(`wrap syllable`, 기본), `wrap word`는 공백에서만 바꾼다. 한 글꼴에 없는 글자는 `assets/fonts`의 다른 글꼴에서 가져온다. 파일이 바뀌면 플레이 중에도 0.25초 안에 다시 읽는다. 오류는 `파일(줄): ...`로 로그에 남는다."
+
+msgid "Designing in Penpot"
+msgstr "Penpot에서 디자인하기"
+
+msgid "[Penpot](https://penpot.app) is the source of the game's screens: a designer draws them there, and the MealKit plugin turns each screen board into a `.ui` file. The plugin lives in the engine (`tools/penpot-plugin`) and the editor serves it, so nothing is installed besides Penpot."
+msgstr "[Penpot](https://penpot.app)이 게임 화면의 원본이다. 디자이너가 Penpot에서 그리고, MealKit 플러그인이 화면 보드마다 `.ui` 파일로 바꾼다. 플러그인은 엔진(`tools/penpot-plugin`)에 있고 에디터가 제공하므로 Penpot 말고는 설치할 것이 없다."
+
+msgid "Installing the plugin"
+msgstr "플러그인 설치"
+
+msgid "Open the project in the editor and open **View > UI**. The **Penpot** section shows the plugin address, for example `http://127.0.0.1:27220/<token>/manifest.json`. The editor only listens on this computer, and the token changes every time the editor starts."
+msgstr "에디터에서 프로젝트를 열고 **보기 > UI**를 연다. **Penpot** 칸에 플러그인 주소가 보인다(예: `http://127.0.0.1:27220/<토큰>/manifest.json`). 에디터는 이 컴퓨터에서 오는 연결만 받고, 토큰은 에디터를 켤 때마다 바뀐다."
+
+msgid "In a Penpot file press `Ctrl+Alt+P` (plugin manager), paste the address and press **Install**. Open the plugin from the same list after that."
+msgstr "Penpot 파일에서 `Ctrl+Alt+P`(플러그인 관리자)를 누르고 주소를 붙여 넣은 뒤 **설치**를 누른다. 그다음부터는 같은 목록에서 플러그인을 연다."
+
+msgid "The panel says `Editor: <project>` when it reaches the editor. If the editor is closed, **Export** downloads a zip to unpack in the project folder instead (after restarting the editor, install the plugin again with the new address)."
+msgstr "에디터에 연결되면 패널에 `Editor: <프로젝트>`가 보인다. 에디터가 꺼져 있으면 **Export**가 대신 zip을 내려받는다. 프로젝트 폴더에 풀면 된다(에디터를 다시 켜면 새 주소로 플러그인을 다시 설치한다)."
+
+msgid "The plugin works with Penpot in the cloud (`design.penpot.app`) and with a self-hosted Penpot on this computer. Some browsers block pages from reaching `127.0.0.1`; use a browser that allows it (Chrome, Brave, Edge, Firefox)."
+msgstr "플러그인은 클라우드 Penpot(`design.penpot.app`)과 이 컴퓨터에 직접 띄운 Penpot에서 쓸 수 있다. 일부 브라우저는 웹 페이지가 `127.0.0.1`에 접속하지 못하게 막으므로, 허용하는 브라우저(Chrome, Brave, Edge, Firefox)를 쓴다."
+
+msgid "Fonts"
+msgstr "글꼴"
+
+msgid "Text must use the fonts in the project's `assets/fonts`. Upload the same fonts to Penpot (**Dashboard > Fonts**; TTF, OTF or WOFF). The plugin maps a Penpot font to a file name as `<family>-<weight>`, for example Pretendard weight 500 → `Pretendard-Medium` (`Regular` for 400, `Bold` for 700, `Italic` added for italic). A font the project does not have stops the export of that screen with an error."
+msgstr "글자는 프로젝트 `assets/fonts`의 글꼴을 써야 한다. 같은 글꼴을 Penpot에 올린다(**대시보드 > 글꼴**, TTF·OTF·WOFF). 플러그인은 Penpot 글꼴을 `<글꼴 모음>-<굵기>` 파일 이름으로 바꾼다. 예를 들어 Pretendard 굵기 500 → `Pretendard-Medium`(400은 `Regular`, 700은 `Bold`, 기울임은 `Italic`을 붙인다). 프로젝트에 없는 글꼴이 있으면 그 화면의 내보내기를 오류로 멈춘다."
+
+msgid "Screens, layers and names"
+msgstr "화면, 레이어, 이름"
+
+msgid "Every top-level board on the page is one screen. Select it to see the panel's **File** (default `ui/<board name>.ui`) and the board options: keyboard and gamepad navigation, the first focused layer and the back action."
+msgstr "페이지 바로 밑의 보드 하나가 화면 하나다. 보드를 고르면 패널에 **File**(기본 `ui/<보드 이름>.ui`)과 보드 옵션(키보드·게임패드 이동, 처음 포커스를 받을 레이어, 뒤로 액션)이 보인다."
+
+msgid "Layer names become node names (spaces become `_`). Buttons, focus targets and `--ui-press` tests use these names."
+msgstr "레이어 이름이 노드 이름이 된다(공백은 `_`). 버튼, 포커스 대상, `--ui-press` 시험이 이 이름을 쓴다."
+
+msgid "A text layer whose name looks like a string key (`menu.start`, with a dot) gets that key; the export adds missing keys with Penpot's text to the project language's string table (`assets/strings/<language>.txt`). Keys that already exist keep the table's text, and a different text in Penpot is reported. Other text layers keep their text as it is and are reported as not translatable."
+msgstr "이름이 문자열 키 모양(`menu.start`처럼 점이 있음)인 글자 레이어는 그 키를 쓴다. 내보내기는 없는 키를 Penpot의 글자로 프로젝트 언어의 문자열 표(`assets/strings/<언어>.txt`)에 더한다. 이미 있는 키는 표의 글자를 그대로 두고, Penpot의 글자가 다르면 알린다. 다른 글자 레이어는 글자를 그대로 쓰고 번역할 수 없다고 알린다."
+
+msgid "In flex and grid layouts the order is Penpot's: the top layer in the layer list comes first."
+msgstr "Flex·Grid 레이아웃의 순서는 Penpot과 같다. 레이어 목록의 맨 위 레이어가 맨 앞에 온다."
+
+msgid "Bindings and widgets"
+msgstr "바인딩과 위젯"
+
+msgid "Select a layer to set what the game connects to it. The lists come from the game: the fields of the game's view models (`MEALKIT_VIEWMODEL`) and the actions already used in `assets/ui`."
+msgstr "레이어를 고르고 게임과 연결할 값을 정한다. 목록은 게임에서 온다. 게임의 뷰 모델(`MEALKIT_VIEWMODEL`) 필드와 `assets/ui`에서 이미 쓰는 액션이다."
+
+msgid "Panel field"
+msgstr "패널 항목"
+
+msgid "`.ui` line"
+msgstr "`.ui` 줄"
+
+msgid "Widget: button, toggle, slider, select, text input, scroll, list"
+msgstr "위젯: 버튼, 토글, 슬라이더, 선택 상자, 글자 입력, 스크롤, 목록"
+
+msgid "`button`, `toggle`, `slider`, `select`, `textInput`, `scroll`, `list`"
+msgstr "`button`, `toggle`, `slider`, `select`, `textInput`, `scroll`, `list`"
+
+msgid "Action, View model field, Min/Max/Step, Options, Placeholder, Max characters"
+msgstr "액션, 뷰 모델 필드, 최소/최대/단계, 선택지, 빈 칸 글자, 최대 글자 수"
+
+msgid "the arguments of the widget line"
+msgstr "위젯 줄의 인자"
+
+msgid "Visible when, Disabled when, Width ratio, Color from field"
+msgstr "보이는 조건, 비활성 조건, 너비 비율, 필드의 색"
+
+msgid "`visible`, `disabled`, `widthRatio`, `colorField`"
+msgstr "`visible`, `disabled`, `widthRatio`, `colorField`"
+
+msgid "Focus up/down/left/right, State change time"
+msgstr "포커스 위/아래/왼쪽/오른쪽, 상태 바뀌는 시간"
+
+msgid "`focusUp` ..., `transition`"
+msgstr "`focusUp` ..., `transition`"
+
+msgid "String key, Overflow, Max lines, Line breaks (text)"
+msgstr "문자열 키, 넘침, 최대 줄 수, 줄바꿈 (글자)"
+
+msgid "`key`, `overflow`, `maxLines`, `wrap`"
+msgstr "`key`, `overflow`, `maxLines`, `wrap`"
+
+msgid "9-slice margins (baked images)"
+msgstr "9-slice 여백 (구운 이미지)"
+
+msgid "`slice`"
+msgstr "`slice`"
+
+msgid "Always bake to PNG"
+msgstr "항상 PNG로 굽기"
+
+msgid "the layer is exported as an image"
+msgstr "레이어를 이미지로 내보낸다"
+
+msgid "The values are stored in the Penpot file (plugin data), so the next export writes them again. Exported `.ui` files are never edited by hand."
+msgstr "값은 Penpot 파일(플러그인 데이터)에 저장되므로 다음 내보내기 때 다시 쓰인다. 내보낸 `.ui`는 손으로 고치지 않는다."
+
+msgid "What the export keeps"
+msgstr "내보내기가 옮기는 것"
+
+msgid "Penpot"
+msgstr "Penpot"
+
+msgid "In the game"
+msgstr "게임에서"
+
+msgid "Boards, rectangles, circles, flex and grid layouts (fixed, `fr`, auto and % tracks, merged cells), constraints, sizing (fixed, hug, fill), min and max size, margins, absolute children"
+msgstr "보드, 사각형, 원, Flex·Grid 레이아웃(고정·`fr`·auto·% 트랙, 칸 합치기), Constraints, 크기 방식(고정·내용에 맞춤·채우기), 최소·최대 크기, 바깥 여백, 절대 위치 자식"
+
+msgid "drawn by the engine with the same layout"
+msgstr "엔진이 같은 배치로 그린다"
+
+msgid "One solid or two-stop gradient fill, one solid stroke, corner radius, drop shadows, opacity, rotation, clipping"
+msgstr "단색 또는 두 색 그라디언트 채우기 하나, 실선 테두리 하나, 모서리 둥글기, 드롭 섀도, 투명도, 회전, 잘라내기"
+
+msgid "drawn by the engine"
+msgstr "엔진이 그린다"
+
+msgid "Text: font, size, color, letter spacing, line height, alignment, underline, strike, upper and lower case, several styles in one text"
+msgstr "글자: 글꼴, 크기, 색, 자간, 줄 높이, 정렬, 밑줄, 취소선, 대문자·소문자, 한 글자 안의 여러 스타일"
+
+msgid "text with `span` styles"
+msgstr "`span` 스타일이 있는 글자"
+
+msgid "Color and number design tokens (active sets)"
+msgstr "색·숫자 디자인 토큰 (켜진 세트)"
+
+msgid "`assets/ui/theme.ui` (`$token` in the screen). Hand-written theme lines with other names stay"
+msgstr "`assets/ui/theme.ui`(화면에는 `$토큰`). 이름이 다른 손으로 쓴 테마 줄은 그대로 남는다"
+
+msgid "Component variants with a `State` property (`Hover`, `Pressed`, `Focus`, `Disabled`, `Checked`)"
+msgstr "`State` 속성이 있는 컴포넌트 variants(`Hover`, `Pressed`, `Focus`, `Disabled`, `Checked`)"
+
+msgid "`on <state>` lines for the look of the top layer"
+msgstr "맨 위 레이어 모양의 `on <상태>` 줄"
+
+msgid "Paths, boolean shapes, icons, masks, image fills, several fills, gradients with more stops, dashed strokes, inner shadows, blend modes"
+msgstr "패스, 불리언 도형, 아이콘, 마스크, 이미지 채우기, 여러 채우기, 색이 더 많은 그라디언트, 점선 테두리, 안쪽 그림자, 블렌드 모드"
+
+msgid "baked to PNG at twice the size in `assets/ui/<screen>/`"
+msgstr "두 배 크기 PNG로 구워 `assets/ui/<화면>/`에"
+
+msgid "Layer blur and background blur, `capitalize`, justified text"
+msgstr "레이어 블러와 배경 블러, `capitalize`, 양쪽 정렬 글자"
+
+msgid "not supported: reported, then ignored"
+msgstr "지원하지 않음: 알리고 무시한다"
+
+msgid "Groups without effects are flattened. The export warns when a screen has more than 500 nodes."
+msgstr "효과 없는 그룹은 납작하게 편다. 화면의 노드가 500개를 넘으면 경고한다."
+
+msgid "Exporting"
+msgstr "내보내기"
+
+msgid "Tick the screens and press **Export**. The editor writes `assets/ui/<screen>.ui` and its images, removes images that the screen no longer uses, adds string keys, updates the theme and reloads the screens at once. The plugin also writes `art/ui/boxes/<screen>.boxes` and `art/ui/preview/<screen>.png` for the checks below; keep them in version control with the screen. A hand-written `.ui` with the same name is not replaced unless **Replace hand-written .ui files** is ticked. Keep the Penpot file itself in `art/ui/` as well: the plugin tries to save it, and with Penpot versions where that fails it asks you to use Penpot's own **Export** (`.penpot`)."
+msgstr "화면에 체크하고 **Export**를 누른다. 에디터가 `assets/ui/<화면>.ui`와 이미지를 쓰고, 화면이 더 쓰지 않는 이미지를 지우고, 문자열 키를 더하고, 테마를 고치고, 화면을 바로 다시 읽는다. 플러그인은 아래 검사에 쓰는 `art/ui/boxes/<화면>.boxes`와 `art/ui/preview/<화면>.png`도 쓴다. 화면과 같이 버전 관리에 넣는다. 이름이 같은 손으로 쓴 `.ui`는 **Replace hand-written .ui files**에 체크해야 바뀐다. Penpot 파일 자체도 `art/ui/`에 둔다. 플러그인이 저장을 시도하고, 그것이 안 되는 Penpot 버전에서는 Penpot의 **내보내기**(`.penpot`)를 쓰라고 알린다."
+
+msgid "The panel's **Add an example screen** draws a small pause menu (flex and grid layouts, two buttons, a baked icon and a color token) to see how a screen is set up."
+msgstr "패널의 **Add an example screen**은 화면을 어떻게 짜는지 보도록 작은 일시정지 메뉴(Flex·Grid 레이아웃, 버튼 두 개, 구울 아이콘, 색 토큰)를 그린다."
+
+msgid "Checking that the game matches Penpot"
+msgstr "게임이 Penpot과 같은지 확인하기"
+
+#, python-brace-format, python-format
+msgid "`MealKitEditor.exe --project <folder> --ui-check [--lang <code>]` lays out every exported screen at its board size and compares each node's box with the box Penpot computed. Boxes may differ by 0.5 logical pixels, text by 2 pixels or 4 % of its width (font shaping differs a little). Text is compared only when the game draws the same characters as Penpot (pick the language of the Penpot text with `--lang`); text with `{fields}`, list items and nodes hidden by a binding are skipped."
+msgstr "`MealKitEditor.exe --project <폴더> --ui-check [--lang <코드>]`는 내보낸 화면마다 보드 크기로 배치하고, 노드 상자를 Penpot이 계산한 상자와 비교한다. 상자는 0.5 논리 픽셀, 글자는 2픽셀 또는 너비의 4%까지 다를 수 있다(글꼴 셰이핑이 조금 다르다). 글자는 게임이 Penpot과 같은 글자를 그릴 때만 비교한다(`--lang`으로 Penpot 글자의 언어를 고른다). `{필드}`가 있는 글자, 목록 항목, 바인딩으로 숨은 노드는 건너뛴다."
+
+msgid "`MealKitEditor.exe --project <folder> --ui-render ui/<screen>.ui out.png` draws one screen at half its board size, the size of the preview the plugin exports, for a loose pixel comparison."
+msgstr "`MealKitEditor.exe --project <폴더> --ui-render ui/<화면>.ui out.png`는 화면 하나를 보드의 반 크기(플러그인이 내보내는 미리보기 크기)로 그려, 느슨한 픽셀 비교에 쓴다."
+
+msgid "The engine's own `tools\\check.ps1` runs both on the sample screen `assets/ui/penpot_example.ui`."
+msgstr "엔진의 `tools\\check.ps1`이 예제 화면 `assets/ui/penpot_example.ui`로 두 가지를 모두 돌린다."
 
 msgid "Connecting the game"
 msgstr "게임과 연결하기"

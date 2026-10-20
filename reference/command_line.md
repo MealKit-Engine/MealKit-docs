@@ -72,6 +72,9 @@ Window options (`--bot`, `--vsync`, `--fps`, `--size`, `--debug`, `--mute`, `--d
 | `--project-settings` | Start with the Project Settings window open |
 | `--tables`, `--sounds`, `--feedback` | Start with the Tables, Sounds or Feedback panel open |
 | `--ui <file.ui>` | Start with the UI panel previewing this screen |
+| `--ui-check` | Compare the screens exported from Penpot with Penpot's layout boxes, print `UI-CHECK` lines and exit (exit code 2 on a difference; with `--lang` for the text language) |
+| `--ui-render <ui/x.ui> <png>` | Draw one screen at half its board size, save it and exit (pixel comparison with the Penpot preview) |
+| `--penpot-token <token>` | Fixed token in the Penpot plugin address (automated tests; normally random per run) |
 | `--bodies <n>`, `--debug` | As in the game |
 
 For example: `MealKitEditor.exe --project . --frames 60 --select 5 --capture out.png`.
