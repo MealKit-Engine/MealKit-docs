@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-21 01:29+0900\n"
+"POT-Creation-Date: 2026-10-21 16:18+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -68,8 +68,8 @@ msgstr "숫자 읽기"
 msgid "The engine collects its performance numbers in one place, `game::FrameStats` (`mealkit/game/FrameStats.h`), and averages them over a quarter of a second. During a match the window title shows them as one line:"
 msgstr "엔진은 성능 숫자를 `game::FrameStats`(`mealkit/game/FrameStats.h`) 한 곳에 모아 0.25초마다 평균을 낸다. 매치 중에는 창 제목이 한 줄로 보여 준다:"
 
-msgid "60 fps 16.67 ms (worst 18.2) | sim 0.42 ms/tick | tick 812 | P1 of 3 | rtt 34 ms | net 1.2/2.4 KB/s | 41 draws 2318 inst | audio 6+12 voices 0.08 ms | in sync\n"
-msgstr "60 fps 16.67 ms (worst 18.2) | sim 0.42 ms/tick | tick 812 | P1 of 3 | rtt 34 ms | net 1.2/2.4 KB/s | 41 draws 2318 inst | audio 6+12 voices 0.08 ms | in sync\n"
+msgid "60 fps 16.67 ms (worst 18.2) | gpu 0.31 ms | sim 0.42 ms/tick | tick 812 | P1 of 3 | rtt 34 ms | net 1.2/2.4 KB/s | 41 draws 2318 inst | mem 231 MB | vram 59/8318 MB | audio 6+12 voices 0.08 ms | in sync\n"
+msgstr "60 fps 16.67 ms (worst 18.2) | gpu 0.31 ms | sim 0.42 ms/tick | tick 812 | P1 of 3 | rtt 34 ms | net 1.2/2.4 KB/s | 41 draws 2318 inst | mem 231 MB | vram 59/8318 MB | audio 6+12 voices 0.08 ms | in sync\n"
 
 msgid "Meaning"
 msgstr "뜻"
@@ -82,6 +82,15 @@ msgstr "평균 프레임 수와 프레임 시간, 그 주기 안에서 가장 �
 
 msgid "16.7 ms at 60 fps; a high `worst` is a hitch"
 msgstr "60 fps에서 16.7 ms. `worst`가 크면 끊김이다"
+
+msgid "`gpu`"
+msgstr "`gpu`"
+
+msgid "GPU time of a frame (timestamp queries, two frames late)"
+msgstr "한 프레임의 GPU 시간 (타임스탬프 쿼리, 2프레임 늦음)"
+
+msgid "8 ms"
+msgstr "8 ms"
 
 msgid "`sim ms/tick`"
 msgstr "`sim ms/tick`"
@@ -122,6 +131,18 @@ msgstr "드로우 콜과 그린 인스턴스 수"
 msgid "200 draw calls"
 msgstr "드로우 콜 200개"
 
+msgid "`mem`"
+msgstr "`mem`"
+
+msgid "Memory of the process in RAM (Windows working set)"
+msgstr "RAM에 올라 있는 프로세스 메모리 (Windows 작업 집합)"
+
+msgid "`vram`"
+msgstr "`vram`"
+
+msgid "GPU memory used and the budget the driver gives the game. Integrated graphics share system memory, so the budget is part of RAM"
+msgstr "쓰는 GPU 메모리와 드라이버가 게임에 주는 예산. 내장 그래픽은 시스템 메모리를 같이 쓰므로 예산이 RAM의 일부다"
+
 msgid "`audio`"
 msgstr "`audio`"
 
@@ -149,6 +170,127 @@ msgstr "**에디터 상태 표시줄**: 편집 중에는 프레임 수, 플레�
 
 msgid "With vsync on, the frame rate stops at the monitor's rate and the frame time hides spare time. Measure with `--vsync 0` (or press `V` in the game)."
 msgstr "수직 동기를 켜면 프레임 수가 모니터 주사율에서 멈추고 프레임 시간에 남는 시간이 가려진다. `--vsync 0`으로(게임에서는 `V`) 잰다."
+
+msgid "Benchmark mode"
+msgstr "벤치마크 모드"
+
+msgid "`--benchmark [seconds]` measures the game the same way every time, so builds, graphics features and PCs can be compared:"
+msgstr "`--benchmark [초]`는 게임을 매번 같은 방법으로 재서 빌드, 그래픽 기능, PC를 비교할 수 있게 한다:"
+
+msgid "build\\Release\\bin\\sandbox.exe --benchmark\n"
+msgstr "build\\Release\\bin\\sandbox.exe --benchmark\n"
+
+msgid "It plays offline with a fixed seed (`--seed 1` unless given) and bot input, with vsync off (unless `--vsync` is given) and sound off. The camera follows the bot's character, so the same build and data take the same path."
+msgstr "고정 시드(주지 않으면 `--seed 1`)와 봇 입력으로 혼자 플레이하고, 수직동기는 끄고(`--vsync`를 주지 않으면) 소리도 끈다. 카메라는 봇 캐릭터를 따라가므로 같은 빌드와 데이터면 같은 길을 간다."
+
+msgid "It skips the first 3 seconds of the match (warm-up), measures for 30 seconds (or the given number), writes `benchmark.txt` (`--benchmark-out <file>` for another path) and exits. Player settings are not read, as in other automated runs."
+msgstr "매치의 처음 3초(데우기)는 버리고, 30초(또는 준 숫자) 동안 재고, `benchmark.txt`(다른 경로는 `--benchmark-out <파일>`)를 쓰고 끝난다. 다른 자동 실행처럼 플레이어 설정은 읽지 않는다."
+
+msgid "The console gets one line for scripts: `BENCHMARK frames=... avg=...ms p99=...ms worst=...ms sim=...ms gpu=...ms`."
+msgstr "콘솔에는 스크립트용 한 줄이 나온다: `BENCHMARK frames=... avg=...ms p99=...ms worst=...ms sim=...ms gpu=...ms`."
+
+msgid "The report lists the game version and commit, CPU, GPU and driver, the screen size, and then:"
+msgstr "보고서에는 게임 버전과 커밋, CPU, GPU와 드라이버, 화면 크기가 있고, 그 뒤에:"
+
+msgid "Line"
+msgstr "줄"
+
+msgid "`frame`"
+msgstr "`frame`"
+
+#, python-format
+msgid "Average frame time and rate, **1% worst** (99th percentile: 1% of frames were slower) and the single worst frame"
+msgstr "평균 프레임 시간과 프레임률, **1% 최악**(99번째 백분위: 프레임의 1%가 이보다 느렸다), 가장 긴 프레임 하나"
+
+msgid "`simulation`"
+msgstr "`simulation`"
+
+msgid "CPU time per tick"
+msgstr "틱당 CPU 시간"
+
+msgid "`draws`"
+msgstr "`draws`"
+
+msgid "Average draw calls and instances"
+msgstr "평균 드로우 콜과 인스턴스"
+
+msgid "`memory`"
+msgstr "`memory`"
+
+msgid "Peak process memory, peak GPU memory and the GPU memory budget"
+msgstr "프로세스 메모리 최대, GPU 메모리 최대, GPU 메모리 예산"
+
+msgid "`gpu time`"
+msgstr "`gpu time`"
+
+msgid "GPU time per pass next to its budget, `OVER` when above it"
+msgstr "패스별 GPU 시간과 그 예산, 넘으면 `OVER`"
+
+msgid "GPU budget per pass"
+msgstr "패스별 GPU 예산"
+
+msgid "The 8 ms GPU frame is split into budgets per kind of work, so an artist knows how much room a feature has. The values are in `mealkit.project` (**File > Project Settings**) and will be corrected from measurements on the minimum spec:"
+msgstr "8 ms GPU 프레임을 작업 종류별 예산으로 나눠, 아티스트가 기능마다 얼마나 쓸 수 있는지 알게 한다. 값은 `mealkit.project`(**파일 > 프로젝트 설정**)에 있고, 최소 사양 실측으로 고친다:"
+
+msgid "Pass"
+msgstr "패스"
+
+msgid "Setting"
+msgstr "설정"
+
+msgid "Default"
+msgstr "기본값"
+
+msgid "`opaque` (opaque objects)"
+msgstr "`opaque` (불투명 물체)"
+
+msgid "`gpuBudgetOpaqueMs`"
+msgstr "`gpuBudgetOpaqueMs`"
+
+msgid "3 ms"
+msgstr "3 ms"
+
+msgid "`shadow`"
+msgstr "`shadow`"
+
+msgid "`gpuBudgetShadowMs`"
+msgstr "`gpuBudgetShadowMs`"
+
+msgid "1.5 ms"
+msgstr "1.5 ms"
+
+msgid "`post` (post processing)"
+msgstr "`post` (포스트 프로세싱)"
+
+msgid "`gpuBudgetPostMs`"
+msgstr "`gpuBudgetPostMs`"
+
+msgid "1 ms"
+msgstr "1 ms"
+
+msgid "`vfx` (effects, transparency)"
+msgstr "`vfx` (효과, 반투명)"
+
+msgid "`gpuBudgetVfxMs`"
+msgstr "`gpuBudgetVfxMs`"
+
+msgid "`ui` (game UI and debug UI)"
+msgstr "`ui` (게임 UI와 디버그 UI)"
+
+msgid "`gpuBudgetUiMs`"
+msgstr "`gpuBudgetUiMs`"
+
+msgid "0.5 ms"
+msgstr "0.5 ms"
+
+msgid "`other` (outside the passes: barriers, uploads)"
+msgstr "`other` (패스 밖: 배리어, 업로드)"
+
+msgid "`gpuBudgetSpareMs`"
+msgstr "`gpuBudgetSpareMs`"
+
+msgid "Passes the renderer does not have yet (shadows, post processing, effects) read 0 until those features arrive. The budgets do not change the simulation and are not part of the content hash."
+msgstr "렌더러에 아직 없는 패스(그림자, 포스트 프로세싱, 효과)는 그 기능이 들어올 때까지 0이다. 예산은 시뮬레이션을 바꾸지 않고 콘텐츠 해시에 들어가지 않는다."
 
 msgid "A heavier scene"
 msgstr "더 무거운 장면"

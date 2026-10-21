@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-20 21:08+0900\n"
+"POT-Creation-Date: 2026-10-21 16:18+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -180,6 +180,19 @@ msgstr "`--system-info`"
 
 msgid "Print CPU and GPU features and exit (exit code 2 below the minimum spec)"
 msgstr "CPU·GPU 기능을 출력하고 종료 (최소 사양 미달이면 종료 코드 2)"
+
+msgid "`--benchmark [seconds]`"
+msgstr "`--benchmark [seconds]`"
+
+#, python-brace-format
+msgid "Benchmark mode: offline, fixed seed, bot input, vsync and sound off; measure for 30 seconds (or the given number) after a 3 second warm-up, write `benchmark.txt` and exit ({doc}`../manual/performance`)"
+msgstr "벤치마크 모드: 혼자, 고정 시드, 봇 입력, 수직동기·소리 끔. 3초 데우기 뒤 30초(또는 준 숫자) 동안 재고 `benchmark.txt`를 쓰고 끝 ({doc}`../manual/performance`)"
+
+msgid "`--benchmark-out <file>`"
+msgstr "`--benchmark-out <file>`"
+
+msgid "Path of the benchmark report (default `benchmark.txt`)"
+msgstr "벤치마크 보고서 경로 (기본 `benchmark.txt`)"
 
 msgid "`--any-build`"
 msgstr "`--any-build`"

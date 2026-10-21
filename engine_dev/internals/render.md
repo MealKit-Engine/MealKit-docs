@@ -70,7 +70,7 @@ Vulkan's clip space has y pointing down. `setViewport` gives the viewport a nega
 A copy or a barrier ends the current dynamic rendering pass (Vulkan does not allow them inside one), which is why the RHI asks callers to bind the target again after copies.
 With `--debug`, the Vulkan backend turns on `VK_LAYER_KHRONOS_validation` when the Vulkan SDK is installed and sends its warnings and errors to the engine log as `[Vulkan]` lines.
 The minimum spec for this backend is Vulkan 1.3 with descriptor indexing, dynamic rendering, synchronization2, demote to helper invocation and `VK_KHR_swapchain_mutable_format`; Intel 11th gen integrated graphics has them.
-Profile builds do not time the GPU with Tracy on Vulkan yet.
+Profile builds do not time the GPU with Tracy on Vulkan yet (the engine's own GPU timers, below, work on both backends).
 
 ## Starting up
 
@@ -171,6 +171,14 @@ The game uses it for `F12` (`screenshot.png`) and for automatic captures in test
 `RenderStats` holds `drawCalls` and `instances`. `beginFrame` resets them, every `drawInstances` adds one draw call and its instance count, and `drawUi` adds one draw call.
 The renderer only measures. `game::FrameStats` reads `stats()` once per frame and makes the numbers in the window title, the F1 overlay and the perf log, as decided in {engine}`docs/CODING_MODEL.md` ("성능 숫자 모으기와 보여 주기").
 Profile builds also time the GPU frame with Tracy's D3D12 zones.
+
+### GPU time and memory
+
+The RHI times the GPU with timestamp queries in every build: `CommandList::beginTimer(n)`/`endTimer(n)` for up to `rhi::kMaxGpuTimers` (8) sections, plus the whole command list.
+Each frame in flight has its own slots (a D3D12 query heap resolved into a mapped readback buffer; a Vulkan query pool reset at the start of the frame). `beginFrame` reads them after waiting for that frame's fence, so `Device::gpuTimes()` is two frames old and never makes the CPU wait.
+Only written queries are resolved or read. The meaning of the numbers is the renderer's: `render::GpuPass` (opaque, shadow, post, vfx, ui) with the 3D pass from `beginFrame` to `beginOverlay` and the UI pass (game UI and debug UI) after it. `RenderStats` carries the last values (`gpuValid`, `gpuFrameMs`, `gpuPassMs`).
+
+`Device::gpuMemory()` returns the memory used and the budget: `IDXGIAdapter3::QueryVideoMemoryInfo` (local segment) on Direct3D 12, VMA's heap budgets over the device-local heaps on Vulkan (`VK_EXT_memory_budget` when the driver has it, otherwise VMA's own estimate). On integrated graphics the local segment is shared system memory.
 
 `Renderer::device()` gives the RHI device to the ImGui layer (see {doc}`debug`), so the debug UI draws into the same frame.
 

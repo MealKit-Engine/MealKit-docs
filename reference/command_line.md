@@ -31,6 +31,8 @@ The example game is called `sandbox`. In a game project, the executables carry t
 | `--frames <n>` | Draw n frames and exit (screens outside a match, such as the title) |
 | `--ui-press <frame:node,...>` | Press the UI widget with that node name at that frame (screen flow tests, e.g. `20:start,50:solo`) |
 | `--system-info` | Print CPU and GPU features and exit (exit code 2 below the minimum spec) |
+| `--benchmark [seconds]` | Benchmark mode: offline, fixed seed, bot input, vsync and sound off; measure for 30 seconds (or the given number) after a 3 second warm-up, write `benchmark.txt` and exit ({doc}`../manual/performance`) |
+| `--benchmark-out <file>` | Path of the benchmark report (default `benchmark.txt`) |
 | `--any-build` | Host: accept peers running a different build (compiler comparison tests) |
 | `--net-lag <ms>`, `--net-jitter <ms>`, `--net-loss <%>` | Simulate a slow, uneven or lossy connection for this process: added round trip time, extra random delay per packet, share of packets dropped (testing) |
 | `--hash-log <file>` | Write `<tick> <hash>` for every tick |

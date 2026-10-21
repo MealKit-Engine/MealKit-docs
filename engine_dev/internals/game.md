@@ -219,7 +219,7 @@ The display tuning is not in the content hash, so it can change during a multipl
 
 ## Project settings
 
-`game::ProjectSettings` ({engine}`engine/src/mealkit/game/ProjectSettings.h`) is the engine part of `mealkit.project`: name, engine folder and version, start scene, icon, creation date, sound voices, default language, the simulation tick rate (`tickRate`, hashed) and the automatic input delay (`inputDelayAuto`, `inputDelayMinMs`, `inputDelayMaxMs`).
+`game::ProjectSettings` ({engine}`engine/src/mealkit/game/ProjectSettings.h`) is the engine part of `mealkit.project`: name, engine folder and version, start scene, icon, creation date, sound voices, default language, the simulation tick rate (`tickRate`, hashed), the automatic input delay (`inputDelayAuto`, `inputDelayMinMs`, `inputDelayMaxMs`) and the GPU budget per pass for the benchmark report (`gpuBudget*Ms`).
 `applyTickRate` makes the project's tick rate the process tick rate (`reflect::setTickRate`, 10 to 120) before any time field is read: `loadMatchData`, `loadGameProject` callers and the editor's project loading call it. `tickDt()` and `msToTicks()` convert with it; the headless loop and the example's `GameSession` take the tick length from `tickDt()`, and `--delay` is in milliseconds. A game adds its own struct, saved in the file with the `game.` prefix.
 
 The file uses the same `path value` lines as tuning files, and the reader also accepts old `key=value` lines. Loading keeps three things the engine cannot type-check:
@@ -253,8 +253,13 @@ The simulation never reads save data. See {doc}`../../manual/settings`.
 
 ## Performance numbers
 
-`game::FrameStats` ({engine}`engine/src/mealkit/game/FrameStats.h`) collects the numbers each subsystem measures with its own `stats()`: frame time, simulation time per tick, tick, players, round trip time and bandwidth, desync, draw calls and instances, and sound voices.
-`update(dt, sources)` is called every frame. When a period ends (0.25 seconds by default) it averages the frame time, keeps the worst frame, reads every source that is not `nullptr`, and returns `true`.
+`game::FrameStats` ({engine}`engine/src/mealkit/game/FrameStats.h`) collects the numbers each subsystem measures with its own `stats()`: frame time, simulation time per tick, tick, players, round trip time and bandwidth, desync, draw calls and instances, GPU time per pass, and sound voices.
+`update(dt, sources)` is called every frame. It adds up the renderer's GPU times every frame. When a period ends (0.25 seconds by default) it averages the frame and GPU times, keeps the worst frame and the 99th percentile frame (`frameMsPercentile`), reads every source that is not `nullptr`, and returns `true`.
+With a renderer it also reads the process memory (platform layer `processMemory`) and the GPU memory (`Renderer::gpuMemory`, a driver query, so once per period).
+
+`game::Benchmark` ({engine}`engine/src/mealkit/game/Benchmark.h`) is the `--benchmark` mode of the shipped exe. `runGame` turns on the bot, a fixed seed and vsync off before the loop starts.
+Every frame the loop passes the frame time, whether a match is running and the `FrameStats` sample that just ended (if any). After the warm-up it keeps every frame time (for the 1% worst frame over the whole run) and weights each sample by its length.
+When the time is up, `report` writes the text with the GPU budget table from `mealkit.project` and `summaryLine` the `BENCHMARK` line. It builds on `FrameStats` instead of reading the subsystems again, because `takeSimMsPerTick` may only have one reader.
 
 `line()` joins the items with ` | ` for the window title and the `perf:` log, and `lines()` puts one item per line for the `F1` overlay. The editor status bar uses the same class.
 `takeSimMsPerTick` empties its average when read, so only `FrameStats` calls it, and every display shows the same numbers. See {doc}`../../manual/performance` and {engine}`docs/CODING_MODEL.md` "성능 숫자 모으기와 보여 주기".

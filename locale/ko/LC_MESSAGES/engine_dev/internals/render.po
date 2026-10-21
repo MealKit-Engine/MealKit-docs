@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-20 00:37+0900\n"
+"POT-Creation-Date: 2026-10-21 16:18+0900\n"
 "PO-Revision-Date: 2026-10-19 13:15+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -271,8 +271,8 @@ msgstr "`ALLOW_TEARING`"
 msgid "`IMMEDIATE` present mode, otherwise `MAILBOX`"
 msgstr "`IMMEDIATE` 프레젠트 방식, 없으면 `MAILBOX`"
 
-msgid "Vulkan's clip space has y pointing down. `setViewport` gives the viewport a negative height, so the same shaders and the same clockwise front faces as Direct3D 12 produce the same image. A copy or a barrier ends the current dynamic rendering pass (Vulkan does not allow them inside one), which is why the RHI asks callers to bind the target again after copies. With `--debug`, the Vulkan backend turns on `VK_LAYER_KHRONOS_validation` when the Vulkan SDK is installed and sends its warnings and errors to the engine log as `[Vulkan]` lines. The minimum spec for this backend is Vulkan 1.3 with descriptor indexing, dynamic rendering, synchronization2, demote to helper invocation and `VK_KHR_swapchain_mutable_format`; Intel 11th gen integrated graphics has them. Profile builds do not time the GPU with Tracy on Vulkan yet."
-msgstr "Vulkan의 클립 공간은 y가 아래를 향한다. `setViewport`가 뷰포트 높이를 음수로 주므로, Direct3D 12와 같은 셰이더, 같은 시계 방향 앞면으로 같은 그림이 나온다. 복사나 배리어는 지금의 dynamic rendering 패스를 끝낸다(Vulkan은 패스 안에서 허용하지 않는다). 그래서 RHI는 복사 뒤에 부르는 쪽이 대상을 다시 묶게 한다. `--debug`를 주면 Vulkan SDK가 깔려 있을 때 `VK_LAYER_KHRONOS_validation`을 켜고, 경고와 오류를 `[Vulkan]` 줄로 엔진 로그에 보낸다. 이 백엔드의 최소 사양은 descriptor indexing, dynamic rendering, synchronization2, demote to helper invocation, `VK_KHR_swapchain_mutable_format`을 갖춘 Vulkan 1.3이고, Intel 11세대 내장 그래픽에 모두 있다. 프로파일 빌드는 Vulkan에서 아직 Tracy로 GPU 시간을 재지 않는다."
+msgid "Vulkan's clip space has y pointing down. `setViewport` gives the viewport a negative height, so the same shaders and the same clockwise front faces as Direct3D 12 produce the same image. A copy or a barrier ends the current dynamic rendering pass (Vulkan does not allow them inside one), which is why the RHI asks callers to bind the target again after copies. With `--debug`, the Vulkan backend turns on `VK_LAYER_KHRONOS_validation` when the Vulkan SDK is installed and sends its warnings and errors to the engine log as `[Vulkan]` lines. The minimum spec for this backend is Vulkan 1.3 with descriptor indexing, dynamic rendering, synchronization2, demote to helper invocation and `VK_KHR_swapchain_mutable_format`; Intel 11th gen integrated graphics has them. Profile builds do not time the GPU with Tracy on Vulkan yet (the engine's own GPU timers, below, work on both backends)."
+msgstr "Vulkan의 클립 공간은 y가 아래를 향한다. `setViewport`가 뷰포트 높이를 음수로 주므로, Direct3D 12와 같은 셰이더, 같은 시계 방향 앞면으로 같은 그림이 나온다. 복사나 배리어는 지금의 dynamic rendering 패스를 끝낸다(Vulkan은 패스 안에서 허용하지 않는다). 그래서 RHI는 복사 뒤에 부르는 쪽이 대상을 다시 묶게 한다. `--debug`를 주면 Vulkan SDK가 깔려 있을 때 `VK_LAYER_KHRONOS_validation`을 켜고, 경고와 오류를 `[Vulkan]` 줄로 엔진 로그에 보낸다. 이 백엔드의 최소 사양은 descriptor indexing, dynamic rendering, synchronization2, demote to helper invocation, `VK_KHR_swapchain_mutable_format`이 있는 Vulkan 1.3이고, Intel 11세대 내장 그래픽에 모두 있다. 프로파일 빌드는 Vulkan에서 아직 Tracy로 GPU 시간을 재지 않는다(아래의 엔진 GPU 타이머는 두 백엔드에서 된다)."
 
 msgid "Starting up"
 msgstr "시작"
@@ -458,6 +458,15 @@ msgstr "통계"
 #, python-brace-format
 msgid "`RenderStats` holds `drawCalls` and `instances`. `beginFrame` resets them, every `drawInstances` adds one draw call and its instance count, and `drawUi` adds one draw call. The renderer only measures. `game::FrameStats` reads `stats()` once per frame and makes the numbers in the window title, the F1 overlay and the perf log, as decided in {engine}`docs/CODING_MODEL.md` (\"성능 숫자 모으기와 보여 주기\"). Profile builds also time the GPU frame with Tracy's D3D12 zones."
 msgstr "`RenderStats`는 `drawCalls`와 `instances`를 갖는다. `beginFrame`이 비우고, `drawInstances`마다 드로우 콜 하나와 인스턴스 수를 더하고, `drawUi`가 드로우 콜 하나를 더한다. 렌더러는 재기만 한다. {engine}`docs/CODING_MODEL.md`(\"성능 숫자 모으기와 보여 주기\")에서 정한 대로 `game::FrameStats`가 프레임마다 `stats()`를 한 번 읽어 창 제목, F1 오버레이, perf 로그의 숫자를 만든다. Profile 빌드는 Tracy의 D3D12 구간으로 GPU 프레임 시간도 잰다."
+
+msgid "GPU time and memory"
+msgstr "GPU 시간과 메모리"
+
+msgid "The RHI times the GPU with timestamp queries in every build: `CommandList::beginTimer(n)`/`endTimer(n)` for up to `rhi::kMaxGpuTimers` (8) sections, plus the whole command list. Each frame in flight has its own slots (a D3D12 query heap resolved into a mapped readback buffer; a Vulkan query pool reset at the start of the frame). `beginFrame` reads them after waiting for that frame's fence, so `Device::gpuTimes()` is two frames old and never makes the CPU wait. Only written queries are resolved or read. The meaning of the numbers is the renderer's: `render::GpuPass` (opaque, shadow, post, vfx, ui) with the 3D pass from `beginFrame` to `beginOverlay` and the UI pass (game UI and debug UI) after it. `RenderStats` carries the last values (`gpuValid`, `gpuFrameMs`, `gpuPassMs`)."
+msgstr "RHI는 모든 빌드에서 타임스탬프 쿼리로 GPU 시간을 잰다: `CommandList::beginTimer(n)`/`endTimer(n)`으로 구간 `rhi::kMaxGpuTimers`(8)개까지, 그리고 명령 목록 전체. 처리 중인 프레임마다 자기 칸이 있다(D3D12는 쿼리 힙을 계속 매핑한 readback 버퍼로 모으고, Vulkan은 프레임 처음에 비우는 쿼리 풀). `beginFrame`이 그 프레임의 fence를 기다린 뒤 읽으므로 `Device::gpuTimes()`는 2프레임 전 값이고 CPU를 기다리게 하지 않는다. 쓴 쿼리만 모으고 읽는다. 숫자의 뜻은 렌더러가 정한다: `render::GpuPass`(opaque, shadow, post, vfx, ui)이고, 3D 패스는 `beginFrame`부터 `beginOverlay`까지, UI 패스(게임 UI와 디버그 UI)는 그 뒤다. `RenderStats`가 마지막 값(`gpuValid`, `gpuFrameMs`, `gpuPassMs`)을 갖는다."
+
+msgid "`Device::gpuMemory()` returns the memory used and the budget: `IDXGIAdapter3::QueryVideoMemoryInfo` (local segment) on Direct3D 12, VMA's heap budgets over the device-local heaps on Vulkan (`VK_EXT_memory_budget` when the driver has it, otherwise VMA's own estimate). On integrated graphics the local segment is shared system memory."
+msgstr "`Device::gpuMemory()`는 쓰는 메모리와 예산을 돌려준다: Direct3D 12는 `IDXGIAdapter3::QueryVideoMemoryInfo`(로컬 세그먼트), Vulkan은 장치 로컬 힙들의 VMA 힙 예산(드라이버에 `VK_EXT_memory_budget`이 있으면 그것, 없으면 VMA의 어림). 내장 그래픽에서는 로컬 세그먼트가 공유 시스템 메모리다."
 
 #, python-brace-format
 msgid "`Renderer::device()` gives the RHI device to the ImGui layer (see {doc}`debug`), so the debug UI draws into the same frame."
