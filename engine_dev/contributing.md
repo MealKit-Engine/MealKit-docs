@@ -34,6 +34,6 @@ This documentation lives in its own repository (`MealKit-docs`). English is the 
 - Change English and Korean in the same pull request. After editing a page, run `python tools/build.py update`: new sentences appear empty and changed sentences are marked fuzzy in the `.po` files. Translate them and remove the fuzzy flag.
 - `python tools/build.py check` builds both languages with warnings as errors and fails on any untranslated, fuzzy or leftover message. CI runs the same check and a link check.
 - Use the terms in the {doc}`../glossary`, which match the editor's Korean strings (`engine/res/strings/ko.txt`).
-- One documentation branch per engine minor version: `master` is the latest, and `ENGINE_VERSION` must match the engine's `VERSION` (MAJOR.MINOR). Engine messages point to the documentation of their own version.
+- Before engine 1.0 there is one documentation branch, `master`, and `ENGINE_VERSION` must match the engine's `VERSION` (MAJOR.MINOR). Engine messages point to the latest documentation. From 1.0, each engine minor version gets its own documentation branch, and engine messages point to the documentation of their own version.
 - Rules that change in the same commit as engine code stay in the engine repository: the roadmap, the decision log, the changelog, `CLAUDE.md`, the coding model with the determinism rules, and `third_party/VERSIONS.txt`. This documentation links to them instead of copying them.
 - Editor screenshots are made with the editor's `--capture`, with `--lang en` or `--lang ko` for each language.

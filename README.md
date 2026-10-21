@@ -19,8 +19,9 @@ python -m venv .venv
 
 ## Branches
 
-One branch per engine minor version: `master` is the latest (`ENGINE_VERSION` = the engine's current MINOR),
-release branches are named `0.5`, `0.6`, ... Hosting on Read the Docs starts when the repositories are published.
+Before engine 1.0 there is only `master`, which describes the current engine (`ENGINE_VERSION` = the engine's current MINOR).
+Older versions are not kept; the 0.4 documentation is the tag `docs-0.4`. From 1.0, each engine minor version gets a release branch
+(`1.0`, `1.1`, ...) and engine messages link to it. Hosting on Read the Docs starts when the repositories are published.
 
 ## License
 
