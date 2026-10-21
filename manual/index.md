@@ -9,6 +9,7 @@ projects
 game_code
 editor
 assets
+blender
 sound
 input
 ui

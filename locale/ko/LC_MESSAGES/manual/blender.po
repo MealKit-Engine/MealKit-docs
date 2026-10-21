@@ -1,0 +1,119 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, KingProtea99 and MealKit contributors. CC BY 4.0
+# This file is distributed under the same license as the MealKit package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: MealKit 0.5\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-21 17:44+0900\n"
+"PO-Revision-Date: 2026-10-21 18:00+0900\n"
+"Last-Translator: KingProtea99\n"
+"Language: ko\n"
+"Language-Team: ko <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+msgid "Blender add-on"
+msgstr "Blender 애드온"
+
+#, python-brace-format
+msgid "The MealKit add-on checks a Blender scene against what the engine can read and exports it into the project with the right settings in one click. It lives in the engine repository, in {engine}`tools/blender-addon/mealkit`."
+msgstr "MealKit 애드온은 Blender 장면을 엔진이 읽을 수 있는 범위와 비교해 검사하고, 버튼 하나로 정해진 설정으로 프로젝트에 내보낸다. 엔진 저장소의 {engine}`tools/blender-addon/mealkit`에 있다."
+
+msgid "The add-on follows one Blender version: **Blender 5.2 LTS** (supported until July 2028). Other versions may work but are not tested."
+msgstr "애드온은 Blender 버전 하나에 맞춘다: **Blender 5.2 LTS**(2028년 7월까지 지원). 다른 버전에서도 될 수 있지만 시험하지 않는다."
+
+msgid "Installing"
+msgstr "설치"
+
+msgid "Build the extension file once:"
+msgstr "확장 파일을 한 번 만든다:"
+
+msgid "\"C:\\Program Files\\Blender Foundation\\Blender 5.2\\blender.exe\" --command extension build --source-dir D:\\MealKit\\tools\\blender-addon\\mealkit --output-dir D:\\MealKit\\build\n"
+msgstr "\"C:\\Program Files\\Blender Foundation\\Blender 5.2\\blender.exe\" --command extension build --source-dir D:\\MealKit\\tools\\blender-addon\\mealkit --output-dir D:\\MealKit\\build\n"
+
+msgid "In Blender: **Edit > Preferences > Get Extensions**, the menu at the top right, **Install from Disk**, and pick `build\\mealkit-0.1.0.zip`."
+msgstr "Blender에서 **Edit > Preferences > Get Extensions**, 오른쪽 위 메뉴의 **Install from Disk**를 누르고 `build\\mealkit-0.1.0.zip`을 고른다."
+
+msgid "When the engine is updated, build and install the file again."
+msgstr "엔진을 업데이트하면 파일을 다시 만들어 다시 설치한다."
+
+msgid "Exporting a model"
+msgstr "모델 내보내기"
+
+msgid "Keep the `.blend` files inside the project, usually in `art/` (sources are not shipped). Then open the **MealKit** tab in the 3D view sidebar (`N`):"
+msgstr "`.blend` 파일은 프로젝트 안, 보통 `art/`에 둔다(원본은 출시에 들어가지 않는다). 그리고 3D 뷰 사이드바(`N`)의 **MealKit** 탭을 연다:"
+
+msgid "Field"
+msgstr "항목"
+
+msgid "Meaning"
+msgstr "뜻"
+
+msgid "Project"
+msgstr "Project (프로젝트)"
+
+msgid "Found by walking up from the `.blend` file to the folder with `mealkit.project`. Set it by hand to export somewhere else."
+msgstr "`.blend` 파일에서 위로 올라가며 `mealkit.project`가 있는 폴더를 찾는다. 다른 곳으로 내보내려면 직접 고른다."
+
+msgid "Name"
+msgstr "Name (이름)"
+
+msgid "The file name under `assets/models/`. Empty means the `.blend` name."
+msgstr "`assets/models/` 아래 파일 이름. 비우면 `.blend` 이름."
+
+msgid "Selected only"
+msgstr "Selected only (선택한 것만)"
+
+msgid "Export only the selected objects; otherwise every visible object."
+msgstr "선택한 물체만 내보낸다. 아니면 보이는 물체 모두."
+
+#, python-brace-format
+msgid "**Check** lists what the engine will not show the way Blender does. **Export to MealKit** runs the same check and, if there is no error, writes `assets/models/<name>.glb`. With the editor open, the model changes in the scene right away ({doc}`assets`)."
+msgstr "**Check**는 엔진이 Blender와 다르게 보여 줄 것을 나열한다. **Export to MealKit**은 같은 검사를 하고 오류가 없으면 `assets/models/<이름>.glb`를 쓴다. 에디터가 열려 있으면 씬의 모델이 바로 바뀐다({doc}`assets`)."
+
+msgid "All exported objects become **one model**: the engine merges the meshes and bakes their transforms."
+msgstr "내보낸 물체는 모두 **모델 하나**가 된다: 엔진이 메시를 합치고 변환을 굽는다."
+
+msgid "What the engine reads"
+msgstr "엔진이 읽는 것"
+
+msgid "Supported"
+msgstr "지원"
+
+msgid "Not yet"
+msgstr "아직 안 됨"
+
+msgid "Triangles (faces are triangulated on export), normals"
+msgstr "삼각형(면은 내보낼 때 삼각형으로 나뉜다), 법선"
+
+msgid "Image textures and UV coordinates"
+msgstr "이미지 텍스처와 UV 좌표"
+
+msgid "Material base color (the Principled BSDF value)"
+msgstr "재질 기본 색 (Principled BSDF 값)"
+
+msgid "Base color from other nodes"
+msgstr "다른 노드에서 오는 기본 색"
+
+msgid "The active color attribute (multiplied with the base color)"
+msgstr "활성 색 속성 (기본 색과 곱한다)"
+
+msgid "Armatures, animation, shape keys"
+msgstr "아마추어, 애니메이션, 셰이프 키"
+
+msgid "The check warns about the parts in the right column. They are exported without them (a textured material shows its base color value, an armature exports the current pose). The list comes from the engine itself: the add-on's `schema.json` is checked against the engine's model loader by the engine's unit tests, so the add-on and the engine cannot disagree."
+msgstr "검사는 오른쪽 열의 것에 경고한다. 그것 없이 내보낸다(텍스처 재질은 기본 색 값으로, 아마추어는 지금 자세로). 목록은 엔진에서 온다: 애드온의 `schema.json`이 엔진 모델 불러오기와 같은지 엔진 단위 테스트가 보므로, 애드온과 엔진이 어긋날 수 없다."
+
+msgid "Material panel"
+msgstr "머티리얼 패널"
+
+msgid "**Properties > Material > MealKit** will show the engine's material features (such as outlines) as fields saved in the glTF file. There are none yet; the panel says so."
+msgstr "**Properties > Material > MealKit**에 엔진 머티리얼 기능(외곽선 등)이 glTF 파일에 저장되는 항목으로 나온다. 아직은 기능이 없고, 패널이 그렇게 알려 준다."
+
