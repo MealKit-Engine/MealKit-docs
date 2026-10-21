@@ -9,6 +9,14 @@
 - A solid box with a model collides as the **convex hull of the model's vertices** (concave parts are filled in). Hull points are taken from the original vertices before optimization, so they are the same on every PC.
 - The sample models (tree, rock, ring) can be regenerated with `python tools/make_sample_models.py`.
 
+## Changing assets while the editor is open
+
+The editor reloads changed files by itself, so an artist can export from Blender and look at the result without restarting:
+
+- **Models**: every half second the editor checks the model files the scene uses. A changed (or newly created) file is loaded again and every object using it shows the new model. The status bar says `Reloaded model: models/tree.glb`. If the new file cannot be loaded, the log says why and the old model stays.
+- **Scene**: if the open scene file is changed outside the editor (for example by a merge or another tool) and you have no unsaved changes, the editor opens it again and keeps the selection. With unsaved changes it only warns; saving then writes over the file on disk.
+- **During play** nothing is reloaded, because a model's collision hull is simulation data that every player must share. Files changed during play are picked up when you stop. The changed model then also changes the content hash, so it takes effect for multiplayer from the next play.
+
 ## Where numbers go
 
 Numbers are not constants in code. Each kind of number has one place, chosen by what it affects (the engine's {engine}`coding model <docs/CODING_MODEL.md>`, "Where do numbers go"):

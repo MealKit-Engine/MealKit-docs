@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-18 23:50+0900\n"
+"POT-Creation-Date: 2026-10-21 16:57+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -39,6 +39,21 @@ msgstr "충돌 상자에 붙인 모델은 **모델 정점의 볼록 껍질**로 
 
 msgid "The sample models (tree, rock, ring) can be regenerated with `python tools/make_sample_models.py`."
 msgstr "샘플 모델(나무, 바위, 고리)은 `python tools/make_sample_models.py`로 다시 만들 수 있다."
+
+msgid "Changing assets while the editor is open"
+msgstr "에디터를 연 채로 에셋 바꾸기"
+
+msgid "The editor reloads changed files by itself, so an artist can export from Blender and look at the result without restarting:"
+msgstr "에디터가 바뀐 파일을 스스로 다시 읽으므로, 아티스트는 Blender에서 내보내고 다시 시작하지 않고 결과를 볼 수 있다:"
+
+msgid "**Models**: every half second the editor checks the model files the scene uses. A changed (or newly created) file is loaded again and every object using it shows the new model. The status bar says `Reloaded model: models/tree.glb`. If the new file cannot be loaded, the log says why and the old model stays."
+msgstr "**모델**: 에디터가 0.5초마다 씬이 쓰는 모델 파일을 본다. 바뀐 파일(또는 새로 생긴 파일)은 다시 읽고, 그 모델을 쓰는 물체가 모두 새 모델로 보인다. 상태 표시줄에 `Reloaded model: models/tree.glb`(한국어 에디터에서는 \"모델 다시 읽음\")이 나온다. 새 파일을 읽지 못하면 로그에 이유가 남고 이전 모델을 그대로 쓴다."
+
+msgid "**Scene**: if the open scene file is changed outside the editor (for example by a merge or another tool) and you have no unsaved changes, the editor opens it again and keeps the selection. With unsaved changes it only warns; saving then writes over the file on disk."
+msgstr "**씬**: 열려 있는 씬 파일이 에디터 밖에서 바뀌면(병합이나 다른 도구 등) 저장하지 않은 변경이 없을 때 다시 열고 선택을 지킨다. 저장하지 않은 변경이 있으면 경고만 하고, 그때 저장하면 디스크의 파일을 덮어쓴다."
+
+msgid "**During play** nothing is reloaded, because a model's collision hull is simulation data that every player must share. Files changed during play are picked up when you stop. The changed model then also changes the content hash, so it takes effect for multiplayer from the next play."
+msgstr "**플레이 중**에는 아무것도 다시 읽지 않는다. 모델의 충돌 껍질은 모든 플레이어가 같아야 하는 시뮬레이션 데이터이기 때문이다. 플레이 중에 바뀐 파일은 멈추면 읽는다. 바뀐 모델은 콘텐츠 해시도 바꾸므로 여러 명 플레이에는 다음 플레이부터 반영된다."
 
 msgid "Where numbers go"
 msgstr "숫자는 어디에 두나"
