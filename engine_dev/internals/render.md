@@ -29,6 +29,8 @@ Every build makes both DXIL (Direct3D 12) and SPIR-V (Vulkan 1.3); the header fo
 They use shader model 6.6 profiles (`vs_6_6`, `ps_6_6`), the minimum spec. Debug builds keep debug information (`-Zi -Qembed_debug -Od`), other builds are optimized and stripped (`-O3 -Qstrip_debug -Qstrip_reflect`).
 The game therefore needs no shader compiler at run time and no shader files next to the exe.
 
+In development builds (every build with the debug UI, not `build.bat Export`) the shaders can be edited while the game or the editor runs. `render::ShaderReloader` ({engine}`engine/src/mealkit/render/ShaderReload.h`) checks the files in `engine/shaders` every half second, compiles a changed shader (all of them when `Bindless.hlsli` changes) with the same DXC and options as the build in a background process, and swaps the pipeline with `rhi::Device::recreatePipeline` before the next frame. The log says `Shader reloaded: Forward.hlsl`. A compile error is logged with DXC's output and the old shader stays in use. On a PC without the engine folder or DXC, reloading is off.
+
 ## The RHI layer
 
 The RHI is the engine's own thin layer over the graphics API. It has only what the renderer uses: a device with its swap chain, one command list per frame, static buffers, textures, pipelines, a per-frame upload ring and screen capture.

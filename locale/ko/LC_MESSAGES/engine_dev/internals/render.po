@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-21 16:18+0900\n"
+"POT-Creation-Date: 2026-10-21 16:36+0900\n"
 "PO-Revision-Date: 2026-10-19 13:15+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -130,6 +130,10 @@ msgstr "2D UI 셰이더: 둥근 상자, 그라디언트, 그림자, 이미지, S
 #, python-brace-format
 msgid "The shaders are compiled at build time by DXC into header files with byte arrays (`g_ForwardVS.h`, `g_UiPS.h`, ...), see {engine}`engine/CMakeLists.txt`. Every build makes both DXIL (Direct3D 12) and SPIR-V (Vulkan 1.3); the header for the build's backend is in `shaders/`, the other one in `shaders/other/` only to check that it compiles. DXC is a pinned release that the build downloads once ({engine}`cmake/Dxc.cmake`). They use shader model 6.6 profiles (`vs_6_6`, `ps_6_6`), the minimum spec. Debug builds keep debug information (`-Zi -Qembed_debug -Od`), other builds are optimized and stripped (`-O3 -Qstrip_debug -Qstrip_reflect`). The game therefore needs no shader compiler at run time and no shader files next to the exe."
 msgstr "셰이더는 빌드 때 DXC가 바이트 배열을 담은 헤더 파일(`g_ForwardVS.h`, `g_UiPS.h`, ...)로 컴파일한다({engine}`engine/CMakeLists.txt` 참고). 모든 빌드가 DXIL(Direct3D 12)과 SPIR-V(Vulkan 1.3)를 둘 다 만든다. 빌드의 백엔드 것은 `shaders/`에, 다른 쪽은 컴파일되는지 확인하려고만 `shaders/other/`에 둔다. DXC는 빌드가 한 번 받아 두는 고정 버전 릴리스다({engine}`cmake/Dxc.cmake`). 최소 사양인 셰이더 모델 6.6 프로필(`vs_6_6`, `ps_6_6`)을 쓴다. Debug 빌드는 디버그 정보를 남기고(`-Zi -Qembed_debug -Od`), 나머지 빌드는 최적화하고 정보를 뺀다(`-O3 -Qstrip_debug -Qstrip_reflect`). 그래서 게임은 실행 중에 셰이더 컴파일러가 필요 없고, exe 옆에 셰이더 파일도 없다."
+
+#, python-brace-format
+msgid "In development builds (every build with the debug UI, not `build.bat Export`) the shaders can be edited while the game or the editor runs. `render::ShaderReloader` ({engine}`engine/src/mealkit/render/ShaderReload.h`) checks the files in `engine/shaders` every half second, compiles a changed shader (all of them when `Bindless.hlsli` changes) with the same DXC and options as the build in a background process, and swaps the pipeline with `rhi::Device::recreatePipeline` before the next frame. The log says `Shader reloaded: Forward.hlsl`. A compile error is logged with DXC's output and the old shader stays in use. On a PC without the engine folder or DXC, reloading is off."
+msgstr "개발 빌드(디버그 UI가 있는 모든 빌드, `build.bat Export`는 아님)에서는 게임이나 에디터가 도는 동안 셰이더를 고칠 수 있다. `render::ShaderReloader`({engine}`engine/src/mealkit/render/ShaderReload.h`)가 `engine/shaders`의 파일을 0.5초마다 보고, 바뀐 셰이더(`Bindless.hlsli`가 바뀌면 모두)를 빌드와 같은 DXC·옵션으로 백그라운드 프로세스에서 컴파일한 뒤, 다음 프레임 전에 `rhi::Device::recreatePipeline`으로 파이프라인을 바꾼다. 로그에 `Shader reloaded: Forward.hlsl`이 나온다. 컴파일 오류는 DXC 출력과 함께 로그에 남고 이전 셰이더를 계속 쓴다. 엔진 폴더나 DXC가 없는 PC에서는 꺼진다."
 
 msgid "The RHI layer"
 msgstr "RHI 층"
