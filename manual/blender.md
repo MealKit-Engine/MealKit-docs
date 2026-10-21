@@ -34,11 +34,12 @@ All exported objects become **one model**: the engine merges the meshes and bake
 
 | Supported | Not yet |
 |---|---|
-| Triangles (faces are triangulated on export), normals | Image textures and UV coordinates |
-| Material base color (the Principled BSDF value) | Base color from other nodes |
+| Triangles (faces are triangulated on export), normals, the first UV map | A second UV map |
+| Principled BSDF: Base Color, Metallic, Roughness, Normal (through a Normal Map node) and Emission, as values or image textures | Base color from other nodes, other BSDF inputs |
+| Alpha clip | Alpha blend |
 | The active color attribute (multiplied with the base color) | Armatures, animation, shape keys |
 
-The check warns about the parts in the right column. They are exported without them (a textured material shows its base color value, an armature exports the current pose).
+The check warns about the parts in the right column. They are exported without them (an armature exports the current pose).
 The list comes from the engine itself: the add-on's `schema.json` is checked against the engine's model loader by the engine's unit tests, so the add-on and the engine cannot disagree.
 
 ## Material panel

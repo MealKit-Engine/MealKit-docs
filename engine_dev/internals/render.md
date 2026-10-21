@@ -19,7 +19,8 @@ The frame budget and the profiler are in {doc}`../../manual/performance`. The co
 | {engine}`engine/src/mealkit/render/Renderer.h` | `Renderer`, the per-frame values (`FrameParams`), the 48-byte `InstanceData`, the 112-byte `UiQuad` and `RenderStats`. |
 | {engine}`engine/src/mealkit/render/Renderer.cpp` | The forward renderer, written only against the RHI. |
 | {engine}`engine/src/mealkit/render/DrawList.h` | Collects instances per mesh for one frame. |
-| {engine}`engine/src/mealkit/render/Mesh.h` | The 28-byte `Vertex`, `MeshData` and the unit box. |
+| {engine}`engine/src/mealkit/render/Mesh.h` | The 36-byte `Vertex`, `MeshData` and the unit box. |
+| {engine}`engine/src/mealkit/asset/TextureCache.h` | Model textures: decoding, mipmaps, BC7/BC5 compression and the cache files. |
 | {engine}`engine/shaders/Bindless.hlsli` | The binding layout that every shader shares. |
 | {engine}`engine/shaders/Forward.hlsl` | The 3D shader: instance transform, lighting and fog. |
 | {engine}`engine/shaders/Ui.hlsl` | The 2D UI shader: rounded boxes, gradients, shadows, images and SDF text. |
@@ -135,22 +136,29 @@ An instance is 48 bytes and is copied to the GPU as it is (`static_assert` keeps
 The CPU builds no matrices. The vertex shader reads the instance from the upload ring at `instanceOffset + SV_InstanceID × 48` and computes the world position as rotate(rotation, position × scale) + position.
 The rotation uses the short form v + w·t + q×t with t = 2·(q×v). The normal is rotated after dividing by the scale, which keeps it correct for non-uniform scale.
 
-A vertex is 28 bytes: position (12), normal (12) and an RGBA8 color (4) that holds the glTF material color.
+A vertex is 36 bytes: position (12), normal (12), an RGBA8 color (4, glTF `COLOR_0`), the texture coordinate as two halves (4) and the material number (2, plus 2 reserved).
+There is no tangent: the pixel shader builds the tangent frame for normal maps from screen-space derivatives of the position and the texture coordinate.
+
+### Materials and textures
+
+`Renderer::createMaterial` adds a 64-byte record (base color, emissive, alpha cutoff, metallic, roughness, normal scale, four bindless texture numbers) to a table; material 0 is plain white. Every frame the whole table is written to the upload ring after the frame constants, and the shader reads `materials[vertex.material]`. A model with several materials is still one mesh and one draw call per LOD.
+`ModelCache` turns each glTF material into such a record while loading. Each image goes through `asset::loadCompressedTexture`: the cache file name is a hash of the encoded image, the usage and the cache version. On a miss (development builds only) the image is decoded with stb_image, mipmaps are made with a 2 × 2 box filter (in linear space for color, renormalized for normals) and every 4 × 4 block is compressed with bc7enc (BC7, sRGB for color) or rgbcx (BC5 for normals). `Device::createTexture(TextureInit)` uploads all mips at once. Textures are sampled with the second fixed sampler `g_linearWrap` (repeat, 8× anisotropic).
 
 ## Lighting (Forward.hlsl)
 
 Everything is drawn in one forward pass with back-face culling and reversed depth (depth cleared to 0, test `GREATER`), which spreads float depth precision more evenly over distance.
 
-1. **Albedo** is the instance color times the vertex color. Both are sRGB bytes turned into linear color by squaring (a gamma 2.0 approximation, cheaper than the exact curve).
+1. **Albedo** is the instance color times the vertex color (sRGB bytes turned into linear color by squaring, a gamma 2.0 approximation) times the material base color and its texture. With alpha clip, pixels under the cutoff are discarded. The normal map, metallic-roughness texture (G = roughness, B = metallic) and emissive texture are read the same way.
 2. **Checker**: with flag bit 0 the albedo is darkened to 0.85 on every other 4 × 4 m cell of world x and z (the ground).
 3. **Sun** uses half Lambert: h = dot(n, sun) × 0.5 + 0.5, squared. Faces turned away from the sun are dark but not black, so shapes stay readable without shadows.
 4. **Ambient** is a hemisphere light: lerp(ground color, sky color, n.y × 0.5 + 0.5). Upward faces get the sky color, downward faces the ground color.
-5. Color = albedo × (sun color × h² + ambient).
-6. **Selection**: with flag bit 1 (editor selection) the color is mixed 45 % with orange.
-7. **Fog** is exponential: f = exp(−distance × density), color = lerp(fog color, color, f).
-8. **Screen flash**: the result is mixed with the flash color by its amount.
+5. **Specular**: GGX with a Smith visibility term and Schlick Fresnel for the sun, F0 = 0.04 for non-metals and the albedo for metals. Until the sky HDRI item there is no environment reflection; a rough guess (F0 × ambient) stands in for it.
+6. Color = albedo × (1 − metallic) × (sun color × h² + ambient) + specular + emissive. The diffuse part keeps the wrapped half Lambert of before; the lighting model becomes a project setting in part 2 of the texture and material work.
+7. **Selection**: with flag bit 1 (editor selection) the color is mixed 45 % with orange.
+8. **Fog** is exponential: f = exp(−distance × density), color = lerp(fog color, color, f).
+9. **Screen flash**: the result is mixed with the flash color by its amount.
 
-There are no textures, shadow maps or post effects yet. This keeps the pass within the budget of integrated graphics.
+There are no shadow maps or post effects yet. This keeps the pass within the budget of integrated graphics.
 
 ## UI pass (Ui.hlsl)
 

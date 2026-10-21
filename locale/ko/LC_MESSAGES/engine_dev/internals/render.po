@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-21 19:45+0900\n"
+"POT-Creation-Date: 2026-10-21 20:14+0900\n"
 "PO-Revision-Date: 2026-10-19 13:15+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -103,8 +103,15 @@ msgstr "한 프레임의 인스턴스를 메시별로 모은다."
 msgid "{engine}`engine/src/mealkit/render/Mesh.h`"
 msgstr "{engine}`engine/src/mealkit/render/Mesh.h`"
 
-msgid "The 28-byte `Vertex`, `MeshData` and the unit box."
-msgstr "28바이트 `Vertex`, `MeshData`, 한 변 1인 상자."
+msgid "The 36-byte `Vertex`, `MeshData` and the unit box."
+msgstr "36바이트 `Vertex`, `MeshData`, 단위 상자."
+
+#, python-brace-format
+msgid "{engine}`engine/src/mealkit/asset/TextureCache.h`"
+msgstr "{engine}`engine/src/mealkit/asset/TextureCache.h`"
+
+msgid "Model textures: decoding, mipmaps, BC7/BC5 compression and the cache files."
+msgstr "모델 텍스처: 디코드, 밉맵, BC7/BC5 압축, 캐시 파일."
 
 #, python-brace-format
 msgid "{engine}`engine/shaders/Bindless.hlsli`"
@@ -394,8 +401,14 @@ msgstr "플래그 (`kInstanceChecker`, `kInstanceHighlight`)"
 msgid "The CPU builds no matrices. The vertex shader reads the instance from the upload ring at `instanceOffset + SV_InstanceID × 48` and computes the world position as rotate(rotation, position × scale) + position. The rotation uses the short form v + w·t + q×t with t = 2·(q×v). The normal is rotated after dividing by the scale, which keeps it correct for non-uniform scale."
 msgstr "CPU는 행렬을 만들지 않는다. 정점 셰이더가 업로드 링의 `instanceOffset + SV_InstanceID × 48`에서 인스턴스를 읽고, 월드 위치를 rotate(회전, 위치 × 크기) + 위치로 계산한다. 회전은 짧은 식 v + w·t + q×t, t = 2·(q×v)를 쓴다. 법선은 크기로 나눈 뒤 돌려서, 축마다 크기가 달라도 맞게 나온다."
 
-msgid "A vertex is 28 bytes: position (12), normal (12) and an RGBA8 color (4) that holds the glTF material color."
-msgstr "정점은 28바이트다: 위치(12), 법선(12), glTF 재질 색을 담는 RGBA8 색(4)."
+msgid "A vertex is 36 bytes: position (12), normal (12), an RGBA8 color (4, glTF `COLOR_0`), the texture coordinate as two halves (4) and the material number (2, plus 2 reserved). There is no tangent: the pixel shader builds the tangent frame for normal maps from screen-space derivatives of the position and the texture coordinate."
+msgstr "정점은 36바이트다: 위치(12), 법선(12), RGBA8 색(4, glTF `COLOR_0`), half 두 개의 텍스처 좌표(4), 머티리얼 번호(2, 그리고 예약 2). 접선은 없다: 픽셀 셰이더가 위치와 텍스처 좌표의 화면 미분으로 법선 맵의 접선 공간을 만든다."
+
+msgid "Materials and textures"
+msgstr "머티리얼과 텍스처"
+
+msgid "`Renderer::createMaterial` adds a 64-byte record (base color, emissive, alpha cutoff, metallic, roughness, normal scale, four bindless texture numbers) to a table; material 0 is plain white. Every frame the whole table is written to the upload ring after the frame constants, and the shader reads `materials[vertex.material]`. A model with several materials is still one mesh and one draw call per LOD. `ModelCache` turns each glTF material into such a record while loading. Each image goes through `asset::loadCompressedTexture`: the cache file name is a hash of the encoded image, the usage and the cache version. On a miss (development builds only) the image is decoded with stb_image, mipmaps are made with a 2 × 2 box filter (in linear space for color, renormalized for normals) and every 4 × 4 block is compressed with bc7enc (BC7, sRGB for color) or rgbcx (BC5 for normals). `Device::createTexture(TextureInit)` uploads all mips at once. Textures are sampled with the second fixed sampler `g_linearWrap` (repeat, 8× anisotropic)."
+msgstr "`Renderer::createMaterial`은 64바이트 기록(기본 색, 발광, 알파 기준, 금속, 거칠기, 법선 세기, bindless 텍스처 번호 넷)을 표에 더한다. 0번은 흰색이다. 프레임마다 표 전체를 프레임 상수 뒤 업로드 링에 쓰고, 셰이더가 `materials[vertex.material]`을 읽는다. 머티리얼이 여러 개인 모델도 LOD마다 메시 하나, 드로우 콜 하나다. `ModelCache`가 불러올 때 glTF 머티리얼을 이런 기록으로 바꾼다. 이미지마다 `asset::loadCompressedTexture`를 거친다: 캐시 파일 이름은 인코딩된 이미지·쓰임·캐시 버전의 해시다. 캐시에 없으면(개발 빌드만) stb_image로 디코드하고, 2 × 2 상자 필터로 밉맵을 만들고(색은 선형 공간에서, 법선은 다시 길이 1로), 4 × 4 블록마다 bc7enc(BC7, 색은 sRGB)나 rgbcx(법선은 BC5)로 압축한다. `Device::createTexture(TextureInit)`가 밉 전체를 한 번에 올린다. 텍스처는 두 번째 고정 샘플러 `g_linearWrap`(반복, 이방성 8)으로 읽는다."
 
 msgid "Lighting (Forward.hlsl)"
 msgstr "조명 (Forward.hlsl)"
@@ -403,8 +416,8 @@ msgstr "조명 (Forward.hlsl)"
 msgid "Everything is drawn in one forward pass with back-face culling and reversed depth (depth cleared to 0, test `GREATER`), which spreads float depth precision more evenly over distance."
 msgstr "모든 것을 포워드 패스 하나로 그린다. 뒷면은 버리고 깊이는 뒤집는다(깊이를 0으로 지우고 `GREATER`로 비교). 그러면 실수 깊이의 정밀도가 거리에 따라 더 고르게 퍼진다."
 
-msgid "**Albedo** is the instance color times the vertex color. Both are sRGB bytes turned into linear color by squaring (a gamma 2.0 approximation, cheaper than the exact curve)."
-msgstr "**알베도**는 인스턴스 색 곱하기 정점 색이다. 둘 다 sRGB 바이트를 제곱해 선형 색으로 바꾼다(감마 2.0 근사, 정확한 곡선보다 싸다)."
+msgid "**Albedo** is the instance color times the vertex color (sRGB bytes turned into linear color by squaring, a gamma 2.0 approximation) times the material base color and its texture. With alpha clip, pixels under the cutoff are discarded. The normal map, metallic-roughness texture (G = roughness, B = metallic) and emissive texture are read the same way."
+msgstr "**알베도**는 인스턴스 색 × 정점 색(sRGB 바이트를 제곱해 선형으로, 감마 2.0 근사) × 머티리얼 기본 색과 그 텍스처다. 알파 클립이면 기준보다 작은 픽셀은 버린다. 법선 맵, 금속/거칠기 텍스처(G = 거칠기, B = 금속), 발광 텍스처도 같은 방법으로 읽는다."
 
 msgid "**Checker**: with flag bit 0 the albedo is darkened to 0.85 on every other 4 × 4 m cell of world x and z (the ground)."
 msgstr "**체커**: 플래그 비트 0이 켜지면 월드 x·z의 4 × 4 m 칸 하나 걸러 알베도를 0.85로 어둡게 한다(바닥)."
@@ -415,8 +428,11 @@ msgstr "**태양**은 하프 램버트를 쓴다: h = dot(n, sun) × 0.5 + 0.5�
 msgid "**Ambient** is a hemisphere light: lerp(ground color, sky color, n.y × 0.5 + 0.5). Upward faces get the sky color, downward faces the ground color."
 msgstr "**환경광**은 반구 조명이다: lerp(땅색, 하늘색, n.y × 0.5 + 0.5). 위를 보는 면은 하늘색, 아래를 보는 면은 땅색을 받는다."
 
-msgid "Color = albedo × (sun color × h² + ambient)."
-msgstr "색 = 알베도 × (태양 색 × h² + 환경광)."
+msgid "**Specular**: GGX with a Smith visibility term and Schlick Fresnel for the sun, F0 = 0.04 for non-metals and the albedo for metals. Until the sky HDRI item there is no environment reflection; a rough guess (F0 × ambient) stands in for it."
+msgstr "**정반사**: 태양에 GGX + Smith 가시성 + Schlick 프레넬, F0는 비금속 0.04, 금속은 알베도. 하늘 HDRI 항목 전까지 환경 반사는 없고 어림(F0 × 환경광)이 대신한다."
+
+msgid "Color = albedo × (1 − metallic) × (sun color × h² + ambient) + specular + emissive. The diffuse part keeps the wrapped half Lambert of before; the lighting model becomes a project setting in part 2 of the texture and material work."
+msgstr "색 = 알베도 × (1 − 금속) × (태양 색 × h² + 환경광) + 정반사 + 발광. 확산은 예전의 감싼 하프 램버트를 그대로 쓴다. 조명 모델은 텍스처와 머티리얼 2부에서 프로젝트 설정이 된다."
 
 msgid "**Selection**: with flag bit 1 (editor selection) the color is mixed 45 % with orange."
 msgstr "**선택**: 플래그 비트 1(에디터 선택)이 켜지면 색을 주황색과 45 % 섞는다."
@@ -427,8 +443,8 @@ msgstr "**안개**는 지수 안개다: f = exp(−거리 × 밀도), 색 = lerp
 msgid "**Screen flash**: the result is mixed with the flash color by its amount."
 msgstr "**화면 번쩍임**: 결과를 번쩍임 색과 그 세기만큼 섞는다."
 
-msgid "There are no textures, shadow maps or post effects yet. This keeps the pass within the budget of integrated graphics."
-msgstr "아직 텍스처, 그림자 맵, 후처리 효과는 없다. 그래서 이 패스가 내장 그래픽 예산 안에 든다."
+msgid "There are no shadow maps or post effects yet. This keeps the pass within the budget of integrated graphics."
+msgstr "아직 그림자 맵과 포스트 효과는 없다. 그래서 이 패스가 내장 그래픽 예산 안에 든다."
 
 msgid "UI pass (Ui.hlsl)"
 msgstr "UI 패스 (Ui.hlsl)"

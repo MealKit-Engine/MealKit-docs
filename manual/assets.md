@@ -5,9 +5,10 @@
 - Put `.glb` (recommended) or `.gltf` files under `assets/models/`. In Blender: File → Export → glTF 2.0, format glTF Binary.
 - Scenes store model paths **relative to `assets/`**, like `models/tree.glb`.
 - On load, meshoptimizer optimizes the vertex cache, overdraw and fetch order, and builds **two more LOD levels** for models with many triangles. Distant objects use the lighter LODs automatically.
-- Colors come from the material base color (baseColorFactor) and vertex colors. **Textures are not supported yet.**
+- Materials are glTF PBR metallic-roughness, which is what Blender's Principled BSDF exports: base color, normal, metallic-roughness and emissive **textures and factors**, the vertex color (multiplied with the base color) and **alpha clip** (glTF alpha mode `MASK`). Other material features (clearcoat, transmission, sheen, alpha blend, double-sided, occlusion, a second UV set or texture transform) are ignored with a warning in the log.
+- Textures inside the model (PNG or JPEG) are compressed once with mipmaps, to BC7 for color and BC5 for normal maps, and kept in `build/cache/textures` of the project. The first load of a new texture takes a moment; later loads read the cache. Delete the folder to rebuild it. Shipped builds read only this cache: export after the editor (or a development build) has loaded the models, and `build.bat Export` copies the cache next to the exe.
 - A solid box with a model collides as the **convex hull of the model's vertices** (concave parts are filled in). Hull points are taken from the original vertices before optimization, so they are the same on every PC.
-- The sample models (tree, rock, ring) can be regenerated with `python tools/make_sample_models.py`.
+- The sample models (tree, rock, ring, and the textured `props/crate` and alpha-clipped `props/fence` used by `scenes/materials.scene`) can be regenerated with `python tools/make_sample_models.py`.
 
 ## Asset budget
 
@@ -21,7 +22,7 @@ Each model has a budget so that it stays light enough for the minimum spec (inte
 
 - The limits are project settings (**File > Project Settings**, `budgetCharactersTriangles`, `budgetPropsMaterials`, ...). The defaults above are a first guess and will be corrected with benchmarks on the minimum spec.
 - A model over its budget still loads. The log says `Model models/ring.glb is over the props budget: 3072 triangles (budget 3000)`, and the inspector shows the use against the limit in red. The example ring is a little over on purpose.
-- Triangles are counted on the most detailed LOD. Texture size and bones are counted once the engine reads textures and skeletons.
+- Triangles are counted on the most detailed LOD and texture size is the longest side of the largest texture. Bones are counted once the engine reads skeletons.
 - The Blender add-on checks the same limits before exporting ({doc}`blender`).
 
 ## Changing assets while the editor is open

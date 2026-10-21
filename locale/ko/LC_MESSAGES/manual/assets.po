@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-21 18:42+0900\n"
+"POT-Creation-Date: 2026-10-21 20:14+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -31,14 +31,17 @@ msgstr "씬에는 `models/tree.glb`처럼 **`assets/` 기준 상대 경로**로 
 msgid "On load, meshoptimizer optimizes the vertex cache, overdraw and fetch order, and builds **two more LOD levels** for models with many triangles. Distant objects use the lighter LODs automatically."
 msgstr "불러올 때 meshoptimizer가 정점 캐시·오버드로·페치 순서를 최적화하고, 삼각형이 많으면 **LOD를 2단계 더** 만든다. 멀어지면 자동으로 가벼운 LOD를 쓴다."
 
-msgid "Colors come from the material base color (baseColorFactor) and vertex colors. **Textures are not supported yet.**"
-msgstr "색은 재질의 기본 색(baseColorFactor)과 정점 색을 쓴다. **텍스처는 아직 지원하지 않는다.**"
+msgid "Materials are glTF PBR metallic-roughness, which is what Blender's Principled BSDF exports: base color, normal, metallic-roughness and emissive **textures and factors**, the vertex color (multiplied with the base color) and **alpha clip** (glTF alpha mode `MASK`). Other material features (clearcoat, transmission, sheen, alpha blend, double-sided, occlusion, a second UV set or texture transform) are ignored with a warning in the log."
+msgstr "머티리얼은 Blender의 Principled BSDF가 내보내는 glTF PBR metallic-roughness다: 기본 색·법선·금속/거칠기·발광 **텍스처와 계수**, 정점 색(기본 색과 곱한다), **알파 클립**(glTF 알파 모드 `MASK`). 그 밖의 머티리얼 기능(클리어코트, 투과, 쉰, 알파 블렌드, 양면, 오클루전, 두 번째 UV, 텍스처 변환)은 로그에 경고하고 무시한다."
+
+msgid "Textures inside the model (PNG or JPEG) are compressed once with mipmaps, to BC7 for color and BC5 for normal maps, and kept in `build/cache/textures` of the project. The first load of a new texture takes a moment; later loads read the cache. Delete the folder to rebuild it. Shipped builds read only this cache: export after the editor (or a development build) has loaded the models, and `build.bat Export` copies the cache next to the exe."
+msgstr "모델 안의 텍스처(PNG·JPEG)는 한 번 밉맵과 함께 압축해(색은 BC7, 법선 맵은 BC5) 프로젝트의 `build/cache/textures`에 둔다. 새 텍스처를 처음 불러올 때 잠깐 걸리고, 그다음부터는 캐시를 읽는다. 폴더를 지우면 다시 만든다. 출시 빌드는 이 캐시만 읽는다: 에디터(또는 개발 빌드)가 모델을 불러온 뒤 출시 빌드를 만들면 `build.bat Export`가 캐시를 exe 옆에 복사한다."
 
 msgid "A solid box with a model collides as the **convex hull of the model's vertices** (concave parts are filled in). Hull points are taken from the original vertices before optimization, so they are the same on every PC."
 msgstr "충돌 상자에 붙인 모델은 **모델 정점의 볼록 껍질**로 충돌한다(오목한 부분은 메워진다). 껍질 점은 최적화 전 원본 정점에서 뽑으므로 모든 PC에서 같다."
 
-msgid "The sample models (tree, rock, ring) can be regenerated with `python tools/make_sample_models.py`."
-msgstr "샘플 모델(나무, 바위, 고리)은 `python tools/make_sample_models.py`로 다시 만들 수 있다."
+msgid "The sample models (tree, rock, ring, and the textured `props/crate` and alpha-clipped `props/fence` used by `scenes/materials.scene`) can be regenerated with `python tools/make_sample_models.py`."
+msgstr "예제 모델(tree, rock, ring, 그리고 `scenes/materials.scene`이 쓰는 텍스처 `props/crate`와 알파 클립 `props/fence`)은 `python tools/make_sample_models.py`로 다시 만들 수 있다."
 
 msgid "Asset budget"
 msgstr "에셋 예산"
@@ -115,8 +118,8 @@ msgstr "한도는 프로젝트 설정이다(**파일 > 프로젝트 설정**, `b
 msgid "A model over its budget still loads. The log says `Model models/ring.glb is over the props budget: 3072 triangles (budget 3000)`, and the inspector shows the use against the limit in red. The example ring is a little over on purpose."
 msgstr "예산을 넘은 모델도 불러온다. 로그에 `Model models/ring.glb is over the props budget: 3072 triangles (budget 3000)`이 남고, 인스펙터가 한도 대비 사용량을 빨갛게 보여 준다. 예제의 링은 일부러 조금 넘겨 두었다."
 
-msgid "Triangles are counted on the most detailed LOD. Texture size and bones are counted once the engine reads textures and skeletons."
-msgstr "삼각형은 가장 자세한 LOD로 센다. 텍스처 크기와 뼈는 엔진이 텍스처와 뼈대를 읽게 되면 센다."
+msgid "Triangles are counted on the most detailed LOD and texture size is the longest side of the largest texture. Bones are counted once the engine reads skeletons."
+msgstr "삼각형은 가장 자세한 LOD로, 텍스처 크기는 가장 큰 텍스처의 긴 변으로 센다. 뼈는 엔진이 뼈대를 읽게 되면 센다."
 
 #, python-brace-format
 msgid "The Blender add-on checks the same limits before exporting ({doc}`blender`)."
