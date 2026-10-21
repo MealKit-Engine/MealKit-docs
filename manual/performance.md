@@ -19,7 +19,7 @@ The current values are in the engine {engine}`roadmap <docs/ROADMAP.md>` ("Perfo
 The engine collects its performance numbers in one place, `game::FrameStats` (`mealkit/game/FrameStats.h`), and averages them over a quarter of a second. During a match the window title shows them as one line:
 
 ```text
-60 fps 16.67 ms (worst 18.2) | gpu 0.31 ms | sim 0.42 ms/tick | tick 812 | P1 of 3 | rtt 34 ms | net 1.2/2.4 KB/s | 41 draws 2318 inst | mem 231 MB | vram 59/8318 MB | audio 6+12 voices 0.08 ms | in sync
+60 fps 16.67 ms (worst 18.2) | gpu 0.31 ms | sim 0.42 ms/tick | tick 812 | P1 of 3 | rtt 34 ms | net 1.2/2.4 KB/s | 41 draws 2318 inst (1210 culled) | mem 231 MB | vram 59/8318 MB | audio 6+12 voices 0.08 ms | in sync
 ```
 
 | Item | Meaning | Budget |
@@ -30,7 +30,7 @@ The engine collects its performance numbers in one place, `game::FrameStats` (`m
 | `tick` | The next tick to run | |
 | `P1 of 3`, `rtt` | This player and the player count, round trip time to the host | |
 | `net` | Kilobytes sent and received per second | 10 KB/s |
-| `draws`, `inst` | Draw calls and drawn instances | 200 draw calls |
+| `draws`, `inst`, `culled` | Draw calls, drawn instances, and instances left out because they were outside the view | 200 draw calls |
 | `mem` | Memory of the process in RAM (Windows working set) | |
 | `vram` | GPU memory used and the budget the driver gives the game. Integrated graphics share system memory, so the budget is part of RAM | |
 | `audio` | Playing and virtual voices, mixing time | |

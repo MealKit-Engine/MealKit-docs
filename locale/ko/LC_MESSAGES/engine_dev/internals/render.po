@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-21 16:36+0900\n"
+"POT-Creation-Date: 2026-10-21 16:48+0900\n"
 "PO-Revision-Date: 2026-10-19 13:15+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -352,7 +352,11 @@ msgid "Instances"
 msgstr "인스턴스"
 
 msgid "`render::DrawList` keeps one bucket (a `std::vector<InstanceData>`) per mesh id. `add` appends to a bucket, and `submit` draws every non-empty bucket with one draw call. `clear` empties the buckets but keeps their memory, so a steady frame allocates nothing."
-msgstr "`render::DrawList`는 메시 id마다 버킷(`std::vector<InstanceData>`) 하나를 둔다. `add`는 버킷에 붙이고, `submit`은 비어 있지 않은 버킷마다 드로우 콜 하나로 그린다. `clear`는 버킷을 비우되 메모리는 남기므로, 안정된 프레임은 아무것도 할당하지 않는다."
+msgstr "`render::DrawList` keeps one bucket (a `std::vector<InstanceData>`) per mesh id. `add` appends to a bucket, and `submit` draws every non-empty bucket with one draw call. `clear` empties the buckets but keeps their memory, so a steady frame allocates nothing."
+
+#, python-brace-format
+msgid "`submit` runs after `beginFrame` and leaves out instances outside the view (frustum culling, {engine}`engine/src/mealkit/render/Culling.h`). `createMesh` keeps a bounding sphere per mesh (the center of the vertex box and the farthest vertex). For each instance the sphere is moved, rotated and scaled by the largest scale axis, then tested against the six planes `beginFrame` takes from `viewProj`. Only the visible instances are copied to the upload ring. Culled instances count in `RenderStats::culled`. Grouping instances into chunks to cull many at once is left for scenes with tens of thousands of objects."
+msgstr "`submit`은 `beginFrame` 뒤에 돌고 화면 밖 인스턴스를 뺀다(프러스텀 컬링, {engine}`engine/src/mealkit/render/Culling.h`). `createMesh`가 메시마다 바운딩 구(정점 상자의 가운데와 가장 먼 정점)를 남긴다. 인스턴스마다 이 구를 옮기고 돌리고 가장 큰 배율 축으로 키운 뒤, `beginFrame`이 `viewProj`에서 뽑은 평면 여섯 개와 비교한다. 보이는 인스턴스만 업로드 링에 복사한다. 빠진 인스턴스는 `RenderStats::culled`에 센다. 인스턴스를 묶음으로 나눠 한 번에 거르는 것은 물체가 수만 개인 씬이 생길 때로 남겼다."
 
 msgid "An instance is 48 bytes and is copied to the GPU as it is (`static_assert` keeps the C++ size, and the shader reads the fields at these offsets):"
 msgstr "인스턴스는 48바이트이고 그대로 GPU에 복사된다(`static_assert`가 C++ 크기를 지키고, 셰이더는 아래 위치에서 필드를 읽는다):"
@@ -460,8 +464,8 @@ msgid "Statistics"
 msgstr "통계"
 
 #, python-brace-format
-msgid "`RenderStats` holds `drawCalls` and `instances`. `beginFrame` resets them, every `drawInstances` adds one draw call and its instance count, and `drawUi` adds one draw call. The renderer only measures. `game::FrameStats` reads `stats()` once per frame and makes the numbers in the window title, the F1 overlay and the perf log, as decided in {engine}`docs/CODING_MODEL.md` (\"성능 숫자 모으기와 보여 주기\"). Profile builds also time the GPU frame with Tracy's D3D12 zones."
-msgstr "`RenderStats`는 `drawCalls`와 `instances`를 갖는다. `beginFrame`이 비우고, `drawInstances`마다 드로우 콜 하나와 인스턴스 수를 더하고, `drawUi`가 드로우 콜 하나를 더한다. 렌더러는 재기만 한다. {engine}`docs/CODING_MODEL.md`(\"성능 숫자 모으기와 보여 주기\")에서 정한 대로 `game::FrameStats`가 프레임마다 `stats()`를 한 번 읽어 창 제목, F1 오버레이, perf 로그의 숫자를 만든다. Profile 빌드는 Tracy의 D3D12 구간으로 GPU 프레임 시간도 잰다."
+msgid "`RenderStats` holds `drawCalls`, `instances` and `culled`. `beginFrame` resets them, every `drawInstances` adds one draw call and its instance count, and `drawUi` adds one draw call. The renderer only measures. `game::FrameStats` reads `stats()` once per frame and makes the numbers in the window title, the F1 overlay and the perf log, as decided in {engine}`docs/CODING_MODEL.md` (\"성능 숫자 모으기와 보여 주기\"). Profile builds also time the GPU frame with Tracy's D3D12 zones."
+msgstr "`RenderStats`는 `drawCalls`, `instances`, `culled`를 갖는다. `beginFrame`이 비우고, `drawInstances`마다 드로우 콜 하나와 인스턴스 수를 더하고, `drawUi`가 드로우 콜 하나를 더한다. 렌더러는 재기만 한다. {engine}`docs/CODING_MODEL.md`(\"성능 숫자 모으기와 보여 주기\")에서 정한 대로 `game::FrameStats`가 프레임마다 `stats()`를 한 번 읽어 창 제목, F1 오버레이, perf 로그의 숫자를 만든다. Profile 빌드는 Tracy의 D3D12 구간으로 GPU 프레임 시간도 잰다."
 
 msgid "GPU time and memory"
 msgstr "GPU 시간과 메모리"

@@ -120,6 +120,8 @@ Inside the renderer:
 `render::DrawList` keeps one bucket (a `std::vector<InstanceData>`) per mesh id. `add` appends to a bucket, and `submit` draws every non-empty bucket with one draw call.
 `clear` empties the buckets but keeps their memory, so a steady frame allocates nothing.
 
+`submit` runs after `beginFrame` and leaves out instances outside the view (frustum culling, {engine}`engine/src/mealkit/render/Culling.h`). `createMesh` keeps a bounding sphere per mesh (the center of the vertex box and the farthest vertex). For each instance the sphere is moved, rotated and scaled by the largest scale axis, then tested against the six planes `beginFrame` takes from `viewProj`. Only the visible instances are copied to the upload ring. Culled instances count in `RenderStats::culled`. Grouping instances into chunks to cull many at once is left for scenes with tens of thousands of objects.
+
 An instance is 48 bytes and is copied to the GPU as it is (`static_assert` keeps the C++ size, and the shader reads the fields at these offsets):
 
 | Bytes | Field |
@@ -170,7 +172,7 @@ The game uses it for `F12` (`screenshot.png`) and for automatic captures in test
 
 ## Statistics
 
-`RenderStats` holds `drawCalls` and `instances`. `beginFrame` resets them, every `drawInstances` adds one draw call and its instance count, and `drawUi` adds one draw call.
+`RenderStats` holds `drawCalls`, `instances` and `culled`. `beginFrame` resets them, every `drawInstances` adds one draw call and its instance count, and `drawUi` adds one draw call.
 The renderer only measures. `game::FrameStats` reads `stats()` once per frame and makes the numbers in the window title, the F1 overlay and the perf log, as decided in {engine}`docs/CODING_MODEL.md` ("성능 숫자 모으기와 보여 주기").
 Profile builds also time the GPU frame with Tracy's D3D12 zones.
 
