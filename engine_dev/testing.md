@@ -12,6 +12,16 @@ Run the full check after changing the engine. Unit tests alone are `build\Releas
 The full check also tests the Vulkan graphics backend: it builds `VulkanEditor`, captures the same edit-mode view with the Direct3D 12 and the Vulkan editor, and compares them with `tools\compare_images.ps1` (at most 0.1 % of pixels may differ by more than 2 per channel, the status bar is left out). The edit-mode view is the same on every run; game screens change with time and are not compared.
 A last Vulkan step plays a match with `--debug` and fails on any `[Vulkan]` validation message. Without the Vulkan SDK the validation layer is missing and the step shows `SKIP` (a skip does not fail the check).
 
+## Graphics regression test
+
+The full check draws a few fixed views without the editor UI and compares them with reference images in {engine}`engine/tests/golden`, so a shader change that breaks the picture fails the check before anyone looks.
+
+- The views are listed in `engine/tests/golden/shots.txt`, one per line: name, scene (under `assets/`), camera position and yaw and pitch in degrees. `MealKitEditor --project . --render-golden <shots.txt> <folder>` draws each one for a few frames and saves `<name>.png`.
+- Both the Direct3D 12 and the Vulkan editor are compared with the same images: at most 0.5 % of pixels may differ by more than 8 per channel. The limit allows small differences between GPUs and drivers.
+- When an image differs, `build\check\golden\<name>-diff.png` (or `golden-vulkan`) shows the different pixels in red over a darkened reference.
+- When you change the picture on purpose (a new shader feature, lighting), run `tools\check.ps1 -UpdateGolden`: it replaces the reference images with the Direct3D 12 ones, and the step shows `SKIP`. Look at the new images before committing them.
+- When lighting models or post processing arrive, add views with them on and off.
+
 ## Determinism test
 
 ```powershell

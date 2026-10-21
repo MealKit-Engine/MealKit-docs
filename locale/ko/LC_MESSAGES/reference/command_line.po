@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-21 16:18+0900\n"
+"POT-Creation-Date: 2026-10-21 19:27+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -382,6 +382,13 @@ msgstr "`--ui-render <ui/x.ui> <png>`"
 
 msgid "Draw one screen at half its board size, save it and exit (pixel comparison with the Penpot preview)"
 msgstr "화면 하나를 보드의 반 크기로 그려 저장하고 끝낸다(Penpot 미리보기와 픽셀 비교)"
+
+msgid "`--render-golden <shots.txt> <folder>`"
+msgstr "`--render-golden <shots.txt> <폴더>`"
+
+#, python-brace-format
+msgid "Draw each view of the graphics regression test without the editor UI, save `<name>.png` in the folder and exit ({doc}`../engine_dev/testing`)"
+msgstr "그래픽 회귀 테스트의 장면마다 에디터 UI 없이 그려 폴더에 `<이름>.png`로 저장하고 끝 ({doc}`../engine_dev/testing`)"
 
 msgid "`--penpot-token <token>`"
 msgstr "`--penpot-token <토큰>`"

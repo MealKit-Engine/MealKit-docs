@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-20 01:44+0900\n"
+"POT-Creation-Date: 2026-10-21 19:27+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -35,6 +35,29 @@ msgstr "엔진을 고치면 전체 검증을 돌린다. 단위 테스트만은 `
 #, python-format
 msgid "The full check also tests the Vulkan graphics backend: it builds `VulkanEditor`, captures the same edit-mode view with the Direct3D 12 and the Vulkan editor, and compares them with `tools\\compare_images.ps1` (at most 0.1 % of pixels may differ by more than 2 per channel, the status bar is left out). The edit-mode view is the same on every run; game screens change with time and are not compared. A last Vulkan step plays a match with `--debug` and fails on any `[Vulkan]` validation message. Without the Vulkan SDK the validation layer is missing and the step shows `SKIP` (a skip does not fail the check)."
 msgstr "전체 검사는 Vulkan 그래픽 백엔드도 시험한다: `VulkanEditor`를 빌드하고, 같은 편집 모드 화면을 Direct3D 12 에디터와 Vulkan 에디터로 캡처해 `tools\\compare_images.ps1`로 비교한다(채널 차이가 2를 넘는 픽셀이 0.1 % 이하여야 하고, 상태 표시줄은 뺀다). 편집 모드 화면은 실행할 때마다 같지만, 게임 화면은 시간에 따라 바뀌어 비교하지 않는다. 마지막 Vulkan 단계는 `--debug`로 매치를 플레이하고 `[Vulkan]` 검증 메시지가 하나라도 있으면 실패한다. Vulkan SDK가 없으면 검증 레이어가 없어 이 단계는 `SKIP`으로 나온다(건너뛴 단계는 검사를 실패시키지 않는다)."
+
+msgid "Graphics regression test"
+msgstr "그래픽 회귀 테스트"
+
+#, python-brace-format
+msgid "The full check draws a few fixed views without the editor UI and compares them with reference images in {engine}`engine/tests/golden`, so a shader change that breaks the picture fails the check before anyone looks."
+msgstr "전체 검사가 고정 장면 몇 개를 에디터 UI 없이 그려 {engine}`engine/tests/golden`의 기준 그림과 비교한다. 그래서 그림을 깨뜨리는 셰이더 변경은 사람이 보기 전에 검사에서 실패한다."
+
+msgid "The views are listed in `engine/tests/golden/shots.txt`, one per line: name, scene (under `assets/`), camera position and yaw and pitch in degrees. `MealKitEditor --project . --render-golden <shots.txt> <folder>` draws each one for a few frames and saves `<name>.png`."
+msgstr "장면은 `engine/tests/golden/shots.txt`에 한 줄에 하나씩 있다: 이름, 씬(`assets/` 기준), 카메라 위치와 yaw·pitch(도). `MealKitEditor --project . --render-golden <shots.txt> <폴더>`가 장면마다 몇 프레임 그려 `<이름>.png`로 저장한다."
+
+#, python-format
+msgid "Both the Direct3D 12 and the Vulkan editor are compared with the same images: at most 0.5 % of pixels may differ by more than 8 per channel. The limit allows small differences between GPUs and drivers."
+msgstr "Direct3D 12와 Vulkan 에디터를 같은 그림과 비교한다: 채널 차이 8을 넘는 픽셀이 0.5 % 이하여야 한다. 이 문턱은 GPU·드라이버 사이의 작은 차이를 허용한다."
+
+msgid "When an image differs, `build\\check\\golden\\<name>-diff.png` (or `golden-vulkan`) shows the different pixels in red over a darkened reference."
+msgstr "그림이 다르면 `build\\check\\golden\\<이름>-diff.png`(또는 `golden-vulkan`)가 어둡게 한 기준 그림 위에 다른 픽셀을 빨강으로 보여 준다."
+
+msgid "When you change the picture on purpose (a new shader feature, lighting), run `tools\\check.ps1 -UpdateGolden`: it replaces the reference images with the Direct3D 12 ones, and the step shows `SKIP`. Look at the new images before committing them."
+msgstr "그림을 일부러 바꿨을 때(새 셰이더 기능, 조명)는 `tools\\check.ps1 -UpdateGolden`을 돌린다: 기준 그림을 Direct3D 12 그림으로 바꾸고 그 단계는 `SKIP`으로 나온다. 커밋하기 전에 새 그림을 눈으로 본다."
+
+msgid "When lighting models or post processing arrive, add views with them on and off."
+msgstr "조명 모델이나 포스트 프로세싱이 들어오면 그것을 켜고 끈 장면을 더한다."
 
 msgid "Determinism test"
 msgstr "결정론 테스트"
