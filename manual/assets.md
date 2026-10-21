@@ -9,6 +9,21 @@
 - A solid box with a model collides as the **convex hull of the model's vertices** (concave parts are filled in). Hull points are taken from the original vertices before optimization, so they are the same on every PC.
 - The sample models (tree, rock, ring) can be regenerated with `python tools/make_sample_models.py`.
 
+## Asset budget
+
+Each model has a budget so that it stays light enough for the minimum spec (integrated graphics). The kind of model is the **first folder under `assets/models/`**:
+
+| Folder | Kind | Triangles | Texture size | Bones | Materials |
+|---|---|---|---|---|---|
+| `characters/` | Character | 15,000 | 2048 px | 64 | 4 |
+| `environment/` | Background | 20,000 | 2048 px | 0 | 4 |
+| `props/` or anywhere else | Prop | 3,000 | 1024 px | 0 | 2 |
+
+- The limits are project settings (**File > Project Settings**, `budgetCharactersTriangles`, `budgetPropsMaterials`, ...). The defaults above are a first guess and will be corrected with benchmarks on the minimum spec.
+- A model over its budget still loads. The log says `Model models/ring.glb is over the props budget: 3072 triangles (budget 3000)`, and the inspector shows the use against the limit in red. The example ring is a little over on purpose.
+- Triangles are counted on the most detailed LOD. Texture size and bones are counted once the engine reads textures and skeletons.
+- The Blender add-on checks the same limits before exporting ({doc}`blender`).
+
 ## Changing assets while the editor is open
 
 The editor reloads changed files by itself, so an artist can export from Blender and look at the result without restarting:

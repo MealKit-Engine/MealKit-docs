@@ -23,10 +23,10 @@ Keep the `.blend` files inside the project, usually in `art/` (sources are not s
 | Field | Meaning |
 |---|---|
 | Project | Found by walking up from the `.blend` file to the folder with `mealkit.project`. Set it by hand to export somewhere else. |
-| Name | The file name under `assets/models/`. Empty means the `.blend` name. |
+| Name | The path under `assets/models/` without `.glb`, such as `props/crate`. The first folder sets the budget kind ({doc}`assets`). Empty means the `.blend` name (a prop). |
 | Selected only | Export only the selected objects; otherwise every visible object. |
 
-**Check** lists what the engine will not show the way Blender does. **Export to MealKit** runs the same check and, if there is no error, writes `assets/models/<name>.glb`. With the editor open, the model changes in the scene right away ({doc}`assets`).
+The panel shows the budget of the model's kind, read from `mealkit.project`. **Check** lists what the engine will not show the way Blender does, and triangle or material counts over the budget. **Export to MealKit** runs the same check and, if there is no error, writes `assets/models/<name>.glb`. With the editor open, the model changes in the scene right away ({doc}`assets`).
 
 All exported objects become **one model**: the engine merges the meshes and bakes their transforms.
 
