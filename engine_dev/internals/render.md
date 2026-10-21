@@ -170,6 +170,14 @@ The two atlases are 2048 × 2048 textures: `R8_UNORM` for glyph distance fields 
 `requestCapture(path)` marks the next frame. In `Device::endFrame` the back buffer is copied into a readback buffer (layout from `GetCopyableFootprints`). After presenting, the device waits for that frame's fence and returns the RGBA pixels; the renderer writes the PNG with the platform layer's `savePng`.
 The game uses it for `F12` (`screenshot.png`) and for automatic captures in tests.
 
+## Debug views and GPU capture
+
+`FrameParams::debugView` (`render::DebugView`) is passed to `Forward.hlsl` in the push constants (`debugView`, the former padding). The pixel shader returns the normal, a LOD color (instance flag bits 8 to 9) or a budget color (flag `kInstanceOverBudget`) instead of the lit color.
+Two more pipelines from the same shaders are created in builds with the debug UI: wireframe (`PipelineDesc::wireframe`; Vulkan needs the `fillModeNonSolid` feature, which the device enables when present) and overdraw (`additiveBlend`, `depthTest = false`, cleared to black). The editor fills the instance flags in `buildSceneView` only while a view mode is on.
+
+`rhi/GpuCapture.cpp` loads `renderdoc.dll` from `%ProgramFiles%\RenderDoc` (header `third_party/renderdoc/renderdoc_app.h`) or the newest `WinPixGpuCapturer.dll` under `%ProgramFiles%\Microsoft PIX` before the device is created (`DeviceDesc::gpuCapture`), because both tools hook the graphics API at device creation.
+`captureNextGpuFrame` calls RenderDoc's `TriggerCapture` and opens its window, or PIX's `PIXGpuCaptureNextFrames`. `--gpu-capture-at <frame>` captures without opening a window (used by `check.ps1`). The PIX path is written but has not been tried with PIX yet.
+
 ## Statistics
 
 `RenderStats` holds `drawCalls`, `instances` and `culled`. `beginFrame` resets them, every `drawInstances` adds one draw call and its instance count, and `drawUi` adds one draw call.

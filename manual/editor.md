@@ -43,6 +43,26 @@ Scenes are saved as human-readable `.scene` text: each object is its kind name p
 - **Folder layout**: when a project opens, the editor runs the layout check in the background and lists misplaced files (see {doc}`projects`).
 - **Build**: the Build menu runs the project's `build.bat Editor` and `build.bat Export` in the background and shows the log.
 
+## View modes
+
+**View > View Mode** colors the scene view by what costs time, so artists can see what is expensive:
+
+| Mode | Shows |
+|---|---|
+| Lit | The normal picture |
+| Wireframe | The triangle edges |
+| Normals | The surface direction as a color |
+| LOD Level | The level of detail drawn: green = full, yellow = level 1, red = level 2 |
+| Overdraw | How many times each pixel is drawn, with no depth test: brighter means more layers |
+| Over Budget | Models over their asset budget in red, everything else gray ({doc}`assets`) |
+
+View modes apply to the editing view and are left out of shipped builds.
+
+## GPU capture
+
+For graphics programmers: start the editor (or a development game exe) with `--gpu-capture` and the engine loads **RenderDoc** (Direct3D 12 and Vulkan) or **PIX** (Direct3D 12) if one is installed. **View > GPU Capture** or `F11` then captures the next frame; with RenderDoc, the RenderDoc window opens with the capture. Captures go to `%LOCALAPPDATA%\MealKit\gpu-captures`.
+Without `--gpu-capture` or without an installed tool, the menu item is hidden. The tool has to be loaded before the graphics device is created, which is why it is a start option.
+
 ## Play mode
 
 Play mode runs the game inside the editor with the scene being edited. It can run several players at once, pause, and rewind.

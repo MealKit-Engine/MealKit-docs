@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-21 16:48+0900\n"
+"POT-Creation-Date: 2026-10-21 19:45+0900\n"
 "PO-Revision-Date: 2026-10-19 13:15+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -459,6 +459,15 @@ msgstr "스크린샷"
 
 msgid "`requestCapture(path)` marks the next frame. In `Device::endFrame` the back buffer is copied into a readback buffer (layout from `GetCopyableFootprints`). After presenting, the device waits for that frame's fence and returns the RGBA pixels; the renderer writes the PNG with the platform layer's `savePng`. The game uses it for `F12` (`screenshot.png`) and for automatic captures in tests."
 msgstr "`requestCapture(path)`는 다음 프레임에 표시를 한다. `Device::endFrame`에서 백버퍼를 리드백 버퍼로 복사한다(배치는 `GetCopyableFootprints`). 프레젠트한 뒤 장치가 그 프레임의 펜스를 기다려 RGBA 픽셀을 돌려주고, 렌더러가 플랫폼 계층의 `savePng`로 PNG를 쓴다. 게임은 `F12`(`screenshot.png`)와 시험의 자동 캡처에 이것을 쓴다."
+
+msgid "Debug views and GPU capture"
+msgstr "디버그 보기와 GPU 캡처"
+
+msgid "`FrameParams::debugView` (`render::DebugView`) is passed to `Forward.hlsl` in the push constants (`debugView`, the former padding). The pixel shader returns the normal, a LOD color (instance flag bits 8 to 9) or a budget color (flag `kInstanceOverBudget`) instead of the lit color. Two more pipelines from the same shaders are created in builds with the debug UI: wireframe (`PipelineDesc::wireframe`; Vulkan needs the `fillModeNonSolid` feature, which the device enables when present) and overdraw (`additiveBlend`, `depthTest = false`, cleared to black). The editor fills the instance flags in `buildSceneView` only while a view mode is on."
+msgstr "`FrameParams::debugView`(`render::DebugView`)는 푸시 상수(`debugView`, 예전의 빈칸)로 `Forward.hlsl`에 간다. 픽셀 셰이더는 조명 색 대신 법선, LOD 색(인스턴스 플래그 비트 8~9), 예산 색(플래그 `kInstanceOverBudget`)을 돌려준다. 디버그 UI가 있는 빌드는 같은 셰이더로 파이프라인 두 개를 더 만든다: 와이어프레임(`PipelineDesc::wireframe`, Vulkan은 `fillModeNonSolid` 기능이 필요해 있으면 장치가 켠다)과 오버드로(`additiveBlend`, `depthTest = false`, 검정으로 지움). 에디터는 보기 모드가 켜져 있을 때만 `buildSceneView`에서 인스턴스 플래그를 채운다."
+
+msgid "`rhi/GpuCapture.cpp` loads `renderdoc.dll` from `%ProgramFiles%\\RenderDoc` (header `third_party/renderdoc/renderdoc_app.h`) or the newest `WinPixGpuCapturer.dll` under `%ProgramFiles%\\Microsoft PIX` before the device is created (`DeviceDesc::gpuCapture`), because both tools hook the graphics API at device creation. `captureNextGpuFrame` calls RenderDoc's `TriggerCapture` and opens its window, or PIX's `PIXGpuCaptureNextFrames`. `--gpu-capture-at <frame>` captures without opening a window (used by `check.ps1`). The PIX path is written but has not been tried with PIX yet."
+msgstr "`rhi/GpuCapture.cpp`는 장치를 만들기 전에(`DeviceDesc::gpuCapture`) `%ProgramFiles%\\RenderDoc`의 `renderdoc.dll`(헤더 `third_party/renderdoc/renderdoc_app.h`)이나 `%ProgramFiles%\\Microsoft PIX` 아래 가장 새 `WinPixGpuCapturer.dll`을 불러온다. 두 도구 모두 장치를 만들 때 그래픽 API를 가로채기 때문이다. `captureNextGpuFrame`은 RenderDoc의 `TriggerCapture`를 부르고 창을 열거나, PIX의 `PIXGpuCaptureNextFrames`를 부른다. `--gpu-capture-at <프레임>`은 창 없이 캡처한다(`check.ps1`이 쓴다). PIX 쪽은 코드만 있고 아직 PIX로 시험하지 않았다."
 
 msgid "Statistics"
 msgstr "통계"

@@ -30,6 +30,8 @@ The example game is called `sandbox`. In a game project, the executables carry t
 | `--capture <png> [tick]` | Save a screenshot after the given tick (without a tick: the last frame of `--frames`) |
 | `--frames <n>` | Draw n frames and exit (screens outside a match, such as the title) |
 | `--ui-press <frame:node,...>` | Press the UI widget with that node name at that frame (screen flow tests, e.g. `20:start,50:solo`) |
+| `--gpu-capture` | Load RenderDoc or PIX if installed; `F11` captures the next frame (development builds, {doc}`../manual/editor`) |
+| `--gpu-capture-at <frame>` | Capture that frame without opening RenderDoc (tests) |
 | `--system-info` | Print CPU and GPU features and exit (exit code 2 below the minimum spec) |
 | `--benchmark [seconds]` | Benchmark mode: offline, fixed seed, bot input, vsync and sound off; measure for 30 seconds (or the given number) after a 3 second warm-up, write `benchmark.txt` and exit ({doc}`../manual/performance`) |
 | `--benchmark-out <file>` | Path of the benchmark report (default `benchmark.txt`) |
@@ -67,6 +69,8 @@ Window options (`--bot`, `--vsync`, `--fps`, `--size`, `--debug`, `--mute`, `--d
 | `--frames <n>` | Exit after n frames |
 | `--capture <png>` | Save a screenshot before exiting |
 | `--select <i>` | Select object i |
+| `--view-mode <n>` | Start in a view mode: 1 wireframe, 2 normals, 3 LOD level, 4 overdraw, 5 over budget ({doc}`../manual/editor`) |
+| `--gpu-capture` | Load RenderDoc or PIX if installed: View > GPU Capture and `F11` capture the next frame |
 | `--play`, `--players <n>`, `--bot` | Start play mode, with several players and bot input |
 | `--build-game` | Build the game code first |
 | `--export` | Make a release build |

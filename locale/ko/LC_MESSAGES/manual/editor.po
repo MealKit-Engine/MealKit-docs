@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-19 12:58+0900\n"
+"POT-Creation-Date: 2026-10-21 19:45+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -156,6 +156,64 @@ msgstr "**폴더 구조**: 프로젝트를 열면 에디터가 폴더 구조 검
 
 msgid "**Build**: the Build menu runs the project's `build.bat Editor` and `build.bat Export` in the background and shows the log."
 msgstr "**빌드**: [빌드] 메뉴가 프로젝트의 `build.bat Editor`·`build.bat Export`를 백그라운드에서 실행하고 로그를 보여 준다."
+
+msgid "View modes"
+msgstr "보기 모드"
+
+msgid "**View > View Mode** colors the scene view by what costs time, so artists can see what is expensive:"
+msgstr "**보기 > 보기 모드**는 씬 뷰를 비용에 따라 색으로 칠해, 아티스트가 무엇이 비싼지 볼 수 있게 한다:"
+
+msgid "Mode"
+msgstr "모드"
+
+msgid "Shows"
+msgstr "보여 주는 것"
+
+msgid "Lit"
+msgstr "조명"
+
+msgid "The normal picture"
+msgstr "평소 그림"
+
+msgid "Wireframe"
+msgstr "와이어프레임"
+
+msgid "The triangle edges"
+msgstr "삼각형 모서리"
+
+msgid "Normals"
+msgstr "법선"
+
+msgid "The surface direction as a color"
+msgstr "면 방향을 색으로"
+
+msgid "LOD Level"
+msgstr "LOD 단계"
+
+msgid "The level of detail drawn: green = full, yellow = level 1, red = level 2"
+msgstr "그린 LOD: 초록 = 원본, 노랑 = 1단계, 빨강 = 2단계"
+
+msgid "Overdraw"
+msgstr "오버드로"
+
+msgid "How many times each pixel is drawn, with no depth test: brighter means more layers"
+msgstr "깊이 시험 없이 픽셀마다 그린 횟수: 밝을수록 많이 겹친다"
+
+msgid "Over Budget"
+msgstr "예산 초과"
+
+#, python-brace-format
+msgid "Models over their asset budget in red, everything else gray ({doc}`assets`)"
+msgstr "에셋 예산을 넘은 모델은 빨강, 나머지는 회색({doc}`assets`)"
+
+msgid "View modes apply to the editing view and are left out of shipped builds."
+msgstr "보기 모드는 편집 화면에만 적용되고 출시 빌드에는 들어가지 않는다."
+
+msgid "GPU capture"
+msgstr "GPU 캡처"
+
+msgid "For graphics programmers: start the editor (or a development game exe) with `--gpu-capture` and the engine loads **RenderDoc** (Direct3D 12 and Vulkan) or **PIX** (Direct3D 12) if one is installed. **View > GPU Capture** or `F11` then captures the next frame; with RenderDoc, the RenderDoc window opens with the capture. Captures go to `%LOCALAPPDATA%\\MealKit\\gpu-captures`. Without `--gpu-capture` or without an installed tool, the menu item is hidden. The tool has to be loaded before the graphics device is created, which is why it is a start option."
+msgstr "그래픽 프로그래머용: 에디터(또는 개발용 게임 exe)를 `--gpu-capture`로 시작하면 설치된 **RenderDoc**(Direct3D 12와 Vulkan)이나 **PIX**(Direct3D 12)를 불러온다. 그러면 **보기 > GPU 캡처**나 `F11`이 다음 프레임을 캡처하고, RenderDoc이면 캡처를 연 RenderDoc 창이 뜬다. 캡처는 `%LOCALAPPDATA%\\MealKit\\gpu-captures`에 간다. `--gpu-capture`가 없거나 도구가 설치돼 있지 않으면 메뉴 항목이 숨겨진다. 도구는 그래픽 장치를 만들기 전에 불러와야 해서 시작 옵션이다."
 
 msgid "Play mode"
 msgstr "플레이 모드"

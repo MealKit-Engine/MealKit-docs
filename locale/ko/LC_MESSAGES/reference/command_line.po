@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-21 19:27+0900\n"
+"POT-Creation-Date: 2026-10-21 19:45+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -175,6 +175,19 @@ msgstr "`--ui-press <frame:node,...>`"
 msgid "Press the UI widget with that node name at that frame (screen flow tests, e.g. `20:start,50:solo`)"
 msgstr "그 프레임에 그 노드 이름의 UI 위젯을 누른다(화면 흐름 시험, 예: `20:start,50:solo`)"
 
+msgid "`--gpu-capture`"
+msgstr "`--gpu-capture`"
+
+#, python-brace-format
+msgid "Load RenderDoc or PIX if installed; `F11` captures the next frame (development builds, {doc}`../manual/editor`)"
+msgstr "설치돼 있으면 RenderDoc·PIX를 불러온다. `F11`이 다음 프레임을 캡처 (개발 빌드, {doc}`../manual/editor`)"
+
+msgid "`--gpu-capture-at <frame>`"
+msgstr "`--gpu-capture-at <프레임>`"
+
+msgid "Capture that frame without opening RenderDoc (tests)"
+msgstr "그 프레임을 RenderDoc 창 없이 캡처 (시험)"
+
 msgid "`--system-info`"
 msgstr "`--system-info`"
 
@@ -328,6 +341,16 @@ msgstr "`--select <i>`"
 
 msgid "Select object i"
 msgstr "i번 물체 선택"
+
+msgid "`--view-mode <n>`"
+msgstr "`--view-mode <n>`"
+
+#, python-brace-format
+msgid "Start in a view mode: 1 wireframe, 2 normals, 3 LOD level, 4 overdraw, 5 over budget ({doc}`../manual/editor`)"
+msgstr "보기 모드로 시작: 1 와이어프레임, 2 법선, 3 LOD 단계, 4 오버드로, 5 예산 초과 ({doc}`../manual/editor`)"
+
+msgid "Load RenderDoc or PIX if installed: View > GPU Capture and `F11` capture the next frame"
+msgstr "설치돼 있으면 RenderDoc·PIX를 불러온다: 보기 > GPU 캡처와 `F11`이 다음 프레임을 캡처"
 
 msgid "`--play`, `--players <n>`, `--bot`"
 msgstr "`--play`, `--players <n>`, `--bot`"
