@@ -101,6 +101,7 @@ For example: `MealKitEditor.exe --project . --frames 60 --select 5 --capture out
 | `live_probe.ps1 [-Project <folder>] [-Kind game\|editor] [-Wait <s>] [-Events <n>] [-Topics stats]` | Find the running editor and game builds of a project, call `api/hello` and read state events ({doc}`tool_contract`) |
 | `ci_test.ps1`, `ci_compare.ps1` | What CI runs for each build, and the comparison between builds |
 | `check_platform.ps1`, `check_strings.ps1` | OS calls outside the platform layer; editor translations |
+| `check_libs.ps1` | Libraries outside the engine (`engine/libs`, the audio runtime) use no engine headers or macros |
 | `check_layout.ps1 [-Project <folder>]` | Project folder layout and third-party metadata (also run by the release build and the editor) |
 | `gen_notices.ps1 [-Check]` | Build `third_party/VERSIONS.txt` and `THIRD_PARTY_NOTICES.txt` from `third_party/<lib>/mealkit.txt` (`-Check` only compares) |
 | `make_sample_models.py` | Regenerate the sample models |

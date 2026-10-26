@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-26 14:17+0900\n"
+"POT-Creation-Date: 2026-10-26 15:34+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -501,6 +501,12 @@ msgstr "`check_platform.ps1`, `check_strings.ps1`"
 
 msgid "OS calls outside the platform layer; editor translations"
 msgstr "플랫폼 층 밖 OS 호출, 에디터 번역"
+
+msgid "`check_libs.ps1`"
+msgstr "`check_libs.ps1`"
+
+msgid "Libraries outside the engine (`engine/libs`, the audio runtime) use no engine headers or macros"
+msgstr "엔진 밖 라이브러리(`engine/libs`, 오디오 런타임)가 엔진 헤더·매크로를 쓰지 않는지"
 
 msgid "`check_layout.ps1 [-Project <folder>]`"
 msgstr "`check_layout.ps1 [-Project <폴더>]`"

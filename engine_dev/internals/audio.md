@@ -6,16 +6,23 @@ How to write sound events is in {doc}`../../manual/sound`. The code is in {engin
 `audio` comes after `input` and before `ui` in the folder order of {engine}`docs/CODING_MODEL.md` ("엔진 폴더 사이 의존"). `feedback` comes after it and plays sounds through it.
 Sound is view side only: the simulation leaves tick events, and the view plays sounds for them. SimCheck blocks `audio/` headers in `sim/`. The design is in {engine}`docs/CODING_MODEL.md` ("소리를 내는 방법").
 
+## Runtime and glue
+
+Sound has two layers, so the runtime can move to its own repository later (the MealKit audio tool, {engine}`docs/DECISIONS.md` 2026-10-26):
+
+- **The runtime** `mkaudio::Mixer` in {engine}`engine/libs/mkaudio` does the mixing, buses, voices, containers, curves and subtitles described on this page. It is a library outside the engine: it includes no MealKit header and uses only miniaudio, stb_vorbis and the standard library. `tools\check_libs.ps1` fails the check if it uses an engine header or macro. Events come in as plain `mkaudio::EventDef` values through `setEvents`, clips as file paths, and log lines through a callback.
+- **The glue** `audio::Engine` in {engine}`engine/src/mealkit/audio` keeps the game API. It reads `assets/sounds.table` (row type `audio::SoundEvent`), turns each row into an `EventDef`, finds clip files with `findAsset`, writes the runtime's log lines to the engine log and adds the profiler zone. `Handle`, `Param` and the panel types are aliases of the runtime's types.
+
 ## miniaudio
 
-`audio` is a thin layer over miniaudio. {engine}`engine/src/mealkit/audio/MiniaudioConfig.h` sets it up, and {engine}`engine/src/mealkit/audio/MiniaudioImpl.cpp` is the only file with the implementation:
+The runtime is built on miniaudio. {engine}`engine/libs/mkaudio/src/MiniaudioConfig.h` sets it up, and {engine}`engine/libs/mkaudio/src/MiniaudioImpl.cpp` is the only file with the implementation:
 
 - Decoders: WAV (sound effects, decoded into memory) and Ogg Vorbis through stb_vorbis (music, streamed from disk). MP3, FLAC, encoding and generators are compiled out.
 - One device backend per platform: WASAPI on Windows. Other platforms will turn on their own backend in stage 5.
 
 Why the engine uses miniaudio instead of SDL is in {engine}`docs/DECISIONS.md` (2026-10-18).
 
-`Engine::init` ({engine}`engine/src/mealkit/audio/Audio.cpp`) opens the default output device with one listener and **mixes in stereo**; miniaudio converts to the device's channel layout (7.1 and so on), so the mixing cost does not grow with the speaker count.
+`Mixer::init` ({engine}`engine/libs/mkaudio/src/Mixer.cpp`) opens the default output device with one listener and **mixes in stereo**; miniaudio converts to the device's channel layout (7.1 and so on), so the mixing cost does not grow with the speaker count.
 When there is no output device, `init` returns `false`, every later call does nothing, and the game runs without sound.
 
 ## Sound events
@@ -88,13 +95,13 @@ Every frame `game::Frontend` passes the camera position and forward direction to
 MealKit uses a left-handed coordinate system and miniaudio a right-handed one, so z is negated for the listener and every sound position.
 miniaudio then does panning and attenuation (linear model with the event's minimum and maximum distance). The engine computes the same linear attenuation itself for audibility, so the choice of real voices matches what is heard.
 
-Randomness here (volume, pitch, clip choice) uses a `Pcg32` seeded from the clock. It is view side only, so it does not need to be deterministic.
+Randomness here (volume, pitch, clip choice) uses the runtime's own small PCG32 generator seeded from the clock. It is view side only, so it does not need to be deterministic.
 
 ## Techniques used
 
 | Technique | Where | What it does |
 |---|---|---|
-| Event-based sound | `SoundEvent`, `Engine::play` | Game code names an event; how it sounds is data in a table that sound designers edit. |
+| Event-based sound | `SoundEvent`, `Engine::play`, `mkaudio::EventDef` | Game code names an event; how it sounds is data in a table that sound designers edit. |
 | Fixed slot pool with generations | `Voice`, `Handle` | 256 preallocated slots. A generation number per slot makes old handles harmless, like the simulation's pool ids. |
 | Deferred start | `request`, `startPending` | Requests wait until the next update, so all requests of one frame are seen together before any starts. |
 | Same-frame grouping | `startPending` | Sorts one frame's requests by strength and keeps only as many as the instance limit. |
@@ -110,3 +117,4 @@ Randomness here (volume, pitch, clip choice) uses a `Pcg32` seeded from the cloc
 | Decode once, copy to play | `decode`, `ma_sound_init_copy` | Effects are decoded when the table loads; each play shares the decoded data. |
 | Streaming | `MA_SOUND_FLAG_STREAM` | Long music is read from disk while it plays instead of being decoded into memory. |
 | Handedness conversion | `setListener`, `apply` | Negates z so miniaudio's right-handed space matches MealKit's left-handed one. |
+| Library boundary | `engine/libs/mkaudio`, `tools\check_libs.ps1` | The runtime has its own CMake target and include folder and is checked for engine includes, so it can move to its own repository as one folder. |
