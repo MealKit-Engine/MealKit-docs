@@ -3,11 +3,17 @@
 ## Full check
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File tools\check.ps1          # about 2 minutes, close the editor first
-powershell -ExecutionPolicy Bypass -File tools\check.ps1 -Quick   # build + unit tests + determinism tests
+powershell -ExecutionPolicy Bypass -File tools\check.ps1                     # everything, before a commit; close the editor first
+powershell -ExecutionPolicy Bypass -File tools\check.ps1 -Changed            # only the groups the changed files need
+powershell -ExecutionPolicy Bypass -File tools\check.ps1 -Quick              # build + unit tests + determinism tests
+powershell -ExecutionPolicy Bypass -File tools\check.ps1 -Only render,editor # only these groups
 ```
 
-Run the full check after changing the engine. Unit tests alone are `build\Release\bin\mealkit_tests.exe` (also in the Editor build; the `detmath-bits` hash must be the same in both builds).
+The steps are sorted into groups: `static` (check scripts), `unit`, `det` (determinism and multiplayer), `game`, `tools`, `render` (reference images and Vulkan), `editor`, `project` and `export`. While you work, use `-Changed`: it reads the git working tree (with `-Base <commit>` also the commits after it) and picks the groups from the changed paths with the rules at the top of `tools\check.ps1`. Documentation changes pick nothing, and an audio change does not run the multiplayer tests. `-DryRun` only prints the groups. Run the full check when a roadmap item is done.
+
+The determinism group always runs in the full check and with `-Only det`. Otherwise it runs only when the determinism key changed since its last pass: the simulation version of the Release build (a hash of the sources that reach the simulation) plus the tuning, scene, model, table and replay files. The key of the last pass is kept in `build\check-state\det.key`.
+
+Unit tests alone are `build\Release\bin\mealkit_tests.exe` (also in the Editor build; the `detmath-bits` hash must be the same in both builds). `mealkit_tests.exe --only net,physics` runs only the tests of those areas, which are engine folder names (the first argument of `TEST_CASE(area, name)`); `-Changed` uses it for the changed engine folders.
 
 The full check also tests the Vulkan graphics backend: it builds `VulkanEditor`, captures the same edit-mode view with the Direct3D 12 and the Vulkan editor, and compares them with `tools\compare_images.ps1` (at most 0.1 % of pixels may differ by more than 2 per channel, the status bar is left out). The edit-mode view is the same on every run; game screens change with time and are not compared.
 A last Vulkan step plays a match with `--debug` and fails on any `[Vulkan]` validation message. Without the Vulkan SDK the validation layer is missing and the step shows `SKIP` (a skip does not fail the check).

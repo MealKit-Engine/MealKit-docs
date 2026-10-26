@@ -3,17 +3,17 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: MealKit\n"
+"Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-26 19:22+0900\n"
+"POT-Creation-Date: 2026-10-26 23:48+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
-"Language-Team: Korean\n"
 "Language: ko\n"
+"Language-Team: Korean\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.18.0\n"
 
 msgid "Testing"
@@ -23,14 +23,24 @@ msgid "Full check"
 msgstr "전체 검증"
 
 msgid ""
-"powershell -ExecutionPolicy Bypass -File tools\\check.ps1          # about 2 minutes, close the editor first\n"
-"powershell -ExecutionPolicy Bypass -File tools\\check.ps1 -Quick   # build + unit tests + determinism tests\n"
+"powershell -ExecutionPolicy Bypass -File tools\\check.ps1                     # everything, before a commit; close the editor first\n"
+"powershell -ExecutionPolicy Bypass -File tools\\check.ps1 -Changed            # only the groups the changed files need\n"
+"powershell -ExecutionPolicy Bypass -File tools\\check.ps1 -Quick              # build + unit tests + determinism tests\n"
+"powershell -ExecutionPolicy Bypass -File tools\\check.ps1 -Only render,editor # only these groups\n"
 msgstr ""
-"powershell -ExecutionPolicy Bypass -File tools\\check.ps1          # 약 2분, 먼저 에디터를 닫는다\n"
-"powershell -ExecutionPolicy Bypass -File tools\\check.ps1 -Quick   # 빌드 + 단위 테스트 + 결정론 테스트\n"
+"powershell -ExecutionPolicy Bypass -File tools\\check.ps1                     # 전부, 커밋 전에. 먼저 에디터를 닫는다\n"
+"powershell -ExecutionPolicy Bypass -File tools\\check.ps1 -Changed            # 고친 파일에 필요한 묶음만\n"
+"powershell -ExecutionPolicy Bypass -File tools\\check.ps1 -Quick              # 빌드 + 단위 테스트 + 결정론 테스트\n"
+"powershell -ExecutionPolicy Bypass -File tools\\check.ps1 -Only render,editor # 이 묶음만\n"
 
-msgid "Run the full check after changing the engine. Unit tests alone are `build\\Release\\bin\\mealkit_tests.exe` (also in the Editor build; the `detmath-bits` hash must be the same in both builds)."
-msgstr "엔진을 고치면 전체 검증을 돌린다. 단위 테스트만은 `build\\Release\\bin\\mealkit_tests.exe`(Editor 빌드에도 있다. `detmath-bits` 해시가 두 빌드에서 같아야 한다)."
+msgid "The steps are sorted into groups: `static` (check scripts), `unit`, `det` (determinism and multiplayer), `game`, `tools`, `render` (reference images and Vulkan), `editor`, `project` and `export`. While you work, use `-Changed`: it reads the git working tree (with `-Base <commit>` also the commits after it) and picks the groups from the changed paths with the rules at the top of `tools\\check.ps1`. Documentation changes pick nothing, and an audio change does not run the multiplayer tests. `-DryRun` only prints the groups. Run the full check when a roadmap item is done."
+msgstr "항목은 묶음으로 나뉜다: `static`(검사 스크립트), `unit`, `det`(결정론·멀티플레이), `game`, `tools`, `render`(기준 그림·Vulkan), `editor`, `project`, `export`. 작업 중에는 `-Changed`를 쓴다: git 작업 트리(`-Base <커밋>`이면 그 커밋 이후의 커밋도)를 읽고 `tools\\check.ps1` 위쪽의 규칙으로 고친 경로에서 묶음을 고른다. 문서만 고쳤으면 아무것도 고르지 않고, 오디오를 고쳤으면 멀티플레이 테스트를 돌리지 않는다. `-DryRun`은 묶음만 보여 준다. 로드맵 항목을 끝내면 전체 검증을 돌린다."
+
+msgid "The determinism group always runs in the full check and with `-Only det`. Otherwise it runs only when the determinism key changed since its last pass: the simulation version of the Release build (a hash of the sources that reach the simulation) plus the tuning, scene, model, table and replay files. The key of the last pass is kept in `build\\check-state\\det.key`."
+msgstr "결정론 묶음은 전체 검증과 `-Only det`에서는 늘 돈다. 그 밖에는 마지막으로 통과한 뒤 결정론 키가 바뀌었을 때만 돈다: Release 빌드의 시뮬레이션 버전(시뮬레이션에 닿는 소스의 해시)에 튜닝·씬·모델·표·리플레이 파일을 더한 것이다. 마지막으로 통과한 키는 `build\\check-state\\det.key`에 남는다."
+
+msgid "Unit tests alone are `build\\Release\\bin\\mealkit_tests.exe` (also in the Editor build; the `detmath-bits` hash must be the same in both builds). `mealkit_tests.exe --only net,physics` runs only the tests of those areas, which are engine folder names (the first argument of `TEST_CASE(area, name)`); `-Changed` uses it for the changed engine folders."
+msgstr "단위 테스트만은 `build\\Release\\bin\\mealkit_tests.exe`(Editor 빌드에도 있다. `detmath-bits` 해시가 두 빌드에서 같아야 한다). `mealkit_tests.exe --only net,physics`는 그 영역의 테스트만 돌린다. 영역은 엔진 폴더 이름이다(`TEST_CASE(area, name)`의 첫 인자). `-Changed`는 고친 엔진 폴더에 이것을 쓴다."
 
 #, python-format
 msgid "The full check also tests the Vulkan graphics backend: it builds `VulkanEditor`, captures the same edit-mode view with the Direct3D 12 and the Vulkan editor, and compares them with `tools\\compare_images.ps1` (at most 0.1 % of pixels may differ by more than 2 per channel, the status bar is left out). The edit-mode view is the same on every run; game screens change with time and are not compared. A last Vulkan step plays a match with `--debug` and fails on any `[Vulkan]` validation message. Without the Vulkan SDK the validation layer is missing and the step shows `SKIP` (a skip does not fail the check)."
@@ -148,3 +158,4 @@ msgstr "**시뮬레이션 결과를 일부러 바꾸면**(물리·게임 규칙�
 
 msgid "`.rec` files are binary in `.gitattributes`, so line endings are never converted. The runners have no GPU, so screen captures and the shadow/rewind checks run only in the local `check.ps1`. Steam and EOS SDKs are absent, so the \"none\" backend is built."
 msgstr "`.rec`는 `.gitattributes`에서 바이너리라 줄 끝 변환을 받지 않는다. GPU가 없는 러너라 화면 캡처·그림자/되감기 검사는 로컬 `check.ps1`에만 있다. Steam·EOS SDK가 없어 \"없음\" 백엔드로 빌드된다."
+
