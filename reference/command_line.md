@@ -80,6 +80,7 @@ Window options (`--bot`, `--vsync`, `--fps`, `--size`, `--debug`, `--mute`, `--d
 | `--ui <file.ui>` | Start with the UI panel previewing this screen |
 | `--ui-check` | Compare the screens exported from Penpot with Penpot's layout boxes, print `UI-CHECK` lines and exit (exit code 2 on a difference; with `--lang` for the text language) |
 | `--ui-render <ui/x.ui> <png>` | Draw one screen at half its board size, save it and exit (pixel comparison with the Penpot preview) |
+| `--lookdev` | Open the look dev window at start; it shows the model of the object chosen with `--select` ({doc}`../manual/editor`) |
 | `--render-golden <shots.txt> <folder>` | Draw each view of the graphics regression test without the editor UI, save `<name>.png` in the folder and exit ({doc}`../engine_dev/testing`) |
 | `--penpot-token <token>` | Fixed token of the live connection, so also of the Penpot plugin address (automated tests; normally random per run) |
 | `--tool-path <folder>` | Also look for MealKit tools in this folder (repeatable; a tool you are building) ({doc}`../manual/tools`) |

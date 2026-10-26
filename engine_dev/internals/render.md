@@ -194,6 +194,13 @@ There are no shadow maps or post effects yet. This keeps the pass within the bud
 The two atlases are 2048 × 2048 textures: `R8_UNORM` for glyph distance fields and `R8G8B8A8_UNORM` for images. The push constants carry their texture indices.
 `updateUiAtlas` can be called at any time; it queues the pixels, split into pieces of about 1 MiB. At the next `beginFrame` or `drawUi` the queued pieces are copied through the upload ring into the textures (row pitch and start alignment from `Device::copyPitch` and `copyAlignment`; in DX12, 256 and 512 bytes). Pieces that do not fit wait for the next frame.
 
+## Offscreen targets
+
+`rhi::RenderTarget` is a color + depth pair drawn outside the back buffer. Its formats are the scene's, so the scene pipelines draw into it unchanged. The color is written through an sRGB view (the shader writes linear color) and read as `UNORM`, so its bytes can be shown in the debug UI or the overlay as they are.
+In DX12 the color is a `TYPELESS` resource with an sRGB render target view and a `UNORM` shader resource view in the bindless heap; each target has its own small RTV and DSV heaps. In Vulkan it is one mutable-format image (the swapchain's `UNORM` format plus the scene's sRGB view), drawn with dynamic rendering and returned to `SHADER_READ_ONLY_OPTIMAL` by `endTarget`. Targets are made once at a fixed size and never destroyed.
+
+`Renderer::drawToTarget(target, params, drawList, lightingModel)` draws a draw list into a target after the main 3D and before the UI: it writes another set of frame constants (the material table is written once per frame), swaps the frustum and the lighting model, draws, and puts them back. The editor's look dev window uses it, and `rhi::imguiTextureId` gives the value `ImGui::Image` needs (a GPU descriptor in DX12, a descriptor set made once per texture in Vulkan).
+
 ## Screenshots
 
 `requestCapture(path)` marks the next frame. In `Device::endFrame` the back buffer is copied into a readback buffer (layout from `GetCopyableFootprints`). After presenting, the device waits for that frame's fence and returns the RGBA pixels; the renderer writes the PNG with the platform layer's `savePng`.

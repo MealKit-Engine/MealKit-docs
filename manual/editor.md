@@ -60,6 +60,17 @@ Scenes are saved as human-readable `.scene` text: each object is its kind name p
 
 View modes apply to the editing view and are left out of shipped builds.
 
+## Look dev
+
+**View > Look Dev** opens a window that shows the model of the selected object on a turntable, lit the same way whatever the scene's lighting is. Use it to check a model and its materials right after exporting from Blender.
+
+- **Light**: four fixed light setups (neutral studio, daylight, sunset, night). HDRI skies will be added to the same list.
+- **Lighting model**: the project setting, or `Pbr`, `Toon` or `Unlit` to compare looks without changing the project.
+- **Turn**, **Zoom**: the turntable spins by itself; drag the picture to turn it and change the height, and use the mouse wheel to zoom.
+- **Flash**, **Dissolve**: preview the per-object values that game code sets ({doc}`assets`).
+
+The window follows the selection; selecting an object without a model keeps the last model. `--lookdev` opens it at start (with `--select`).
+
 ## GPU capture
 
 For graphics programmers: start the editor (or a development game exe) with `--gpu-capture` and the engine loads **RenderDoc** (Direct3D 12 and Vulkan) or **PIX** (Direct3D 12) if one is installed. **View > GPU Capture** or `F11` then captures the next frame; with RenderDoc, the RenderDoc window opens with the capture. Captures go to `%LOCALAPPDATA%\MealKit\gpu-captures`.

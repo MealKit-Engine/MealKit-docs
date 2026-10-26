@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-26 19:22+0900\n"
+"POT-Creation-Date: 2026-10-26 19:54+0900\n"
 "PO-Revision-Date: 2026-10-19 13:15+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language-Team: Korean\n"
@@ -545,6 +545,15 @@ msgstr "출력은 미리 곱한 알파이고 `ONE, INV_SRC_ALPHA`로 섞는다. 
 
 msgid "The two atlases are 2048 × 2048 textures: `R8_UNORM` for glyph distance fields and `R8G8B8A8_UNORM` for images. The push constants carry their texture indices. `updateUiAtlas` can be called at any time; it queues the pixels, split into pieces of about 1 MiB. At the next `beginFrame` or `drawUi` the queued pieces are copied through the upload ring into the textures (row pitch and start alignment from `Device::copyPitch` and `copyAlignment`; in DX12, 256 and 512 bytes). Pieces that do not fit wait for the next frame."
 msgstr "아틀라스 둘은 2048 × 2048 텍스처다: 글자 거리 필드용 `R8_UNORM`과 이미지용 `R8G8B8A8_UNORM`. 텍스처 번호는 푸시 상수로 넘긴다. `updateUiAtlas`는 언제든 부를 수 있고, 픽셀을 약 1 MiB 조각으로 나눠 줄에 세운다. 다음 `beginFrame`이나 `drawUi`에서 기다리던 조각을 업로드 링을 거쳐 텍스처로 복사한다(줄 간격과 시작 정렬은 `Device::copyPitch`, `copyAlignment`. DX12에서는 256바이트와 512바이트). 자리가 없는 조각은 다음 프레임을 기다린다."
+
+msgid "Offscreen targets"
+msgstr "오프스크린 대상"
+
+msgid "`rhi::RenderTarget` is a color + depth pair drawn outside the back buffer. Its formats are the scene's, so the scene pipelines draw into it unchanged. The color is written through an sRGB view (the shader writes linear color) and read as `UNORM`, so its bytes can be shown in the debug UI or the overlay as they are. In DX12 the color is a `TYPELESS` resource with an sRGB render target view and a `UNORM` shader resource view in the bindless heap; each target has its own small RTV and DSV heaps. In Vulkan it is one mutable-format image (the swapchain's `UNORM` format plus the scene's sRGB view), drawn with dynamic rendering and returned to `SHADER_READ_ONLY_OPTIMAL` by `endTarget`. Targets are made once at a fixed size and never destroyed."
+msgstr "`rhi::RenderTarget`은 백버퍼 밖에 그리는 색 + 깊이 한 쌍이다. 형식이 장면과 같아 장면 파이프라인이 그대로 그린다. 색은 sRGB 뷰로 쓰고(셰이더는 선형 색을 쓴다) `UNORM`으로 읽어, 그 바이트를 디버그 UI나 오버레이에 그대로 띄울 수 있다. DX12에서는 색이 `TYPELESS` 자원이고 sRGB 렌더 타깃 뷰와 bindless 힙의 `UNORM` 셰이더 자원 뷰를 갖는다. 대상마다 작은 RTV·DSV 힙이 있다. Vulkan에서는 형식을 바꿀 수 있는 이미지 하나(스왑체인의 `UNORM` 형식 + 장면의 sRGB 뷰)이고, dynamic rendering으로 그리며 `endTarget`이 `SHADER_READ_ONLY_OPTIMAL`로 되돌린다. 대상은 크기를 정해 한 번 만들고 지우지 않는다."
+
+msgid "`Renderer::drawToTarget(target, params, drawList, lightingModel)` draws a draw list into a target after the main 3D and before the UI: it writes another set of frame constants (the material table is written once per frame), swaps the frustum and the lighting model, draws, and puts them back. The editor's look dev window uses it, and `rhi::imguiTextureId` gives the value `ImGui::Image` needs (a GPU descriptor in DX12, a descriptor set made once per texture in Vulkan)."
+msgstr "`Renderer::drawToTarget(target, params, drawList, lightingModel)`은 본 화면 3D 다음, UI 전에 그리기 목록을 대상에 그린다: 프레임 상수를 한 벌 더 쓰고(머티리얼 표는 프레임에 한 번), 프러스텀과 조명 모델을 바꿔 그린 뒤 되돌린다. 에디터의 룩데브 창이 쓰고, `rhi::imguiTextureId`가 `ImGui::Image`에 필요한 값을 준다(DX12는 GPU 서술자, Vulkan은 텍스처마다 한 번 만드는 서술자 세트)."
 
 msgid "Screenshots"
 msgstr "스크린샷"
