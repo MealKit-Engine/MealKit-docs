@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-26 19:54+0900\n"
+"POT-Creation-Date: 2026-10-26 20:23+0900\n"
 "PO-Revision-Date: 2026-10-19 13:15+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language-Team: Korean\n"
@@ -343,8 +343,8 @@ msgstr "`Renderer::beginFrame`, `DrawList::submit`, 게임 UI(`ui::System::rende
 msgid "Inside the renderer:"
 msgstr "렌더러 안에서는:"
 
-msgid "`beginFrame` calls `Device::beginFrame`, which waits on the swap chain's latency object, so the CPU never runs more than two frames ahead and input lag does not build up, then waits for this frame slot's fence and resets the allocator and the command list. The renderer then binds the scene target, clearing color to the fog color (mixed with the flash, so the sky flashes too) and depth to 0. It sets the viewport (the whole window, or the scene view in the editor), binds the pipeline of the current lighting model and writes the 224-byte frame constants (camera, light, fog, flash, the material table position, wind and the toon ramp texture number) into the upload ring. Queued texture copies (UI atlas pieces, a new toon ramp) are done first."
-msgstr "`beginFrame`은 `Device::beginFrame`을 부른다. 이 함수는 스왑 체인의 지연 대기 객체를 기다려 CPU가 두 프레임보다 앞서 가지 않고 입력 지연이 쌓이지 않게 하고, 이 프레임 자리의 펜스를 기다린 뒤 할당자와 명령 리스트를 비운다. 그다음 렌더러가 장면 대상을 묶으며 색은 안개 색(번쩍임과 섞어서 하늘도 번쩍인다)으로, 깊이는 0으로 지운다. 뷰포트(창 전체, 에디터에서는 씬 뷰)를 정하고, 지금 조명 모델의 파이프라인을 묶고, 224바이트 프레임 상수(카메라, 빛, 안개, 번쩍임, 머티리얼 표 위치, 바람, 툰 램프 텍스처 번호)를 업로드 링에 쓴다. 기다리던 텍스처 복사(UI 아틀라스 조각, 새 툰 램프)를 먼저 한다."
+msgid "`beginFrame` calls `Device::beginFrame`, which waits on the swap chain's latency object, so the CPU never runs more than two frames ahead and input lag does not build up, then waits for this frame slot's fence and resets the allocator and the command list. The renderer then binds the scene target, clearing color to the fog color (mixed with the flash, so the sky flashes too) and depth to 0. It sets the viewport (the whole window, or the scene view in the editor), binds the pipeline of the current lighting model and writes the 464-byte frame constants (camera, light, fog, flash, the material table position, wind, the toon ramp texture number, and the inverse view-projection, cube numbers, intensity, rotation and SH coefficients of the sky HDRI) into the upload ring. Queued texture copies (UI atlas pieces, a new toon ramp) are done first."
+msgstr "`beginFrame`은 `Device::beginFrame`을 부른다. 이 함수는 스왑 체인의 지연 대기 객체를 기다려 CPU가 두 프레임보다 앞서 가지 않고 입력 지연이 쌓이지 않게 하고, 이 프레임 자리의 펜스를 기다린 뒤 할당자와 명령 리스트를 비운다. 그다음 렌더러가 장면 대상을 묶으며 색은 안개 색(번쩍임과 섞어서 하늘도 번쩍인다)으로, 깊이는 0으로 지운다. 뷰포트(창 전체, 에디터에서는 씬 뷰)를 정하고, 지금 조명 모델의 파이프라인을 묶고, 464바이트 프레임 상수(카메라, 빛, 안개, 번쩍임, 머티리얼 표 위치, 바람, 툰 램프 텍스처 번호, 하늘 HDRI의 역 뷰·투영 행렬·큐브 번호·세기·회전·SH 계수)를 업로드 링에 쓴다. 기다리던 텍스처 복사(UI 아틀라스 조각, 새 툰 램프)를 먼저 한다."
 
 msgid "`drawInstances(mesh, instances, count)` copies the instances into the upload ring, pushes the ring index and the offsets of the frame constants and the instances, binds the mesh's vertex and index buffers and draws once. If the mesh has an outlined material, it draws the same instances a second time with the outline pipeline (see below)."
 msgstr "`drawInstances(mesh, instances, count)`는 인스턴스를 업로드 링에 복사하고, 링 번호와 프레임 상수·인스턴스의 위치를 푸시 상수로 넘기고, 메시의 정점·인덱스 버퍼를 묶고, 한 번 그린다. 메시에 외곽선 머티리얼이 있으면 같은 인스턴스를 외곽선 파이프라인으로 한 번 더 그린다(아래)."
@@ -498,11 +498,11 @@ msgstr "**체커**: 플래그 비트 0이 켜지면 월드 x·z의 4 × 4 m 칸 
 msgid "**Sun** uses half Lambert: h = dot(n, sun) × 0.5 + 0.5, squared. Faces turned away from the sun are dark but not black, so shapes stay readable without shadows."
 msgstr "**태양**은 하프 램버트를 쓴다: h = dot(n, sun) × 0.5 + 0.5를 제곱한다. 태양 반대쪽 면도 어둡지만 검지 않아서, 그림자 없이도 모양이 읽힌다."
 
-msgid "**Ambient** is a hemisphere light: lerp(ground color, sky color, n.y × 0.5 + 0.5). Upward faces get the sky color, downward faces the ground color."
-msgstr "**환경광**은 반구 조명이다: lerp(땅색, 하늘색, n.y × 0.5 + 0.5). 위를 보는 면은 하늘색, 아래를 보는 면은 땅색을 받는다."
+msgid "**Ambient**: with a sky HDRI, the 9 spherical harmonics coefficients evaluated at the normal (rotated by the HDRI rotation, times its intensity). Without one, a hemisphere light: lerp(ground color, sky color, n.y × 0.5 + 0.5)."
+msgstr "**환경광**: 하늘 HDRI가 있으면 법선(HDRI 회전만큼 돌린)에서 구면 조화 9계수를 계산하고 세기를 곱한다. 없으면 반구 빛: lerp(땅 색, 하늘 색, n.y × 0.5 + 0.5)."
 
-msgid "**Specular**: GGX with a Smith visibility term and Schlick Fresnel for the sun, F0 = 0.04 for non-metals and the albedo for metals. Until the sky HDRI item there is no environment reflection; a rough guess (F0 × ambient) stands in for it."
-msgstr "**정반사**: 태양에 GGX + Smith 가시성 + Schlick 프레넬, F0는 비금속 0.04, 금속은 알베도. 하늘 HDRI 항목 전까지 환경 반사는 없고 어림(F0 × 환경광)이 대신한다."
+msgid "**Specular**: GGX with a Smith visibility term and Schlick Fresnel for the sun, F0 = 0.04 for non-metals and the albedo for metals. With a sky HDRI the environment reflection is the reflection cube sampled along reflect(−v, n) at mip roughness × (mips − 1), times Karis' analytic approximation of the split-sum BRDF (no lookup texture). Without one, a rough guess (F0 × ambient) stands in."
+msgstr "**정반사**: 태양에 대해 Smith 가시성 항과 Schlick 프레넬을 쓴 GGX. F0는 비금속 0.04, 금속은 albedo. 하늘 HDRI가 있으면 환경 반사는 reflect(−v, n) 방향으로 밉 거칠기 × (밉 수 − 1)에서 읽은 반사 큐브에 split-sum BRDF의 Karis 해석 근사(표 텍스처 없이)를 곱한다. 없으면 대충의 어림(F0 × 환경광)을 쓴다."
 
 msgid "Color = albedo × (1 − metallic) × (sun color × h² + ambient) + specular + emissive. This is the `Pbr` lighting model. `Toon` replaces h² by the toon ramp texture sampled at h (a 256 × 1 texture: the project's ramp image, nearest pixel, or 3 grey steps by default) and the GGX highlight by one hard-edged highlight. `Unlit` uses albedo + emissive only."
 msgstr "색 = albedo × (1 − 금속) × (태양 색 × h² + 환경광) + 정반사 + 발광. 이것이 `Pbr` 조명 모델이다. `Toon`은 h² 대신 h에서 읽은 툰 램프 텍스처(256 × 1 텍스처: 프로젝트 램프 그림의 가장 가까운 픽셀, 없으면 회색 3단계)를, GGX 하이라이트 대신 끊어진 하이라이트 하나를 쓴다. `Unlit`은 albedo + 발광만 쓴다."
@@ -545,6 +545,28 @@ msgstr "출력은 미리 곱한 알파이고 `ONE, INV_SRC_ALPHA`로 섞는다. 
 
 msgid "The two atlases are 2048 × 2048 textures: `R8_UNORM` for glyph distance fields and `R8G8B8A8_UNORM` for images. The push constants carry their texture indices. `updateUiAtlas` can be called at any time; it queues the pixels, split into pieces of about 1 MiB. At the next `beginFrame` or `drawUi` the queued pieces are copied through the upload ring into the textures (row pitch and start alignment from `Device::copyPitch` and `copyAlignment`; in DX12, 256 and 512 bytes). Pieces that do not fit wait for the next frame."
 msgstr "아틀라스 둘은 2048 × 2048 텍스처다: 글자 거리 필드용 `R8_UNORM`과 이미지용 `R8G8B8A8_UNORM`. 텍스처 번호는 푸시 상수로 넘긴다. `updateUiAtlas`는 언제든 부를 수 있고, 픽셀을 약 1 MiB 조각으로 나눠 줄에 세운다. 다음 `beginFrame`이나 `drawUi`에서 기다리던 조각을 업로드 링을 거쳐 텍스처로 복사한다(줄 간격과 시작 정렬은 `Device::copyPitch`, `copyAlignment`. DX12에서는 256바이트와 512바이트). 자리가 없는 조각은 다음 프레임을 기다린다."
+
+msgid "Sky HDRI"
+msgstr "하늘 HDRI"
+
+#, python-brace-format
+msgid "`asset::loadEnvironment` ({engine}`engine/src/mealkit/asset/Environment.cpp`) turns an equirectangular `.hdr` into three things, baked on the CPU and cached in `build/cache/environments/<content hash>.mkenv`:"
+msgstr "`asset::loadEnvironment`({engine}`engine/src/mealkit/asset/Environment.cpp`)는 정거리원통 `.hdr` 하나를 세 가지로 바꿔 CPU에서 굽고 `build/cache/environments/<내용 해시>.mkenv`에 캐시한다:"
+
+msgid "a **sky cube** (face size = image width / 4, at most 512) for the skybox,"
+msgstr "스카이박스용 **하늘 큐브** (면 크기 = 그림 가로 / 4, 최대 512),"
+
+msgid "a **reflection cube**, 128² with 6 mips: mip 0 is the sky itself, mip k is prefiltered for roughness k / 5 with 64 GGX importance samples per texel, each read from a lower mip of the image chosen from the sample's solid angle (filtered importance sampling) to keep noise down,"
+msgstr "**반사 큐브** 128²에 밉 6단계: 밉 0은 하늘 그대로, 밉 k는 거칠기 k / 5로 텍셀마다 GGX 중요도 표본 64개를 걸러 만든다. 표본마다 그 입체각에 맞는 그림의 낮은 밉에서 읽어(걸러 읽는 중요도 표본) 잡음을 줄인다,"
+
+msgid "9 **spherical harmonics** coefficients of the radiance, already multiplied by the Lambert convolution factors, so evaluating them at a normal gives the ambient color directly."
+msgstr "빛의 **구면 조화** 9계수. Lambert 합성곱 계수를 이미 곱해 두어 법선에서 계산하면 바로 환경광 색이 나온다."
+
+msgid "Texels brighter than 16 are clamped for the reflection and ambient bake: the sun in the image would otherwise add a second sun on top of the scene's sun light. Cube texels are `Rgb9e5` (4 bytes, shared exponent). Faces follow the DX12/Vulkan order and orientation (+X, −X, +Y, −Y, +Z, −Z), which matches MealKit's left-handed y-up world."
+msgstr "반사·환경광을 구울 때 16보다 밝은 텍셀은 자른다: 그러지 않으면 그림 속 해가 씬의 태양빛 위에 태양을 하나 더 더한다. 큐브 텍셀은 `Rgb9e5`(4바이트, 공유 지수)다. 면 순서와 방향은 DX12/Vulkan 규칙(+X, −X, +Y, −Y, +Z, −Z)이고 MealKit의 왼손 y 위 월드와 맞는다."
+
+msgid "The RHI has cube textures for this: `TextureInit::cube` uploads six faces with their mips, and shaders read `TextureCube g_cubes[]`, which uses the same index space as `g_textures[]` (in DX12 a second descriptor table over the same heap range in `space3`, in Vulkan binding 4 written at the same slot). `Renderer::createEnvironment` uploads the two cubes and keeps the coefficients; `FrameParams::environment` picks one per frame (0 = none). When one is set, `beginFrame` (and `drawToTarget`) first draws the sky: a full-screen triangle without depth, whose pixel shader turns the screen position into a world direction with the inverse view-projection matrix. 3D drawing then covers it. Fog does not apply to the sky. `ModelCache::environment(path)` loads each HDRI once and returns its number, or 0 with one warning when the file is missing or cannot be read; editor hot reload bakes a changed file again on its next use."
+msgstr "이를 위해 RHI에 큐브 텍스처가 있다: `TextureInit::cube`가 면 여섯을 밉과 함께 올리고, 셰이더는 `g_textures[]`와 같은 번호 공간을 쓰는 `TextureCube g_cubes[]`로 읽는다(DX12는 같은 힙 범위를 보는 `space3`의 두 번째 서술자 표, Vulkan은 같은 칸에 쓰는 바인딩 4). `Renderer::createEnvironment`가 큐브 둘을 올리고 계수를 갖고, `FrameParams::environment`가 프레임마다 하나를 고른다(0 = 없음). 있으면 `beginFrame`(과 `drawToTarget`)이 먼저 하늘을 그린다: 깊이 없는 화면 가득 삼각형이고, 픽셀 셰이더가 역 뷰·투영 행렬로 화면 위치를 월드 방향으로 바꾼다. 그 위를 3D가 덮는다. 하늘에는 안개가 없다. `ModelCache::environment(path)`는 HDRI마다 한 번 불러와 번호를 주고, 파일이 없거나 못 읽으면 한 번 경고하고 0을 준다. 에디터 핫 리로드는 바뀐 파일을 다음에 쓸 때 다시 굽는다."
 
 msgid "Offscreen targets"
 msgstr "오프스크린 대상"

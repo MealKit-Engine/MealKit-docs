@@ -24,6 +24,8 @@ The look of a game is chosen, not programmed: games do not write shaders. There 
 
 The editor shows a new lighting model or a changed ramp image at once. Every lighting model is built into the game, so switching does not make the game stutter.
 
+**Sky HDRI**: in the editor's **Environment** panel, **Sky HDRI** picks a `.hdr` image (an equirectangular HDR sky, for example a free CC0 one from Poly Haven) from anywhere under `assets/textures/`. The sky is drawn behind the scene, and the ambient light and the reflections on glossy and metal surfaces come from it. **HDRI intensity** scales all three and **HDRI rotation** turns the sky (degrees). The sun is still the scene's sun: point it where the sun is in the image. The first use of an image takes about a second to bake; the result is kept in `build/cache/environments`, and `build.bat Export` copies it next to the exe like the texture cache. Without an HDRI the sky and ground colors are used as before. `scenes/hdri.scene` uses the sample sky `textures/hdri/kloofendal_partly_cloudy_1k.hdr`.
+
 **Material features** are set per material in Blender's MealKit material panel ({doc}`blender`): outline, wind sway, rim light and dissolve. A model can mix materials with and without features. **View > View Mode > Material Features** in the editor shows which material uses which feature.
 
 **Per-object values** change while the game runs: a white flash (for example when a character is hit) and the dissolve progress. The game's view code sets them on the object it draws ({doc}`game_code`).

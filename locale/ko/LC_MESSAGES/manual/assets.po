@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-26 19:22+0900\n"
+"POT-Creation-Date: 2026-10-26 20:23+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language-Team: Korean\n"
@@ -78,6 +78,9 @@ msgstr "빛과 그늘 없이 색 그대로 (안개는 받는다)"
 
 msgid "The editor shows a new lighting model or a changed ramp image at once. Every lighting model is built into the game, so switching does not make the game stutter."
 msgstr "에디터는 바꾼 조명 모델이나 고친 램프 그림을 바로 보여 준다. 모든 조명 모델이 게임에 들어 있어 바꿔도 게임이 끊기지 않는다."
+
+msgid "**Sky HDRI**: in the editor's **Environment** panel, **Sky HDRI** picks a `.hdr` image (an equirectangular HDR sky, for example a free CC0 one from Poly Haven) from anywhere under `assets/textures/`. The sky is drawn behind the scene, and the ambient light and the reflections on glossy and metal surfaces come from it. **HDRI intensity** scales all three and **HDRI rotation** turns the sky (degrees). The sun is still the scene's sun: point it where the sun is in the image. The first use of an image takes about a second to bake; the result is kept in `build/cache/environments`, and `build.bat Export` copies it next to the exe like the texture cache. Without an HDRI the sky and ground colors are used as before. `scenes/hdri.scene` uses the sample sky `textures/hdri/kloofendal_partly_cloudy_1k.hdr`."
+msgstr "**하늘 HDRI**: 에디터 [환경] 창의 **하늘 HDRI**가 `assets/textures/` 아래 어디든 있는 `.hdr` 그림(정거리원통 HDR 하늘, 예: Poly Haven의 무료 CC0)을 고른다. 하늘이 장면 뒤에 그려지고, 환경광과 유광·금속 표면의 반사가 이 그림에서 온다. **HDRI 세기**가 셋 모두를 키우고 줄이며 **HDRI 회전**이 하늘을 돌린다(도). 태양은 여전히 씬의 태양이다: 그림 속 해가 있는 쪽으로 향하게 한다. 그림을 처음 쓸 때 굽느라 1초쯤 걸리고, 결과는 `build/cache/environments`에 남아 `build.bat Export`가 텍스처 캐시처럼 exe 옆으로 복사한다. HDRI가 없으면 예전처럼 하늘·땅 색을 쓴다. `scenes/hdri.scene`이 예제 하늘 `textures/hdri/kloofendal_partly_cloudy_1k.hdr`를 쓴다."
 
 #, python-brace-format
 msgid "**Material features** are set per material in Blender's MealKit material panel ({doc}`blender`): outline, wind sway, rim light and dissolve. A model can mix materials with and without features. **View > View Mode > Material Features** in the editor shows which material uses which feature."

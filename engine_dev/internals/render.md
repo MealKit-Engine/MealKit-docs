@@ -111,7 +111,7 @@ The engine loop ({engine}`engine/src/mealkit/game/GameMain.cpp`, and the editor 
 
 Inside the renderer:
 
-- `beginFrame` calls `Device::beginFrame`, which waits on the swap chain's latency object, so the CPU never runs more than two frames ahead and input lag does not build up, then waits for this frame slot's fence and resets the allocator and the command list. The renderer then binds the scene target, clearing color to the fog color (mixed with the flash, so the sky flashes too) and depth to 0. It sets the viewport (the whole window, or the scene view in the editor), binds the pipeline of the current lighting model and writes the 224-byte frame constants (camera, light, fog, flash, the material table position, wind and the toon ramp texture number) into the upload ring. Queued texture copies (UI atlas pieces, a new toon ramp) are done first.
+- `beginFrame` calls `Device::beginFrame`, which waits on the swap chain's latency object, so the CPU never runs more than two frames ahead and input lag does not build up, then waits for this frame slot's fence and resets the allocator and the command list. The renderer then binds the scene target, clearing color to the fog color (mixed with the flash, so the sky flashes too) and depth to 0. It sets the viewport (the whole window, or the scene view in the editor), binds the pipeline of the current lighting model and writes the 464-byte frame constants (camera, light, fog, flash, the material table position, wind, the toon ramp texture number, and the inverse view-projection, cube numbers, intensity, rotation and SH coefficients of the sky HDRI) into the upload ring. Queued texture copies (UI atlas pieces, a new toon ramp) are done first.
 - `drawInstances(mesh, instances, count)` copies the instances into the upload ring, pushes the ring index and the offsets of the frame constants and the instances, binds the mesh's vertex and index buffers and draws once. If the mesh has an outlined material, it draws the same instances a second time with the outline pipeline (see below).
 - `drawUi` draws all UI rectangles with one more draw call (see below).
 - `endFrame` calls `Device::endFrame`: the back buffer goes to the present state, the command list is closed and executed, `Present` runs (sync interval 1 with vsync, otherwise 0 and tearing allowed), the fence is signaled and the next frame slot is used.
@@ -171,8 +171,8 @@ Everything is drawn in one forward pass with back-face culling and reversed dept
 1. **Albedo** is the instance color times the vertex color (sRGB bytes turned into linear color by squaring, a gamma 2.0 approximation) times the material base color and its texture. With alpha clip, pixels under the cutoff are discarded. The normal map, metallic-roughness texture (G = roughness, B = metallic) and emissive texture are read the same way.
 2. **Checker**: with flag bit 0 the albedo is darkened to 0.85 on every other 4 × 4 m cell of world x and z (the ground).
 3. **Sun** uses half Lambert: h = dot(n, sun) × 0.5 + 0.5, squared. Faces turned away from the sun are dark but not black, so shapes stay readable without shadows.
-4. **Ambient** is a hemisphere light: lerp(ground color, sky color, n.y × 0.5 + 0.5). Upward faces get the sky color, downward faces the ground color.
-5. **Specular**: GGX with a Smith visibility term and Schlick Fresnel for the sun, F0 = 0.04 for non-metals and the albedo for metals. Until the sky HDRI item there is no environment reflection; a rough guess (F0 × ambient) stands in for it.
+4. **Ambient**: with a sky HDRI, the 9 spherical harmonics coefficients evaluated at the normal (rotated by the HDRI rotation, times its intensity). Without one, a hemisphere light: lerp(ground color, sky color, n.y × 0.5 + 0.5).
+5. **Specular**: GGX with a Smith visibility term and Schlick Fresnel for the sun, F0 = 0.04 for non-metals and the albedo for metals. With a sky HDRI the environment reflection is the reflection cube sampled along reflect(−v, n) at mip roughness × (mips − 1), times Karis' analytic approximation of the split-sum BRDF (no lookup texture). Without one, a rough guess (F0 × ambient) stands in.
 6. Color = albedo × (1 − metallic) × (sun color × h² + ambient) + specular + emissive. This is the `Pbr` lighting model. `Toon` replaces h² by the toon ramp texture sampled at h (a 256 × 1 texture: the project's ramp image, nearest pixel, or 3 grey steps by default) and the GGX highlight by one hard-edged highlight. `Unlit` uses albedo + emissive only.
 7. **Rim and dissolve glow** are added (see the table above).
 8. **Selection**: with flag bit 1 (editor selection) the color is mixed 45 % with orange.
@@ -193,6 +193,20 @@ There are no shadow maps or post effects yet. This keeps the pass within the bud
 
 The two atlases are 2048 × 2048 textures: `R8_UNORM` for glyph distance fields and `R8G8B8A8_UNORM` for images. The push constants carry their texture indices.
 `updateUiAtlas` can be called at any time; it queues the pixels, split into pieces of about 1 MiB. At the next `beginFrame` or `drawUi` the queued pieces are copied through the upload ring into the textures (row pitch and start alignment from `Device::copyPitch` and `copyAlignment`; in DX12, 256 and 512 bytes). Pieces that do not fit wait for the next frame.
+
+## Sky HDRI
+
+`asset::loadEnvironment` ({engine}`engine/src/mealkit/asset/Environment.cpp`) turns an equirectangular `.hdr` into three things, baked on the CPU and cached in `build/cache/environments/<content hash>.mkenv`:
+
+- a **sky cube** (face size = image width / 4, at most 512) for the skybox,
+- a **reflection cube**, 128² with 6 mips: mip 0 is the sky itself, mip k is prefiltered for roughness k / 5 with 64 GGX importance samples per texel, each read from a lower mip of the image chosen from the sample's solid angle (filtered importance sampling) to keep noise down,
+- 9 **spherical harmonics** coefficients of the radiance, already multiplied by the Lambert convolution factors, so evaluating them at a normal gives the ambient color directly.
+
+Texels brighter than 16 are clamped for the reflection and ambient bake: the sun in the image would otherwise add a second sun on top of the scene's sun light. Cube texels are `Rgb9e5` (4 bytes, shared exponent). Faces follow the DX12/Vulkan order and orientation (+X, −X, +Y, −Y, +Z, −Z), which matches MealKit's left-handed y-up world.
+
+The RHI has cube textures for this: `TextureInit::cube` uploads six faces with their mips, and shaders read `TextureCube g_cubes[]`, which uses the same index space as `g_textures[]` (in DX12 a second descriptor table over the same heap range in `space3`, in Vulkan binding 4 written at the same slot).
+`Renderer::createEnvironment` uploads the two cubes and keeps the coefficients; `FrameParams::environment` picks one per frame (0 = none). When one is set, `beginFrame` (and `drawToTarget`) first draws the sky: a full-screen triangle without depth, whose pixel shader turns the screen position into a world direction with the inverse view-projection matrix. 3D drawing then covers it. Fog does not apply to the sky.
+`ModelCache::environment(path)` loads each HDRI once and returns its number, or 0 with one warning when the file is missing or cannot be read; editor hot reload bakes a changed file again on its next use.
 
 ## Offscreen targets
 

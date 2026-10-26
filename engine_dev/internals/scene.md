@@ -26,13 +26,16 @@ The game reads one entity with `scene::readObject<T>(entity)`, which fills a `T`
 
 ```text
 # MealKit scene
-@format scene 2
+@format scene 3
 
 sun 0.400000006 0.800000012 0.300000012
 sunColor 1 0.949999988 0.850000024
 sky 0.300000012 0.379999995 0.5
 groundColor 0.200000003 0.170000002 0.140000001
 fog 0.5 0.620000005 0.779999971 0.00800000038
+hdri textures/hdri/kloofendal_partly_cloudy_1k.hdr
+hdriIntensity 1
+hdriRotation 0
 
 entity
 id 1
@@ -47,6 +50,7 @@ end
 ```
 
 - Numbers are written with `%.9g`. Nine significant digits are enough to write any 32-bit float and read back exactly the same bits, so saving and loading never changes a value. This matters because the scene's collision data is part of the content hash that peers compare.
+- The `hdri` lines are written only when the scene has a sky HDRI (format 3; files of format 1 and 2 are read the same way). They are view-only and not part of the content hash.
 - `parent` is written only when it is not 0, and `model` only when it is set. `color` is eight hex digits (RGBA8). Each game field is one `field <path> <value>` line.
 
 `scene::load` reads the file line by line. The first word is the key and the rest of the line is the value:

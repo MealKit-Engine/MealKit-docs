@@ -64,7 +64,7 @@ View modes apply to the editing view and are left out of shipped builds.
 
 **View > Look Dev** opens a window that shows the model of the selected object on a turntable, lit the same way whatever the scene's lighting is. Use it to check a model and its materials right after exporting from Blender.
 
-- **Light**: four fixed light setups (neutral studio, daylight, sunset, night). HDRI skies will be added to the same list.
+- **Light**: four fixed light setups (neutral studio, daylight, sunset, night), then every sky HDRI under `assets/textures/` ({doc}`assets`).
 - **Lighting model**: the project setting, or `Pbr`, `Toon` or `Unlit` to compare looks without changing the project.
 - **Turn**, **Zoom**: the turntable spins by itself; drag the picture to turn it and change the height, and use the mouse wheel to zoom.
 - **Flash**, **Dissolve**: preview the per-object values that game code sets ({doc}`assets`).
