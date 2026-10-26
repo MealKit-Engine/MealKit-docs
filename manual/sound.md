@@ -1,25 +1,57 @@
 # Sound and feedback
 
-Sound and "game feel" (camera shake, screen flash, hit stop) are data. Sound designers change them in the editor without touching code, and the changes are heard at once, even during play.
+Sound and "game feel" (camera shake, screen flash, hit stop) are data. Sound designers change them without touching code, and the changes are heard at once, even during play.
 
 ## Sound events
 
 Game code plays a **sound event** by name, never a file: `ctx.audio.play("hit", position, {{"speed", 9.0f}})`, or `ctx.audio.play2D("click")` for sounds with no position.
-Events live in `assets/sounds.table`, a definition table edited in the Tables panel (or through CSV). Each row is one event:
+Events live in `assets/sounds.events`. Sound designers edit it in **MealKit Audio**, the audio tool of the MealKit family (below); it is also plain text that can be edited by hand:
 
-| Columns | Meaning |
+```text
+# MealKit audio events. Edit them in MealKit Audio or by hand
+@format audio-events 1
+
+mixbus ambience
+parent music
+volume 0.6
+
+event hit
+clips sounds/hit_1.wav sounds/hit_2.wav sounds/hit_3.wav
+param speed
+paramMin 3
+paramMax 15
+volumeAtMin 0.2
+```
+
+An `event <name>` block is one event and a `mixbus <name>` block defines a bus. Keys that are left out keep their defaults. The event keys are:
+
+| Keys | Meaning |
 |---|---|
 | `clips`, `container` | Sound files (paths under `assets/`, separated by spaces). `random` picks one each time, `switch` picks by the parameter, `blend` crossfades by the parameter |
 | `param`, `paramMin`, `paramMax` | The parameter that drives the container and the curves |
 | `volume`, `pitch`, `volumeRandom`, `pitchRandom` | Base volume and pitch, and random variation each time |
 | `volumeAtMin` ... `lowpassAtMax` | Curves: volume, pitch and low-pass filter at the start and end of the parameter range |
 | `spatial`, `minDistance`, `maxDistance` | 3D position; full volume within the minimum distance, silent beyond the maximum |
-| `bus` | Mix bus: `music`, `sfx`, `ui`, `voice` |
+| `bus` | Mix bus: `music`, `sfx`, `ui`, `voice`, or a bus defined with `mixbus` |
 | `loop`, `stream` | Loop; stream from disk instead of loading into memory (music) |
 | `priority`, `maxInstances`, `steal`, `cooldown` | Voice management (below) |
 | `subtitle`, `subtitleSeconds` | A game string key shown at the bottom of the screen when the sound plays (players turn subtitles on or off in the settings), and for how long. Plays of the same key share one line. The screen is `assets/ui/subtitles.ui` |
 
-The table is reloaded when the file changes. The engine moves the listener with the camera.
+A `mixbus` block sets a bus's `parent` (default `master`) and its mix `volume`, which is multiplied by the player's volume setting for that bus.
+The file is reloaded when it changes, also during play. The engine moves the listener with the camera.
+Projects made with engine 0.5.1 or older have `assets/sounds.table` instead; the engine still reads it with a warning, and `tools\upgrade_project.ps1` converts it to `sounds.events`.
+
+### MealKit Audio
+
+MealKit Audio is a separate program for sound designers ([MealKit-Audio](https://github.com/MealKit-Engine/MealKit-Audio), free, MIT). Open it from the editor's **Tools** menu once it is installed ({doc}`tools`), or start it with `MealKitAudio --project <project folder>`.
+
+- **Events**: the list of events, with add, duplicate and delete. Events with a missing clip are red. Double-click an event to play it.
+- **Event**: every setting of the selected event. Clips are picked from the `.wav` and `.ogg` files under `assets/`. The volume, pitch and low-pass curves are drawn over the parameter range; drag their end points. The 3D section draws the distance fade.
+- **Buses**: the buses with their parent, mix volume and a level meter.
+- **Preview**: plays the selected event through the same runtime the game uses, with sliders for the parameter and the distance.
+- **Live**: the running development builds of the game and the editor for this project. **Play in game** plays the selected event in the game at the listener, and the game's voices and bus levels are shown.
+
+Ctrl+S saves `assets/sounds.events`; a running game or editor reloads it at once. Ctrl+Z and Ctrl+Y undo and redo.
 
 ### Voice management
 
@@ -30,7 +62,7 @@ Physics impact sounds come from `PhysicsWorld::setContactEvents`; the contacts c
 
 ### Sounds panel
 
-View > Sounds shows the output buses with level meters and volume, the playing voices (mixed or virtual, audibility, distance), the most recently culled plays and why (cooldown, voice limit, missing clip ...), and a preview of the selected event.
+View > Sounds in the MealKit editor shows the output buses with level meters and volume, the playing voices (mixed or virtual, audibility, distance), the most recently culled plays and why (cooldown, voice limit, missing clip ...), and a preview of the selected event. Events are edited in MealKit Audio.
 
 ## Feedback table
 

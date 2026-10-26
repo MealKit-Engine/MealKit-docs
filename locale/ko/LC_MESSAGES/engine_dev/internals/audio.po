@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-26 15:54+0900\n"
+"POT-Creation-Date: 2026-10-26 18:30+0900\n"
 "PO-Revision-Date: 2026-10-19 13:15+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -39,8 +39,8 @@ msgid "**The runtime** `mkaudio::Mixer` from [MealKit Audio](https://github.com/
 msgstr "**런타임** [MealKit Audio](https://github.com/MealKit-Engine/MealKit-Audio)의 `mkaudio::Mixer`(버전을 고정해 {engine}`third_party/mkaudio`에 넣었다)가 이 페이지에서 설명하는 섞기·버스·목소리·컨테이너·곡선·자막을 한다. 엔진 밖 라이브러리다: MealKit 헤더를 include하지 않고 miniaudio·stb_vorbis·표준 라이브러리만 쓴다. 엔진 헤더나 매크로를 쓰면 `tools\\check_libs.ps1`이 검사를 실패시킨다. 이벤트는 `setEvents`로 일반 값 `mkaudio::EventDef`로 받고, 클립은 파일 경로로, 로그 줄은 콜백으로 보낸다."
 
 #, python-brace-format
-msgid "**The glue** `audio::Engine` in {engine}`engine/src/mealkit/audio` keeps the game API. It reads `assets/sounds.table` (row type `audio::SoundEvent`), turns each row into an `EventDef`, finds clip files with `findAsset`, writes the runtime's log lines to the engine log and adds the profiler zone. `Handle`, `Param` and the panel types are aliases of the runtime's types."
-msgstr "**접착층** {engine}`engine/src/mealkit/audio`의 `audio::Engine`이 게임 API를 그대로 둔다. `assets/sounds.table`(행 타입 `audio::SoundEvent`)을 읽어 행마다 `EventDef`로 바꾸고, `findAsset`으로 클립 파일을 찾고, 런타임의 로그 줄을 엔진 로그에 쓰고, 프로파일 구간을 더한다. `Handle`·`Param`과 패널 타입은 런타임 타입의 별칭이다."
+msgid "**The glue** `audio::Engine` in {engine}`engine/src/mealkit/audio` keeps the game API. It reads `assets/sounds.events` with the runtime's `mkaudio::loadEventFile`, finds clip files with `findAsset`, writes the runtime's log lines to the engine log and adds the profiler zone. `Handle`, `Param` and the panel types are aliases of the runtime's types."
+msgstr "**접착층** {engine}`engine/src/mealkit/audio`의 `audio::Engine`이 게임 API를 그대로 둔다. 런타임의 `mkaudio::loadEventFile`로 `assets/sounds.events`를 읽고, `findAsset`으로 클립 파일을 찾고, 런타임의 로그 줄을 엔진 로그에 쓰고, 프로파일 구간을 더한다. `Handle`·`Param`과 패널 타입은 런타임 타입의 별칭이다."
 
 msgid "miniaudio"
 msgstr "miniaudio"
@@ -63,6 +63,40 @@ msgstr "SDL 대신 miniaudio를 쓰는 이유는 {engine}`docs/DECISIONS.md`(202
 msgid "`Mixer::init` ({engine}`third_party/mkaudio/src/Mixer.cpp`) opens the default output device with one listener and **mixes in stereo**; miniaudio converts to the device's channel layout (7.1 and so on), so the mixing cost does not grow with the speaker count. When there is no output device, `init` returns `false`, every later call does nothing, and the game runs without sound."
 msgstr "`Mixer::init`({engine}`third_party/mkaudio/src/Mixer.cpp`)은 리스너 하나로 기본 출력 장치를 열고 **스테레오로 섞는다**. 장치의 채널 배치(7.1 등)로는 miniaudio가 바꾸므로, 스피커 수가 늘어도 섞는 비용은 늘지 않는다. 출력 장치가 없으면 `init`이 `false`를 돌려주고, 그 뒤 호출은 모두 아무것도 하지 않으며, 게임은 소리 없이 돈다."
 
+msgid "Live service"
+msgstr "라이브 서비스"
+
+#, python-brace-format
+msgid "`audio::addLiveService` adds the service `audio/` to the live connection of development game builds and the editor ({doc}`live`), for MealKit Audio:"
+msgstr "`audio::addLiveService`는 MealKit Audio를 위해 게임 개발 빌드와 에디터의 라이브 연결에 서비스 `audio/`를 더한다({doc}`live`):"
+
+msgid "Request"
+msgstr "요청"
+
+msgid "What it does"
+msgstr "하는 일"
+
+msgid "`POST audio/play`"
+msgstr "`POST audio/play`"
+
+msgid "Body `event=<name>&p.<parameter>=<value>...`: plays the event at the listener's position (so 3D events are heard up close)"
+msgstr "본문 `event=<이름>&p.<파라미터>=<값>...`: 리스너 자리에서 이벤트를 재생한다(그래서 3D 이벤트도 가까이에서 들린다)"
+
+msgid "`POST audio/reload`"
+msgstr "`POST audio/reload`"
+
+msgid "Reads the events file again now"
+msgstr "이벤트 파일을 지금 다시 읽는다"
+
+msgid "`GET audio/state`"
+msgstr "`GET audio/state`"
+
+msgid "The file, the number of events, voice counts, the playing voices and the buses with their levels"
+msgstr "파일, 이벤트 수, 목소리 수, 재생 중인 목소리, 버스와 레벨"
+
+msgid "The service asks for the audio engine on each request, so it answers 503 when there is none (the editor before a project is open)."
+msgstr "서비스는 요청마다 오디오 엔진을 찾으므로, 없으면(프로젝트를 열기 전의 에디터) 503으로 답한다."
+
 msgid "Changing the runtime"
 msgstr "런타임 고치기"
 
@@ -73,17 +107,20 @@ msgid "Sound events"
 msgstr "소리 이벤트"
 
 #, python-brace-format
-msgid "A game plays an event name, never a file: `ctx.audio.play(\"hit\", position, {{\"speed\", 6.0f}})`. Events are rows of `assets/sounds.table` with the row type `audio::SoundEvent` ({engine}`engine/src/mealkit/audio/Audio.h`): clips, container, a parameter and its curve, random volume and pitch, distances, bus, loop, stream, priority, instance limit, steal rule and cooldown."
-msgstr "게임은 파일이 아니라 이벤트 이름을 재생한다: `ctx.audio.play(\"hit\", position, {{\"speed\", 6.0f}})`. 이벤트는 `assets/sounds.table`의 행이고 행 타입은 `audio::SoundEvent`다({engine}`engine/src/mealkit/audio/Audio.h`): 클립, 컨테이너, 파라미터와 그 곡선, 무작위 볼륨·피치, 거리, 버스, 반복, 스트리밍, 우선순위, 동시 재생 상한, 끊을 규칙, 쿨다운."
+msgid "A game plays an event name, never a file: `ctx.audio.play(\"hit\", position, {{\"speed\", 6.0f}})`. Events are `event` blocks of `assets/sounds.events`, read by the runtime's `mkaudio::parseEvents` ({engine}`third_party/mkaudio/include/mkaudio/Events.h`) into `mkaudio::EventDef`: clips, container, a parameter and its curve, random volume and pitch, distances, bus, loop, stream, priority, instance limit, steal rule, cooldown and subtitle. `mixbus` blocks become `BusDef` values (parent and mix volume) for `Mixer::setBuses`."
+msgstr "게임은 파일이 아니라 이벤트 이름을 재생한다: `ctx.audio.play(\"hit\", position, {{\"speed\", 6.0f}})`. 이벤트는 `assets/sounds.events`의 `event` 블록이고, 런타임의 `mkaudio::parseEvents`({engine}`third_party/mkaudio/include/mkaudio/Events.h`)가 `mkaudio::EventDef`로 읽는다: 클립, 컨테이너, 파라미터와 곡선, 무작위 볼륨·피치, 거리, 버스, 루프, 스트림, 우선순위, 동시 재생 상한, 끊을 것, 쿨다운, 자막. `mixbus` 블록은 `Mixer::setBuses`에 넘기는 `BusDef`(부모, 믹스 볼륨)가 된다."
 
-msgid "The table is view-only (`kTableView`), outside the content hash. Every 0.25 seconds `update` checks its write time and reads it again when it changed, so an edit is heard during play."
-msgstr "표는 보기 전용(`kTableView`)이라 콘텐츠 해시 밖이다. `update`가 0.25초마다 수정 시각을 보고 바뀌었으면 다시 읽으므로, 플레이 중에 고친 것이 바로 들린다."
+msgid "The file is view-only, outside the content hash. Every 0.25 seconds `update` checks its write time and reads it again when it changed, so an edit is heard during play. MealKit Audio also asks for a reload at once after saving (below)."
+msgstr "파일은 화면 전용이라 콘텐츠 해시 밖이다. `update`가 0.25초마다 파일 시각을 보고 바뀌면 다시 읽으므로, 플레이 중에 고쳐도 바로 들린다. MealKit Audio는 저장한 뒤 바로 다시 읽으라고도 알린다(아래)."
 
-msgid "On reload, each event keeps its last play time (for the cooldown) and its last clip. Playing sounds find their row again by name; a sound whose event was removed stops."
-msgstr "다시 읽어도 이벤트마다 마지막 재생 시각(쿨다운용)과 마지막 클립을 이어 간다. 재생 중인 소리는 이름으로 자기 행을 다시 찾고, 이벤트가 지워진 소리는 멈춘다."
+msgid "If the project still has the old `assets/sounds.table`, the glue turns its `row` lines into `event` lines (the keys are the same), reads it and warns; `tools\\upgrade_project.ps1` converts the file."
+msgstr "프로젝트에 아직 예전 `assets/sounds.table`이 있으면 접착층이 `row` 줄을 `event` 줄로 바꿔(키는 같다) 읽고 경고한다. 파일은 `tools\\upgrade_project.ps1`이 옮긴다."
 
-msgid "Clips that are not streamed are decoded into memory when the table is read (`MA_SOUND_FLAG_DECODE`). Playing one makes a copy of the decoded sound (`ma_sound_init_copy`), so no disk read happens during play. Streamed clips are opened from the file each time they start."
-msgstr "스트리밍하지 않는 클립은 표를 읽을 때 메모리에 풀어 둔다(`MA_SOUND_FLAG_DECODE`). 재생할 때는 풀어 둔 소리의 사본을 만들므로(`ma_sound_init_copy`) 플레이 중에 디스크를 읽지 않는다. 스트리밍 클립은 시작할 때마다 파일에서 연다."
+msgid "On reload, each event keeps its last play time (for the cooldown) and its last clip. Playing sounds find their event again by name; a sound whose event was removed stops."
+msgstr "다시 읽어도 이벤트마다 마지막 재생 시각(쿨다운용)과 마지막 클립은 이어 간다. 재생 중인 소리는 이름으로 이벤트를 다시 찾고, 이벤트가 없어진 소리는 멈춘다."
+
+msgid "Clips that are not streamed are decoded into memory when the events are read (`MA_SOUND_FLAG_DECODE`). Playing one makes a copy of the decoded sound (`ma_sound_init_copy`), so no disk read happens during play. Streamed clips are opened from the file each time they start."
+msgstr "스트리밍하지 않는 클립은 이벤트를 읽을 때 메모리에 풀어 둔다(`MA_SOUND_FLAG_DECODE`). 재생하면 풀어 둔 소리를 복사하므로(`ma_sound_init_copy`) 재생 중에 디스크를 읽지 않는다. 스트리밍 클립은 시작할 때마다 파일을 연다."
 
 msgid "Voices"
 msgstr "목소리"
@@ -196,9 +233,6 @@ msgstr "기법"
 
 msgid "Where"
 msgstr "위치"
-
-msgid "What it does"
-msgstr "하는 일"
 
 msgid "Event-based sound"
 msgstr "이벤트 기반 소리"

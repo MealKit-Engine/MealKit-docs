@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-26 15:54+0900\n"
+"POT-Creation-Date: 2026-10-26 18:30+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ko\n"
@@ -91,8 +91,8 @@ msgstr "플레이어의 `settings.ini`"
 msgid "`table`"
 msgstr "`table`"
 
-msgid "`assets/tables/*.table`, `assets/input.bindings`, `assets/feedback.table`, `assets/sounds.table`"
-msgstr "`assets/tables/*.table`, `assets/input.bindings`, `assets/feedback.table`, `assets/sounds.table`"
+msgid "`assets/tables/*.table`, `assets/input.bindings`, `assets/feedback.table`"
+msgstr "`assets/tables/*.table`, `assets/input.bindings`, `assets/feedback.table`"
 
 msgid "`scene`"
 msgstr "`scene`"
@@ -117,6 +117,13 @@ msgstr "`tool`"
 
 msgid "`mealkit-tool.txt` (below)"
 msgstr "`mealkit-tool.txt` (아래)"
+
+msgid "`audio-events`"
+msgstr "`audio-events`"
+
+#, python-brace-format
+msgid "`assets/sounds.events` (defined by the audio runtime, edited in MealKit Audio, {doc}`../manual/sound`)"
+msgstr "`assets/sounds.events` (오디오 런타임이 정하고 MealKit Audio가 고친다, {doc}`../manual/sound`)"
 
 msgid "Rules for readers and writers:"
 msgstr "읽는 쪽과 쓰는 쪽의 규칙:"

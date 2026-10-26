@@ -30,11 +30,12 @@ row hit
 | `project` | `mealkit.project` |
 | `tuning` | `assets/game.tuning`, `assets/view.tuning` |
 | `settings` | the player's `settings.ini` |
-| `table` | `assets/tables/*.table`, `assets/input.bindings`, `assets/feedback.table`, `assets/sounds.table` |
+| `table` | `assets/tables/*.table`, `assets/input.bindings`, `assets/feedback.table` |
 | `scene` | `assets/scenes/*.scene` (version 2) |
 | `ui` | `assets/ui/*.ui` |
 | `strings` | `assets/strings/<language>.txt` |
 | `tool` | `mealkit-tool.txt` (below) |
+| `audio-events` | `assets/sounds.events` (defined by the audio runtime, edited in MealKit Audio, {doc}`../manual/sound`) |
 
 Rules for readers and writers:
 

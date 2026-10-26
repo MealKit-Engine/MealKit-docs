@@ -15,6 +15,8 @@ A grayed-out tool cannot be opened; hover over it to see why:
 
 ## Installing a tool
 
+The first tool is **MealKit Audio** for sound events ({doc}`sound`). Building the MealKit-Audio repository puts `MealKitAudio` and its `mealkit-tool.txt` in `build/bin/`; copy that folder as described below.
+
 A tool is a folder with a manifest file `mealkit-tool.txt` next to its program. Put the folder in `%LOCALAPPDATA%\MealKit\tools\` (for example `%LOCALAPPDATA%\MealKit\tools\audio\`), then **Tools > Rescan Tools**.
 
 To keep tools somewhere else, add a `toolPath` line to the editor settings file `%LOCALAPPDATA%\MealKit\editor_settings.txt`, one line per folder:

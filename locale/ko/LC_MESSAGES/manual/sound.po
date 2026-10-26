@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-19 19:18+0900\n"
+"POT-Creation-Date: 2026-10-26 18:30+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ko\n"
@@ -22,17 +22,49 @@ msgstr ""
 msgid "Sound and feedback"
 msgstr "소리와 연출"
 
-msgid "Sound and \"game feel\" (camera shake, screen flash, hit stop) are data. Sound designers change them in the editor without touching code, and the changes are heard at once, even during play."
-msgstr "소리와 \"타격감\"(카메라 흔들림, 화면 번쩍임, 화면 정지)은 데이터다. 사운드 담당이 코드를 건드리지 않고 에디터에서 고치고, 플레이 중에도 바로 들린다."
+msgid "Sound and \"game feel\" (camera shake, screen flash, hit stop) are data. Sound designers change them without touching code, and the changes are heard at once, even during play."
+msgstr "소리와 \"타격감\"(카메라 흔들림, 화면 번쩍임, 화면 정지)은 데이터다. 사운드 디자이너가 코드를 건드리지 않고 고치고, 고친 것은 플레이 중에도 바로 들린다."
 
 msgid "Sound events"
 msgstr "소리 이벤트"
 
-msgid "Game code plays a **sound event** by name, never a file: `ctx.audio.play(\"hit\", position, {{\"speed\", 9.0f}})`, or `ctx.audio.play2D(\"click\")` for sounds with no position. Events live in `assets/sounds.table`, a definition table edited in the Tables panel (or through CSV). Each row is one event:"
-msgstr "게임 코드는 파일이 아니라 **소리 이벤트**를 이름으로 낸다: `ctx.audio.play(\"hit\", position, {{\"speed\", 9.0f}})`, 위치가 없는 소리는 `ctx.audio.play2D(\"click\")`. 이벤트는 `assets/sounds.table`(정의 데이터 표, [표] 패널이나 CSV로 고친다)에 있고 한 행이 이벤트 하나다:"
+msgid "Game code plays a **sound event** by name, never a file: `ctx.audio.play(\"hit\", position, {{\"speed\", 9.0f}})`, or `ctx.audio.play2D(\"click\")` for sounds with no position. Events live in `assets/sounds.events`. Sound designers edit it in **MealKit Audio**, the audio tool of the MealKit family (below); it is also plain text that can be edited by hand:"
+msgstr "게임 코드는 파일이 아니라 **소리 이벤트** 이름으로 재생한다: `ctx.audio.play(\"hit\", position, {{\"speed\", 9.0f}})`, 위치가 없는 소리는 `ctx.audio.play2D(\"click\")`. 이벤트는 `assets/sounds.events`에 있다. 사운드 디자이너는 MealKit 제품군의 오디오 도구 **MealKit Audio**(아래)로 고치고, 손으로 고칠 수 있는 일반 텍스트이기도 하다:"
 
-msgid "Columns"
-msgstr "열"
+msgid ""
+"# MealKit audio events. Edit them in MealKit Audio or by hand\n"
+"@format audio-events 1\n"
+"\n"
+"mixbus ambience\n"
+"parent music\n"
+"volume 0.6\n"
+"\n"
+"event hit\n"
+"clips sounds/hit_1.wav sounds/hit_2.wav sounds/hit_3.wav\n"
+"param speed\n"
+"paramMin 3\n"
+"paramMax 15\n"
+"volumeAtMin 0.2\n"
+msgstr ""
+"# MealKit audio events. Edit them in MealKit Audio or by hand\n"
+"@format audio-events 1\n"
+"\n"
+"mixbus ambience\n"
+"parent music\n"
+"volume 0.6\n"
+"\n"
+"event hit\n"
+"clips sounds/hit_1.wav sounds/hit_2.wav sounds/hit_3.wav\n"
+"param speed\n"
+"paramMin 3\n"
+"paramMax 15\n"
+"volumeAtMin 0.2\n"
+
+msgid "An `event <name>` block is one event and a `mixbus <name>` block defines a bus. Keys that are left out keep their defaults. The event keys are:"
+msgstr "`event <이름>` 블록 하나가 이벤트 하나이고, `mixbus <이름>` 블록은 버스를 정한다. 적지 않은 키는 기본값이다. 이벤트 키는 다음과 같다:"
+
+msgid "Keys"
+msgstr "키"
 
 msgid "Meaning"
 msgstr "뜻"
@@ -70,8 +102,8 @@ msgstr "3D 위치. 최소 거리 안에서는 최대 볼륨, 최대 거리 밖�
 msgid "`bus`"
 msgstr "`bus`"
 
-msgid "Mix bus: `music`, `sfx`, `ui`, `voice`"
-msgstr "믹스 버스: `music`, `sfx`, `ui`, `voice`"
+msgid "Mix bus: `music`, `sfx`, `ui`, `voice`, or a bus defined with `mixbus`"
+msgstr "믹스 버스: `music`, `sfx`, `ui`, `voice` 또는 `mixbus`로 정한 버스"
 
 msgid "`loop`, `stream`"
 msgstr "`loop`, `stream`"
@@ -91,8 +123,33 @@ msgstr "`subtitle`, `subtitleSeconds`"
 msgid "A game string key shown at the bottom of the screen when the sound plays (players turn subtitles on or off in the settings), and for how long. Plays of the same key share one line. The screen is `assets/ui/subtitles.ui`"
 msgstr "소리가 날 때 화면 아래에 보일 게임 문자열 키(플레이어가 설정에서 자막을 켜고 끈다)와 보이는 시간. 같은 키의 재생은 한 줄을 같이 쓴다. 화면은 `assets/ui/subtitles.ui`"
 
-msgid "The table is reloaded when the file changes. The engine moves the listener with the camera."
-msgstr "파일이 바뀌면 표를 다시 읽는다. 듣는 위치는 엔진이 카메라에 맞춰 옮긴다."
+msgid "A `mixbus` block sets a bus's `parent` (default `master`) and its mix `volume`, which is multiplied by the player's volume setting for that bus. The file is reloaded when it changes, also during play. The engine moves the listener with the camera. Projects made with engine 0.5.1 or older have `assets/sounds.table` instead; the engine still reads it with a warning, and `tools\\upgrade_project.ps1` converts it to `sounds.events`."
+msgstr "`mixbus` 블록은 버스의 `parent`(기본 `master`)와 믹스 `volume`을 정하고, 믹스 볼륨은 그 버스의 플레이어 볼륨 설정과 곱해진다. 파일이 바뀌면 플레이 중에도 다시 읽는다. 리스너는 엔진이 카메라와 같이 옮긴다. 엔진 0.5.1 이하로 만든 프로젝트에는 대신 `assets/sounds.table`이 있다. 엔진은 경고와 함께 계속 읽고, `tools\\upgrade_project.ps1`이 `sounds.events`로 옮긴다."
+
+msgid "MealKit Audio"
+msgstr "MealKit Audio"
+
+#, python-brace-format
+msgid "MealKit Audio is a separate program for sound designers ([MealKit-Audio](https://github.com/MealKit-Engine/MealKit-Audio), free, MIT). Open it from the editor's **Tools** menu once it is installed ({doc}`tools`), or start it with `MealKitAudio --project <project folder>`."
+msgstr "MealKit Audio는 사운드 디자이너용 별도 프로그램이다([MealKit-Audio](https://github.com/MealKit-Engine/MealKit-Audio), 무료, MIT). 설치하면 에디터 **도구** 메뉴에서 열거나({doc}`tools`) `MealKitAudio --project <프로젝트 폴더>`로 실행한다."
+
+msgid "**Events**: the list of events, with add, duplicate and delete. Events with a missing clip are red. Double-click an event to play it."
+msgstr "**Events**: 이벤트 목록과 추가·복제·지우기. 클립이 없는 이벤트는 빨갛다. 두 번 누르면 재생한다."
+
+msgid "**Event**: every setting of the selected event. Clips are picked from the `.wav` and `.ogg` files under `assets/`. The volume, pitch and low-pass curves are drawn over the parameter range; drag their end points. The 3D section draws the distance fade."
+msgstr "**Event**: 고른 이벤트의 모든 설정. 클립은 `assets/` 아래의 `.wav`·`.ogg` 파일에서 고른다. 볼륨·피치·로우패스 곡선이 파라미터 범위 위에 그려지고, 끝점을 끌어 고친다. 3D 칸은 거리에 따른 감쇠를 그린다."
+
+msgid "**Buses**: the buses with their parent, mix volume and a level meter."
+msgstr "**Buses**: 버스와 부모, 믹스 볼륨, 레벨 미터."
+
+msgid "**Preview**: plays the selected event through the same runtime the game uses, with sliders for the parameter and the distance."
+msgstr "**Preview**: 게임과 같은 런타임으로 고른 이벤트를 재생하고, 파라미터·거리 슬라이더가 있다."
+
+msgid "**Live**: the running development builds of the game and the editor for this project. **Play in game** plays the selected event in the game at the listener, and the game's voices and bus levels are shown."
+msgstr "**Live**: 이 프로젝트의 실행 중인 게임 개발 빌드와 에디터. **Play in game**은 고른 이벤트를 게임의 리스너 자리에서 재생하고, 게임의 목소리와 버스 레벨을 보여 준다."
+
+msgid "Ctrl+S saves `assets/sounds.events`; a running game or editor reloads it at once. Ctrl+Z and Ctrl+Y undo and redo."
+msgstr "Ctrl+S로 `assets/sounds.events`를 저장하면 실행 중인 게임·에디터가 바로 다시 읽는다. Ctrl+Z·Ctrl+Y는 되돌리기·다시 하기."
 
 msgid "Voice management"
 msgstr "목소리 관리"
@@ -103,14 +160,17 @@ msgstr "엔진은 한 번에 최대 `audioVoices`개(프로젝트 설정, 기본
 msgid "Sounds panel"
 msgstr "[소리] 패널"
 
-msgid "View > Sounds shows the output buses with level meters and volume, the playing voices (mixed or virtual, audibility, distance), the most recently culled plays and why (cooldown, voice limit, missing clip ...), and a preview of the selected event."
-msgstr "[보기] > [소리]는 출력 버스(레벨 미터와 볼륨), 재생 중인 목소리(믹싱·가상, 들리는 정도, 거리), 최근에 걸러진 재생과 이유(재사용 대기, 목소리 상한, 없는 파일 등), 고른 이벤트의 미리듣기를 보여 준다."
+msgid "View > Sounds in the MealKit editor shows the output buses with level meters and volume, the playing voices (mixed or virtual, audibility, distance), the most recently culled plays and why (cooldown, voice limit, missing clip ...), and a preview of the selected event. Events are edited in MealKit Audio."
+msgstr "MealKit 에디터의 보기 > 소리는 출력 버스의 레벨 미터와 볼륨, 재생 중인 목소리(섞는 중·가상, 들리는 크기, 거리), 최근에 끊긴 재생과 이유(쿨다운, 목소리 상한, 없는 클립 등), 고른 이벤트의 미리 듣기를 보여 준다. 이벤트는 MealKit Audio에서 고친다."
 
 msgid "Feedback table"
 msgstr "연출 표 (Feedback table)"
 
 msgid "`assets/feedback.table` maps **tick events** to reactions. Game code passes every tick event to `ctx.feedback.trigger(event, localPlayer)` and does nothing else. The event type is a `MEALKIT_STRUCT` whose first `MEALKIT_ENUM` field is the event kind. A row's id is the kind name (`Push`); more rows for the same kind take a suffix (`Push.local`)."
 msgstr "`assets/feedback.table`은 **틱 이벤트**를 연출로 잇는다. 게임 코드는 틱 이벤트마다 `ctx.feedback.trigger(event, localPlayer)`만 부른다. 이벤트 타입은 `MEALKIT_STRUCT`이고 첫 `MEALKIT_ENUM` 필드가 이벤트 종류다. 행 id는 종류 이름(`Push`)이고, 같은 종류에 행을 더하면 접미사를 붙인다(`Push.local`)."
+
+msgid "Columns"
+msgstr "열"
 
 msgid "`players`"
 msgstr "`players`"
