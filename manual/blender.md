@@ -44,4 +44,13 @@ The list comes from the engine itself: the add-on's `schema.json` is checked aga
 
 ## Material panel
 
-**Properties > Material > MealKit** will show the engine's material features (such as outlines) as fields saved in the glTF file. There are none yet; the panel says so.
+**Properties > Material > MealKit** shows the engine's material features. **Add** saves a feature as a custom property of the material (`mealkit_<name>`), which goes into the glTF file as `extras`; the **X** removes it. You set the look here instead of writing shaders ({doc}`assets`).
+
+| Feature | Value | Notes |
+|---|---|---|
+| Outline | width in metres (default 0.02), and a color | A line of the outline color around the object. Use smooth normals: hard edges leave gaps in the line. |
+| Wind | sway in metres (default 0.1) | Paint the amount into the **alpha of the color attribute**: 0 at the root, 1 at the tip. Without alpha the whole object sways. |
+| Rim light | strength (default 0.5), and a color | The edges facing away from the camera get brighter. |
+| Dissolve | edge width (default 0.05), and a glow color | The object disappears in a noisy pattern as the game raises its dissolve value; the edge glows. Without the game setting the value, nothing happens. |
+
+The color of a feature appears after its main value is added. Colors are linear; values above 1 make the glow brighter. The engine warns when it finds a `mealkit_` property it does not know.

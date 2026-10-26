@@ -3,17 +3,17 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version:  MealKit\n"
+"Project-Id-Version: MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-26 18:30+0900\n"
+"POT-Creation-Date: 2026-10-26 19:22+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
-"Language: ko\n"
 "Language-Team: Korean\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.18.0\n"
 
 msgid "Engine folder and game projects"
@@ -97,8 +97,9 @@ msgstr "엔진 저장소 자신도 예제 게임 프로젝트다(최상위 `meal
 msgid "Project settings"
 msgstr "프로젝트 설정"
 
-msgid "`mealkit.project` holds the project settings: `name`, `engine`, `engineVersion`, `scene`, `tickRate`, the input delay range, and game entries (`game.*`). Edit them in the editor under File > Project Settings."
-msgstr "`mealkit.project`는 프로젝트 설정을 담는다: `name`, `engine`, `engineVersion`, `scene`, `tickRate`, 입력 지연 범위, 게임 항목(`game.*`). 에디터의 [파일] > [프로젝트 설정]에서 고친다."
+#, python-brace-format
+msgid "`mealkit.project` holds the project settings: `name`, `engine`, `engineVersion`, `scene`, `tickRate`, the input delay range, the art style (`lightingModel`, `toonRamp`, {doc}`assets`), and game entries (`game.*`). Edit them in the editor under File > Project Settings."
+msgstr "`mealkit.project`는 프로젝트 설정을 담는다: `name`, `engine`, `engineVersion`, `scene`, `tickRate`, 입력 지연 범위, 아트 스타일(`lightingModel`, `toonRamp`, {doc}`assets`), 게임 항목(`game.*`). 에디터의 [파일] > [프로젝트 설정]에서 고친다."
 
 msgid "`version` is the game version players see (title screen, lobby, window title). It is part of the simulation version, so players with different versions cannot join each other; raise it when you ship a change. `exportVersionFolder` puts it in the release folder name."
 msgstr "`version`은 플레이어에게 보이는 게임 버전이다(타이틀 화면, 로비, 창 제목). 시뮬레이션 버전에 들어가므로 버전이 다른 플레이어끼리는 참가할 수 없다. 바뀐 것을 내놓을 때 올린다. `exportVersionFolder`는 출시 폴더 이름에 버전을 넣는다."
@@ -187,4 +188,3 @@ msgstr "`GameSession`(`GameInstance` 구현), `main.cpp`(`MEALKIT_GAME_MAIN`), `
 #, python-brace-format
 msgid "The rules for `sim/` are in the engine's {engine}`coding model <docs/CODING_MODEL.md>` (\"Determinism rules\"). See also {doc}`multiplayer`."
 msgstr "`sim/` 규칙은 엔진의 {engine}`코딩 방식 <docs/CODING_MODEL.md>`(\"결정론 규칙\")에 있다. {doc}`multiplayer`도 본다."
-

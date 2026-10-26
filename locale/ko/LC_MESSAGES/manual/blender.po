@@ -8,15 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-21 20:14+0900\n"
+"POT-Creation-Date: 2026-10-26 19:22+0900\n"
 "PO-Revision-Date: 2026-10-21 18:00+0900\n"
 "Last-Translator: KingProtea99\n"
-"Language: ko\n"
 "Language-Team: ko <LL@li.org>\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.18.0\n"
 
 msgid "Blender add-on"
@@ -121,6 +121,54 @@ msgstr "검사는 오른쪽 열의 것에 경고한다. 그것 없이 내보낸�
 msgid "Material panel"
 msgstr "머티리얼 패널"
 
-msgid "**Properties > Material > MealKit** will show the engine's material features (such as outlines) as fields saved in the glTF file. There are none yet; the panel says so."
-msgstr "**Properties > Material > MealKit**에 엔진 머티리얼 기능(외곽선 등)이 glTF 파일에 저장되는 항목으로 나온다. 아직은 기능이 없고, 패널이 그렇게 알려 준다."
+#, python-brace-format
+msgid "**Properties > Material > MealKit** shows the engine's material features. **Add** saves a feature as a custom property of the material (`mealkit_<name>`), which goes into the glTF file as `extras`; the **X** removes it. You set the look here instead of writing shaders ({doc}`assets`)."
+msgstr "**[속성] > [머티리얼] > MealKit**에 엔진의 머티리얼 기능이 나온다. **Add**는 기능을 머티리얼의 커스텀 속성(`mealkit_<이름>`)으로 저장하고, 이것이 glTF 파일의 `extras`로 나간다. **X**는 지운다. 셰이더를 쓰는 대신 여기서 모습을 정한다({doc}`assets`)."
 
+msgid "Feature"
+msgstr "기능"
+
+msgid "Value"
+msgstr "값"
+
+msgid "Notes"
+msgstr "참고"
+
+msgid "Outline"
+msgstr "외곽선"
+
+msgid "width in metres (default 0.02), and a color"
+msgstr "폭(미터, 기본 0.02)과 색"
+
+msgid "A line of the outline color around the object. Use smooth normals: hard edges leave gaps in the line."
+msgstr "물체 둘레에 외곽선 색의 선. 매끈한 법선을 쓴다: 각진 모서리에서는 선이 끊긴다."
+
+msgid "Wind"
+msgstr "바람"
+
+msgid "sway in metres (default 0.1)"
+msgstr "흔들림(미터, 기본 0.1)"
+
+msgid "Paint the amount into the **alpha of the color attribute**: 0 at the root, 1 at the tip. Without alpha the whole object sways."
+msgstr "양은 **색 속성의 알파**로 칠한다: 뿌리 0, 끝 1. 알파가 없으면 물체 전체가 흔들린다."
+
+msgid "Rim light"
+msgstr "림 라이트"
+
+msgid "strength (default 0.5), and a color"
+msgstr "세기(기본 0.5)와 색"
+
+msgid "The edges facing away from the camera get brighter."
+msgstr "카메라를 비껴 보는 가장자리가 밝아진다."
+
+msgid "Dissolve"
+msgstr "디졸브"
+
+msgid "edge width (default 0.05), and a glow color"
+msgstr "경계 폭(기본 0.05)과 발광 색"
+
+msgid "The object disappears in a noisy pattern as the game raises its dissolve value; the edge glows. Without the game setting the value, nothing happens."
+msgstr "게임이 디졸브 값을 올리면 물체가 얼룩 무늬로 사라지고 경계가 빛난다. 게임이 값을 넣지 않으면 아무 일도 없다."
+
+msgid "The color of a feature appears after its main value is added. Colors are linear; values above 1 make the glow brighter. The engine warns when it finds a `mealkit_` property it does not know."
+msgstr "기능의 색은 큰 값을 더한 뒤에 보인다. 색은 선형이고 1보다 크면 더 밝게 빛난다. 엔진은 모르는 `mealkit_` 속성을 보면 경고한다."

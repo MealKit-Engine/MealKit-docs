@@ -56,6 +56,7 @@ Scenes are saved as human-readable `.scene` text: each object is its kind name p
 | LOD Level | The level of detail drawn: green = full, yellow = level 1, red = level 2 |
 | Overdraw | How many times each pixel is drawn, with no depth test: brighter means more layers |
 | Over Budget | Models over their asset budget in red, everything else gray ({doc}`assets`) |
+| Material Features | The style features of each material: outline red, wind green, rim blue, dissolve yellow (colors add up when a material has several), none gray ({doc}`assets`) |
 
 View modes apply to the editing view and are left out of shipped builds.
 

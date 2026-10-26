@@ -5,15 +5,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-19 13:15+0900\n"
+"POT-Creation-Date: 2026-10-26 19:22+0900\n"
 "PO-Revision-Date: 2026-10-19 13:15+0900\n"
 "Last-Translator: KingProtea99\n"
-"Language: ko\n"
 "Language-Team: Korean\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.18.0\n"
 
 msgid "Asset"
@@ -71,8 +71,8 @@ msgstr "파일 해시는 바이너리 청크, 모든 버퍼, JSON 글자로 계�
 msgid "The nodes of the default scene (or the first scene, or all root nodes) are walked recursively. Each mesh node's world matrix comes from `cgltf_node_transform_world`, so the whole model becomes one mesh in model space."
 msgstr "기본 씬(없으면 첫 씬, 그것도 없으면 모든 뿌리 노드)의 노드를 재귀로 돈다. 메시 노드의 월드 행렬은 `cgltf_node_transform_world`에서 받아서, 모델 전체가 모델 공간의 메시 하나가 된다."
 
-msgid "For every triangle primitive it reads positions, normals and the first vertex color. The color is the material's base color factor times the vertex color, stored as sRGB RGBA8."
-msgstr "삼각형 프리미티브마다 위치, 법선, 첫 정점 색을 읽는다. 색은 재질의 기본 색 계수 곱하기 정점 색이고 sRGB RGBA8로 저장한다."
+msgid "For every triangle primitive it reads positions, normals, the first UV set and the first vertex color (stored as sRGB RGBA8; the alpha is the wind amount). Each vertex keeps the number of its primitive's material."
+msgstr "삼각형 프리미티브마다 위치, 법선, 첫 UV, 첫 정점 색(sRGB RGBA8로, 알파는 바람 양)을 읽는다. 정점마다 프리미티브 머티리얼의 번호를 둔다."
 
 msgid "glTF is right-handed and MealKit is left-handed (y up), so z is negated for positions and normals and the triangle winding is reversed. When the node matrix mirrors (negative determinant), the winding is reversed once more."
 msgstr "glTF는 오른손 좌표계이고 MealKit은 왼손 좌표계(y 위)라서, 위치와 법선의 z를 뒤집고 삼각형 감는 순서를 바꾼다. 노드 행렬이 거울 변환이면(행렬식이 음수) 감는 순서를 한 번 더 바꾼다."
@@ -80,8 +80,12 @@ msgstr "glTF는 오른손 좌표계이고 MealKit은 왼손 좌표계(y 위)라�
 msgid "If any primitive had no normals, smooth normals are computed for the whole mesh: each triangle adds its unnormalized face normal (the cross product, whose length is twice the area) to its three vertices, and the sums are normalized."
 msgstr "법선이 없는 프리미티브가 하나라도 있으면 메시 전체에 부드러운 법선을 계산한다: 삼각형마다 정규화하지 않은 면 법선(길이가 넓이의 두 배인 외적)을 세 정점에 더하고, 합을 정규화한다."
 
-msgid "Textures, skins and animation are not read yet."
-msgstr "텍스처, 스킨, 애니메이션은 아직 읽지 않는다."
+#, python-brace-format
+msgid "Each glTF material becomes a renderer material (base color, metallic-roughness, normal and emissive values and textures, alpha clip; see {doc}`render`). Its `extras` (Blender custom properties) are read by `asset::applyMaterialExtras`: a small reader takes the top-level keys and keeps numbers and number arrays. Keys that start with `mealkit_` turn on the style preset features: `outline`, `wind`, `rim` and `dissolve` (a number) turn a feature on and set its main value, and `outlineColor`, `rimColor` and `dissolveColor` (three numbers, linear color) only change a color. An unknown `mealkit_` key or a value of the wrong kind gives a warning with the model and material name and is ignored; other keys are not looked at. The same list is written into the add-on's `schema.json` (`materialFeatures`, with labels and the engine's default values), so the Blender panel offers exactly what the loader reads."
+msgstr "glTF 머티리얼은 렌더러 머티리얼이 된다(기본 색, 금속·거칠기, 법선, 발광 값과 텍스처, 알파 클립. {doc}`render`). 머티리얼의 `extras`(Blender 커스텀 속성)는 `asset::applyMaterialExtras`가 읽는다: 작은 읽기 함수가 최상위 키를 보고 숫자와 숫자 배열만 남긴다. `mealkit_`로 시작하는 키가 스타일 프리셋 기능을 켠다: `outline`, `wind`, `rim`, `dissolve`(숫자 하나)는 기능을 켜고 큰 값을 정하고, `outlineColor`, `rimColor`, `dissolveColor`(숫자 셋, 선형 색)는 색만 바꾼다. 모르는 `mealkit_` 키나 종류가 틀린 값은 모델·머티리얼 이름과 함께 경고하고 무시한다. 다른 키는 보지 않는다. 같은 목록이 애드온의 `schema.json`(`materialFeatures`, 라벨과 엔진 기본값)에 쓰여, Blender 패널이 불러오기가 읽는 것만 정확히 보여 준다."
+
+msgid "Skins and animation are not read yet."
+msgstr "스킨과 애니메이션은 아직 읽지 않는다."
 
 msgid "Hull points and bounds"
 msgstr "껍질 점과 경계"
@@ -298,4 +302,3 @@ msgstr "`loadGltf`, `hashModels`의 `Hasher`"
 
 msgid "Hashes the file bytes so peers can compare models before a match."
 msgstr "파일 바이트를 해시해서 피어가 매치 전에 모델을 비교한다."
-

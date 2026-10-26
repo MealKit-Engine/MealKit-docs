@@ -164,6 +164,18 @@ Vec3 at = lerp(before->position, pawn.position, alpha);
 
 Find the same object in both states by its `Id<T>` (`previous.pawns.get(id)`); an object created this tick has no previous position, so draw it where it is.
 
+An object can also **flash** white or **dissolve** (when its material has the dissolve feature, {doc}`assets`). Both are values from 0 to 1 in the instance flags, set by the view when it draws. Keep the time in the view, started from a tick event, never in `sim/`:
+
+```cpp
+// in onTick: a push event marks the pawns it hit (view/Draw.cpp onWorldEvent)
+view.hitTime[id.slot] = viewTime;
+// when drawing: fade the flash out over hitFlashSeconds (view tuning)
+const f32 flash = pl.hitFlash * (1.0f - static_cast<f32>(viewTime - view.hitTime[id.slot]) / pl.hitFlashSeconds);
+out.add(box, {pos, color.value, facing, pl.bodySize, render::instanceFlash(0, flash)});
+```
+
+`render::instanceDissolve(flags, progress)` works the same way (progress 1 is fully gone).
+
 ## Input
 
 The tick input is 8 bytes per player (`net::kInputBytes`). The example packs it as a `GameInput`: a movement direction already turned into world space and quantized to `i8` by the view (so `sim/` needs no camera or trigonometry), and a byte of buttons.

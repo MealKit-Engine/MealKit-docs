@@ -86,7 +86,7 @@ Profile builds do not time the GPU with Tracy on Vulkan yet (the engine's own GP
 5. Creates two render target views per back buffer: an `R8G8B8A8_UNORM_SRGB` view for the 3D pass (the shader writes linear color and the hardware encodes gamma) and an `R8G8B8A8_UNORM` overlay view for UI and ImGui, whose colors are already sRGB.
 6. Creates one shader-visible descriptor heap (16 buffer slots, then 4,096 texture slots), the upload ring with its raw buffer view in slot 0, the shared root signature and a 32-bit float depth buffer.
 
-The renderer then creates the 3D pipeline, the UI pipeline and the two UI atlas textures.
+The renderer then creates every 3D pipeline it can use (one per lighting model, the outline pass and, in builds with the debug UI, the two view-mode pipelines), the UI pipeline, the two UI atlas textures and the toon ramp texture. Because all of them exist before the first frame, switching the lighting model or meeting a new material feature never compiles anything during play.
 `rhi::queryGpu` does steps 1 and 2 without a window, for `--system-info`. With the debug layer on (`--debug`), D3D12 messages are sent to the engine log.
 Every D3D call goes through the `HR` macro: a failure stops the program with the error code and, after a device removal, the removal reason.
 
@@ -111,8 +111,8 @@ The engine loop ({engine}`engine/src/mealkit/game/GameMain.cpp`, and the editor 
 
 Inside the renderer:
 
-- `beginFrame` calls `Device::beginFrame`, which waits on the swap chain's latency object, so the CPU never runs more than two frames ahead and input lag does not build up, then waits for this frame slot's fence and resets the allocator and the command list. The renderer then binds the scene target, clearing color to the fog color (mixed with the flash, so the sky flashes too) and depth to 0. It sets the viewport (the whole window, or the scene view in the editor), binds the 3D pipeline and writes the 176-byte frame constants into the upload ring.
-- `drawInstances(mesh, instances, count)` copies the instances into the upload ring, pushes the ring index and the offsets of the frame constants and the instances, binds the mesh's vertex and index buffers and draws once.
+- `beginFrame` calls `Device::beginFrame`, which waits on the swap chain's latency object, so the CPU never runs more than two frames ahead and input lag does not build up, then waits for this frame slot's fence and resets the allocator and the command list. The renderer then binds the scene target, clearing color to the fog color (mixed with the flash, so the sky flashes too) and depth to 0. It sets the viewport (the whole window, or the scene view in the editor), binds the pipeline of the current lighting model and writes the 224-byte frame constants (camera, light, fog, flash, the material table position, wind and the toon ramp texture number) into the upload ring. Queued texture copies (UI atlas pieces, a new toon ramp) are done first.
+- `drawInstances(mesh, instances, count)` copies the instances into the upload ring, pushes the ring index and the offsets of the frame constants and the instances, binds the mesh's vertex and index buffers and draws once. If the mesh has an outlined material, it draws the same instances a second time with the outline pipeline (see below).
 - `drawUi` draws all UI rectangles with one more draw call (see below).
 - `endFrame` calls `Device::endFrame`: the back buffer goes to the present state, the command list is closed and executed, `Present` runs (sync interval 1 with vsync, otherwise 0 and tearing allowed), the fence is signaled and the next frame slot is used.
 
@@ -131,7 +131,9 @@ An instance is 48 bytes and is copied to the GPU as it is (`static_assert` keeps
 | 4 | color (RGBA8, sRGB) |
 | 16 | rotation (quaternion) |
 | 12 | scale |
-| 4 | flags (`kInstanceChecker`, `kInstanceHighlight`) |
+| 4 | flags: bit 0 `kInstanceChecker`, bit 1 `kInstanceHighlight`, bit 2 `kInstanceOverBudget`, bits 8 to 9 LOD (view modes), bits 16 to 23 flash, bits 24 to 31 dissolve progress |
+
+The two style values in the top 16 bits are 0 to 255 for 0 to 1, written with `render::instanceFlash(flags, amount)` and `render::instanceDissolve(flags, progress)`. Keeping them in the flags keeps the instance at 48 bytes.
 
 The CPU builds no matrices. The vertex shader reads the instance from the upload ring at `instanceOffset + SV_InstanceID × 48` and computes the world position as rotate(rotation, position × scale) + position.
 The rotation uses the short form v + w·t + q×t with t = 2·(q×v). The normal is rotated after dividing by the scale, which keeps it correct for non-uniform scale.
@@ -141,8 +143,26 @@ There is no tangent: the pixel shader builds the tangent frame for normal maps f
 
 ### Materials and textures
 
-`Renderer::createMaterial` adds a 64-byte record (base color, emissive, alpha cutoff, metallic, roughness, normal scale, four bindless texture numbers) to a table; material 0 is plain white. Every frame the whole table is written to the upload ring after the frame constants, and the shader reads `materials[vertex.material]`. A model with several materials is still one mesh and one draw call per LOD.
+`Renderer::createMaterial` adds a 128-byte record (base color, emissive, alpha cutoff, metallic, roughness, normal scale, four bindless texture numbers, then the style feature bits and their values: outline width and color, rim strength and color, dissolve edge width and glow color, wind strength) to a table; material 0 is plain white. Every frame the whole table is written to the upload ring after the frame constants, and the shader reads `materials[vertex.material]`. A model with several materials is still one mesh and one draw call per LOD.
 `ModelCache` turns each glTF material into such a record while loading. Each image goes through `asset::loadCompressedTexture`: the cache file name is a hash of the encoded image, the usage and the cache version. On a miss (development builds only) the image is decoded with stb_image, mipmaps are made with a 2 × 2 box filter (in linear space for color, renormalized for normals) and every 4 × 4 block is compressed with bc7enc (BC7, sRGB for color) or rgbcx (BC5 for normals). `Device::createTexture(TextureInit)` uploads all mips at once. Textures are sampled with the second fixed sampler `g_linearWrap` (repeat, 8× anisotropic).
+
+## Style presets
+
+Artists choose a look instead of writing shaders ({engine}`docs/CODING_MODEL.md` "셰이더 코드"):
+
+- The **lighting model** is one project setting for the whole game (`lightingModel`: `Pbr`, `Toon` or `Unlit`). `Forward.hlsl` is compiled three times with `LIGHTING_MODEL=0/1/2` (`g_ForwardPbrPS`, `g_ForwardToonPS`, `g_ForwardUnlitPS`), all three are in the executable, and `Renderer::setLightingModel` only picks which pipeline `beginFrame` binds. `game::applyRenderStyle` passes the setting (and the toon ramp image) from `mealkit.project`; the editor calls it again when the setting or the ramp file changes.
+- **Material features** are bits in the material record, not shader variants: `kMaterialOutline`, `kMaterialWind`, `kMaterialRim` and `kMaterialDissolve`. The shader tests the bits. Materials with different features can share a mesh, so a model is still one draw call (plus one for the outline).
+- **Per-instance values** (flash, dissolve progress) are in the instance flags (above). Game view code sets them from tick events.
+
+The features:
+
+| Feature | Where | How |
+|---|---|---|
+| Outline | second pass, `VSOutline`/`PSOutline` | The mesh is drawn again with front faces culled (`PipelineDesc::cullFront`) and every vertex pushed out along its normal by the outline width (metres, world space). Only the grown back faces are left around the object, in the outline color. Vertices of materials without the feature are collapsed to a zero-area triangle, which the rasterizer drops. Hard edges (split normals) leave gaps; smooth the normals of outlined meshes. |
+| Wind | vertex shader | The world position moves along the wind direction by sin(time × 1.7 + phase) × 0.7 + sin(time × 3.3 + 1.9 phase) × 0.3, times the vertex color alpha, the material's wind strength and `FrameParams::windStrength`. The phase comes from the world position, so neighbours do not sway together. `FrameParams::time` is the screen time (0 in golden images). |
+| Rim | pixel shader | Adds rim color × strength × (1 − n·v)³ after lighting. |
+| Dissolve | pixel shader (both passes) | Two octaves of integer-hash value noise on the object-space position. Pixels whose noise is below progress × (1 + edge) are discarded, and the band above that glows with the dissolve color. Progress 1 removes everything. |
+| Flash | pixel shader (both passes) | The color is mixed with white by the flash amount before fog, for every material. |
 
 ## Lighting (Forward.hlsl)
 
@@ -153,10 +173,11 @@ Everything is drawn in one forward pass with back-face culling and reversed dept
 3. **Sun** uses half Lambert: h = dot(n, sun) × 0.5 + 0.5, squared. Faces turned away from the sun are dark but not black, so shapes stay readable without shadows.
 4. **Ambient** is a hemisphere light: lerp(ground color, sky color, n.y × 0.5 + 0.5). Upward faces get the sky color, downward faces the ground color.
 5. **Specular**: GGX with a Smith visibility term and Schlick Fresnel for the sun, F0 = 0.04 for non-metals and the albedo for metals. Until the sky HDRI item there is no environment reflection; a rough guess (F0 × ambient) stands in for it.
-6. Color = albedo × (1 − metallic) × (sun color × h² + ambient) + specular + emissive. The diffuse part keeps the wrapped half Lambert of before; the lighting model becomes a project setting in part 2 of the texture and material work.
-7. **Selection**: with flag bit 1 (editor selection) the color is mixed 45 % with orange.
-8. **Fog** is exponential: f = exp(−distance × density), color = lerp(fog color, color, f).
-9. **Screen flash**: the result is mixed with the flash color by its amount.
+6. Color = albedo × (1 − metallic) × (sun color × h² + ambient) + specular + emissive. This is the `Pbr` lighting model. `Toon` replaces h² by the toon ramp texture sampled at h (a 256 × 1 texture: the project's ramp image, nearest pixel, or 3 grey steps by default) and the GGX highlight by one hard-edged highlight. `Unlit` uses albedo + emissive only.
+7. **Rim and dissolve glow** are added (see the table above).
+8. **Selection**: with flag bit 1 (editor selection) the color is mixed 45 % with orange.
+9. **Flash**: the instance flash mixes the color with white. **Fog** is exponential: f = exp(−distance × density), color = lerp(fog color, color, f).
+10. **Screen flash**: the result is mixed with the flash color by its amount.
 
 There are no shadow maps or post effects yet. This keeps the pass within the budget of integrated graphics.
 
@@ -171,7 +192,7 @@ There are no shadow maps or post effects yet. This keeps the pass within the bud
 - Output is premultiplied alpha, blended with `ONE, INV_SRC_ALPHA`. A clip rectangle per quad discards pixels outside it.
 
 The two atlases are 2048 × 2048 textures: `R8_UNORM` for glyph distance fields and `R8G8B8A8_UNORM` for images. The push constants carry their texture indices.
-`updateUiAtlas` can be called at any time; it queues the pixels, split into pieces of about 1 MiB. At the next `drawUi` the queued pieces are copied through the upload ring into the textures (row pitch and start alignment from `Device::copyPitch` and `copyAlignment`; in DX12, 256 and 512 bytes). Pieces that do not fit wait for the next frame.
+`updateUiAtlas` can be called at any time; it queues the pixels, split into pieces of about 1 MiB. At the next `beginFrame` or `drawUi` the queued pieces are copied through the upload ring into the textures (row pitch and start alignment from `Device::copyPitch` and `copyAlignment`; in DX12, 256 and 512 bytes). Pieces that do not fit wait for the next frame.
 
 ## Screenshots
 
@@ -180,7 +201,7 @@ The game uses it for `F12` (`screenshot.png`) and for automatic captures in test
 
 ## Debug views and GPU capture
 
-`FrameParams::debugView` (`render::DebugView`) is passed to `Forward.hlsl` in the push constants (`debugView`, the former padding). The pixel shader returns the normal, a LOD color (instance flag bits 8 to 9) or a budget color (flag `kInstanceOverBudget`) instead of the lit color.
+`FrameParams::debugView` (`render::DebugView`) is passed to `Forward.hlsl` in the push constants (`debugView`, the former padding). The pixel shader returns the normal, a LOD color (instance flag bits 8 to 9), a budget color (flag `kInstanceOverBudget`) or a material feature color (outline red, wind green, rim blue, dissolve yellow, added together) instead of the lit color. View modes use the `Pbr` shader whatever the lighting model, and skip the outline pass.
 Two more pipelines from the same shaders are created in builds with the debug UI: wireframe (`PipelineDesc::wireframe`; Vulkan needs the `fillModeNonSolid` feature, which the device enables when present) and overdraw (`additiveBlend`, `depthTest = false`, cleared to black). The editor fills the instance flags in `buildSceneView` only while a view mode is on.
 
 `rhi/GpuCapture.cpp` loads `renderdoc.dll` from `%ProgramFiles%\RenderDoc` (header `third_party/renderdoc/renderdoc_app.h`) or the newest `WinPixGpuCapturer.dll` under `%ProgramFiles%\Microsoft PIX` before the device is created (`DeviceDesc::gpuCapture`), because both tools hook the graphics API at device creation.

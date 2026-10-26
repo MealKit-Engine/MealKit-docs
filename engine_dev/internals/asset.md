@@ -29,11 +29,14 @@ A loaded `asset::Model` has:
 1. cgltf parses the file, loads its buffers and validates it. File reading is replaced with the engine's `openFile`, so paths with Korean folder names (UTF-8) work.
 2. The file hash is computed from the binary chunk, every buffer and the JSON text.
 3. The nodes of the default scene (or the first scene, or all root nodes) are walked recursively. Each mesh node's world matrix comes from `cgltf_node_transform_world`, so the whole model becomes one mesh in model space.
-4. For every triangle primitive it reads positions, normals and the first vertex color. The color is the material's base color factor times the vertex color, stored as sRGB RGBA8.
+4. For every triangle primitive it reads positions, normals, the first UV set and the first vertex color (stored as sRGB RGBA8; the alpha is the wind amount). Each vertex keeps the number of its primitive's material.
 5. glTF is right-handed and MealKit is left-handed (y up), so z is negated for positions and normals and the triangle winding is reversed. When the node matrix mirrors (negative determinant), the winding is reversed once more.
 6. If any primitive had no normals, smooth normals are computed for the whole mesh: each triangle adds its unnormalized face normal (the cross product, whose length is twice the area) to its three vertices, and the sums are normalized.
 
-Textures, skins and animation are not read yet.
+Each glTF material becomes a renderer material (base color, metallic-roughness, normal and emissive values and textures, alpha clip; see {doc}`render`). Its `extras` (Blender custom properties) are read by `asset::applyMaterialExtras`: a small reader takes the top-level keys and keeps numbers and number arrays. Keys that start with `mealkit_` turn on the style preset features: `outline`, `wind`, `rim` and `dissolve` (a number) turn a feature on and set its main value, and `outlineColor`, `rimColor` and `dissolveColor` (three numbers, linear color) only change a color. An unknown `mealkit_` key or a value of the wrong kind gives a warning with the model and material name and is ignored; other keys are not looked at.
+The same list is written into the add-on's `schema.json` (`materialFeatures`, with labels and the engine's default values), so the Blender panel offers exactly what the loader reads.
+
+Skins and animation are not read yet.
 
 ## Hull points and bounds
 

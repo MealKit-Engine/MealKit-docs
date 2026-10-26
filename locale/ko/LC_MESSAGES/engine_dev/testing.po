@@ -3,17 +3,17 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version:  MealKit\n"
+"Project-Id-Version: MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-21 19:27+0900\n"
+"POT-Creation-Date: 2026-10-26 19:22+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
-"Language: ko\n"
 "Language-Team: Korean\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.18.0\n"
 
 msgid "Testing"
@@ -43,8 +43,8 @@ msgstr "그래픽 회귀 테스트"
 msgid "The full check draws a few fixed views without the editor UI and compares them with reference images in {engine}`engine/tests/golden`, so a shader change that breaks the picture fails the check before anyone looks."
 msgstr "전체 검사가 고정 장면 몇 개를 에디터 UI 없이 그려 {engine}`engine/tests/golden`의 기준 그림과 비교한다. 그래서 그림을 깨뜨리는 셰이더 변경은 사람이 보기 전에 검사에서 실패한다."
 
-msgid "The views are listed in `engine/tests/golden/shots.txt`, one per line: name, scene (under `assets/`), camera position and yaw and pitch in degrees. `MealKitEditor --project . --render-golden <shots.txt> <folder>` draws each one for a few frames and saves `<name>.png`."
-msgstr "장면은 `engine/tests/golden/shots.txt`에 한 줄에 하나씩 있다: 이름, 씬(`assets/` 기준), 카메라 위치와 yaw·pitch(도). `MealKitEditor --project . --render-golden <shots.txt> <폴더>`가 장면마다 몇 프레임 그려 `<이름>.png`로 저장한다."
+msgid "The views are listed in `engine/tests/golden/shots.txt`, one per line: name, scene (under `assets/`), camera position and yaw and pitch in degrees, and optionally a lighting model (`pbr`, `toon` or `unlit`; without it the project setting). Wind is drawn at screen time 0, so the pictures do not change between runs. `MealKitEditor --project . --render-golden <shots.txt> <folder>` draws each one for a few frames and saves `<name>.png`."
+msgstr "장면은 `engine/tests/golden/shots.txt`에 한 줄에 하나씩 있다: 이름, 씬(`assets/` 기준), 카메라 위치와 yaw·pitch(도), 그리고 고를 수 있는 조명 모델(`pbr`, `toon`, `unlit`. 없으면 프로젝트 설정). 바람은 화면 시간 0으로 그려 실행마다 그림이 바뀌지 않는다. `MealKitEditor --project . --render-golden <shots.txt> <폴더>`가 장면마다 몇 프레임 그려 `<이름>.png`로 저장한다."
 
 #, python-format
 msgid "Both the Direct3D 12 and the Vulkan editor are compared with the same images: at most 0.5 % of pixels may differ by more than 8 per channel. The limit allows small differences between GPUs and drivers."
@@ -148,4 +148,3 @@ msgstr "**시뮬레이션 결과를 일부러 바꾸면**(물리·게임 규칙�
 
 msgid "`.rec` files are binary in `.gitattributes`, so line endings are never converted. The runners have no GPU, so screen captures and the shadow/rewind checks run only in the local `check.ps1`. Steam and EOS SDKs are absent, so the \"none\" backend is built."
 msgstr "`.rec`는 `.gitattributes`에서 바이너리라 줄 끝 변환을 받지 않는다. GPU가 없는 러너라 화면 캡처·그림자/되감기 검사는 로컬 `check.ps1`에만 있다. Steam·EOS SDK가 없어 \"없음\" 백엔드로 빌드된다."
-

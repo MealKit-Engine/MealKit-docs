@@ -8,15 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-21 01:29+0900\n"
+"POT-Creation-Date: 2026-10-26 19:22+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language: ko\n"
 "Language-Team: ko <LL@li.org>\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.18.0\n"
 
 msgid "Game code"
@@ -397,6 +397,27 @@ msgstr ""
 msgid "Find the same object in both states by its `Id<T>` (`previous.pawns.get(id)`); an object created this tick has no previous position, so draw it where it is."
 msgstr "두 상태에서 같은 객체는 `Id<T>`로 찾는다(`previous.pawns.get(id)`). 이번 틱에 생긴 객체는 직전 위치가 없으므로 지금 위치에 그린다."
 
+#, python-brace-format
+msgid "An object can also **flash** white or **dissolve** (when its material has the dissolve feature, {doc}`assets`). Both are values from 0 to 1 in the instance flags, set by the view when it draws. Keep the time in the view, started from a tick event, never in `sim/`:"
+msgstr "물체는 흰색으로 **번쩍이거나** **디졸브**(머티리얼에 디졸브 기능이 있을 때, {doc}`assets`)할 수도 있다. 둘 다 인스턴스 flags 안의 0~1 값이고, 화면이 그릴 때 넣는다. 시간은 `sim/`이 아니라 화면에 두고, 틱 이벤트에서 시작한다:"
+
+#, python-brace-format
+msgid ""
+"// in onTick: a push event marks the pawns it hit (view/Draw.cpp onWorldEvent)\n"
+"view.hitTime[id.slot] = viewTime;\n"
+"// when drawing: fade the flash out over hitFlashSeconds (view tuning)\n"
+"const f32 flash = pl.hitFlash * (1.0f - static_cast<f32>(viewTime - view.hitTime[id.slot]) / pl.hitFlashSeconds);\n"
+"out.add(box, {pos, color.value, facing, pl.bodySize, render::instanceFlash(0, flash)});\n"
+msgstr ""
+"// onTick에서: 밀치기 이벤트가 맞은 Pawn을 표시한다 (view/Draw.cpp onWorldEvent)\n"
+"view.hitTime[id.slot] = viewTime;\n"
+"// 그릴 때: hitFlashSeconds(화면용 튜닝) 동안 번쩍임을 줄인다\n"
+"const f32 flash = pl.hitFlash * (1.0f - static_cast<f32>(viewTime - view.hitTime[id.slot]) / pl.hitFlashSeconds);\n"
+"out.add(box, {pos, color.value, facing, pl.bodySize, render::instanceFlash(0, flash)});\n"
+
+msgid "`render::instanceDissolve(flags, progress)` works the same way (progress 1 is fully gone)."
+msgstr "`render::instanceDissolve(flags, progress)`도 같다 (진행도 1이면 완전히 사라진다)."
+
 msgid "Input"
 msgstr "입력"
 
@@ -422,4 +443,3 @@ msgstr "powershell -ExecutionPolicy Bypass -File tools\\mp_test.ps1 -Exe <projec
 #, python-brace-format
 msgid "When the shadow check fails, it stops and logs the first tick that differs and the state fields that differ. The usual causes are a member that is not declared with `MEALKIT_FIELD`, a value left uninitialized, iteration over a hash map or pointers, or code reading something outside the simulation. For a step-by-step example, see {doc}`../getting_started/first_gameplay`."
 msgstr "그림자 검사가 실패하면 멈추고 처음 갈라진 틱과 다른 상태 필드를 로그에 남긴다. 흔한 원인은 `MEALKIT_FIELD`로 선언하지 않은 멤버, 초기화하지 않은 값, 해시 맵이나 포인터 순서로 순회, 시뮬레이션 밖의 것을 읽는 코드다. 단계별 예제는 {doc}`../getting_started/first_gameplay`에 있다."
-

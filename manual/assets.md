@@ -8,7 +8,27 @@
 - Materials are glTF PBR metallic-roughness, which is what Blender's Principled BSDF exports: base color, normal, metallic-roughness and emissive **textures and factors**, the vertex color (multiplied with the base color) and **alpha clip** (glTF alpha mode `MASK`). Other material features (clearcoat, transmission, sheen, alpha blend, double-sided, occlusion, a second UV set or texture transform) are ignored with a warning in the log.
 - Textures inside the model (PNG or JPEG) are compressed once with mipmaps, to BC7 for color and BC5 for normal maps, and kept in `build/cache/textures` of the project. The first load of a new texture takes a moment; later loads read the cache. Delete the folder to rebuild it. Shipped builds read only this cache: export after the editor (or a development build) has loaded the models, and `build.bat Export` copies the cache next to the exe.
 - A solid box with a model collides as the **convex hull of the model's vertices** (concave parts are filled in). Hull points are taken from the original vertices before optimization, so they are the same on every PC.
-- The sample models (tree, rock, ring, and the textured `props/crate` and alpha-clipped `props/fence` used by `scenes/materials.scene`) can be regenerated with `python tools/make_sample_models.py`.
+- The sample models (tree, rock, ring, the textured `props/crate` and alpha-clipped `props/fence` used by `scenes/materials.scene`, and the `props/style_*` models of `scenes/styles.scene`) can be regenerated with `python tools/make_sample_models.py`.
+
+## Art style: lighting model and material features
+
+The look of a game is chosen, not programmed: games do not write shaders. There are three parts.
+
+**Lighting model** (File > Project Settings, `lightingModel`) sets the shading of the whole game:
+
+| Value | Look |
+|---|---|
+| `Pbr` (default) | Physically based: soft diffuse light, glossy highlights that follow metallic and roughness |
+| `Toon` | Flat bands of light and a hard highlight. The bands come from the **toon ramp** image (`toonRamp`, a path under `assets/`, like `textures/ramp.png`): its first row is read from left (the side away from the sun) to right (the lit side). Empty uses 3 grey steps. |
+| `Unlit` | The colors as they are, with no light or shadow (fog still applies) |
+
+The editor shows a new lighting model or a changed ramp image at once. Every lighting model is built into the game, so switching does not make the game stutter.
+
+**Material features** are set per material in Blender's MealKit material panel ({doc}`blender`): outline, wind sway, rim light and dissolve. A model can mix materials with and without features. **View > View Mode > Material Features** in the editor shows which material uses which feature.
+
+**Per-object values** change while the game runs: a white flash (for example when a character is hit) and the dissolve progress. The game's view code sets them on the object it draws ({doc}`game_code`).
+
+`scenes/styles.scene` in the engine folder shows all of it; the graphics tests draw it with each lighting model.
 
 ## Asset budget
 

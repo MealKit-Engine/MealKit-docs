@@ -3,17 +3,17 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version:  MealKit\n"
+"Project-Id-Version: MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-26 18:30+0900\n"
+"POT-Creation-Date: 2026-10-26 19:22+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
-"Language: ko\n"
 "Language-Team: Korean\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.18.0\n"
 
 msgid "Editor"
@@ -210,6 +210,13 @@ msgstr "예산 초과"
 msgid "Models over their asset budget in red, everything else gray ({doc}`assets`)"
 msgstr "에셋 예산을 넘은 모델은 빨강, 나머지는 회색({doc}`assets`)"
 
+msgid "Material Features"
+msgstr "머티리얼 기능"
+
+#, python-brace-format
+msgid "The style features of each material: outline red, wind green, rim blue, dissolve yellow (colors add up when a material has several), none gray ({doc}`assets`)"
+msgstr "머티리얼마다의 스타일 기능: 외곽선 빨강, 바람 초록, 림 파랑, 디졸브 노랑(여러 개면 색이 더해진다), 없음 회색({doc}`assets`)"
+
 msgid "View modes apply to the editing view and are left out of shipped builds."
 msgstr "보기 모드는 편집 화면에만 적용되고 출시 빌드에는 들어가지 않는다."
 
@@ -229,4 +236,3 @@ msgstr "플레이 모드는 편집 중인 씬으로 에디터 안에서 게임�
 #, python-brace-format
 msgid "How the editor works inside (game DLL loading, hot reload, play mode, rewind) is in {doc}`../engine_dev/internals/editor`."
 msgstr "에디터가 안에서 어떻게 돌아가는지(게임 DLL 불러오기, 핫 리로드, 플레이 모드, 되감기)는 {doc}`../engine_dev/internals/editor`에 있다."
-

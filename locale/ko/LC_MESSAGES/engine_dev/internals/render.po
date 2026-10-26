@@ -5,15 +5,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-21 20:14+0900\n"
+"POT-Creation-Date: 2026-10-26 19:22+0900\n"
 "PO-Revision-Date: 2026-10-19 13:15+0900\n"
 "Last-Translator: KingProtea99\n"
-"Language: ko\n"
 "Language-Team: Korean\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.18.0\n"
 
 msgid "Render"
@@ -309,8 +309,8 @@ msgstr "백버퍼마다 렌더 타깃 뷰를 둘 만든다: 3D 패스용 `R8G8B8
 msgid "Creates one shader-visible descriptor heap (16 buffer slots, then 4,096 texture slots), the upload ring with its raw buffer view in slot 0, the shared root signature and a 32-bit float depth buffer."
 msgstr "셰이더가 보는 디스크립터 힙 하나(버퍼 16칸, 그 뒤 텍스처 4,096칸), 0번 칸에 원시 버퍼 뷰를 둔 업로드 링, 같이 쓰는 루트 시그니처, 32비트 float 깊이 버퍼를 만든다."
 
-msgid "The renderer then creates the 3D pipeline, the UI pipeline and the two UI atlas textures. `rhi::queryGpu` does steps 1 and 2 without a window, for `--system-info`. With the debug layer on (`--debug`), D3D12 messages are sent to the engine log. Every D3D call goes through the `HR` macro: a failure stops the program with the error code and, after a device removal, the removal reason."
-msgstr "그다음 렌더러가 3D 파이프라인, UI 파이프라인, UI 아틀라스 텍스처 둘을 만든다. `rhi::queryGpu`는 1, 2단계를 창 없이 해서 `--system-info`에 쓴다. 디버그 레이어를 켜면(`--debug`) D3D12 메시지가 엔진 로그로 간다. 모든 D3D 호출은 `HR` 매크로를 거친다: 실패하면 오류 코드와, 장치가 제거되었으면 제거 이유를 알리고 프로그램을 멈춘다."
+msgid "The renderer then creates every 3D pipeline it can use (one per lighting model, the outline pass and, in builds with the debug UI, the two view-mode pipelines), the UI pipeline, the two UI atlas textures and the toon ramp texture. Because all of them exist before the first frame, switching the lighting model or meeting a new material feature never compiles anything during play. `rhi::queryGpu` does steps 1 and 2 without a window, for `--system-info`. With the debug layer on (`--debug`), D3D12 messages are sent to the engine log. Every D3D call goes through the `HR` macro: a failure stops the program with the error code and, after a device removal, the removal reason."
+msgstr "그다음 렌더러가 쓸 수 있는 3D 파이프라인을 모두 만든다(조명 모델마다 하나, 외곽선 패스, 디버그 UI가 있는 빌드에서는 보기 모드 파이프라인 둘). UI 파이프라인, UI 아틀라스 텍스처 둘, 툰 램프 텍스처도 만든다. 첫 프레임 전에 모두 있으므로 조명 모델을 바꾸거나 새 머티리얼 기능을 만나도 플레이 중에 아무것도 컴파일하지 않는다. `rhi::queryGpu`는 1, 2단계를 창 없이 해서 `--system-info`에 쓴다. 디버그 레이어를 켜면(`--debug`) D3D12 메시지가 엔진 로그로 간다. 모든 D3D 호출은 `HR` 매크로를 거친다: 실패하면 오류 코드와, 장치가 제거되었으면 제거 이유를 알리고 프로그램을 멈춘다."
 
 msgid "Memory"
 msgstr "메모리"
@@ -343,11 +343,11 @@ msgstr "`Renderer::beginFrame`, `DrawList::submit`, 게임 UI(`ui::System::rende
 msgid "Inside the renderer:"
 msgstr "렌더러 안에서는:"
 
-msgid "`beginFrame` calls `Device::beginFrame`, which waits on the swap chain's latency object, so the CPU never runs more than two frames ahead and input lag does not build up, then waits for this frame slot's fence and resets the allocator and the command list. The renderer then binds the scene target, clearing color to the fog color (mixed with the flash, so the sky flashes too) and depth to 0. It sets the viewport (the whole window, or the scene view in the editor), binds the 3D pipeline and writes the 176-byte frame constants into the upload ring."
-msgstr "`beginFrame`은 `Device::beginFrame`을 부른다. 이 함수는 스왑 체인의 지연 대기 객체를 기다려 CPU가 두 프레임보다 앞서 가지 않고 입력 지연이 쌓이지 않게 하고, 이 프레임 자리의 펜스를 기다린 뒤 할당자와 명령 리스트를 비운다. 그다음 렌더러가 장면 대상을 묶으며 색은 안개 색(번쩍임과 섞어서 하늘도 번쩍인다)으로, 깊이는 0으로 지운다. 뷰포트(창 전체, 에디터에서는 씬 뷰)를 정하고, 3D 파이프라인을 묶고, 176바이트 프레임 상수를 업로드 링에 쓴다."
+msgid "`beginFrame` calls `Device::beginFrame`, which waits on the swap chain's latency object, so the CPU never runs more than two frames ahead and input lag does not build up, then waits for this frame slot's fence and resets the allocator and the command list. The renderer then binds the scene target, clearing color to the fog color (mixed with the flash, so the sky flashes too) and depth to 0. It sets the viewport (the whole window, or the scene view in the editor), binds the pipeline of the current lighting model and writes the 224-byte frame constants (camera, light, fog, flash, the material table position, wind and the toon ramp texture number) into the upload ring. Queued texture copies (UI atlas pieces, a new toon ramp) are done first."
+msgstr "`beginFrame`은 `Device::beginFrame`을 부른다. 이 함수는 스왑 체인의 지연 대기 객체를 기다려 CPU가 두 프레임보다 앞서 가지 않고 입력 지연이 쌓이지 않게 하고, 이 프레임 자리의 펜스를 기다린 뒤 할당자와 명령 리스트를 비운다. 그다음 렌더러가 장면 대상을 묶으며 색은 안개 색(번쩍임과 섞어서 하늘도 번쩍인다)으로, 깊이는 0으로 지운다. 뷰포트(창 전체, 에디터에서는 씬 뷰)를 정하고, 지금 조명 모델의 파이프라인을 묶고, 224바이트 프레임 상수(카메라, 빛, 안개, 번쩍임, 머티리얼 표 위치, 바람, 툰 램프 텍스처 번호)를 업로드 링에 쓴다. 기다리던 텍스처 복사(UI 아틀라스 조각, 새 툰 램프)를 먼저 한다."
 
-msgid "`drawInstances(mesh, instances, count)` copies the instances into the upload ring, pushes the ring index and the offsets of the frame constants and the instances, binds the mesh's vertex and index buffers and draws once."
-msgstr "`drawInstances(mesh, instances, count)`는 인스턴스를 업로드 링에 복사하고, 링 번호와 프레임 상수·인스턴스의 위치를 푸시 상수로 넘기고, 메시의 정점·인덱스 버퍼를 묶고, 한 번 그린다."
+msgid "`drawInstances(mesh, instances, count)` copies the instances into the upload ring, pushes the ring index and the offsets of the frame constants and the instances, binds the mesh's vertex and index buffers and draws once. If the mesh has an outlined material, it draws the same instances a second time with the outline pipeline (see below)."
+msgstr "`drawInstances(mesh, instances, count)`는 인스턴스를 업로드 링에 복사하고, 링 번호와 프레임 상수·인스턴스의 위치를 푸시 상수로 넘기고, 메시의 정점·인덱스 버퍼를 묶고, 한 번 그린다. 메시에 외곽선 머티리얼이 있으면 같은 인스턴스를 외곽선 파이프라인으로 한 번 더 그린다(아래)."
 
 msgid "`drawUi` draws all UI rectangles with one more draw call (see below)."
 msgstr "`drawUi`는 드로우 콜 하나를 더 써서 UI 사각형을 모두 그린다(아래 참고)."
@@ -395,8 +395,11 @@ msgstr "회전 (쿼터니언)"
 msgid "scale"
 msgstr "크기"
 
-msgid "flags (`kInstanceChecker`, `kInstanceHighlight`)"
-msgstr "플래그 (`kInstanceChecker`, `kInstanceHighlight`)"
+msgid "flags: bit 0 `kInstanceChecker`, bit 1 `kInstanceHighlight`, bit 2 `kInstanceOverBudget`, bits 8 to 9 LOD (view modes), bits 16 to 23 flash, bits 24 to 31 dissolve progress"
+msgstr "flags: 비트 0 `kInstanceChecker`, 비트 1 `kInstanceHighlight`, 비트 2 `kInstanceOverBudget`, 비트 8~9 LOD(보기 모드), 비트 16~23 번쩍임, 비트 24~31 디졸브 진행도"
+
+msgid "The two style values in the top 16 bits are 0 to 255 for 0 to 1, written with `render::instanceFlash(flags, amount)` and `render::instanceDissolve(flags, progress)`. Keeping them in the flags keeps the instance at 48 bytes."
+msgstr "위 16비트의 스타일 값 둘은 0~1을 0~255로 담고, `render::instanceFlash(flags, amount)`와 `render::instanceDissolve(flags, progress)`로 쓴다. flags에 두어 인스턴스가 48바이트 그대로다."
 
 msgid "The CPU builds no matrices. The vertex shader reads the instance from the upload ring at `instanceOffset + SV_InstanceID × 48` and computes the world position as rotate(rotation, position × scale) + position. The rotation uses the short form v + w·t + q×t with t = 2·(q×v). The normal is rotated after dividing by the scale, which keeps it correct for non-uniform scale."
 msgstr "CPU는 행렬을 만들지 않는다. 정점 셰이더가 업로드 링의 `instanceOffset + SV_InstanceID × 48`에서 인스턴스를 읽고, 월드 위치를 rotate(회전, 위치 × 크기) + 위치로 계산한다. 회전은 짧은 식 v + w·t + q×t, t = 2·(q×v)를 쓴다. 법선은 크기로 나눈 뒤 돌려서, 축마다 크기가 달라도 맞게 나온다."
@@ -407,8 +410,78 @@ msgstr "정점은 36바이트다: 위치(12), 법선(12), RGBA8 색(4, glTF `COL
 msgid "Materials and textures"
 msgstr "머티리얼과 텍스처"
 
-msgid "`Renderer::createMaterial` adds a 64-byte record (base color, emissive, alpha cutoff, metallic, roughness, normal scale, four bindless texture numbers) to a table; material 0 is plain white. Every frame the whole table is written to the upload ring after the frame constants, and the shader reads `materials[vertex.material]`. A model with several materials is still one mesh and one draw call per LOD. `ModelCache` turns each glTF material into such a record while loading. Each image goes through `asset::loadCompressedTexture`: the cache file name is a hash of the encoded image, the usage and the cache version. On a miss (development builds only) the image is decoded with stb_image, mipmaps are made with a 2 × 2 box filter (in linear space for color, renormalized for normals) and every 4 × 4 block is compressed with bc7enc (BC7, sRGB for color) or rgbcx (BC5 for normals). `Device::createTexture(TextureInit)` uploads all mips at once. Textures are sampled with the second fixed sampler `g_linearWrap` (repeat, 8× anisotropic)."
-msgstr "`Renderer::createMaterial`은 64바이트 기록(기본 색, 발광, 알파 기준, 금속, 거칠기, 법선 세기, bindless 텍스처 번호 넷)을 표에 더한다. 0번은 흰색이다. 프레임마다 표 전체를 프레임 상수 뒤 업로드 링에 쓰고, 셰이더가 `materials[vertex.material]`을 읽는다. 머티리얼이 여러 개인 모델도 LOD마다 메시 하나, 드로우 콜 하나다. `ModelCache`가 불러올 때 glTF 머티리얼을 이런 기록으로 바꾼다. 이미지마다 `asset::loadCompressedTexture`를 거친다: 캐시 파일 이름은 인코딩된 이미지·쓰임·캐시 버전의 해시다. 캐시에 없으면(개발 빌드만) stb_image로 디코드하고, 2 × 2 상자 필터로 밉맵을 만들고(색은 선형 공간에서, 법선은 다시 길이 1로), 4 × 4 블록마다 bc7enc(BC7, 색은 sRGB)나 rgbcx(법선은 BC5)로 압축한다. `Device::createTexture(TextureInit)`가 밉 전체를 한 번에 올린다. 텍스처는 두 번째 고정 샘플러 `g_linearWrap`(반복, 이방성 8)으로 읽는다."
+msgid "`Renderer::createMaterial` adds a 128-byte record (base color, emissive, alpha cutoff, metallic, roughness, normal scale, four bindless texture numbers, then the style feature bits and their values: outline width and color, rim strength and color, dissolve edge width and glow color, wind strength) to a table; material 0 is plain white. Every frame the whole table is written to the upload ring after the frame constants, and the shader reads `materials[vertex.material]`. A model with several materials is still one mesh and one draw call per LOD. `ModelCache` turns each glTF material into such a record while loading. Each image goes through `asset::loadCompressedTexture`: the cache file name is a hash of the encoded image, the usage and the cache version. On a miss (development builds only) the image is decoded with stb_image, mipmaps are made with a 2 × 2 box filter (in linear space for color, renormalized for normals) and every 4 × 4 block is compressed with bc7enc (BC7, sRGB for color) or rgbcx (BC5 for normals). `Device::createTexture(TextureInit)` uploads all mips at once. Textures are sampled with the second fixed sampler `g_linearWrap` (repeat, 8× anisotropic)."
+msgstr "`Renderer::createMaterial`은 128바이트 기록(기본 색, 발광, 알파 기준, 금속, 거칠기, 법선 세기, bindless 텍스처 번호 넷, 그 뒤에 스타일 기능 비트와 값: 외곽선 폭·색, 림 세기·색, 디졸브 경계 폭·발광 색, 바람 세기)을 표에 더한다. 0번은 흰색이다. 프레임마다 표 전체를 프레임 상수 뒤 업로드 링에 쓰고, 셰이더가 `materials[vertex.material]`을 읽는다. 머티리얼이 여러 개인 모델도 LOD마다 메시 하나, 드로우 콜 하나다. `ModelCache`가 불러올 때 glTF 머티리얼을 이런 기록으로 바꾼다. 이미지마다 `asset::loadCompressedTexture`를 거친다: 캐시 파일 이름은 인코딩된 이미지·쓰임·캐시 버전의 해시다. 캐시에 없으면(개발 빌드만) stb_image로 디코드하고, 2 × 2 상자 필터로 밉맵을 만들고(색은 선형 공간에서, 법선은 다시 길이 1로), 4 × 4 블록마다 bc7enc(BC7, 색은 sRGB)나 rgbcx(법선은 BC5)로 압축한다. `Device::createTexture(TextureInit)`가 밉 전체를 한 번에 올린다. 텍스처는 두 번째 고정 샘플러 `g_linearWrap`(반복, 이방성 8)으로 읽는다."
+
+msgid "Style presets"
+msgstr "스타일 프리셋"
+
+#, python-brace-format
+msgid "Artists choose a look instead of writing shaders ({engine}`docs/CODING_MODEL.md` \"셰이더 코드\"):"
+msgstr "아티스트는 셰이더를 쓰는 대신 모습을 고른다({engine}`docs/CODING_MODEL.md` \"셰이더 코드\"):"
+
+msgid "The **lighting model** is one project setting for the whole game (`lightingModel`: `Pbr`, `Toon` or `Unlit`). `Forward.hlsl` is compiled three times with `LIGHTING_MODEL=0/1/2` (`g_ForwardPbrPS`, `g_ForwardToonPS`, `g_ForwardUnlitPS`), all three are in the executable, and `Renderer::setLightingModel` only picks which pipeline `beginFrame` binds. `game::applyRenderStyle` passes the setting (and the toon ramp image) from `mealkit.project`; the editor calls it again when the setting or the ramp file changes."
+msgstr "**조명 모델**은 게임 전체에 하나인 프로젝트 설정이다(`lightingModel`: `Pbr`, `Toon`, `Unlit`). `Forward.hlsl`을 `LIGHTING_MODEL=0/1/2`로 세 번 컴파일하고(`g_ForwardPbrPS`, `g_ForwardToonPS`, `g_ForwardUnlitPS`) 셋 모두 실행 파일에 들어 있으며, `Renderer::setLightingModel`은 `beginFrame`이 묶을 파이프라인을 고르기만 한다. `game::applyRenderStyle`이 `mealkit.project`의 설정(과 툰 램프 그림)을 넘기고, 에디터는 설정이나 램프 파일이 바뀌면 다시 부른다."
+
+msgid "**Material features** are bits in the material record, not shader variants: `kMaterialOutline`, `kMaterialWind`, `kMaterialRim` and `kMaterialDissolve`. The shader tests the bits. Materials with different features can share a mesh, so a model is still one draw call (plus one for the outline)."
+msgstr "**머티리얼 기능**은 셰이더 변형이 아니라 머티리얼 기록의 비트다: `kMaterialOutline`, `kMaterialWind`, `kMaterialRim`, `kMaterialDissolve`. 셰이더가 비트를 본다. 기능이 다른 머티리얼이 한 메시에 있어도 되므로 모델은 여전히 드로우 콜 하나(외곽선이 있으면 하나 더)다."
+
+msgid "**Per-instance values** (flash, dissolve progress) are in the instance flags (above). Game view code sets them from tick events."
+msgstr "**인스턴스 값**(번쩍임, 디졸브 진행도)은 인스턴스 flags(위)에 있다. 게임 화면 코드가 틱 이벤트로 넣는다."
+
+msgid "The features:"
+msgstr "기능:"
+
+msgid "Feature"
+msgstr "기능"
+
+msgid "Where"
+msgstr "위치"
+
+msgid "How"
+msgstr "방법"
+
+msgid "Outline"
+msgstr "외곽선"
+
+msgid "second pass, `VSOutline`/`PSOutline`"
+msgstr "두 번째 패스, `VSOutline`/`PSOutline`"
+
+msgid "The mesh is drawn again with front faces culled (`PipelineDesc::cullFront`) and every vertex pushed out along its normal by the outline width (metres, world space). Only the grown back faces are left around the object, in the outline color. Vertices of materials without the feature are collapsed to a zero-area triangle, which the rasterizer drops. Hard edges (split normals) leave gaps; smooth the normals of outlined meshes."
+msgstr "메시를 앞면을 버리고(`PipelineDesc::cullFront`) 정점마다 법선 방향으로 외곽선 폭(월드 미터)만큼 밀어 한 번 더 그린다. 부푼 뒷면만 물체 둘레에 외곽선 색으로 남는다. 기능이 없는 머티리얼의 정점은 넓이 0 삼각형으로 접어 래스터라이저가 버린다. 각진 모서리(나뉜 법선)에서는 끊기므로 외곽선 메시는 법선을 매끈하게 한다."
+
+msgid "Wind"
+msgstr "바람"
+
+msgid "vertex shader"
+msgstr "정점 셰이더"
+
+msgid "The world position moves along the wind direction by sin(time × 1.7 + phase) × 0.7 + sin(time × 3.3 + 1.9 phase) × 0.3, times the vertex color alpha, the material's wind strength and `FrameParams::windStrength`. The phase comes from the world position, so neighbours do not sway together. `FrameParams::time` is the screen time (0 in golden images)."
+msgstr "월드 위치가 바람 방향으로 sin(시간 × 1.7 + 위상) × 0.7 + sin(시간 × 3.3 + 1.9 위상) × 0.3에 정점 색 알파, 머티리얼의 바람 세기, `FrameParams::windStrength`를 곱한 만큼 움직인다. 위상은 월드 위치에서 와서 이웃이 함께 흔들리지 않는다. `FrameParams::time`은 화면 시간(기준 그림은 0)이다."
+
+msgid "Rim"
+msgstr "림"
+
+msgid "pixel shader"
+msgstr "픽셀 셰이더"
+
+msgid "Adds rim color × strength × (1 − n·v)³ after lighting."
+msgstr "조명 뒤에 림 색 × 세기 × (1 − n·v)³을 더한다."
+
+msgid "Dissolve"
+msgstr "디졸브"
+
+msgid "pixel shader (both passes)"
+msgstr "픽셀 셰이더 (두 패스 모두)"
+
+msgid "Two octaves of integer-hash value noise on the object-space position. Pixels whose noise is below progress × (1 + edge) are discarded, and the band above that glows with the dissolve color. Progress 1 removes everything."
+msgstr "물체 공간 위치의 정수 해시 값 무늬 두 옥타브. 무늬가 진행도 × (1 + 경계)보다 낮은 픽셀은 버리고, 그 위의 띠는 디졸브 색으로 빛난다. 진행도 1이면 모두 사라진다."
+
+msgid "Flash"
+msgstr "번쩍임"
+
+msgid "The color is mixed with white by the flash amount before fog, for every material."
+msgstr "모든 머티리얼에서, 안개 전에 색을 번쩍임 양만큼 흰색과 섞는다."
 
 msgid "Lighting (Forward.hlsl)"
 msgstr "조명 (Forward.hlsl)"
@@ -431,14 +504,17 @@ msgstr "**환경광**은 반구 조명이다: lerp(땅색, 하늘색, n.y × 0.5
 msgid "**Specular**: GGX with a Smith visibility term and Schlick Fresnel for the sun, F0 = 0.04 for non-metals and the albedo for metals. Until the sky HDRI item there is no environment reflection; a rough guess (F0 × ambient) stands in for it."
 msgstr "**정반사**: 태양에 GGX + Smith 가시성 + Schlick 프레넬, F0는 비금속 0.04, 금속은 알베도. 하늘 HDRI 항목 전까지 환경 반사는 없고 어림(F0 × 환경광)이 대신한다."
 
-msgid "Color = albedo × (1 − metallic) × (sun color × h² + ambient) + specular + emissive. The diffuse part keeps the wrapped half Lambert of before; the lighting model becomes a project setting in part 2 of the texture and material work."
-msgstr "색 = 알베도 × (1 − 금속) × (태양 색 × h² + 환경광) + 정반사 + 발광. 확산은 예전의 감싼 하프 램버트를 그대로 쓴다. 조명 모델은 텍스처와 머티리얼 2부에서 프로젝트 설정이 된다."
+msgid "Color = albedo × (1 − metallic) × (sun color × h² + ambient) + specular + emissive. This is the `Pbr` lighting model. `Toon` replaces h² by the toon ramp texture sampled at h (a 256 × 1 texture: the project's ramp image, nearest pixel, or 3 grey steps by default) and the GGX highlight by one hard-edged highlight. `Unlit` uses albedo + emissive only."
+msgstr "색 = albedo × (1 − 금속) × (태양 색 × h² + 환경광) + 정반사 + 발광. 이것이 `Pbr` 조명 모델이다. `Toon`은 h² 대신 h에서 읽은 툰 램프 텍스처(256 × 1 텍스처: 프로젝트 램프 그림의 가장 가까운 픽셀, 없으면 회색 3단계)를, GGX 하이라이트 대신 끊어진 하이라이트 하나를 쓴다. `Unlit`은 albedo + 발광만 쓴다."
+
+msgid "**Rim and dissolve glow** are added (see the table above)."
+msgstr "**림과 디졸브 발광**을 더한다(위 표)."
 
 msgid "**Selection**: with flag bit 1 (editor selection) the color is mixed 45 % with orange."
 msgstr "**선택**: 플래그 비트 1(에디터 선택)이 켜지면 색을 주황색과 45 % 섞는다."
 
-msgid "**Fog** is exponential: f = exp(−distance × density), color = lerp(fog color, color, f)."
-msgstr "**안개**는 지수 안개다: f = exp(−거리 × 밀도), 색 = lerp(안개 색, 색, f)."
+msgid "**Flash**: the instance flash mixes the color with white. **Fog** is exponential: f = exp(−distance × density), color = lerp(fog color, color, f)."
+msgstr "**번쩍임**: 인스턴스 번쩍임이 색을 흰색과 섞는다. **안개**는 지수 안개다: f = exp(−거리 × 밀도), 색 = lerp(안개 색, 색, f)."
 
 msgid "**Screen flash**: the result is mixed with the flash color by its amount."
 msgstr "**화면 번쩍임**: 결과를 번쩍임 색과 그 세기만큼 섞는다."
@@ -467,8 +543,8 @@ msgstr "글자는 채널 하나짜리 부호 거리 필드 아틀라스를 읽�
 msgid "Output is premultiplied alpha, blended with `ONE, INV_SRC_ALPHA`. A clip rectangle per quad discards pixels outside it."
 msgstr "출력은 미리 곱한 알파이고 `ONE, INV_SRC_ALPHA`로 섞는다. 사각형마다 있는 자르기 사각형 밖의 픽셀은 버린다."
 
-msgid "The two atlases are 2048 × 2048 textures: `R8_UNORM` for glyph distance fields and `R8G8B8A8_UNORM` for images. The push constants carry their texture indices. `updateUiAtlas` can be called at any time; it queues the pixels, split into pieces of about 1 MiB. At the next `drawUi` the queued pieces are copied through the upload ring into the textures (row pitch and start alignment from `Device::copyPitch` and `copyAlignment`; in DX12, 256 and 512 bytes). Pieces that do not fit wait for the next frame."
-msgstr "아틀라스 둘은 2048 × 2048 텍스처다: 글자 거리 필드용 `R8_UNORM`과 이미지용 `R8G8B8A8_UNORM`. 텍스처 번호는 푸시 상수로 넘긴다. `updateUiAtlas`는 언제든 부를 수 있고, 픽셀을 약 1 MiB 조각으로 나눠 줄에 세운다. 다음 `drawUi`에서 기다리던 조각을 업로드 링을 거쳐 텍스처로 복사한다(줄 간격과 시작 정렬은 `Device::copyPitch`, `copyAlignment`. DX12에서는 256바이트와 512바이트). 자리가 없는 조각은 다음 프레임을 기다린다."
+msgid "The two atlases are 2048 × 2048 textures: `R8_UNORM` for glyph distance fields and `R8G8B8A8_UNORM` for images. The push constants carry their texture indices. `updateUiAtlas` can be called at any time; it queues the pixels, split into pieces of about 1 MiB. At the next `beginFrame` or `drawUi` the queued pieces are copied through the upload ring into the textures (row pitch and start alignment from `Device::copyPitch` and `copyAlignment`; in DX12, 256 and 512 bytes). Pieces that do not fit wait for the next frame."
+msgstr "아틀라스 둘은 2048 × 2048 텍스처다: 글자 거리 필드용 `R8_UNORM`과 이미지용 `R8G8B8A8_UNORM`. 텍스처 번호는 푸시 상수로 넘긴다. `updateUiAtlas`는 언제든 부를 수 있고, 픽셀을 약 1 MiB 조각으로 나눠 줄에 세운다. 다음 `beginFrame`이나 `drawUi`에서 기다리던 조각을 업로드 링을 거쳐 텍스처로 복사한다(줄 간격과 시작 정렬은 `Device::copyPitch`, `copyAlignment`. DX12에서는 256바이트와 512바이트). 자리가 없는 조각은 다음 프레임을 기다린다."
 
 msgid "Screenshots"
 msgstr "스크린샷"
@@ -479,8 +555,8 @@ msgstr "`requestCapture(path)`는 다음 프레임에 표시를 한다. `Device:
 msgid "Debug views and GPU capture"
 msgstr "디버그 보기와 GPU 캡처"
 
-msgid "`FrameParams::debugView` (`render::DebugView`) is passed to `Forward.hlsl` in the push constants (`debugView`, the former padding). The pixel shader returns the normal, a LOD color (instance flag bits 8 to 9) or a budget color (flag `kInstanceOverBudget`) instead of the lit color. Two more pipelines from the same shaders are created in builds with the debug UI: wireframe (`PipelineDesc::wireframe`; Vulkan needs the `fillModeNonSolid` feature, which the device enables when present) and overdraw (`additiveBlend`, `depthTest = false`, cleared to black). The editor fills the instance flags in `buildSceneView` only while a view mode is on."
-msgstr "`FrameParams::debugView`(`render::DebugView`)는 푸시 상수(`debugView`, 예전의 빈칸)로 `Forward.hlsl`에 간다. 픽셀 셰이더는 조명 색 대신 법선, LOD 색(인스턴스 플래그 비트 8~9), 예산 색(플래그 `kInstanceOverBudget`)을 돌려준다. 디버그 UI가 있는 빌드는 같은 셰이더로 파이프라인 두 개를 더 만든다: 와이어프레임(`PipelineDesc::wireframe`, Vulkan은 `fillModeNonSolid` 기능이 필요해 있으면 장치가 켠다)과 오버드로(`additiveBlend`, `depthTest = false`, 검정으로 지움). 에디터는 보기 모드가 켜져 있을 때만 `buildSceneView`에서 인스턴스 플래그를 채운다."
+msgid "`FrameParams::debugView` (`render::DebugView`) is passed to `Forward.hlsl` in the push constants (`debugView`, the former padding). The pixel shader returns the normal, a LOD color (instance flag bits 8 to 9), a budget color (flag `kInstanceOverBudget`) or a material feature color (outline red, wind green, rim blue, dissolve yellow, added together) instead of the lit color. View modes use the `Pbr` shader whatever the lighting model, and skip the outline pass. Two more pipelines from the same shaders are created in builds with the debug UI: wireframe (`PipelineDesc::wireframe`; Vulkan needs the `fillModeNonSolid` feature, which the device enables when present) and overdraw (`additiveBlend`, `depthTest = false`, cleared to black). The editor fills the instance flags in `buildSceneView` only while a view mode is on."
+msgstr "`FrameParams::debugView`(`render::DebugView`)는 푸시 상수(`debugView`, 예전의 빈칸)로 `Forward.hlsl`에 간다. 픽셀 셰이더는 조명 색 대신 법선, LOD 색(인스턴스 플래그 비트 8~9), 예산 색(플래그 `kInstanceOverBudget`), 머티리얼 기능 색(외곽선 빨강, 바람 초록, 림 파랑, 디졸브 노랑을 더함)을 돌려준다. 보기 모드는 조명 모델과 상관없이 `Pbr` 셰이더를 쓰고 외곽선 패스를 그리지 않는다. 디버그 UI가 있는 빌드는 같은 셰이더로 파이프라인 두 개를 더 만든다: 와이어프레임(`PipelineDesc::wireframe`, Vulkan은 `fillModeNonSolid` 기능이 필요해 있으면 장치가 켠다)과 오버드로(`additiveBlend`, `depthTest = false`, 검정으로 지움). 에디터는 보기 모드가 켜져 있을 때만 `buildSceneView`에서 인스턴스 플래그를 채운다."
 
 msgid "`rhi/GpuCapture.cpp` loads `renderdoc.dll` from `%ProgramFiles%\\RenderDoc` (header `third_party/renderdoc/renderdoc_app.h`) or the newest `WinPixGpuCapturer.dll` under `%ProgramFiles%\\Microsoft PIX` before the device is created (`DeviceDesc::gpuCapture`), because both tools hook the graphics API at device creation. `captureNextGpuFrame` calls RenderDoc's `TriggerCapture` and opens its window, or PIX's `PIXGpuCaptureNextFrames`. `--gpu-capture-at <frame>` captures without opening a window (used by `check.ps1`). The PIX path is written but has not been tried with PIX yet."
 msgstr "`rhi/GpuCapture.cpp`는 장치를 만들기 전에(`DeviceDesc::gpuCapture`) `%ProgramFiles%\\RenderDoc`의 `renderdoc.dll`(헤더 `third_party/renderdoc/renderdoc_app.h`)이나 `%ProgramFiles%\\Microsoft PIX` 아래 가장 새 `WinPixGpuCapturer.dll`을 불러온다. 두 도구 모두 장치를 만들 때 그래픽 API를 가로채기 때문이다. `captureNextGpuFrame`은 RenderDoc의 `TriggerCapture`를 부르고 창을 열거나, PIX의 `PIXGpuCaptureNextFrames`를 부른다. `--gpu-capture-at <프레임>`은 창 없이 캡처한다(`check.ps1`이 쓴다). PIX 쪽은 코드만 있고 아직 PIX로 시험하지 않았다."
@@ -513,9 +589,6 @@ msgstr "프레임 구조"
 
 msgid "Technique"
 msgstr "기법"
-
-msgid "Where"
-msgstr "위치"
 
 msgid "What it does"
 msgstr "하는 일"
@@ -720,4 +793,3 @@ msgstr "`Device::endFrame`, `savePng`"
 
 msgid "Copies the back buffer to a readback heap after the fence and writes it as PNG through the platform layer."
 msgstr "백버퍼를 리드백 힙으로 복사하고, 펜스 뒤에 플랫폼 계층으로 PNG를 쓴다."
-
