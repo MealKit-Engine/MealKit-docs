@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-21 01:50+0900\n"
+"POT-Creation-Date: 2026-10-26 14:17+0900\n"
 "PO-Revision-Date: 2026-10-21 02:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -29,8 +29,12 @@ msgstr "기반"
 msgid "Simulation"
 msgstr "시뮬레이션"
 
+msgid "Tool connection"
+msgstr "도구 연결"
+
 msgid "Screen"
 msgstr "화면"
 
 msgid "Game boundary"
 msgstr "게임 경계"
+

@@ -81,7 +81,9 @@ Window options (`--bot`, `--vsync`, `--fps`, `--size`, `--debug`, `--mute`, `--d
 | `--ui-check` | Compare the screens exported from Penpot with Penpot's layout boxes, print `UI-CHECK` lines and exit (exit code 2 on a difference; with `--lang` for the text language) |
 | `--ui-render <ui/x.ui> <png>` | Draw one screen at half its board size, save it and exit (pixel comparison with the Penpot preview) |
 | `--render-golden <shots.txt> <folder>` | Draw each view of the graphics regression test without the editor UI, save `<name>.png` in the folder and exit ({doc}`../engine_dev/testing`) |
-| `--penpot-token <token>` | Fixed token in the Penpot plugin address (automated tests; normally random per run) |
+| `--penpot-token <token>` | Fixed token of the live connection, so also of the Penpot plugin address (automated tests; normally random per run) |
+| `--tool-path <folder>` | Also look for MealKit tools in this folder (repeatable; a tool you are building) ({doc}`../manual/tools`) |
+| `--list-tools` | Print the tools the Tools menu finds and exit (no window) |
 | `--bodies <n>`, `--debug` | As in the game |
 
 For example: `MealKitEditor.exe --project . --frames 60 --select 5 --capture out.png`.
@@ -96,6 +98,7 @@ For example: `MealKitEditor.exe --project . --frames 60 --select 5 --capture out
 | `check.ps1 [-Quick]` | Full check: builds, unit tests, determinism tests, captures |
 | `mp_test.ps1 -Clients <n> -Ticks <t> [-Headless] [-Exe <path>] [-ClientExe <path>] [-Lag <ms>] [-Jitter <ms>] [-Loss <%>]` | Multiplayer determinism test (`-Lag`, `-Jitter`, `-Loss` pass the network simulation options to every peer) |
 | `record_replay.ps1` | Remake the committed input recordings after an intended simulation change |
+| `live_probe.ps1 [-Project <folder>] [-Kind game\|editor] [-Wait <s>] [-Events <n>] [-Topics stats]` | Find the running editor and game builds of a project, call `api/hello` and read state events ({doc}`tool_contract`) |
 | `ci_test.ps1`, `ci_compare.ps1` | What CI runs for each build, and the comparison between builds |
 | `check_platform.ps1`, `check_strings.ps1` | OS calls outside the platform layer; editor translations |
 | `check_layout.ps1 [-Project <folder>]` | Project folder layout and third-party metadata (also run by the release build and the editor) |

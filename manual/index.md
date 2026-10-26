@@ -18,4 +18,5 @@ debug_ui
 multiplayer
 building_and_shipping
 performance
+tools
 ```

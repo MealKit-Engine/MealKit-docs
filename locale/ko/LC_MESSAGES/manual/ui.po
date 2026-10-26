@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-20 21:07+0900\n"
+"POT-Creation-Date: 2026-10-26 14:17+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ko\n"
@@ -142,8 +142,9 @@ msgstr "[Penpot](https://penpot.app)이 게임 화면의 원본이다. 디자이
 msgid "Installing the plugin"
 msgstr "플러그인 설치"
 
-msgid "Open the project in the editor and open **View > UI**. The **Penpot** section shows the plugin address, for example `http://127.0.0.1:27220/<token>/manifest.json`. The editor only listens on this computer, and the token changes every time the editor starts."
-msgstr "에디터에서 프로젝트를 열고 **보기 > UI**를 연다. **Penpot** 칸에 플러그인 주소가 보인다(예: `http://127.0.0.1:27220/<토큰>/manifest.json`). 에디터는 이 컴퓨터에서 오는 연결만 받고, 토큰은 에디터를 켤 때마다 바뀐다."
+#, python-brace-format
+msgid "Open the project in the editor and open **View > UI**. The **Penpot** section shows the plugin address, for example `http://127.0.0.1:27220/<token>/penpot/manifest.json`. The editor only listens on this computer, and the token changes every time the editor starts (the plugin is served by the editor's live connection, see {doc}`tools`)."
+msgstr "에디터에서 프로젝트를 열고 **보기 > UI**를 연다. **Penpot** 칸에 플러그인 주소가 보인다(예: `http://127.0.0.1:27220/<토큰>/penpot/manifest.json`). 에디터는 이 컴퓨터에서 오는 연결만 받고, 토큰은 에디터를 켤 때마다 바뀐다(플러그인은 에디터의 라이브 연결이 준다, {doc}`tools` 참고)."
 
 msgid "In a Penpot file press `Ctrl+Alt+P` (plugin manager), paste the address and press **Install**. Open the plugin from the same list after that."
 msgstr "Penpot 파일에서 `Ctrl+Alt+P`(플러그인 관리자)를 누르고 주소를 붙여 넣은 뒤 **설치**를 누른다. 그다음부터는 같은 목록에서 플러그인을 연다."

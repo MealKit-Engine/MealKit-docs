@@ -22,6 +22,14 @@ sim
 data
 ```
 
+## Tool connection
+
+```{toctree}
+:maxdepth: 2
+
+live
+```
+
 ## Screen
 
 ```{toctree}

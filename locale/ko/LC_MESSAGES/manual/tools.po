@@ -1,0 +1,84 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, KingProtea99 and MealKit contributors. CC BY 4.0
+# This file is distributed under the same license as the MealKit package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: MealKit 0.5\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-26 14:17+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ko\n"
+"Language-Team: ko <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+msgid "Tools"
+msgstr "도구"
+
+#, python-brace-format
+msgid "MealKit is a family: the engine and its general-purpose editor in the middle, and small tools for each role around them, such as an audio tool for sound designers. Each tool is its own program in its own repository (free, MIT). The editor opens them from the **Tools** menu, and they work on the same project folder. Work that a good free tool already does stays in that tool with an engine plugin: models in Blender ({doc}`blender`), screens in Penpot ({doc}`ui`)."
+msgstr "MealKit은 제품군이다: 엔진과 범용 에디터가 가운데 있고, 둘레에 사운드 디자이너용 오디오 도구처럼 담당마다 작은 도구가 있다. 도구는 저장소가 따로인 각자의 프로그램이다(무료, MIT). 에디터가 **도구** 메뉴에서 열고, 같은 프로젝트 폴더에서 일한다. 좋은 무료 도구가 이미 하는 일은 그 도구 + 엔진 플러그인으로 한다: 모델은 Blender({doc}`blender`), 화면은 Penpot({doc}`ui`)."
+
+msgid "Opening a tool"
+msgstr "도구 열기"
+
+msgid "**Tools** in the editor's menu bar lists the installed tools. Choosing one starts it with the open project (`<tool> --project \"<project folder>\"`). A grayed-out tool cannot be opened; hover over it to see why:"
+msgstr "에디터 메뉴 막대의 **도구**에 설치된 도구가 나온다. 고르면 열린 프로젝트로 실행한다(`<도구> --project \"<프로젝트 폴더>\"`). 흐린 도구는 열 수 없다. 마우스를 올리면 이유가 보인다:"
+
+msgid "**Needs tool protocol N**: the tool was made for a different version of the editor connection. Update the tool or the engine."
+msgstr "**도구 약속 버전 N이 필요합니다**: 다른 버전의 에디터 연결에 맞춰 만든 도구다. 도구나 엔진을 업데이트한다."
+
+msgid "**Program not found**: the tool's manifest names a program that is not there."
+msgstr "**실행 파일이 없습니다**: 도구 매니페스트가 가리키는 프로그램이 없다."
+
+msgid "**Rescan Tools** looks again after installing a tool, and **Open Tools Folder** opens the default install folder."
+msgstr "**도구 다시 찾기**는 도구를 설치한 뒤 다시 찾고, **도구 폴더 열기**는 기본 설치 폴더를 연다."
+
+msgid "Installing a tool"
+msgstr "도구 설치"
+
+msgid "A tool is a folder with a manifest file `mealkit-tool.txt` next to its program. Put the folder in `%LOCALAPPDATA%\\MealKit\\tools\\` (for example `%LOCALAPPDATA%\\MealKit\\tools\\audio\\`), then **Tools > Rescan Tools**."
+msgstr "도구는 프로그램 옆에 매니페스트 파일 `mealkit-tool.txt`가 있는 폴더다. 그 폴더를 `%LOCALAPPDATA%\\MealKit\\tools\\`에 넣고(예: `%LOCALAPPDATA%\\MealKit\\tools\\audio\\`) **도구 > 도구 다시 찾기**를 누른다."
+
+msgid "To keep tools somewhere else, add a `toolPath` line to the editor settings file `%LOCALAPPDATA%\\MealKit\\editor_settings.txt`, one line per folder:"
+msgstr "도구를 다른 곳에 두려면 에디터 설정 파일 `%LOCALAPPDATA%\\MealKit\\editor_settings.txt`에 폴더마다 `toolPath` 줄을 하나씩 더한다:"
+
+msgid ""
+"language ko\n"
+"toolPath D:\\MealKitTools\n"
+msgstr ""
+"language ko\n"
+"toolPath D:\\MealKitTools\n"
+
+msgid "A `toolPath` folder can be a tool folder itself or a folder of tool folders. `MealKitEditor.exe --list-tools` prints what the editor finds, and `--tool-path <folder>` adds a folder for one run (useful while building a tool)."
+msgstr "`toolPath` 폴더는 도구 폴더 자체이거나 도구 폴더들을 담은 폴더다. `MealKitEditor.exe --list-tools`는 에디터가 찾은 것을 출력하고, `--tool-path <폴더>`는 이번 실행에만 폴더를 더한다(도구를 만드는 중에 쓴다)."
+
+msgid "Live connection"
+msgstr "라이브 연결"
+
+msgid "While a development build of the game or the editor runs, tools can connect to it to change values and read its state without restarting, like FMOD's Live Update. The editor and every development game window (the game's `build\\Release`, `Debug` or `Profile` exe) open a small server on this computer only, and write how to reach it in the project's `build\\live\\` folder. Release builds made with **Build > Release Build** do not have it."
+msgstr "게임 개발 빌드나 에디터가 실행 중이면, FMOD의 Live Update처럼 도구가 붙어 다시 시작하지 않고 값을 바꾸고 상태를 읽는다. 에디터와 모든 개발 게임 창(게임의 `build\\Release`·`Debug`·`Profile` exe)이 이 컴퓨터에서만 받는 작은 서버를 열고, 접속 방법을 프로젝트의 `build\\live\\` 폴더에 쓴다. **빌드 > 출시 빌드**로 만든 출시 빌드에는 없다."
+
+msgid "`tools\\live_probe.ps1` in the engine shows what is running for a project:"
+msgstr "엔진의 `tools\\live_probe.ps1`은 프로젝트에서 무엇이 실행 중인지 보여 준다:"
+
+msgid "powershell -ExecutionPolicy Bypass -File tools\\live_probe.ps1 -Project D:\\Games\\MyGame -Events 2\n"
+msgstr "powershell -ExecutionPolicy Bypass -File tools\\live_probe.ps1 -Project D:\\Games\\MyGame -Events 2\n"
+
+#, python-brace-format
+msgid "How tools use the connection is in {doc}`../reference/tool_contract`."
+msgstr "도구가 연결을 쓰는 방법은 {doc}`../reference/tool_contract`에 있다."
+
+msgid "Files tools share"
+msgstr "도구가 같이 쓰는 파일"
+
+msgid "Tools read and write the project's files, so every MealKit text file (tables, tuning, scenes, `.ui` screens, string tables, `mealkit.project`) has a **format line** after its comment header, for example `@format table 1`. Keep that line when you edit a file by hand. When a format changes, the engine and the tools read the older versions and write the new one."
+msgstr "도구가 프로젝트 파일을 읽고 쓰므로, 모든 MealKit 텍스트 파일(표, 튜닝, 씬, `.ui` 화면, 문자열 표, `mealkit.project`)에는 주석 머리 다음에 **형식 줄**이 있다(예: `@format table 1`). 파일을 손으로 고칠 때 이 줄을 지우지 않는다. 형식이 바뀌면 엔진과 도구는 예전 버전을 읽고 새 버전으로 쓴다."
+

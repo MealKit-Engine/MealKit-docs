@@ -1,0 +1,280 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, KingProtea99 and MealKit contributors. CC BY 4.0
+# This file is distributed under the same license as the MealKit package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: MealKit 0.5\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-26 14:17+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ko\n"
+"Language-Team: ko <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+msgid "Tool contract"
+msgstr "도구 사이 약속"
+
+#, python-brace-format
+msgid "What a MealKit tool (a separate program, such as the audio tool) can rely on, so it works with the engine without sharing its code. The contract has four parts: the project folder, the text formats, the live connection and the tool manifest. Tools for users are described in {doc}`../manual/tools`; the decisions behind this page are in {engine}`docs/DECISIONS.md` (2026-10-26) and {engine}`docs/CODING_MODEL.md`."
+msgstr "MealKit 도구(오디오 도구 같은 별도 프로그램)가 엔진 코드를 나눠 쓰지 않고도 엔진과 같이 동작하도록 기댈 수 있는 것. 약속은 네 가지다: 프로젝트 폴더, 텍스트 형식, 라이브 연결, 도구 매니페스트. 사용자를 위한 도구 설명은 {doc}`../manual/tools`에, 이 페이지의 결정 이유는 {engine}`docs/DECISIONS.md`(2026-10-26)와 {engine}`docs/CODING_MODEL.md`에 있다."
+
+msgid "Project folder"
+msgstr "프로젝트 폴더"
+
+msgid "A project is the folder that holds `mealkit.project`. A tool is started with `--project \"<folder>\"`; started by hand, it can walk up from a file until it finds `mealkit.project`, like the Blender add-on."
+msgstr "프로젝트는 `mealkit.project`가 있는 폴더다. 도구는 `--project \"<폴더>\"`로 실행된다. 손으로 실행했으면 Blender 애드온처럼 파일에서 위로 올라가며 `mealkit.project`를 찾으면 된다."
+
+msgid "A tool's own source files go in `art/<tool>/` (kept in git, not shipped)."
+msgstr "도구 자신의 원본 파일은 `art/<도구>/`에 둔다(git에 넣고, 출시에는 넣지 않는다)."
+
+#, python-brace-format
+msgid "What the game loads goes in the fixed kind folders of `assets/` ({doc}`../manual/projects`). `tools\\check_layout.ps1` fails on files in the wrong place."
+msgstr "게임이 읽는 것은 `assets/`의 정해진 종류 폴더에 둔다({doc}`../manual/projects`). 잘못된 자리의 파일은 `tools\\check_layout.ps1`이 실패시킨다."
+
+msgid "`build/` is generated and not in git; the live connection writes there."
+msgstr "`build/`는 생성물이라 git에 없다. 라이브 연결이 여기에 쓴다."
+
+msgid "Text formats"
+msgstr "텍스트 형식"
+
+msgid "Every MealKit text format is line-based UTF-8 that merges in git, and has a **format line** right after its comment header:"
+msgstr "모든 MealKit 텍스트 형식은 git에서 병합되는 줄 단위 UTF-8이고, 주석 머리 바로 다음에 **형식 줄**이 있다:"
+
+msgid ""
+"# MealKit table (SoundEvent). Edit it in the editor's [Tables] panel or import a CSV there.\n"
+"@format table 1\n"
+"\n"
+"row hit\n"
+"...\n"
+msgstr ""
+"# MealKit table (SoundEvent). Edit it in the editor's [Tables] panel or import a CSV there.\n"
+"@format table 1\n"
+"\n"
+"row hit\n"
+"...\n"
+
+msgid "`@format <kind> <version>`. The kinds are:"
+msgstr "`@format <종류> <버전>`. 종류는 다음과 같다:"
+
+msgid "Kind"
+msgstr "종류"
+
+msgid "Files"
+msgstr "파일"
+
+msgid "`project`"
+msgstr "`project`"
+
+msgid "`mealkit.project`"
+msgstr "`mealkit.project`"
+
+msgid "`tuning`"
+msgstr "`tuning`"
+
+msgid "`assets/game.tuning`, `assets/view.tuning`"
+msgstr "`assets/game.tuning`, `assets/view.tuning`"
+
+msgid "`settings`"
+msgstr "`settings`"
+
+msgid "the player's `settings.ini`"
+msgstr "플레이어의 `settings.ini`"
+
+msgid "`table`"
+msgstr "`table`"
+
+msgid "`assets/tables/*.table`, `assets/input.bindings`, `assets/feedback.table`, `assets/sounds.table`"
+msgstr "`assets/tables/*.table`, `assets/input.bindings`, `assets/feedback.table`, `assets/sounds.table`"
+
+msgid "`scene`"
+msgstr "`scene`"
+
+msgid "`assets/scenes/*.scene` (version 2)"
+msgstr "`assets/scenes/*.scene` (버전 2)"
+
+msgid "`ui`"
+msgstr "`ui`"
+
+msgid "`assets/ui/*.ui`"
+msgstr "`assets/ui/*.ui`"
+
+msgid "`strings`"
+msgstr "`strings`"
+
+msgid "`assets/strings/<language>.txt`"
+msgstr "`assets/strings/<language>.txt`"
+
+msgid "`tool`"
+msgstr "`tool`"
+
+msgid "`mealkit-tool.txt` (below)"
+msgstr "`mealkit-tool.txt` (아래)"
+
+msgid "Rules for readers and writers:"
+msgstr "읽는 쪽과 쓰는 쪽의 규칙:"
+
+msgid "A file without the line is version 1."
+msgstr "줄이 없는 파일은 버전 1이다."
+
+msgid "A reader warns about another kind or a newer version than it knows, and reads the keys it knows."
+msgstr "읽는 쪽은 다른 종류이거나 아는 것보다 새 버전이면 경고하고, 아는 키만 읽는다."
+
+msgid "A writer always writes the newest version. A format change raises the version, and readers get a migration for older versions."
+msgstr "쓰는 쪽은 항상 최신 버전으로 쓴다. 형식을 바꾸면 버전을 올리고, 읽는 쪽에 예전 버전을 옮기는 migrate를 더한다."
+
+msgid "A tool's own formats follow the same rules with their own kind."
+msgstr "도구 자신의 형식도 자기 종류 이름으로 같은 규칙을 따른다."
+
+#, python-brace-format
+msgid "The engine's code for this is {engine}`engine/src/mealkit/core/TextFormat.h`."
+msgstr "엔진 코드는 {engine}`engine/src/mealkit/core/TextFormat.h`다."
+
+msgid "Live connection"
+msgstr "라이브 연결"
+
+#, python-brace-format
+msgid "The editor and development game builds run a small HTTP server on `127.0.0.1` ({engine}`engine/src/mealkit/live/Server.h`). Release builds do not."
+msgstr "에디터와 게임 개발 빌드는 `127.0.0.1`에 작은 HTTP 서버를 연다({engine}`engine/src/mealkit/live/Server.h`). 출시 빌드는 열지 않는다."
+
+msgid "Finding a running editor or game"
+msgstr "실행 중인 에디터·게임 찾기"
+
+msgid "Each running instance writes `<project>/build/live/<kind>-<pid>.json` and deletes it when it closes:"
+msgstr "실행 중인 것마다 `<프로젝트>/build/live/<종류>-<pid>.json`을 쓰고, 닫을 때 지운다:"
+
+#, python-brace-format
+msgid ""
+"{\"protocol\":1,\"kind\":\"game\",\"pid\":8712,\"port\":51543,\"token\":\"8f3c...\",\"project\":\"sandbox\",\"engine\":\"0.5.1\",\n"
+" \"url\":\"http://127.0.0.1:51543/8f3c.../\"}\n"
+msgstr ""
+"{\"protocol\":1,\"kind\":\"game\",\"pid\":8712,\"port\":51543,\"token\":\"8f3c...\",\"project\":\"sandbox\",\"engine\":\"0.5.1\",\n"
+" \"url\":\"http://127.0.0.1:51543/8f3c.../\"}\n"
+
+msgid "`kind` is `editor` or `game` (several game windows each have a file). A file can be left over after a crash: treat an instance that does not answer `api/hello` as gone. The next server to start removes files of processes that no longer exist."
+msgstr "`kind`는 `editor` 또는 `game`이다(게임 창이 여럿이면 각자 파일이 있다). 비정상 종료 뒤에는 파일이 남을 수 있다: `api/hello`에 답하지 않으면 없는 것으로 본다. 다음에 열리는 서버가 더는 없는 프로세스의 파일을 지운다."
+
+msgid "Requests"
+msgstr "요청"
+
+msgid "All paths start with `url` (it contains the token). Responses are JSON."
+msgstr "모든 경로는 `url`로 시작한다(토큰이 들어 있다). 응답은 JSON이다."
+
+msgid "Request"
+msgstr "요청"
+
+msgid "Answer"
+msgstr "응답"
+
+msgid "`GET api/hello`"
+msgstr "`GET api/hello`"
+
+msgid "`protocol`, `kind`, `project`, `engine`, `pid`, `services` (names), `topics` (state topics)"
+msgstr "`protocol`, `kind`, `project`, `engine`, `pid`, `services`(이름), `topics`(상태 주제)"
+
+msgid "`GET api/events?topics=a,b`"
+msgstr "`GET api/events?topics=a,b`"
+
+msgid "A stream of state events (Server-Sent Events): `event: <topic>` and `data: <JSON>` lines, then a blank line"
+msgstr "상태 이벤트 스트림(Server-Sent Events): `event: <주제>` 줄과 `data: <JSON>` 줄, 그다음 빈 줄"
+
+msgid "`GET`/`POST <service>/...`"
+msgstr "`GET`/`POST <service>/...`"
+
+msgid "A feature added by the engine, such as `penpot/` in the editor"
+msgstr "엔진이 더한 기능 (예: 에디터의 `penpot/`)"
+
+msgid "The topic `stats` sends the performance numbers about four times a second: frame times, and when present `game` (tick, simulation time), `session` (players, round trip, traffic), `render` (draw calls, GPU time, memory) and `audio` (voices). Requests are handled on the engine's main thread between frames, so a service changes engine state safely."
+msgstr "주제 `stats`는 1초에 네 번쯤 성능 숫자를 보낸다: 프레임 시간, 그리고 있을 때 `game`(틱, 시뮬레이션 시간), `session`(플레이어, 왕복 시간, 트래픽), `render`(드로우 콜, GPU 시간, 메모리), `audio`(목소리). 요청은 프레임 사이에 엔진 메인 스레드에서 처리되므로 서비스가 엔진 상태를 안전하게 고친다."
+
+msgid "Security"
+msgstr "보안"
+
+msgid "The server listens on `127.0.0.1` only, and the token in every path comes from the info file, which only programs on this computer can read. A request with a browser `Origin` header is refused unless it comes from the server itself or the service allows that origin (the Penpot service allows Penpot), so a web page cannot call it."
+msgstr "서버는 `127.0.0.1`에서만 받고, 모든 경로의 토큰은 이 컴퓨터의 프로그램만 읽을 수 있는 접속 정보 파일에서 온다. 브라우저 `Origin` 머리가 있는 요청은 서버 자신이거나 서비스가 그 출처를 허용할 때(Penpot 서비스는 Penpot을 허용한다)만 받으므로, 웹 페이지는 부를 수 없다."
+
+msgid "Protocol version"
+msgstr "약속 버전"
+
+msgid "`protocol` is the version of this contract's paths and answers (now 1). A tool states the version it was made for in its manifest; the editor does not open a tool made for another version."
+msgstr "`protocol`은 이 약속의 경로와 응답의 버전이다(지금 1). 도구는 매니페스트에 맞춰 만든 버전을 적고, 에디터는 다른 버전에 맞춘 도구를 열지 않는다."
+
+msgid "`tools\\live_probe.ps1` in the engine is a small client that does all of the above; it is the reference for tools written in other languages."
+msgstr "엔진의 `tools\\live_probe.ps1`은 위의 일을 모두 하는 작은 클라이언트다. 다른 언어로 만드는 도구의 기준이다."
+
+msgid "Tool manifest"
+msgstr "도구 매니페스트"
+
+msgid "A tool folder has `mealkit-tool.txt` next to the program:"
+msgstr "도구 폴더에는 프로그램 옆에 `mealkit-tool.txt`가 있다:"
+
+msgid ""
+"# MealKit tool manifest\n"
+"@format tool 1\n"
+"name Audio\n"
+"exe mealkit-audio.exe\n"
+"version 0.1.0\n"
+"protocol 1\n"
+"opens .table .wav\n"
+msgstr ""
+"# MealKit tool manifest\n"
+"@format tool 1\n"
+"name Audio\n"
+"exe mealkit-audio.exe\n"
+"version 0.1.0\n"
+"protocol 1\n"
+"opens .table .wav\n"
+
+msgid "Key"
+msgstr "키"
+
+msgid "Meaning"
+msgstr "뜻"
+
+msgid "`name`"
+msgstr "`name`"
+
+msgid "Name in the Tools menu (required)"
+msgstr "[도구] 메뉴의 이름 (필수)"
+
+msgid "`exe`"
+msgstr "`exe`"
+
+msgid "The program, relative to the manifest folder or absolute (required)"
+msgstr "프로그램. 매니페스트 폴더 기준 상대 경로 또는 절대 경로 (필수)"
+
+msgid "`version`"
+msgstr "`version`"
+
+msgid "The tool's version, shown in the menu"
+msgstr "도구 버전, 메뉴에 보인다"
+
+msgid "`protocol`"
+msgstr "`protocol`"
+
+msgid "The live connection version the tool was made for (required)"
+msgstr "도구가 맞춰 만든 라이브 연결 약속 버전 (필수)"
+
+msgid "`opens`"
+msgstr "`opens`"
+
+msgid "File extensions the tool edits (for \"open with\" in a later asset browser)"
+msgstr "도구가 고치는 파일 확장자 (나중에 에셋 브라우저의 \"이 도구로 열기\"에 쓴다)"
+
+msgid "The editor looks in folders given with `--tool-path`, then `%LOCALAPPDATA%\\MealKit\\tools\\`, then `toolPath` lines of its settings file, and starts a tool as `\"<exe>\" --project \"<project folder>\"` with the manifest folder as the working folder."
+msgstr "에디터는 `--tool-path`로 준 폴더, `%LOCALAPPDATA%\\MealKit\\tools\\`, 설정 파일의 `toolPath` 줄 순으로 찾고, 매니페스트 폴더를 작업 폴더로 `\"<exe>\" --project \"<프로젝트 폴더>\"`를 실행한다."
+
+msgid "Runtime parts"
+msgstr "런타임 조각"
+
+#, python-brace-format
+msgid "A tool can have a part that runs inside the game (the audio tool's mixer). That part does not include engine headers, and the engine takes it like any external library: a fixed version in `third_party/<lib>/` with its license, inside the release exe budget ({engine}`docs/CODING_MODEL.md` \"외부 라이브러리 두기\")."
+msgstr "도구에는 게임 안에서 도는 조각이 있을 수 있다(오디오 도구의 믹서). 그 조각은 엔진 헤더를 include하지 않고, 엔진은 다른 외부 라이브러리처럼 가져온다: `third_party/<lib>/`에 버전을 고정하고 라이선스를 같이 넣고, 출시 exe 예산 안에서({engine}`docs/CODING_MODEL.md` \"외부 라이브러리 두기\")."
+

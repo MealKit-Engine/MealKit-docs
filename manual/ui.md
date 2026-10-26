@@ -51,7 +51,7 @@ Files are reloaded within a quarter second when they change, also during play. E
 
 ### Installing the plugin
 
-1. Open the project in the editor and open **View > UI**. The **Penpot** section shows the plugin address, for example `http://127.0.0.1:27220/<token>/manifest.json`. The editor only listens on this computer, and the token changes every time the editor starts.
+1. Open the project in the editor and open **View > UI**. The **Penpot** section shows the plugin address, for example `http://127.0.0.1:27220/<token>/penpot/manifest.json`. The editor only listens on this computer, and the token changes every time the editor starts (the plugin is served by the editor's live connection, see {doc}`tools`).
 2. In a Penpot file press `Ctrl+Alt+P` (plugin manager), paste the address and press **Install**. Open the plugin from the same list after that.
 3. The panel says `Editor: <project>` when it reaches the editor. If the editor is closed, **Export** downloads a zip to unpack in the project folder instead (after restarting the editor, install the plugin again with the new address).
 

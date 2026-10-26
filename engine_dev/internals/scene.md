@@ -26,7 +26,7 @@ The game reads one entity with `scene::readObject<T>(entity)`, which fills a `T`
 
 ```text
 # MealKit scene
-version 2
+@format scene 2
 
 sun 0.400000006 0.800000012 0.300000012
 sunColor 1 0.949999988 0.850000024

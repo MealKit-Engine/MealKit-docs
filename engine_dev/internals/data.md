@@ -24,6 +24,7 @@ A table file is `assets/tables/<name>.table`. It is plain text in the same "path
 
 ```text
 # MealKit table (PropKind). Edit it in the editor's [Tables] panel or import a CSV there.
+@format table 1
 
 row crate
 density 200
@@ -36,6 +37,7 @@ row barrel
 `readTableText` ({engine}`engine/src/mealkit/data/Tables.cpp`) reads it line by line:
 
 - Empty lines and lines starting with `#` are skipped.
+- `@format table 1` is the format line that every MealKit text file has after its comment header ({doc}`../../reference/tool_contract`). A missing line means version 1.
 - `row <id>` starts a new row. An id uses letters, digits, `_`, `-` and `.` only (`validRowId`).
 - Every other line is a field path and its value, added to the current row.
 - A row with an invalid or duplicate id is skipped with all its lines, and a warning names the line. So is a value before the first row.

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-21 19:45+0900\n"
+"POT-Creation-Date: 2026-10-26 14:17+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -156,6 +156,10 @@ msgstr "**폴더 구조**: 프로젝트를 열면 에디터가 폴더 구조 검
 
 msgid "**Build**: the Build menu runs the project's `build.bat Editor` and `build.bat Export` in the background and shows the log."
 msgstr "**빌드**: [빌드] 메뉴가 프로젝트의 `build.bat Editor`·`build.bat Export`를 백그라운드에서 실행하고 로그를 보여 준다."
+
+#, python-brace-format
+msgid "**Tools**: the Tools menu opens the installed MealKit tools (separate programs such as the audio tool) with this project (see {doc}`tools`)."
+msgstr "**도구**: [도구] 메뉴가 설치된 MealKit 도구(오디오 도구 같은 별도 프로그램)를 이 프로젝트로 연다({doc}`tools` 참고)."
 
 msgid "View modes"
 msgstr "보기 모드"

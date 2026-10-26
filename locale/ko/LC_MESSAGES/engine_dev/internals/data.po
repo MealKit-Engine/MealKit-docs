@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-19 13:08+0900\n"
+"POT-Creation-Date: 2026-10-26 14:17+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ko\n"
@@ -57,6 +57,7 @@ msgstr "표 파일은 `assets/tables/<이름>.table`이다. 튜닝 파일과 같
 
 msgid ""
 "# MealKit table (PropKind). Edit it in the editor's [Tables] panel or import a CSV there.\n"
+"@format table 1\n"
 "\n"
 "row crate\n"
 "density 200\n"
@@ -66,6 +67,7 @@ msgid ""
 "...\n"
 msgstr ""
 "# MealKit table (PropKind). Edit it in the editor's [Tables] panel or import a CSV there.\n"
+"@format table 1\n"
 "\n"
 "row crate\n"
 "density 200\n"
@@ -80,6 +82,10 @@ msgstr "`readTableText`({engine}`engine/src/mealkit/data/Tables.cpp`)가 한 줄
 
 msgid "Empty lines and lines starting with `#` are skipped."
 msgstr "빈 줄과 `#`으로 시작하는 줄은 건너뛴다."
+
+#, python-brace-format
+msgid "`@format table 1` is the format line that every MealKit text file has after its comment header ({doc}`../../reference/tool_contract`). A missing line means version 1."
+msgstr "`@format table 1`은 모든 MealKit 텍스트 파일의 주석 머리 다음에 있는 형식 줄이다({doc}`../../reference/tool_contract`). 줄이 없으면 버전 1이다."
 
 msgid "`row <id>` starts a new row. An id uses letters, digits, `_`, `-` and `.` only (`validRowId`)."
 msgstr "`row <id>`가 새 행을 시작한다. id는 영문자, 숫자, `_`, `-`, `.`만 쓴다(`validRowId`)."

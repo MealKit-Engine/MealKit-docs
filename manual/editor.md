@@ -42,6 +42,7 @@ Scenes are saved as human-readable `.scene` text: each object is its kind name p
 - **Project Settings**: `mealkit.project` (File > Project Settings).
 - **Folder layout**: when a project opens, the editor runs the layout check in the background and lists misplaced files (see {doc}`projects`).
 - **Build**: the Build menu runs the project's `build.bat Editor` and `build.bat Export` in the background and shows the log.
+- **Tools**: the Tools menu opens the installed MealKit tools (separate programs such as the audio tool) with this project (see {doc}`tools`).
 
 ## View modes
 
