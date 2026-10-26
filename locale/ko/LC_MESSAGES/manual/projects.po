@@ -3,17 +3,17 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: MealKit\n"
+"Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-26 19:22+0900\n"
+"POT-Creation-Date: 2026-10-27 00:03+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
-"Language-Team: Korean\n"
 "Language: ko\n"
+"Language-Team: Korean\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.18.0\n"
 
 msgid "Engine folder and game projects"
@@ -93,6 +93,24 @@ msgstr "출시 exe는 게임 클래스를 직접 쓰므로 DLL 경계 비용이 
 
 msgid "The engine repository itself is also an example game project (top-level `mealkit.project`, code in `samples/sandbox`, assets in `assets/`). It is the template for new projects and the target of the engine determinism test (`tools\\mp_test.ps1`)."
 msgstr "엔진 저장소 자신도 예제 게임 프로젝트다(최상위 `mealkit.project`, 코드는 `samples/sandbox`, 에셋은 `assets/`). 새 프로젝트의 템플릿이자 엔진 결정론 테스트(`tools\\mp_test.ps1`)의 대상이다."
+
+msgid "MealKit Manager"
+msgstr "MealKit Manager"
+
+msgid "MealKit Manager is a separate hub app (repository MealKit-Manager) that lists your projects, the engines they use and the installed MealKit tools. It does not contain an engine, so one Manager works with every engine version."
+msgstr "MealKit Manager는 프로젝트, 프로젝트가 쓰는 엔진, 설치한 MealKit 도구를 보여 주는 별도 허브 앱이다(저장소 MealKit-Manager). 엔진을 담고 있지 않아 Manager 하나가 모든 엔진 버전과 같이 쓰인다."
+
+msgid "**Projects**: create a project (it runs the chosen engine's `tools\\new_project.ps1`), import a folder, open it in its engine's editor, and upgrade it when the project's `engineVersion` is older than its engine. The list is the same recent and favorite list the editor keeps."
+msgstr "**프로젝트**: 프로젝트를 만들고(고른 엔진의 `tools\\new_project.ps1`을 실행한다), 폴더를 가져오고, 그 엔진의 에디터에서 열고, 프로젝트의 `engineVersion`이 엔진보다 오래됐으면 업그레이드한다. 목록은 에디터가 쓰는 최근·즐겨찾기 목록과 같다."
+
+msgid "**Engines**: the engines your projects point to (the `engine` line of `mealkit.project`) and folders you add. If an engine's editor is not built, the Manager builds it."
+msgstr "**엔진**: 프로젝트가 가리키는 엔진(`mealkit.project`의 `engine` 줄)과 직접 더한 폴더. 엔진의 에디터가 빌드되지 않았으면 Manager가 빌드한다."
+
+msgid "**Tools**: tools with a `mealkit-tool.txt` manifest, opened with the selected project."
+msgstr "**도구**: `mealkit-tool.txt` 매니페스트가 있는 도구. 고른 프로젝트로 연다."
+
+msgid "Install it with `build.bat install` in the MealKit-Manager folder (to `%LOCALAPPDATA%\\MealKit\\manager`). After that, starting the editor without a project (`editor.bat`) opens the Manager. Without it, the editor shows its own project manager; `MealKitEditor --builtin-manager` always does."
+msgstr "MealKit-Manager 폴더에서 `build.bat install`로 설치한다(`%LOCALAPPDATA%\\MealKit\\manager`). 그 뒤로는 에디터를 프로젝트 없이 열면(`editor.bat`) Manager가 열린다. 설치하지 않았으면 에디터 안의 프로젝트 관리자가 열리고, `MealKitEditor --builtin-manager`는 늘 그것을 연다."
 
 msgid "Project settings"
 msgstr "프로젝트 설정"
@@ -188,3 +206,4 @@ msgstr "`GameSession`(`GameInstance` 구현), `main.cpp`(`MEALKIT_GAME_MAIN`), `
 #, python-brace-format
 msgid "The rules for `sim/` are in the engine's {engine}`coding model <docs/CODING_MODEL.md>` (\"Determinism rules\"). See also {doc}`multiplayer`."
 msgstr "`sim/` 규칙은 엔진의 {engine}`코딩 방식 <docs/CODING_MODEL.md>`(\"결정론 규칙\")에 있다. {doc}`multiplayer`도 본다."
+

@@ -21,6 +21,16 @@ There are two kinds of builds:
 
 The engine repository itself is also an example game project (top-level `mealkit.project`, code in `samples/sandbox`, assets in `assets/`). It is the template for new projects and the target of the engine determinism test (`tools\mp_test.ps1`).
 
+## MealKit Manager
+
+MealKit Manager is a separate hub app (repository MealKit-Manager) that lists your projects, the engines they use and the installed MealKit tools. It does not contain an engine, so one Manager works with every engine version.
+
+- **Projects**: create a project (it runs the chosen engine's `tools\new_project.ps1`), import a folder, open it in its engine's editor, and upgrade it when the project's `engineVersion` is older than its engine. The list is the same recent and favorite list the editor keeps.
+- **Engines**: the engines your projects point to (the `engine` line of `mealkit.project`) and folders you add. If an engine's editor is not built, the Manager builds it.
+- **Tools**: tools with a `mealkit-tool.txt` manifest, opened with the selected project.
+
+Install it with `build.bat install` in the MealKit-Manager folder (to `%LOCALAPPDATA%\MealKit\manager`). After that, starting the editor without a project (`editor.bat`) opens the Manager. Without it, the editor shows its own project manager; `MealKitEditor --builtin-manager` always does.
+
 ## Project settings
 
 `mealkit.project` holds the project settings: `name`, `engine`, `engineVersion`, `scene`, `tickRate`, the input delay range, the art style (`lightingModel`, `toonRamp`, {doc}`assets`), and game entries (`game.*`). Edit them in the editor under File > Project Settings.
