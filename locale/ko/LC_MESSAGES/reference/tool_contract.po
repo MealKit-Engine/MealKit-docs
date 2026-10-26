@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-26 14:17+0900\n"
+"POT-Creation-Date: 2026-10-26 15:54+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ko\n"
@@ -275,6 +275,6 @@ msgid "Runtime parts"
 msgstr "런타임 조각"
 
 #, python-brace-format
-msgid "A tool can have a part that runs inside the game (the audio tool's mixer). That part does not include engine headers, and the engine takes it like any external library: a fixed version in `third_party/<lib>/` with its license, inside the release exe budget ({engine}`docs/CODING_MODEL.md` \"외부 라이브러리 두기\")."
-msgstr "도구에는 게임 안에서 도는 조각이 있을 수 있다(오디오 도구의 믹서). 그 조각은 엔진 헤더를 include하지 않고, 엔진은 다른 외부 라이브러리처럼 가져온다: `third_party/<lib>/`에 버전을 고정하고 라이선스를 같이 넣고, 출시 exe 예산 안에서({engine}`docs/CODING_MODEL.md` \"외부 라이브러리 두기\")."
+msgid "A tool can have a part that runs inside the game (the audio tool's mixer, [MealKit Audio](https://github.com/MealKit-Engine/MealKit-Audio)). That part does not include engine headers, and the engine takes it like any external library: a fixed version in `third_party/<lib>/` with its license, inside the release exe budget ({engine}`docs/CODING_MODEL.md` \"외부 라이브러리 두기\"). `tools\\check_libs.ps1` checks that it uses no engine header or macro. While both change, the engine builds the part from a local checkout (`-DMEALKIT_MKAUDIO_DIR` for the audio runtime)."
+msgstr "도구에는 게임 안에서 도는 조각이 있을 수 있다(오디오 도구의 믹서, [MealKit Audio](https://github.com/MealKit-Engine/MealKit-Audio)). 그 조각은 엔진 헤더를 include하지 않고, 엔진은 다른 외부 라이브러리처럼 가져온다: `third_party/<lib>/`에 버전을 고정하고 라이선스를 같이 넣고, 출시 exe 예산 안에서({engine}`docs/CODING_MODEL.md` \"외부 라이브러리 두기\"). 엔진 헤더·매크로를 쓰지 않는지는 `tools\\check_libs.ps1`이 본다. 둘을 같이 고치는 동안에는 엔진이 로컬 체크아웃에서 그 조각을 빌드한다(오디오 런타임은 `-DMEALKIT_MKAUDIO_DIR`)."
 

@@ -109,4 +109,4 @@ The editor looks in folders given with `--tool-path`, then `%LOCALAPPDATA%\MealK
 
 ## Runtime parts
 
-A tool can have a part that runs inside the game (the audio tool's mixer). That part does not include engine headers, and the engine takes it like any external library: a fixed version in `third_party/<lib>/` with its license, inside the release exe budget ({engine}`docs/CODING_MODEL.md` "외부 라이브러리 두기").
+A tool can have a part that runs inside the game (the audio tool's mixer, [MealKit Audio](https://github.com/MealKit-Engine/MealKit-Audio)). That part does not include engine headers, and the engine takes it like any external library: a fixed version in `third_party/<lib>/` with its license, inside the release exe budget ({engine}`docs/CODING_MODEL.md` "외부 라이브러리 두기"). `tools\check_libs.ps1` checks that it uses no engine header or macro. While both change, the engine builds the part from a local checkout (`-DMEALKIT_MKAUDIO_DIR` for the audio runtime).

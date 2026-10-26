@@ -8,22 +8,26 @@ Sound is view side only: the simulation leaves tick events, and the view plays s
 
 ## Runtime and glue
 
-Sound has two layers, so the runtime can move to its own repository later (the MealKit audio tool, {engine}`docs/DECISIONS.md` 2026-10-26):
+Sound has two layers, so the runtime lives in its own repository, shared with the MealKit audio tool ({engine}`docs/DECISIONS.md` 2026-10-26):
 
-- **The runtime** `mkaudio::Mixer` in {engine}`engine/libs/mkaudio` does the mixing, buses, voices, containers, curves and subtitles described on this page. It is a library outside the engine: it includes no MealKit header and uses only miniaudio, stb_vorbis and the standard library. `tools\check_libs.ps1` fails the check if it uses an engine header or macro. Events come in as plain `mkaudio::EventDef` values through `setEvents`, clips as file paths, and log lines through a callback.
+- **The runtime** `mkaudio::Mixer` from [MealKit Audio](https://github.com/MealKit-Engine/MealKit-Audio), vendored at a fixed version in {engine}`third_party/mkaudio`, does the mixing, buses, voices, containers, curves and subtitles described on this page. It is a library outside the engine: it includes no MealKit header and uses only miniaudio, stb_vorbis and the standard library. `tools\check_libs.ps1` fails the check if it uses an engine header or macro. Events come in as plain `mkaudio::EventDef` values through `setEvents`, clips as file paths, and log lines through a callback.
 - **The glue** `audio::Engine` in {engine}`engine/src/mealkit/audio` keeps the game API. It reads `assets/sounds.table` (row type `audio::SoundEvent`), turns each row into an `EventDef`, finds clip files with `findAsset`, writes the runtime's log lines to the engine log and adds the profiler zone. `Handle`, `Param` and the panel types are aliases of the runtime's types.
 
 ## miniaudio
 
-The runtime is built on miniaudio. {engine}`engine/libs/mkaudio/src/MiniaudioConfig.h` sets it up, and {engine}`engine/libs/mkaudio/src/MiniaudioImpl.cpp` is the only file with the implementation:
+The runtime is built on miniaudio. {engine}`third_party/mkaudio/src/MiniaudioConfig.h` sets it up, and {engine}`third_party/mkaudio/src/MiniaudioImpl.cpp` is the only file with the implementation:
 
 - Decoders: WAV (sound effects, decoded into memory) and Ogg Vorbis through stb_vorbis (music, streamed from disk). MP3, FLAC, encoding and generators are compiled out.
 - One device backend per platform: WASAPI on Windows. Other platforms will turn on their own backend in stage 5.
 
 Why the engine uses miniaudio instead of SDL is in {engine}`docs/DECISIONS.md` (2026-10-18).
 
-`Mixer::init` ({engine}`engine/libs/mkaudio/src/Mixer.cpp`) opens the default output device with one listener and **mixes in stereo**; miniaudio converts to the device's channel layout (7.1 and so on), so the mixing cost does not grow with the speaker count.
+`Mixer::init` ({engine}`third_party/mkaudio/src/Mixer.cpp`) opens the default output device with one listener and **mixes in stereo**; miniaudio converts to the device's channel layout (7.1 and so on), so the mixing cost does not grow with the speaker count.
 When there is no output device, `init` returns `false`, every later call does nothing, and the game runs without sound.
+
+### Changing the runtime
+
+Work on the runtime happens in a MealKit-Audio checkout, which has its own tests (mixing without a device, `Desc::noDevice` and `render`) and CI. To try a change in the engine before it is released, configure the engine with `-DMEALKIT_MKAUDIO_DIR=<checkout>`; CMake then builds the runtime from the checkout instead of `third_party/mkaudio`. When the change is tagged in MealKit-Audio, `tools\update_mkaudio.ps1 -From <checkout> -Ref <tag>` copies that tag into `third_party/mkaudio` (only `CMakeLists.txt`, `include/`, `src/` and the license, with the version in `mealkit.txt`) and rebuilds the notices.
 
 ## Sound events
 
@@ -117,4 +121,4 @@ Randomness here (volume, pitch, clip choice) uses the runtime's own small PCG32 
 | Decode once, copy to play | `decode`, `ma_sound_init_copy` | Effects are decoded when the table loads; each play shares the decoded data. |
 | Streaming | `MA_SOUND_FLAG_STREAM` | Long music is read from disk while it plays instead of being decoded into memory. |
 | Handedness conversion | `setListener`, `apply` | Negates z so miniaudio's right-handed space matches MealKit's left-handed one. |
-| Library boundary | `engine/libs/mkaudio`, `tools\check_libs.ps1` | The runtime has its own CMake target and include folder and is checked for engine includes, so it can move to its own repository as one folder. |
+| Library boundary | `third_party/mkaudio`, `tools\check_libs.ps1` | The runtime has its own repository, CMake project and include folder, and is checked for engine includes, so it builds and is used without MealKit. |

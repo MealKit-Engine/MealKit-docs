@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-26 15:34+0900\n"
+"POT-Creation-Date: 2026-10-26 15:54+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -502,11 +502,18 @@ msgstr "`check_platform.ps1`, `check_strings.ps1`"
 msgid "OS calls outside the platform layer; editor translations"
 msgstr "플랫폼 층 밖 OS 호출, 에디터 번역"
 
-msgid "`check_libs.ps1`"
-msgstr "`check_libs.ps1`"
+msgid "`check_libs.ps1 [-Path <folder>]`"
+msgstr "`check_libs.ps1 [-Path <folder>]`"
 
-msgid "Libraries outside the engine (`engine/libs`, the audio runtime) use no engine headers or macros"
-msgstr "엔진 밖 라이브러리(`engine/libs`, 오디오 런타임)가 엔진 헤더·매크로를 쓰지 않는지"
+msgid "Runtime parts of MealKit tools in `third_party/` (the audio runtime), and a local checkout given with `-Path`, use no engine headers or macros"
+msgstr "`third_party/`의 MealKit 도구 런타임 조각(오디오 런타임)과 `-Path`로 준 로컬 체크아웃이 엔진 헤더·매크로를 쓰지 않는지"
+
+msgid "`update_mkaudio.ps1 -From <checkout> [-Ref <tag>]`"
+msgstr "`update_mkaudio.ps1 -From <checkout> [-Ref <tag>]`"
+
+#, python-brace-format
+msgid "Copy a MealKit-Audio tag into `third_party/mkaudio` and rebuild the notices ({doc}`../engine_dev/internals/audio`)"
+msgstr "MealKit-Audio 태그를 `third_party/mkaudio`에 복사하고 고지문을 다시 만든다({doc}`../engine_dev/internals/audio`)"
 
 msgid "`check_layout.ps1 [-Project <folder>]`"
 msgstr "`check_layout.ps1 [-Project <폴더>]`"
