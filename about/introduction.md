@@ -10,7 +10,8 @@ Today it runs on Windows with DirectX 12. Other platforms are planned for stage 
 - Many platforms, with DirectX 12 as the reference. OS APIs are called only behind the platform layer (`mealkit/platform/`) and graphics APIs only behind the engine's thin RHI (`mealkit/rhi/`). Features are not lowered to fit another API.
 - Goals: release on PC, mobile, web and consoles, editors on Windows, macOS and Linux, and crossplay between all platforms (roadmap stage 5). Simulation code has no platform branches. 2D games are not supported.
 - No game is built in the engine repository. Engine features are proven by using them in the reference samples under `samples/`.
-- The engine builds only deterministic simulation, lockstep networking, the renderer and the editor, and takes everything else from finished external tools and libraries. Authoring tools (Blender, Penpot, Effekseer, VS Code) are used freely.
+- The engine repository builds only deterministic simulation, lockstep networking, the renderer and the editor, and takes everything else from finished external tools and libraries. Authoring tools (Blender, Penpot, Effekseer, VS Code) are used freely.
+  Where no free tool fits a role's workflow, MealKit builds a small tool of its own (the first is audio) in a separate repository under the MIT license, opened from the editor. MealKit is this family: the engine and editor in the middle, a tool for each role around it.
   Libraries that ship inside the game are copied into `third_party/` at a fixed version. Libraries that touch the simulation must be verified as deterministic.
 - One answer per problem. Design questions such as global access, object composition, pooling and asynchronous work have a single answer in the {engine}`coding model <docs/CODING_MODEL.md>`, and only that answer is used.
 
