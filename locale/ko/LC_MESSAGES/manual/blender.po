@@ -112,11 +112,17 @@ msgstr "알파 블렌드"
 msgid "The active color attribute (multiplied with the base color)"
 msgstr "활성 색 속성 (기본 색과 곱한다)"
 
-msgid "Armatures, animation, shape keys"
-msgstr "아마추어, 애니메이션, 셰이프 키"
+msgid "Shape keys, a second armature"
+msgstr "셰이프 키, 두 번째 아마추어"
 
-msgid "The check warns about the parts in the right column. They are exported without them (an armature exports the current pose). The list comes from the engine itself: the add-on's `schema.json` is checked against the engine's model loader by the engine's unit tests, so the add-on and the engine cannot disagree."
-msgstr "검사는 오른쪽 열의 것에 경고한다. 그것 없이 내보낸다(아마추어는 지금 자세로). 목록은 엔진에서 온다: 애드온의 `schema.json`이 엔진 모델 불러오기와 같은지 엔진 단위 테스트가 보므로, 애드온과 엔진이 어긋날 수 없다."
+msgid "One armature with up to 64 bones, and its actions (each action becomes a clip)"
+msgstr "뼈 64개까지의 아마추어 하나와 그 액션 (액션마다 클립 하나)"
+
+msgid "Animated objects without an armature"
+msgstr "아마추어 없이 움직이는 오브젝트"
+
+msgid "The check warns about the parts in the right column. They are exported without them (an armature with more than 64 bones is drawn in its bind pose). The list comes from the engine itself: the add-on's `schema.json` is checked against the engine's model loader by the engine's unit tests, so the add-on and the engine cannot disagree."
+msgstr "검사는 오른쪽 열의 것에 경고한다. 그것 없이 내보낸다(뼈가 64개를 넘는 아마추어는 바인드 자세로 그린다). 목록은 엔진에서 온다: 애드온의 `schema.json`이 엔진 모델 불러오기와 같은지 엔진 단위 테스트가 보므로, 애드온과 엔진이 어긋날 수 없다."
 
 msgid "Material panel"
 msgstr "머티리얼 패널"

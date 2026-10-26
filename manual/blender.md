@@ -37,9 +37,10 @@ All exported objects become **one model**: the engine merges the meshes and bake
 | Triangles (faces are triangulated on export), normals, the first UV map | A second UV map |
 | Principled BSDF: Base Color, Metallic, Roughness, Normal (through a Normal Map node) and Emission, as values or image textures | Base color from other nodes, other BSDF inputs |
 | Alpha clip | Alpha blend |
-| The active color attribute (multiplied with the base color) | Armatures, animation, shape keys |
+| The active color attribute (multiplied with the base color) | Shape keys, a second armature |
+| One armature with up to 64 bones, and its actions (each action becomes a clip) | Animated objects without an armature |
 
-The check warns about the parts in the right column. They are exported without them (an armature exports the current pose).
+The check warns about the parts in the right column. They are exported without them (an armature with more than 64 bones is drawn in its bind pose).
 The list comes from the engine itself: the add-on's `schema.json` is checked against the engine's model loader by the engine's unit tests, so the add-on and the engine cannot disagree.
 
 ## Material panel
