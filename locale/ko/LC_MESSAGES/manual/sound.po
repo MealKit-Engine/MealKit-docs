@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-26 18:30+0900\n"
+"POT-Creation-Date: 2026-10-27 20:54+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ko\n"
@@ -214,6 +214,12 @@ msgstr "`hitStop`"
 msgid "Hit stop: the view freezes for this many seconds"
 msgstr "화면 정지: 이 초만큼 화면이 멈춘다"
 
+msgid "`effect`"
+msgstr "`effect`"
+
+msgid "A particle effect played at the event position (`assets/effects/<name>.fx`, the strength scales the particle count)"
+msgstr "이벤트 위치에 띄울 파티클 효과 (`assets/effects/<이름>.fx`, 세기만큼 입자 수가 준다)"
+
 msgid "**Hit stop freezes only the view.** The simulation keeps running in lockstep with the other players; when the stop ends, the view jumps back to the current state."
 msgstr "**화면 정지는 화면만 멈춘다.** 시뮬레이션은 다른 플레이어와 락스텝으로 계속 돌고, 정지가 끝나면 화면이 지금 상태로 바로 돌아온다."
 
@@ -222,4 +228,10 @@ msgstr "[연출] 패널"
 
 msgid "View > Feedback lists the game's event kinds and their rows. Edits are saved automatically and a playing game picks them up at once. **Preview** plays the rows of the selected kind right now, even while editing."
 msgstr "[보기] > [연출]은 게임의 이벤트 종류와 그 행들을 보여 준다. 고치면 자동으로 저장되고 플레이 중인 게임에 바로 반영된다. **[미리듣기]**는 고른 종류의 행을 지금 한 번 낸다(편집 중에도 된다)."
+
+msgid "Particle effects"
+msgstr "파티클 효과"
+
+msgid "A particle effect is a burst of glowing or soft particles, one file per effect: `assets/effects/<name>.fx`. Open **Effects** at the bottom of the Feedback panel to choose an effect or make a new one, change its values (count, lifetime, direction and spread, speed, gravity, drag, size and color from start to end, softness, spin, additive) and press **Preview Effect** to play it at the camera focus. The values are saved automatically. Put the effect name in a row's `effect` column to play it on that event. View code can also play one directly with `ctx.feedback.playEffect(name, position)`. Particles are view side only and freeze during hit stop."
+msgstr "파티클 효과는 빛나거나 부드러운 입자가 한 번에 터지는 묶음이고, 효과 하나가 파일 하나다: `assets/effects/<이름>.fx`. [연출] 패널 아래 **[효과]**를 열어 효과를 고르거나 새로 만들고, 값(입자 수, 수명, 방향과 퍼짐, 속도, 중력, 공기 저항, 처음부터 끝까지의 크기와 색, 가장자리 흐림, 회전, 더하기)을 고친 뒤 **[효과 미리보기]**를 누르면 카메라 초점에 띄운다. 값은 자동으로 저장된다. 행의 `effect` 열에 효과 이름을 넣으면 그 이벤트에 띄운다. 화면 코드에서 바로 띄우려면 `ctx.feedback.playEffect(이름, 위치)`. 파티클은 화면 쪽에만 있고 화면 정지 중에는 멈춘다."
 

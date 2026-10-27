@@ -78,9 +78,17 @@ The event type is a `MEALKIT_STRUCT` whose first `MEALKIT_ENUM` field is the eve
 | `shake`, `shakeSeconds`, `shakeFrequency`, `shakeRange` | Camera shake: size at full strength, time, speed, and the distance where it fades out |
 | `flash`, `flashSeconds`, `flashColor` | Screen flash: strength, time and color |
 | `hitStop` | Hit stop: the view freezes for this many seconds |
+| `effect` | A particle effect played at the event position (`assets/effects/<name>.fx`, the strength scales the particle count) |
 
 **Hit stop freezes only the view.** The simulation keeps running in lockstep with the other players; when the stop ends, the view jumps back to the current state.
 
 ### Feedback panel
 
 View > Feedback lists the game's event kinds and their rows. Edits are saved automatically and a playing game picks them up at once. **Preview** plays the rows of the selected kind right now, even while editing.
+
+### Particle effects
+
+A particle effect is a burst of glowing or soft particles, one file per effect: `assets/effects/<name>.fx`.
+Open **Effects** at the bottom of the Feedback panel to choose an effect or make a new one, change its values (count, lifetime, direction and spread, speed, gravity, drag, size and color from start to end, softness, spin, additive) and press **Preview Effect** to play it at the camera focus.
+The values are saved automatically. Put the effect name in a row's `effect` column to play it on that event. View code can also play one directly with `ctx.feedback.playEffect(name, position)`.
+Particles are view side only and freeze during hit stop.
