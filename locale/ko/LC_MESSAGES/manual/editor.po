@@ -135,6 +135,9 @@ msgstr "**씬 환경**: 씬 트리 맨 위의 **씬** 줄을 고른다. 그러�
 msgid "**Log**: **Build > Log** shows engine and game log lines. Tick Info, Warnings or Errors to filter, type in the search box to find a line, and press Clear to empty it."
 msgstr "**로그**: **빌드 > 로그**에 엔진과 게임의 로그 줄이 나온다. 정보·경고·오류를 체크해 거르고, 찾기 칸에 쳐서 줄을 찾고, 지우기로 비운다."
 
+msgid "**Notices**: messages also appear at the bottom right of the scene view. Failures stay until you close them; click one to open the build log or the log. While playing, the menu bar turns brown and the scene view gets an orange frame."
+msgstr "**알림**: 메시지가 씬 뷰 오른쪽 아래에도 뜬다. 실패는 닫을 때까지 남고, 누르면 빌드 로그나 로그가 열린다. 플레이 중에는 메뉴 막대가 갈색, 씬 뷰 테두리가 주황색이 된다."
+
 msgid "**Tuning**: two tabs. Game holds the values the simulation reads (`assets/game.tuning`); during solo play changes apply at once. Display holds the values that are only seen (`assets/view.tuning`); changes apply at once in every player window, even with several players."
 msgstr "**튜닝**: 탭 두 개. \"게임\"은 시뮬레이션이 읽는 값(`assets/game.tuning`)으로, 혼자 플레이 중에는 바꾸면 바로 적용된다. \"화면\"은 보이기만 하는 값(`assets/view.tuning`)으로, 여러 명이어도 모든 플레이어 창에 바로 적용된다."
 

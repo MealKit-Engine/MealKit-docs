@@ -36,6 +36,7 @@ Scenes are saved as human-readable `.scene` text: each object is its kind name p
 - **Layout**: the scene tree is on the left, the inspector on the right (with the **Tuning** and **State** tabs), and logs and tables share a strip under the scene view. **View > Layout** picks Edit, Play or Look Dev and resets the layout.
 - **Scene environment**: select the **Scene** row at the top of the scene tree. The inspector then shows the sun, sky, fog, sky HDRI and post processing of the open scene.
 - **Log**: **Build > Log** shows engine and game log lines. Tick Info, Warnings or Errors to filter, type in the search box to find a line, and press Clear to empty it.
+- **Notices**: messages also appear at the bottom right of the scene view. Failures stay until you close them; click one to open the build log or the log. While playing, the menu bar turns brown and the scene view gets an orange frame.
 - **Tuning**: two tabs. Game holds the values the simulation reads (`assets/game.tuning`); during solo play changes apply at once. Display holds the values that are only seen (`assets/view.tuning`); changes apply at once in every player window, even with several players.
 - **Tables**: the game's definition tables (`assets/tables/*.table`) and the engine's input bindings table as a spreadsheet, CSV import and export, and the list of missing row references. Playing saves edited tables first.
 - **Sounds**: output buses, playing voices and culled plays, and a preview of sound events (see {doc}`sound`).
