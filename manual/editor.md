@@ -38,6 +38,7 @@ Scenes are saved as human-readable `.scene` text: each object is its kind name p
 - **Log**: **Build > Log** shows engine and game log lines. Tick Info, Warnings or Errors to filter, type in the search box to find a line, and press Clear to empty it.
 - **Notices**: messages also appear at the bottom right of the scene view. Failures stay until you close them; click one to open the build log or the log. While playing, the menu bar turns brown and the scene view gets an orange frame.
 - **Command palette**: press Ctrl+P (or **View > Command Palette**) and type part of a command, object, scene or tool name, in English or Korean. Use the arrow keys and Enter to run it.
+- **Preferences**: **File > Preferences** sets the camera speed, text size, autosave interval and code editor. The window layout is kept per project in `build\editor\layout.ini`. Press F1 for the list of keyboard shortcuts.
 - **Tuning**: two tabs. Game holds the values the simulation reads (`assets/game.tuning`); during solo play changes apply at once. Display holds the values that are only seen (`assets/view.tuning`); changes apply at once in every player window, even with several players.
 - **Tables**: the game's definition tables (`assets/tables/*.table`) and the engine's input bindings table as a spreadsheet, CSV import and export, and the list of missing row references. Playing saves edited tables first.
 - **Sounds**: output buses, playing voices and culled plays, and a preview of sound events (see {doc}`sound`).
