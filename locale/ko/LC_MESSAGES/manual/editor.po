@@ -138,6 +138,9 @@ msgstr "**로그**: **빌드 > 로그**에 엔진과 게임의 로그 줄이 나
 msgid "**Notices**: messages also appear at the bottom right of the scene view. Failures stay until you close them; click one to open the build log or the log. While playing, the menu bar turns brown and the scene view gets an orange frame."
 msgstr "**알림**: 메시지가 씬 뷰 오른쪽 아래에도 뜬다. 실패는 닫을 때까지 남고, 누르면 빌드 로그나 로그가 열린다. 플레이 중에는 메뉴 막대가 갈색, 씬 뷰 테두리가 주황색이 된다."
 
+msgid "**Command palette**: press Ctrl+P (or **View > Command Palette**) and type part of a command, object, scene or tool name, in English or Korean. Use the arrow keys and Enter to run it."
+msgstr "**명령 팔레트**: Ctrl+P(또는 **보기 > 명령 팔레트**)를 누르고 명령·물체·씬·도구 이름의 일부를 영어나 한국어로 친다. 화살표와 Enter로 실행한다."
+
 msgid "**Tuning**: two tabs. Game holds the values the simulation reads (`assets/game.tuning`); during solo play changes apply at once. Display holds the values that are only seen (`assets/view.tuning`); changes apply at once in every player window, even with several players."
 msgstr "**튜닝**: 탭 두 개. \"게임\"은 시뮬레이션이 읽는 값(`assets/game.tuning`)으로, 혼자 플레이 중에는 바꾸면 바로 적용된다. \"화면\"은 보이기만 하는 값(`assets/view.tuning`)으로, 여러 명이어도 모든 플레이어 창에 바로 적용된다."
 
