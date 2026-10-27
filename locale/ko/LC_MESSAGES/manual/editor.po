@@ -126,6 +126,12 @@ msgstr "씬은 사람이 읽을 수 있는 `.scene` 텍스트로 저장된다. �
 msgid "Panels"
 msgstr "패널"
 
+msgid "**Layout**: the scene tree is on the left, the inspector on the right (with the **Tuning** and **State** tabs), and logs and tables share a strip under the scene view. **View > Layout** picks Edit, Play or Look Dev and resets the layout."
+msgstr "**레이아웃**: 씬 트리는 왼쪽, 인스펙터는 오른쪽(**튜닝**·**상태** 탭과 같이), 로그와 표는 씬 뷰 아래 가로 칸에 같이 놓인다. **보기 > 레이아웃**에서 편집·플레이·룩데브를 골라 레이아웃을 다시 놓는다."
+
+msgid "**Scene environment**: select the **Scene** row at the top of the scene tree. The inspector then shows the sun, sky, fog, sky HDRI and post processing of the open scene."
+msgstr "**씬 환경**: 씬 트리 맨 위의 **씬** 줄을 고른다. 그러면 인스펙터에 열린 씬의 태양·하늘·안개·하늘 HDRI·포스트 프로세싱이 나온다."
+
 msgid "**Tuning**: two tabs. Game holds the values the simulation reads (`assets/game.tuning`); during solo play changes apply at once. Display holds the values that are only seen (`assets/view.tuning`); changes apply at once in every player window, even with several players."
 msgstr "**튜닝**: 탭 두 개. \"게임\"은 시뮬레이션이 읽는 값(`assets/game.tuning`)으로, 혼자 플레이 중에는 바꾸면 바로 적용된다. \"화면\"은 보이기만 하는 값(`assets/view.tuning`)으로, 여러 명이어도 모든 플레이어 창에 바로 적용된다."
 
