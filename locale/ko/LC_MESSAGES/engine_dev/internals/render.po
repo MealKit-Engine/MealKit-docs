@@ -201,8 +201,8 @@ msgstr "선형 필터, 가장자리 고정(clamp)"
 msgid "Shaders read structures from the ring field by field with `Load`, so the C++ layout is the only layout to keep in sync. The reasons for this shape (instead of root descriptors or `ResourceDescriptorHeap[]`) are in {engine}`docs/DECISIONS.md` (2026-10-19)."
 msgstr "셰이더는 링에서 구조체를 `Load`로 필드마다 읽으므로, 맞춰 둘 배치는 C++ 쪽 하나뿐이다. 루트 디스크립터나 `ResourceDescriptorHeap[]` 대신 이 모양을 고른 이유는 {engine}`docs/DECISIONS.md`(2026-10-19)에 있다."
 
-msgid "A `CommandList` binds one of two targets: `beginScene` (the back buffer's sRGB view plus depth, cleared) and `beginOverlay` (the plain view, no depth). A copy into a texture unbinds the target, so the caller binds it again after copies."
-msgstr "`CommandList`는 두 대상 중 하나를 묶는다: `beginScene`(백버퍼의 sRGB 뷰와 깊이, 지운다)과 `beginOverlay`(변환 없는 뷰, 깊이 없음). 텍스처로 복사하면 묶인 대상이 풀리므로, 부르는 쪽이 복사 뒤에 다시 묶는다."
+msgid "A `CommandList` binds the back buffer with `beginOverlay` (its plain `UNORM` view, no depth: post processing and UI write sRGB values) or an offscreen target with `beginTarget`. A copy into a texture unbinds the target, so the caller binds it again after copies."
+msgstr "`CommandList`는 `beginOverlay`로 백버퍼(그냥 `UNORM` 뷰, 깊이 없음: 포스트와 UI가 sRGB 값을 쓴다)를, `beginTarget`으로 오프스크린 대상을 묶는다. 텍스처로 복사하면 묶인 대상이 풀리므로, 부르는 쪽이 복사 뒤에 다시 묶는다."
 
 msgid "The Vulkan backend"
 msgstr "Vulkan 백엔드"
@@ -246,14 +246,14 @@ msgstr "정적 샘플러"
 msgid "Immutable sampler in the same set"
 msgstr "같은 세트의 고정(immutable) 샘플러"
 
-msgid "`beginScene`, `beginOverlay`"
-msgstr "`beginScene`, `beginOverlay`"
+msgid "`beginOverlay`, `beginTarget`"
+msgstr "`beginOverlay`, `beginTarget`"
 
-msgid "`OMSetRenderTargets` with the sRGB or plain view"
-msgstr "sRGB 뷰나 변환 없는 뷰로 `OMSetRenderTargets`"
+msgid "`OMSetRenderTargets` with the back buffer's view or the target's views"
+msgstr "백버퍼 뷰 또는 대상의 뷰로 `OMSetRenderTargets`"
 
-msgid "Dynamic rendering with an sRGB or UNORM view of the same swapchain image (`VK_KHR_swapchain_mutable_format`)"
-msgstr "같은 스왑 체인 이미지의 sRGB 뷰나 UNORM 뷰로 dynamic rendering (`VK_KHR_swapchain_mutable_format`)"
+msgid "Dynamic rendering with the swapchain image's `UNORM` view or the target's image"
+msgstr "스왑체인 이미지의 `UNORM` 뷰 또는 대상 이미지로 dynamic rendering"
 
 msgid "Texture barriers"
 msgstr "텍스처 배리어"
@@ -282,8 +282,8 @@ msgstr "`ALLOW_TEARING`"
 msgid "`IMMEDIATE` present mode, otherwise `MAILBOX`"
 msgstr "`IMMEDIATE` 프레젠트 방식, 없으면 `MAILBOX`"
 
-msgid "Vulkan's clip space has y pointing down. `setViewport` gives the viewport a negative height, so the same shaders and the same clockwise front faces as Direct3D 12 produce the same image. A copy or a barrier ends the current dynamic rendering pass (Vulkan does not allow them inside one), which is why the RHI asks callers to bind the target again after copies. With `--debug`, the Vulkan backend turns on `VK_LAYER_KHRONOS_validation` when the Vulkan SDK is installed and sends its warnings and errors to the engine log as `[Vulkan]` lines. The minimum spec for this backend is Vulkan 1.3 with descriptor indexing, dynamic rendering, synchronization2, demote to helper invocation and `VK_KHR_swapchain_mutable_format`; Intel 11th gen integrated graphics has them. Profile builds do not time the GPU with Tracy on Vulkan yet (the engine's own GPU timers, below, work on both backends)."
-msgstr "Vulkan의 클립 공간은 y가 아래를 향한다. `setViewport`가 뷰포트 높이를 음수로 주므로, Direct3D 12와 같은 셰이더, 같은 시계 방향 앞면으로 같은 그림이 나온다. 복사나 배리어는 지금의 dynamic rendering 패스를 끝낸다(Vulkan은 패스 안에서 허용하지 않는다). 그래서 RHI는 복사 뒤에 부르는 쪽이 대상을 다시 묶게 한다. `--debug`를 주면 Vulkan SDK가 깔려 있을 때 `VK_LAYER_KHRONOS_validation`을 켜고, 경고와 오류를 `[Vulkan]` 줄로 엔진 로그에 보낸다. 이 백엔드의 최소 사양은 descriptor indexing, dynamic rendering, synchronization2, demote to helper invocation, `VK_KHR_swapchain_mutable_format`이 있는 Vulkan 1.3이고, Intel 11세대 내장 그래픽에 모두 있다. 프로파일 빌드는 Vulkan에서 아직 Tracy로 GPU 시간을 재지 않는다(아래의 엔진 GPU 타이머는 두 백엔드에서 된다)."
+msgid "Vulkan's clip space has y pointing down. `setViewport` gives the viewport a negative height, so the same shaders and the same clockwise front faces as Direct3D 12 produce the same image. A copy or a barrier ends the current dynamic rendering pass (Vulkan does not allow them inside one), which is why the RHI asks callers to bind the target again after copies. With `--debug`, the Vulkan backend turns on `VK_LAYER_KHRONOS_validation` when the Vulkan SDK is installed and sends its warnings and errors to the engine log as `[Vulkan]` lines. The minimum spec for this backend is Vulkan 1.3 with descriptor indexing, dynamic rendering, synchronization2, demote to helper invocation and a `B10G11R11` format that can be drawn, blended and filtered (the HDR scene target); Intel 11th gen integrated graphics has them. Profile builds do not time the GPU with Tracy on Vulkan yet (the engine's own GPU timers, below, work on both backends)."
+msgstr "Vulkan의 클립 공간은 y가 아래를 향한다. `setViewport`가 뷰포트 높이를 음수로 주므로, Direct3D 12와 같은 셰이더, 같은 시계 방향 앞면으로 같은 그림이 나온다. 복사나 배리어는 지금의 dynamic rendering 패스를 끝낸다(Vulkan은 패스 안에서 허용하지 않는다). 그래서 RHI는 복사 뒤에 부르는 쪽이 대상을 다시 묶게 한다. `--debug`를 주면 Vulkan SDK가 깔려 있을 때 `VK_LAYER_KHRONOS_validation`을 켜고, 경고와 오류를 `[Vulkan]` 줄로 엔진 로그에 보낸다. 이 백엔드의 최소 사양은 descriptor indexing, dynamic rendering, synchronization2, demote to helper invocation, 그리기·섞기·선형 샘플이 되는 `B10G11R11` 형식(HDR 장면 대상)이 있는 Vulkan 1.3이고, Intel 11세대 내장 그래픽에 모두 있다. 프로파일 빌드는 Vulkan에서 아직 Tracy로 GPU 시간을 재지 않는다(아래의 엔진 GPU 타이머는 두 백엔드에서 된다)."
 
 msgid "Starting up"
 msgstr "시작"
@@ -574,8 +574,8 @@ msgstr "반사 프로브"
 msgid "A `reflection_probe` scene object (a built-in type, view-only like the sky, its scale is the box it affects) gives that box its own reflection cube. The editor bakes it (`Editor::renderProbeBake`): each frame one cube face is drawn into an offscreen target with a 90° camera at the probe's position (objects visible in the game only, sky reflection, no probes), and `Renderer::captureTarget` reads the target back at `endFrame` (`rhi::Capture::source`, DX12 and Vulkan). After six faces `asset::bakeProbe` makes the same kind of reflection cube as the sky HDRI (mip 0 a mirror, then GGX samples, RGB9E5) and `asset::saveProbe` writes `assets/probes/<scene>_<id>.mkprobe`; the object's `bake` field keeps the path."
 msgstr "씬 물체 `reflection_probe`(엔진 기본 종류, 하늘처럼 화면 전용, 크기가 영향 상자)가 그 상자에 자기 반사 큐브를 준다. 굽기는 에디터가 한다(`Editor::renderProbeBake`): 프레임마다 큐브 면 하나를 프로브 자리의 90° 카메라로 오프스크린 대상에 그리고(게임에 보이는 물체만, 하늘 반사, 프로브 없이), `Renderer::captureTarget`이 `endFrame`에서 그 대상을 읽는다(`rhi::Capture::source`, DX12·Vulkan). 면 여섯이 모이면 `asset::bakeProbe`가 하늘 HDRI와 같은 반사 큐브(밉 0은 거울, 나머지는 GGX 표본, RGB9E5)를 만들고 `asset::saveProbe`가 `assets/probes/<씬>_<id>.mkprobe`를 쓴다. 물체의 `bake` 필드가 그 경로를 갖는다."
 
-msgid "At run time `ModelCache::probes(scene, out)` uploads the files (`Renderer::createProbe`) and returns the position, half size and number of each baked probe, up to the project setting `probeMaxCount`. The frame writes them into the upload ring as a table of 32 bytes per probe. The vertex shader picks, for each instance, the probe whose box contains the instance position and whose center is nearest, and the pixel shader reads that cube instead of the sky's reflection cube (without the HDRI rotation and intensity, which the capture already contains). Captures are 8-bit sRGB, so light brighter than 1 is clipped until the renderer has an HDR target."
-msgstr "실행 중에는 `ModelCache::probes(scene, out)`가 파일을 올리고(`Renderer::createProbe`) 구운 프로브마다 위치·반 크기·번호를 프로젝트 설정 `probeMaxCount`까지 돌려준다. 프레임은 이것을 프로브당 32바이트 표로 업로드 링에 쓴다. 정점 셰이더가 인스턴스마다 인스턴스 위치를 담은 상자 중 중심이 가장 가까운 프로브를 고르고, 픽셀 셰이더는 하늘 반사 큐브 대신 그 큐브를 읽는다(HDRI 회전·세기는 곱하지 않는다: 찍은 그림에 이미 들어 있다). 찍은 그림은 8비트 sRGB라 렌더러에 HDR 대상이 생길 때까지 1보다 밝은 빛은 잘린다."
+msgid "At run time `ModelCache::probes(scene, out)` uploads the files (`Renderer::createProbe`) and returns the position, half size and number of each baked probe, up to the project setting `probeMaxCount`. The frame writes them into the upload ring as a table of 32 bytes per probe. The vertex shader picks, for each instance, the probe whose box contains the instance position and whose center is nearest, and the pixel shader reads that cube instead of the sky's reflection cube (without the HDRI rotation and intensity, which the capture already contains). Probe faces are drawn without tone mapping and captured as 8-bit sRGB, so light brighter than 1 is clipped."
+msgstr "실행 중에는 `ModelCache::probes(scene, out)`가 파일을 올리고(`Renderer::createProbe`) 구운 프로브마다 위치·반 크기·번호를 프로젝트 설정 `probeMaxCount`까지 돌려준다. 프레임은 이것을 프로브당 32바이트 표로 업로드 링에 쓴다. 정점 셰이더가 인스턴스마다 인스턴스 위치를 담은 상자 중 중심이 가장 가까운 프로브를 고르고, 픽셀 셰이더는 하늘 반사 큐브 대신 그 큐브를 읽는다(HDRI 회전·세기는 곱하지 않는다: 찍은 그림에 이미 들어 있다). 프로브 면은 톤 매핑 없이 그려 8비트 sRGB로 찍으므로 1보다 밝은 빛은 잘린다."
 
 msgid "Point lights"
 msgstr "점광원"
@@ -604,14 +604,24 @@ msgstr "`asset::ModelCache`가 glTF의 첫 스킨을 읽는다(`asset/Animation.
 msgid "`asset::skinPalette` turns a pose into joint world matrices × inverse bind matrices, mirrored into MealKit's left-handed space, as three rows per joint (48 bytes). `DrawList::addSkinned` keeps one instance and its palette; the renderer uploads the palette into the ring, passes its offset in the push constants and draws each skinned instance with its own draw call through the skinned pipelines (the same shaders compiled with `SKINNED=1`, which add the `JOINTS`/`WEIGHTS` attributes and blend four palette matrices in the vertex shader). Shadows, outlines and point lights work the same way; culling uses the bind-pose bounds enlarged by half."
 msgstr "`asset::skinPalette`는 자세를 관절 월드 행렬 × 역바인드 행렬로 바꾸고 MealKit의 왼손 공간으로 뒤집어, 관절마다 행 셋(48바이트)으로 만든다. `DrawList::addSkinned`가 인스턴스 하나와 그 팔레트를 갖고, 렌더러가 팔레트를 링에 올려 그 위치를 푸시 상수로 넘기며 스킨 인스턴스마다 드로우 콜 하나로 스킨 파이프라인을 써서 그린다(같은 셰이더를 `SKINNED=1`로 컴파일한 것: `JOINTS`/`WEIGHTS` 속성을 더하고 정점 셰이더에서 팔레트 행렬 넷을 섞는다). 그림자·외곽선·점광원도 같고, 컬링은 바인드 자세 경계를 반만큼 키워 쓴다."
 
+msgid "Post processing"
+msgstr "포스트 프로세싱"
+
+#, python-brace-format
+msgid "The main 3D is drawn into an HDR scene target the size of the window (`Renderer::Impl::mainChain`, made again outside the frame when the window size changes). The first of `drawToTarget`, `beginOverlay`, `drawUi` and `endFrame` resolves it (`resolveScene`, GPU pass `post`): bloom goes down a chain of five half-size `Hdr` targets (`PSBloomDown`: four diagonal taps and the center, the first level keeping only light above the threshold with a soft knee) and back up with additive blending (`PSBloomUp`, eight taps). Then `PSUber` ({engine}`engine/shaders/Post.hlsl`) draws one triangle into the back buffer over the scene viewport: FXAA on the HDR values (edges found on Reinhard-compressed luminance, blended compressed so bright points do not smear), chromatic aberration, exposure × the player's brightness, bloom, AgX (Wrensch's polynomial fit), the color LUT, vignette, film grain and a ±0.5/255 dither. Its 96-byte constants are written into the upload ring. With `toneMapping` off (probe baking) or a debug view it only clamps and encodes sRGB."
+msgstr "본 화면 3D는 창 크기의 HDR 장면 대상(`Renderer::Impl::mainChain`, 창 크기가 바뀌면 프레임 밖에서 다시 만든다)에 그린다. `drawToTarget`·`beginOverlay`·`drawUi`·`endFrame` 중 처음 오는 곳이 그것을 낸다(`resolveScene`, GPU 패스 `post`): 블룸은 반씩 줄어드는 `Hdr` 대상 다섯으로 내려가고(`PSBloomDown`: 대각 넷과 가운데, 첫 단계는 부드러운 무릎으로 문턱을 넘는 빛만) 더하기 섞기로 올라온다(`PSBloomUp`, 탭 여덟). 그다음 `PSUber`({engine}`engine/shaders/Post.hlsl`)가 씬 뷰포트 위에 삼각형 하나로 백버퍼에 그린다: HDR 값 위의 FXAA(Reinhard로 누른 밝기로 가장자리를 찾고 누른 채 섞어 밝은 점이 번지지 않는다), 색수차, 노출 × 플레이어 밝기, 블룸, AgX(Wrensch 다항식 근사), 색 보정 LUT, 비네트, 필름 그레인, ±0.5/255 디더. 96바이트 상수는 업로드 링에 쓴다. `toneMapping`이 꺼졌거나(프로브 굽기) 보기 모드면 자르고 sRGB로만 바꾼다."
+
+msgid "A LUT is 32³ cells stored as a 1024 × 32 RGBA8 strip (blue slices side by side); the shader blends two slices. `asset::parseCubeLut` resamples any 3D `.cube` to 32 points (trilinear, honoring `DOMAIN_MIN`/`MAX`), `Renderer::createLut` keeps the cells on the CPU, and the color-blind setting (`PostOptions::colorBlind`, Machado 2009 simulation + daltonize) is applied to every cell when the texture is uploaded, so it costs nothing in the shader. LUT 0 is the identity, used when only the color-blind mode is on."
+msgstr "LUT는 32³ 칸을 1024 × 32 RGBA8 띠(파랑 조각을 나란히)로 담고 셰이더가 두 조각을 섞는다. `asset::parseCubeLut`이 아무 크기의 3D `.cube`를 32칸으로 다시 뽑고(세 선형, `DOMAIN_MIN`/`MAX`를 따른다), `Renderer::createLut`은 칸을 CPU에 갖고 있다가 텍스처를 올릴 때 색맹 설정(`PostOptions::colorBlind`, Machado 2009 흉내 + daltonize)을 모든 칸에 적용하므로 셰이더 비용이 없다. LUT 0은 항등이며 색맹 모드만 켰을 때 쓴다."
+
 msgid "Offscreen targets"
 msgstr "오프스크린 대상"
 
-msgid "`rhi::RenderTarget` is a color + depth pair drawn outside the back buffer. Its formats are the scene's, so the scene pipelines draw into it unchanged. The color is written through an sRGB view (the shader writes linear color) and read as `UNORM`, so its bytes can be shown in the debug UI or the overlay as they are. In DX12 the color is a `TYPELESS` resource with an sRGB render target view and a `UNORM` shader resource view in the bindless heap; each target has its own small RTV and DSV heaps. In Vulkan it is one mutable-format image (the swapchain's `UNORM` format plus the scene's sRGB view), drawn with dynamic rendering and returned to `SHADER_READ_ONLY_OPTIMAL` by `endTarget`. Targets are made once at a fixed size and never destroyed."
-msgstr "`rhi::RenderTarget`은 백버퍼 밖에 그리는 색 + 깊이 한 쌍이다. 형식이 장면과 같아 장면 파이프라인이 그대로 그린다. 색은 sRGB 뷰로 쓰고(셰이더는 선형 색을 쓴다) `UNORM`으로 읽어, 그 바이트를 디버그 UI나 오버레이에 그대로 띄울 수 있다. DX12에서는 색이 `TYPELESS` 자원이고 sRGB 렌더 타깃 뷰와 bindless 힙의 `UNORM` 셰이더 자원 뷰를 갖는다. 대상마다 작은 RTV·DSV 힙이 있다. Vulkan에서는 형식을 바꿀 수 있는 이미지 하나(스왑체인의 `UNORM` 형식 + 장면의 sRGB 뷰)이고, dynamic rendering으로 그리며 `endTarget`이 `SHADER_READ_ONLY_OPTIMAL`로 되돌린다. 대상은 크기를 정해 한 번 만들고 지우지 않는다."
+msgid "`rhi::RenderTarget` is a target drawn outside the back buffer; `rhi::TargetKind` picks its formats: `Scene` (HDR color + depth, the scene pipelines), `Hdr` (HDR color only, bloom) or `Ldr` (8-bit color in the back buffer's format, drawn by `Target::Overlay` pipelines and read as sRGB values, so its bytes can be shown in the debug UI as they are). In DX12 each target has a color resource with a render target view and a shader resource view in the bindless heap; in Vulkan it is one image drawn with dynamic rendering, returned to `SHADER_READ_ONLY_OPTIMAL` by `endTarget`. `beginTarget` without a clear color keeps the contents (bloom adds onto them). `Device::destroyRenderTarget` waits for the GPU and frees a target; the renderer uses it only for its window-sized targets."
+msgstr "`rhi::RenderTarget`은 백버퍼 밖에 그리는 대상이고 `rhi::TargetKind`가 형식을 정한다: `Scene`(HDR 색 + 깊이, 장면 파이프라인), `Hdr`(HDR 색만, 블룸), `Ldr`(백버퍼 형식의 8비트 색, `Target::Overlay` 파이프라인이 그리고 sRGB 값 그대로 읽으므로 디버그 UI에 바이트 그대로 띄운다). DX12에서는 대상마다 색 자원 하나에 그리기 뷰와 bindless 힙의 읽기 뷰가 있고, Vulkan에서는 dynamic rendering으로 그리는 이미지 하나이며 `endTarget`이 `SHADER_READ_ONLY_OPTIMAL`로 돌린다. 지우는 색 없이 `beginTarget`을 부르면 내용을 그대로 둔다(블룸이 그 위에 더한다). `Device::destroyRenderTarget`은 GPU를 기다리고 대상을 지운다. 렌더러는 창 크기 대상에만 쓴다."
 
-msgid "`Renderer::drawToTarget(target, params, drawList, lightingModel)` draws a draw list into a target after the main 3D and before the UI: it writes another set of frame constants (the material table is written once per frame), swaps the frustum and the lighting model, draws, and puts them back. The editor's look dev window uses it, and `rhi::imguiTextureId` gives the value `ImGui::Image` needs (a GPU descriptor in DX12, a descriptor set made once per texture in Vulkan)."
-msgstr "`Renderer::drawToTarget(target, params, drawList, lightingModel)`은 본 화면 3D 다음, UI 전에 그리기 목록을 대상에 그린다: 프레임 상수를 한 벌 더 쓰고(머티리얼 표는 프레임에 한 번), 프러스텀과 조명 모델을 바꿔 그린 뒤 되돌린다. 에디터의 룩데브 창이 쓰고, `rhi::imguiTextureId`가 `ImGui::Image`에 필요한 값을 준다(DX12는 GPU 서술자, Vulkan은 텍스처마다 한 번 만드는 서술자 세트)."
+msgid "`Renderer::createRenderTarget` makes an `Ldr` target with a same-sized HDR scene target as its pair. `Renderer::drawToTarget(target, params, drawList, lightingModel)` draws a draw list into the pair after the main 3D and before the UI and runs post processing into the `Ldr` target: it writes another set of frame constants (the material table is written once per frame), swaps the frustum and the lighting model, draws, and puts them back. The editor's look dev window, probe baking and the grading capture use it, and `rhi::imguiTextureId` gives the value `ImGui::Image` needs (a GPU descriptor in DX12, a descriptor set made once per texture in Vulkan)."
+msgstr "`Renderer::createRenderTarget`은 같은 크기의 HDR 장면 대상을 짝으로 갖는 `Ldr` 대상을 만든다. `Renderer::drawToTarget(target, params, drawList, lightingModel)`은 본 화면 3D 다음 UI 전에 그 짝에 드로우 목록을 그리고 포스트를 거쳐 `Ldr` 대상에 낸다: 프레임 상수를 한 벌 더 쓰고(머티리얼 표는 프레임에 한 번), 프러스텀과 조명 모델을 바꿔 그린 뒤 되돌린다. 에디터의 룩데브 창, 프로브 굽기, 보정용 캡처가 쓰고, `rhi::imguiTextureId`가 `ImGui::Image`에 줄 값을 준다(DX12는 GPU 서술자, Vulkan은 텍스처마다 한 번 만드는 서술자 세트)."
 
 msgid "Screenshots"
 msgstr "스크린샷"
@@ -696,14 +706,14 @@ msgstr "`Device::allocUpload`"
 msgid "One mapped buffer split into a half per frame. Allocation is an aligned bump of an offset, reset every frame. On UMA GPUs it needs no copy."
 msgstr "매핑한 버퍼 하나를 프레임마다 절반씩 나눈다. 할당은 오프셋을 정렬해 밀어 가는 것이고 프레임마다 되돌린다. UMA GPU에서는 복사가 필요 없다."
 
-msgid "Two views of one back buffer"
-msgstr "백버퍼 하나에 뷰 둘"
+msgid "HDR scene target"
+msgstr "HDR 장면 대상"
 
-msgid "`createSwapchainResources`"
-msgstr "`createSwapchainResources`"
+msgid "`Renderer::Impl::mainChain`, `Post.hlsl`"
+msgstr "`Renderer::Impl::mainChain`, `Post.hlsl`"
 
-msgid "An sRGB view lets the hardware do gamma encoding for 3D. A plain view lets UI and ImGui write sRGB colors unchanged."
-msgstr "sRGB 뷰로 하드웨어가 3D의 감마 인코딩을 한다. 평범한 뷰로 UI와 ImGui가 sRGB 색을 그대로 쓴다."
+msgid "3D is drawn in linear HDR (R11G11B10F, 4 bytes a pixel) and one full-screen pass tone maps it into the back buffer, writing sRGB values. UI and ImGui write sRGB colors onto the same back buffer view."
+msgstr "3D는 선형 HDR(R11G11B10F, 픽셀당 4바이트)로 그리고 전체 화면 패스 하나가 톤 매핑해 백버퍼에 sRGB 값으로 쓴다. UI와 ImGui도 같은 백버퍼 뷰에 sRGB 색을 쓴다."
 
 msgid "Reversed depth"
 msgstr "뒤집은 깊이"

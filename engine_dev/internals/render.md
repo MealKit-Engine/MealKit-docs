@@ -50,7 +50,7 @@ Every pipeline uses the same bindings ({engine}`engine/shaders/Bindless.hlsli`):
 Shaders read structures from the ring field by field with `Load`, so the C++ layout is the only layout to keep in sync.
 The reasons for this shape (instead of root descriptors or `ResourceDescriptorHeap[]`) are in {engine}`docs/DECISIONS.md` (2026-10-19).
 
-A `CommandList` binds one of two targets: `beginScene` (the back buffer's sRGB view plus depth, cleared) and `beginOverlay` (the plain view, no depth). A copy into a texture unbinds the target, so the caller binds it again after copies.
+A `CommandList` binds the back buffer with `beginOverlay` (its plain `UNORM` view, no depth: post processing and UI write sRGB values) or an offscreen target with `beginTarget`. A copy into a texture unbinds the target, so the caller binds it again after copies.
 
 ## The Vulkan backend
 
@@ -64,7 +64,7 @@ The DX12 shapes map to Vulkan like this:
 | Push constants | Root constants (16 values) | Push constant range of 64 bytes |
 | Buffer and texture arrays | Two descriptor tables in one shader-visible heap | One descriptor set: storage buffer array and sampled image array (descriptor indexing, partially bound, update after bind) |
 | Fixed sampler | Static sampler | Immutable sampler in the same set |
-| `beginScene`, `beginOverlay` | `OMSetRenderTargets` with the sRGB or plain view | Dynamic rendering with an sRGB or UNORM view of the same swapchain image (`VK_KHR_swapchain_mutable_format`) |
+| `beginOverlay`, `beginTarget` | `OMSetRenderTargets` with the back buffer's view or the target's views | Dynamic rendering with the swapchain image's `UNORM` view or the target's image |
 | Texture barriers | Resource state transitions | Image layout transitions (synchronization2) |
 | Frame pacing | Frame latency waitable object | One fence per frame in flight |
 | Vsync off | `ALLOW_TEARING` | `IMMEDIATE` present mode, otherwise `MAILBOX` |
@@ -72,7 +72,7 @@ The DX12 shapes map to Vulkan like this:
 Vulkan's clip space has y pointing down. `setViewport` gives the viewport a negative height, so the same shaders and the same clockwise front faces as Direct3D 12 produce the same image.
 A copy or a barrier ends the current dynamic rendering pass (Vulkan does not allow them inside one), which is why the RHI asks callers to bind the target again after copies.
 With `--debug`, the Vulkan backend turns on `VK_LAYER_KHRONOS_validation` when the Vulkan SDK is installed and sends its warnings and errors to the engine log as `[Vulkan]` lines.
-The minimum spec for this backend is Vulkan 1.3 with descriptor indexing, dynamic rendering, synchronization2, demote to helper invocation and `VK_KHR_swapchain_mutable_format`; Intel 11th gen integrated graphics has them.
+The minimum spec for this backend is Vulkan 1.3 with descriptor indexing, dynamic rendering, synchronization2, demote to helper invocation and a `B10G11R11` format that can be drawn, blended and filtered (the HDR scene target); Intel 11th gen integrated graphics has them.
 Profile builds do not time the GPU with Tracy on Vulkan yet (the engine's own GPU timers, below, work on both backends).
 
 ## Starting up
@@ -212,7 +212,7 @@ The RHI has cube textures for this: `TextureInit::cube` uploads six faces with t
 
 A `reflection_probe` scene object (a built-in type, view-only like the sky, its scale is the box it affects) gives that box its own reflection cube. The editor bakes it (`Editor::renderProbeBake`): each frame one cube face is drawn into an offscreen target with a 90° camera at the probe's position (objects visible in the game only, sky reflection, no probes), and `Renderer::captureTarget` reads the target back at `endFrame` (`rhi::Capture::source`, DX12 and Vulkan). After six faces `asset::bakeProbe` makes the same kind of reflection cube as the sky HDRI (mip 0 a mirror, then GGX samples, RGB9E5) and `asset::saveProbe` writes `assets/probes/<scene>_<id>.mkprobe`; the object's `bake` field keeps the path.
 
-At run time `ModelCache::probes(scene, out)` uploads the files (`Renderer::createProbe`) and returns the position, half size and number of each baked probe, up to the project setting `probeMaxCount`. The frame writes them into the upload ring as a table of 32 bytes per probe. The vertex shader picks, for each instance, the probe whose box contains the instance position and whose center is nearest, and the pixel shader reads that cube instead of the sky's reflection cube (without the HDRI rotation and intensity, which the capture already contains). Captures are 8-bit sRGB, so light brighter than 1 is clipped until the renderer has an HDR target.
+At run time `ModelCache::probes(scene, out)` uploads the files (`Renderer::createProbe`) and returns the position, half size and number of each baked probe, up to the project setting `probeMaxCount`. The frame writes them into the upload ring as a table of 32 bytes per probe. The vertex shader picks, for each instance, the probe whose box contains the instance position and whose center is nearest, and the pixel shader reads that cube instead of the sky's reflection cube (without the HDRI rotation and intensity, which the capture already contains). Probe faces are drawn without tone mapping and captured as 8-bit sRGB, so light brighter than 1 is clipped.
 
 ## Point lights
 
@@ -232,12 +232,17 @@ The cascades sit side by side in one depth-only target (`rhi::Device::createDept
 
 `asset::skinPalette` turns a pose into joint world matrices × inverse bind matrices, mirrored into MealKit's left-handed space, as three rows per joint (48 bytes). `DrawList::addSkinned` keeps one instance and its palette; the renderer uploads the palette into the ring, passes its offset in the push constants and draws each skinned instance with its own draw call through the skinned pipelines (the same shaders compiled with `SKINNED=1`, which add the `JOINTS`/`WEIGHTS` attributes and blend four palette matrices in the vertex shader). Shadows, outlines and point lights work the same way; culling uses the bind-pose bounds enlarged by half.
 
+## Post processing
+
+The main 3D is drawn into an HDR scene target the size of the window (`Renderer::Impl::mainChain`, made again outside the frame when the window size changes). The first of `drawToTarget`, `beginOverlay`, `drawUi` and `endFrame` resolves it (`resolveScene`, GPU pass `post`): bloom goes down a chain of five half-size `Hdr` targets (`PSBloomDown`: four diagonal taps and the center, the first level keeping only light above the threshold with a soft knee) and back up with additive blending (`PSBloomUp`, eight taps). Then `PSUber` ({engine}`engine/shaders/Post.hlsl`) draws one triangle into the back buffer over the scene viewport: FXAA on the HDR values (edges found on Reinhard-compressed luminance, blended compressed so bright points do not smear), chromatic aberration, exposure × the player's brightness, bloom, AgX (Wrensch's polynomial fit), the color LUT, vignette, film grain and a ±0.5/255 dither. Its 96-byte constants are written into the upload ring. With `toneMapping` off (probe baking) or a debug view it only clamps and encodes sRGB.
+
+A LUT is 32³ cells stored as a 1024 × 32 RGBA8 strip (blue slices side by side); the shader blends two slices. `asset::parseCubeLut` resamples any 3D `.cube` to 32 points (trilinear, honoring `DOMAIN_MIN`/`MAX`), `Renderer::createLut` keeps the cells on the CPU, and the color-blind setting (`PostOptions::colorBlind`, Machado 2009 simulation + daltonize) is applied to every cell when the texture is uploaded, so it costs nothing in the shader. LUT 0 is the identity, used when only the color-blind mode is on.
+
 ## Offscreen targets
 
-`rhi::RenderTarget` is a color + depth pair drawn outside the back buffer. Its formats are the scene's, so the scene pipelines draw into it unchanged. The color is written through an sRGB view (the shader writes linear color) and read as `UNORM`, so its bytes can be shown in the debug UI or the overlay as they are.
-In DX12 the color is a `TYPELESS` resource with an sRGB render target view and a `UNORM` shader resource view in the bindless heap; each target has its own small RTV and DSV heaps. In Vulkan it is one mutable-format image (the swapchain's `UNORM` format plus the scene's sRGB view), drawn with dynamic rendering and returned to `SHADER_READ_ONLY_OPTIMAL` by `endTarget`. Targets are made once at a fixed size and never destroyed.
+`rhi::RenderTarget` is a target drawn outside the back buffer; `rhi::TargetKind` picks its formats: `Scene` (HDR color + depth, the scene pipelines), `Hdr` (HDR color only, bloom) or `Ldr` (8-bit color in the back buffer's format, drawn by `Target::Overlay` pipelines and read as sRGB values, so its bytes can be shown in the debug UI as they are). In DX12 each target has a color resource with a render target view and a shader resource view in the bindless heap; in Vulkan it is one image drawn with dynamic rendering, returned to `SHADER_READ_ONLY_OPTIMAL` by `endTarget`. `beginTarget` without a clear color keeps the contents (bloom adds onto them). `Device::destroyRenderTarget` waits for the GPU and frees a target; the renderer uses it only for its window-sized targets.
 
-`Renderer::drawToTarget(target, params, drawList, lightingModel)` draws a draw list into a target after the main 3D and before the UI: it writes another set of frame constants (the material table is written once per frame), swaps the frustum and the lighting model, draws, and puts them back. The editor's look dev window uses it, and `rhi::imguiTextureId` gives the value `ImGui::Image` needs (a GPU descriptor in DX12, a descriptor set made once per texture in Vulkan).
+`Renderer::createRenderTarget` makes an `Ldr` target with a same-sized HDR scene target as its pair. `Renderer::drawToTarget(target, params, drawList, lightingModel)` draws a draw list into the pair after the main 3D and before the UI and runs post processing into the `Ldr` target: it writes another set of frame constants (the material table is written once per frame), swaps the frustum and the lighting model, draws, and puts them back. The editor's look dev window, probe baking and the grading capture use it, and `rhi::imguiTextureId` gives the value `ImGui::Image` needs (a GPU descriptor in DX12, a descriptor set made once per texture in Vulkan).
 
 ## Screenshots
 
@@ -278,7 +283,7 @@ Only written queries are resolved or read. The meaning of the numbers is the ren
 | Frame latency waitable swap chain | `Device::beginFrame` | Waits until the swap chain can take a frame, with at most 2 queued, to keep input lag low. |
 | Flip model with tearing | `Device::init`, `Device::endFrame` | `FLIP_DISCARD` with 3 buffers. With vsync off and tearing supported, frames are presented at once. |
 | Persistently mapped upload ring | `Device::allocUpload` | One mapped buffer split into a half per frame. Allocation is an aligned bump of an offset, reset every frame. On UMA GPUs it needs no copy. |
-| Two views of one back buffer | `createSwapchainResources` | An sRGB view lets the hardware do gamma encoding for 3D. A plain view lets UI and ImGui write sRGB colors unchanged. |
+| HDR scene target | `Renderer::Impl::mainChain`, `Post.hlsl` | 3D is drawn in linear HDR (R11G11B10F, 4 bytes a pixel) and one full-screen pass tone maps it into the back buffer, writing sRGB values. UI and ImGui write sRGB colors onto the same back buffer view. |
 | Reversed depth | `Device::createPipeline` | Depth is cleared to 0 and tested with `GREATER`, which gives float depth more even precision over distance. |
 | Build-time shader compilation | `mealkit_shader` in `engine/CMakeLists.txt` | DXC turns HLSL into byte arrays in headers, so the exe carries its shaders and needs no compiler. |
 

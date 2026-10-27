@@ -37,8 +37,8 @@ msgstr "설정"
 msgid "Display"
 msgstr "화면"
 
-msgid "Window mode (windowed, borderless window, fullscreen), resolution of the window, vertical sync, frame limit, render scale, graphics quality, field of view, brightness"
-msgstr "창 모드(창, 테두리 없는 창, 전체 화면), 창 해상도, 수직 동기, 프레임 제한, 렌더 배율, 그래픽 품질, 시야각, 밝기"
+msgid "Window mode (windowed, borderless window, fullscreen), resolution of the window, vertical sync, frame limit, render scale, graphics quality, field of view, brightness, bloom, anti-aliasing, film grain, chromatic aberration"
+msgstr "창 모드(창, 테두리 없는 창, 전체 화면), 창 해상도, 수직 동기, 프레임 제한, 렌더 배율, 그래픽 품질, 시야각, 밝기, 블룸, 안티에일리어싱, 필름 그레인, 색수차"
 
 msgid "Audio"
 msgstr "소리"
@@ -61,15 +61,15 @@ msgstr "버튼 액션마다 한 줄: 누른 다음 새 키를 누른다(Esc는 �
 msgid "Game"
 msgstr "게임"
 
-msgid "Language, interface size, subtitles, network status (ping and the player a match is waiting for), screen shake, screen flashes, hit stop"
-msgstr "언어, 인터페이스 크기, 자막, 네트워크 상태(핑, 매치가 기다리는 플레이어), 화면 흔들림, 화면 번쩍임, 화면 정지"
+msgid "Language, interface size, subtitles, network status (ping and the player a match is waiting for), screen shake, screen flashes, hit stop, color blindness correction"
+msgstr "언어, 인터페이스 크기, 자막, 네트워크 상태(핑, 매치가 기다리는 플레이어), 화면 흔들림, 화면 번쩍임, 화면 정지, 색각 이상 보정"
 
 #, python-brace-format
-msgid "**Accessibility**: screen shake and screen flashes scale what the feedback table does (0 % turns them off), and hit stop can be turned off; these change only the picture. Subtitles show a line at the bottom of the screen while a sound with a subtitle plays (see {doc}`sound`). Color-blind modes come with the color grading of stage 2."
-msgstr "**접근성**: 화면 흔들림과 화면 번쩍임은 연출 표가 하는 것에 배율을 곱하고(0 %면 끈다), 화면 정지는 끌 수 있다. 바뀌는 것은 그림뿐이다. 자막은 자막이 있는 소리가 나는 동안 화면 아래에 한 줄을 보인다({doc}`sound` 참고). 색맹 모드는 2단계 색 보정과 함께 온다."
+msgid "**Accessibility**: screen shake and screen flashes scale what the feedback table does (0 % turns them off), and hit stop can be turned off; these change only the picture. Subtitles show a line at the bottom of the screen while a sound with a subtitle plays (see {doc}`sound`). **Color blindness correction** (protanopia, deuteranopia, tritanopia) shifts the colors those players cannot tell apart into ones they can; it is folded into the scene's color LUT, so it costs nothing extra."
+msgstr "**접근성**: 화면 흔들림과 화면 번쩍임은 연출 표가 하는 것에 배율을 곱하고(0 %면 끈다), 화면 정지는 끌 수 있다. 바뀌는 것은 그림뿐이다. 자막은 자막이 있는 소리가 나는 동안 화면 아래에 한 줄을 보인다({doc}`sound` 참고). **색각 이상 보정**(1형·2형·3형)은 그 플레이어가 구별하지 못하는 색 차이를 구별할 수 있는 색으로 옮긴다. 씬의 색 보정 LUT에 겹치므로 비용이 더 들지 않는다."
 
-msgid "Fullscreen is a borderless window the size of the monitor. Render scale, graphics quality and brightness are stored now and used by the graphics features of stage 2. When the resolution or window mode changes, a box asks to keep it and reverts after 15 seconds without an answer."
-msgstr "전체 화면은 모니터 크기의 테두리 없는 창이다. 렌더 배율, 그래픽 품질, 밝기는 지금은 저장만 하고 2단계 그래픽 기능이 쓴다. 해상도나 창 모드를 바꾸면 유지할지 묻는 창이 뜨고, 15초 안에 답하지 않으면 되돌린다."
+msgid "Fullscreen is a borderless window the size of the monitor. Brightness multiplies the scene's exposure. Bloom, anti-aliasing, film grain and chromatic aberration turn those post effects off even when the scene uses them. Render scale and graphics quality are stored now and used by later graphics features of stage 2. When the resolution or window mode changes, a box asks to keep it and reverts after 15 seconds without an answer."
+msgstr "전체 화면은 모니터 크기의 테두리 없는 창이다. 밝기는 씬의 노출에 곱한다. 블룸, 안티에일리어싱, 필름 그레인, 색수차는 씬이 써도 그 포스트 효과를 끈다. 렌더 배율과 그래픽 품질은 지금은 저장만 하고 2단계의 다음 그래픽 기능이 쓴다. 해상도나 창 모드를 바꾸면 유지할지 묻는 창이 뜨고, 15초 안에 답하지 않으면 되돌린다."
 
 msgid "The values are saved in the user folder (`%LOCALAPPDATA%\\<game>\\settings.ini` on Windows), next to the player's key bindings. They are not part of the content hash, and the simulation never reads them: sensitivity and invert are applied to the input actions before the game turns them into its tick input."
 msgstr "값은 사용자 폴더(Windows는 `%LOCALAPPDATA%\\<game>\\settings.ini`)에 플레이어 키 바인딩과 같이 저장한다. 콘텐츠 해시에 들어가지 않고 시뮬레이션은 읽지 않는다: 감도와 반전은 게임이 틱 입력으로 바꾸기 전에 입력 액션에 적용한다."

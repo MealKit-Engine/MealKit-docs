@@ -6,15 +6,15 @@ Every game gets the same settings without writing them: display, audio, controls
 
 | Tab | Settings |
 |---|---|
-| Display | Window mode (windowed, borderless window, fullscreen), resolution of the window, vertical sync, frame limit, render scale, graphics quality, field of view, brightness |
+| Display | Window mode (windowed, borderless window, fullscreen), resolution of the window, vertical sync, frame limit, render scale, graphics quality, field of view, brightness, bloom, anti-aliasing, film grain, chromatic aberration |
 | Audio | Master, music, effects, interface and voice volume (the audio buses), mute when the window is in the background |
 | Controls | Mouse and gamepad sensitivity, invert Y |
 | Keys | One row per button action: press it, then press the new key (Esc cancels). A key used by another action is marked. Reset restores the project's keys |
-| Game | Language, interface size, subtitles, network status (ping and the player a match is waiting for), screen shake, screen flashes, hit stop |
+| Game | Language, interface size, subtitles, network status (ping and the player a match is waiting for), screen shake, screen flashes, hit stop, color blindness correction |
 
-**Accessibility**: screen shake and screen flashes scale what the feedback table does (0 % turns them off), and hit stop can be turned off; these change only the picture. Subtitles show a line at the bottom of the screen while a sound with a subtitle plays (see {doc}`sound`). Color-blind modes come with the color grading of stage 2.
+**Accessibility**: screen shake and screen flashes scale what the feedback table does (0 % turns them off), and hit stop can be turned off; these change only the picture. Subtitles show a line at the bottom of the screen while a sound with a subtitle plays (see {doc}`sound`). **Color blindness correction** (protanopia, deuteranopia, tritanopia) shifts the colors those players cannot tell apart into ones they can; it is folded into the scene's color LUT, so it costs nothing extra.
 
-Fullscreen is a borderless window the size of the monitor. Render scale, graphics quality and brightness are stored now and used by the graphics features of stage 2.
+Fullscreen is a borderless window the size of the monitor. Brightness multiplies the scene's exposure. Bloom, anti-aliasing, film grain and chromatic aberration turn those post effects off even when the scene uses them. Render scale and graphics quality are stored now and used by later graphics features of stage 2.
 When the resolution or window mode changes, a box asks to keep it and reverts after 15 seconds without an answer.
 
 The values are saved in the user folder (`%LOCALAPPDATA%\<game>\settings.ini` on Windows), next to the player's key bindings. They are not part of the content hash, and the simulation never reads them: sensitivity and invert are applied to the input actions before the game turns them into its tick input.

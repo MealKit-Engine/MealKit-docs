@@ -40,6 +40,8 @@ The editor shows a new lighting model or a changed ramp image at once. Every lig
 
 `scenes/styles.scene` in the engine folder shows all of it; the graphics tests draw it with each lighting model.
 
+**Post processing and color grading**: the scene is drawn in HDR and one full-screen pass turns it into the picture: AgX tone mapping (the same family as Blender's default view, so colors match what you saw in Blender), exposure, bloom around light brighter than **Bloom threshold**, a color LUT, vignette, film grain, chromatic aberration and FXAA anti-aliasing. The values belong to the scene: the **Environment** panel's **Post processing** section edits them and the scene file keeps them as `post` lines (view-only, not part of the content hash). To grade colors, press **Grading capture**: the editor saves the scene view without a LUT to `art/grading/<scene>.png` with a neutral `neutral.cube`. Grade the picture in DaVinci Resolve, Photoshop or another tool, export a 3D `.cube` LUT (32 points is best; other sizes are resampled) into `assets/lut/`, and pick it under **Color LUT**; a changed file is picked up again while the editor is open. Players can turn bloom, film grain, chromatic aberration and anti-aliasing off in the settings, and the color-blind modes are folded into the same LUT. The pass should stay under 1 ms on the minimum hardware (`--benchmark` reports it as `post`). `scenes/post.scene` uses every effect with the sample LUT `lut/warm.cube`.
+
 ## Asset budget
 
 Each model has a budget so that it stays light enough for the minimum spec (integrated graphics). The kind of model is the **first folder under `assets/models/`**:
