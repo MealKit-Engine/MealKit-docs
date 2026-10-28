@@ -156,6 +156,9 @@ msgstr "**뷰포트 툴바**: 씬 뷰 왼쪽 위 막대에서 이동·회전·�
 msgid "**Snap and align**: set the move, rotate and scale snap steps in Preferences or with the arrow next to Snap on the toolbar. **Edit > Drop to Floor** (End) puts the selection on the object below it, and **Edit > Align** lines up or evenly spaces several selected objects."
 msgstr "**스냅과 정렬**: 이동·회전·크기 스냅 단위는 환경설정이나 툴바 스냅 옆 화살표에서 정한다. **편집 > 바닥에 붙이기**(End)는 고른 물체를 아래 물체 위에 놓고, **편집 > 정렬**은 여러 물체를 한 줄로 맞추거나 같은 간격으로 놓는다."
 
+msgid "**Camera**: Alt + left drag orbits around the selection, the wheel moves toward the point under the mouse, and the toolbar switches between perspective and orthographic. Ctrl+1 to Ctrl+9 save camera bookmarks for the scene; 1 to 9 go back to them."
+msgstr "**카메라**: Alt + 왼쪽 드래그는 고른 물체를 중심으로 돌고, 휠은 마우스가 가리키는 곳 쪽으로 움직이며, 툴바에서 원근과 정사영을 바꾼다. Ctrl+1~9는 씬의 카메라 북마크를 저장하고 1~9로 돌아간다."
+
 msgid "**Tuning**: two tabs. Game holds the values the simulation reads (`assets/game.tuning`); during solo play changes apply at once. Display holds the values that are only seen (`assets/view.tuning`); changes apply at once in every player window, even with several players."
 msgstr "**튜닝**: 탭 두 개. \"게임\"은 시뮬레이션이 읽는 값(`assets/game.tuning`)으로, 혼자 플레이 중에는 바꾸면 바로 적용된다. \"화면\"은 보이기만 하는 값(`assets/view.tuning`)으로, 여러 명이어도 모든 플레이어 창에 바로 적용된다."
 
