@@ -34,3 +34,12 @@ void GameSession::debugUi(mealkit::game::GameContext& ctx) {
 
 A button that changes the simulation sends a command (see {doc}`multiplayer`), never changes the state directly. Otherwise the other players and the shadow simulation would desync.
 In the editor, the game DLL uses the editor's own ImGui inside `mealkit.dll`, so there is nothing to set up.
+
+## Debug drawing
+
+Game code can draw hit areas and paths with `debug::line`, `debug::box` and `debug::text` from `mealkit/debug/DebugDraw.h`. The shapes show while playing in the editor and in development builds of the game (text only while F1 is on). Release builds leave the calls out. You can call them from `sim/` code: they only record what to draw, so they do not affect the simulation.
+
+```cpp
+debug::box(center, half, rotation, debug::kRed, 2.0f); // for 2 seconds
+debug::line(from, to);                                 // this frame only
+```
