@@ -3,17 +3,17 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: MealKit\n"
+"Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-26 19:54+0900\n"
+"POT-Creation-Date: 2026-10-28 11:15+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
-"Language-Team: Korean\n"
 "Language: ko\n"
+"Language-Team: Korean\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.18.0\n"
 
 msgid "Command line"
@@ -156,6 +156,13 @@ msgstr "`--rewind-test`"
 
 msgid "Record inputs and snapshots, rewind and replay at the exit tick"
 msgstr "입력과 스냅샷을 기록하고, 종료 틱에서 되감아 다시 실행"
+
+msgid "`--replay <file>`"
+msgstr "`--replay <파일>`"
+
+#, python-brace-format
+msgid "Watch a saved replay (`.rec`, the user folder's `replays/` keeps the latest matches, {doc}`../manual/multiplayer`)"
+msgstr "저장된 리플레이 보기 (`.rec`, 사용자 폴더 `replays/`에 최근 매치가 남는다, {doc}`../manual/multiplayer`)"
 
 msgid "`--capture <png> [tick]`"
 msgstr "`--capture <png> [tick]`"
@@ -358,6 +365,9 @@ msgstr "`--play`, `--players <n>`, `--bot`"
 msgid "Start play mode, with several players and bot input"
 msgstr "플레이 모드 시작, 여러 명과 봇 입력"
 
+msgid "Start by playing a saved replay (File > Open Replay...)"
+msgstr "저장된 리플레이를 재생하며 시작 (파일 > 리플레이 열기...)"
+
 msgid "`--build-game`"
 msgstr "`--build-game`"
 
@@ -545,3 +555,4 @@ msgstr "`make_sample_sounds.py`"
 
 msgid "Regenerate the sample sounds"
 msgstr "샘플 소리 다시 만들기"
+

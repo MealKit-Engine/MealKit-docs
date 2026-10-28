@@ -77,6 +77,15 @@ Values each player brings into the match, such as a chosen character or equipmen
 Before the match, `GameInstance::lobby` sends it with `mealkit::game::setLoadout(session, loadout)`. The host collects every player's loadout from the lobby and sends them all when it starts the match.
 The match start (`startWorld`) reads them with `mealkit::game::readLoadout(match, player, loadout)` and copies them into the players' state, which is hashed like any other state. Input recordings keep the loadouts, so replays rebuild the same match.
 
+## Replays
+
+Because the match is deterministic, the match start values and every tick's inputs are enough to play it again. The game and editor play (alone) record every match to the user folder's `replays/current.rec` and keep it as `replays/<date>_<time>.rec` when the match ends (back to the lobby, leaving, or closing the window). A recording left by a crash is kept the next time the game starts.
+Project Settings `keepReplays` sets how many are kept (default 20, oldest are deleted, 0 turns recording off). Automated runs and `--record-inputs` do not keep replays.
+
+- Game: `sandbox.exe --replay <file>` plays it in the window. Your own input is ignored.
+- Editor: **File > Open Replay...** (or `--replay <file>`) plays it as solo play, so pause, step one tick, rewind and the State panel work as usual.
+- A replay recorded with different game data (scene, models, tuning, project settings) or another build shows a warning and plays anyway. When a tick's state hash differs from the recording, it pauses at that tick.
+
 ## Determinism rules
 
 Lockstep works only if every PC computes bit-for-bit the same result. The game's simulation code lives in `sim/`, and `World::step()` calls the system functions in a fixed order.

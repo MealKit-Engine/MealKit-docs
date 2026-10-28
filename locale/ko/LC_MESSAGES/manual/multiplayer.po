@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-19 19:42+0900\n"
+"POT-Creation-Date: 2026-10-28 11:15+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -159,6 +159,21 @@ msgstr "매치 시작 데이터"
 
 msgid "Values each player brings into the match, such as a chosen character or equipment, are a **loadout**: a `MEALKIT_STRUCT` of up to 128 bytes without strings. Before the match, `GameInstance::lobby` sends it with `mealkit::game::setLoadout(session, loadout)`. The host collects every player's loadout from the lobby and sends them all when it starts the match. The match start (`startWorld`) reads them with `mealkit::game::readLoadout(match, player, loadout)` and copies them into the players' state, which is hashed like any other state. Input recordings keep the loadouts, so replays rebuild the same match."
 msgstr "고른 캐릭터나 장비처럼 플레이어마다 매치에 가져가는 값은 **로드아웃**이다: 문자열이 없는 128바이트 이하의 `MEALKIT_STRUCT`. 매치 전에 `GameInstance::lobby`가 `mealkit::game::setLoadout(session, loadout)`으로 보낸다. 호스트는 로비에서 모두의 로드아웃을 모았다가 매치를 시작할 때 한꺼번에 보낸다. 매치 시작(`startWorld`)이 `mealkit::game::readLoadout(match, player, loadout)`으로 읽어 플레이어 상태에 복사하므로 다른 상태처럼 해시에 들어간다. 입력 기록이 로드아웃을 갖고 있어 재생도 같은 매치를 다시 만든다."
+
+msgid "Replays"
+msgstr "리플레이"
+
+msgid "Because the match is deterministic, the match start values and every tick's inputs are enough to play it again. The game and editor play (alone) record every match to the user folder's `replays/current.rec` and keep it as `replays/<date>_<time>.rec` when the match ends (back to the lobby, leaving, or closing the window). A recording left by a crash is kept the next time the game starts. Project Settings `keepReplays` sets how many are kept (default 20, oldest are deleted, 0 turns recording off). Automated runs and `--record-inputs` do not keep replays."
+msgstr "매치가 결정론적이라 매치 시작 값과 틱마다의 입력만 있으면 그 판을 다시 돌릴 수 있습니다. 게임과 에디터 플레이(혼자)는 매치마다 사용자 폴더의 `replays/current.rec`에 기록하고, 매치가 끝나면(로비로 돌아감, 나가기, 창 닫기) `replays/<날짜>_<시각>.rec`로 남깁니다. 튕겨서 남은 기록은 다음에 게임을 켤 때 남깁니다. 남기는 수는 프로젝트 설정 `keepReplays`입니다(기본 20, 오래된 것부터 지움, 0이면 기록하지 않음). 자동 실행과 `--record-inputs`는 리플레이를 남기지 않습니다."
+
+msgid "Game: `sandbox.exe --replay <file>` plays it in the window. Your own input is ignored."
+msgstr "게임: `sandbox.exe --replay <파일>`로 창에서 재생합니다. 내 입력은 무시합니다."
+
+msgid "Editor: **File > Open Replay...** (or `--replay <file>`) plays it as solo play, so pause, step one tick, rewind and the State panel work as usual."
+msgstr "에디터: **파일 > 리플레이 열기...**(또는 `--replay <파일>`)는 혼자 플레이로 재생하므로 일시정지, 한 틱 진행, 되감기, [상태] 패널을 그대로 쓸 수 있습니다."
+
+msgid "A replay recorded with different game data (scene, models, tuning, project settings) or another build shows a warning and plays anyway. When a tick's state hash differs from the recording, it pauses at that tick."
+msgstr "다른 게임 데이터(씬, 모델, 튜닝, 프로젝트 설정)나 다른 빌드로 기록한 리플레이는 경고를 보이고 그대로 재생합니다. 어떤 틱의 상태 해시가 기록과 다르면 그 틱에서 멈춥니다."
 
 msgid "Determinism rules"
 msgstr "결정론 규칙"
