@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-28 11:15+0900\n"
+"POT-Creation-Date: 2026-10-28 11:51+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -231,6 +231,13 @@ msgstr "`--hash-log <file>`"
 
 msgid "Write `<tick> <hash>` for every tick"
 msgstr "틱마다 `<틱> <해시>` 기록"
+
+msgid "`--desync-test <tick>`"
+msgstr "`--desync-test <틱>`"
+
+#, python-brace-format
+msgid "Nudge one physics body before that tick to cause a desync (tests the desync dumps, {doc}`../manual/multiplayer`)"
+msgstr "그 틱 전에 물리 바디 하나를 조금 바꿔 일부러 디싱크를 낸다 (디싱크 덤프 시험, {doc}`../manual/multiplayer`)"
 
 msgid "`--record-inputs <file>`"
 msgstr "`--record-inputs <file>`"

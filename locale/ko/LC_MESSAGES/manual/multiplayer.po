@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-28 11:15+0900\n"
+"POT-Creation-Date: 2026-10-28 11:51+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -174,6 +174,22 @@ msgstr "에디터: **파일 > 리플레이 열기...**(또는 `--replay <파일>
 
 msgid "A replay recorded with different game data (scene, models, tuning, project settings) or another build shows a warning and plays anyway. When a tick's state hash differs from the recording, it pauses at that tick."
 msgstr "다른 게임 데이터(씬, 모델, 튜닝, 프로젝트 설정)나 다른 빌드로 기록한 리플레이는 경고를 보이고 그대로 재생합니다. 어떤 틱의 상태 해시가 기록과 다르면 그 틱에서 멈춥니다."
+
+msgid "Finding a desync"
+msgstr "디싱크 찾기"
+
+msgid "When peers compute different results, the host sees a different tick hash and everyone shows \"Desync!\" (the match keeps running). In a multiplayer match every peer keeps a few snapshots, so it can replay to **the tick where the hashes first differed** and write that state to a text dump: the project's `build/desync/` while developing, or the user folder's `desync/` in a shipped game. Each dump holds the tick hashes, every declared state field and every physics body (position, rotation, velocity). Compare two peers' dumps:"
+msgstr "피어들의 계산 결과가 다르면 호스트가 다른 틱 해시를 보고 모두에게 \"디싱크!\"가 보입니다(매치는 계속됩니다). 여러 명 매치에서는 피어마다 스냅샷을 몇 개 남겨 두므로, **해시가 처음 달라진 틱**까지 다시 돌려 그 상태를 텍스트 덤프로 씁니다. 개발 중에는 프로젝트의 `build/desync/`, 출시한 게임에서는 사용자 폴더의 `desync/`입니다. 덤프에는 틱 해시, 선언한 상태 필드 전부, 물리 바디 전부(위치, 회전, 속도)가 들어갑니다. 두 피어의 덤프를 비교합니다:"
+
+msgid ""
+"powershell -File tools\\desync_diff.ps1 -A build\\desync\\desync_..._p1.txt -B build\\desync\\desync_..._p2.txt\n"
+"powershell -File tools\\desync_diff.ps1 -Folder build\\desync   :: every peer of the same match against the first\n"
+msgstr ""
+"powershell -File tools\\desync_diff.ps1 -A build\\desync\\desync_..._p1.txt -B build\\desync\\desync_..._p2.txt\n"
+"powershell -File tools\\desync_diff.ps1 -Folder build\\desync   :: 같은 매치의 모든 피어를 첫 파일과 비교\n"
+
+msgid "It prints the first diverging tick, the state fields that differ and the bodies that differ, which usually points at the system that broke a determinism rule. `--desync-test <tick>` deliberately nudges one body on that peer to try this out (`tools\\mp_test.ps1 -Headless -Clients 1 -DesyncTest 200`)."
+msgstr "처음 갈라진 틱, 값이 다른 상태 필드, 다른 바디를 보여 주므로 보통 결정론 규칙을 어긴 시스템을 짚을 수 있습니다. `--desync-test <틱>`은 그 피어에서 바디 하나를 일부러 조금 바꿔 이것을 시험해 봅니다(`tools\\mp_test.ps1 -Headless -Clients 1 -DesyncTest 200`)."
 
 msgid "Determinism rules"
 msgstr "결정론 규칙"

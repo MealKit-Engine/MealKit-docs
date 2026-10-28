@@ -86,6 +86,18 @@ Project Settings `keepReplays` sets how many are kept (default 20, oldest are de
 - Editor: **File > Open Replay...** (or `--replay <file>`) plays it as solo play, so pause, step one tick, rewind and the State panel work as usual.
 - A replay recorded with different game data (scene, models, tuning, project settings) or another build shows a warning and plays anyway. When a tick's state hash differs from the recording, it pauses at that tick.
 
+## Finding a desync
+
+When peers compute different results, the host sees a different tick hash and everyone shows "Desync!" (the match keeps running). In a multiplayer match every peer keeps a few snapshots, so it can replay to **the tick where the hashes first differed** and write that state to a text dump: the project's `build/desync/` while developing, or the user folder's `desync/` in a shipped game.
+Each dump holds the tick hashes, every declared state field and every physics body (position, rotation, velocity). Compare two peers' dumps:
+
+```bat
+powershell -File tools\desync_diff.ps1 -A build\desync\desync_..._p1.txt -B build\desync\desync_..._p2.txt
+powershell -File tools\desync_diff.ps1 -Folder build\desync   :: every peer of the same match against the first
+```
+
+It prints the first diverging tick, the state fields that differ and the bodies that differ, which usually points at the system that broke a determinism rule. `--desync-test <tick>` deliberately nudges one body on that peer to try this out (`tools\mp_test.ps1 -Headless -Clients 1 -DesyncTest 200`).
+
 ## Determinism rules
 
 Lockstep works only if every PC computes bit-for-bit the same result. The game's simulation code lives in `sim/`, and `World::step()` calls the system functions in a fixed order.

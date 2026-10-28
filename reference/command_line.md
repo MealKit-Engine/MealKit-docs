@@ -39,6 +39,7 @@ The example game is called `sandbox`. In a game project, the executables carry t
 | `--any-build` | Host: accept peers running a different build (compiler comparison tests) |
 | `--net-lag <ms>`, `--net-jitter <ms>`, `--net-loss <%>` | Simulate a slow, uneven or lossy connection for this process: added round trip time, extra random delay per packet, share of packets dropped (testing) |
 | `--hash-log <file>` | Write `<tick> <hash>` for every tick |
+| `--desync-test <tick>` | Nudge one physics body before that tick to cause a desync (tests the desync dumps, {doc}`../manual/multiplayer`) |
 | `--record-inputs <file>` | Save confirmed inputs and hashes (replay with `--headless --replay-inputs`) |
 | `--mute` | Start with sound off (automated tests) |
 | `--debug-ui` | Start with the debug UI shown (development builds, `F1` toggles it) |
