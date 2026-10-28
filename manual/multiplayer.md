@@ -165,3 +165,24 @@ Valve's terms do not allow the Steamworks SDK in the repository. Download it you
 - The Steam backend (`engine/src/mealkit/online/OnlineSteam.cpp`; games use only `online::Service`) **has been compiled and linked** against SDK v1.65. Connecting through real Steam lobbies and relays has not been verified yet.
 - `third_party/steamworks/` is in `.gitignore`.
 - Online features (accounts, lobbies, invites, relay) go only through `online::Service`. Game code never calls a platform SDK directly. The Editor build always uses the "none" backend.
+
+(eos)=
+## Epic Online Services (cross-play)
+
+Epic's terms do not allow the EOS SDK in the repository either. EOS lobbies and P2P work on every platform, so cross-play matches use EOS.
+
+1. Download the EOS SDK from https://dev.epicgames.com/portal and put the contents of its `SDK` folder at `third_party/eos/sdk` (`Include`, `Lib`, `Bin`).
+2. In the developer portal, create a product and a client (Peer2Peer policy). Write its five values into `third_party/eos/credentials.txt`, one per line:
+   ```
+   ProductId: ...
+   SandboxId: ...
+   DeploymentId: ...
+   ClientId: ...
+   ClientSecret: ...
+   ```
+3. Run `build.bat EOS`. The build log shows `online backend EOS`, and `EOSSDK-Win64-Shipping.dll` is placed next to the executable.
+4. `build\EOS\bin\sandbox.exe --steam` logs in (no Epic account, a device ID) and creates a lobby. The log shows a six-digit **lobby code**. On another PC, `sandbox.exe --steam-join <code>` joins it.
+
+- `third_party/eos/` is in `.gitignore`, so the client secret never goes into the repository. It is built into the game exe, as EOS expects for game clients.
+- Two game processes on one PC are the same EOS user. Test joining with two PCs.
+- Login and lobby creation have been verified with SDK 1.19.2. Joining from a second PC has not been verified yet.

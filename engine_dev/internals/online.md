@@ -30,10 +30,12 @@ There is no backend switch at run time. {engine}`engine/CMakeLists.txt` compiles
 | Backend | File | When |
 |---|---|---|
 | Steam | {engine}`engine/src/mealkit/online/OnlineSteam.cpp` | A game build (not the Editor build) where `third_party/steamworks/sdk` has `public/steam/steam_api.h` and `redistributable_bin/win64/steam_api64.lib`. CMake defines `MEALKIT_STEAM=1`, links `steam_api64.lib` and copies `steam_api64.dll` next to the game exe. |
+| EOS | {engine}`engine/src/mealkit/online/OnlineEOS.cpp` | A game build where `third_party/eos/sdk` has `Include/eos_sdk.h` and `Lib/EOSSDK-Win64-Shipping.lib`, and `third_party/eos/credentials.txt` exists. CMake defines `MEALKIT_EOS=1`, writes the portal values into `EosCredentials.h` in the build folder, links the SDK and copies `EOSSDK-Win64-Shipping.dll` next to the game exe. |
 | None | {engine}`engine/src/mealkit/online/OnlineNone.cpp` | Every other build: no SDK, or the Editor build. |
 
-The Steamworks SDK is not in the repository, so a fresh checkout always builds with "none". The Editor build never uses Steam, because multiplayer play in the editor connects its player windows over local UDP.
-Because both files implement the same class, game code is the same for both backends. EOS (stage 3) and console services (stage 5) will be more files of the same kind.
+The CMake option `MEALKIT_ONLINE` picks the backend: `Auto` (default) uses Steam when its SDK is there, otherwise EOS, otherwise none. `Steam` and `EOS` force one and stop the configure step when its files are missing. `build.bat EOS` builds into `build\EOS` with `-DMEALKIT_ONLINE=EOS`.
+The SDKs are not in the repository, so a fresh checkout always builds with "none". The Editor build never uses an online backend, because multiplayer play in the editor connects its player windows over local UDP.
+Because all files implement the same class, game code is the same for every backend. Console services (stage 5) will be more files of the same kind.
 
 ## The "none" backend
 
@@ -82,3 +84,15 @@ From there on, the lockstep session does not know whether it runs over Steam or 
 | Adapter to the transport interface | `SteamTransport` | Wraps Steam networking messages as a `net::Transport`, so lockstep runs over the relay without changes. |
 | Batched receive | `SteamTransport::receive` | Fetches up to 64 messages per call into a queue, fewer SDK calls per frame. |
 | Admission by hash, not by transport | `onSessionRequest` | The relay accepts everyone; the lockstep session's build and content hash check decides who may play. |
+
+## The EOS backend
+
+`OnlineEOS.cpp` wraps the Epic Online Services SDK:
+
+- `init()` calls `EOS_Initialize` and `EOS_Platform_Create` with the values from `credentials.txt`, then logs in with **EOS Connect and a device ID**, so players need no Epic account. The first login on a PC creates the device ID and the EOS user. `init()` waits for the login for up to 15 seconds.
+- `net::Address::userId` is a 64-bit hash of the Product User ID string. The backend keeps a table from hash to Product User ID, filled from lobby members and received packets.
+- `createLobby` creates a lobby and sets the attribute `MKCODE` to a random six-digit code. `lobbyId()` returns that code, and `joinLobby(code)` searches for the lobby with that attribute and joins it. `inviteFriends()` writes the code to the log, because there is no friend list without Epic accounts.
+- `setLobbyOwner` calls `EOS_Lobby_PromoteMember`.
+- `createTransport()` returns a transport on EOS P2P (socket `mealkit`, channel 0, unreliable unordered). Every connection request is accepted; the lockstep session checks who may join.
+- EOS P2P packets are at most 1170 bytes (`EOS_P2P_MAX_PACKET_SIZE`), so the lockstep packet limit is 1170 bytes for every transport.
+- One OS user has one device ID, so two game processes on the same PC log in as the same EOS user. Test with two PCs.
