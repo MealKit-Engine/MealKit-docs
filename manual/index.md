@@ -16,6 +16,7 @@ ui
 settings
 debug_ui
 multiplayer
+modules
 building_and_shipping
 performance
 tools

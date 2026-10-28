@@ -3,17 +3,17 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version:  MealKit\n"
+"Project-Id-Version: MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-27 00:03+0900\n"
+"POT-Creation-Date: 2026-10-28 23:20+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
-"Language: ko\n"
 "Language-Team: Korean\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.18.0\n"
 
 msgid "Engine folder and game projects"
@@ -155,8 +155,9 @@ msgstr "외부 도구 원본(`.blend`, Penpot, PSD, 소리 프로젝트). 출시
 msgid "`modules/`"
 msgstr "`modules/`"
 
-msgid "Source modules (later)"
-msgstr "소스 모듈 (나중에)"
+#, python-brace-format
+msgid "Source modules, one folder per module ({doc}`modules`)"
+msgstr "소스 모듈, 모듈마다 폴더 하나 ({doc}`modules`)"
 
 msgid "`third_party/`"
 msgstr "`third_party/`"
@@ -206,4 +207,3 @@ msgstr "`GameSession`(`GameInstance` 구현), `main.cpp`(`MEALKIT_GAME_MAIN`), `
 #, python-brace-format
 msgid "The rules for `sim/` are in the engine's {engine}`coding model <docs/CODING_MODEL.md>` (\"Determinism rules\"). See also {doc}`multiplayer`."
 msgstr "`sim/` 규칙은 엔진의 {engine}`코딩 방식 <docs/CODING_MODEL.md>`(\"결정론 규칙\")에 있다. {doc}`multiplayer`도 본다."
-

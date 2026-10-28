@@ -8,5 +8,6 @@ To make a game, see the {doc}`../getting_started/index` part instead.
 
 source_layout
 testing
+writing_modules
 contributing
 ```

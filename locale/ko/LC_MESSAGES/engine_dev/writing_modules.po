@@ -1,0 +1,219 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, KingProtea99 and MealKit contributors. CC BY 4.0
+# This file is distributed under the same license as the MealKit package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: MealKit 0.5\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-28 23:20+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: ko <LL@li.org>\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Generated-By: Babel 2.18.0\n"
+
+msgid "Writing modules"
+msgstr "모듈 만들기"
+
+#, python-brace-format
+msgid "The rules for making a source module and listing it in the registry. How games use modules is in {doc}`../manual/modules`."
+msgstr "소스 모듈을 만들고 레지스트리에 올리는 규칙입니다. 게임에서 모듈을 쓰는 방법은 {doc}`../manual/modules`에 있습니다."
+
+msgid "Every module is equal: there are no official modules. Each module is one git repository (the name `module-<name>` is recommended), and the registry repository [MealKit-Modules](https://github.com/MealKit-Engine/MealKit-Modules) lists them all."
+msgstr "모든 모듈은 같은 대우를 받습니다. 공식 모듈은 없습니다. 모듈 하나가 git 저장소 하나이고(이름은 `module-<이름>`을 권장), 레지스트리 저장소 [MealKit-Modules](https://github.com/MealKit-Engine/MealKit-Modules)가 모두를 모아 보여 줍니다."
+
+msgid "Starting a module"
+msgstr "모듈 시작하기"
+
+msgid "Start from the registry's template:"
+msgstr "레지스트리의 템플릿에서 시작합니다:"
+
+msgid "python tools/new_module.py <name> <folder> --author \"<you>\" --owner <github owner>\n"
+msgstr "python tools/new_module.py <name> <folder> --author \"<you>\" --owner <github owner>\n"
+
+msgid "The repository root is the module folder. When a game adds the module, these are copied into `modules/<name>/`:"
+msgstr "저장소 루트가 곧 모듈 폴더입니다. 게임이 모듈을 추가하면 다음이 `modules/<이름>/`으로 복사됩니다:"
+
+msgid "Path"
+msgstr "경로"
+
+msgid "What"
+msgstr "내용"
+
+msgid "`module.txt`"
+msgstr "`module.txt`"
+
+msgid "Module information (below)"
+msgstr "모듈 정보 (아래)"
+
+msgid "`LICENSE`"
+msgstr "`LICENSE`"
+
+msgid "Required. The template uses MIT"
+msgstr "필수. 템플릿은 MIT를 씁니다"
+
+msgid "`sim/`"
+msgstr "`sim/`"
+
+msgid "State (`MEALKIT_STRUCT`) and system functions. Deterministic, checked by SimCheck"
+msgstr "상태(`MEALKIT_STRUCT`)와 시스템 함수. 결정론적이어야 하고 SimCheck가 검사합니다"
+
+msgid "`view/`"
+msgstr "`view/`"
+
+msgid "Drawing, view model helpers, effects"
+msgstr "그리기, 뷰 모델 도우미, 연출"
+
+msgid "`assets/<kind>/`"
+msgstr "`assets/<kind>/`"
+
+msgid "Only the kind folders of a project's `assets/` (`ui/`, `tables/`, `sounds/` and so on)"
+msgstr "프로젝트 `assets/`의 종류 폴더만 (`ui/`, `tables/`, `sounds/` 등)"
+
+msgid "`art/`"
+msgstr "`art/`"
+
+msgid "Source files of external tools. Not shipped, not in the content hash"
+msgstr "외부 툴 원본 파일. 출시하지 않고 콘텐츠 해시에도 들어가지 않습니다"
+
+msgid "`docs/index.md`"
+msgstr "`docs/index.md`"
+
+msgid "The module's documentation in English; `docs/index.ko.md` is an optional Korean version"
+msgstr "영어로 쓴 모듈 문서. `docs/index.ko.md`는 선택인 한국어판입니다"
+
+msgid "`tests/`, `.github/` and build folders stay in the module repository. There is no `app/`: screens and sessions belong to the game. Keep one feature per module and split big features into small modules with requirements. `tools\\check_layout.ps1` checks a module folder with the same rules as a project."
+msgstr "`tests/`, `.github/`, 빌드 폴더는 모듈 저장소에만 남습니다. `app/`은 없습니다: 화면과 세션은 게임 것입니다. 모듈 하나에 기능 하나를 두고, 큰 기능은 의존으로 묶인 작은 모듈 여럿으로 나누세요. `tools\\check_layout.ps1`은 모듈 폴더를 프로젝트와 같은 규칙으로 검사합니다."
+
+msgid ""
+"@format module 1\n"
+"name cooldown\n"
+"version 0.1.0\n"
+"engine 0.5\n"
+"title Cooldowns\n"
+"summary Tick-based cooldowns for skills and actions, with a fill bar .ui component\n"
+"tags gameplay timer ui\n"
+"requires\n"
+msgstr ""
+"@format module 1\n"
+"name cooldown\n"
+"version 0.1.0\n"
+"engine 0.5\n"
+"title Cooldowns\n"
+"summary Tick-based cooldowns for skills and actions, with a fill bar .ui component\n"
+"tags gameplay timer ui\n"
+"requires\n"
+
+msgid "Key"
+msgstr "키"
+
+msgid "Meaning"
+msgstr "뜻"
+
+msgid "`name`"
+msgstr "`name`"
+
+msgid "Folder name, C++ namespace and asset path prefix. Lowercase letters, digits and `_`. The registry gives each name to the first module that registers it"
+msgstr "폴더 이름이자 C++ namespace이자 에셋 경로 접두. 소문자, 숫자, `_`만 씁니다. 레지스트리는 이름마다 먼저 등록한 모듈에 줍니다"
+
+msgid "`version`"
+msgstr "`version`"
+
+msgid "Semantic version. Must match the repository tag `v<version>`"
+msgstr "semver 버전. 저장소 태그 `v<버전>`과 같아야 합니다"
+
+msgid "`engine`"
+msgstr "`engine`"
+
+msgid "Engine `MAJOR.MINOR` the module is made for. Before 1.0 the minor version is the API boundary; the build warns when it differs"
+msgstr "모듈이 맞춰 만든 엔진 `MAJOR.MINOR`. 1.0 전에는 MINOR가 API 경계이고, 다르면 빌드가 경고합니다"
+
+msgid "`requires`"
+msgstr "`requires`"
+
+msgid "Required modules as `name minimum-version`, separated by spaces"
+msgstr "필요한 모듈을 `이름 최소버전`으로, 공백으로 구분"
+
+msgid "`title`, `summary`, `tags`"
+msgstr "`title`, `summary`, `tags`"
+
+msgid "Shown in lists and search"
+msgstr "목록과 검색에 보입니다"
+
+msgid "Code rules"
+msgstr "코드 규칙"
+
+msgid "All code is in `namespace <name>`. Include module files from the `modules/` folder: `#include \"cooldown/sim/Cooldown.h\"`."
+msgstr "모든 코드는 `namespace <이름>` 안에 둡니다. 모듈 파일은 `modules/` 폴더 기준으로 include합니다: `#include \"cooldown/sim/Cooldown.h\"`."
+
+msgid "**A module does not know the game.** System functions take only the module's state, the tick number, the module's tuning and engine core types (`Pool`, `Id`, physics queries). Results go back as return values or as a result array in the module's state, never through callbacks."
+msgstr "**모듈은 게임을 모릅니다.** 시스템 함수는 모듈 상태, 틱 번호, 모듈 튜닝, 엔진 코어 타입(`Pool`, `Id`, 물리 질의)만 받습니다. 결과는 콜백이 아니라 반환값이나 모듈 상태 안의 결과 배열로 돌려줍니다."
+
+msgid "**A module never runs by itself.** The game puts the state in its `WorldState` and calls the functions from `World::step()`. Write the code to paste in the \"Adding\" section of your documentation."
+msgstr "**모듈은 혼자 돌지 않습니다.** 게임이 상태를 자기 `WorldState`에 넣고 `World::step()`에서 함수를 부릅니다. 붙일 코드를 문서의 \"Adding\" 절에 쓰세요."
+
+msgid "Tuning is your own `MEALKIT_STRUCT Tuning` with default values. The game nests it in its `Tuning`, so it ends up in `game.tuning`; screen values go the same way in `view.tuning`. There is no tuning file of your own."
+msgstr "튜닝은 기본값을 담은 모듈 자기 `MEALKIT_STRUCT Tuning`입니다. 게임이 자기 `Tuning`에 중첩하므로 `game.tuning`에 들어가고, 화면용 값은 같은 방식으로 `view.tuning`에 들어갑니다. 모듈만의 튜닝 파일은 없습니다."
+
+msgid "A module `sim/` file may include the engine core, its own `sim/` and the `sim/` of modules in `requires`. SimCheck reports SIM013 when it includes the game's `source/` and SIM014 when it includes a module that is not in `requires`, on top of the usual simulation rules."
+msgstr "모듈 `sim/` 파일은 엔진 코어, 자기 `sim/`, `requires`에 있는 모듈의 `sim/`만 include할 수 있습니다. 보통 시뮬레이션 규칙에 더해, 게임 `source/`를 include하면 SimCheck가 SIM013을, `requires`에 없는 모듈을 include하면 SIM014를 냅니다."
+
+msgid "Asset paths are `modules/<name>/<kind>/...` (resolved to `modules/<name>/assets/<kind>/...`). A table example: `MEALKIT_TABLE(ItemDef, \"modules/inventory/tables/items.table\", 0)`."
+msgstr "에셋 경로는 `modules/<이름>/<종류>/...`입니다(`modules/<이름>/assets/<종류>/...`로 풀립니다). 표 예: `MEALKIT_TABLE(ItemDef, \"modules/inventory/tables/items.table\", 0)`."
+
+msgid "Games may change your files. Keep components small so that a game can copy one into its own `assets/` instead."
+msgstr "게임은 모듈 파일을 고칠 수 있습니다. 게임이 고치는 대신 자기 `assets/`에 복사해 쓸 수 있도록 컴포넌트를 작게 두세요."
+
+msgid "Tests and CI"
+msgstr "시험과 CI"
+
+msgid "`tests/` holds unit tests with their own `CMakeLists.txt` that links the engine core, so a module builds without a game:"
+msgstr "`tests/`에는 엔진 코어에 링크하는 자기 `CMakeLists.txt`와 단위 시험이 있어서, 게임 없이 모듈만 빌드합니다:"
+
+msgid "cmake -S tests -B build/tests -G Ninja -DMEALKIT_ROOT=<engine folder> -DMEALKIT_HEADLESS_ONLY=ON\n"
+msgstr "cmake -S tests -B build/tests -G Ninja -DMEALKIT_ROOT=<engine folder> -DMEALKIT_HEADLESS_ONLY=ON\n"
+
+msgid "The template's workflow is one line that calls the registry's shared workflow (`MealKit-Engine/MealKit-Modules/.github/workflows/module.yml@v1`). On Windows and Linux it gets the newest engine tag for `engine`, checks `module.txt`, `LICENSE` and `docs/index.md`, builds and runs `tests/`, and runs SimCheck on the module. Run the same check locally from a compiler prompt:"
+msgstr "템플릿의 워크플로는 레지스트리 공용 워크플로(`MealKit-Engine/MealKit-Modules/.github/workflows/module.yml@v1`)를 부르는 한 줄입니다. Windows와 Linux에서 `engine`에 맞는 가장 새 엔진 태그를 받아 `module.txt`, `LICENSE`, `docs/index.md`를 확인하고, `tests/`를 빌드해 돌리고, 모듈에 SimCheck를 돌립니다. 로컬에서는 컴파일러 프롬프트에서 같은 검사를 돌립니다:"
+
+msgid "powershell -File tools/check_module.ps1 -Module <module folder> -Engine <MealKit folder>\n"
+msgstr "powershell -File tools/check_module.ps1 -Module <module folder> -Engine <MealKit folder>\n"
+
+msgid "Documentation"
+msgstr "문서"
+
+msgid "`docs/index.md` is one page with these sections: overview, Adding (the code to paste), Usage, How it works (algorithm and determinism notes), Version history. The registry site draws it for every version, and games get the matching copy with the module. Relative links point into your repository."
+msgstr "`docs/index.md`는 이런 절로 된 한 페이지입니다: 개요, Adding(붙일 코드), Usage(사용법), How it works(알고리즘과 결정론 주의점), Version history(버전 기록). 레지스트리 사이트가 버전마다 그리고, 게임은 모듈과 같이 그 버전의 문서를 받습니다. 상대 링크는 모듈 저장소를 가리킵니다."
+
+msgid "Publishing and registering"
+msgstr "올리기와 등록"
+
+msgid "Make the repository public, push, and tag the version: `git tag v0.1.0` (the same as `version`)."
+msgstr "저장소를 공개로 하고 push한 뒤 버전 태그를 붙입니다: `git tag v0.1.0` (`version`과 같게)."
+
+msgid "Open a pull request on MealKit-Modules that adds `entries/<name>.txt`:"
+msgstr "MealKit-Modules에 `entries/<이름>.txt`를 더하는 풀 리퀘스트를 엽니다:"
+
+msgid ""
+"@format module-entry 1\n"
+"name cooldown\n"
+"repo https://github.com/KingProtea99/module-cooldown\n"
+"author KingProtea99\n"
+msgstr ""
+"@format module-entry 1\n"
+"name cooldown\n"
+"repo https://github.com/KingProtea99/module-cooldown\n"
+"author KingProtea99\n"
+
+msgid "CI checks the entry and every `v*` tag, then builds the newest one. A person merges the pull request after CI passes. CI does not review the code."
+msgstr "CI가 등록 파일과 모든 `v*` 태그를 검사하고 가장 새 태그를 빌드합니다. CI가 통과하면 사람이 풀 리퀘스트를 합칩니다. CI는 코드를 검토하지 않습니다."
+
+msgid "The entry holds only the name and the repository; everything else comes from your tags and `module.txt`. New versions need no pull request: push a new tag and the daily run adds it to `index.json`. The list records each tag's commit, so never move a tag that is listed; publish a new version instead."
+msgstr "등록 파일에는 이름과 저장소만 있고, 나머지는 모두 태그와 `module.txt`에서 옵니다. 새 버전은 풀 리퀘스트가 필요 없습니다: 새 태그를 push하면 매일 도는 CI가 `index.json`에 더합니다. 목록은 태그마다 커밋을 적어 두므로, 이미 올라간 태그는 옮기지 말고 새 버전을 내세요."
