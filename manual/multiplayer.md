@@ -86,6 +86,17 @@ Project Settings `keepReplays` sets how many are kept (default 20, oldest are de
 - Editor: **File > Open Replay...** (or `--replay <file>`) plays it as solo play, so pause, step one tick, rewind and the State panel work as usual.
 - A replay recorded with different game data (scene, models, tuning, project settings) or another build shows a warning and plays anyway. When a tick's state hash differs from the recording, it pauses at that tick.
 
+## Joining a running match
+
+A match does not end when a client drops. The host stops waiting for that player, their slot gets empty input, and the game is told on the same tick on every peer (the sample removes their character). The match only ends if the host leaves.
+
+- **Coming back**: joining the same host again gives the player their old slot. The host matches them by the session's token (same running game) or by the same lobby name.
+- **Joining late**: a new player can join a running match while there is a free slot (up to the room's maximum players).
+
+The joining player stays on the connecting screen while the host sends a snapshot of the world at the current tick (compressed, about 0.5 MB in the sample). Then they fast-forward through the ticks played since, and then play normally. Nobody else waits.
+
+In game code, joins and leaves arrive as an engine command in `World::step` (`sim::readPresence`). A new slot also carries that player's match start data (`p.readLoadout`). See `applyCommands` and `setPresence` in the sample. Try it with `tools\mp_test.ps1 -Headless -Clients 2 -Ticks 3000 -LateJoin`.
+
 ## Finding a desync
 
 When peers compute different results, the host sees a different tick hash and everyone shows "Desync!" (the match keeps running). In a multiplayer match every peer keeps a few snapshots, so it can replay to **the tick where the hashes first differed** and write that state to a text dump: the project's `build/desync/` while developing, or the user folder's `desync/` in a shipped game.

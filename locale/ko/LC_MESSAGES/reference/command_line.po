@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-28 11:51+0900\n"
+"POT-Creation-Date: 2026-10-28 12:34+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -213,6 +213,12 @@ msgstr "`--benchmark-out <file>`"
 
 msgid "Path of the benchmark report (default `benchmark.txt`)"
 msgstr "벤치마크 보고서 경로 (기본 `benchmark.txt`)"
+
+msgid "`--name <text>`"
+msgstr "`--name <텍스트>`"
+
+msgid "Player name in the lobby. Joining a running match again with the same name takes back the old slot"
+msgstr "로비에 보이는 플레이어 이름. 같은 이름으로 진행 중인 매치에 다시 들어오면 예전 슬롯을 돌려받습니다"
 
 msgid "`--any-build`"
 msgstr "`--any-build`"

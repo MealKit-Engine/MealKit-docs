@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-28 11:51+0900\n"
+"POT-Creation-Date: 2026-10-28 12:34+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -174,6 +174,24 @@ msgstr "에디터: **파일 > 리플레이 열기...**(또는 `--replay <파일>
 
 msgid "A replay recorded with different game data (scene, models, tuning, project settings) or another build shows a warning and plays anyway. When a tick's state hash differs from the recording, it pauses at that tick."
 msgstr "다른 게임 데이터(씬, 모델, 튜닝, 프로젝트 설정)나 다른 빌드로 기록한 리플레이는 경고를 보이고 그대로 재생합니다. 어떤 틱의 상태 해시가 기록과 다르면 그 틱에서 멈춥니다."
+
+msgid "Joining a running match"
+msgstr "진행 중인 매치에 들어가기"
+
+msgid "A match does not end when a client drops. The host stops waiting for that player, their slot gets empty input, and the game is told on the same tick on every peer (the sample removes their character). The match only ends if the host leaves."
+msgstr "클라이언트가 끊겨도 매치는 끝나지 않습니다. 호스트는 그 플레이어를 더 기다리지 않고, 그 슬롯은 빈 입력이 되며, 모든 피어의 게임이 같은 틱에 이를 알게 됩니다(샘플은 그 캐릭터를 치웁니다). 매치는 호스트가 나갈 때만 끝납니다."
+
+msgid "**Coming back**: joining the same host again gives the player their old slot. The host matches them by the session's token (same running game) or by the same lobby name."
+msgstr "**다시 들어오기**: 같은 호스트에 다시 접속하면 예전 슬롯을 돌려받습니다. 호스트는 세션 토큰(같은 실행 중인 게임)이나 같은 로비 이름으로 알아봅니다."
+
+msgid "**Joining late**: a new player can join a running match while there is a free slot (up to the room's maximum players)."
+msgstr "**늦게 들어오기**: 빈 슬롯이 있으면(방의 최대 인원까지) 새 플레이어가 진행 중인 매치에 들어올 수 있습니다."
+
+msgid "The joining player stays on the connecting screen while the host sends a snapshot of the world at the current tick (compressed, about 0.5 MB in the sample). Then they fast-forward through the ticks played since, and then play normally. Nobody else waits."
+msgstr "들어오는 플레이어는 호스트가 지금 틱의 월드 스냅샷(압축해서 샘플은 약 0.5 MB)을 보내는 동안 접속 화면에 있습니다. 그 뒤 그동안 진행된 틱을 빨리 감아 따라잡고 평소처럼 플레이합니다. 다른 사람은 기다리지 않습니다."
+
+msgid "In game code, joins and leaves arrive as an engine command in `World::step` (`sim::readPresence`). A new slot also carries that player's match start data (`p.readLoadout`). See `applyCommands` and `setPresence` in the sample. Try it with `tools\\mp_test.ps1 -Headless -Clients 2 -Ticks 3000 -LateJoin`."
+msgstr "게임 코드에서는 들어오기와 끊김이 `World::step` 안에서 엔진 명령으로 옵니다(`sim::readPresence`). 새 슬롯에는 그 플레이어의 매치 시작 데이터도 함께 옵니다(`p.readLoadout`). 샘플의 `applyCommands`와 `setPresence`를 보세요. `tools\\mp_test.ps1 -Headless -Clients 2 -Ticks 3000 -LateJoin`으로 시험해 볼 수 있습니다."
 
 msgid "Finding a desync"
 msgstr "디싱크 찾기"

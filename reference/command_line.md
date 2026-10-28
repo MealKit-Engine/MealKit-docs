@@ -36,6 +36,7 @@ The example game is called `sandbox`. In a game project, the executables carry t
 | `--system-info` | Print CPU and GPU features and exit (exit code 2 below the minimum spec) |
 | `--benchmark [seconds]` | Benchmark mode: offline, fixed seed, bot input, vsync and sound off; measure for 30 seconds (or the given number) after a 3 second warm-up, write `benchmark.txt` and exit ({doc}`../manual/performance`) |
 | `--benchmark-out <file>` | Path of the benchmark report (default `benchmark.txt`) |
+| `--name <text>` | Player name in the lobby. Joining a running match again with the same name takes back the old slot |
 | `--any-build` | Host: accept peers running a different build (compiler comparison tests) |
 | `--net-lag <ms>`, `--net-jitter <ms>`, `--net-loss <%>` | Simulate a slow, uneven or lossy connection for this process: added round trip time, extra random delay per packet, share of packets dropped (testing) |
 | `--hash-log <file>` | Write `<tick> <hash>` for every tick |
