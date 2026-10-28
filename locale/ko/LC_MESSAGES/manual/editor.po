@@ -144,6 +144,9 @@ msgstr "**명령 팔레트**: Ctrl+P(또는 **보기 > 명령 팔레트**)를 �
 msgid "**Preferences**: **File > Preferences** sets the camera speed, text size, autosave interval and code editor. The window layout is kept per project in `build\\editor\\layout.ini`. Press F1 for the list of keyboard shortcuts."
 msgstr "**환경설정**: **파일 > 환경설정**에서 카메라 속도, 글자 크기, 자동 저장 간격, 코드 편집기를 정한다. 창 배치는 프로젝트마다 `build\\editor\\layout.ini`에 따로 저장된다. F1을 누르면 단축키 목록이 나온다."
 
+msgid "**Scene tree**: type in the box above the tree (Ctrl+F) to find objects by name or type. The eye and lock buttons on the right of a row hide an object in the scene view or stop it being picked there; they are saved per project in `build\\editor`, not in the scene file."
+msgstr "**씬 트리**: 트리 위 칸(Ctrl+F)에 쳐서 이름이나 종류로 물체를 찾는다. 줄 오른쪽의 눈·자물쇠 버튼은 씬 뷰에서 물체를 숨기거나 클릭으로 고르지 못하게 한다. 이 상태는 씬 파일이 아니라 프로젝트의 `build\\editor`에 저장된다."
+
 msgid "**Tuning**: two tabs. Game holds the values the simulation reads (`assets/game.tuning`); during solo play changes apply at once. Display holds the values that are only seen (`assets/view.tuning`); changes apply at once in every player window, even with several players."
 msgstr "**튜닝**: 탭 두 개. \"게임\"은 시뮬레이션이 읽는 값(`assets/game.tuning`)으로, 혼자 플레이 중에는 바꾸면 바로 적용된다. \"화면\"은 보이기만 하는 값(`assets/view.tuning`)으로, 여러 명이어도 모든 플레이어 창에 바로 적용된다."
 
