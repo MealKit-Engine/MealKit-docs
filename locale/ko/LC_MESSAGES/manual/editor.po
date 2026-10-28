@@ -150,6 +150,9 @@ msgstr "**씬 트리**: 트리 위 칸(Ctrl+F)에 쳐서 이름이나 종류로 
 msgid "**Multi-select**: Shift-click in the scene tree or the scene view to add or remove objects, drag a box in an empty part of the scene view, or press Ctrl+A. The gizmo then moves, rotates or scales all of them, and Duplicate and Delete act on all of them. The inspector edits the last object you picked."
 msgstr "**다중 선택**: 씬 트리나 씬 뷰에서 Shift 클릭으로 물체를 더하거나 빼고, 씬 뷰 빈 곳에서 상자를 끌거나, Ctrl+A를 누른다. 그러면 기즈모가 모두를 옮기고 돌리고 크기를 바꾸며, 복제·삭제도 모두에 한다. 인스펙터는 마지막에 고른 물체를 고친다."
 
+msgid "**Viewport toolbar**: the bar at the top left of the scene view switches between move, rotate and scale, local and world axes, snapping, the floor grid, the view mode and the camera speed. Click the axis cube at the top right to look from that side."
+msgstr "**뷰포트 툴바**: 씬 뷰 왼쪽 위 막대에서 이동·회전·크기, 로컬·월드 축, 스냅, 바닥 그리드, 보기 모드, 카메라 속도를 바꾼다. 오른쪽 위 축 상자를 누르면 그쪽에서 보게 된다."
+
 msgid "**Tuning**: two tabs. Game holds the values the simulation reads (`assets/game.tuning`); during solo play changes apply at once. Display holds the values that are only seen (`assets/view.tuning`); changes apply at once in every player window, even with several players."
 msgstr "**튜닝**: 탭 두 개. \"게임\"은 시뮬레이션이 읽는 값(`assets/game.tuning`)으로, 혼자 플레이 중에는 바꾸면 바로 적용된다. \"화면\"은 보이기만 하는 값(`assets/view.tuning`)으로, 여러 명이어도 모든 플레이어 창에 바로 적용된다."
 
