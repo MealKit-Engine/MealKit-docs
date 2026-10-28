@@ -102,9 +102,9 @@ msgstr "디버그 그리기"
 msgid "Game code can draw hit areas and paths with `debug::line`, `debug::box` and `debug::text` from `mealkit/debug/DebugDraw.h`. The shapes show while playing in the editor and in development builds of the game (text only while F1 is on). Release builds leave the calls out. You can call them from `sim/` code: they only record what to draw, so they do not affect the simulation."
 msgstr "게임 코드는 `mealkit/debug/DebugDraw.h`의 `debug::line`, `debug::box`, `debug::text`로 판정 범위와 경로를 그릴 수 있다. 에디터에서 플레이할 때와 게임의 개발 빌드에서 보인다(글자는 F1이 켜져 있을 때만). 출시 빌드에서는 호출이 빠진다. `sim/` 코드에서 불러도 된다. 무엇을 그릴지 기록만 하므로 시뮬레이션에 영향이 없다."
 
-msgid "debug::box(center, half, rotation, debug::kRed, 2.0f); // for 2 seconds
-debug::line(from, to);                                 // this frame only
-"
-msgstr "debug::box(center, half, rotation, debug::kRed, 2.0f); // 2초 동안
-debug::line(from, to);                                 // 이번 프레임만
-"
+msgid ""
+"debug::box(center, half, rotation, debug::kRed, 2.0f); // for 2 seconds\n"
+"debug::line(from, to);                                 // this frame only\n"
+msgstr ""
+"debug::box(center, half, rotation, debug::kRed, 2.0f); // 2초 동안\n"
+"debug::line(from, to);                                 // 이번 프레임만\n"
