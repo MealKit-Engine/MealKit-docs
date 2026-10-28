@@ -168,6 +168,9 @@ msgstr "**성능**: **빌드 > 성능**(또는 상태 표시줄의 fps 숫자를
 msgid "**Jump to code**: click a blue `file(line)` line in the build log or the log to open it in the code editor set in Preferences (VS Code by default). For a game object type, **Open Code** in the inspector opens its `MEALKIT_OBJECT` declaration."
 msgstr "**코드로 이동**: 빌드 로그나 로그의 파란 `파일(줄)` 줄을 누르면 환경설정의 코드 편집기(기본 VS Code)로 열린다. 게임 오브젝트 종류는 인스펙터의 **코드 열기**가 그 `MEALKIT_OBJECT` 선언을 연다."
 
+msgid "**Scenes**: **File > Scenes** lists the scenes in `assets/scenes`. The star marks the start scene; select another and press **Set as Start Scene** to change it in `mealkit.project`. **File > Recent Scenes** reopens the scenes you used last in this project."
+msgstr "**씬 목록**: **파일 > 씬 목록**에 `assets/scenes`의 씬이 나온다. 별은 시작 씬이고, 다른 씬을 골라 **시작 씬으로**를 누르면 `mealkit.project`에서 바뀐다. **파일 > 최근 씬**은 이 프로젝트에서 최근에 쓴 씬을 다시 연다."
+
 msgid "**Tuning**: two tabs. Game holds the values the simulation reads (`assets/game.tuning`); during solo play changes apply at once. Display holds the values that are only seen (`assets/view.tuning`); changes apply at once in every player window, even with several players."
 msgstr "**튜닝**: 탭 두 개. \"게임\"은 시뮬레이션이 읽는 값(`assets/game.tuning`)으로, 혼자 플레이 중에는 바꾸면 바로 적용된다. \"화면\"은 보이기만 하는 값(`assets/view.tuning`)으로, 여러 명이어도 모든 플레이어 창에 바로 적용된다."
 
