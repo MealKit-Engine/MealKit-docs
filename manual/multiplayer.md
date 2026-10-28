@@ -86,6 +86,11 @@ Project Settings `keepReplays` sets how many are kept (default 20, oldest are de
 - Editor: **File > Open Replay...** (or `--replay <file>`) plays it as solo play, so pause, step one tick, rewind and the State panel work as usual.
 - A replay recorded with different game data (scene, models, tuning, project settings) or another build shows a warning and plays anyway. When a tick's state hash differs from the recording, it pauses at that tick.
 
+### Bug reports
+
+Press **F9** in the game to save the current match for a developer: the user folder's `bugreports/<date>_<time>.zip` holds the input recording so far (`replay.rec`), the build and data versions (`info.txt`), the recent log, a screenshot and one line the player writes (development builds ask for it; shipped builds save without a note).
+Open the zip with **File > Open Replay...** in the editor (or `--replay <file.zip>`): it replays to the tick where F9 was pressed and pauses there. Project Settings `bugReports` turns the key off.
+
 ## Joining a running match
 
 A match does not end when a client drops. The host stops waiting for that player, their slot gets empty input, and the game is told on the same tick on every peer (the sample removes their character). The match only ends if the host leaves.

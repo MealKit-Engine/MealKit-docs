@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-28 12:34+0900\n"
+"POT-Creation-Date: 2026-10-28 13:56+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -174,6 +174,12 @@ msgstr "에디터: **파일 > 리플레이 열기...**(또는 `--replay <파일>
 
 msgid "A replay recorded with different game data (scene, models, tuning, project settings) or another build shows a warning and plays anyway. When a tick's state hash differs from the recording, it pauses at that tick."
 msgstr "다른 게임 데이터(씬, 모델, 튜닝, 프로젝트 설정)나 다른 빌드로 기록한 리플레이는 경고를 보이고 그대로 재생합니다. 어떤 틱의 상태 해시가 기록과 다르면 그 틱에서 멈춥니다."
+
+msgid "Bug reports"
+msgstr "버그 리포트"
+
+msgid "Press **F9** in the game to save the current match for a developer: the user folder's `bugreports/<date>_<time>.zip` holds the input recording so far (`replay.rec`), the build and data versions (`info.txt`), the recent log, a screenshot and one line the player writes (development builds ask for it; shipped builds save without a note). Open the zip with **File > Open Replay...** in the editor (or `--replay <file.zip>`): it replays to the tick where F9 was pressed and pauses there. Project Settings `bugReports` turns the key off."
+msgstr "게임에서 **F9**를 누르면 지금 매치를 개발자에게 넘길 수 있게 남긴다: 사용자 폴더의 `bugreports/<날짜>_<시각>.zip`에 그때까지의 입력 기록(`replay.rec`), 빌드·데이터 버전(`info.txt`), 최근 로그, 스크린샷, 플레이어가 적은 한 줄(개발 빌드는 물어보고, 출시 빌드는 글 없이 남긴다)이 들어간다. 에디터 **파일 > 리플레이 열기...**(또는 `--replay <파일.zip>`)로 zip을 열면 F9를 누른 틱까지 재생하고 거기서 멈춘다. 프로젝트 설정 `bugReports`로 키를 끈다."
 
 msgid "Joining a running match"
 msgstr "진행 중인 매치에 들어가기"

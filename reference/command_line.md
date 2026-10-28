@@ -28,6 +28,7 @@ The example game is called `sandbox`. In a game project, the executables carry t
 | `--shadow` | Run a shadow simulation and compare state hashes every tick |
 | `--rewind-test` | Record inputs and snapshots, rewind and replay at the exit tick |
 | `--replay <file>` | Watch a saved replay (`.rec`, the user folder's `replays/` keeps the latest matches, {doc}`../manual/multiplayer`) |
+| `--bug-report-at <frame>` | Save a bug report at that frame, as if F9 was pressed (tests) |
 | `--capture <png> [tick]` | Save a screenshot after the given tick (without a tick: the last frame of `--frames`) |
 | `--frames <n>` | Draw n frames and exit (screens outside a match, such as the title) |
 | `--ui-press <frame:node,...>` | Press the UI widget with that node name at that frame (screen flow tests, e.g. `20:start,50:solo`) |
@@ -75,7 +76,7 @@ Window options (`--bot`, `--vsync`, `--fps`, `--size`, `--debug`, `--mute`, `--d
 | `--view-mode <n>` | Start in a view mode: 1 wireframe, 2 normals, 3 LOD level, 4 overdraw, 5 over budget ({doc}`../manual/editor`) |
 | `--gpu-capture` | Load RenderDoc or PIX if installed: View > GPU Capture and `F11` capture the next frame |
 | `--play`, `--players <n>`, `--bot` | Start play mode, with several players and bot input |
-| `--replay <file>` | Start by playing a saved replay (File > Open Replay...) |
+| `--replay <file>` | Start by playing a saved replay or bug report zip (File > Open Replay...) |
 | `--build-game` | Build the game code first |
 | `--export` | Make a release build |
 | `--upgrade` | Upgrade the project right away |

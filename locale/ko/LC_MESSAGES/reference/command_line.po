@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-28 12:34+0900\n"
+"POT-Creation-Date: 2026-10-28 13:56+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -163,6 +163,12 @@ msgstr "`--replay <파일>`"
 #, python-brace-format
 msgid "Watch a saved replay (`.rec`, the user folder's `replays/` keeps the latest matches, {doc}`../manual/multiplayer`)"
 msgstr "저장된 리플레이 보기 (`.rec`, 사용자 폴더 `replays/`에 최근 매치가 남는다, {doc}`../manual/multiplayer`)"
+
+msgid "`--bug-report-at <frame>`"
+msgstr "`--bug-report-at <프레임>`"
+
+msgid "Save a bug report at that frame, as if F9 was pressed (tests)"
+msgstr "그 프레임에 F9를 누른 것처럼 버그 리포트 저장 (시험용)"
 
 msgid "`--capture <png> [tick]`"
 msgstr "`--capture <png> [tick]`"
@@ -378,8 +384,8 @@ msgstr "`--play`, `--players <n>`, `--bot`"
 msgid "Start play mode, with several players and bot input"
 msgstr "플레이 모드 시작, 여러 명과 봇 입력"
 
-msgid "Start by playing a saved replay (File > Open Replay...)"
-msgstr "저장된 리플레이를 재생하며 시작 (파일 > 리플레이 열기...)"
+msgid "Start by playing a saved replay or bug report zip (File > Open Replay...)"
+msgstr "저장된 리플레이나 버그 리포트 zip을 재생하며 시작 (파일 > 리플레이 열기...)"
 
 msgid "`--build-game`"
 msgstr "`--build-game`"
