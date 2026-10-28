@@ -58,6 +58,7 @@ The example game is called `sandbox`. In a game project, the executables carry t
 | `--players <n>`, `--auto-start <n>` | Maximum players; host starts when n players are in the lobby (default: `--players`) |
 | `--match-data <n>` | Game-defined match value sent by the host (example: number of boxes, 0 = the scene's) |
 | `--delay`, `--seed`, `--threads`, `--scene`, `--tuning`, `--shadow`, `--hash-log`, `--record-inputs`, `--any-build`, `--net-lag`, `--net-jitter`, `--net-loss` | As in the game |
+| `--abort-host-at <t>` | The first player who took over as host exits at tick t without closing the session (host migration test) |
 | `--replay-inputs <file>` | Replay a recorded match and compare every tick hash (no network) |
 
 Window options (`--bot`, `--vsync`, `--fps`, `--size`, `--debug`, `--mute`, `--debug-ui`, `--settings`, `--lang`) are accepted and ignored.

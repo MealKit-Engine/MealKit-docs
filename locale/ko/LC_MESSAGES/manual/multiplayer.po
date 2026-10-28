@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-28 13:56+0900\n"
+"POT-Creation-Date: 2026-10-28 16:21+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -180,6 +180,12 @@ msgstr "버그 리포트"
 
 msgid "Press **F9** in the game to save the current match for a developer: the user folder's `bugreports/<date>_<time>.zip` holds the input recording so far (`replay.rec`), the build and data versions (`info.txt`), the recent log, a screenshot and one line the player writes (development builds ask for it; shipped builds save without a note). Open the zip with **File > Open Replay...** in the editor (or `--replay <file.zip>`): it replays to the tick where F9 was pressed and pauses there. Project Settings `bugReports` turns the key off."
 msgstr "게임에서 **F9**를 누르면 지금 매치를 개발자에게 넘길 수 있게 남긴다: 사용자 폴더의 `bugreports/<날짜>_<시각>.zip`에 그때까지의 입력 기록(`replay.rec`), 빌드·데이터 버전(`info.txt`), 최근 로그, 스크린샷, 플레이어가 적은 한 줄(개발 빌드는 물어보고, 출시 빌드는 글 없이 남긴다)이 들어간다. 에디터 **파일 > 리플레이 열기...**(또는 `--replay <파일.zip>`)로 zip을 열면 F9를 누른 틱까지 재생하고 거기서 멈춘다. 프로젝트 설정 `bugReports`로 키를 끈다."
+
+msgid "When the host leaves"
+msgstr "호스트가 나갈 때"
+
+msgid "The match also goes on when the host leaves. The host sends everyone a succession list every second, and the first connected player on it takes over: immediately when the host quits, or after 3 seconds of silence during a match when the host crashes (10 seconds in the lobby and while the match loads). The new host first collects any confirmed ticks other players received and it did not, then continues; the old host's slot gets empty input like any dropped player, and they get it back if they rejoin. On Steam the lobby ownership follows the new host. With direct IP connections (`--host`/`--join`) this works on a LAN; over the internet the players may not reach each other, and the match ends as before. Check it with `tools\\mp_test.ps1 -Headless -Clients 3 -Ticks 3000 -HostLeave`."
+msgstr "호스트가 나가도 매치는 계속된다. 호스트는 1초마다 승계 목록을 모두에게 보내고, 목록에서 첫 번째로 연결된 사람이 이어받는다: 호스트가 끝내면 바로, 튕기면 매치 중 3초 동안 소식이 없을 때(로비와 매치 로딩 중에는 10초). 새 호스트는 다른 사람이 받았고 자기는 받지 못한 확정 틱을 먼저 모은 뒤 이어 간다. 옛 호스트의 슬롯은 다른 끊긴 사람처럼 빈 입력이 되고, 다시 들어오면 그 슬롯을 돌려받는다. Steam에서는 로비 소유자도 새 호스트를 따라간다. 직접 IP 접속(`--host`/`--join`)은 LAN에서 된다. 인터넷에서는 서로 닿지 못할 수 있고 그러면 예전처럼 매치가 끝난다. 확인은 `tools\\mp_test.ps1 -Headless -Clients 3 -Ticks 3000 -HostLeave`."
 
 msgid "Joining a running match"
 msgstr "진행 중인 매치에 들어가기"

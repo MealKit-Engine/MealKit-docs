@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-28 13:56+0900\n"
+"POT-Creation-Date: 2026-10-28 16:21+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -316,6 +316,12 @@ msgstr "`--delay`, `--seed`, `--threads`, `--scene`, `--tuning`, `--shadow`, `--
 
 msgid "As in the game"
 msgstr "게임과 같다"
+
+msgid "`--abort-host-at <t>`"
+msgstr "`--abort-host-at <t>`"
+
+msgid "The first player who took over as host exits at tick t without closing the session (host migration test)"
+msgstr "처음 호스트를 이어받은 사람이 t틱에 세션을 닫지 않고 끝난다 (호스트 이전 시험)"
 
 msgid "`--replay-inputs <file>`"
 msgstr "`--replay-inputs <file>`"

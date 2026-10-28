@@ -91,6 +91,12 @@ Project Settings `keepReplays` sets how many are kept (default 20, oldest are de
 Press **F9** in the game to save the current match for a developer: the user folder's `bugreports/<date>_<time>.zip` holds the input recording so far (`replay.rec`), the build and data versions (`info.txt`), the recent log, a screenshot and one line the player writes (development builds ask for it; shipped builds save without a note).
 Open the zip with **File > Open Replay...** in the editor (or `--replay <file.zip>`): it replays to the tick where F9 was pressed and pauses there. Project Settings `bugReports` turns the key off.
 
+## When the host leaves
+
+The match also goes on when the host leaves. The host sends everyone a succession list every second, and the first connected player on it takes over: immediately when the host quits, or after 3 seconds of silence during a match when the host crashes (10 seconds in the lobby and while the match loads).
+The new host first collects any confirmed ticks other players received and it did not, then continues; the old host's slot gets empty input like any dropped player, and they get it back if they rejoin. On Steam the lobby ownership follows the new host.
+With direct IP connections (`--host`/`--join`) this works on a LAN; over the internet the players may not reach each other, and the match ends as before. Check it with `tools\mp_test.ps1 -Headless -Clients 3 -Ticks 3000 -HostLeave`.
+
 ## Joining a running match
 
 A match does not end when a client drops. The host stops waiting for that player, their slot gets empty input, and the game is told on the same tick on every peer (the sample removes their character). The match only ends if the host leaves.
