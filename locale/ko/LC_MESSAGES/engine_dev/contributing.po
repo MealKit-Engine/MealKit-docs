@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-21 11:06+0900\n"
+"POT-Creation-Date: 2026-10-28 10:53+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -39,12 +39,9 @@ msgstr "{engine}`로드맵 <docs/ROADMAP.md>` 순서와 {engine}`결정 기록 <
 msgid "Use only the answers in the {engine}`coding model <docs/CODING_MODEL.md>`. A design question that is not in its table gets a new row, agreed on before any code is written."
 msgstr "{engine}`코딩 방식 <docs/CODING_MODEL.md>`의 답만 쓴다. 표에 없는 설계 질문이면 코드를 짜기 전에 행을 추가하고 합의한다."
 
-msgid "OS APIs are called only in `mealkit/platform/<os>/`, graphics APIs only in `mealkit/rhi/`."
-msgstr "OS API는 `mealkit/platform/<os>/`, 그래픽 API는 `mealkit/rhi/` 안에서만 부른다."
-
 #, python-brace-format
-msgid "After changing simulation, physics or network code, run `tools\\mp_test.ps1` and confirm there is no desync. See {doc}`testing`."
-msgstr "시뮬레이션·물리·네트워크 코드를 바꾸면 `tools\\mp_test.ps1`로 디싱크가 없는지 확인한다. {doc}`testing`을 본다."
+msgid "The rules for the code itself (where OS and graphics APIs may be called, the determinism rules, which checks a change needs) change in the same commit as the code, so they are kept in the engine's {engine}`CLAUDE.md` and the coding model, not here. The checks are explained in {doc}`testing`."
+msgstr "코드 자체의 규칙(OS·그래픽 API를 부를 수 있는 곳, 결정론 규칙, 고친 것마다 돌릴 검사)은 코드와 같은 커밋에 바뀌므로 여기가 아니라 엔진의 {engine}`CLAUDE.md`와 코딩 방식에 둔다. 검사는 {doc}`testing`에서 설명한다."
 
 msgid "Adding an external library"
 msgstr "외부 라이브러리 넣기"
@@ -65,8 +62,8 @@ msgid "be copied into `third_party/` at a fixed version."
 msgstr "버전을 고정해 `third_party/`에 복사해 넣는다."
 
 #, python-brace-format
-msgid "When adding one, update {engine}`third_party/VERSIONS.txt` and `THIRD_PARTY_NOTICES.txt` together."
-msgstr "넣을 때는 {engine}`third_party/VERSIONS.txt`와 `THIRD_PARTY_NOTICES.txt`를 함께 고친다."
+msgid "How to add one (the files it needs and the generated notices) is in the engine's {engine}`CLAUDE.md`."
+msgstr "넣는 방법(필요한 파일과 자동으로 만드는 고지 파일)은 엔진의 {engine}`CLAUDE.md`에 있다."
 
 msgid "Documentation"
 msgstr "문서"

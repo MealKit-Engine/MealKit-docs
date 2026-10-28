@@ -11,8 +11,7 @@ Sign off every commit with `git commit -s`, which adds a `Signed-off-by: Name <e
 
 - Follow the order of the {engine}`roadmap <docs/ROADMAP.md>` and the "postponed" table in the {engine}`decision log <docs/DECISIONS.md>`. When a decision changes, add a row to the decision log.
 - Use only the answers in the {engine}`coding model <docs/CODING_MODEL.md>`. A design question that is not in its table gets a new row, agreed on before any code is written.
-- OS APIs are called only in `mealkit/platform/<os>/`, graphics APIs only in `mealkit/rhi/`.
-- After changing simulation, physics or network code, run `tools\mp_test.ps1` and confirm there is no desync. See {doc}`testing`.
+- The rules for the code itself (where OS and graphics APIs may be called, the determinism rules, which checks a change needs) change in the same commit as the code, so they are kept in the engine's {engine}`CLAUDE.md` and the coding model, not here. The checks are explained in {doc}`testing`.
 
 ## Adding an external library
 
@@ -23,7 +22,7 @@ The engine builds only deterministic simulation, lockstep networking, the render
 - fit in the 5 MB budget of the shipped executable,
 - be copied into `third_party/` at a fixed version.
 
-When adding one, update {engine}`third_party/VERSIONS.txt` and `THIRD_PARTY_NOTICES.txt` together.
+How to add one (the files it needs and the generated notices) is in the engine's {engine}`CLAUDE.md`.
 
 ## Documentation
 
