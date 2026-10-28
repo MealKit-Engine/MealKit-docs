@@ -185,4 +185,5 @@ Epic's terms do not allow the EOS SDK in the repository either. EOS lobbies and 
 
 - `third_party/eos/` is in `.gitignore`, so the client secret never goes into the repository. It is built into the game exe, as EOS expects for game clients.
 - Two game processes on one PC are the same EOS user. Test joining with two PCs.
+- When the Steamworks SDK is also in `third_party/steamworks/sdk`, the EOS build logs in with the **Steam account** (a Steam web API ticket) and `I` opens the Steam invite window. A friend who accepts joins the EOS lobby by its code. The match itself always goes over EOS. This needs Steam under **Identity Providers** in the Epic developer portal (your Steam app ID and its publisher Web API key, so your own Steam app, not 480). Without it the log says `Steam login failed` and the game logs in with the device ID instead.
 - Login and lobby creation have been verified with SDK 1.19.2. Joining from a second PC has not been verified yet.
