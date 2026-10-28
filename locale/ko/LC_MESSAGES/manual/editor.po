@@ -165,6 +165,9 @@ msgstr "**인스펙터**: 섹션을 접을 수 있다. 필드를 오른쪽 클�
 msgid "**Performance**: **Build > Performance** (or click the fps number in the status bar) graphs the CPU and GPU frame time, simulation tick, draw calls and network traffic of the last 30 seconds against the budgets in the roadmap. Values over budget turn red."
 msgstr "**성능**: **빌드 > 성능**(또는 상태 표시줄의 fps 숫자를 누름)은 최근 30초의 CPU·GPU 프레임 시간, 시뮬레이션 틱, 드로우 콜, 네트워크를 로드맵의 예산과 함께 그래프로 보여 준다. 예산을 넘은 값은 빨갛게 된다."
 
+msgid "**Jump to code**: click a blue `file(line)` line in the build log or the log to open it in the code editor set in Preferences (VS Code by default). For a game object type, **Open Code** in the inspector opens its `MEALKIT_OBJECT` declaration."
+msgstr "**코드로 이동**: 빌드 로그나 로그의 파란 `파일(줄)` 줄을 누르면 환경설정의 코드 편집기(기본 VS Code)로 열린다. 게임 오브젝트 종류는 인스펙터의 **코드 열기**가 그 `MEALKIT_OBJECT` 선언을 연다."
+
 msgid "**Tuning**: two tabs. Game holds the values the simulation reads (`assets/game.tuning`); during solo play changes apply at once. Display holds the values that are only seen (`assets/view.tuning`); changes apply at once in every player window, even with several players."
 msgstr "**튜닝**: 탭 두 개. \"게임\"은 시뮬레이션이 읽는 값(`assets/game.tuning`)으로, 혼자 플레이 중에는 바꾸면 바로 적용된다. \"화면\"은 보이기만 하는 값(`assets/view.tuning`)으로, 여러 명이어도 모든 플레이어 창에 바로 적용된다."
 
