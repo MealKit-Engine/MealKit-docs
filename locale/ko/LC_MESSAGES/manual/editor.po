@@ -162,6 +162,9 @@ msgstr "**카메라**: Alt + 왼쪽 드래그는 고른 물체를 중심으로 �
 msgid "**Inspector**: sections fold. Right-click a field for Reset to Default, Copy Value and Paste Value; a blue dot marks values that differ from the default. The lock before Scale keeps the X, Y and Z ratio. **Edit > History** (Ctrl+H) lists the undo steps; click one to go back to it."
 msgstr "**인스펙터**: 섹션을 접을 수 있다. 필드를 오른쪽 클릭하면 기본값으로·값 복사·값 붙여넣기가 나오고, 기본값과 다른 값에는 파란 점이 찍힌다. 크기 앞 자물쇠는 X·Y·Z 비율을 지킨다. **편집 > 기록**(Ctrl+H)에 되돌리기 단계가 나오고, 누르면 그 지점으로 돌아간다."
 
+msgid "**Performance**: **Build > Performance** (or click the fps number in the status bar) graphs the CPU and GPU frame time, simulation tick, draw calls and network traffic of the last 30 seconds against the budgets in the roadmap. Values over budget turn red."
+msgstr "**성능**: **빌드 > 성능**(또는 상태 표시줄의 fps 숫자를 누름)은 최근 30초의 CPU·GPU 프레임 시간, 시뮬레이션 틱, 드로우 콜, 네트워크를 로드맵의 예산과 함께 그래프로 보여 준다. 예산을 넘은 값은 빨갛게 된다."
+
 msgid "**Tuning**: two tabs. Game holds the values the simulation reads (`assets/game.tuning`); during solo play changes apply at once. Display holds the values that are only seen (`assets/view.tuning`); changes apply at once in every player window, even with several players."
 msgstr "**튜닝**: 탭 두 개. \"게임\"은 시뮬레이션이 읽는 값(`assets/game.tuning`)으로, 혼자 플레이 중에는 바꾸면 바로 적용된다. \"화면\"은 보이기만 하는 값(`assets/view.tuning`)으로, 여러 명이어도 모든 플레이어 창에 바로 적용된다."
 
