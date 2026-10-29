@@ -1,9 +1,9 @@
-# MealKit 문서 빌드·검사 (Windows·Linux 공통, 로컬과 CI가 같이 쓴다).
+# MealKit docs build/checks (shared by Windows/Linux, local and CI).
 #
-#   python tools/build.py html                 영어·한국어 HTML (_build/html/en, _build/html/ko), 경고 = 오류
-#   python tools/build.py update               원문이 바뀐 뒤 번역 파일(.po) 갱신 (새 문장은 빈 칸, 바뀐 문장은 fuzzy)
-#   python tools/build.py check [--engine DIR] html + 번역 검사(미번역·fuzzy·남은 문장 0) + 엔진 버전 비교
-#   python tools/build.py linkcheck            바깥 링크 검사 (네트워크)
+#   python tools/build.py html                 English/Korean HTML (_build/html/en, _build/html/ko), warnings = errors
+#   python tools/build.py update               updates translation files (.po) after the source changes (new sentences blank, changed sentences fuzzy)
+#   python tools/build.py check [--engine DIR] html + translation checks (0 untranslated/fuzzy/leftover) + engine version comparison
+#   python tools/build.py linkcheck            external link checks (network)
 
 import argparse
 import os
@@ -55,7 +55,7 @@ def read_catalog(path):
 
 
 def check_translations():
-    """모든 원문 문장이 각 언어에 번역되어 있고(빈 칸·fuzzy 없음), 원문에 없는 번역이 남지 않았는지."""
+    """Whether every source sentence is translated in each language (no blanks/fuzzy), and no translations remain that aren't in the source."""
     pot_dir = gettext()
     problems = 0
     for lang in LANGUAGES:
@@ -92,7 +92,7 @@ def check_translations():
                         problems += 1
                 problems += len(po.obsolete)
         print(f"translations {lang}: {total} messages checked")
-    # 원문이 사라진 번역 파일
+    # Translation files whose source is gone
     for lang in LANGUAGES:
         base = os.path.join(ROOT, "locale", lang, "LC_MESSAGES")
         for dirpath, _, files in os.walk(base):
