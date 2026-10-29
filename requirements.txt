@@ -1,4 +1,4 @@
-# 버전 고정 (tools/build.py와 CI가 같은 버전을 쓴다)
+# Pinned versions (tools/build.py and CI use the same versions)
 sphinx==8.2.3
 myst-parser==4.0.1
 sphinx-intl==2.3.1

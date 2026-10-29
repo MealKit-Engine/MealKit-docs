@@ -1,6 +1,6 @@
 # Internals
 
-How each engine folder works inside, one page per folder. The groups follow the folder order: a folder includes only folders in the same group or an earlier one (see "엔진 폴더 사이 의존" in {engine}`docs/CODING_MODEL.md`).
+How each engine folder works inside, one page per folder. The groups follow the folder order: a folder includes only folders in the same group or an earlier one (see "Dependencies between engine folders" in {engine}`docs/CODING_MODEL.md`).
 
 ## Foundation
 

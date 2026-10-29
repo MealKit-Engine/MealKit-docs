@@ -23,7 +23,7 @@ msgid "Game"
 msgstr "게임"
 
 #, python-brace-format
-msgid "This page explains how the game folder works inside: the boundary between the engine and game code, the main loop of the shipped exe, the simulation runner, headless runs, input recordings and the small data services (tuning, project settings, match start data, saves, performance numbers). The code is in {engine}`engine/src/mealkit/game`. `game` is the last engine folder before `editor` in the layer order ({engine}`docs/CODING_MODEL.md` \"엔진 폴더 사이 의존\"), so it may include every other engine folder, and only the editor includes it."
+msgid "This page explains how the game folder works inside: the boundary between the engine and game code, the main loop of the shipped exe, the simulation runner, headless runs, input recordings and the small data services (tuning, project settings, match start data, saves, performance numbers). The code is in {engine}`engine/src/mealkit/game`. `game` is the last engine folder before `editor` in the layer order ({engine}`docs/CODING_MODEL.md` \"Dependencies between engine folders\"), so it may include every other engine folder, and only the editor includes it."
 msgstr "이 페이지는 game 폴더가 안에서 어떻게 돌아가는지 설명한다: 엔진과 게임 코드 사이의 경계, 출시 exe의 메인 루프, 시뮬레이션 실행기, 헤드리스 실행, 입력 기록, 그리고 작은 데이터 서비스들(튜닝, 프로젝트 설정, 매치 시작 데이터, 세이브, 성능 숫자). 코드는 {engine}`engine/src/mealkit/game`에 있다. `game`은 폴더 순서에서 `editor` 바로 앞의 엔진 폴더라({engine}`docs/CODING_MODEL.md` \"엔진 폴더 사이 의존\"), 다른 엔진 폴더를 모두 include할 수 있고 이것을 include하는 것은 에디터뿐이다."
 
 #, python-brace-format
@@ -102,7 +102,7 @@ msgid "Inside the Dear ImGui frame, in development builds and the editor."
 msgstr "Dear ImGui 프레임 안에서, 개발 빌드와 에디터에서."
 
 #, python-brace-format
-msgid "The engine passes a `game::GameContext` ({engine}`engine/src/mealkit/game/GameContext.h`) to each call. It holds references to the engine services the screen side uses: window, renderer, models, lockstep session, the match service, audio, feedback, input actions, strings, game UI and player settings. It also holds values the engine sets every frame: the viewport, whether the game may read the keyboard and mouse, the display tuning and the user folder. The game does not keep the context, and `sim/` never receives it: the simulation only gets `World&`. The reasons are in {engine}`docs/CODING_MODEL.md` \"엔진 기능에 어떻게 접근하나\"."
+msgid "The engine passes a `game::GameContext` ({engine}`engine/src/mealkit/game/GameContext.h`) to each call. It holds references to the engine services the screen side uses: window, renderer, models, lockstep session, the match service, audio, feedback, input actions, strings, game UI and player settings. It also holds values the engine sets every frame: the viewport, whether the game may read the keyboard and mouse, the display tuning and the user folder. The game does not keep the context, and `sim/` never receives it: the simulation only gets `World&`. The reasons are in {engine}`docs/CODING_MODEL.md` \"How to access engine features\"."
 msgstr "엔진은 호출마다 `game::GameContext`({engine}`engine/src/mealkit/game/GameContext.h`)를 넘긴다. 화면 쪽이 쓰는 엔진 서비스의 참조를 갖는다: 창, 렌더러, 모델, 락스텝 세션, 매치 서비스, 소리, 연출, 입력 액션, 문자열, 게임 UI, 플레이어 설정. 엔진이 매 프레임 정하는 값도 갖는다: 뷰포트, 게임이 키보드·마우스를 읽어도 되는지, 화면용 튜닝, 사용자 폴더. 게임은 컨텍스트를 보관하지 않고, `sim/`은 받지 않는다: 시뮬레이션은 `World&`만 받는다. 이유는 {engine}`docs/CODING_MODEL.md` \"엔진 기능에 어떻게 접근하나\"."
 
 msgid "The same game class is used in two ways:"
@@ -280,7 +280,7 @@ msgid "Sample local input and send it for tick `next + inputDelay`."
 msgstr "로컬 입력을 읽어 `next + inputDelay` 틱으로 보낸다."
 
 #, python-brace-format
-msgid "The rules behind the order are in {engine}`docs/CODING_MODEL.md` \"흐름\"."
+msgid "The rules behind the order are in {engine}`docs/CODING_MODEL.md` \"Flow\"."
 msgstr "순서 뒤의 규칙은 {engine}`docs/CODING_MODEL.md` \"흐름\"에 있다."
 
 msgid "Interpolation"
@@ -421,7 +421,7 @@ msgid "`contentHash` is the hash peers compare before a match. It hashes the par
 msgstr "`contentHash`는 매치 전에 피어들이 비교하는 해시다. 씬 중 게임에 영향을 주는 부분, 모델 파일, 튜닝 값, 화면 필드를 뺀 프로젝트 설정, 시뮬레이션 표를 해시한다."
 
 #, python-brace-format
-msgid "The display tuning is not in the content hash, so it can change during a multiplayer match. Where each kind of number belongs is in {engine}`docs/CODING_MODEL.md` \"숫자는 어디에 두나\"."
+msgid "The display tuning is not in the content hash, so it can change during a multiplayer match. Where each kind of number belongs is in {engine}`docs/CODING_MODEL.md` \"Where to put numbers\"."
 msgstr "화면용 튜닝은 콘텐츠 해시에 들어가지 않으므로 여러 명 매치 중에도 바꿀 수 있다. 숫자를 종류마다 어디에 두는지는 {engine}`docs/CODING_MODEL.md` \"숫자는 어디에 두나\"에 있다."
 
 msgid "Project settings"
@@ -493,7 +493,7 @@ msgid "`game::Benchmark` ({engine}`engine/src/mealkit/game/Benchmark.h`) is the 
 msgstr "`game::Benchmark`({engine}`engine/src/mealkit/game/Benchmark.h`)는 출시 exe의 `--benchmark` 모드다. `runGame`이 루프를 시작하기 전에 봇, 고정 시드, 수직동기 끔을 켠다. 루프는 매 프레임 프레임 시간, 매치가 도는지, 방금 끝난 `FrameStats` 묶음(있으면)을 넘긴다. 데우기 시간 뒤로는 모든 프레임 시간을 남기고(실행 전체의 1% 최악 프레임용) 묶음마다 그 길이로 가중한다. 시간이 다 되면 `report`가 `mealkit.project`의 GPU 예산 표와 함께 글자를 쓰고 `summaryLine`이 `BENCHMARK` 줄을 쓴다. 하위 시스템을 다시 읽지 않고 `FrameStats` 위에 만든 것은 `takeSimMsPerTick`을 읽는 곳이 하나여야 하기 때문이다."
 
 #, python-brace-format
-msgid "`line()` joins the items with ` | ` for the window title and the `perf:` log, and `lines()` puts one item per line for the `F1` overlay. The editor status bar uses the same class. `takeSimMsPerTick` empties its average when read, so only `FrameStats` calls it, and every display shows the same numbers. See {doc}`../../manual/performance` and {engine}`docs/CODING_MODEL.md` \"성능 숫자 모으기와 보여 주기\"."
+msgid "`line()` joins the items with ` | ` for the window title and the `perf:` log, and `lines()` puts one item per line for the `F1` overlay. The editor status bar uses the same class. `takeSimMsPerTick` empties its average when read, so only `FrameStats` calls it, and every display shows the same numbers. See {doc}`../../manual/performance` and {engine}`docs/CODING_MODEL.md` \"Collecting and showing performance numbers\"."
 msgstr "`line()`은 항목을 ` | `로 이어 창 제목과 `perf:` 로그에 쓰고, `lines()`는 `F1` 오버레이에 항목을 한 줄씩 둔다. 에디터 상태 표시줄도 같은 클래스를 쓴다. `takeSimMsPerTick`은 읽으면 평균이 비워지므로 `FrameStats`만 부르고, 그래서 모든 화면이 같은 숫자를 보여 준다. {doc}`../../manual/performance`와 {engine}`docs/CODING_MODEL.md` \"성능 숫자 모으기와 보여 주기\"를 보라."
 
 msgid "Techniques used"

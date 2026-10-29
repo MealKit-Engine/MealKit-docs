@@ -24,7 +24,7 @@ msgid "This page explains how game screen UI works inside: how a `.ui` file is r
 msgstr "이 페이지는 게임 화면 UI가 안에서 어떻게 돌아가는지 설명한다: `.ui` 파일을 어떻게 읽는지, 배치를 어떻게 계산하는지, 뷰 모델과 액션이 게임 코드와 어떻게 잇는지, 글자와 이미지를 어떻게 굽는지, UI 한 프레임을 어떻게 그리는지. 화면 쓰는 법은 {doc}`../../manual/ui`에 있다. 코드는 {engine}`engine/src/mealkit/ui`에 있고, 셰이더는 {doc}`render`에서 설명한다."
 
 #, python-brace-format
-msgid "`ui` comes after `audio` and before `feedback` in the folder order of {engine}`docs/CODING_MODEL.md` (\"엔진 폴더 사이 의존\"). It uses `loc` for text, `input` for keyboard and gamepad navigation and `render` for the atlases and the draw call. Screens are designed in Penpot and exported to `.ui` by a plugin; until the plugin exists, `.ui` files are written by hand. Why is in {engine}`docs/CODING_MODEL.md` (\"게임 UI를 만드는 방법\")."
+msgid "`ui` comes after `audio` and before `feedback` in the folder order of {engine}`docs/CODING_MODEL.md` (\"Dependencies between engine folders\"). It uses `loc` for text, `input` for keyboard and gamepad navigation and `render` for the atlases and the draw call. Screens are designed in Penpot and exported to `.ui` by a plugin; until the plugin exists, `.ui` files are written by hand. Why is in {engine}`docs/CODING_MODEL.md` (\"How to build game UI\")."
 msgstr "`ui`는 {engine}`docs/CODING_MODEL.md`(\"엔진 폴더 사이 의존\")의 폴더 순서에서 `audio` 다음, `feedback` 앞이다. 글자에 `loc`, 키보드·게임패드 탐색에 `input`, 아틀라스와 드로우 콜에 `render`를 쓴다. 화면은 Penpot에서 디자인하고 플러그인이 `.ui`로 내보낸다. 플러그인이 생기기 전까지 `.ui` 파일은 손으로 쓴다. 이유는 {engine}`docs/CODING_MODEL.md`(\"게임 UI를 만드는 방법\")에 있다."
 
 msgid "Files"

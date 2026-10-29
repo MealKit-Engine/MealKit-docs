@@ -23,14 +23,14 @@ msgid "Platform"
 msgstr "플랫폼"
 
 #, python-brace-format
-msgid "This page explains how the platform folder works inside: the window and input, files and folders, processes, dynamic libraries, dialogs, images, gamepads and sockets, and how the code for each operating system is kept apart. Platform is the engine's only door to the operating system. Together with `core` it is the first group in the folder order, and the two may include each other; every other folder comes after them (see \"엔진 폴더 사이 의존\" in {engine}`docs/CODING_MODEL.md`). The code is in {engine}`engine/src/mealkit/platform`."
+msgid "This page explains how the platform folder works inside: the window and input, files and folders, processes, dynamic libraries, dialogs, images, gamepads and sockets, and how the code for each operating system is kept apart. Platform is the engine's only door to the operating system. Together with `core` it is the first group in the folder order, and the two may include each other; every other folder comes after them (see \"Dependencies between engine folders\" in {engine}`docs/CODING_MODEL.md`). The code is in {engine}`engine/src/mealkit/platform`."
 msgstr "이 페이지는 플랫폼 폴더가 안에서 어떻게 돌아가는지 설명한다: 창과 입력, 파일과 폴더, 프로세스, 동적 라이브러리, 대화상자, 그림, 게임패드, 소켓, 그리고 OS마다 코드를 어떻게 나누는지. 플랫폼은 엔진이 OS로 나가는 유일한 문이다. `core`와 함께 폴더 순서의 첫 묶음이고, 둘은 서로 include할 수 있다. 다른 폴더는 모두 그 뒤에 온다({engine}`docs/CODING_MODEL.md`의 \"엔진 폴더 사이 의존\"). 코드는 {engine}`engine/src/mealkit/platform`에 있다."
 
 msgid "How win32/ and posix/ split"
 msgstr "win32/와 posix/로 나누는 방법"
 
 #, python-brace-format
-msgid "Headers sit where the feature belongs and contain no operating system types: `platform/Window.h`, `platform/Paths.h`, `core/Clock.h`, `net/Socket.h`. Each operating system gets its own `.cpp` files in `platform/win32/` or `platform/posix/`, and CMake picks one set when it configures the build ({engine}`engine/CMakeLists.txt`). There are no `#ifdef` branches spread through the engine and no virtual interface; one build has exactly one implementation (\"그래픽 API와 OS 기능\" in {engine}`docs/CODING_MODEL.md`)."
+msgid "Headers sit where the feature belongs and contain no operating system types: `platform/Window.h`, `platform/Paths.h`, `core/Clock.h`, `net/Socket.h`. Each operating system gets its own `.cpp` files in `platform/win32/` or `platform/posix/`, and CMake picks one set when it configures the build ({engine}`engine/CMakeLists.txt`). There are no `#ifdef` branches spread through the engine and no virtual interface; one build has exactly one implementation (\"Graphics APIs and OS features\" in {engine}`docs/CODING_MODEL.md`)."
 msgstr "헤더는 기능 자리에 두고 OS 타입을 담지 않는다: `platform/Window.h`, `platform/Paths.h`, `core/Clock.h`, `net/Socket.h`. OS마다 자기 `.cpp` 파일을 `platform/win32/` 또는 `platform/posix/`에 두고, CMake가 빌드를 구성할 때 한 벌을 고른다({engine}`engine/CMakeLists.txt`). 엔진 곳곳에 흩어진 `#ifdef`도, 가상 인터페이스도 없다. 빌드 하나에 구현은 정확히 하나다({engine}`docs/CODING_MODEL.md`의 \"그래픽 API와 OS 기능\")."
 
 msgid "Handles such as `HWND` or `HANDLE` are stored as `void*` or `u64` in the headers, so `<windows.h>` never reaches other engine code or game code. Code that works on every system with the standard library alone stays outside the system folders: `platform/Paths.cpp` (`std::filesystem`) and `platform/System.cpp` (`cpuName` with the CPUID instruction)."

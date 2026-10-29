@@ -3,8 +3,8 @@
 This page explains how Dear ImGui is connected to the engine's window and renderer, and how the F1 overlay of development builds works.
 How to write debug windows for a game is in {doc}`../../manual/debug_ui`. The code is in {engine}`engine/src/mealkit/debug`.
 
-`debug` comes after `online` and before `input` in the folder order of {engine}`docs/CODING_MODEL.md` ("엔진 폴더 사이 의존"). It uses `platform` (the window) and `render` (the device and the command list).
-Debug UI is only for development tools; game UI is a different system (see {doc}`ui`). Why the two are separate is in {engine}`docs/CODING_MODEL.md` ("코드로 짜는 UI").
+`debug` comes after `online` and before `input` in the folder order of {engine}`docs/CODING_MODEL.md` ("Dependencies between engine folders"). It uses `platform` (the window) and `render` (the device and the command list).
+Debug UI is only for development tools; game UI is a different system (see {doc}`ui`). Why the two are separate is in {engine}`docs/CODING_MODEL.md` ("UI written in code").
 
 ## When it is built
 

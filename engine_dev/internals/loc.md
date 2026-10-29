@@ -3,7 +3,7 @@
 This page explains how game text tables work inside: how a string file is read, how a key is looked up, and how the build checks that the fonts can show every character.
 How to write string tables is in {doc}`../../manual/assets` (section "Game text and languages"). The code is in {engine}`engine/src/mealkit/loc`.
 
-`loc` is the first folder of the screen side. It comes after `data` and before `scene` in the folder order of {engine}`docs/CODING_MODEL.md` ("엔진 폴더 사이 의존"), so it uses only `core` and `platform`.
+`loc` is the first folder of the screen side. It comes after `data` and before `scene` in the folder order of {engine}`docs/CODING_MODEL.md` ("Dependencies between engine folders"), so it uses only `core` and `platform`.
 `ui` and `settings` use it later. The simulation never reads text.
 
 ## String files
@@ -62,7 +62,7 @@ mealkit_stringcheck <stamp file> --fonts <project>/assets/fonts <project>/assets
 
 The tool reads the files with its own small reader instead of linking the engine library, so it can be built before the engine. Its format is the same as `readStringsFile`.
 
-Why fonts are baked at run time instead of shipping a fixed set of 2,350 Hangul syllables is in {engine}`docs/CODING_MODEL.md` (the table "검토했지만 바꾸지 않은 것").
+Why fonts are baked at run time instead of shipping a fixed set of 2,350 Hangul syllables is in {engine}`docs/CODING_MODEL.md` (the table "Considered but not changed").
 
 ## Techniques used
 

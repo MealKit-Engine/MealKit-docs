@@ -24,7 +24,7 @@ msgid "This page explains how player settings work inside: the `settings.ini` fi
 msgstr "이 페이지는 플레이어 설정이 안에서 어떻게 돌아가는지 설명한다: `settings.ini` 파일, 설정마다 엔진에 닿는 길, 설정 선언에서 표준 설정 화면을 만드는 방법. 플레이어와 게임이 설정을 쓰는 법은 {doc}`../../manual/settings`에 있다. 코드는 {engine}`engine/src/mealkit/settings`에 있다."
 
 #, python-brace-format
-msgid "`settings` is the last folder of the screen side. It comes after `feedback` and before `game` in the folder order of {engine}`docs/CODING_MODEL.md` (\"엔진 폴더 사이 의존\"), because it applies values to almost everything before it: the window, the renderer, sound, text, UI and input. The simulation never reads settings. SimCheck blocks `mealkit/settings/` headers in `sim/`, and settings are not part of the content hash."
+msgid "`settings` is the last folder of the screen side. It comes after `feedback` and before `game` in the folder order of {engine}`docs/CODING_MODEL.md` (\"Dependencies between engine folders\"), because it applies values to almost everything before it: the window, the renderer, sound, text, UI and input. The simulation never reads settings. SimCheck blocks `mealkit/settings/` headers in `sim/`, and settings are not part of the content hash."
 msgstr "`settings`는 화면 쪽의 마지막 폴더다. {engine}`docs/CODING_MODEL.md`(\"엔진 폴더 사이 의존\")의 폴더 순서에서 `feedback` 다음, `game` 앞이다. 앞의 거의 모든 것, 즉 창, 렌더러, 소리, 글자, UI, 입력에 값을 적용하기 때문이다. 시뮬레이션은 설정을 읽지 않는다. SimCheck가 `sim/`에서 `mealkit/settings/` 헤더를 막고, 설정은 콘텐츠 해시에 들어가지 않는다."
 
 msgid "The declaration is the schema"

@@ -1,13 +1,13 @@
 # Platform
 
 This page explains how the platform folder works inside: the window and input, files and folders, processes, dynamic libraries, dialogs, images, gamepads and sockets, and how the code for each operating system is kept apart.
-Platform is the engine's only door to the operating system. Together with `core` it is the first group in the folder order, and the two may include each other; every other folder comes after them (see "엔진 폴더 사이 의존" in {engine}`docs/CODING_MODEL.md`).
+Platform is the engine's only door to the operating system. Together with `core` it is the first group in the folder order, and the two may include each other; every other folder comes after them (see "Dependencies between engine folders" in {engine}`docs/CODING_MODEL.md`).
 The code is in {engine}`engine/src/mealkit/platform`.
 
 ## How win32/ and posix/ split
 
 Headers sit where the feature belongs and contain no operating system types: `platform/Window.h`, `platform/Paths.h`, `core/Clock.h`, `net/Socket.h`.
-Each operating system gets its own `.cpp` files in `platform/win32/` or `platform/posix/`, and CMake picks one set when it configures the build ({engine}`engine/CMakeLists.txt`). There are no `#ifdef` branches spread through the engine and no virtual interface; one build has exactly one implementation ("그래픽 API와 OS 기능" in {engine}`docs/CODING_MODEL.md`).
+Each operating system gets its own `.cpp` files in `platform/win32/` or `platform/posix/`, and CMake picks one set when it configures the build ({engine}`engine/CMakeLists.txt`). There are no `#ifdef` branches spread through the engine and no virtual interface; one build has exactly one implementation ("Graphics APIs and OS features" in {engine}`docs/CODING_MODEL.md`).
 
 Handles such as `HWND` or `HANDLE` are stored as `void*` or `u64` in the headers, so `<windows.h>` never reaches other engine code or game code.
 Code that works on every system with the standard library alone stays outside the system folders: `platform/Paths.cpp` (`std::filesystem`) and `platform/System.cpp` (`cpuName` with the CPUID instruction).

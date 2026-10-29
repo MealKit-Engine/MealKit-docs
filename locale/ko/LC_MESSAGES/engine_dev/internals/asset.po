@@ -24,7 +24,7 @@ msgid "This page explains how 3D models are loaded: reading glTF files, optimizi
 msgstr "이 페이지는 3D 모델을 어떻게 불러오는지 설명한다: glTF 파일 읽기, 메시 최적화, LOD 만들기, 그리고 물리와 콘텐츠 해시가 모델에서 가져가는 데이터. 프로젝트에 모델을 넣는 법은 {doc}`../../manual/assets`에 있다. 코드는 {engine}`engine/src/mealkit/asset`에 있다."
 
 #, python-brace-format
-msgid "`asset` comes after `render` and before `online` in the folder order of {engine}`docs/CODING_MODEL.md` (\"엔진 폴더 사이 의존\"). It reads scenes (`scene`) and uploads meshes through the renderer (`render`). Headless builds (servers, tests) also load models, for collision and hashing, without a renderer."
+msgid "`asset` comes after `render` and before `online` in the folder order of {engine}`docs/CODING_MODEL.md` (\"Dependencies between engine folders\"). It reads scenes (`scene`) and uploads meshes through the renderer (`render`). Headless builds (servers, tests) also load models, for collision and hashing, without a renderer."
 msgstr "`asset`은 {engine}`docs/CODING_MODEL.md`(\"엔진 폴더 사이 의존\")의 폴더 순서에서 `render` 다음, `online` 앞이다. 씬(`scene`)을 읽고 렌더러(`render`)로 메시를 올린다. 헤드리스 빌드(서버, 시험)도 충돌과 해시 때문에 렌더러 없이 모델을 불러온다."
 
 msgid "The model cache"

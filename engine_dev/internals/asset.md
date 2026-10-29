@@ -3,7 +3,7 @@
 This page explains how 3D models are loaded: reading glTF files, optimizing meshes, making levels of detail, and the data that physics and the content hash take from a model.
 How to add models to a project is in {doc}`../../manual/assets`. The code is in {engine}`engine/src/mealkit/asset`.
 
-`asset` comes after `render` and before `online` in the folder order of {engine}`docs/CODING_MODEL.md` ("엔진 폴더 사이 의존"). It reads scenes (`scene`) and uploads meshes through the renderer (`render`).
+`asset` comes after `render` and before `online` in the folder order of {engine}`docs/CODING_MODEL.md` ("Dependencies between engine folders"). It reads scenes (`scene`) and uploads meshes through the renderer (`render`).
 Headless builds (servers, tests) also load models, for collision and hashing, without a renderer.
 
 ## The model cache

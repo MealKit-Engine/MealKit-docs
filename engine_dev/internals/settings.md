@@ -3,7 +3,7 @@
 This page explains how player settings work inside: the `settings.ini` file, how each setting reaches the engine, and how the standard settings screen is built from the setting declarations.
 How players and games use settings is in {doc}`../../manual/settings`. The code is in {engine}`engine/src/mealkit/settings`.
 
-`settings` is the last folder of the screen side. It comes after `feedback` and before `game` in the folder order of {engine}`docs/CODING_MODEL.md` ("엔진 폴더 사이 의존"), because it applies values to almost everything before it: the window, the renderer, sound, text, UI and input.
+`settings` is the last folder of the screen side. It comes after `feedback` and before `game` in the folder order of {engine}`docs/CODING_MODEL.md` ("Dependencies between engine folders"), because it applies values to almost everything before it: the window, the renderer, sound, text, UI and input.
 The simulation never reads settings. SimCheck blocks `mealkit/settings/` headers in `sim/`, and settings are not part of the content hash.
 
 ## The declaration is the schema

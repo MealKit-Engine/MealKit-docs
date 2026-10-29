@@ -1,7 +1,7 @@
 # Core
 
 This page explains how the core folder works inside: the basic types, logging, time, math, deterministic math, random numbers, hashing and field declarations.
-Core is the base of the engine. Together with `platform` it is the first group in the folder order, and the two may include each other; every other folder comes after them (see "엔진 폴더 사이 의존" in {engine}`docs/CODING_MODEL.md`).
+Core is the base of the engine. Together with `platform` it is the first group in the folder order, and the two may include each other; every other folder comes after them (see "Dependencies between engine folders" in {engine}`docs/CODING_MODEL.md`).
 The code is in {engine}`engine/src/mealkit/core`.
 
 Core is small on purpose. Most of it is header-only, and only `Log.cpp` and `Reflect.cpp` have source files. Functions that need the operating system (the clock, file reading, the debugger) are declared here or in `platform/` and implemented in `platform/win32/` or `platform/posix/` (see {doc}`platform`).
@@ -22,7 +22,7 @@ A mutex keeps lines from different threads whole.
 - `MEALKIT_FATAL` writes the line, shows an error dialog, and ends the process at once with exit code 1. Automatic tests turn the dialog off with `log::setDialogs(false)`.
 - `MEALKIT_ASSERT(cond)` checks programmer mistakes. It exists in Debug and Editor builds (`MEALKIT_DEBUG` or `MEALKIT_ASSERTS`) and is removed from release builds. A failure writes an error line and stops in the debugger when one is attached.
 
-The engine does not use exceptions. A failing function returns `false` or an empty `std::optional` and logs the reason where it failed ("실패 처리" in {engine}`docs/CODING_MODEL.md`).
+The engine does not use exceptions. A failing function returns `false` or an empty `std::optional` and logs the reason where it failed ("Handling failures" in {engine}`docs/CODING_MODEL.md`).
 
 ## Clock
 
@@ -54,7 +54,7 @@ Functions that call `std::sin`, `std::cos` or `std::tan` (`quatFromAxisAngle`, `
 
 ## DetMath
 
-Lockstep needs every computer to get the same bits from the same simulation ("결정론 규칙" in {engine}`docs/CODING_MODEL.md`).
+Lockstep needs every computer to get the same bits from the same simulation ("Determinism rules" in {engine}`docs/CODING_MODEL.md`).
 The basic IEEE 754 operations (`+ - * /` and `sqrt`) are required to be correctly rounded, so with `/fp:precise` (no FMA contraction) they give the same result on every CPU.
 CRT functions such as `sin`, `cos`, `atan2`, `pow` and `exp` have no such rule: different CRT versions and CPUs may take different code paths and return different last bits. That is why they are banned in `sim/` and SimCheck reports them.
 
@@ -95,7 +95,7 @@ The state hash that detects desyncs is built with `Hasher` field by field (`refl
 
 ## Reflect
 
-{engine}`engine/src/mealkit/core/Reflect.h` is the field declaration system. A struct declares its fields once, and the editor inspector, text files (`.scene` object fields, `.tuning`, `.table`, `mealkit.project`), the state hash, snapshots and the State panel all use that one declaration ("데이터와 설정" in {engine}`docs/CODING_MODEL.md`).
+{engine}`engine/src/mealkit/core/Reflect.h` is the field declaration system. A struct declares its fields once, and the editor inspector, text files (`.scene` object fields, `.tuning`, `.table`, `mealkit.project`), the state hash, snapshots and the State panel all use that one declaration ("Data and settings" in {engine}`docs/CODING_MODEL.md`).
 
 ### Declaring
 

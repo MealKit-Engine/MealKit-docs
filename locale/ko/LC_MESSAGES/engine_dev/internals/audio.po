@@ -24,7 +24,7 @@ msgid "This page explains how sound works inside: the sound event table, how a p
 msgstr "이 페이지는 소리가 안에서 어떻게 돌아가는지 설명한다: 소리 이벤트 표, 재생 요청이 목소리가 되는 과정, 엔진이 믹싱할 목소리를 고르는 방법, 버스와 3D 위치. 소리 이벤트 쓰는 법은 {doc}`../../manual/sound`에 있다. 코드는 {engine}`engine/src/mealkit/audio`에 있다."
 
 #, python-brace-format
-msgid "`audio` comes after `input` and before `ui` in the folder order of {engine}`docs/CODING_MODEL.md` (\"엔진 폴더 사이 의존\"). `feedback` comes after it and plays sounds through it. Sound is view side only: the simulation leaves tick events, and the view plays sounds for them. SimCheck blocks `audio/` headers in `sim/`. The design is in {engine}`docs/CODING_MODEL.md` (\"소리를 내는 방법\")."
+msgid "`audio` comes after `input` and before `ui` in the folder order of {engine}`docs/CODING_MODEL.md` (\"Dependencies between engine folders\"). `feedback` comes after it and plays sounds through it. Sound is view side only: the simulation leaves tick events, and the view plays sounds for them. SimCheck blocks `audio/` headers in `sim/`. The design is in {engine}`docs/CODING_MODEL.md` (\"How to play sounds\")."
 msgstr "`audio`는 {engine}`docs/CODING_MODEL.md`(\"엔진 폴더 사이 의존\")의 폴더 순서에서 `input` 다음, `ui` 앞이다. 뒤에 오는 `feedback`이 이것으로 소리를 낸다. 소리는 화면 쪽 전용이다: 시뮬레이션은 틱 이벤트만 남기고, 화면이 그 이벤트에 소리를 낸다. SimCheck가 `sim/`에서 `audio/` 헤더를 막는다. 설계는 {engine}`docs/CODING_MODEL.md`(\"소리를 내는 방법\")에 있다."
 
 msgid "Runtime and glue"

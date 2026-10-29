@@ -24,7 +24,7 @@ msgid "This page explains how the feedback table turns simulation events into so
 msgstr "이 페이지는 연출 표가 시뮬레이션 이벤트를 소리, 카메라 흔들림, 화면 번쩍임, 화면 정지로 바꾸는 방법을 설명한다. 표 쓰는 법은 {doc}`../../manual/sound`(\"Feedback table\" 절)에 있다. 코드는 {engine}`engine/src/mealkit/feedback`에 있다."
 
 #, python-brace-format
-msgid "`feedback` comes after `ui` and before `settings` in the folder order of {engine}`docs/CODING_MODEL.md` (\"엔진 폴더 사이 의존\"). It plays sounds through `audio` and reads event values through reflection (`core`). Everything here is view side. The simulation only pushes tick events; the view calls `ctx.feedback.trigger(event, localPlayer)` for each one, and the table decides what happens. The design is in {engine}`docs/CODING_MODEL.md` (\"시뮬레이션 이벤트에 소리·효과·흔들림 붙이기\")."
+msgid "`feedback` comes after `ui` and before `settings` in the folder order of {engine}`docs/CODING_MODEL.md` (\"Dependencies between engine folders\"). It plays sounds through `audio` and reads event values through reflection (`core`). Everything here is view side. The simulation only pushes tick events; the view calls `ctx.feedback.trigger(event, localPlayer)` for each one, and the table decides what happens. The design is in {engine}`docs/CODING_MODEL.md` (\"Attaching sound, effects, and shake to simulation events\")."
 msgstr "`feedback`은 {engine}`docs/CODING_MODEL.md`(\"엔진 폴더 사이 의존\")의 폴더 순서에서 `ui` 다음, `settings` 앞이다. `audio`로 소리를 내고, 필드 선언(`core`)으로 이벤트 값을 읽는다. 여기 있는 것은 모두 화면 쪽이다. 시뮬레이션은 틱 이벤트를 넣기만 하고, 화면이 이벤트마다 `ctx.feedback.trigger(event, localPlayer)`를 부르고, 무엇을 할지는 표가 정한다. 설계는 {engine}`docs/CODING_MODEL.md`(\"시뮬레이션 이벤트에 소리·효과·흔들림 붙이기\")에 있다."
 
 msgid "The table"

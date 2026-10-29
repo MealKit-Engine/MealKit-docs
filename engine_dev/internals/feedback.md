@@ -3,8 +3,8 @@
 This page explains how the feedback table turns simulation events into sound, camera shake, screen flash and hit stop.
 How to write the table is in {doc}`../../manual/sound` (section "Feedback table"). The code is in {engine}`engine/src/mealkit/feedback`.
 
-`feedback` comes after `ui` and before `settings` in the folder order of {engine}`docs/CODING_MODEL.md` ("엔진 폴더 사이 의존"). It plays sounds through `audio` and reads event values through reflection (`core`).
-Everything here is view side. The simulation only pushes tick events; the view calls `ctx.feedback.trigger(event, localPlayer)` for each one, and the table decides what happens. The design is in {engine}`docs/CODING_MODEL.md` ("시뮬레이션 이벤트에 소리·효과·흔들림 붙이기").
+`feedback` comes after `ui` and before `settings` in the folder order of {engine}`docs/CODING_MODEL.md` ("Dependencies between engine folders"). It plays sounds through `audio` and reads event values through reflection (`core`).
+Everything here is view side. The simulation only pushes tick events; the view calls `ctx.feedback.trigger(event, localPlayer)` for each one, and the table decides what happens. The design is in {engine}`docs/CODING_MODEL.md` ("Attaching sound, effects, and shake to simulation events").
 
 ## The table
 

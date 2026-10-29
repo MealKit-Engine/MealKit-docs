@@ -3,8 +3,8 @@
 This page explains how game screen UI works inside: how a `.ui` file is read, how the layout is computed, how view models and actions connect it to game code, how text and images are baked, and how a frame of UI is drawn.
 How to write screens is in {doc}`../../manual/ui`. The code is in {engine}`engine/src/mealkit/ui`; the shader is described in {doc}`render`.
 
-`ui` comes after `audio` and before `feedback` in the folder order of {engine}`docs/CODING_MODEL.md` ("엔진 폴더 사이 의존"). It uses `loc` for text, `input` for keyboard and gamepad navigation and `render` for the atlases and the draw call.
-Screens are designed in Penpot and exported to `.ui` by a plugin; until the plugin exists, `.ui` files are written by hand. Why is in {engine}`docs/CODING_MODEL.md` ("게임 UI를 만드는 방법").
+`ui` comes after `audio` and before `feedback` in the folder order of {engine}`docs/CODING_MODEL.md` ("Dependencies between engine folders"). It uses `loc` for text, `input` for keyboard and gamepad navigation and `render` for the atlases and the draw call.
+Screens are designed in Penpot and exported to `.ui` by a plugin; until the plugin exists, `.ui` files are written by hand. Why is in {engine}`docs/CODING_MODEL.md` ("How to build game UI").
 
 ## Files
 

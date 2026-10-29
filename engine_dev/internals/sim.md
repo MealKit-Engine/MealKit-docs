@@ -1,14 +1,14 @@
 # Sim
 
 This page explains the small tools that game simulation code (`sim/`) is built from: the object pool, the tick timer, tick events, confirmed commands and definition tables.
-`sim` comes after `net` and `physics` in the layer order (see "엔진 폴더 사이 의존" in {engine}`docs/CODING_MODEL.md`). It is header-only, and game `sim/` code uses these tools instead of writing its own (rule 1 of "강제하는 방법" in {engine}`docs/CODING_MODEL.md`).
+`sim` comes after `net` and `physics` in the layer order (see "Dependencies between engine folders" in {engine}`docs/CODING_MODEL.md`). It is header-only, and game `sim/` code uses these tools instead of writing its own (rule 1 of "How it's enforced" in {engine}`docs/CODING_MODEL.md`).
 The code is in {engine}`engine/src/mealkit/sim`.
 
 The engine has no `World` type. Each game declares its own `World` with a `WorldState` of `MEALKIT_FIELD`s and a `step()` that calls its systems in order. The tools on this page are the pieces that go into that state.
 
 ## Pool
 
-`sim::Pool<T>` ({engine}`engine/src/mealkit/sim/Pool.h`) stores every object that appears and disappears during a match. Why all simulation objects come from a pool is in "생성과 파괴" in {engine}`docs/CODING_MODEL.md`.
+`sim::Pool<T>` ({engine}`engine/src/mealkit/sim/Pool.h`) stores every object that appears and disappears during a match. Why all simulation objects come from a pool is in "Creation and destruction" in {engine}`docs/CODING_MODEL.md`.
 
 ### Ids with generations
 
@@ -57,7 +57,7 @@ Everything that decides order is the same on every peer:
 - `remaining(now)` is the ticks left, or 0.
 
 It does not count down every tick and holds no float time. It is a `MEALKIT_STRUCT`, so a timer field in the state is hashed and saved by itself.
-Durations come from data in seconds and are rounded to ticks once when loaded (the `Ticks` field type), so `sim/` code only sees whole ticks. See "시간이 걸리는 일" and "시간 값" in {engine}`docs/CODING_MODEL.md`.
+Durations come from data in seconds and are rounded to ticks once when loaded (the `Ticks` field type), so `sim/` code only sees whole ticks. See "Things that take time" and "Time values" in {engine}`docs/CODING_MODEL.md`.
 
 ## Tick events
 
@@ -78,7 +78,7 @@ Events are not part of the state hash, because the simulation never reads them. 
 - `sim::sendCommand(session, command)` is called on the view side. It writes a 4-byte type id followed by the struct bytes. The type id is the FNV-1a hash of the type's declared name.
 - `sim::forEachCommand(inputs, f)` is called at the start of `World::step()`. It gives each command with its player slot, in player order and then send order. `c.read(out)` copies the bytes when the type id and size match.
 
-Commands are copied as bytes, so they mean the same only between the same builds. Lockstep already needs the same build. They go into input recordings, rewind and the shadow simulation together with the inputs. See "시뮬레이션에 넣는 입력 외 명령" in {engine}`docs/CODING_MODEL.md`.
+Commands are copied as bytes, so they mean the same only between the same builds. Lockstep already needs the same build. They go into input recordings, rewind and the shadow simulation together with the inputs. See "Non-input commands into the simulation" in {engine}`docs/CODING_MODEL.md`.
 
 ## Table
 

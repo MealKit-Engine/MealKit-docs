@@ -3,7 +3,7 @@
 This page explains how a scene is stored and read: the `.scene` text format, how parent and child transforms combine, and how the game turns the tree into a flat list.
 How to edit scenes is in {doc}`../../manual/editor`. The code is in {engine}`engine/src/mealkit/scene`.
 
-`scene` comes after `loc` and before `render` in the folder order of {engine}`docs/CODING_MODEL.md` ("엔진 폴더 사이 의존"). It uses only `core` (math, reflection, hashing) and `platform` (files).
+`scene` comes after `loc` and before `render` in the folder order of {engine}`docs/CODING_MODEL.md` ("Dependencies between engine folders"). It uses only `core` (math, reflection, hashing) and `platform` (files).
 It knows nothing about drawing: an entity's model is only a path, and `asset` loads it later.
 
 ## What a scene holds

@@ -24,7 +24,7 @@ msgid "This page explains how a scene is stored and read: the `.scene` text form
 msgstr "이 페이지는 씬을 어떻게 저장하고 읽는지 설명한다: `.scene` 텍스트 형식, 부모와 자식 변환을 합치는 방법, 게임이 트리를 평평한 목록으로 바꾸는 방법. 씬 편집하는 법은 {doc}`../../manual/editor`에 있다. 코드는 {engine}`engine/src/mealkit/scene`에 있다."
 
 #, python-brace-format
-msgid "`scene` comes after `loc` and before `render` in the folder order of {engine}`docs/CODING_MODEL.md` (\"엔진 폴더 사이 의존\"). It uses only `core` (math, reflection, hashing) and `platform` (files). It knows nothing about drawing: an entity's model is only a path, and `asset` loads it later."
+msgid "`scene` comes after `loc` and before `render` in the folder order of {engine}`docs/CODING_MODEL.md` (\"Dependencies between engine folders\"). It uses only `core` (math, reflection, hashing) and `platform` (files). It knows nothing about drawing: an entity's model is only a path, and `asset` loads it later."
 msgstr "`scene`은 {engine}`docs/CODING_MODEL.md`(\"엔진 폴더 사이 의존\")의 폴더 순서에서 `loc` 다음, `render` 앞이다. `core`(수학, 필드 선언, 해시)와 `platform`(파일)만 쓴다. 그리기는 전혀 모른다: 물체의 모델은 경로일 뿐이고, 불러오는 것은 나중에 `asset`이 한다."
 
 msgid "What a scene holds"

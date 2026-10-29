@@ -1,7 +1,7 @@
 # Net
 
 This page explains how the network layer works inside: the packet transport, and the lockstep session that sends only player inputs between peers.
-`net` is the first folder on the simulation side of the layer order. It includes only `core` and `platform` (see "엔진 폴더 사이 의존" in {engine}`docs/CODING_MODEL.md`).
+`net` is the first folder on the simulation side of the layer order. It includes only `core` and `platform` (see "Dependencies between engine folders" in {engine}`docs/CODING_MODEL.md`).
 How to play together and the determinism rules for game code are in {doc}`../../manual/multiplayer`. The code is in {engine}`engine/src/mealkit/net`.
 
 ## Sockets and transports

@@ -3,8 +3,8 @@
 This page explains the online service layer: the one interface the game uses for accounts, lobbies and relayed connections, and how the build chooses the Steam or the "none" backend.
 How to set up Steam for a project is in {doc}`../../manual/multiplayer`. The code is in {engine}`engine/src/mealkit/online`.
 
-`online` comes after `asset` and before `debug` in the folder order of {engine}`docs/CODING_MODEL.md` ("엔진 폴더 사이 의존"). It uses `net` for the `Transport` and `Address` types, so a relayed connection plugs into the same lockstep session as a direct UDP one.
-Why there is one layer instead of calling platform SDKs directly is in {engine}`docs/CODING_MODEL.md` ("온라인 기능").
+`online` comes after `asset` and before `debug` in the folder order of {engine}`docs/CODING_MODEL.md` ("Dependencies between engine folders"). It uses `net` for the `Transport` and `Address` types, so a relayed connection plugs into the same lockstep session as a direct UDP one.
+Why there is one layer instead of calling platform SDKs directly is in {engine}`docs/CODING_MODEL.md` ("Online features").
 
 ## The Service interface
 

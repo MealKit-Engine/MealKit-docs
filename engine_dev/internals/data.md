@@ -1,7 +1,7 @@
 # Data
 
 This page explains how definition tables are read and written: the `.table` file format, row references, CSV import and export, and the content hash of tables.
-`data` is the last folder on the simulation side of the layer order, after `sim` and before the view side (see "엔진 폴더 사이 의존" in {engine}`docs/CODING_MODEL.md`). It is below the game boundary (`game`), so the game, the editor, the content hash and the engine's own tables all read tables with the same functions.
+`data` is the last folder on the simulation side of the layer order, after `sim` and before the view side (see "Dependencies between engine folders" in {engine}`docs/CODING_MODEL.md`). It is below the game boundary (`game`), so the game, the editor, the content hash and the engine's own tables all read tables with the same functions.
 How to make and edit tables is in {doc}`../../manual/assets`. The code is in {engine}`engine/src/mealkit/data`.
 
 ## Declaring a table
@@ -16,7 +16,7 @@ MEALKIT_TABLE(PropKind, "tables/props.table", 0);
 The macro defines an inline variable whose initializer adds `{row type, path, flags}` to `reflect::moduleTables()`, the list of tables of this module (the game exe or the game DLL). A game DLL hands that list to the editor through its game module.
 The flag `kTableView` marks a view-only table (sounds, effects, icons). It stays out of the content hash, and the editor reads it again at once when it is changed during play.
 
-Why tables are the answer for "many rows of the same shape" is in {engine}`docs/CODING_MODEL.md` ("같은 모양의 데이터가 여러 개").
+Why tables are the answer for "many rows of the same shape" is in {engine}`docs/CODING_MODEL.md` ("Many items of the same shape").
 
 ## The file format
 

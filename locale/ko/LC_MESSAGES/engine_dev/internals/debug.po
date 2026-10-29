@@ -24,7 +24,7 @@ msgid "This page explains how Dear ImGui is connected to the engine's window and
 msgstr "이 페이지는 Dear ImGui를 엔진의 창과 렌더러에 어떻게 잇는지, 개발 빌드의 F1 오버레이가 어떻게 동작하는지 설명한다. 게임의 디버그 창 쓰는 법은 {doc}`../../manual/debug_ui`에 있다. 코드는 {engine}`engine/src/mealkit/debug`에 있다."
 
 #, python-brace-format
-msgid "`debug` comes after `online` and before `input` in the folder order of {engine}`docs/CODING_MODEL.md` (\"엔진 폴더 사이 의존\"). It uses `platform` (the window) and `render` (the device and the command list). Debug UI is only for development tools; game UI is a different system (see {doc}`ui`). Why the two are separate is in {engine}`docs/CODING_MODEL.md` (\"코드로 짜는 UI\")."
+msgid "`debug` comes after `online` and before `input` in the folder order of {engine}`docs/CODING_MODEL.md` (\"Dependencies between engine folders\"). It uses `platform` (the window) and `render` (the device and the command list). Debug UI is only for development tools; game UI is a different system (see {doc}`ui`). Why the two are separate is in {engine}`docs/CODING_MODEL.md` (\"UI written in code\")."
 msgstr "`debug`는 {engine}`docs/CODING_MODEL.md`(\"엔진 폴더 사이 의존\")의 폴더 순서에서 `online` 다음, `input` 앞이다. `platform`(창)과 `render`(장치와 명령 리스트)를 쓴다. 디버그 UI는 개발 도구 전용이고, 게임 UI는 다른 시스템이다({doc}`ui` 참고). 둘을 나눈 이유는 {engine}`docs/CODING_MODEL.md`(\"코드로 짜는 UI\")에 있다."
 
 msgid "When it is built"

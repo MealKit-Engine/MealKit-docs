@@ -23,7 +23,7 @@ msgid "Sim"
 msgstr "시뮬레이션"
 
 #, python-brace-format
-msgid "This page explains the small tools that game simulation code (`sim/`) is built from: the object pool, the tick timer, tick events, confirmed commands and definition tables. `sim` comes after `net` and `physics` in the layer order (see \"엔진 폴더 사이 의존\" in {engine}`docs/CODING_MODEL.md`). It is header-only, and game `sim/` code uses these tools instead of writing its own (rule 1 of \"강제하는 방법\" in {engine}`docs/CODING_MODEL.md`). The code is in {engine}`engine/src/mealkit/sim`."
+msgid "This page explains the small tools that game simulation code (`sim/`) is built from: the object pool, the tick timer, tick events, confirmed commands and definition tables. `sim` comes after `net` and `physics` in the layer order (see \"Dependencies between engine folders\" in {engine}`docs/CODING_MODEL.md`). It is header-only, and game `sim/` code uses these tools instead of writing its own (rule 1 of \"How it's enforced\" in {engine}`docs/CODING_MODEL.md`). The code is in {engine}`engine/src/mealkit/sim`."
 msgstr "이 페이지는 게임 시뮬레이션 코드(`sim/`)를 짜는 작은 도구들을 설명한다: 객체 풀, 틱 타이머, 틱 이벤트, 확정 명령, 정의 데이터 표. `sim`은 계층 순서에서 `net`과 `physics` 다음이다({engine}`docs/CODING_MODEL.md`의 \"엔진 폴더 사이 의존\" 참고). 헤더만 있고, 게임 `sim/` 코드는 같은 일을 직접 만들지 않고 이 도구를 쓴다({engine}`docs/CODING_MODEL.md`의 \"강제하는 방법\" 1). 코드는 {engine}`engine/src/mealkit/sim`에 있다."
 
 msgid "The engine has no `World` type. Each game declares its own `World` with a `WorldState` of `MEALKIT_FIELD`s and a `step()` that calls its systems in order. The tools on this page are the pieces that go into that state."
@@ -33,7 +33,7 @@ msgid "Pool"
 msgstr "풀"
 
 #, python-brace-format
-msgid "`sim::Pool<T>` ({engine}`engine/src/mealkit/sim/Pool.h`) stores every object that appears and disappears during a match. Why all simulation objects come from a pool is in \"생성과 파괴\" in {engine}`docs/CODING_MODEL.md`."
+msgid "`sim::Pool<T>` ({engine}`engine/src/mealkit/sim/Pool.h`) stores every object that appears and disappears during a match. Why all simulation objects come from a pool is in \"Creation and destruction\" in {engine}`docs/CODING_MODEL.md`."
 msgstr "`sim::Pool<T>`({engine}`engine/src/mealkit/sim/Pool.h`)는 매치 중에 생기고 사라지는 모든 객체를 담는다. 시뮬레이션 객체를 모두 풀에서 만드는 이유는 {engine}`docs/CODING_MODEL.md`의 \"생성과 파괴\"에 있다."
 
 msgid "Ids with generations"
@@ -128,7 +128,7 @@ msgid "`remaining(now)` is the ticks left, or 0."
 msgstr "`remaining(now)`는 남은 틱 수, 또는 0이다."
 
 #, python-brace-format
-msgid "It does not count down every tick and holds no float time. It is a `MEALKIT_STRUCT`, so a timer field in the state is hashed and saved by itself. Durations come from data in seconds and are rounded to ticks once when loaded (the `Ticks` field type), so `sim/` code only sees whole ticks. See \"시간이 걸리는 일\" and \"시간 값\" in {engine}`docs/CODING_MODEL.md`."
+msgid "It does not count down every tick and holds no float time. It is a `MEALKIT_STRUCT`, so a timer field in the state is hashed and saved by itself. Durations come from data in seconds and are rounded to ticks once when loaded (the `Ticks` field type), so `sim/` code only sees whole ticks. See \"Things that take time\" and \"Time values\" in {engine}`docs/CODING_MODEL.md`."
 msgstr "매 틱 줄여 나가지 않고 실수 시간도 없다. `MEALKIT_STRUCT`라서 상태에 넣은 타이머 필드는 저절로 해시·저장된다. 지속 시간은 데이터에 초로 적고 불러올 때 한 번 틱으로 반올림하므로(`Ticks` 필드 타입), `sim/` 코드는 정수 틱만 본다. {engine}`docs/CODING_MODEL.md`의 \"시간이 걸리는 일\"과 \"시간 값\"을 참고한다."
 
 msgid "Tick events"
@@ -167,7 +167,7 @@ msgid "`sim::forEachCommand(inputs, f)` is called at the start of `World::step()
 msgstr "`sim::forEachCommand(inputs, f)`는 `World::step()` 맨 앞에서 부른다. 명령마다 플레이어 슬롯과 함께 플레이어 번호 → 보낸 순서로 넘겨준다. `c.read(out)`는 타입 id와 크기가 맞으면 바이트를 복사한다."
 
 #, python-brace-format
-msgid "Commands are copied as bytes, so they mean the same only between the same builds. Lockstep already needs the same build. They go into input recordings, rewind and the shadow simulation together with the inputs. See \"시뮬레이션에 넣는 입력 외 명령\" in {engine}`docs/CODING_MODEL.md`."
+msgid "Commands are copied as bytes, so they mean the same only between the same builds. Lockstep already needs the same build. They go into input recordings, rewind and the shadow simulation together with the inputs. See \"Non-input commands into the simulation\" in {engine}`docs/CODING_MODEL.md`."
 msgstr "명령은 바이트로 복사되므로 같은 빌드끼리만 뜻이 같다. 락스텝은 이미 같은 빌드를 전제로 한다. 명령은 입력과 함께 입력 기록, 되감기, 그림자 시뮬레이션에 들어간다. {engine}`docs/CODING_MODEL.md`의 \"시뮬레이션에 넣는 입력 외 명령\"을 참고한다."
 
 msgid "Table"

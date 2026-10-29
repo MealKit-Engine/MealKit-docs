@@ -3,7 +3,7 @@
 This page explains how the renderer works inside: the thin graphics layer (RHI) under it, how it starts, what one frame does, how instances reach the GPU, how the shaders light the scene, and how the 2D UI pass, screenshots and statistics work.
 The frame budget and the profiler are in {doc}`../../manual/performance`. The code is in {engine}`engine/src/mealkit/render`, {engine}`engine/src/mealkit/rhi` and the shaders in {engine}`engine/shaders`.
 
-`rhi` and then `render` come after `scene` in the folder order of {engine}`docs/CODING_MODEL.md` ("엔진 폴더 사이 의존").
+`rhi` and then `render` come after `scene` in the folder order of {engine}`docs/CODING_MODEL.md` ("Dependencies between engine folders").
 `asset`, `debug` and `ui` come after them and give the renderer meshes, ImGui draw data and UI rectangles.
 
 ## Files
@@ -148,7 +148,7 @@ There is no tangent: the pixel shader builds the tangent frame for normal maps f
 
 ## Style presets
 
-Artists choose a look instead of writing shaders ({engine}`docs/CODING_MODEL.md` "셰이더 코드"):
+Artists choose a look instead of writing shaders ({engine}`docs/CODING_MODEL.md` "Shader code"):
 
 - The **lighting model** is one project setting for the whole game (`lightingModel`: `Pbr`, `Toon` or `Unlit`). `Forward.hlsl` is compiled three times with `LIGHTING_MODEL=0/1/2` (`g_ForwardPbrPS`, `g_ForwardToonPS`, `g_ForwardUnlitPS`), all three are in the executable, and `Renderer::setLightingModel` only picks which pipeline `beginFrame` binds. `game::applyRenderStyle` passes the setting (and the toon ramp image) from `mealkit.project`; the editor calls it again when the setting or the ramp file changes.
 - **Material features** are bits in the material record, not shader variants: `kMaterialOutline`, `kMaterialWind`, `kMaterialRim` and `kMaterialDissolve`. The shader tests the bits. Materials with different features can share a mesh, so a model is still one draw call (plus one for the outline).
@@ -260,7 +260,7 @@ Two more pipelines from the same shaders are created in builds with the debug UI
 ## Statistics
 
 `RenderStats` holds `drawCalls`, `instances` and `culled`. `beginFrame` resets them, every `drawInstances` adds one draw call and its instance count, and `drawUi` adds one draw call.
-The renderer only measures. `game::FrameStats` reads `stats()` once per frame and makes the numbers in the window title, the F1 overlay and the perf log, as decided in {engine}`docs/CODING_MODEL.md` ("성능 숫자 모으기와 보여 주기").
+The renderer only measures. `game::FrameStats` reads `stats()` once per frame and makes the numbers in the window title, the F1 overlay and the perf log, as decided in {engine}`docs/CODING_MODEL.md` ("Collecting and showing performance numbers").
 Profile builds also time the GPU frame with Tracy's D3D12 zones.
 
 ### GPU time and memory

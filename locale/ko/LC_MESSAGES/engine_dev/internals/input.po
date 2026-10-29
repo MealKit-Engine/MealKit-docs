@@ -24,7 +24,7 @@ msgid "This page explains how input actions work inside: how the bindings table 
 msgstr "이 페이지는 입력 액션이 안에서 어떻게 돌아가는지 설명한다: 바인딩 표를 어떻게 읽는지, 키·마우스·게임패드가 매 프레임 어떻게 액션 값이 되는지, 플레이어가 바꾼 키를 어떻게 저장하는지. 프로젝트에 액션을 정하는 법은 {doc}`../../manual/input`에 있다. 코드는 {engine}`engine/src/mealkit/input`에 있다."
 
 #, python-brace-format
-msgid "`input` comes after `debug` and before `audio` in the folder order of {engine}`docs/CODING_MODEL.md` (\"엔진 폴더 사이 의존\"). It reads raw state from `platform` (`Input` for keyboard and mouse, `Gamepads` for pads) and tables through `data`. Game code never reads keys. The view side reads action values, and the game packs them into its 8-byte `GameInput` for the simulation. Why there is one action mapping for everything is in {engine}`docs/CODING_MODEL.md` (\"입력\")."
+msgid "`input` comes after `debug` and before `audio` in the folder order of {engine}`docs/CODING_MODEL.md` (\"Dependencies between engine folders\"). It reads raw state from `platform` (`Input` for keyboard and mouse, `Gamepads` for pads) and tables through `data`. Game code never reads keys. The view side reads action values, and the game packs them into its 8-byte `GameInput` for the simulation. Why there is one action mapping for everything is in {engine}`docs/CODING_MODEL.md` (\"Input\")."
 msgstr "`input`은 {engine}`docs/CODING_MODEL.md`(\"엔진 폴더 사이 의존\")의 폴더 순서에서 `debug` 다음, `audio` 앞이다. `platform`에서 날 상태(키보드·마우스는 `Input`, 패드는 `Gamepads`)를 읽고, 표는 `data`로 읽는다. 게임 코드는 키를 읽지 않는다. 화면 쪽이 액션 값을 읽고, 게임이 그 값을 8바이트 `GameInput`으로 묶어 시뮬레이션에 보낸다. 모든 것에 입력 액션 매핑 하나를 쓰는 이유는 {engine}`docs/CODING_MODEL.md`(\"입력\")에 있다."
 
 msgid "The bindings table"

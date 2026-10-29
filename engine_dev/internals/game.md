@@ -1,7 +1,7 @@
 # Game
 
 This page explains how the game folder works inside: the boundary between the engine and game code, the main loop of the shipped exe, the simulation runner, headless runs, input recordings and the small data services (tuning, project settings, match start data, saves, performance numbers).
-The code is in {engine}`engine/src/mealkit/game`. `game` is the last engine folder before `editor` in the layer order ({engine}`docs/CODING_MODEL.md` "엔진 폴더 사이 의존"), so it may include every other engine folder, and only the editor includes it.
+The code is in {engine}`engine/src/mealkit/game`. `game` is the last engine folder before `editor` in the layer order ({engine}`docs/CODING_MODEL.md` "Dependencies between engine folders"), so it may include every other engine folder, and only the editor includes it.
 
 Part of the folder belongs to the engine core (`mealkit_core`), which runs without a window: `GameInstance.h`, `GameContext.h`, `GameData`, `GameOptions`, `Headless`, `InputRecord`, `ProjectSettings`, `Save`, `Loadout.h`, `WorldSnapshot.h`, `SimDebug.h` and `Simulation.h`.
 The rest needs the screen side and is only in the windowed engine: `Frontend`, `GameMain` and `FrameStats` ({engine}`engine/CMakeLists.txt`).
@@ -26,7 +26,7 @@ A game implements one class, `game::GameInstance` ({engine}`engine/src/mealkit/g
 
 The engine passes a `game::GameContext` ({engine}`engine/src/mealkit/game/GameContext.h`) to each call. It holds references to the engine services the screen side uses: window, renderer, models, lockstep session, the match service, audio, feedback, input actions, strings, game UI and player settings.
 It also holds values the engine sets every frame: the viewport, whether the game may read the keyboard and mouse, the display tuning and the user folder.
-The game does not keep the context, and `sim/` never receives it: the simulation only gets `World&`. The reasons are in {engine}`docs/CODING_MODEL.md` "엔진 기능에 어떻게 접근하나".
+The game does not keep the context, and `sim/` never receives it: the simulation only gets `World&`. The reasons are in {engine}`docs/CODING_MODEL.md` "How to access engine features".
 
 The same game class is used in two ways:
 
@@ -128,7 +128,7 @@ One tick follows the lockstep order:
 5. Call the game's `onTick` so it moves this tick's events to the screen side. Events are cleared by the next `step`, so this happens after every tick, not once per frame.
 6. Sample local input and send it for tick `next + inputDelay`.
 
-The rules behind the order are in {engine}`docs/CODING_MODEL.md` "흐름".
+The rules behind the order are in {engine}`docs/CODING_MODEL.md` "Flow".
 
 ### Interpolation
 
@@ -215,7 +215,7 @@ Feeding one recorded file to every build, instead of running bots on each, is wh
 - `LiveTuning` holds the display tuning (`assets/view.tuning`). `poll` checks the file time at most every 0.25 seconds and reads the file again when it changed. It reads into a fresh value, so a deleted line goes back to its default. If the file does not exist yet, it watches the path next to `game.tuning`.
 - `contentHash` is the hash peers compare before a match. It hashes the parts of the scene that affect the game, the model files, the tuning values, the project settings except view fields, and the simulation tables.
 
-The display tuning is not in the content hash, so it can change during a multiplayer match. Where each kind of number belongs is in {engine}`docs/CODING_MODEL.md` "숫자는 어디에 두나".
+The display tuning is not in the content hash, so it can change during a multiplayer match. Where each kind of number belongs is in {engine}`docs/CODING_MODEL.md` "Where to put numbers".
 
 ## Project settings
 
@@ -262,7 +262,7 @@ Every frame the loop passes the frame time, whether a match is running and the `
 When the time is up, `report` writes the text with the GPU budget table from `mealkit.project` and `summaryLine` the `BENCHMARK` line. It builds on `FrameStats` instead of reading the subsystems again, because `takeSimMsPerTick` may only have one reader.
 
 `line()` joins the items with ` | ` for the window title and the `perf:` log, and `lines()` puts one item per line for the `F1` overlay. The editor status bar uses the same class.
-`takeSimMsPerTick` empties its average when read, so only `FrameStats` calls it, and every display shows the same numbers. See {doc}`../../manual/performance` and {engine}`docs/CODING_MODEL.md` "성능 숫자 모으기와 보여 주기".
+`takeSimMsPerTick` empties its average when read, so only `FrameStats` calls it, and every display shows the same numbers. See {doc}`../../manual/performance` and {engine}`docs/CODING_MODEL.md` "Collecting and showing performance numbers".
 
 ## Techniques used
 

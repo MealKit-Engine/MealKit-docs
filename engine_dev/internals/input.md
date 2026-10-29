@@ -3,8 +3,8 @@
 This page explains how input actions work inside: how the bindings table is read, how keys, mouse and gamepad become action values each frame, and how a player's rebound keys are saved.
 How to declare actions in a project is in {doc}`../../manual/input`. The code is in {engine}`engine/src/mealkit/input`.
 
-`input` comes after `debug` and before `audio` in the folder order of {engine}`docs/CODING_MODEL.md` ("엔진 폴더 사이 의존"). It reads raw state from `platform` (`Input` for keyboard and mouse, `Gamepads` for pads) and tables through `data`.
-Game code never reads keys. The view side reads action values, and the game packs them into its 8-byte `GameInput` for the simulation. Why there is one action mapping for everything is in {engine}`docs/CODING_MODEL.md` ("입력").
+`input` comes after `debug` and before `audio` in the folder order of {engine}`docs/CODING_MODEL.md` ("Dependencies between engine folders"). It reads raw state from `platform` (`Input` for keyboard and mouse, `Gamepads` for pads) and tables through `data`.
+Game code never reads keys. The view side reads action values, and the game packs them into its 8-byte `GameInput` for the simulation. Why there is one action mapping for everything is in {engine}`docs/CODING_MODEL.md` ("Input").
 
 ## The bindings table
 

@@ -24,7 +24,7 @@ msgid "This page explains how game text tables work inside: how a string file is
 msgstr "이 페이지는 게임 문자열 표가 안에서 어떻게 돌아가는지 설명한다: 문자열 파일을 어떻게 읽는지, 키를 어떻게 찾는지, 글꼴이 모든 글자를 보여 줄 수 있는지 빌드가 어떻게 검사하는지. 문자열 표 쓰는 법은 {doc}`../../manual/assets`(\"게임 글자와 언어\" 절)에 있다. 코드는 {engine}`engine/src/mealkit/loc`에 있다."
 
 #, python-brace-format
-msgid "`loc` is the first folder of the screen side. It comes after `data` and before `scene` in the folder order of {engine}`docs/CODING_MODEL.md` (\"엔진 폴더 사이 의존\"), so it uses only `core` and `platform`. `ui` and `settings` use it later. The simulation never reads text."
+msgid "`loc` is the first folder of the screen side. It comes after `data` and before `scene` in the folder order of {engine}`docs/CODING_MODEL.md` (\"Dependencies between engine folders\"), so it uses only `core` and `platform`. `ui` and `settings` use it later. The simulation never reads text."
 msgstr "`loc`는 화면 쪽의 첫 폴더다. {engine}`docs/CODING_MODEL.md`(\"엔진 폴더 사이 의존\")의 폴더 순서에서 `data` 다음, `scene` 앞이라 `core`와 `platform`만 쓴다. 나중에 `ui`와 `settings`가 이것을 쓴다. 시뮬레이션은 글자를 읽지 않는다."
 
 msgid "String files"
@@ -119,7 +119,7 @@ msgid "The tool reads the files with its own small reader instead of linking the
 msgstr "이 도구는 엔진 라이브러리를 링크하지 않고 자기 작은 읽기 코드로 파일을 읽는다. 그래서 엔진보다 먼저 빌드할 수 있다. 형식은 `readStringsFile`과 같다."
 
 #, python-brace-format
-msgid "Why fonts are baked at run time instead of shipping a fixed set of 2,350 Hangul syllables is in {engine}`docs/CODING_MODEL.md` (the table \"검토했지만 바꾸지 않은 것\")."
+msgid "Why fonts are baked at run time instead of shipping a fixed set of 2,350 Hangul syllables is in {engine}`docs/CODING_MODEL.md` (the table \"Considered but not changed\")."
 msgstr "완성형 한글 2,350자를 미리 구워 넣지 않고 실행 중에 굽는 이유는 {engine}`docs/CODING_MODEL.md`(\"검토했지만 바꾸지 않은 것\" 표)에 있다."
 
 msgid "Techniques used"

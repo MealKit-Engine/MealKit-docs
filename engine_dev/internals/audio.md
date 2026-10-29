@@ -3,8 +3,8 @@
 This page explains how sound works inside: the sound event table, how a play request becomes a voice, how the engine chooses which voices are mixed, and how buses and 3D position work.
 How to write sound events is in {doc}`../../manual/sound`. The code is in {engine}`engine/src/mealkit/audio`.
 
-`audio` comes after `input` and before `ui` in the folder order of {engine}`docs/CODING_MODEL.md` ("엔진 폴더 사이 의존"). `feedback` comes after it and plays sounds through it.
-Sound is view side only: the simulation leaves tick events, and the view plays sounds for them. SimCheck blocks `audio/` headers in `sim/`. The design is in {engine}`docs/CODING_MODEL.md` ("소리를 내는 방법").
+`audio` comes after `input` and before `ui` in the folder order of {engine}`docs/CODING_MODEL.md` ("Dependencies between engine folders"). `feedback` comes after it and plays sounds through it.
+Sound is view side only: the simulation leaves tick events, and the view plays sounds for them. SimCheck blocks `audio/` headers in `sim/`. The design is in {engine}`docs/CODING_MODEL.md` ("How to play sounds").
 
 ## Runtime and glue
 

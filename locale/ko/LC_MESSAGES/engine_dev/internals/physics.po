@@ -23,7 +23,7 @@ msgid "Physics"
 msgstr "물리"
 
 #, python-brace-format
-msgid "This page explains how the physics layer works inside: a small wrapper around Jolt Physics, and what it does to give the same result on every PC. `physics` comes after `net` in the layer order and includes only `core` (see \"엔진 폴더 사이 의존\" in {engine}`docs/CODING_MODEL.md`). The determinism rules that game code follows are in {doc}`../../manual/multiplayer`. The code is in {engine}`engine/src/mealkit/physics`."
+msgid "This page explains how the physics layer works inside: a small wrapper around Jolt Physics, and what it does to give the same result on every PC. `physics` comes after `net` in the layer order and includes only `core` (see \"Dependencies between engine folders\" in {engine}`docs/CODING_MODEL.md`). The determinism rules that game code follows are in {doc}`../../manual/multiplayer`. The code is in {engine}`engine/src/mealkit/physics`."
 msgstr "이 페이지는 물리 계층이 안에서 어떻게 돌아가는지 설명한다: Jolt Physics를 감싼 작은 래퍼, 그리고 모든 PC에서 같은 결과를 내려고 하는 일. `physics`는 계층 순서에서 `net` 다음이고 `core`만 include한다({engine}`docs/CODING_MODEL.md`의 \"엔진 폴더 사이 의존\" 참고). 게임 코드가 따르는 결정론 규칙은 {doc}`../../manual/multiplayer`에 있다. 코드는 {engine}`engine/src/mealkit/physics`에 있다."
 
 msgid "The wrapper"
@@ -94,7 +94,7 @@ msgid "Determinism"
 msgstr "결정론"
 
 #, python-brace-format
-msgid "Lockstep needs every peer to compute bit for bit the same physics. Jolt supports this when it is built for it and called in the same order. The rules are in \"결정론 규칙\" in {engine}`docs/CODING_MODEL.md`."
+msgid "Lockstep needs every peer to compute bit for bit the same physics. Jolt supports this when it is built for it and called in the same order. The rules are in \"Determinism rules\" in {engine}`docs/CODING_MODEL.md`."
 msgstr "락스텝은 모든 피어가 비트 단위로 같은 물리를 계산해야 한다. Jolt는 그렇게 빌드하고 같은 순서로 부르면 이것을 지원한다. 규칙은 {engine}`docs/CODING_MODEL.md`의 \"결정론 규칙\"에 있다."
 
 msgid "Build options"

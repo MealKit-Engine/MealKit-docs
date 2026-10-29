@@ -23,7 +23,7 @@ msgid "Net"
 msgstr "네트워크"
 
 #, python-brace-format
-msgid "This page explains how the network layer works inside: the packet transport, and the lockstep session that sends only player inputs between peers. `net` is the first folder on the simulation side of the layer order. It includes only `core` and `platform` (see \"엔진 폴더 사이 의존\" in {engine}`docs/CODING_MODEL.md`). How to play together and the determinism rules for game code are in {doc}`../../manual/multiplayer`. The code is in {engine}`engine/src/mealkit/net`."
+msgid "This page explains how the network layer works inside: the packet transport, and the lockstep session that sends only player inputs between peers. `net` is the first folder on the simulation side of the layer order. It includes only `core` and `platform` (see \"Dependencies between engine folders\" in {engine}`docs/CODING_MODEL.md`). How to play together and the determinism rules for game code are in {doc}`../../manual/multiplayer`. The code is in {engine}`engine/src/mealkit/net`."
 msgstr "이 페이지는 네트워크 계층이 안에서 어떻게 돌아가는지 설명한다: 패킷 전송 계층, 그리고 피어 사이에 플레이어 입력만 주고받는 락스텝 세션. `net`은 계층 순서에서 시뮬레이션 쪽 첫 폴더다. `core`와 `platform`만 include한다({engine}`docs/CODING_MODEL.md`의 \"엔진 폴더 사이 의존\" 참고). 같이 플레이하는 법과 게임 코드의 결정론 규칙은 {doc}`../../manual/multiplayer`에 있다. 코드는 {engine}`engine/src/mealkit/net`에 있다."
 
 msgid "Sockets and transports"

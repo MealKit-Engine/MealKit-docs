@@ -20,7 +20,7 @@ msgid "Internals"
 msgstr "내부 구조"
 
 #, python-brace-format
-msgid "How each engine folder works inside, one page per folder. The groups follow the folder order: a folder includes only folders in the same group or an earlier one (see \"엔진 폴더 사이 의존\" in {engine}`docs/CODING_MODEL.md`)."
+msgid "How each engine folder works inside, one page per folder. The groups follow the folder order: a folder includes only folders in the same group or an earlier one (see \"Dependencies between engine folders\" in {engine}`docs/CODING_MODEL.md`)."
 msgstr "엔진 폴더마다 안에서 어떻게 동작하는지 한 페이지씩 설명한다. 묶음은 폴더 순서를 따른다: 폴더는 같은 묶음이나 앞 묶음의 폴더만 include한다({engine}`docs/CODING_MODEL.md`의 \"엔진 폴더 사이 의존\" 참고)."
 
 msgid "Foundation"

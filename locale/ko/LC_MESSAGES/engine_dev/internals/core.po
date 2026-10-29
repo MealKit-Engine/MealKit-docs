@@ -23,7 +23,7 @@ msgid "Core"
 msgstr "코어"
 
 #, python-brace-format
-msgid "This page explains how the core folder works inside: the basic types, logging, time, math, deterministic math, random numbers, hashing and field declarations. Core is the base of the engine. Together with `platform` it is the first group in the folder order, and the two may include each other; every other folder comes after them (see \"엔진 폴더 사이 의존\" in {engine}`docs/CODING_MODEL.md`). The code is in {engine}`engine/src/mealkit/core`."
+msgid "This page explains how the core folder works inside: the basic types, logging, time, math, deterministic math, random numbers, hashing and field declarations. Core is the base of the engine. Together with `platform` it is the first group in the folder order, and the two may include each other; every other folder comes after them (see \"Dependencies between engine folders\" in {engine}`docs/CODING_MODEL.md`). The code is in {engine}`engine/src/mealkit/core`."
 msgstr "이 페이지는 코어 폴더가 안에서 어떻게 돌아가는지 설명한다: 기본 타입, 로그, 시간, 수학, 결정론 수학, 난수, 해시, 필드 선언. 코어는 엔진의 바탕이다. `platform`과 함께 폴더 순서의 첫 묶음이고, 둘은 서로 include할 수 있다. 다른 폴더는 모두 그 뒤에 온다({engine}`docs/CODING_MODEL.md`의 \"엔진 폴더 사이 의존\"). 코드는 {engine}`engine/src/mealkit/core`에 있다."
 
 #, python-brace-format
@@ -54,7 +54,7 @@ msgid "`MEALKIT_ASSERT(cond)` checks programmer mistakes. It exists in Debug and
 msgstr "`MEALKIT_ASSERT(cond)`는 프로그래머 실수를 검사한다. Debug와 Editor 빌드(`MEALKIT_DEBUG` 또는 `MEALKIT_ASSERTS`)에 있고 출시 빌드에서는 빠진다. 실패하면 오류 줄을 쓰고, 디버거가 붙어 있으면 그 자리에서 멈춘다."
 
 #, python-brace-format
-msgid "The engine does not use exceptions. A failing function returns `false` or an empty `std::optional` and logs the reason where it failed (\"실패 처리\" in {engine}`docs/CODING_MODEL.md`)."
+msgid "The engine does not use exceptions. A failing function returns `false` or an empty `std::optional` and logs the reason where it failed (\"Handling failures\" in {engine}`docs/CODING_MODEL.md`)."
 msgstr "엔진은 예외를 쓰지 않는다. 실패한 함수는 `false`나 빈 `std::optional`을 돌려주고, 실패한 곳에서 이유를 로그로 남긴다({engine}`docs/CODING_MODEL.md`의 \"실패 처리\")."
 
 msgid "Clock"
@@ -138,7 +138,7 @@ msgid "DetMath"
 msgstr "DetMath"
 
 #, python-brace-format
-msgid "Lockstep needs every computer to get the same bits from the same simulation (\"결정론 규칙\" in {engine}`docs/CODING_MODEL.md`). The basic IEEE 754 operations (`+ - * /` and `sqrt`) are required to be correctly rounded, so with `/fp:precise` (no FMA contraction) they give the same result on every CPU. CRT functions such as `sin`, `cos`, `atan2`, `pow` and `exp` have no such rule: different CRT versions and CPUs may take different code paths and return different last bits. That is why they are banned in `sim/` and SimCheck reports them."
+msgid "Lockstep needs every computer to get the same bits from the same simulation (\"Determinism rules\" in {engine}`docs/CODING_MODEL.md`). The basic IEEE 754 operations (`+ - * /` and `sqrt`) are required to be correctly rounded, so with `/fp:precise` (no FMA contraction) they give the same result on every CPU. CRT functions such as `sin`, `cos`, `atan2`, `pow` and `exp` have no such rule: different CRT versions and CPUs may take different code paths and return different last bits. That is why they are banned in `sim/` and SimCheck reports them."
 msgstr "락스텝은 모든 컴퓨터가 같은 시뮬레이션에서 같은 비트를 얻어야 한다({engine}`docs/CODING_MODEL.md`의 \"결정론 규칙\"). IEEE 754 기본 연산(`+ - * /`와 `sqrt`)은 정확히 반올림하도록 정해져 있어서, `/fp:precise`(FMA 축약 없음) 아래에서는 어느 CPU에서나 결과가 같다. `sin`, `cos`, `atan2`, `pow`, `exp` 같은 CRT 함수에는 그런 규칙이 없다: CRT 버전과 CPU에 따라 다른 코드 경로를 타고 마지막 비트가 달라질 수 있다. 그래서 `sim/`에서 금지되고 SimCheck가 알린다."
 
 #, python-brace-format
@@ -215,7 +215,7 @@ msgid "Reflect"
 msgstr "Reflect"
 
 #, python-brace-format
-msgid "{engine}`engine/src/mealkit/core/Reflect.h` is the field declaration system. A struct declares its fields once, and the editor inspector, text files (`.scene` object fields, `.tuning`, `.table`, `mealkit.project`), the state hash, snapshots and the State panel all use that one declaration (\"데이터와 설정\" in {engine}`docs/CODING_MODEL.md`)."
+msgid "{engine}`engine/src/mealkit/core/Reflect.h` is the field declaration system. A struct declares its fields once, and the editor inspector, text files (`.scene` object fields, `.tuning`, `.table`, `mealkit.project`), the state hash, snapshots and the State panel all use that one declaration (\"Data and settings\" in {engine}`docs/CODING_MODEL.md`)."
 msgstr "{engine}`engine/src/mealkit/core/Reflect.h`는 필드 선언 체계다. 구조체가 필드를 한 번 선언하면 에디터 인스펙터, 텍스트 파일(`.scene` 오브젝트 필드, `.tuning`, `.table`, `mealkit.project`), 상태 해시, 스냅샷, [상태] 패널이 모두 그 선언 하나를 쓴다({engine}`docs/CODING_MODEL.md`의 \"데이터와 설정\")."
 
 msgid "Declaring"

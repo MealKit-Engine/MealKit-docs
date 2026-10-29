@@ -24,7 +24,7 @@ msgid "This page explains how the renderer works inside: the thin graphics layer
 msgstr "이 페이지는 렌더러가 안에서 어떻게 돌아가는지 설명한다: 그 아래의 얇은 그래픽 층(RHI), 어떻게 시작하는지, 한 프레임에 무엇을 하는지, 인스턴스가 어떻게 GPU에 가는지, 셰이더가 장면을 어떻게 비추는지, 2D UI 패스·스크린샷·통계가 어떻게 동작하는지. 프레임 예산과 프로파일러는 {doc}`../../manual/performance`에 있다. 코드는 {engine}`engine/src/mealkit/render`와 {engine}`engine/src/mealkit/rhi`, 셰이더는 {engine}`engine/shaders`에 있다."
 
 #, python-brace-format
-msgid "`rhi` and then `render` come after `scene` in the folder order of {engine}`docs/CODING_MODEL.md` (\"엔진 폴더 사이 의존\"). `asset`, `debug` and `ui` come after them and give the renderer meshes, ImGui draw data and UI rectangles."
+msgid "`rhi` and then `render` come after `scene` in the folder order of {engine}`docs/CODING_MODEL.md` (\"Dependencies between engine folders\"). `asset`, `debug` and `ui` come after them and give the renderer meshes, ImGui draw data and UI rectangles."
 msgstr "{engine}`docs/CODING_MODEL.md`(\"엔진 폴더 사이 의존\")의 폴더 순서에서 `scene` 다음에 `rhi`, 그다음에 `render`가 온다. 뒤에 오는 `asset`, `debug`, `ui`가 렌더러에 메시, ImGui 그리기 데이터, UI 사각형을 넘긴다."
 
 msgid "Files"
@@ -417,7 +417,7 @@ msgid "Style presets"
 msgstr "스타일 프리셋"
 
 #, python-brace-format
-msgid "Artists choose a look instead of writing shaders ({engine}`docs/CODING_MODEL.md` \"셰이더 코드\"):"
+msgid "Artists choose a look instead of writing shaders ({engine}`docs/CODING_MODEL.md` \"Shader code\"):"
 msgstr "아티스트는 셰이더를 쓰는 대신 모습을 고른다({engine}`docs/CODING_MODEL.md` \"셰이더 코드\"):"
 
 msgid "The **lighting model** is one project setting for the whole game (`lightingModel`: `Pbr`, `Toon` or `Unlit`). `Forward.hlsl` is compiled three times with `LIGHTING_MODEL=0/1/2` (`g_ForwardPbrPS`, `g_ForwardToonPS`, `g_ForwardUnlitPS`), all three are in the executable, and `Renderer::setLightingModel` only picks which pipeline `beginFrame` binds. `game::applyRenderStyle` passes the setting (and the toon ramp image) from `mealkit.project`; the editor calls it again when the setting or the ramp file changes."
@@ -642,7 +642,7 @@ msgid "Statistics"
 msgstr "통계"
 
 #, python-brace-format
-msgid "`RenderStats` holds `drawCalls`, `instances` and `culled`. `beginFrame` resets them, every `drawInstances` adds one draw call and its instance count, and `drawUi` adds one draw call. The renderer only measures. `game::FrameStats` reads `stats()` once per frame and makes the numbers in the window title, the F1 overlay and the perf log, as decided in {engine}`docs/CODING_MODEL.md` (\"성능 숫자 모으기와 보여 주기\"). Profile builds also time the GPU frame with Tracy's D3D12 zones."
+msgid "`RenderStats` holds `drawCalls`, `instances` and `culled`. `beginFrame` resets them, every `drawInstances` adds one draw call and its instance count, and `drawUi` adds one draw call. The renderer only measures. `game::FrameStats` reads `stats()` once per frame and makes the numbers in the window title, the F1 overlay and the perf log, as decided in {engine}`docs/CODING_MODEL.md` (\"Collecting and showing performance numbers\"). Profile builds also time the GPU frame with Tracy's D3D12 zones."
 msgstr "`RenderStats`는 `drawCalls`, `instances`, `culled`를 갖는다. `beginFrame`이 비우고, `drawInstances`마다 드로우 콜 하나와 인스턴스 수를 더하고, `drawUi`가 드로우 콜 하나를 더한다. 렌더러는 재기만 한다. {engine}`docs/CODING_MODEL.md`(\"성능 숫자 모으기와 보여 주기\")에서 정한 대로 `game::FrameStats`가 프레임마다 `stats()`를 한 번 읽어 창 제목, F1 오버레이, perf 로그의 숫자를 만든다. Profile 빌드는 Tracy의 D3D12 구간으로 GPU 프레임 시간도 잰다."
 
 msgid "GPU time and memory"

@@ -23,7 +23,7 @@ msgid "Data"
 msgstr "데이터"
 
 #, python-brace-format
-msgid "This page explains how definition tables are read and written: the `.table` file format, row references, CSV import and export, and the content hash of tables. `data` is the last folder on the simulation side of the layer order, after `sim` and before the view side (see \"엔진 폴더 사이 의존\" in {engine}`docs/CODING_MODEL.md`). It is below the game boundary (`game`), so the game, the editor, the content hash and the engine's own tables all read tables with the same functions. How to make and edit tables is in {doc}`../../manual/assets`. The code is in {engine}`engine/src/mealkit/data`."
+msgid "This page explains how definition tables are read and written: the `.table` file format, row references, CSV import and export, and the content hash of tables. `data` is the last folder on the simulation side of the layer order, after `sim` and before the view side (see \"Dependencies between engine folders\" in {engine}`docs/CODING_MODEL.md`). It is below the game boundary (`game`), so the game, the editor, the content hash and the engine's own tables all read tables with the same functions. How to make and edit tables is in {doc}`../../manual/assets`. The code is in {engine}`engine/src/mealkit/data`."
 msgstr "이 페이지는 정의 데이터 표를 어떻게 읽고 쓰는지 설명한다: `.table` 파일 형식, 행 참조, CSV 가져오기·내보내기, 표의 콘텐츠 해시. `data`는 계층 순서에서 시뮬레이션 쪽 마지막 폴더로, `sim` 다음이고 화면 쪽 앞이다({engine}`docs/CODING_MODEL.md`의 \"엔진 폴더 사이 의존\" 참고). 게임 경계(`game`)보다 아래라서, 게임·에디터·콘텐츠 해시·엔진 자체의 표가 모두 같은 함수로 표를 읽는다. 표를 만들고 고치는 법은 {doc}`../../manual/assets`에 있다. 코드는 {engine}`engine/src/mealkit/data`에 있다."
 
 msgid "Declaring a table"
@@ -46,7 +46,7 @@ msgid "The macro defines an inline variable whose initializer adds `{row type, p
 msgstr "이 매크로는 인라인 변수를 정의하고, 그 초기화가 `{행 타입, 경로, 플래그}`를 이 모듈(게임 exe 또는 게임 DLL)의 표 목록 `reflect::moduleTables()`에 더한다. 게임 DLL은 이 목록을 게임 모듈로 에디터에 넘긴다. `kTableView` 플래그는 화면 전용 표(소리, 효과, 아이콘)를 뜻한다. 콘텐츠 해시 밖에 있고, 플레이 중에 고치면 에디터가 바로 다시 읽는다."
 
 #, python-brace-format
-msgid "Why tables are the answer for \"many rows of the same shape\" is in {engine}`docs/CODING_MODEL.md` (\"같은 모양의 데이터가 여러 개\")."
+msgid "Why tables are the answer for \"many rows of the same shape\" is in {engine}`docs/CODING_MODEL.md` (\"Many items of the same shape\")."
 msgstr "\"같은 모양의 행이 여러 개\"의 답이 표인 이유는 {engine}`docs/CODING_MODEL.md`(\"같은 모양의 데이터가 여러 개\")에 있다."
 
 msgid "The file format"

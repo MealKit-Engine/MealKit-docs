@@ -1,7 +1,7 @@
 # Physics
 
 This page explains how the physics layer works inside: a small wrapper around Jolt Physics, and what it does to give the same result on every PC.
-`physics` comes after `net` in the layer order and includes only `core` (see "엔진 폴더 사이 의존" in {engine}`docs/CODING_MODEL.md`).
+`physics` comes after `net` in the layer order and includes only `core` (see "Dependencies between engine folders" in {engine}`docs/CODING_MODEL.md`).
 The determinism rules that game code follows are in {doc}`../../manual/multiplayer`. The code is in {engine}`engine/src/mealkit/physics`.
 
 ## The wrapper
@@ -25,7 +25,7 @@ A mass of 0 means Jolt computes it from the shape with a density of 1000 kg/m³.
 
 ## Determinism
 
-Lockstep needs every peer to compute bit for bit the same physics. Jolt supports this when it is built for it and called in the same order. The rules are in "결정론 규칙" in {engine}`docs/CODING_MODEL.md`.
+Lockstep needs every peer to compute bit for bit the same physics. Jolt supports this when it is built for it and called in the same order. The rules are in "Determinism rules" in {engine}`docs/CODING_MODEL.md`.
 
 ### Build options
 
