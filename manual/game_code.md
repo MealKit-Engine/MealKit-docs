@@ -21,7 +21,7 @@ The simulation is one `World` (`sim/World.h`). It holds the data fixed at match 
 ```cpp
 MEALKIT_STRUCT(WorldState) {
     MEALKIT_FIELD(u32, tick, 0, "Tick");
-    MEALKIT_FIELD(MatchPhase, phase, MatchPhase::Countdown, "Match phase");
+    MEALKIT_FIELD(mealkit::sim::MatchFlow, flow, {}, "Match flow");
     MEALKIT_ARRAY(PlayerSlot, mealkit::net::kMaxPlayers, slots, "Player slots");
     MEALKIT_FIELD(mealkit::sim::Pool<Pawn>, pawns, {}, "Pawns");
     MEALKIT_FIELD(mealkit::Pcg32, aiRng, {}, "AI random numbers");
@@ -88,8 +88,14 @@ MEALKIT_FIELD(TickTimer, pushReady, {}, "Next push");      // in a state struct
 if (p.pushReady.ready(tick)) {
     p.pushReady.start(tick, world.tuning.pushCooldown);  // Ticks value from the tuning file (seconds there)
 }
-u32 left = phaseEnd.remaining(tick);                     // for a countdown display
+u32 left = flow.phaseEnd.remaining(tick);                // for a countdown display
 ```
+
+## Match flow
+
+Rounds, timers, teams and win conditions come from the engine's `mealkit::sim::MatchFlow` (`mealkit/sim/MatchFlow.h`). The flow goes waiting → countdown → playing → round end → (countdown for the next round) → results. The rules are tuning values: `minPlayers`, `countdown`, `roundLength`, `roundEndDelay`, `rounds` (best of N), `scoreLimit`, `lives` (elimination) and `teams` (side = slot number % teams; 0 is free for all). A round ends when a side reaches the score limit, when at most one side has players left (with lives), or when time runs out (highest score wins, a tie is a draw).
+
+`sim/Match.cpp` calls `mealkit::sim::advanceMatch` once per tick with each player's round score and whether they are still in. It returns the transition made on that tick, and the game calls its own functions for it (`onRoundStart` resets scores and lives and puts everyone back at the spawn points). The scoreboard (`score`, `lives`, `falls`) lives in `PlayerSlot`. The screens only read `flow.phase`, `flow.round`, `flow.roundWinner` and `flow.matchWinner`.
 
 Durations come from `Ticks` fields in the tuning, scene objects or tables ({doc}`assets`, "Time values"), so the code has no seconds or tick numbers in it.
 

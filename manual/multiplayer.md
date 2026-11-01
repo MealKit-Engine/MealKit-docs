@@ -46,7 +46,7 @@ Opening and closing rooms is engine work, and the game only calls `ctx.match` (`
 During a match the example shows each player's ping next to their name and, when the match waits for someone's inputs for more than 0.15 seconds, "Waiting for P3..." at the top. `ctx.session.pingMs(player)` is the round trip time the host measured to each player (the lobby list has it too, `LobbyMember::pingMs`), and `ctx.session.waitingFor()` is the set of players the match waits for. Players can turn the display off in the settings (Game, network status).
 
 In the lobby, `ctx.session` has the players (`lobbyMembers()`: name, ready, host, the loadout they picked), `setLocalName`, `setLocalReady` and the chat (`sendChat`, `chatLog`). Chat lines go through the host, so everyone sees them in the same order; they are not part of the match and are not recorded.
-When the match must end is decided by the simulation (the example's `MatchPhase`: countdown, playing, finished), so every peer shows the results on the same tick.
+When the match must end is decided by the simulation (the match flow: waiting, countdown, playing, round end, results; {doc}`game_code`, "Match flow"), so every peer shows the results on the same tick.
 The engine calls `GameInstance::start` one frame after the session starts the match (so the loading screen is drawn) and `GameInstance::stop` when the match is over.
 A game that draws these screens returns `true` from `GameInstance::menus()`; the engine then leaves `Esc` and `Enter` to the game.
 
