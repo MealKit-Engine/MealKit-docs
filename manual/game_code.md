@@ -130,9 +130,11 @@ Pawns don't move their physics bodies themselves: each one has a `mealkit::sim::
 | `Kinematic` | A swept capsule (Jolt CharacterVirtual): walks up steps, stops at steep slopes, sticks to the floor, rides moving platforms | Precise platforming and shooters |
 | `Capsule` | A rigid capsule with locked rotation, steered by velocity | Shoving party games (the example's default) |
 | `Floating` | A rigid capsule held above the ground by a spring | Physics interaction with smooth movement over bumps |
+| `Ragdoll` | An active ragdoll: a hovering pelvis steers, motors swing the limbs in a walk, and `knockRagdoll` makes it go limp and get back up | Slapstick physics games |
 
-- The mode is the `movement` column of `assets/tables/bodies.table` (in the example: `normal` Capsule, `light` Kinematic, `heavy` Floating), so players pick it with their body in the lobby.
-- The numbers are `move.*` in the tuning: speed, accelerations, jump, and per mode the slope limit, step height and floor snap (Kinematic) or hover gap, spring and damping (Floating).
+- The mode is the `movement` column of `assets/tables/bodies.table` (in the example: `normal` Capsule, `light` Kinematic, `heavy` Floating, `ragdoll` Ragdoll), so players pick it with their body in the lobby.
+- The numbers are `move.*` in the tuning: speed, accelerations, jump, and per mode the slope limit, step height and floor snap (Kinematic) or hover gap, spring and damping (Floating), or motor torque, stiffness, balance and stride (`ragdoll*`, Ragdoll).
+- In the example, pushing knocks nearby ragdoll pawns down for `knockdown` seconds. The ragdoll's part positions are in `mover.ragdoll` for drawing.
 - Each tick, `controlPawns` turns input or AI into a `MoveIntent` (direction and jump) and calls `move()`; after the physics step `sensePawns` calls `senseMover()` to read position, velocity and `mover.grounded`. Use `moverVelocity`/`setMoverVelocity` to launch a pawn (jump pads) in any mode.
 - All modes are hashed, snapshotted and sent to late joiners, so switching modes needs no multiplayer work.
 
