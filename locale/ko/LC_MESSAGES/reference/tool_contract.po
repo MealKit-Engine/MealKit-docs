@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-26 18:30+0900\n"
+"POT-Creation-Date: 2026-11-01 23:55+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ko\n"
@@ -277,6 +277,12 @@ msgstr "도구가 고치는 파일 확장자 (나중에 에셋 브라우저의 \
 
 msgid "The editor looks in folders given with `--tool-path`, then `%LOCALAPPDATA%\\MealKit\\tools\\`, then `toolPath` lines of its settings file, and starts a tool as `\"<exe>\" --project \"<project folder>\"` with the manifest folder as the working folder."
 msgstr "에디터는 `--tool-path`로 준 폴더, `%LOCALAPPDATA%\\MealKit\\tools\\`, 설정 파일의 `toolPath` 줄 순으로 찾고, 매니페스트 폴더를 작업 폴더로 `\"<exe>\" --project \"<프로젝트 폴더>\"`를 실행한다."
+
+msgid "Shared code"
+msgstr "공유 코드"
+
+msgid "The contract has one implementation, the C++ library `mkcontract` in [MealKit Contract](https://github.com/MealKit-Engine/MealKit-Contract) (MIT, no engine headers). The engine editor, MealKit Manager and MealKit Audio all use it, and a C++ tool can too: it reads and writes format lines, the per-user `MealKit` folder (recent and favorite projects, editor settings), tool manifests, live connection info files, and has a small live connection client. Its `docs/CONTRACT.md` is the full spec, including the parts this page leaves out (the per-user folder, the module list that `tools\\module.ps1 search -Tsv` prints). A tool in another language follows that spec."
+msgstr "이 약속의 구현은 하나뿐이다. [MealKit Contract](https://github.com/MealKit-Engine/MealKit-Contract)의 C++ 라이브러리 `mkcontract`(MIT, 엔진 헤더 없음)다. 엔진 에디터, MealKit Manager, MealKit Audio가 모두 이것을 쓰고, C++ 도구도 쓸 수 있다: 형식 줄, 사용자별 `MealKit` 폴더(최근·즐겨찾기 프로젝트, 에디터 설정), 도구 매니페스트, 라이브 연결 정보 파일을 읽고 쓰며, 작은 라이브 연결 클라이언트가 있다. 전체 명세는 그 저장소의 `docs/CONTRACT.md`이고, 이 페이지가 빼놓은 부분(사용자별 폴더, `tools\\module.ps1 search -Tsv`가 출력하는 모듈 목록)도 담고 있다. 다른 언어로 만든 도구는 그 명세를 따른다."
 
 msgid "Runtime parts"
 msgstr "런타임 조각"
