@@ -52,6 +52,8 @@ Game code never moves the camera itself. Game view code keeps one `camera::Brain
 
 **Cutscenes** are camera animations made in Blender: animate a camera and export it as glTF into `assets/models/` (for example `models/cutscenes/intro.glb`). MealKit only plays them back; there is no timeline editor. Each row of `assets/tables/cutscenes.table` (the **Tables** panel) is one cutscene: **File**, the **Animation name** (empty for the first), **Blend from/back to the game camera** times, whether player input is blocked, and **Events**, pairs of a time in seconds and a feedback table row (`0 CutsceneStart 2.5 Whoosh`). Game view code calls `Brain::playCutscene(cutscenes, "intro")`. In multiplayer, start a shared cutscene from something the simulation decides (a tick event or a match phase), so every player sees it on the same tick; the simulation keeps running and only input is held back. The sandbox plays `intro` during the countdown. Solo staging, like a camera on your own death, can start at once on the view side.
 
+**Previewing in the editor**: select a virtual camera and tick **Look Through** in the inspector to see the scene view through it (in edit mode there is no Pawn to follow, so a follow camera stands where it is placed). **View > Preview Cutscene** plays a row of the cutscene table in the scene view, with its event sounds, and returns to the editor camera at the end. Esc, or looking around with the right mouse button, stops either preview.
+
 ## Asset budget
 
 Each model has a budget so that it stays light enough for the minimum spec (integrated graphics). The kind of model is the **first folder under `assets/models/`**:
