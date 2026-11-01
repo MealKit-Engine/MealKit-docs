@@ -197,3 +197,26 @@ powershell -ExecutionPolicy Bypass -File tools\mp_test.ps1 -Exe <project>\build\
 
 When the shadow check fails, it stops and logs the first tick that differs and the state fields that differ. The usual causes are a member that is not declared with `MEALKIT_FIELD`, a value left uninitialized, iteration over a hash map or pointers, or code reading something outside the simulation.
 For a step-by-step example, see {doc}`../getting_started/first_gameplay`.
+
+## Scenario tests: checking your rules
+
+The checks above find determinism bugs. To check that a rule does what you meant ("pushing makes the opponent fall", "respawn 3 seconds after falling"), write a scenario in the project's `tests/` folder. It runs a match without a window and compares state values at given ticks:
+
+```text
+# The bot pushes the dummy off the arena
+seed 7
+inputs push.rec
+tick 300 slots[1].falls == 1
+tick 10s phase == Playing
+tick 900 pawns[0].position.y > -5
+```
+
+- `seed` is the world seed (default 1). Without `inputs`, the solo bot plays (`Headless::botInput`); with `inputs`, the input recording next to the file is replayed (made with `--record-inputs`, or by the editor).
+- `scene` picks a scene in `assets` (default: the start scene) and `ticks` how long to run (default: up to the last check, or the whole recording).
+- `tick <n> <path> <op> <value>` checks the state after that tick. A tick ending in `s` is in seconds. Paths are `WorldState` fields as the [State] panel shows them: `a.b`, `array[2]`, `pool[slot]`.
+- `==` and `!=` work on any value, written as in tuning files (enum names, `x y z`); `<`, `<=`, `>`, `>=` need numbers.
+
+Run one with `build\Release\bin\<name>_headless.exe --test tests\push.scenario`. It prints `SCENARIO ok` or a `SCENARIO FAIL` line per failed check, and exits with code 6 on failure.
+When you change the results on purpose, `--update-expected` rewrites the `==` values with the current results; review the diff before committing.
+
+During solo play in the editor, **Save Scenario** in the play bar saves the inputs so far as `tests/scenarioN.rec` plus a `tests/scenarioN.scenario` with the current top-level state values. Keep the checks that state your rule and delete the rest. Solo play must keep replays (`keepReplays` in project settings).
