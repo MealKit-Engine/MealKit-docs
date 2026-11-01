@@ -31,6 +31,15 @@ Solid boxes and decorations can carry a **model** (glTF): `+ Model` in the scene
 
 Scenes are saved as human-readable `.scene` text: each object is its kind name plus field text. Values of child objects are relative to their parent.
 
+## Prefabs
+
+A prefab is a group of objects saved to a file so you can place it many times, like a lamp post with its light or a furnished room.
+
+- **Save**: select the objects and choose **Edit > Save as Prefab...** (or right-click in the scene tree). Their children are saved too. The file goes in `assets/prefabs/` as a `.prefab` text file. Positions are kept relative to the first selected object; heights above the floor stay as they are.
+- **Place**: in the **Assets** tab, double-click a prefab to place it on the floor in front of the camera, or drag it into the scene view to place it where you drop it.
+- Placing makes plain copies, like Duplicate. Changing the prefab file later does not change copies already in scenes, and the game never reads prefab files.
+- A prefab holds only data: kinds, positions and field values. Behavior is game code; to reuse behavior with its objects, use a source module (see {doc}`modules`).
+
 ## Panels
 
 - **Layout**: the scene tree is on the left, the inspector on the right (with the **Tuning** and **State** tabs), and logs and tables share a strip under the scene view. **View > Layout** picks Edit, Play or Look Dev and resets the layout.
@@ -49,7 +58,7 @@ Scenes are saved as human-readable `.scene` text: each object is its kind name p
 - **Jump to code**: click a blue `file(line)` line in the build log or the log to open it in the code editor set in Preferences (VS Code by default). For a game object type, **Open Code** in the inspector opens its `MEALKIT_OBJECT` declaration.
 - **Scenes**: **File > Scenes** lists the scenes in `assets/scenes`. The star marks the start scene; select another and press **Set as Start Scene** to change it in `mealkit.project`. **File > Recent Scenes** reopens the scenes you used last in this project.
 - **Play from here**: Shift+F5 (**Build > Play From Here**) starts a solo game with the player under the editor camera, or at the selected spawn point. The scene file does not change.
-- **Assets**: the **Assets** tab under the scene view shows the `assets` folders and files. Drag a model into the scene view to place it, or double-click a scene to open it. Right-click a file and choose **Rename or Move** to change its path; references in scenes, tuning, UI and table files are updated too.
+- **Assets**: the **Assets** tab under the scene view shows the `assets` folders and files. Drag a model or prefab into the scene view to place it, or double-click a scene to open it. Right-click a file and choose **Rename or Move** to change its path; references in scenes, tuning, UI and table files are updated too.
 - **Tuning**: two tabs. Game holds the values the simulation reads (`assets/game.tuning`); during solo play changes apply at once. Display holds the values that are only seen (`assets/view.tuning`); changes apply at once in every player window, even with several players.
 - **Tables**: the game's definition tables (`assets/tables/*.table`) and the engine's input bindings table as a spreadsheet, CSV import and export, and the list of missing row references. Playing saves edited tables first.
 - **Sounds**: output buses, playing voices and culled plays, and a preview of sound events (see {doc}`sound`).
