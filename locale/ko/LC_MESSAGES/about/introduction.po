@@ -159,6 +159,6 @@ msgstr "보이스 챗은 엔진 코어에 넣지 않았다. 친구끼리는 **�
 msgid "What's next"
 msgstr "다음 단계"
 
-msgid "The plan and its order are in the {engine}`roadmap <docs/ROADMAP.md>` (\"Recommended order\"), decisions and postponed features in the {engine}`decision log <docs/DECISIONS.md>`, and details of finished items in the {engine}`changelog <docs/CHANGELOG.md>`. The engine is in stage 1 (v0.5, the minimum features that make a game)."
-msgstr "계획과 순서는 {engine}`로드맵 <docs/ROADMAP.md>`(\"추천 순서 요약\"), 정한 것과 미룬 것은 {engine}`결정 기록 <docs/DECISIONS.md>`, 끝낸 것의 상세는 {engine}`변경 기록 <docs/CHANGELOG.md>`에 있다. 엔진은 지금 1단계(v0.5, 게임이 되게 하는 최소 기능) 중이다."
+msgid "The plan and its order are in the {engine}`roadmap <docs/ROADMAP.md>` (\"Recommended order\"), decisions and postponed features in the {engine}`decision log <docs/DECISIONS.md>`, and details of finished items in the {engine}`changelog <docs/CHANGELOG.md>`. The engine has finished stage 3 (v0.7, solid multiplayer) and is in stage 4 (gameplay framework and tools)."
+msgstr "계획과 순서는 {engine}`로드맵 <docs/ROADMAP.md>`(\"추천 순서 요약\"), 정한 것과 미룬 것은 {engine}`결정 기록 <docs/DECISIONS.md>`, 끝낸 것의 상세는 {engine}`변경 기록 <docs/CHANGELOG.md>`에 있다. 엔진은 3단계(v0.7, 탄탄한 멀티플레이)를 끝내고 4단계(게임플레이 프레임워크와 도구) 중이다."
 

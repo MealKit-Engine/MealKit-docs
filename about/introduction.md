@@ -50,4 +50,4 @@ If it becomes necessary, **Steam Voice will be added as an optional module** on 
 ## What's next
 
 The plan and its order are in the {engine}`roadmap <docs/ROADMAP.md>` ("Recommended order"), decisions and postponed features in the {engine}`decision log <docs/DECISIONS.md>`, and details of finished items in the {engine}`changelog <docs/CHANGELOG.md>`.
-The engine is in stage 1 (v0.5, the minimum features that make a game).
+The engine has finished stage 3 (v0.7, solid multiplayer) and is in stage 4 (gameplay framework and tools).
