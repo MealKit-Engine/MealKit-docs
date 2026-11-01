@@ -11,7 +11,7 @@ How many extra jumps a character gets in the air is a game rule, so it goes in t
 In `source/sim/Tuning.h`, add a field next to the other movement values:
 
 ```cpp
-MEALKIT_FIELD(mealkit::f32, jumpSpeed, 8.0f, "Jump speed (m/s)");
+MEALKIT_FIELD(mealkit::sim::MoveTuning, move, {}, "Movement");
 MEALKIT_FIELD(mealkit::u32, airJumps, 1, "Air jumps");
 ```
 
@@ -25,7 +25,7 @@ Values that live across ticks are state, so they are declared with `MEALKIT_FIEL
 ```cpp
 MEALKIT_STRUCT(Pawn) {
     // ...
-    MEALKIT_FIELD(TickTimer, pushReady, {}, "Next push");
+    MEALKIT_FIELD(cooldown::Cooldown, push, {}, "Push cooldown");
     MEALKIT_FIELD(u32, airJumpsLeft, 0, "Air jumps left");
     MEALKIT_FIELD(bool, jumpHeld, false, "Jump held");
     // ...
@@ -36,23 +36,23 @@ A plain member without `MEALKIT_FIELD` would compile and even seem to work, but 
 
 ## 3. Change the system function
 
-Jumping is in `movePawn` in `source/sim/Pawns.cpp`. Replace the jump block with:
+Moving is in `movePawn` in `source/sim/Pawns.cpp`: it hands the intent to the engine's `move()`, which does the ground jump for every movement mode ({doc}`../manual/game_code`, "Character movement modes"). Add the air jump just before that call:
 
 ```cpp
-const bool jumpPressed = intent.jump && !p.jumpHeld; // pressed this tick, not held from the last one
-p.jumpHeld = intent.jump;
-if (p.grounded) p.airJumpsLeft = t.airJumps;
-if (p.grounded && intent.jump && v.y < t.jumpMaxRise) {
-    v.y = t.jumpSpeed;
-    world.events.push(makeEvent(EventKind::Jump, player, p.position, 0.0f));
-} else if (!p.grounded && jumpPressed && p.airJumpsLeft > 0) {
+const bool jumpPressed = intent.move.jump && !p.jumpHeld; // pressed this tick, not held from the last one
+p.jumpHeld = intent.move.jump;
+if (p.mover.grounded) {
+    p.airJumpsLeft = t.airJumps;
+} else if (jumpPressed && p.airJumpsLeft > 0) {
     --p.airJumpsLeft;
-    v.y = t.jumpSpeed;
+    Vec3 v = mealkit::sim::moverVelocity(world.physics, p.mover);
+    v.y = t.move.jumpSpeed;
+    mealkit::sim::setMoverVelocity(world.physics, p.mover, v);
     world.events.push(makeEvent(EventKind::Jump, player, p.position, 0.0f));
 }
 ```
 
-- The rule reads only the state, the tuning and this tick's input (`intent`), so every peer computes the same result.
+- The rule reads only the state, the tuning and this tick's input (`intent`), so every peer computes the same result. `setMoverVelocity` works the same whichever movement mode the body uses.
 - The air jump pushes the same `Jump` tick event as a ground jump, so the jump sound and effects from the feedback table play with no view code. To give it its own sound, add a kind to `MEALKIT_ENUM(EventKind, ...)` and a row for it in the Feedback panel ({doc}`../manual/sound`).
 - AI characters go through the same `movePawn`, so they follow the new rule too.
 

@@ -107,7 +107,7 @@ The example splits a player from the body they move, so that respawning, spectat
 |---|---|---|
 | `PlayerSlot` | A person who joined (score, chosen body, team) | The whole match, `state.slots[player]` |
 | `Controller` | Who drives a pawn: a player slot or an AI | The whole match, a pool |
-| `Pawn` | The body in the world (physics capsule, position, timers) | From spawn until it falls, a pool |
+| `Pawn` | The body in the world (movement mode, position, timers) | From spawn until it falls, a pool |
 
 Change who drives what only with `possess(world, controller, pawn)` and `unpossess(world, controller)` (`sim/Pawns.cpp`), which keep both sides' ids in agreement.
 A controller without a pawn is waiting to respawn. Read-only helpers for the view are `playerPawn(state, slot)` and `pawnPlayer(state, pawn)`.
@@ -120,6 +120,21 @@ A controller without a pawn is waiting to respawn. Read-only helpers for the vie
 - Move bodies by setting velocities (`setLinearVelocity`), not positions, and read the result back after `physics.step()` (`position`, `linearVelocity`, `castRay`). The example copies positions into `WorldState` in `sensePawns`, so the view never reads the physics world.
 - `setContactEvents(minSpeed, maxPerTick)` makes `physics.contacts()` list strong impacts each tick, strongest first and independent of the thread count. The example turns them into `Impact` events for sounds.
 - The result does not depend on the number of physics threads, and `World::hash()` includes the physics state (`physics.hashState`).
+
+## Character movement modes
+
+Pawns don't move their physics bodies themselves: each one has a `mealkit::sim::Mover` (`mealkit/sim/Movement.h`), and the body kind picks how it moves.
+
+| Mode | How it moves | Good for |
+|---|---|---|
+| `Kinematic` | A swept capsule (Jolt CharacterVirtual): walks up steps, stops at steep slopes, sticks to the floor, rides moving platforms | Precise platforming and shooters |
+| `Capsule` | A rigid capsule with locked rotation, steered by velocity | Shoving party games (the example's default) |
+| `Floating` | A rigid capsule held above the ground by a spring | Physics interaction with smooth movement over bumps |
+
+- The mode is the `movement` column of `assets/tables/bodies.table` (in the example: `normal` Capsule, `light` Kinematic, `heavy` Floating), so players pick it with their body in the lobby.
+- The numbers are `move.*` in the tuning: speed, accelerations, jump, and per mode the slope limit, step height and floor snap (Kinematic) or hover gap, spring and damping (Floating).
+- Each tick, `controlPawns` turns input or AI into a `MoveIntent` (direction and jump) and calls `move()`; after the physics step `sensePawns` calls `senseMover()` to read position, velocity and `mover.grounded`. Use `moverVelocity`/`setMoverVelocity` to launch a pawn (jump pads) in any mode.
+- All modes are hashed, snapshotted and sent to late joiners, so switching modes needs no multiplayer work.
 
 ## From the simulation to the screen: tick events
 
