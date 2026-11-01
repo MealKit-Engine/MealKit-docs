@@ -170,6 +170,12 @@ msgstr "`--bug-report-at <프레임>`"
 msgid "Save a bug report at that frame, as if F9 was pressed (tests)"
 msgstr "그 프레임에 F9를 누른 것처럼 버그 리포트 저장 (시험용)"
 
+msgid "`--crash-at <frame>`"
+msgstr "`--crash-at <프레임>`"
+
+msgid "Crash on purpose at that frame to test crash reports (tests)"
+msgstr "크래시 리포트 시험용으로 그 프레임에 일부러 크래시 (시험용)"
+
 msgid "`--capture <png> [tick]`"
 msgstr "`--capture <png> [tick]`"
 

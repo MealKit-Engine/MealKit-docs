@@ -29,6 +29,7 @@ The example game is called `sandbox`. In a game project, the executables carry t
 | `--rewind-test` | Record inputs and snapshots, rewind and replay at the exit tick |
 | `--replay <file>` | Watch a saved replay (`.rec`, the user folder's `replays/` keeps the latest matches, {doc}`../manual/multiplayer`) |
 | `--bug-report-at <frame>` | Save a bug report at that frame, as if F9 was pressed (tests) |
+| `--crash-at <frame>` | Crash on purpose at that frame to test crash reports (tests) |
 | `--capture <png> [tick]` | Save a screenshot after the given tick (without a tick: the last frame of `--frames`) |
 | `--frames <n>` | Draw n frames and exit (screens outside a match, such as the title) |
 | `--ui-press <frame:node,...>` | Press the UI widget with that node name at that frame (screen flow tests, e.g. `20:start,50:solo`) |

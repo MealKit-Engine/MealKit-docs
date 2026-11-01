@@ -91,6 +91,8 @@ Project Settings `keepReplays` sets how many are kept (default 20, oldest are de
 Press **F9** in the game to save the current match for a developer: the user folder's `bugreports/<date>_<time>.zip` holds the input recording so far (`replay.rec`), the build and data versions (`info.txt`), the recent log, a screenshot and one line the player writes (development builds ask for it; shipped builds save without a note).
 Open the zip with **File > Open Replay...** in the editor (or `--replay <file.zip>`): it replays to the tick where F9 was pressed and pauses there. Project Settings `bugReports` turns the key off.
 
+If the game crashes, it leaves the same kind of zip by itself: on the next start the game says so, offers to open the folder, and saves `crash/<date>_<time>.zip` in the user folder with the input recording up to the crash, `info.txt`, the recent log, `crash.txt` (exception code and address) and `crash.dmp` (a minidump to open in Visual Studio with the matching `.pdb`). **File > Open Replay...** plays it to the tick where the game crashed. The same `bugReports` setting turns it off.
+
 ## When the host leaves
 
 The match also goes on when the host leaves. The host sends everyone a succession list every second, and the first connected player on it takes over: immediately when the host quits, or after 3 seconds of silence during a match when the host crashes (10 seconds in the lobby and while the match loads).
