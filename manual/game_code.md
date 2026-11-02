@@ -243,3 +243,6 @@ Run one with `build\Release\bin\<name>_headless.exe --test tests\push.scenario`.
 When you change the results on purpose, `--update-expected` rewrites the `==` values with the current results; review the diff before committing.
 
 During solo play in the editor, **Save Scenario** in the play bar saves the inputs so far as `tests/scenarioN.rec` plus a `tests/scenarioN.scenario` with the current top-level state values. Keep the checks that state your rule and delete the rest. Solo play must keep replays (`keepReplays` in project settings).
+
+A scenario file with no `tick` lines is accepted only together with `--update-expected`, which then writes one `==` check per top-level state value at the last tick (the same checks Save Scenario writes).
+MealKit QA uses this: in its report list, **Save as Scenario** turns a bug report's, crash report's or replay's recording into `tests/<kind>_<name>.scenario` that runs to the report's tick, so a reported bug becomes a test you can keep. Its **Tests** page runs the project's scenarios and `mp_test` and shows the results (without a window: `MealKitQA --run-tests --project <folder> [--mp-test]`).
