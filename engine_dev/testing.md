@@ -3,13 +3,13 @@
 ## Full check
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File tools\check.ps1                     # everything, before a commit; close the editor first
-powershell -ExecutionPolicy Bypass -File tools\check.ps1 -Changed            # only the groups the changed files need
+powershell -ExecutionPolicy Bypass -File tools\check.ps1                     # everything, about 5 minutes; close the editor first
+powershell -ExecutionPolicy Bypass -File tools\check.ps1 -Changed            # only the groups the changed files need; the default
 powershell -ExecutionPolicy Bypass -File tools\check.ps1 -Quick              # build + unit tests + determinism tests
 powershell -ExecutionPolicy Bypass -File tools\check.ps1 -Only render,editor # only these groups
 ```
 
-The steps are sorted into groups: `static` (check scripts), `unit`, `det` (determinism and multiplayer), `game`, `tools`, `render` (reference images and Vulkan), `editor`, `project` and `export`. While you work, use `-Changed`: it reads the git working tree (with `-Base <commit>` also the commits after it) and picks the groups from the changed paths with the rules at the top of `tools\check.ps1`. Documentation changes pick nothing, and an audio change does not run the multiplayer tests. `-DryRun` only prints the groups. Run the full check when a roadmap item is done.
+The steps are sorted into groups: `static` (check scripts), `unit`, `det` (determinism and multiplayer), `game`, `tools`, `render` (reference images and Vulkan), `editor`, `project` and `export`. While you work, use `-Changed`: it reads the git working tree (with `-Base <commit>` also the commits after it) and picks the groups from the changed paths with the rules at the top of `tools\check.ps1`. Documentation changes pick nothing, and an audio change does not run the multiplayer tests. `-DryRun` only prints the groups. Use `-Changed` before committing too, including when a roadmap item is done. Run the full check only when you want every group, for example before a release.
 
 The determinism group always runs in the full check and with `-Only det`. Otherwise it runs only when the determinism key changed since its last pass: the simulation version of the Release build (a hash of the sources that reach the simulation) plus the tuning, scene, model, table and replay files. The key of the last pass is kept in `build\check-state\det.key`.
 
