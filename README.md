@@ -1,7 +1,9 @@
 # MealKit documentation
 
-Source of the documentation for the [MealKit](https://github.com/KingProtea99/MealKit) engine.
+Source of the documentation for the [MealKit](https://github.com/MealKit-Engine/MealKit) engine.
 Sphinx + MyST (Markdown). English is the source language; Korean is a gettext translation in `locale/ko/LC_MESSAGES/`.
+
+> **Beta (v0.x).** MealKit is under active development: APIs and file formats may change between versions until v1.0, and projects are moved forward with the upgrade tool. Feedback and bug reports are welcome.
 
 ## Build locally
 

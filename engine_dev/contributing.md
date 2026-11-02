@@ -11,7 +11,7 @@ Sign off every commit with `git commit -s`, which adds a `Signed-off-by: Name <e
 
 - Follow the order of the {engine}`roadmap <docs/ROADMAP.md>` and the "postponed" table in the {engine}`decision log <docs/DECISIONS.md>`. When a decision changes, add a row to the decision log.
 - Use only the answers in the {engine}`coding model <docs/CODING_MODEL.md>`. A design question that is not in its table gets a new row, agreed on before any code is written.
-- The rules for the code itself (where OS and graphics APIs may be called, the determinism rules, which checks a change needs) change in the same commit as the code, so they are kept in the engine's {engine}`CLAUDE.md` and the coding model, not here. The checks are explained in {doc}`testing`.
+- The rules for the code itself (where OS and graphics APIs may be called, the determinism rules, which checks a change needs) change in the same commit as the code, so they are kept in the engine's {engine}`CONTRIBUTING.md` and the coding model, not here. The checks are explained in {doc}`testing`.
 
 ## Adding an external library
 
@@ -22,7 +22,7 @@ The engine builds only deterministic simulation, lockstep networking, the render
 - fit in the 5 MB budget of the shipped executable,
 - be copied into `third_party/` at a fixed version.
 
-How to add one (the files it needs and the generated notices) is in the engine's {engine}`CLAUDE.md`.
+How to add one (the files it needs and the generated notices) is in the engine's {engine}`CONTRIBUTING.md`.
 
 ## Documentation
 
@@ -34,5 +34,5 @@ This documentation lives in its own repository (`MealKit-docs`). English is the 
 - `python tools/build.py check` builds both languages with warnings as errors and fails on any untranslated, fuzzy or leftover message. CI runs the same check and a link check.
 - Use the terms in the {doc}`../glossary`, which match the editor's Korean strings (`engine/res/strings/ko.txt`).
 - Before engine 1.0 there is one documentation branch, `master`, and `ENGINE_VERSION` must match the engine's `VERSION` (MAJOR.MINOR). Engine messages point to the latest documentation. From 1.0, each engine minor version gets its own documentation branch, and engine messages point to the documentation of their own version.
-- Rules that change in the same commit as engine code stay in the engine repository: the roadmap, the decision log, the changelog, `CLAUDE.md`, the coding model with the determinism rules, and `third_party/VERSIONS.txt`. This documentation links to them instead of copying them.
+- Rules that change in the same commit as engine code stay in the engine repository: the roadmap, the decision log, the changelog, `CONTRIBUTING.md`, the coding model with the determinism rules, and `third_party/VERSIONS.txt`. This documentation links to them instead of copying them.
 - Editor screenshots are made with the editor's `--capture`, with `--lang en` or `--lang ko` for each language.

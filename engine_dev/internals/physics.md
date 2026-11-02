@@ -37,7 +37,7 @@ Jolt is built from source with fixed options in {engine}`cmake/MealKit.cmake`:
 - Floating point exceptions are off, and the Jolt GPU compute back ends are off.
 - With clang-cl, Jolt also gets `-ffp-contract=off`, so the compiler does not fuse a multiply and an add by itself. MSVC uses `/fp:precise`.
 
-These options are not to be changed (engine `CLAUDE.md`).
+These options are not to be changed (engine `CONTRIBUTING.md`).
 
 ### Same calls in the same order
 
