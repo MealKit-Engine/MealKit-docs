@@ -50,6 +50,14 @@ A terrain is a heightmap stretched over its object's box: black is the bottom of
 - **Brushes**: turn on **Brush** in the **Terrain** section and drag with the left mouse button in the scene view. **Raise** and **Lower** push the ground, **Flatten** levels it to the height where the stroke started, **Smooth** softens it. **Radius** and **Strength** set the size and speed. Each stroke is one undo step; saving the scene writes the heightmap file.
 - If you re-export the PNG from the external tool while the editor is open, the terrain reloads (unless you have unsaved brush edits).
 
+### Scatter layers
+
+A scatter layer paints thousands of copies of one model, such as grass, rocks or small props, onto terrain and floors. They are only for looks: players walk through them, and they are not part of the multiplayer content check. Place large objects that need collision as normal objects instead.
+
+- **Add**: **+ Type... > Scatter layer**. Set its **Model** field (or leave it empty for small boxes) and its **Density**, size range and **Draw distance**.
+- **Paint**: with the layer selected and **Brush** on, drag with the left mouse button in the scene view. Copies land on whatever is below: terrain, boxes or models. Hold Shift (or pick **Erase**) to remove them. Each stroke is one undo step.
+- The copies are saved to `assets/terrain/<scene>_<id>.scatter` when you save the scene. Make one layer per model.
+
 ## Panels
 
 - **Layout**: the scene tree is on the left, the inspector on the right (with the **Tuning** and **State** tabs), and logs and tables share a strip under the scene view. **View > Layout** picks Edit, Play or Look Dev and resets the layout.

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-11-02 09:12+0900\n"
+"POT-Creation-Date: 2026-11-02 09:32+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -162,6 +162,21 @@ msgstr "**브러시**: **지형** 섹션에서 **브러시**를 켜고 씬 뷰�
 
 msgid "If you re-export the PNG from the external tool while the editor is open, the terrain reloads (unless you have unsaved brush edits)."
 msgstr "에디터가 열린 동안 외부 도구에서 PNG를 다시 내보내면 지형이 다시 읽힌다(저장하지 않은 브러시 편집이 있으면 제외)."
+
+msgid "Scatter layers"
+msgstr "흩뿌리기 레이어"
+
+msgid "A scatter layer paints thousands of copies of one model, such as grass, rocks or small props, onto terrain and floors. They are only for looks: players walk through them, and they are not part of the multiplayer content check. Place large objects that need collision as normal objects instead."
+msgstr "흩뿌리기 레이어는 풀, 바위, 작은 소품 같은 모델 하나를 지형과 바닥 위에 수천 개 칠해 놓는다. 보이기만 하는 것이라 플레이어는 그대로 지나가고, 멀티플레이 콘텐츠 검사에도 들어가지 않는다. 충돌이 필요한 큰 물체는 일반 물체로 놓는다."
+
+msgid "**Add**: **+ Type... > Scatter layer**. Set its **Model** field (or leave it empty for small boxes) and its **Density**, size range and **Draw distance**."
+msgstr "**추가**: **+ 종류... > 흩뿌리기 레이어**. **모델** 필드(비우면 작은 상자)와 **밀도**, 크기 범위, **그리기 거리**를 정한다."
+
+msgid "**Paint**: with the layer selected and **Brush** on, drag with the left mouse button in the scene view. Copies land on whatever is below: terrain, boxes or models. Hold Shift (or pick **Erase**) to remove them. Each stroke is one undo step."
+msgstr "**칠하기**: 레이어를 선택하고 **브러시**를 켠 채 씬 뷰에서 왼쪽 버튼으로 드래그한다. 복사본은 아래에 있는 것(지형, 상자, 모델) 위에 놓인다. Shift를 누르거나 **지우기**를 고르면 지운다. 한 획이 되돌리기 한 번이다."
+
+msgid "The copies are saved to `assets/terrain/<scene>_<id>.scatter` when you save the scene. Make one layer per model."
+msgstr "복사본은 씬을 저장할 때 `assets/terrain/<씬>_<id>.scatter`에 저장된다. 모델마다 레이어를 하나씩 만든다."
 
 msgid "Panels"
 msgstr "패널"
