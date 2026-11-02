@@ -47,7 +47,7 @@ The engine fixes the project layout, so tools find files without settings and so
 | Folder | What goes there |
 |---|---|
 | `source/` | Game code (`sim/`, `view/`, `app/`) |
-| `assets/` | Only what ships with the game. Directly inside it: the kind folders `scenes/ prefabs/ models/ textures/ sounds/ effects/ ui/ fonts/ tables/ strings/ lut/` and the fixed files `game.tuning`, `view.tuning`, `input.bindings`, `feedback.table`, `sounds.events`. Subfolders inside a kind folder are free |
+| `assets/` | Only what ships with the game. Directly inside it: the kind folders `scenes/ prefabs/ models/ textures/ sounds/ effects/ ui/ fonts/ tables/ strings/ lut/ probes/ terrain/` and the fixed files `game.tuning`, `view.tuning`, `input.bindings`, `feedback.table`, `sounds.events`. Subfolders inside a kind folder are free |
 | `art/` | Source files of external tools (`.blend`, Penpot, PSD, audio projects). Not shipped, not in the content hash |
 | `modules/` | Source modules, one folder per module ({doc}`modules`) |
 | `third_party/` | The game's own libraries: one folder per library with its original `LICENSE` and a `mealkit.txt` |

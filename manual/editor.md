@@ -40,6 +40,16 @@ A prefab is a group of objects saved to a file so you can place it many times, l
 - Placing makes plain copies, like Duplicate. Changing the prefab file later does not change copies already in scenes, and the game never reads prefab files.
 - A prefab holds only data: kinds, positions and field values. Behavior is game code; to reuse behavior with its objects, use a source module (see {doc}`modules`).
 
+## Terrain
+
+A terrain is a heightmap stretched over its object's box: black is the bottom of the box, white the top. Players stand and collide on it, and it goes into the multiplayer content check like models.
+
+- **Add**: **+ Type... > Terrain** makes a flat 128 x 128 m terrain. Its heightmap is saved to `assets/terrain/<scene>_<id>.png` when you save the scene.
+- **Import**: make a heightmap in an external terrain tool (Gaea, World Machine, etc.) and export a square 16-bit grayscale PNG into `assets/terrain/`. In the inspector's **Terrain** section, choose **Import PNG...**. The top of the image is the +z side.
+- **Size**: the object's scale is the terrain size: x and z are the width and depth, y the height range. Rotation is ignored.
+- **Brushes**: turn on **Brush** in the **Terrain** section and drag with the left mouse button in the scene view. **Raise** and **Lower** push the ground, **Flatten** levels it to the height where the stroke started, **Smooth** softens it. **Radius** and **Strength** set the size and speed. Each stroke is one undo step; saving the scene writes the heightmap file.
+- If you re-export the PNG from the external tool while the editor is open, the terrain reloads (unless you have unsaved brush edits).
+
 ## Panels
 
 - **Layout**: the scene tree is on the left, the inspector on the right (with the **Tuning** and **State** tabs), and logs and tables share a strip under the scene view. **View > Layout** picks Edit, Play or Look Dev and resets the layout.
