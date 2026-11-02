@@ -22,8 +22,8 @@ powershell -ExecutionPolicy Bypass -File tools\new_project.ps1 -Name MyGame -Tem
 - `arena` (default) copies the example game's code and `assets/`: a physics party versus game with AI, boxes, jump pads and cutscenes.
 - `empty` starts with one character per player on a floor, plus the title, lobby, pause and results screens. The screen flow code (`source/app/Flow.cpp`) and its screens are the same as the example game's.
 
-Both fill in the files from `templates/project` (`mealkit.project`, `CMakeLists.txt`, `build.bat`, `editor.bat`, `.vscode/`, `README.md`, `CLAUDE.md`), and `mealkit.project` records the template in `templateName`.
-The engine location is the `engine` line in the project's `mealkit.project`, and the engine's `tools\build_project.bat` does the actual build.
+Both fill in the files from `templates/project` (`mealkit.project`, `CMakeLists.txt`, `build.bat`, `build.ps1`, `editor.bat`, `.vscode/`, `README.md`, `CLAUDE.md`), and `mealkit.project` records the template in `templateName`.
+The engine location is the `engine` line in the project's `mealkit.project`, and the engine's `tools\build.ps1` does the actual build (`build.bat` on Windows, `pwsh build.ps1` on Linux and macOS).
 The project's `CMakeLists.txt` includes `cmake/MealKit.cmake` and creates the game exe, the game DLL and the release target with a single `mealkit_add_game(...)`.
 
 ## Upgrading a project

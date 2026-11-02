@@ -13,7 +13,8 @@ build.bat Vulkan     :: Release with the Vulkan graphics backend: build\Vulkan\b
 build.bat VulkanEditor :: the editor with the Vulkan backend: build\VulkanEditor\bin
 ```
 
-`build.bat` calls `tools\build_project.bat`, which loads the Visual Studio environment (vcvars64) and builds with Ninja into `build\<Config>`.
+`build.bat` calls `tools\build_project.bat`, which runs the shared build script `tools\build.ps1`: it loads the Visual Studio environment (vcvars64) and builds with Ninja into `build\<Config>`.
+On Linux and macOS the same script runs with PowerShell 7 and clang: `pwsh build.ps1 Headless` builds the headless game and the tests (the window, renderer and editor for those systems come later).
 `ClangCL` needs the Visual Studio component "C++ Clang tools for Windows" (clang-cl on PATH; otherwise it is looked up in Visual Studio installations, preview versions included).
 
 The first build downloads a pinned version of the DXC shader compiler (about 32 MB, checked against a SHA-256 hash) into `%LOCALAPPDATA%\MealKit\tools`; later builds reuse it. The DXC in the Windows SDK cannot make Vulkan shaders, so it is not used.
