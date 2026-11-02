@@ -100,7 +100,7 @@ For example: `MealKitEditor.exe --project . --frames 60 --select 5 --capture out
 
 | Script | What it does |
 |---|---|
-| `new_project.ps1 -Name <name> [-Path <folder>]` | Create a game project from the template |
+| `new_project.ps1 -Name <name> [-Path <folder>] [-Template <template>]` | Create a game project from a template (`arena` = the example game, the default; `empty` = a floor and the screen flow) |
 | `rename_project.ps1 -Project <folder> -Name <name>` | Rename a project (and its exe) |
 | `upgrade_project.ps1 -Project <folder> [-Source]` | Upgrade a project to the current engine template (`-Source` replaces the game code with the example code, with a backup) |
 | `check.ps1 [-Quick]` | Full check: builds, unit tests, determinism tests, captures |

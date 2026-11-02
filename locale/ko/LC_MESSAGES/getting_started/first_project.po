@@ -4,20 +4,22 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: MealKit\n"
-"POT-Creation-Date: 2026-10-18 16:06+0900\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-11-02 16:11+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
-"Language: ko\n"
 "Language-Team: Korean\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.18.0\n"
 
 msgid "Your first project"
 msgstr "첫 프로젝트"
 
+#, python-brace-format
 msgid "Like Godot, MealKit has **one general-purpose editor** that opens many **game project folders**. See {doc}`../manual/projects` for what a project folder contains."
 msgstr "고도처럼 MealKit은 **범용 에디터 하나**가 여러 **게임 프로젝트 폴더**를 연다. 프로젝트 폴더에 무엇이 있는지는 {doc}`../manual/projects`에 있다."
 
@@ -42,16 +44,26 @@ msgstr "명령줄로 새 프로젝트 만들기"
 msgid ""
 "powershell -ExecutionPolicy Bypass -File tools\\new_project.ps1 -Name MyGame          # → D:\\GameEngine\\MealKit\\MyGame\n"
 "powershell -ExecutionPolicy Bypass -File tools\\new_project.ps1 -Name MyGame -Path E:\\Games\n"
+"powershell -ExecutionPolicy Bypass -File tools\\new_project.ps1 -Name MyGame -Template empty\n"
 msgstr ""
 "powershell -ExecutionPolicy Bypass -File tools\\new_project.ps1 -Name MyGame          # → D:\\GameEngine\\MealKit\\MyGame\n"
 "powershell -ExecutionPolicy Bypass -File tools\\new_project.ps1 -Name MyGame -Path E:\\Games\n"
+"powershell -ExecutionPolicy Bypass -File tools\\new_project.ps1 -Name MyGame -Template empty\n"
 
-msgid "This copies the example game's code and `assets/`, and fills in the files from `templates/project` (`mealkit.project`, `CMakeLists.txt`, `build.bat`, `editor.bat`, `.vscode/`, `README.md`, `CLAUDE.md`). The engine location is the `engine` line in the project's `mealkit.project`, and the engine's `tools\\build_project.bat` does the actual build. The project's `CMakeLists.txt` includes `cmake/MealKit.cmake` and creates the game exe, the game DLL and the release target with a single `mealkit_add_game(...)`."
-msgstr "예제 게임의 코드와 `assets/`를 복사하고 `templates/project`의 파일(`mealkit.project`, `CMakeLists.txt`, `build.bat`, `editor.bat`, `.vscode/`, `README.md`, `CLAUDE.md`)을 채운다. 엔진 위치는 프로젝트 `mealkit.project`의 `engine` 줄에 있고, 실제 빌드는 엔진의 `tools\\build_project.bat`이 한다. 프로젝트 `CMakeLists.txt`는 `cmake/MealKit.cmake`를 include하고 `mealkit_add_game(...)` 한 번으로 게임 exe·게임 DLL·출시 타깃을 만든다."
+msgid "`-Template` picks the starting point (the editor's Create New Project window has the same choice):"
+msgstr "`-Template`으로 시작점을 고른다 (에디터의 새 프로젝트 만들기 창에서도 같은 것을 고른다):"
+
+msgid "`arena` (default) copies the example game's code and `assets/`: a physics party versus game with AI, boxes, jump pads and cutscenes."
+msgstr "`arena` (기본): 예제 게임의 코드와 `assets/`를 복사한다. AI, 상자, 점프대, 컷신이 있는 물리 파티 대전 게임이다."
+
+msgid "`empty` starts with one character per player on a floor, plus the title, lobby, pause and results screens. The screen flow code (`source/app/Flow.cpp`) and its screens are the same as the example game's."
+msgstr "`empty`: 바닥 위에 플레이어마다 캐릭터 하나와 타이틀·로비·일시정지·결과 화면으로 시작한다. 화면 흐름 코드(`source/app/Flow.cpp`)와 그 화면들은 예제 게임과 같다."
+
+msgid "Both fill in the files from `templates/project` (`mealkit.project`, `CMakeLists.txt`, `build.bat`, `editor.bat`, `.vscode/`, `README.md`, `CLAUDE.md`), and `mealkit.project` records the template in `templateName`. The engine location is the `engine` line in the project's `mealkit.project`, and the engine's `tools\\build_project.bat` does the actual build. The project's `CMakeLists.txt` includes `cmake/MealKit.cmake` and creates the game exe, the game DLL and the release target with a single `mealkit_add_game(...)`."
+msgstr "어느 쪽이든 `templates/project`의 파일(`mealkit.project`, `CMakeLists.txt`, `build.bat`, `editor.bat`, `.vscode/`, `README.md`, `CLAUDE.md`)을 채우고, `mealkit.project`의 `templateName`에 템플릿을 적는다. 엔진 위치는 프로젝트 `mealkit.project`의 `engine` 줄에 있고, 실제 빌드는 엔진의 `tools\\build_project.bat`이 한다. 프로젝트 `CMakeLists.txt`는 `cmake/MealKit.cmake`를 include하고 `mealkit_add_game(...)` 한 번으로 게임 exe·게임 DLL·출시 타깃을 만든다."
 
 msgid "Upgrading a project"
 msgstr "프로젝트 업그레이드"
 
 msgid "The engine version is in the engine's `VERSION` file. When the project template changes, the version goes up, and the editor suggests upgrading a project when it opens one. `tools\\upgrade_project.ps1 -Project <folder>` replaces only template files you have not changed (tracked by hashes in `.mealkit-template`) and leaves your changed files next to the new version as `.new`."
 msgstr "엔진 버전은 엔진의 `VERSION` 파일에 있다. 프로젝트 템플릿이 바뀌면 버전이 올라가고, 에디터는 프로젝트를 열 때 업그레이드를 권한다. `tools\\upgrade_project.ps1 -Project <폴더>`는 고치지 않은 템플릿 파일만 바꾸고(`.mealkit-template`의 해시로 안다), 고친 파일은 새 버전을 `.new`로 옆에 남긴다."
-
