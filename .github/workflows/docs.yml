@@ -12,16 +12,12 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-24.04
-    env:
-      ENGINE_TOKEN: ${{ secrets.ENGINE_REPO_TOKEN }}
     steps:
       - uses: actions/checkout@v4
-      # Compared with the engine repo's VERSION. While the engine repo is private, the ENGINE_REPO_TOKEN secret is needed to fetch it.
+      # Compared with the engine repo's VERSION
       - uses: actions/checkout@v4
-        if: ${{ env.ENGINE_TOKEN != '' }}
         with:
-          repository: KingProtea99/MealKit
-          token: ${{ secrets.ENGINE_REPO_TOKEN }}
+          repository: MealKit-Engine/MealKit
           path: engine
           sparse-checkout: VERSION
           sparse-checkout-cone-mode: false

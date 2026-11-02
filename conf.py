@@ -26,7 +26,7 @@ myst_enable_extensions = ["deflist", "colon_fence"]
 myst_heading_anchors = 3
 
 # Files whose source of truth is the engine repo (CODING_MODEL, VERSIONS.txt etc.) link to the engine repo
-engine_repo = "https://github.com/KingProtea99/MealKit"
+engine_repo = "https://github.com/MealKit-Engine/MealKit"
 extlinks = {
     "engine": (engine_repo + "/blob/master/%s", "%s"),
 }
