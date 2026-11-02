@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-11-01 20:40+0900\n"
+"POT-Creation-Date: 2026-11-02 21:16+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -357,4 +357,19 @@ msgstr "`third_party/steamworks/sdk`에 Steamworks SDK도 있으면 EOS 빌드�
 
 msgid "Login and lobby creation have been verified with SDK 1.19.2. Joining from a second PC has not been verified yet."
 msgstr "로그인과 로비 만들기는 SDK 1.19.2로 확인했다. 다른 PC에서 들어오기는 아직 확인하지 않았다."
+
+msgid "Crossplay settings"
+msgstr "크로스플레이 설정"
+
+msgid "The lobby shows each player's input device (keyboard/mouse, gamepad or touch), taken from the device they used last."
+msgstr "로비에는 플레이어마다 입력 장치(키보드/마우스, 게임패드, 터치)가 표시됩니다. 마지막으로 쓴 장치 기준입니다."
+
+msgid "Set `mixInputKinds` to `false` in `mealkit.project` to keep a room to one kind of input: the host then refuses joiners whose device differs from its own (\"This room only takes players using gamepad\"). Players already in the room are not removed when they switch devices."
+msgstr "`mealkit.project`에서 `mixInputKinds`를 `false`로 하면 한 방에 한 가지 입력만 받습니다. 방장과 장치가 다른 사람의 참가를 방장이 거부합니다(\"이 방은 게임패드 사용자만 받습니다\"). 이미 방에 있는 사람은 장치를 바꿔도 내보내지 않습니다."
+
+msgid "Players can turn **Crossplay** off in the gameplay settings. They then only meet players on the same operating system: LAN rooms on other systems are hidden, and joining one is refused. Either side turning it off is enough."
+msgstr "플레이어는 게임플레이 설정에서 **크로스플레이**를 끌 수 있습니다. 끄면 같은 운영체제의 플레이어만 만납니다. 다른 시스템의 LAN 방은 숨겨지고, 들어가려 하면 거부됩니다. 어느 한쪽만 꺼도 적용됩니다."
+
+msgid "Joining a match only needs the simulation data to match. Model files count only by their physics hulls, so textures, materials and per-platform cooking don't split players."
+msgstr "매치에 참가하려면 시뮬레이션 데이터만 같으면 됩니다. 모델 파일은 물리 헐만 비교하므로 텍스처, 머티리얼, 플랫폼별 쿠킹이 달라도 함께할 수 있습니다."
 

@@ -189,3 +189,10 @@ Epic's terms do not allow the EOS SDK in the repository either. EOS lobbies and 
 - Two game processes on one PC are the same EOS user. Test joining with two PCs.
 - When the Steamworks SDK is also in `third_party/steamworks/sdk`, the EOS build logs in with the **Steam account** (a Steam web API ticket) and `I` opens the Steam invite window. A friend who accepts joins the EOS lobby by its code. The match itself always goes over EOS. This needs Steam under **Identity Providers** in the Epic developer portal (your Steam app ID and its publisher Web API key, so your own Steam app, not 480). Without it the log says `Steam login failed` and the game logs in with the device ID instead.
 - Login and lobby creation have been verified with SDK 1.19.2. Joining from a second PC has not been verified yet.
+
+### Crossplay settings
+
+- The lobby shows each player's input device (keyboard/mouse, gamepad or touch), taken from the device they used last.
+- Set `mixInputKinds` to `false` in `mealkit.project` to keep a room to one kind of input: the host then refuses joiners whose device differs from its own ("This room only takes players using gamepad"). Players already in the room are not removed when they switch devices.
+- Players can turn **Crossplay** off in the gameplay settings. They then only meet players on the same operating system: LAN rooms on other systems are hidden, and joining one is refused. Either side turning it off is enough.
+- Joining a match only needs the simulation data to match. Model files count only by their physics hulls, so textures, materials and per-platform cooking don't split players.
