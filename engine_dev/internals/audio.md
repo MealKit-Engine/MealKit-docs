@@ -101,10 +101,31 @@ An event with a `subtitle` string key adds a line to `subtitles()` when it is pl
 
 Buses are miniaudio sound groups. `master`, `music`, `sfx`, `ui` and `voice` are made at start; any other bus name in the table makes a new bus under `master`.
 
-Each bus is wired as: bus group → meter node → master group → master meter → device.
-The meter node is a custom miniaudio node that copies samples through and keeps the peak, which falls by 3 % per audio block. It runs on the audio thread and stores the peak in an atomic value that the main thread reads; this is the only data the audio thread writes.
+Each bus is wired as: bus group → FX node → master group → master FX node → device.
+The FX node (next section) ends with a peak meter that keeps the peak, falling by 3 % per audio block, in an atomic value that the main thread reads; this is the only data the audio thread writes for the main thread.
 
 `setBusVolume` sets a group's volume (the settings screen does this). `setMuted` sets the whole engine's volume to 0, for example when the window is in the background.
+
+## Effects on buses
+
+Each bus has one custom node after its group instead of a plain meter: bus group → FX node → parent group. The node runs on the audio thread and does, in order:
+
+- a 2-pole low-pass (snapshots), skipped when no snapshot filters the bus;
+- reverb, only on buses with `reverb true`: an own Freeverb (8 combs and 4 allpasses per channel, the public-domain algorithm) added on top of the dry sound. The main thread eases the values toward `setReverb`'s target and the node eases the amount across each block; when the amount reaches 0 the buffers are cleared so an old tail never returns;
+- the peak meter.
+
+The main thread writes the node's settings as atomics every update; the buffers are allocated on the main thread before reverb is switched on.
+Bus volume is the player volume × mix volume × ducking × snapshot volume. Ducking follows the trigger bus: a bus counts as sounding when a mixed voice or a music track plays on it or on one of its children.
+
+## Music
+
+Music tracks are not voices: each track holds one streamed `ma_sound` per stem. `playMusic` finds the next beat or bar of the current track from its start frame and tempo (at least 50 ms ahead, since the audio thread mixes in blocks), schedules the new stems with `ma_sound_set_start_time_in_pcm_frames` plus a fade-in from that frame, and the old stems with `ma_sound_set_stop_time_with_fade_in_pcm_frames`. So the switch is exact to the sample no matter when the game calls it. Stems loop independently and stay together because they have the same length.
+Each update moves every stem's weight toward its target from the stem parameter (a global parameter), and stopped tracks are freed a little after their end. Stingers are ordinary voices with a start frame on the music's grid.
+
+## Occlusion and reverb zones
+
+The runtime only takes numbers: `emitters()` lists the mixed 3D voices and `setOcclusion(handle, amount)` sets one (eased over 0.12 s into volume and low-pass, which uses the voice's low-pass node). The glue casts the rays: each update it checks up to 4 voices in turn with `PhysicsWorld::castRay` from the listener, stopping 1.5 m short of the sound so the body making it does not hide it. It reads the physics world between ticks on the main thread; the game exe and editor play pass `GameInstance::physics()` every frame, so audio never keeps a world from a finished match.
+Reverb zones come from the scene's `reverb_zone` objects at match start. Each update the glue finds the smallest box around the listener (boxes may be rotated) and calls `setReverb` with its values and fade time when the zone changes.
 
 ## 3D sound
 
@@ -130,7 +151,11 @@ Randomness here (volume, pitch, clip choice) uses the runtime's own small PCG32 
 | Parameter curves | `apply` | One parameter drives volume, pitch and low-pass cutoff by linear interpolation. |
 | Crossfade blend container | `apply` | Triangle weights between neighbouring clips make a smooth blend along the parameter. |
 | Audio graph with groups | `Impl::bus` | Buses are miniaudio sound groups chained to the master, so one volume change affects all sounds of a bus. |
-| Peak meter with decay | `meterProcess` | A pass-through node tracks the peak level and lets it fall slowly, read through an atomic. |
+| Peak meter with decay | `fxProcess` | The bus FX node tracks the peak level and lets it fall slowly, read through an atomic. |
+| Freeverb | `Freeverb`, `fxProcess` | Parallel lowpass-feedback combs and series allpasses, stereo spread by a 23-sample offset. |
+| Sample-exact scheduling | `playMusic`, `boundary` | Music switches and stingers are given absolute engine frames on the beat grid instead of starting on the next update. |
+| Ducking and snapshots | `updateMix` | Bus gains move linearly toward targets each update; snapshot cutoffs interpolate in octaves. |
+| Occlusion rays in turn | `Engine::Impl::occlusion` | A fixed number of rays per frame, rotated over the playing 3D voices, with eased results. |
 | Decode once, copy to play | `decode`, `ma_sound_init_copy` | Effects are decoded when the table loads; each play shares the decoded data. |
 | Streaming | `MA_SOUND_FLAG_STREAM` | Long music is read from disk while it plays instead of being decoded into memory. |
 | Handedness conversion | `setListener`, `apply` | Negates z so miniaudio's right-handed space matches MealKit's left-handed one. |

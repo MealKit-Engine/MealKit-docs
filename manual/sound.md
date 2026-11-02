@@ -9,11 +9,15 @@ Events live in `assets/sounds.events`. Sound designers edit it in **MealKit Audi
 
 ```text
 # MealKit audio events. Edit them in MealKit Audio or by hand
-@format audio-events 1
+@format audio-events 2
 
 mixbus ambience
 parent music
 volume 0.6
+
+mixbus music
+duckBy voice
+duckVolume 0.35
 
 event hit
 clips sounds/hit_1.wav sounds/hit_2.wav sounds/hit_3.wav
@@ -23,7 +27,7 @@ paramMax 15
 volumeAtMin 0.2
 ```
 
-An `event <name>` block is one event and a `mixbus <name>` block defines a bus. Keys that are left out keep their defaults. The event keys are:
+An `event <name>` block is one event and a `mixbus <name>` block defines a bus; `music <name>` and `snapshot <name>` blocks are described below. Keys that are left out keep their defaults. The event keys are:
 
 | Keys | Meaning |
 |---|---|
@@ -35,10 +39,13 @@ An `event <name>` block is one event and a `mixbus <name>` block defines a bus. 
 | `bus` | Mix bus: `music`, `sfx`, `ui`, `voice`, or a bus defined with `mixbus` |
 | `loop`, `stream` | Loop; stream from disk instead of loading into memory (music) |
 | `priority`, `maxInstances`, `steal`, `cooldown` | Voice management (below) |
+| `occlusionVolume`, `occlusionLowpass` | How a 3D sound is heard when something stands between it and the listener: volume multiplier and low-pass cutoff when fully blocked (defaults 0.35 and 1200 Hz) |
 | `subtitle`, `subtitleSeconds` | A game string key shown at the bottom of the screen when the sound plays (players turn subtitles on or off in the settings), and for how long. Plays of the same key share one line. The screen is `assets/ui/subtitles.ui` |
 
 A `mixbus` block sets a bus's `parent` (default `master`) and its mix `volume`, which is multiplied by the player's volume setting for that bus.
+`reverb true` gives the bus reverb from reverb zones (below). `duckBy <bus>` lowers this bus while anything plays on the other bus or its children: down to `duckVolume`, in `duckAttack` seconds, and back in `duckRelease` seconds. Voice lines over music is the usual case.
 The file is reloaded when it changes, also during play. The engine moves the listener with the camera.
+Files written in format 1 (engine 0.7.12 and older) read as they are.
 Projects made with engine 0.5.1 or older have `assets/sounds.table` instead; the engine still reads it with a warning, and `tools\upgrade_project.ps1` converts it to `sounds.events`.
 
 ### MealKit Audio
@@ -47,11 +54,52 @@ MealKit Audio is a separate program for sound designers ([MealKit-Audio](https:/
 
 - **Events**: the list of events, with add, duplicate and delete. Events with a missing clip are red. Double-click an event to play it.
 - **Event**: every setting of the selected event. Clips are picked from the `.wav` and `.ogg` files under `assets/`. The volume, pitch and low-pass curves are drawn over the parameter range; drag their end points. The 3D section draws the distance fade.
-- **Buses**: the buses with their parent, mix volume and a level meter.
-- **Preview**: plays the selected event through the same runtime the game uses, with sliders for the parameter and the distance.
+- **Buses**: the buses with their parent, mix volume and a level meter. The effects button of a bus turns on reverb and sets ducking.
+- **Music**: the music tracks with their stems, tempo, transition and stem parameter. **Play** starts the track (switching on its transition point when another plays), the bar and beat are shown, a slider moves the stem parameter, and the stinger buttons play the selected event on the next beat or bar.
+- **Mix**: snapshots, each with a **preview** box that turns it on in the preview, and reverb sliders to hear buses with reverb.
+- **Preview**: plays the selected event through the same runtime the game uses, with sliders for the parameter, the distance and the occlusion.
 - **Live**: the running development builds of the game and the editor for this project. **Play in game** plays the selected event in the game at the listener, and the game's voices and bus levels are shown.
 
 Ctrl+S saves `assets/sounds.events`; a running game or editor reloads it at once. Ctrl+Z and Ctrl+Y undo and redo.
+
+### Music
+
+A `music <name>` block is a track. Its `stems` are files of the same length that play together and loop. Game code starts a track with `ctx.audio.playMusic("arena")` and stops it with `ctx.audio.stopMusic(seconds)`.
+
+```text
+music arena
+stems sounds/music_bass.wav sounds/music_drums.wav sounds/music_arp.wav
+bpm 120
+stemParam tension
+```
+
+| Keys | Meaning |
+|---|---|
+| `bpm`, `beatsPerBar`, `offset` | Tempo, time signature, and the seconds before the first beat (a pickup) |
+| `transition` | Where `playMusic` switches to this track while another one plays: `bar` (default), `beat` or `immediate`. The switch lands on that exact sample |
+| `crossfade` | Seconds the old track fades out and this one fades in at the switch |
+| `stemParam`, `paramMin`, `paramMax`, `stemFade` | The first stem always plays; the others come in one after another as this game parameter rises from `paramMin` to `paramMax` (`ctx.audio.setGlobalParam("tension", 0.8f)`), each taking `stemFade` seconds |
+| `volume`, `bus`, `loop` | Track volume, bus (default `music`), looping |
+
+`ctx.audio.stinger("victory", audio::Quantize::Bar)` plays a sound event on the next beat or bar of the playing music (right away when none plays). `ctx.audio.music()` tells the playing track, the bar and the beat.
+
+### Snapshots
+
+A snapshot is a set of bus values that is turned on and off, for example a muffled mix while a pause menu is open:
+
+```text
+snapshot pause
+fade 0.25
+volume music 0.6
+lowpass sfx 900
+```
+
+`volume <bus> <value>` multiplies a bus's volume and `lowpass <bus> <Hz>` filters it while the snapshot is on; `fade` is the time to turn it on or off. Game code calls `ctx.audio.setSnapshot("pause", true)`. When several are on, volumes multiply and the lowest cutoff wins.
+
+### Walls and rooms
+
+The engine muffles 3D sounds behind walls: every frame it checks a few of the playing 3D sounds with a physics ray from the listener, and a blocked sound eases to its event's `occlusionVolume` and `occlusionLowpass`. This needs the game to return its physics world from `GameInstance::physics()` (the sample does).
+A **reverb zone** is a scene object (Add > Reverb zone): a box with room size, damping, amount, width and a change time. While the listener is inside it (the smallest one when zones overlap), buses with `reverb true` get that reverb, and it fades back out when the listener leaves. Reverb zones are view only and outside the content hash, so players may differ in them.
 
 ### Voice management
 
