@@ -62,6 +62,8 @@ MealKit Audio is a separate program for sound designers ([MealKit-Audio](https:/
 
 Ctrl+S saves `assets/sounds.events`; a running game or editor reloads it at once. Ctrl+Z and Ctrl+Y undo and redo.
 
+To notice when a sound changes by accident, run the golden render tests: `MealKitAudio --golden --project <project folder>` plays every event alone without a sound device and compares how loud it is over time with `tests/audio/<event>.golden`. The first run writes the files; commit them. Later runs print `GOLDEN ok` or `GOLDEN FAIL <event>` with the time and level that differ (within 1.5 dB counts as the same). After an intended change, `--update` rewrites the files.
+
 ### Music
 
 A `music <name>` block is a track. Its `stems` are files of the same length that play together and loop. Game code starts a track with `ctx.audio.playMusic("arena")` and stops it with `ctx.audio.stopMusic(seconds)`.
