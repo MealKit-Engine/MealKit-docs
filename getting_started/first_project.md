@@ -7,7 +7,7 @@ Like Godot, MealKit has **one general-purpose editor** that opens many **game pr
 - Run `editor.bat` in the engine folder (it builds the editor first if needed), or run `build\Editor\bin\MealKitEditor.exe` directly. The project manager opens, similar to Godot's.
 - It offers Create, Import, search and the editor language (Korean/English). In the list you can star a project (favorites), click the icon, the name (= the exe name, `tools\rename_project.ps1`) or the folder path (moves the folder) to change it, and double-click to open the project.
 - The icon you pick (`icon.png`, project setting `icon`) becomes the game exe icon in release builds. Without one, the MealKit icon is used.
-- A project folder's `editor.bat` runs `MealKitEditor.exe --project <that folder>`. The example project in the engine repository opens with `editor.bat sample [scene]`.
+- A project folder's `editor.bat` runs `MealKitEditor.exe --project <that folder>`. The engine repository's reference sample `samples/sandbox` opens with `editor.bat sample [scene]` (open `samples/coop` the same way with `--project`).
 
 ## Creating a project from the command line
 

@@ -35,8 +35,8 @@ msgstr "[만들기]·[가져오기]·검색·에디터 언어(한국어/English)
 msgid "The icon you pick (`icon.png`, project setting `icon`) becomes the game exe icon in release builds. Without one, the MealKit icon is used."
 msgstr "고른 아이콘(`icon.png`, 프로젝트 설정 `icon`)은 출시 빌드 때 게임 exe 아이콘이 된다. 없으면 밀키트 아이콘을 쓴다."
 
-msgid "A project folder's `editor.bat` runs `MealKitEditor.exe --project <that folder>`. The example project in the engine repository opens with `editor.bat sample [scene]`."
-msgstr "프로젝트 폴더의 `editor.bat`은 `MealKitEditor.exe --project <그 폴더>`를 실행한다. 엔진 저장소의 예제 프로젝트는 `editor.bat sample [씬]`으로 연다."
+msgid "A project folder's `editor.bat` runs `MealKitEditor.exe --project <that folder>`. The engine repository's reference sample `samples/sandbox` opens with `editor.bat sample [scene]` (open `samples/coop` the same way with `--project`)."
+msgstr "프로젝트 폴더의 `editor.bat`은 `MealKitEditor.exe --project <그 폴더>`를 실행한다. 엔진 저장소의 참조 샘플 `samples/sandbox`는 `editor.bat sample [씬]`으로 연다(`samples/coop`도 `--project`로 같은 방식으로 연다)."
 
 msgid "Creating a project from the command line"
 msgstr "명령줄로 새 프로젝트 만들기"

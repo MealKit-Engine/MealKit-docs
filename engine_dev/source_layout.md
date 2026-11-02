@@ -20,14 +20,14 @@ engine/
   res/                         editor icon, editor UI translations (strings/ko.txt)
   tests/Tests.cpp              engine unit tests (mealkit_tests.exe)
   tools/SimCheck.cpp           determinism rule check for a game's sim/ folder (run at build time by mealkit_add_game)
-samples/sandbox/               example game = template for new projects (source/ in a project)
+samples/sandbox/               reference sample (physics party versus) = template for new projects (source/ in a project); its own mealkit.project, assets/
   sim/                         deterministic simulation: World (state, step order, hash), Systems.h, Pawns (slots, controllers, pawns, AI), Props, Objects, Tuning
   view/                        Camera, LocalInput (controls → GameInput), Draw, Effects (tick events → screen effects); only reads sim/ state
   app/                         GameSession (one match, GameInstance implementation), main.cpp (shipped exe), GameModule.cpp (editor DLL entry point),
                                Headless.cpp (headless entry point: match start and bot input, also used by GameSession)
   replays/                     fixed input recordings that CI replays on every build
-mealkit.project                project file used when the engine repository is opened as the example game project
-assets/scenes, assets/models   scenes and models
+samples/coop/                  reference sample (co-op third person: terrain, chasers, active ragdolls, revives); same layout, not a template
+samples/*/assets/              each sample's scenes, models, tables, UI
 third_party/                   external libraries (VERSIONS.txt)
 cmake/MealKit.cmake            shared build settings + mealkit_add_game() (used by the engine repository and game projects)
 cmake/MealKitExport.cmake      release folder creation (game_export target)

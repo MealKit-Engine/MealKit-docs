@@ -34,8 +34,8 @@ msgstr "여기서 하는 일"
 msgid "The engine folder (the engine repository, for example `D:\\MealKit`)"
 msgstr "엔진 폴더 (엔진 저장소, 예: `D:\\MealKit`)"
 
-msgid "The engine (`engine/`), the general-purpose editor `MealKitEditor.exe`, third-party libraries, shared build settings (`cmake/`), tools, the example game `samples/sandbox`"
-msgstr "엔진(`engine/`), 범용 에디터 `MealKitEditor.exe`, 서드파티, 빌드 공통 설정(`cmake/`), 도구, 예제 게임 `samples/sandbox`"
+msgid "The engine (`engine/`), the general-purpose editor `MealKitEditor.exe`, third-party libraries, shared build settings (`cmake/`), tools, the reference samples `samples/sandbox` and `samples/coop`"
+msgstr "엔진(`engine/`), 범용 에디터 `MealKitEditor.exe`, 서드파티, 빌드 공통 설정(`cmake/`), 도구, 참조 샘플 `samples/sandbox`, `samples/coop`"
 
 msgid "Engine and editor development, determinism tests"
 msgstr "엔진·에디터 개발, 결정론 테스트"
@@ -91,8 +91,8 @@ msgstr "엔진과 게임 코드의 경계는 `mealkit::game::GameInstance`(`engi
 msgid "The shipped exe uses the game class directly, so there is no DLL boundary cost."
 msgstr "출시 exe는 게임 클래스를 직접 쓰므로 DLL 경계 비용이 없다."
 
-msgid "The engine repository itself is also an example game project (top-level `mealkit.project`, code in `samples/sandbox`, assets in `assets/`). It is the template for new projects and the target of the engine determinism test (`tools\\mp_test.ps1`)."
-msgstr "엔진 저장소 자신도 예제 게임 프로젝트다(최상위 `mealkit.project`, 코드는 `samples/sandbox`, 에셋은 `assets/`). 새 프로젝트의 템플릿이자 엔진 결정론 테스트(`tools\\mp_test.ps1`)의 대상이다."
+msgid "The engine repository's reference samples are game projects in `samples/<name>/`, each with its own `mealkit.project`, code (`sim/`, `view/`, `app/`) and `assets/`: `samples/sandbox` (physics party versus, the template for new projects) and `samples/coop` (co-op third person). The engine build compiles both, and they are the targets of the engine determinism test (`tools\\mp_test.ps1`)."
+msgstr "엔진 저장소의 참조 샘플은 `samples/<이름>/`에 있는 게임 프로젝트이고, 각자 `mealkit.project`, 코드(`sim/`, `view/`, `app/`), `assets/`를 가진다: `samples/sandbox`(물리 파티 대전, 새 프로젝트의 템플릿)와 `samples/coop`(3인칭 협동). 엔진 빌드가 둘 다 빌드하고, 둘 다 엔진 결정론 테스트(`tools\\mp_test.ps1`)의 대상이다."
 
 msgid "MealKit Manager"
 msgstr "MealKit Manager"
