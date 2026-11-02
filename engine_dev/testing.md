@@ -28,6 +28,13 @@ The full check draws a few fixed views without the editor UI and compares them w
 - When you change the picture on purpose (a new shader feature, lighting), run `tools\check.ps1 -UpdateGolden`: it replaces the reference images with the Direct3D 12 ones, and the step shows `SKIP`. Look at the new images before committing them.
 - When lighting models or post processing arrive, add views with them on and off.
 
+## Performance baseline
+
+- The `game` group runs `sandbox.exe --benchmark 10` (fixed seed, bots, vsync off) and compares average frame, 1 % worst frame, simulation per tick, GPU frame time and peak process/GPU memory with `engine/tests/perf/baseline.txt`.
+- A value is flagged when it is more than the baseline's tolerance (20 %) over the baseline and also more than 0.5 ms (times) or 32 MB (memory) over it. The step then shows `WARN` with the values; it never fails the check, because other work on the PC easily slows a run down.
+- The baseline belongs to one GPU (its `adapter` line). On a PC with another GPU the step shows `SKIP`, so CI machines and other developers' PCs do not compare against it.
+- After a change that makes the engine faster or slower on purpose, run `tools\check.ps1 -UpdatePerf` on the measuring PC: it writes this run's numbers as the new baseline and shows `WARN: baseline updated`. Run it with nothing else busy, and commit the file. Each run's full report is `build\check\benchmark.txt`.
+
 ## Determinism test
 
 ```powershell

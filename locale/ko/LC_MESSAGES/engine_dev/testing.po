@@ -69,6 +69,21 @@ msgstr "그림을 일부러 바꿨을 때(새 셰이더 기능, 조명)는 `tool
 msgid "When lighting models or post processing arrive, add views with them on and off."
 msgstr "조명 모델이나 포스트 프로세싱이 들어오면 그것을 켜고 끈 장면을 더한다."
 
+msgid "Performance baseline"
+msgstr "성능 기준선"
+
+msgid "The `game` group runs `sandbox.exe --benchmark 10` (fixed seed, bots, vsync off) and compares average frame, 1 % worst frame, simulation per tick, GPU frame time and peak process/GPU memory with `engine/tests/perf/baseline.txt`."
+msgstr "`game` 그룹은 `sandbox.exe --benchmark 10`(고정 시드, 봇, vsync 끔)을 돌려 평균 프레임, 1 % 최악 프레임, 틱당 시뮬레이션, GPU 프레임 시간, 프로세스/GPU 메모리 최대치를 `engine/tests/perf/baseline.txt`와 비교한다."
+
+msgid "A value is flagged when it is more than the baseline's tolerance (20 %) over the baseline and also more than 0.5 ms (times) or 32 MB (memory) over it. The step then shows `WARN` with the values; it never fails the check, because other work on the PC easily slows a run down."
+msgstr "값이 기준선보다 허용치(20 %) 넘게 크고, 동시에 0.5 ms(시간) 또는 32 MB(메모리) 넘게 크면 표시한다. 그때 그 단계는 값과 함께 `WARN`으로 나온다. PC의 다른 작업 때문에 실행이 쉽게 느려지므로 검사를 실패시키지는 않는다."
+
+msgid "The baseline belongs to one GPU (its `adapter` line). On a PC with another GPU the step shows `SKIP`, so CI machines and other developers' PCs do not compare against it."
+msgstr "기준선은 GPU 하나의 것이다(`adapter` 줄). 다른 GPU의 PC에서는 그 단계가 `SKIP`으로 나오므로 CI 머신이나 다른 개발자 PC는 비교하지 않는다."
+
+msgid "After a change that makes the engine faster or slower on purpose, run `tools\check.ps1 -UpdatePerf` on the measuring PC: it writes this run's numbers as the new baseline and shows `WARN: baseline updated`. Run it with nothing else busy, and commit the file. Each run's full report is `build\check\benchmark.txt`."
+msgstr "엔진을 일부러 빠르게 하거나 느리게 하는 변경 뒤에는 측정 PC에서 `tools\check.ps1 -UpdatePerf`를 돌린다: 이번 실행의 수치를 새 기준선으로 쓰고 `WARN: baseline updated`로 나온다. 다른 일이 없을 때 돌리고 파일을 커밋한다. 실행마다 전체 보고서는 `build\check\benchmark.txt`이다."
+
 msgid "Determinism test"
 msgstr "결정론 테스트"
 
