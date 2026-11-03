@@ -24,7 +24,7 @@ The game overrides `GameInstance::debugUi` and wraps the body in `#if MEALKIT_DE
 void GameSession::debugUi(mealkit::game::GameContext& ctx) {
 #if MEALKIT_DEBUG_UI
     if (ImGui::Begin("Sandbox", nullptr, ImGuiWindowFlags_AlwaysAutoResize)) {
-        ImGui::Text("tick %u", m_sim.world().state.tick);
+        ImGui::Text("tick %u", sim().world().state.tick);
         if (ImGui::Button("Shockwave")) mealkit::sim::sendCommand(ctx.session, DebugShockwave{});
     }
     ImGui::End();

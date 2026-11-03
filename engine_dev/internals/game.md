@@ -20,7 +20,7 @@ A game implements one class, `game::GameInstance` ({engine}`engine/src/mealkit/g
 | `menus` | `true` if the game draws its own screen flow (title, menus, lobby, results). The engine then starts at the menu when no room is given on the command line and leaves `Esc` and `Enter` to the game. |
 | `update` | Every frame: camera input and simulation ticks. |
 | `buildFrame` | Every frame: fills the frame parameters and the draw list. |
-| `nextTick`, `stateHash`, `finished`, `captureDue`, `takeSimMsPerTick` | By the engine loop for automated tests and performance numbers. |
+| `nextTick`, `stateHash`, `finished`, `captureDue`, `takeSimMsPerTick` | By the engine loop for automated tests and performance numbers. `game::SimulationGame` implements these and the next row. |
 | `setTuning`, `stateView`, `debug` | By the editor: live tuning, the State panel, and pause and rewind. |
 | `debugUi` | Inside the Dear ImGui frame, in development builds and the editor. |
 
@@ -110,9 +110,9 @@ The editor passes `nullptr` for the display window, so player settings such as w
 
 ## The simulation runner
 
-`game::Simulation<World>` ({engine}`engine/src/mealkit/game/Simulation.h`) runs the game's `World` at a fixed tick. The game's `GameSession` owns one. It is a template, so the game's world type is known at compile time and the class is `final`.
+`game::Simulation<World>` ({engine}`engine/src/mealkit/game/Simulation.h`) runs the game's `World` at a fixed tick. The game's `GameSession` gets one from its base class `game::SimulationGame<World>` ({engine}`engine/src/mealkit/game/SimulationGame.h`), which also implements the `GameInstance` functions that only report the simulation, so a game writes only `start`, `stop`, `update` and `buildFrame`. It is a template, so the game's world type is known at compile time and the class is `final`.
 
-The world must have `state` (a `MEALKIT_STRUCT` with a `tick` field), `physics`, `events`, `step(const net::TickInputs&)` and `hash()`. A `static_assert` refuses a state that contains `std::string`: names belong in tuning or scene data, and the state uses ids.
+The world must have `state` (a `MEALKIT_STRUCT` with a `tick` field), `physics`, `events`, `step(const net::TickInputs&)` and `hash()`, and for `SimulationGame` also `tuning` and `setTuning(const Tuning&)`. A `static_assert` refuses a state that contains `std::string`: names belong in tuning or scene data, and the state uses ids.
 
 ### Fixed tick
 

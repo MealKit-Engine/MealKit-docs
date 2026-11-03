@@ -151,25 +151,25 @@ The game declares its event type with `MEALKIT_STRUCT` and its kinds with `MEALK
 
 ## Running the match: GameSession
 
-`app/GameSession` implements `game::GameInstance`, the boundary between the engine and the game. The engine calls it the same way in the shipped exe, in editor play mode and in each player window:
+`app/GameSession` derives from `game::SimulationGame<World>` (`mealkit/game/SimulationGame.h`): a `game::GameInstance`, the boundary between the engine and the game, that owns the match's simulation runner (`sim()`). The engine calls it the same way in the shipped exe, in editor play mode and in each player window:
 
 | Call | When | The example |
 |---|---|---|
 | `lobby(session, options, userFolder)` | Every frame before a match | Sends the loadout (the chosen body) |
-| `start(ctx, scene, options)` | Once when the match starts | `m_sim.start(...)` → `Headless::startWorld` → `World::reset` |
-| `update(ctx, dt)` | Every frame | Screen flow, camera, local input, then `m_sim.update(...)` runs the confirmed ticks |
+| `start(ctx, scene, options)` | Once when the match starts | `sim().start(...)` → `Headless::startWorld` → `World::reset` |
+| `update(ctx, dt)` | Every frame | Screen flow, camera, local input, then `sim().update(...)` runs the confirmed ticks |
 | `buildFrame(ctx, now, frame, out)` | Every frame | Camera and draw list from the two latest states |
-| `stop(ctx)` | When the match ends | `m_sim.stop()` |
-| `stateHash`, `stateView`, `setTuning`, `debug` | When the engine or editor asks | Forwarded to `World` and `game::Simulation` |
+| `stop(ctx)` | When the match ends | `sim().stop()` |
+| `stateHash`, `stateView`, `setTuning`, `debug` and the other reports | When the engine or editor asks | Already implemented by `game::SimulationGame` from `World` and the runner |
 
-`game::Simulation<World>` (`mealkit/game/Simulation.h`) does the lockstep part: it runs only confirmed ticks, sends the local input for each, keeps the previous state for interpolation, and runs the shadow simulation, recording and rewind. The game gives it two callbacks:
+`game::Simulation<World>` (`mealkit/game/Simulation.h`, `sim()`) does the lockstep part: it runs only confirmed ticks, sends the local input for each, keeps the previous state for interpolation, and runs the shadow simulation, recording and rewind. The game gives it two callbacks:
 
 ```cpp
 auto sample = [&](u32 tick) { /* build this tick's 8-byte input from ctx.actions and the camera */ };
 auto onTick = [&](const World& world) {
     for (const GameEvent& e : world.events) ctx.feedback.trigger(e, session.localPlayer());
 };
-m_sim.update(session, dt, sample, onTick);
+sim().update(session, dt, sample, onTick);
 ```
 
 `onTick` runs after every tick, so no event is lost when one frame runs several ticks.
@@ -179,9 +179,9 @@ m_sim.update(session, dt, sample, onTick);
 Ticks run at a fixed rate (30 or 60 per second, `tickRate` in the project settings), and frames run as fast as the screen. The view draws between the last two states:
 
 ```cpp
-const WorldState& previous = m_sim.previous();
-const WorldState& current = m_sim.world().state;
-const f32 alpha = m_sim.alpha(); // 0..1 between the two ticks
+const WorldState& previous = sim().previous();
+const WorldState& current = sim().world().state;
+const f32 alpha = sim().alpha(); // 0..1 between the two ticks
 Vec3 at = lerp(before->position, pawn.position, alpha);
 ```
 
