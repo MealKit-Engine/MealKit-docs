@@ -80,11 +80,11 @@ msgstr "`Ctrl+S` / `Ctrl+O` / `Ctrl+N`"
 msgid "Save / open / new scene"
 msgstr "저장 / 열기 / 새 씬"
 
-msgid "`F5` / `Esc`"
-msgstr "`F5` / `Esc`"
+msgid "`F5`"
+msgstr "`F5`"
 
-msgid "Play / back to editing"
-msgstr "플레이 / 편집으로 돌아오기"
+msgid "Play / back to editing (`Esc` goes to the game, for its pause menu)"
+msgstr "플레이 / 편집으로 돌아오기 (`Esc`는 게임의 일시 정지 메뉴로 간다)"
 
 msgid "`Ctrl+R` / `Ctrl+B`"
 msgstr "`Ctrl+R` / `Ctrl+B`"
