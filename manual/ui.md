@@ -154,9 +154,10 @@ Mouse input over a widget or a filled panel does not reach the game. On screens 
 Tick **Edit** under **Edit screen** in the **View > UI** panel to change the open screen while seeing it as the game draws it (same layout, fonts, string tables and view model values).
 
 - **Selecting**: click a box in the preview, or a node in the tree. `Ctrl`+click selects the box beneath the selected one (a label inside a button, then the button). The selected node is outlined in blue.
+- **Moving and resizing**: drag the selected node to move it (its `pos`); edges and centers snap to the parent's and the siblings' (pink guides), hold `Ctrl` to place freely. The eight handles on its box change its size (an axis that was `hug` or `fill` becomes a number). Nodes a flex or grid layout places have no handles: dragging one changes its order among its siblings (a yellow line shows where it goes). A frame's padding is tinted green. A whole drag is one undo step.
 - **Properties**: the panel shows the node's name, its position (only for nodes a flex or grid layout doesn't place), its size and fill or text color, and below them every line of the node as text, in the format of [A screen file](#a-screen-file). Edit a line in place, remove it with **x**, or pick a property in **Add...**, type its value and press **Add**. `$theme` tokens and comments stay as they are.
 - **Undo and saving**: `Ctrl+Z` and `Ctrl+Y` undo and redo screen edits while the panel is in edit mode (the scene has its own history). Changes are shown at once but written to the file only by **Save** or `Ctrl+S`; switching to another screen with unsaved changes asks first. Only the lines you changed differ in the saved file.
 - **Deleting**: `Delete` removes the selected node and its children.
 - Screens exported from Penpot open read-only: change them in Penpot and export again.
 
-`MealKitEditor.exe --ui pause.ui --ui-select resume` opens the screen in edit mode with that node selected.
+`MealKitEditor.exe --ui pause.ui --ui-select resume` opens the screen in edit mode with that node selected; add `--ui-drag 0,90` to drag it by that many logical units after the first frame (the log shows the result).
