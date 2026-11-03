@@ -8,15 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-28 23:20+0900\n"
+"POT-Creation-Date: 2026-11-03 11:03+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: ko <LL@li.org>\n"
 "Language: ko\n"
+"Language-Team: ko <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.18.0\n"
 
 msgid "Writing modules"
@@ -162,8 +162,9 @@ msgstr "**모듈은 혼자 돌지 않습니다.** 게임이 상태를 자기 `Wo
 msgid "Tuning is your own `MEALKIT_STRUCT Tuning` with default values. The game nests it in its `Tuning`, so it ends up in `game.tuning`; screen values go the same way in `view.tuning`. There is no tuning file of your own."
 msgstr "튜닝은 기본값을 담은 모듈 자기 `MEALKIT_STRUCT Tuning`입니다. 게임이 자기 `Tuning`에 중첩하므로 `game.tuning`에 들어가고, 화면용 값은 같은 방식으로 `view.tuning`에 들어갑니다. 모듈만의 튜닝 파일은 없습니다."
 
-msgid "A module `sim/` file may include the engine core, its own `sim/` and the `sim/` of modules in `requires`. SimCheck reports SIM013 when it includes the game's `source/` and SIM014 when it includes a module that is not in `requires`, on top of the usual simulation rules."
-msgstr "모듈 `sim/` 파일은 엔진 코어, 자기 `sim/`, `requires`에 있는 모듈의 `sim/`만 include할 수 있습니다. 보통 시뮬레이션 규칙에 더해, 게임 `source/`를 include하면 SimCheck가 SIM013을, `requires`에 없는 모듈을 include하면 SIM014를 냅니다."
+#, python-brace-format
+msgid "A module includes only the engine's public headers (the list in {engine}`engine/public_headers.txt`, which v1.x keeps source compatible). A module `sim/` file may include the engine core, its own `sim/` and the `sim/` of modules in `requires`. SimCheck reports SIM013 when it includes the game's `source/` and SIM014 when it includes a module that is not in `requires`, on top of the usual simulation rules."
+msgstr "모듈은 엔진의 공개 헤더({engine}`engine/public_headers.txt`의 목록, v1.x 동안 소스 호환을 지킴)만 include합니다. 모듈 `sim/` 파일은 엔진 코어, 자기 `sim/`, `requires`에 있는 모듈의 `sim/`만 include할 수 있습니다. 보통 시뮬레이션 규칙에 더해, 게임 `source/`를 include하면 SimCheck가 SIM013을, `requires`에 없는 모듈을 include하면 SIM014를 냅니다."
 
 msgid "Asset paths are `modules/<name>/<kind>/...` (resolved to `modules/<name>/assets/<kind>/...`). A table example: `MEALKIT_TABLE(ItemDef, \"modules/inventory/tables/items.table\", 0)`."
 msgstr "에셋 경로는 `modules/<이름>/<종류>/...`입니다(`modules/<이름>/assets/<종류>/...`로 풀립니다). 표 예: `MEALKIT_TABLE(ItemDef, \"modules/inventory/tables/items.table\", 0)`."
@@ -217,3 +218,4 @@ msgstr "CI가 등록 파일과 모든 `v*` 태그를 검사하고 가장 새 태
 
 msgid "The entry holds only the name and the repository; everything else comes from your tags and `module.txt`. New versions need no pull request: push a new tag and the daily run adds it to `index.json`. The list records each tag's commit, so never move a tag that is listed; publish a new version instead."
 msgstr "등록 파일에는 이름과 저장소만 있고, 나머지는 모두 태그와 `module.txt`에서 옵니다. 새 버전은 풀 리퀘스트가 필요 없습니다: 새 태그를 push하면 매일 도는 CI가 `index.json`에 더합니다. 목록은 태그마다 커밋을 적어 두므로, 이미 올라간 태그는 옮기지 말고 새 버전을 내세요."
+
