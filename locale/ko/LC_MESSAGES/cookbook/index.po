@@ -3,8 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: MealKit\n"
-"POT-Creation-Date: 2026-10-18 16:06+0900\n"
+"Project-Id-Version:  MealKit\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-11-03 11:40+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -18,8 +19,9 @@ msgstr ""
 msgid "Cookbook"
 msgstr "쿡북"
 
-msgid "Short recipes for common tasks. More recipes are added with the roadmap's stage 4 \"Cookbook\" item."
-msgstr "자주 하는 일의 짧은 방법 모음. 로드맵 4단계 \"쿡북 문서\" 항목에서 더 채운다."
+#, python-brace-format
+msgid "Short recipes for common tasks. Each game recipe is code from a reference sample (`samples/sandbox`, `samples/coop`) and keeps the simulation rules ({doc}`../manual/game_code`); the docs check fails when the sample code it shows changes."
+msgstr "자주 하는 작업의 짧은 레시피. 게임 레시피는 모두 레퍼런스 샘플(`samples/sandbox`, `samples/coop`)의 코드이고 시뮬레이션 규칙을 지킨다({doc}`../manual/game_code`). 보여 주는 샘플 코드가 바뀌면 문서 검사가 실패한다."
 
 msgid "Test multiplayer on one PC"
 msgstr "한 PC에서 멀티플레이 시험하기"

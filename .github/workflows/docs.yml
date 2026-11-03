@@ -14,12 +14,18 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v7
-      # Compared with the engine repo's VERSION
+      # Compared with the engine repo's VERSION; cookbook code is compared with the sample files it comes from
       - uses: actions/checkout@v7
         with:
           repository: MealKit-Engine/MealKit
           path: engine
-          sparse-checkout: VERSION
+          sparse-checkout: |
+            VERSION
+            samples/*/sim/
+            samples/*/view/
+            samples/*/app/
+            samples/*/assets/*.table
+            samples/*/assets/*.bindings
           sparse-checkout-cone-mode: false
       - uses: actions/setup-python@v7
         with:

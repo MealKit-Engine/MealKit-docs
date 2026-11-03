@@ -1,6 +1,15 @@
 # Cookbook
 
-Short recipes for common tasks. More recipes are added with the roadmap's stage 4 "Cookbook" item.
+Short recipes for common tasks. Each game recipe is code from a reference sample (`samples/sandbox`, `samples/coop`) and keeps the simulation rules ({doc}`../manual/game_code`); the docs check fails when the sample code it shows changes.
+
+```{toctree}
+:maxdepth: 1
+
+cooldowns
+new_input
+rounds
+event_feedback
+```
 
 ## Test multiplayer on one PC
 

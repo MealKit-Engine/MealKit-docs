@@ -3,6 +3,7 @@
 #   python tools/build.py html                 English/Korean HTML (_build/html/en, _build/html/ko), warnings = errors
 #   python tools/build.py update               updates translation files (.po) after the source changes (new sentences blank, changed sentences fuzzy)
 #   python tools/build.py check [--engine DIR] html + translation checks (0 untranslated/fuzzy/leftover) + engine version comparison
+#                                              + cookbook code compared with the sample files it comes from
 #   python tools/build.py linkcheck            external link checks (network)
 
 import argparse
@@ -125,6 +126,50 @@ def check_engine_version(engine_dir):
     return 0
 
 
+# Cookbook code comes from the reference samples: a "% from: <engine path>" line right before a code block names the file,
+# and every non-empty line of the block must still be a line of that file (ROADMAP "Cookbook docs": it breaks visibly when the sample changes)
+def check_cookbook(engine_dir):
+    if not engine_dir:
+        print("cookbook: no --engine given, code not compared with the samples")
+        return 0
+    problems = blocks = 0
+    folder = os.path.join(ROOT, "cookbook")
+    for name in sorted(os.listdir(folder)):
+        if not name.endswith(".md"):
+            continue
+        with open(os.path.join(folder, name), encoding="utf-8") as f:
+            lines = f.read().splitlines()
+        i = 0
+        while i < len(lines):
+            if not lines[i].startswith("% from: "):
+                i += 1
+                continue
+            source = lines[i][len("% from: "):].strip()
+            if i + 1 >= len(lines) or not lines[i + 1].startswith("```"):
+                print(f"cookbook/{name}:{i + 1}: '% from:' is not right before a code block")
+                problems += 1
+                i += 1
+                continue
+            end = i + 2
+            while end < len(lines) and not lines[end].startswith("```"):
+                end += 1
+            path = os.path.join(engine_dir, source)
+            if not os.path.exists(path):
+                print(f"cookbook/{name}:{i + 1}: {source} does not exist in the engine")
+                problems += 1
+            else:
+                with open(path, encoding="utf-8") as f:
+                    have = {l.strip() for l in f.read().splitlines()}
+                for k in range(i + 2, end):
+                    if lines[k].strip() and lines[k].strip() not in have:
+                        print(f"cookbook/{name}:{k + 1}: not in {source}: {lines[k].strip()}")
+                        problems += 1
+            blocks += 1
+            i = end + 1
+    print(f"cookbook: {blocks} code block(s) compared with the samples")
+    return problems
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("command", choices=["html", "update", "check", "linkcheck", "gettext"])
@@ -141,7 +186,7 @@ def main():
         sphinx("linkcheck", os.path.join(BUILD, "linkcheck"))
     elif args.command == "check":
         html()
-        problems = check_translations() + check_engine_version(args.engine)
+        problems = check_translations() + check_engine_version(args.engine) + check_cookbook(args.engine)
         if problems:
             sys.exit(f"FAIL: {problems} problem(s)")
         print("PASS")

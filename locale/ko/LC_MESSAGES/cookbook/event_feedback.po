@@ -1,0 +1,75 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, KingProtea99 and MealKit contributors. CC BY 4.0
+# This file is distributed under the same license as the MealKit package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: MealKit 0.8\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-03 11:40+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ko\n"
+"Language-Team: ko <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+msgid "Sound and effects on a game event"
+msgstr "게임 이벤트에 소리와 효과 붙이기"
+
+msgid "**Goal**: a sound, a particle effect and a camera shake when something happens in the match (a push, a hit, a goal). **From**: the sandbox sample's push (`samples/sandbox`)."
+msgstr "**목표**: 매치에서 무슨 일(밀치기, 맞기, 골)이 생기면 소리, 파티클 효과, 카메라 흔들림을 낸다. **출처**: 샌드박스 샘플의 밀치기(`samples/sandbox`)."
+
+msgid "The simulation doesn't play sounds. It writes a **tick event**, and the feedback table maps event kinds to sounds, effects, shake and flashes. No view code is needed per event."
+msgstr "시뮬레이션은 소리를 내지 않는다. **틱 이벤트**를 쓰면 피드백 테이블이 이벤트 종류를 소리, 효과, 흔들림, 플래시에 연결한다. 이벤트마다 뷰 코드를 쓸 필요가 없다."
+
+msgid "1. Name the event kind"
+msgstr "1. 이벤트 종류에 이름을 붙인다"
+
+msgid "Event kinds are a `MEALKIT_ENUM`, so the editor's [Feedback] panel can list them by name:"
+msgstr "이벤트 종류는 `MEALKIT_ENUM`이라 에디터의 [Feedback] 패널이 이름으로 보여 준다:"
+
+msgid "MEALKIT_ENUM(EventKind, u8, Push, Bounce, Spawn, Fall, Jump, Impact, Countdown, MatchStart, MatchEnd, RoundEnd);\n"
+msgstr "MEALKIT_ENUM(EventKind, u8, Push, Bounce, Spawn, Fall, Jump, Impact, Countdown, MatchStart, MatchEnd, RoundEnd);\n"
+
+msgid "2. Push the event in the simulation"
+msgstr "2. 시뮬레이션에서 이벤트를 넣는다"
+
+msgid "Where the thing happens, push one event with who did it, where, and one value:"
+msgstr "일이 생기는 곳에서 누가, 어디서, 값 하나와 함께 이벤트 하나를 넣는다:"
+
+msgid "            world.events.push(makeEvent(EventKind::Push, c.player, pawn->position, world.tuning.pushRadius));\n"
+msgstr "            world.events.push(makeEvent(EventKind::Push, c.player, pawn->position, world.tuning.pushRadius));\n"
+
+msgid "Events are cleared every tick and aren't part of the state, so they don't change the hash."
+msgstr "이벤트는 틱마다 비워지고 상태가 아니므로 해시를 바꾸지 않는다."
+
+msgid "3. Map it in the feedback table"
+msgstr "3. 피드백 테이블에 연결한다"
+
+msgid "`assets/feedback.table` (the editor's [Feedback] panel) says what each kind does. A row named after the kind applies to everyone; `Push.local` applies only to the player who did it:"
+msgstr "`assets/feedback.table`(에디터의 [Feedback] 패널)이 종류마다 할 일을 정한다. 종류 이름의 행은 모두에게 적용되고, `Push.local`은 그 일을 한 플레이어에게만 적용된다:"
+
+msgid ""
+"row Push\n"
+"sound push\n"
+"effect spark\n"
+"shake 0.12\n"
+"shakeSeconds 0.2\n"
+"shakeRange 14\n"
+msgstr ""
+"row Push\n"
+"sound push\n"
+"effect spark\n"
+"shake 0.12\n"
+"shakeSeconds 0.2\n"
+"shakeRange 14\n"
+
+msgid "`sound push` is an event in `assets/sounds.events` (made in MealKit Audio) and `effect spark` is `assets/effects/spark.fx`. The game's `GameSession` already passes every tick event to the table with `ctx.feedback.trigger`, so a new event needs only steps 1 to 3."
+msgstr "`sound push`는 `assets/sounds.events`(MealKit Audio에서 만듦)의 이벤트이고, `effect spark`는 `assets/effects/spark.fx`다. 게임의 `GameSession`이 이미 모든 틱 이벤트를 `ctx.feedback.trigger`로 테이블에 넘기므로, 새 이벤트는 1~3단계만 하면 된다."
+

@@ -1,0 +1,94 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, KingProtea99 and MealKit contributors. CC BY 4.0
+# This file is distributed under the same license as the MealKit package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: MealKit 0.8\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-03 11:40+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ko\n"
+"Language-Team: ko <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+msgid "Rounds, countdown and match end"
+msgstr "라운드, 카운트다운, 매치 끝"
+
+msgid "**Goal**: a match with a start countdown, timed rounds, a round winner and a match winner. **From**: the sandbox sample's match (`samples/sandbox/sim/Match.cpp`)."
+msgstr "**목표**: 시작 카운트다운, 시간제 라운드, 라운드 승자와 매치 승자가 있는 매치. **출처**: 샌드박스 샘플의 매치(`samples/sandbox/sim/Match.cpp`)."
+
+msgid "The engine's match flow (`mealkit/sim/MatchFlow.h`) keeps the phase (waiting, countdown, playing, round end, results) in the state and moves it forward every tick. The game only gives the rules and reacts to what the flow reports."
+msgstr "엔진의 매치 흐름(`mealkit/sim/MatchFlow.h`)은 단계(대기, 카운트다운, 플레이, 라운드 끝, 결과)를 상태에 두고 틱마다 진행시킨다. 게임은 규칙을 주고 흐름이 알리는 일에 반응하기만 한다."
+
+msgid "1. Rules from tuning"
+msgstr "1. 튜닝에서 규칙을 만든다"
+
+msgid "The lengths and counts are tuning values (seconds in the file, ticks in `sim/`), turned into `MatchRules`:"
+msgstr "길이와 횟수는 튜닝 값이고(파일에서는 초, `sim/`에서는 틱), `MatchRules`로 바뀐다:"
+
+msgid ""
+"    r.countdown = t.countdown.value;\n"
+"    r.roundLength = t.roundLength.value;\n"
+"    r.roundEndDelay = t.roundEndDelay.value;\n"
+"    r.rounds = t.rounds;\n"
+"    r.scoreLimit = t.scoreLimit;\n"
+msgstr ""
+"    r.countdown = t.countdown.value;\n"
+"    r.roundLength = t.roundLength.value;\n"
+"    r.roundEndDelay = t.roundEndDelay.value;\n"
+"    r.rounds = t.rounds;\n"
+"    r.scoreLimit = t.scoreLimit;\n"
+
+msgid "2. Advance it every tick and react"
+msgstr "2. 틱마다 진행시키고 반응한다"
+
+msgid "`advanceMatch` moves the phase and returns what happened this tick. The game handles each event, for example resetting players at a round start and sending tick events for the view:"
+msgstr "`advanceMatch`는 단계를 진행시키고 이번 틱에 일어난 일을 돌려준다. 게임은 이벤트마다 처리한다. 예를 들어 라운드 시작에 플레이어를 초기화하고 뷰에 틱 이벤트를 보낸다:"
+
+msgid "    handle(world, mealkit::sim::advanceMatch(s.flow, world.rules, s.tick, players));\n"
+msgstr "    handle(world, mealkit::sim::advanceMatch(s.flow, world.rules, s.tick, players));\n"
+
+msgid ""
+"void handle(World& world, FlowEvent event) {\n"
+"    switch (event) {\n"
+"    case FlowEvent::RoundStart: onRoundStart(world); break;\n"
+"    case FlowEvent::RoundEnd: onRoundEnd(world); break;\n"
+"    case FlowEvent::MatchEnd: onMatchEnd(world); break;\n"
+msgstr ""
+"void handle(World& world, FlowEvent event) {\n"
+"    switch (event) {\n"
+"    case FlowEvent::RoundStart: onRoundStart(world); break;\n"
+"    case FlowEvent::RoundEnd: onRoundEnd(world); break;\n"
+"    case FlowEvent::MatchEnd: onMatchEnd(world); break;\n"
+
+msgid "3. Show the countdown"
+msgstr "3. 카운트다운을 보여 준다"
+
+msgid "The view shouldn't guess when a number changes, so the simulation sends a tick event once per second of the countdown:"
+msgstr "뷰가 숫자가 바뀌는 때를 추측하지 않도록, 시뮬레이션이 카운트다운의 1초마다 틱 이벤트를 하나 보낸다:"
+
+#, python-brace-format
+msgid ""
+"    if (s.flow.phase == MatchPhase::Countdown) { // 3, 2, 1\n"
+"        const u32 left = s.flow.phaseEnd.remaining(s.tick);\n"
+"        if (left > 0 && left % world.tickRate == 0)\n"
+"            world.events.push(makeEvent(EventKind::Countdown, kNoPlayer, {}, static_cast<f32>(left / world.tickRate)));\n"
+"    }\n"
+msgstr ""
+"    if (s.flow.phase == MatchPhase::Countdown) { // 3, 2, 1\n"
+"        const u32 left = s.flow.phaseEnd.remaining(s.tick);\n"
+"        if (left > 0 && left % world.tickRate == 0)\n"
+"            world.events.push(makeEvent(EventKind::Countdown, kNoPlayer, {}, static_cast<f32>(left / world.tickRate)));\n"
+"    }\n"
+
+msgid "Scores live in the player slots in the state; the flow reads them through the rules (`scoreLimit`) and the game's `matchPlayers`. The results screen reads the same state."
+msgstr "점수는 상태의 플레이어 슬롯에 있다. 흐름은 규칙(`scoreLimit`)과 게임의 `matchPlayers`로 그것을 읽는다. 결과 화면도 같은 상태를 읽는다."
+
