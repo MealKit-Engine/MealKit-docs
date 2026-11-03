@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-26 14:17+0900\n"
+"POT-Creation-Date: 2026-11-04 02:13+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ko\n"
@@ -22,8 +22,8 @@ msgstr ""
 msgid "Game UI"
 msgstr "게임 화면 UI"
 
-msgid "The game's screens (HUD, menus, settings) are `.ui` files in `assets/ui/`. The engine lays them out and draws them in one 2D pass after the 3D scene. Screens are designed in Penpot and exported by the MealKit plugin (see [Designing in Penpot](#designing-in-penpot)), or written by hand in the same format. An exported file starts with `# MealKit UI exported from Penpot`; change those in Penpot, not by hand."
-msgstr "게임 화면(HUD, 메뉴, 설정)은 `assets/ui/`의 `.ui` 파일이다. 엔진이 배치하고 3D 장면 다음 2D 패스 하나로 그린다. 화면은 Penpot에서 디자인하고 MealKit 플러그인으로 내보내거나([Penpot에서 디자인하기](#designing-in-penpot)), 같은 형식으로 손으로 쓴다. 내보낸 파일은 첫 줄이 `# MealKit UI exported from Penpot`이고, 손으로 고치지 않고 Penpot에서 고친다."
+msgid "The game's screens (HUD, menus, settings) are `.ui` files in `assets/ui/`. The engine lays them out and draws them in one 2D pass after the 3D scene. Screens are placed in the editor (see [Editing screens in the editor](#editing-screens-in-the-editor)), designed in Penpot and exported by the MealKit plugin (see [Designing in Penpot](#designing-in-penpot)), or written by hand in the same format. An exported file starts with `# MealKit UI exported from Penpot`; change those in Penpot, not by hand."
+msgstr "게msgstr "게임 화면(HUD, 메뉴, 설정)은 `assets/ui/`의 `.ui` 파일이다. 엔진이 배치하고 3D 장면 다음 2D 패스 하나로 그린다. 화면은 에디터에서 배치하거나([에디터에서 화면 편집하기](#editing-screens-in-the-editor)), Penpot에서 디자인하고 MealKit 플러그인으로 내보내거나([Penpot에서 디자인하기](#designing-in-penpot)), 같은 형식으로 손으로 쓴다. 내보낸 파일은 첫 줄이 `# MealKit UI exported from Penpot`이고, 손으로 고치지 않고 Penpot에서 고친다."
 
 msgid "A screen file"
 msgstr "화면 파일"
@@ -403,4 +403,28 @@ msgstr "에디터에서 미리 보기"
 
 msgid "**View > UI** lists the screens in `assets/ui`. The selected screen is drawn over the scene view in edit mode, inside a frame of the chosen resolution (16:9, 21:9, 4:3, portrait). The panel changes the UI scale and the language (to check that translations fit), shows the focus, fills a game view model with test values, and lists file errors, binding errors (fields the view model does not have) and the node count (budget 500 per screen). `MealKitEditor.exe --ui hud.ui` opens the panel with that screen."
 msgstr "**[보기] > [UI]**가 `assets/ui`의 화면을 보여 준다. 고른 화면은 편집 모드에서 씬 뷰 위, 고른 해상도(16:9, 21:9, 4:3, 세로)의 틀 안에 그려진다. 패널에서 UI 배율과 언어(번역이 들어가는지 확인)를 바꾸고, 포커스를 보이고, 게임 뷰 모델에 시험 값을 넣고, 파일 오류·바인딩 오류(뷰 모델에 없는 필드)·노드 수(화면당 예산 500)를 본다. `MealKitEditor.exe --ui hud.ui`는 그 화면으로 패널을 연다."
+
+msgid "Editing screens in the editor"
+msgstr "에msgstr "에디터에서 화면 편집하기"
+
+msgid "Tick **Edit** under **Edit screen** in the **View > UI** panel to change the open screen while seeing it as the game draws it (same layout, fonts, string tables and view model values)."
+msgstr "**[보기] > [UI]** 패널의 **[화면 편집]**에서 **[편집]**을 켜면, 열린 화면을 게임이 그리는 그대로(같은 배치, 폰트, 문자열 표, 뷰 모델 값) 보면서 고친다."
+
+msgid "**Selecting**: click a box in the preview, or a node in the tree. `Ctrl`+click selects the box beneath the selected one (a label inside a button, then the button). The selected node is outlined in blue."
+msgstr "**선택**: 미리보기의 상자나 트리의 노드를 클릭한다. `Ctrl`+클릭은 선택한 상자 아래의 상자를 고른다(버튼 안의 글자 다음에 버튼). 선택한 노드는 파란 테두리로 표시된다."
+
+msgid "**Properties**: the panel shows the node's name, its position (only for nodes a flex or grid layout doesn't place), its size and fill or text color, and below them every line of the node as text, in the format of [A screen file](#a-screen-file). Edit a line in place, remove it with **x**, or pick a property in **Add...**, type its value and press **Add**. `$theme` tokens and comments stay as they are."
+msgstr "**속성**: 패널에 노드의 이름, 위치(flex·grid 레이아웃이 배치하지 않는 노드만), 크기, 채우기나 글자 색이 나오고, 그 아래에 노드의 모든 줄이 [화면 파일](#a-screen-file) 형식의 텍스트로 나온다. 줄을 그 자리에서 고치거나 **x**로 지우거나, **[추가...]**에서 속성을 골라 값을 쓰고 **[추가]**를 누른다. `$theme` 토큰과 주석은 그대로 남는다."
+
+msgid "**Undo and saving**: `Ctrl+Z` and `Ctrl+Y` undo and redo screen edits while the panel is in edit mode (the scene has its own history). Changes are shown at once but written to the file only by **Save** or `Ctrl+S`; switching to another screen with unsaved changes asks first. Only the lines you changed differ in the saved file."
+msgstr "**되돌리기와 저장**: 패널이 편집 모드일 때 `Ctrl+Z`와 `Ctrl+Y`는 화면 편집을 되돌리고 다시 실행한다(씬은 따로 기록이 있다). 바꾼 내용은 바로 보이지만 파일에는 **[저장]**이나 `Ctrl+S`로만 쓰이고, 저장하지 않은 채 다른 화면으로 바꾸면 먼저 묻는다. 저장한 파일에서는 고친 줄만 달라진다."
+
+msgid "**Deleting**: `Delete` removes the selected node and its children."
+msgstr "**삭제**: `Delete`는 선택한 노드와 그 자식을 지운다."
+
+msgid "Screens exported from Penpot open read-only: change them in Penpot and export again."
+msgstr "Penpot에서 내보낸 화면은 읽기 전용으로 열린다. Penpot에서 고치고 다시 내보낸다."
+
+msgid "`MealKitEditor.exe --ui pause.ui --ui-select resume` opens the screen in edit mode with that node selected."
+msgstr "`MealKitEditor.exe --ui pause.ui --ui-select resume`는 그 노드를 고른 편집 모드로 화면을 연다."
 

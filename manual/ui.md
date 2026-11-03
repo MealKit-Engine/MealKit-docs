@@ -1,7 +1,7 @@
 # Game UI
 
 The game's screens (HUD, menus, settings) are `.ui` files in `assets/ui/`. The engine lays them out and draws them in one 2D pass after the 3D scene.
-Screens are designed in Penpot and exported by the MealKit plugin (see [Designing in Penpot](#designing-in-penpot)), or written by hand in the same format. An exported file starts with `# MealKit UI exported from Penpot`; change those in Penpot, not by hand.
+Screens are placed in the editor (see [Editing screens in the editor](#editing-screens-in-the-editor)), designed in Penpot and exported by the MealKit plugin (see [Designing in Penpot](#designing-in-penpot)), or written by hand in the same format. An exported file starts with `# MealKit UI exported from Penpot`; change those in Penpot, not by hand.
 
 ## A screen file
 
@@ -148,3 +148,15 @@ Mouse input over a widget or a filled panel does not reach the game. On screens 
 
 **View > UI** lists the screens in `assets/ui`. The selected screen is drawn over the scene view in edit mode, inside a frame of the chosen resolution (16:9, 21:9, 4:3, portrait). The panel changes the UI scale and the language (to check that translations fit), shows the focus, fills a game view model with test values, and lists file errors, binding errors (fields the view model does not have) and the node count (budget 500 per screen).
 `MealKitEditor.exe --ui hud.ui` opens the panel with that screen.
+
+## Editing screens in the editor
+
+Tick **Edit** under **Edit screen** in the **View > UI** panel to change the open screen while seeing it as the game draws it (same layout, fonts, string tables and view model values).
+
+- **Selecting**: click a box in the preview, or a node in the tree. `Ctrl`+click selects the box beneath the selected one (a label inside a button, then the button). The selected node is outlined in blue.
+- **Properties**: the panel shows the node's name, its position (only for nodes a flex or grid layout doesn't place), its size and fill or text color, and below them every line of the node as text, in the format of [A screen file](#a-screen-file). Edit a line in place, remove it with **x**, or pick a property in **Add...**, type its value and press **Add**. `$theme` tokens and comments stay as they are.
+- **Undo and saving**: `Ctrl+Z` and `Ctrl+Y` undo and redo screen edits while the panel is in edit mode (the scene has its own history). Changes are shown at once but written to the file only by **Save** or `Ctrl+S`; switching to another screen with unsaved changes asks first. Only the lines you changed differ in the saved file.
+- **Deleting**: `Delete` removes the selected node and its children.
+- Screens exported from Penpot open read-only: change them in Penpot and export again.
+
+`MealKitEditor.exe --ui pause.ui --ui-select resume` opens the screen in edit mode with that node selected.
