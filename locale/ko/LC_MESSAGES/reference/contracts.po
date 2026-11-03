@@ -1,0 +1,59 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, KingProtea99 and MealKit contributors. CC BY 4.0
+# This file is distributed under the same license as the MealKit package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: MealKit 0.8\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-03 11:36+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ko\n"
+"Language-Team: ko <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+msgid "What stays the same in v1.x"
+msgstr "v1.x 동안 바뀌지 않는 것"
+
+#, python-brace-format
+msgid "From v1.0, MealKit keeps three things stable through every v1.x release, so a game can update the engine without rewriting code or files. Before v1.0 (beta) they may still change. The full list, with each format's version, is {engine}`docs/CONTRACTS.md`."
+msgstr "v1.0부터 MealKit은 세 가지를 모든 v1.x 릴리스 동안 그대로 지킵니다. 그래서 게임은 코드나 파일을 고치지 않고 엔진을 업데이트할 수 있습니다. v1.0 이전(베타)에는 아직 바뀔 수 있습니다. 각 형식의 버전까지 담은 전체 목록은 {engine}`docs/CONTRACTS.md`에 있습니다."
+
+msgid "Game code"
+msgstr "게임 코드"
+
+#, python-brace-format
+msgid "The engine headers a game may include are listed in {engine}`engine/public_headers.txt`. A game that builds on v1.0 builds on later v1.x releases after a rebuild."
+msgstr "게임이 include할 수 있는 엔진 헤더는 {engine}`engine/public_headers.txt`에 나열되어 있습니다. v1.0에서 빌드되는 게임은 이후 v1.x 릴리스에서도 다시 빌드하면 빌드됩니다."
+
+msgid "Other engine headers are internal and may change. `tools\\check_public_headers.ps1 -Path <your project>\\source` tells you if your game includes one."
+msgstr "그 밖의 엔진 헤더는 내부용이라 바뀔 수 있습니다. 게임이 그런 헤더를 include하는지는 `tools\\check_public_headers.ps1 -Path <프로젝트>\\source`로 확인할 수 있습니다."
+
+msgid "Game libraries are always rebuilt for a new engine version; only the source is kept compatible."
+msgstr "게임 라이브러리는 새 엔진 버전마다 항상 다시 빌드합니다. 호환을 지키는 것은 소스뿐입니다."
+
+msgid "Files"
+msgstr "파일"
+
+msgid "Project files (`mealkit.project`, tuning, tables, scenes, prefabs, `.ui`, string tables, effects, scatter layers, scenarios) keep reading in every v1.x. A newer engine may add keys; an older engine reading a newer file skips the keys it doesn't know and warns."
+msgstr "프로젝트 파일(`mealkit.project`, 튜닝, 테이블, 씬, 프리팹, `.ui`, 문자열 테이블, 이펙트, 산포 레이어, 시나리오)은 모든 v1.x에서 계속 읽힙니다. 새 엔진은 키를 추가할 수 있고, 옛 엔진이 새 파일을 읽으면 모르는 키는 건너뛰고 경고합니다."
+
+msgid "Files on players' PCs stay readable too: saves, `settings.ini` and the keys a player changed."
+msgstr "플레이어 PC에 있는 파일도 계속 읽힙니다: 세이브, `settings.ini`, 플레이어가 바꾼 키 설정."
+
+msgid "Simulation rules"
+msgstr "시뮬레이션 규칙"
+
+msgid "The determinism rules and SimCheck's errors stay as they are. A rule added in v1.x only warns, so an engine update never stops your game from building."
+msgstr "결정론 규칙과 SimCheck의 오류는 그대로입니다. v1.x에 추가되는 규칙은 경고만 내므로, 엔진을 업데이트해도 게임 빌드가 멈추지 않습니다."
+
+msgid "The same inputs give the same results only within one simulation version. An engine update may change the results (a physics fix, for example), so replays play back only on the version that recorded them, and players can only join each other on the same version."
+msgstr "같은 입력이 같은 결과를 내는 것은 같은 시뮬레이션 버전 안에서만입니다. 엔진 업데이트(예: 물리 수정)로 결과가 바뀔 수 있으므로, 리플레이는 기록한 버전에서만 재생되고 플레이어끼리도 같은 버전이어야 함께 플레이할 수 있습니다."
+

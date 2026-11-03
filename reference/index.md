@@ -6,6 +6,7 @@ Lists to look things up in.
 :maxdepth: 2
 
 command_line
+contracts
 tool_contract
 ../glossary
 ```
