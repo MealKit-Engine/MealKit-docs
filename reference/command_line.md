@@ -78,7 +78,7 @@ Window options (`--bot`, `--vsync`, `--fps`, `--size`, `--debug`, `--mute`, `--d
 | `--view-mode <n>` | Start in a view mode: 1 wireframe, 2 normals, 3 LOD level, 4 overdraw, 5 over budget ({doc}`../manual/editor`) |
 | `--gpu-capture` | Load RenderDoc or PIX if installed: View > GPU Capture and `F11` capture the next frame |
 | `--play`, `--players <n>`, `--bot` | Start play mode, with several players and bot input |
-| `--replay <file>` | Start by playing a saved replay or bug report zip (File > Open Replay...) |
+| `--replay <file>` | Start by playing a saved replay or bug report zip (Scene > Open Replay...) |
 | `--build-game` | Build the game code first |
 | `--export` | Make a release build |
 | `--upgrade` | Upgrade the project right away |

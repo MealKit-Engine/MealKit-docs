@@ -86,8 +86,8 @@ msgstr "설치된 모듈 목록은 `modules/` 폴더 자체입니다. 프로젝�
 msgid "Adding a module"
 msgstr "모듈 추가"
 
-msgid "In the editor, **File > Modules...** shows the installed modules and the registry list. **Add** copies the newest version made for your engine version, then the editor rebuilds the game code. MealKit Manager has the same list on its **Modules** tab for the selected project. Modules cannot be changed while playing."
-msgstr "에디터의 **파일 > 모듈...** 은 설치된 모듈과 레지스트리 목록을 보여 줍니다. **추가**는 지금 엔진 버전용으로 나온 가장 새 버전을 복사하고, 에디터가 게임 코드를 다시 빌드합니다. MealKit Manager의 **모듈** 탭에도 고른 프로젝트에 대해 같은 목록이 있습니다. 플레이 중에는 모듈을 바꿀 수 없습니다."
+msgid "In the editor, **Project > Settings, Modules page** shows the installed modules and the registry list. **Add** copies the newest version made for your engine version, then the editor rebuilds the game code. MealKit Manager has the same list on its **Modules** tab for the selected project. Modules cannot be changed while playing."
+msgstr "에디터의 **프로젝트 > 설정의 모듈 페이지** 은 설치된 모듈과 레지스트리 목록을 보여 줍니다. **추가**는 지금 엔진 버전용으로 나온 가장 새 버전을 복사하고, 에디터가 게임 코드를 다시 빌드합니다. MealKit Manager의 **모듈** 탭에도 고른 프로젝트에 대해 같은 목록이 있습니다. 플레이 중에는 모듈을 바꿀 수 없습니다."
 
 msgid "The same from the command line, with the engine's `tools\\module.ps1`:"
 msgstr "명령줄에서는 엔진의 `tools\\module.ps1`로 같은 일을 합니다:"

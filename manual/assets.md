@@ -14,7 +14,7 @@
 
 The look of a game is chosen, not programmed: games do not write shaders. There are three parts.
 
-**Lighting model** (File > Project Settings, `lightingModel`) sets the shading of the whole game:
+**Lighting model** (Project > Settings, `lightingModel`) sets the shading of the whole game:
 
 | Value | Look |
 |---|---|
@@ -64,7 +64,7 @@ Each model has a budget so that it stays light enough for the minimum spec (inte
 | `environment/` | Background | 20,000 | 2048 px | 0 | 4 |
 | `props/` or anywhere else | Prop | 3,000 | 1024 px | 0 | 2 |
 
-- The limits are project settings (**File > Project Settings**, `budgetCharactersTriangles`, `budgetPropsMaterials`, ...). The defaults above are a first guess and will be corrected with benchmarks on the minimum spec.
+- The limits are project settings (**Project > Settings**, `budgetCharactersTriangles`, `budgetPropsMaterials`, ...). The defaults above are a first guess and will be corrected with benchmarks on the minimum spec.
 - A model over its budget still loads. The log says `Model models/ring.glb is over the props budget: 3072 triangles (budget 3000)`, and the inspector shows the use against the limit in red. The example ring is a little over on purpose.
 - Triangles are counted on the most detailed LOD and texture size is the longest side of the largest texture. Bones are counted once the engine reads skeletons.
 - The Blender add-on checks the same limits before exporting ({doc}`blender`).
@@ -87,7 +87,7 @@ Numbers are not constants in code. Each kind of number has one place, chosen by 
 | Values that differ per map (areas, counts, heights) | Scene objects; ranges and heights are the position and size of an **area object** | Scene view and inspector |
 | Many rows of the same shape (weapons, items, enemy kinds) | Definition table `assets/tables/*.table` | Tables panel, or a spreadsheet through CSV |
 | Values that are only seen (camera, colors, effects) | `MEALKIT_STRUCT(ViewTuning)` → `assets/view.tuning`, read as `ctx.viewTuning<ViewTuning>()` | Tuning panel, Display tab |
-| Whole-project settings | `mealkit.project` | File > Project Settings |
+| Whole-project settings | `mealkit.project` | Project > Settings |
 
 Code keeps only unit conversions, algorithm constants and trivial values such as 0 and 1. SimCheck warns about other float literals in `sim/` (`SIM012`); an algorithm constant is marked with `// const-ok: <reason>` at the end of the line.
 
@@ -110,7 +110,7 @@ In the example, the match area's floor is the fall height and its top is where f
 
 A table has a row type declared with `MEALKIT_STRUCT` and is registered with `MEALKIT_TABLE(Row, "tables/props.table", 0)`. The file has a `row <id>` line followed by that row's values.
 Other data points at a row with a `RowRef<Row>` field (the row id in files, a dropdown in the editor). The game reads tables with `data::loadTable` when a match starts, and simulation code reads rows by number.
-In the Tables panel (View > Tables, `Ctrl+T`) you add, copy, delete and reorder rows, edit cells, and see every reference to a missing row id. **CSV import and export** let you balance a table in Google Sheets or Excel: the first column is `id` and the other columns are the field paths. Importing replaces the table.
+In the Tables panel (Window > Data, `Ctrl+T`) you add, copy, delete and reorder rows, edit cells, and see every reference to a missing row id. **CSV import and export** let you balance a table in Google Sheets or Excel: the first column is `id` and the other columns are the field paths. Importing replaces the table.
 A table registered with `reflect::kTableView` is display-only and stays out of the content hash.
 
 ## Game text and languages

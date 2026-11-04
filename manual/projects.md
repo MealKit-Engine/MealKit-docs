@@ -33,7 +33,7 @@ Install it with `build.bat install` in the MealKit-Manager folder (to `%LOCALAPP
 
 ## Project settings
 
-`mealkit.project` holds the project settings: `name`, `engine`, `engineVersion`, `scene`, `tickRate`, the input delay range, the art style (`lightingModel`, `toonRamp`, {doc}`assets`), and game entries (`game.*`). Edit them in the editor under File > Project Settings.
+`mealkit.project` holds the project settings: `name`, `engine`, `engineVersion`, `scene`, `tickRate`, the input delay range, the art style (`lightingModel`, `toonRamp`, {doc}`assets`), and game entries (`game.*`). Edit them in the editor under Project > Settings.
 
 `version` is the game version players see (title screen, lobby, window title). It is part of the simulation version, so players with different versions cannot join each other; raise it when you ship a change. `exportVersionFolder` puts it in the release folder name.
 

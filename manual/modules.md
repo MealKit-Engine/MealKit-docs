@@ -24,7 +24,7 @@ The list of installed modules is the `modules/` folder itself. Commit it with yo
 
 ## Adding a module
 
-In the editor, **File > Modules...** shows the installed modules and the registry list. **Add** copies the newest version made for your engine version, then the editor rebuilds the game code. MealKit Manager has the same list on its **Modules** tab for the selected project. Modules cannot be changed while playing.
+In the editor, **Project > Settings, Modules page** shows the installed modules and the registry list. **Add** copies the newest version made for your engine version, then the editor rebuilds the game code. MealKit Manager has the same list on its **Modules** tab for the selected project. Modules cannot be changed while playing.
 
 The same from the command line, with the engine's `tools\module.ps1`:
 

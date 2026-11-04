@@ -24,7 +24,7 @@ msgstr "**씬 편집**: 뷰포트에서 물체를 클릭하거나 씬 트리에�
 msgid "**▶ Play (F5)**: runs the game right away with the scene you are editing. `F5` again returns to editing (the scene is not changed); `Esc` goes to the game (its pause menu). Disabled until the game code is loaded."
 msgstr "**▶ 플레이 (F5)**: 지금 편집 중인 씬으로 바로 게임을 실행한다. `F5`를 다시 누르면 편집으로 돌아온다(씬은 바뀌지 않음). `Esc`는 게임(일시 정지 메뉴)으로 간다. 게임 코드를 불러오기 전에는 비활성."
 
-msgid "**Ctrl+S**: save. The game and multiplayer use the project's start scene, `assets/scenes/arena.scene` in the example (`scene` in `mealkit.project`, editor File > Project Settings)."
+msgid "**Ctrl+S**: save. The game and multiplayer use the project's start scene, `assets/scenes/arena.scene` in the example (`scene` in `mealkit.project`, editor Project > Settings)."
 msgstr "**Ctrl+S**: 저장. 게임과 멀티플레이는 프로젝트의 시작 씬을 쓴다. 예제에서는 `assets/scenes/arena.scene`(`mealkit.project`의 `scene`, 에디터 [파일] > [프로젝트 설정])."
 
 msgid "**Ctrl+R**: build the game code (hot reload). **Ctrl+B**: release build (`export/<game>/`). The Build menu can also open the release and project folders."

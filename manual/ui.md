@@ -51,7 +51,7 @@ Files are reloaded within a quarter second when they change, also during play. E
 
 ### Installing the plugin
 
-1. Open the project in the editor and open **View > UI**. The **Penpot** section shows the plugin address, for example `http://127.0.0.1:27220/<token>/penpot/manifest.json`. The editor only listens on this computer, and the token changes every time the editor starts (the plugin is served by the editor's live connection, see {doc}`tools`).
+1. Open the project in the editor and open **Window > Previews, UI tab,**. The **Penpot** section shows the plugin address, for example `http://127.0.0.1:27220/<token>/penpot/manifest.json`. The editor only listens on this computer, and the token changes every time the editor starts (the plugin is served by the editor's live connection, see {doc}`tools`).
 2. In a Penpot file press `Ctrl+Alt+P` (plugin manager), paste the address and press **Install**. Open the plugin from the same list after that.
 3. The panel says `Editor: <project>` when it reaches the editor. If the editor is closed, **Export** downloads a zip to unpack in the project folder instead (after restarting the editor, install the plugin again with the new address).
 
@@ -146,12 +146,12 @@ Mouse input over a widget or a filled panel does not reach the game. On screens 
 
 ## Previewing in the editor
 
-**View > UI** lists the screens in `assets/ui`. The selected screen is drawn over the scene view in edit mode, inside a frame of the chosen resolution (16:9, 21:9, 4:3, portrait). The panel changes the UI scale and the language (to check that translations fit), shows the focus, fills a game view model with test values, and lists file errors, binding errors (fields the view model does not have) and the node count (budget 500 per screen).
+**Window > Previews, UI tab,** lists the screens in `assets/ui`. The selected screen is drawn over the scene view in edit mode, inside a frame of the chosen resolution (16:9, 21:9, 4:3, portrait). The panel changes the UI scale and the language (to check that translations fit), shows the focus, fills a game view model with test values, and lists file errors, binding errors (fields the view model does not have) and the node count (budget 500 per screen).
 `MealKitEditor.exe --ui hud.ui` opens the panel with that screen.
 
 ## Editing screens in the editor
 
-Tick **Edit** under **Edit screen** in the **View > UI** panel to change the open screen while seeing it as the game draws it (same layout, fonts, string tables and view model values).
+Tick **Edit** under **Edit screen** in the **Window > Previews, UI tab,** panel to change the open screen while seeing it as the game draws it (same layout, fonts, string tables and view model values).
 
 - **Selecting**: click a box in the preview, or a node in the tree. `Ctrl`+click selects the box beneath the selected one (a label inside a button, then the button). The selected node is outlined in blue.
 - **Moving and resizing**: drag the selected node to move it (its `pos`); edges and centers snap to the parent's and the siblings' (pink guides), hold `Ctrl` to place freely. The eight handles on its box change its size (an axis that was `hug` or `fill` becomes a number). Nodes a flex or grid layout places have no handles: dragging one changes its order among its siblings (a yellow line shows where it goes). A frame's padding is tinted green. A whole drag is one undo step.

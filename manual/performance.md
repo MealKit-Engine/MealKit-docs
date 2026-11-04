@@ -68,7 +68,7 @@ The report lists the game version and commit, CPU, GPU and driver, the screen si
 
 ### GPU budget per pass
 
-The 8 ms GPU frame is split into budgets per kind of work, so an artist knows how much room a feature has. The values are in `mealkit.project` (**File > Project Settings**) and will be corrected from measurements on the minimum spec:
+The 8 ms GPU frame is split into budgets per kind of work, so an artist knows how much room a feature has. The values are in `mealkit.project` (**Project > Settings**) and will be corrected from measurements on the minimum spec:
 
 | Pass | Setting | Default |
 |---|---|---|

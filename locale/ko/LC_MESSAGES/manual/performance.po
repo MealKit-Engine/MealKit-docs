@@ -229,8 +229,8 @@ msgstr "패스별 GPU 시간과 그 예산, 넘으면 `OVER`"
 msgid "GPU budget per pass"
 msgstr "패스별 GPU 예산"
 
-msgid "The 8 ms GPU frame is split into budgets per kind of work, so an artist knows how much room a feature has. The values are in `mealkit.project` (**File > Project Settings**) and will be corrected from measurements on the minimum spec:"
-msgstr "8 ms GPU 프레임을 작업 종류별 예산으로 나눠, 아티스트가 기능마다 얼마나 쓸 수 있는지 알게 한다. 값은 `mealkit.project`(**파일 > 프로젝트 설정**)에 있고, 최소 사양 실측으로 고친다:"
+msgid "The 8 ms GPU frame is split into budgets per kind of work, so an artist knows how much room a feature has. The values are in `mealkit.project` (**Project > Settings**) and will be corrected from measurements on the minimum spec:"
+msgstr "8 ms GPU 프레임을 작업 종류별 예산으로 나눠, 아티스트가 기능마다 얼마나 쓸 수 있는지 알게 한다. 값은 `mealkit.project`(**프로젝트 > 설정**)에 있고, 최소 사양 실측으로 고친다:"
 
 msgid "Pass"
 msgstr "패스"

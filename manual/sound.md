@@ -101,7 +101,7 @@ lowpass sfx 900
 ### Walls and rooms
 
 The engine muffles 3D sounds behind walls: every frame it checks a few of the playing 3D sounds with a physics ray from the listener, and a blocked sound eases to its event's `occlusionVolume` and `occlusionLowpass`. This needs the game to return its physics world from `GameInstance::physics()` (the sample does).
-A **reverb zone** is a scene object (Add > Reverb zone): a box with room size, damping, amount, width and a change time. While the listener is inside it (the smallest one when zones overlap), buses with `reverb true` get that reverb, and it fades back out when the listener leaves. Reverb zones are view only and outside the content hash, so players may differ in them.
+A **reverb zone** is a scene object (**+ Add** in the scene tree > Reverb zone): a box with room size, damping, amount, width and a change time. While the listener is inside it (the smallest one when zones overlap), buses with `reverb true` get that reverb, and it fades back out when the listener leaves. Reverb zones are view only and outside the content hash, so players may differ in them.
 
 ### Voice management
 
@@ -112,7 +112,7 @@ Physics impact sounds come from `PhysicsWorld::setContactEvents`; the contacts c
 
 ### Sounds panel
 
-View > Sounds in the MealKit editor shows the output buses with level meters and volume, the playing voices (mixed or virtual, audibility, distance), the most recently culled plays and why (cooldown, voice limit, missing clip ...), and a preview of the selected event. Events are edited in MealKit Audio.
+Window > Data, Sounds page, and Window > Debug, Sounds page, in the MealKit editor shows the output buses with level meters and volume, the playing voices (mixed or virtual, audibility, distance), the most recently culled plays and why (cooldown, voice limit, missing clip ...), and a preview of the selected event. Events are edited in MealKit Audio.
 
 ## Feedback table
 
@@ -134,7 +134,7 @@ The event type is a `MEALKIT_STRUCT` whose first `MEALKIT_ENUM` field is the eve
 
 ### Feedback panel
 
-View > Feedback lists the game's event kinds and their rows. Edits are saved automatically and a playing game picks them up at once. **Preview** plays the rows of the selected kind right now, even while editing.
+Window > Data, Feedback page, lists the game's event kinds and their rows. Edits are saved automatically and a playing game picks them up at once. **Preview** plays the rows of the selected kind right now, even while editing.
 
 ### Particle effects
 

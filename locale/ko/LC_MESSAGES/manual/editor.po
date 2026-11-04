@@ -181,23 +181,23 @@ msgstr "복사본은 씬을 저장할 때 `assets/terrain/<씬>_<id>.scatter`에
 msgid "Panels"
 msgstr "패널"
 
-msgid "**Layout**: the scene tree is on the left, the inspector on the right, and **Debug** and assets share a strip under the scene view. **View > Layout** picks Edit, Play or Look Dev and resets the layout."
-msgstr "**레이아웃**: 씬 트리는 왼쪽, 인스펙터는 오른쪽, **디버그**와 에셋은 씬 뷰 아래 가로 칸에 같이 놓인다. **보기 > 레이아웃**에서 편집·플레이·룩데브를 골라 레이아웃을 다시 놓는다."
+msgid "**Layout**: the scene tree is on the left, the inspector on the right, and **Debug** and assets share a strip under the scene view. **Window > Layout** picks Edit, Play or Look Dev and resets the layout."
+msgstr "**레이아웃**: 씬 트리는 왼쪽, 인스펙터는 오른쪽, **디버그**와 에셋은 씬 뷰 아래 가로 칸에 같이 놓인다. **창 > 레이아웃**에서 편집·플레이·룩데브를 골라 레이아웃을 다시 놓는다."
 
 msgid "**Scene environment**: select the **Scene** row at the top of the scene tree. The inspector then shows the sun, sky, fog, sky HDRI and post processing of the open scene."
 msgstr "**씬 환경**: 씬 트리 맨 위의 **씬** 줄을 고른다. 그러면 인스펙터에 열린 씬의 태양·하늘·안개·하늘 HDRI·포스트 프로세싱이 나온다."
 
-msgid "**Log**: **View > Debug**, Log page, shows engine and game log lines. Tick Info, Warnings or Errors to filter, type in the search box to find a line, and press Clear to empty it."
-msgstr "**로그**: **보기 > 디버그**의 로그 페이지에 엔진과 게임의 로그 줄이 나온다. 정보·경고·오류를 체크해 거르고, 찾기 칸에 쳐서 줄을 찾고, 지우기로 비운다."
+msgid "**Log**: **Window > Debug**, Log page, shows engine and game log lines. Tick Info, Warnings or Errors to filter, type in the search box to find a line, and press Clear to empty it."
+msgstr "**로그**: **창 > 디버그**의 로그 페이지에 엔진과 게임의 로그 줄이 나온다. 정보·경고·오류를 체크해 거르고, 찾기 칸에 쳐서 줄을 찾고, 지우기로 비운다."
 
 msgid "**Notices**: messages also appear at the bottom right of the scene view. Failures stay until you close them; click one to open the build log or the log. While playing, the menu bar turns brown and the scene view gets an orange frame."
 msgstr "**알림**: 메시지가 씬 뷰 오른쪽 아래에도 뜬다. 실패는 닫을 때까지 남고, 누르면 빌드 로그나 로그가 열린다. 플레이 중에는 메뉴 막대가 갈색, 씬 뷰 테두리가 주황색이 된다."
 
-msgid "**Command palette**: press Ctrl+P (or **View > Command Palette**) and type part of a command, object, scene or tool name, in English or Korean. Use the arrow keys and Enter to run it."
-msgstr "**명령 팔레트**: Ctrl+P(또는 **보기 > 명령 팔레트**)를 누르고 명령·물체·씬·도구 이름의 일부를 영어나 한국어로 친다. 화살표와 Enter로 실행한다."
+msgid "**Command palette**: press Ctrl+P (or **Window > Command Palette**) and type part of a command, object, scene or tool name, in English or Korean. Use the arrow keys and Enter to run it."
+msgstr "**명령 팔레트**: Ctrl+P(또는 **창 > 명령 팔레트**)를 누르고 명령·물체·씬·도구 이름의 일부를 영어나 한국어로 친다. 화살표와 Enter로 실행한다."
 
-msgid "**Preferences**: **File > Preferences** sets the camera speed, text size, autosave interval and code editor. The window layout is kept per project in `build\\editor\\layout.ini`. Press F1 for the list of keyboard shortcuts."
-msgstr "**환경설정**: **파일 > 환경설정**에서 카메라 속도, 글자 크기, 자동 저장 간격, 코드 편집기를 정한다. 창 배치는 프로젝트마다 `build\\editor\\layout.ini`에 따로 저장된다. F1을 누르면 단축키 목록이 나온다."
+msgid "**Preferences**: **Project > Settings, Preferences page** sets the camera speed, text size, autosave interval and code editor. The window layout is kept per project in `build\\editor\\layout.ini`. Press F1 for the list of keyboard shortcuts."
+msgstr "**환경설정**: **프로젝트 > 설정의 환경설정 페이지**에서 카메라 속도, 글자 크기, 자동 저장 간격, 코드 편집기를 정한다. 창 배치는 프로젝트마다 `build\\editor\\layout.ini`에 따로 저장된다. F1을 누르면 단축키 목록이 나온다."
 
 msgid "**Scene tree**: type in the box above the tree (Ctrl+F) to find objects by name or type. The eye and lock buttons on the right of a row hide an object in the scene view or stop it being picked there; they are saved per project in `build\\editor`, not in the scene file."
 msgstr "**씬 트리**: 트리 위 칸(Ctrl+F)에 쳐서 이름이나 종류로 물체를 찾는다. 줄 오른쪽의 눈·자물쇠 버튼은 씬 뷰에서 물체를 숨기거나 클릭으로 고르지 못하게 한다. 이 상태는 씬 파일이 아니라 프로젝트의 `build\\editor`에 저장된다."
@@ -217,17 +217,17 @@ msgstr "**카메라**: Alt + 왼쪽 드래그는 고른 물체를 중심으로 �
 msgid "**Inspector**: sections fold. Right-click a field for Reset to Default, Copy Value and Paste Value; a blue dot marks values that differ from the default. The lock before Scale keeps the X, Y and Z ratio. **Edit > History** (Ctrl+H) lists the undo steps; click one to go back to it."
 msgstr "**인스펙터**: 섹션을 접을 수 있다. 필드를 오른쪽 클릭하면 기본값으로·값 복사·값 붙여넣기가 나오고, 기본값과 다른 값에는 파란 점이 찍힌다. 크기 앞 자물쇠는 X·Y·Z 비율을 지킨다. **편집 > 기록**(Ctrl+H)에 되돌리기 단계가 나오고, 누르면 그 지점으로 돌아간다."
 
-msgid "**Performance**: **View > Debug**, Performance page, (or click the fps number in the status bar) graphs the CPU and GPU frame time, simulation tick, draw calls and network traffic of the last 30 seconds against the budgets in the roadmap. Values over budget turn red."
-msgstr "**성능**: **보기 > 디버그**의 성능 페이지(또는 상태 표시줄의 fps 숫자를 누름)은 최근 30초의 CPU·GPU 프레임 시간, 시뮬레이션 틱, 드로우 콜, 네트워크를 로드맵의 예산과 함께 그래프로 보여 준다. 예산을 넘은 값은 빨갛게 된다."
+msgid "**Performance**: **Window > Debug**, Performance page, (or click the fps number in the status bar) graphs the CPU and GPU frame time, simulation tick, draw calls and network traffic of the last 30 seconds against the budgets in the roadmap. Values over budget turn red."
+msgstr "**성능**: **창 > 디버그**의 성능 페이지(또는 상태 표시줄의 fps 숫자를 누름)은 최근 30초의 CPU·GPU 프레임 시간, 시뮬레이션 틱, 드로우 콜, 네트워크를 로드맵의 예산과 함께 그래프로 보여 준다. 예산을 넘은 값은 빨갛게 된다."
 
 msgid "**Jump to code**: click a blue `file(line)` line in the build log or the log to open it in the code editor set in Preferences (VS Code by default). For a game object type, **Open Code** in the inspector opens its `MEALKIT_OBJECT` declaration."
 msgstr "**코드로 이동**: 빌드 로그나 로그의 파란 `파일(줄)` 줄을 누르면 환경설정의 코드 편집기(기본 VS Code)로 열린다. 게임 오브젝트 종류는 인스펙터의 **코드 열기**가 그 `MEALKIT_OBJECT` 선언을 연다."
 
-msgid "**Scenes**: **File > Scenes** lists the scenes in `assets/scenes`. The star marks the start scene; select another and press **Set as Start Scene** to change it in `mealkit.project`. **File > Recent Scenes** reopens the scenes you used last in this project."
-msgstr "**씬 목록**: **파일 > 씬 목록**에 `assets/scenes`의 씬이 나온다. 별은 시작 씬이고, 다른 씬을 골라 **시작 씬으로**를 누르면 `mealkit.project`에서 바뀐다. **파일 > 최근 씬**은 이 프로젝트에서 최근에 쓴 씬을 다시 연다."
+msgid "**Scenes**: **Scene > Scenes** lists the scenes in `assets/scenes`. The star marks the start scene; select another and press **Set as Start Scene** to change it in `mealkit.project`. **File > Recent Scenes** reopens the scenes you used last in this project."
+msgstr "**씬 목록**: **씬 > 씬 목록**에 `assets/scenes`의 씬이 나온다. 별은 시작 씬이고, 다른 씬을 골라 **시작 씬으로**를 누르면 `mealkit.project`에서 바뀐다. **파일 > 최근 씬**은 이 프로젝트에서 최근에 쓴 씬을 다시 연다."
 
-msgid "**Play from here**: Shift+F5 (**Build > Play From Here**) starts a solo game with the player under the editor camera, or at the selected spawn point. The scene file does not change."
-msgstr "**여기서 플레이**: Shift+F5(**빌드 > 여기서 플레이**)는 플레이어를 에디터 카메라 아래나 고른 스폰 지점에 두고 혼자 플레이를 시작한다. 씬 파일은 바뀌지 않는다."
+msgid "**Play from here**: Shift+F5 (the list by the play button) starts a solo game with the player under the editor camera, or at the selected spawn point. The scene file does not change."
+msgstr "**여기서 플레이**: Shift+F5(**플레이 버튼 옆 목록**)는 플레이어를 에디터 카메라 아래나 고른 스폰 지점에 두고 혼자 플레이를 시작한다. 씬 파일은 바뀌지 않는다."
 
 msgid "**Assets**: the **Assets** tab under the scene view shows the `assets` folders and files. Drag a model or prefab into the scene view to place it, or double-click a scene to open it. Right-click a file and choose **Rename or Move** to change its path; references in scenes, tuning, UI and table files are updated too."
 msgstr "**에셋**: 씬 뷰 아래 **에셋** 탭에 `assets` 폴더와 파일이 나온다. 모델이나 프리팹을 씬 뷰로 끌어 놓으면 그 자리에 놓이고, 씬을 두 번 누르면 열린다. 파일을 오른쪽 클릭해 **이름 바꾸기·옮기기**로 경로를 바꾸면 씬·튜닝·UI·표 파일의 참조도 같이 바뀐다."
@@ -253,7 +253,7 @@ msgstr "**UI**: 게임 화면(`assets/ui/*.ui`)을 씬 뷰 위에 시험용 뷰 
 msgid "**State** (a Debug page): the simulation state declared with `MEALKIT_FIELD` while playing."
 msgstr "**상태**: 플레이 중 `MEALKIT_FIELD`로 선언된 시뮬레이션 상태."
 
-msgid "**Project Settings**: `mealkit.project` (File > Project Settings)."
+msgid "**Project Settings**: `mealkit.project` (Project > Settings)."
 msgstr "**프로젝트 설정**: `mealkit.project` ([파일] > [프로젝트 설정])."
 
 #, python-brace-format
@@ -270,8 +270,8 @@ msgstr "**도구**: [도구] 메뉴가 설치된 MealKit 도구(오디오 도구
 msgid "View modes"
 msgstr "보기 모드"
 
-msgid "**View > View Mode** colors the scene view by what costs time, so artists can see what is expensive:"
-msgstr "**보기 > 보기 모드**는 씬 뷰를 비용에 따라 색으로 칠해, 아티스트가 무엇이 비싼지 볼 수 있게 한다:"
+msgid "The **View Mode** list on the scene view toolbar colors the scene view by what costs time, so artists can see what is expensive:"
+msgstr "**창 > 보기 모드**는 씬 뷰를 비용에 따라 색으로 칠해, 아티스트가 무엇이 비싼지 볼 수 있게 한다:"
 
 msgid "Mode"
 msgstr "모드"
@@ -329,7 +329,7 @@ msgstr "보기 모드는 편집 화면에만 적용되고 출시 빌드에는 �
 msgid "Look dev"
 msgstr "룩데브"
 
-msgid "**View > Look Dev** opens a window that shows the model of the selected object on a turntable, lit the same way whatever the scene's lighting is. Use it to check a model and its materials right after exporting from Blender."
+msgid "**Window > Previews** opens a window that shows the model of the selected object on a turntable, lit the same way whatever the scene's lighting is. Use it to check a model and its materials right after exporting from Blender."
 msgstr "**[보기] > [룩데브]**는 고른 물체의 모델을 회전 받침대 위에, 씬 조명과 상관없이 늘 같은 조명으로 보여 주는 창을 연다. Blender에서 내보낸 뒤 모델과 머티리얼을 바로 확인한다."
 
 #, python-brace-format
@@ -353,7 +353,7 @@ msgid "GPU capture"
 msgstr "GPU 캡처"
 
 msgid "For graphics programmers: start the editor (or a development game exe) with `--gpu-capture` and the engine loads **RenderDoc** (Direct3D 12 and Vulkan) or **PIX** (Direct3D 12) if one is installed. **View > GPU Capture** or `F11` then captures the next frame; with RenderDoc, the RenderDoc window opens with the capture. Captures go to `%LOCALAPPDATA%\\MealKit\\gpu-captures`. Without `--gpu-capture` or without an installed tool, the menu item is hidden. The tool has to be loaded before the graphics device is created, which is why it is a start option."
-msgstr "그래픽 프로그래머용: 에디터(또는 개발용 게임 exe)를 `--gpu-capture`로 시작하면 설치된 **RenderDoc**(Direct3D 12와 Vulkan)이나 **PIX**(Direct3D 12)를 불러온다. 그러면 **보기 > GPU 캡처**나 `F11`이 다음 프레임을 캡처하고, RenderDoc이면 캡처를 연 RenderDoc 창이 뜬다. 캡처는 `%LOCALAPPDATA%\\MealKit\\gpu-captures`에 간다. `--gpu-capture`가 없거나 도구가 설치돼 있지 않으면 메뉴 항목이 숨겨진다. 도구는 그래픽 장치를 만들기 전에 불러와야 해서 시작 옵션이다."
+msgstr "그래픽 프로그래머용: 에디터(또는 개발용 게임 exe)를 `--gpu-capture`로 시작하면 설치된 **RenderDoc**(Direct3D 12와 Vulkan)이나 **PIX**(Direct3D 12)를 불러온다. 그러면 **창 > GPU 캡처**나 `F11`이 다음 프레임을 캡처하고, RenderDoc이면 캡처를 연 RenderDoc 창이 뜬다. 캡처는 `%LOCALAPPDATA%\\MealKit\\gpu-captures`에 간다. `--gpu-capture`가 없거나 도구가 설치돼 있지 않으면 메뉴 항목이 숨겨진다. 도구는 그래픽 장치를 만들기 전에 불러와야 해서 시작 옵션이다."
 
 msgid "Play mode"
 msgstr "플레이 모드"
@@ -366,8 +366,8 @@ msgstr "플레이 모드는 편집 중인 씬으로 에디터 안에서 게임�
 msgid "How the editor works inside (game DLL loading, hot reload, play mode, rewind) is in {doc}`../engine_dev/internals/editor`."
 msgstr "에디터가 안에서 어떻게 돌아가는지(게임 DLL 불러오기, 핫 리로드, 플레이 모드, 되감기)는 {doc}`../engine_dev/internals/editor`에 있다."
 
-msgid "**Data**: **View > Data** gathers tuning, tables, feedback and sounds under one list, with `*` on unsaved documents. **Undo** and **Redo** on the page, or Ctrl+Z and Ctrl+Y while the window has focus, step back through its edits, including deleted rows and reloads. Particle effect files have no undo."
-msgstr "**데이터**: **보기 > 데이터**에 튜닝·표·연출·소리가 한 목록으로 모이고, 저장하지 않은 문서에는 `*`가 붙는다. 페이지의 **실행 취소**와 **다시 실행**, 또는 창에 포커스가 있을 때 Ctrl+Z와 Ctrl+Y로 지운 행과 다시 읽기를 포함한 편집을 되돌린다. 파티클 효과 파일은 되돌릴 수 없다."
+msgid "**Data**: **Window > Data** gathers tuning, tables, feedback and sounds under one list, with `*` on unsaved documents. **Undo** and **Redo** on the page, or Ctrl+Z and Ctrl+Y while the window has focus, step back through its edits, including deleted rows and reloads. Particle effect files have no undo."
+msgstr "**데이터**: **창 > 데이터**에 튜닝·표·연출·소리가 한 목록으로 모이고, 저장하지 않은 문서에는 `*`가 붙는다. 페이지의 **실행 취소**와 **다시 실행**, 또는 창에 포커스가 있을 때 Ctrl+Z와 Ctrl+Y로 지운 행과 다시 읽기를 포함한 편집을 되돌린다. 파티클 효과 파일은 되돌릴 수 없다."
 
 msgid "**Problems** (a Debug page): missing models, models over budget and missing row references in one list, with the count on the tab. Click a line to select the object or open the document."
 msgstr "**문제** (디버그 창의 페이지): 없는 모델, 예산을 넘은 모델, 없는 행 참조가 한 목록에 모이고 탭에 개수가 표시된다. 줄을 클릭하면 그 물체를 선택하거나 문서를 연다."
@@ -393,14 +393,14 @@ msgstr "**좁은 행**: **환경 설정 > 인터페이스**에서 행을 좁혀 
 msgid "**Scene view tab**: the scene view is a tab. Drag other windows, such as **Data**, next to it to switch between them, or dock it elsewhere. It can't float: let go outside a dock and it returns to the center. Starting play brings it to the front."
 msgstr "**씬 뷰 탭**: 씬 뷰는 탭이다. **데이터** 같은 다른 창을 옆으로 끌어다 놓아 전환하거나, 씬 뷰를 다른 곳에 도킹할 수 있다. 떠 있는 창으로는 쓸 수 없어서 도킹 칸 밖에 놓으면 가운데로 돌아온다. 플레이를 시작하면 앞으로 나온다."
 
-msgid "**Debug**: **View > Debug** gathers Log, Problems, Build Log, Performance and State under one list, with the problem count on its tab."
-msgstr "**디버그**: **보기 > 디버그**에 로그, 문제, 빌드 로그, 성능, 상태가 한 목록으로 모이고, 탭에 문제 개수가 표시된다."
+msgid "**Debug**: **Window > Debug** gathers Log, Problems, Build Log, Performance and State under one list, with the problem count on its tab."
+msgstr "**디버그**: **창 > 디버그**에 로그, 문제, 빌드 로그, 성능, 상태가 한 목록으로 모이고, 탭에 문제 개수가 표시된다."
 
-msgid "**Settings**: **File > Settings...** gathers project settings, preferences, modules, tools and keyboard shortcuts under one list."
-msgstr "**설정**: **파일 > 설정...**에 프로젝트 설정, 환경설정, 모듈, 도구, 단축키가 한 목록으로 모인다."
+msgid "**Settings**: **Project > Settings...** gathers project settings, preferences, modules, tools and keyboard shortcuts under one list."
+msgstr "**설정**: **프로젝트 > 설정...**에 프로젝트 설정, 환경설정, 모듈, 도구, 단축키가 한 목록으로 모인다."
 
-msgid "**Previews**: **View > Previews** has UI, Look Dev and cutscene tabs."
-msgstr "**미리보기**: **보기 > 미리보기**에 UI, 룩데브, 컷신 탭이 있다."
+msgid "**Previews**: **Window > Previews** has UI, Look Dev and cutscene tabs."
+msgstr "**미리보기**: **창 > 미리보기**에 UI, 룩데브, 컷신 탭이 있다."
 
 msgid "**Unsaved list**: when something is unsaved, click `Unsaved: N` in the status bar to save or revert each document."
 msgstr "**저장 안 된 목록**: 저장하지 않은 것이 있으면 상태 표시줄의 `저장 안 됨: N`을 눌러 문서별로 저장하거나 되돌린다."
@@ -414,8 +414,8 @@ msgstr "**표 보기**: 표 페이지에서 행을 거르고, 열 머리글을 �
 msgid "**Find Uses**: right-click a file in **Assets** to list the text files that name it."
 msgstr "**사용처 찾기**: **에셋**에서 파일을 오른쪽 클릭하면 그 파일을 적어 둔 텍스트 파일 목록이 나온다."
 
-msgid "**Saved layouts**: **View > Layout** saves the current layout under a name."
-msgstr "**레이아웃 저장**: **보기 > 레이아웃**에서 지금 배치를 이름을 붙여 저장한다."
+msgid "**Saved layouts**: **Window > Layout** saves the current layout under a name."
+msgstr "**레이아웃 저장**: **창 > 레이아웃**에서 지금 배치를 이름을 붙여 저장한다."
 
 msgid "**State graphs**: on the **State** page of **Debug**, add a field path to graph it while playing."
 msgstr "**상태 그래프**: **디버그**의 **상태** 페이지에 필드 경로를 추가하면 플레이 중 그래프로 볼 수 있다."

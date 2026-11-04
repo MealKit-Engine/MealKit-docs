@@ -247,8 +247,8 @@ msgstr "스냅샷이 켜진 동안 `volume <버스> <값>`은 버스 볼륨을 �
 msgid "Walls and rooms"
 msgstr "벽과 방"
 
-msgid "The engine muffles 3D sounds behind walls: every frame it checks a few of the playing 3D sounds with a physics ray from the listener, and a blocked sound eases to its event's `occlusionVolume` and `occlusionLowpass`. This needs the game to return its physics world from `GameInstance::physics()` (the sample does). A **reverb zone** is a scene object (Add > Reverb zone): a box with room size, damping, amount, width and a change time. While the listener is inside it (the smallest one when zones overlap), buses with `reverb true` get that reverb, and it fades back out when the listener leaves. Reverb zones are view only and outside the content hash, so players may differ in them."
-msgstr "엔진은 벽 뒤의 3D 소리를 먹먹하게 한다: 매 프레임 재생 중인 3D 소리 몇 개를 리스너에서 쏜 물리 광선으로 확인하고, 가려진 소리는 이벤트의 `occlusionVolume`과 `occlusionLowpass`로 서서히 바뀐다. 게임이 `GameInstance::physics()`에서 물리 월드를 돌려줘야 한다 (샘플은 그렇게 한다). **잔향 영역**은 씬 오브젝트다 (Add > Reverb zone): 방 크기, 감쇠, 양, 폭, 바뀌는 시간을 가진 상자. 리스너가 그 안에 있는 동안(겹치면 가장 작은 것) `reverb true`인 버스가 그 잔향을 받고, 리스너가 나가면 다시 사라진다. 잔향 영역은 보기 전용이고 콘텐츠 해시 밖이라 플레이어마다 달라도 된다."
+msgid "The engine muffles 3D sounds behind walls: every frame it checks a few of the playing 3D sounds with a physics ray from the listener, and a blocked sound eases to its event's `occlusionVolume` and `occlusionLowpass`. This needs the game to return its physics world from `GameInstance::physics()` (the sample does). A **reverb zone** is a scene object (**+ Add** in the scene tree > Reverb zone): a box with room size, damping, amount, width and a change time. While the listener is inside it (the smallest one when zones overlap), buses with `reverb true` get that reverb, and it fades back out when the listener leaves. Reverb zones are view only and outside the content hash, so players may differ in them."
+msgstr "엔진은 벽 뒤의 3D 소리를 먹먹하게 한다: 매 프레임 재생 중인 3D 소리 몇 개를 리스너에서 쏜 물리 광선으로 확인하고, 가려진 소리는 이벤트의 `occlusionVolume`과 `occlusionLowpass`로 서서히 바뀐다. 게임이 `GameInstance::physics()`에서 물리 월드를 돌려줘야 한다 (샘플은 그렇게 한다). **잔향 영역**은 씬 오브젝트다 (**+ Add** in the scene tree > Reverb zone): 방 크기, 감쇠, 양, 폭, 바뀌는 시간을 가진 상자. 리스너가 그 안에 있는 동안(겹치면 가장 작은 것) `reverb true`인 버스가 그 잔향을 받고, 리스너가 나가면 다시 사라진다. 잔향 영역은 보기 전용이고 콘텐츠 해시 밖이라 플레이어마다 달라도 된다."
 
 msgid "Voice management"
 msgstr "목소리 관리"
@@ -259,8 +259,8 @@ msgstr "엔진은 한 번에 최대 `audioVoices`개(프로젝트 설정, 기본
 msgid "Sounds panel"
 msgstr "[소리] 패널"
 
-msgid "View > Sounds in the MealKit editor shows the output buses with level meters and volume, the playing voices (mixed or virtual, audibility, distance), the most recently culled plays and why (cooldown, voice limit, missing clip ...), and a preview of the selected event. Events are edited in MealKit Audio."
-msgstr "MealKit 에디터의 보기 > 소리는 출력 버스의 레벨 미터와 볼륨, 재생 중인 목소리(섞는 중·가상, 들리는 크기, 거리), 최근에 끊긴 재생과 이유(쿨다운, 목소리 상한, 없는 클립 등), 고른 이벤트의 미리 듣기를 보여 준다. 이벤트는 MealKit Audio에서 고친다."
+msgid "Window > Data, Sounds page, and Window > Debug, Sounds page, in the MealKit editor shows the output buses with level meters and volume, the playing voices (mixed or virtual, audibility, distance), the most recently culled plays and why (cooldown, voice limit, missing clip ...), and a preview of the selected event. Events are edited in MealKit Audio."
+msgstr "MealKit 에디터의 창 > 소리는 출력 버스의 레벨 미터와 볼륨, 재생 중인 목소리(섞는 중·가상, 들리는 크기, 거리), 최근에 끊긴 재생과 이유(쿨다운, 목소리 상한, 없는 클립 등), 고른 이벤트의 미리 듣기를 보여 준다. 이벤트는 MealKit Audio에서 고친다."
 
 msgid "Feedback table"
 msgstr "연출 표 (Feedback table)"
@@ -325,7 +325,7 @@ msgstr "**화면 정지는 화면만 멈춘다.** 시뮬레이션은 다른 플�
 msgid "Feedback panel"
 msgstr "[연출] 패널"
 
-msgid "View > Feedback lists the game's event kinds and their rows. Edits are saved automatically and a playing game picks them up at once. **Preview** plays the rows of the selected kind right now, even while editing."
+msgid "Window > Data, Feedback page, lists the game's event kinds and their rows. Edits are saved automatically and a playing game picks them up at once. **Preview** plays the rows of the selected kind right now, even while editing."
 msgstr "[보기] > [연출]은 게임의 이벤트 종류와 그 행들을 보여 준다. 고치면 자동으로 저장되고 플레이 중인 게임에 바로 반영된다. **[미리듣기]**는 고른 종류의 행을 지금 한 번 낸다(편집 중에도 된다)."
 
 msgid "Particle effects"

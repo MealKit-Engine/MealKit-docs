@@ -83,15 +83,15 @@ Because the match is deterministic, the match start values and every tick's inpu
 Project Settings `keepReplays` sets how many are kept (default 20, oldest are deleted, 0 turns recording off). Automated runs and `--record-inputs` do not keep replays.
 
 - Game: `sandbox.exe --replay <file>` plays it in the window. Your own input is ignored.
-- Editor: **File > Open Replay...** (or `--replay <file>`) plays it as solo play, so pause, step one tick, rewind and the State panel work as usual.
+- Editor: **Scene > Open Replay...** (or `--replay <file>`) plays it as solo play, so pause, step one tick, rewind and the State panel work as usual.
 - A replay recorded with different game data (scene, models, tuning, project settings) or another build shows a warning and plays anyway. When a tick's state hash differs from the recording, it pauses at that tick.
 
 ### Bug reports
 
 Press **F9** in the game to save the current match for a developer: the user folder's `bugreports/<date>_<time>.zip` holds the input recording so far (`replay.rec`), the build and data versions (`info.txt`), the recent log, a screenshot and one line the player writes (development builds ask for it; shipped builds save without a note).
-Open the zip with **File > Open Replay...** in the editor (or `--replay <file.zip>`): it replays to the tick where F9 was pressed and pauses there. Project Settings `bugReports` turns the key off.
+Open the zip with **Scene > Open Replay...** in the editor (or `--replay <file.zip>`): it replays to the tick where F9 was pressed and pauses there. Project Settings `bugReports` turns the key off.
 
-If the game crashes, it leaves the same kind of zip by itself: on the next start the game says so, offers to open the folder, and saves `crash/<date>_<time>.zip` in the user folder with the input recording up to the crash, `info.txt`, the recent log, `crash.txt` (exception code and address) and `crash.dmp` (a minidump to open in Visual Studio with the matching `.pdb`). **File > Open Replay...** plays it to the tick where the game crashed. The same `bugReports` setting turns it off.
+If the game crashes, it leaves the same kind of zip by itself: on the next start the game says so, offers to open the folder, and saves `crash/<date>_<time>.zip` in the user folder with the input recording up to the crash, `info.txt`, the recent log, `crash.txt` (exception code and address) and `crash.dmp` (a minidump to open in Visual Studio with the matching `.pdb`). **Scene > Open Replay...** plays it to the tick where the game crashed. The same `bugReports` setting turns it off.
 
 ## When the host leaves
 
