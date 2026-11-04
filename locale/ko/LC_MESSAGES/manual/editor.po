@@ -389,3 +389,6 @@ msgstr "**씬 뷰 핸들**: 점광원의 범위처럼 월드에서 크기가 있
 
 msgid "**Compact rows**: **Preferences > Interface** tightens rows so more fits on small screens."
 msgstr "**좁은 행**: **환경 설정 > 인터페이스**에서 행을 좁혀 작은 화면에 더 많이 표시한다."
+
+msgid "**Scene view tab**: the scene view is a tab. Drag other windows, such as **Data**, next to it to switch between them, or dock it elsewhere. It can't float: let go outside a dock and it returns to the center. Starting play brings it to the front."
+msgstr "**씬 뷰 탭**: 씬 뷰는 탭이다. **데이터** 같은 다른 창을 옆으로 끌어다 놓아 전환하거나, 씬 뷰를 다른 곳에 도킹할 수 있다. 떠 있는 창으로는 쓸 수 없어서 도킹 칸 밖에 놓으면 가운데로 돌아온다. 플레이를 시작하면 앞으로 나온다."
