@@ -160,4 +160,6 @@ Tick **Edit** under **Edit screen** in the **View > UI** panel to change the ope
 - **Deleting**: `Delete` removes the selected node and its children.
 - Screens exported from Penpot open read-only: change them in Penpot and export again.
 
+- **Previewing**: **Save values** keeps the view model's test values in `art/ui/samples/<screen>.<ViewModel>.values` (not shipped); they load when the screen opens. **Show state** in the properties shows the selected node as hovered, pressed, focused, disabled or checked. The **Focus** buttons make one keyboard or gamepad move and name the focused node.
+
 `MealKitEditor.exe --ui pause.ui --ui-select resume` opens the screen in edit mode with that node selected; add `--ui-drag 0,90` to drag it by that many logical units after the first frame (the log shows the result).

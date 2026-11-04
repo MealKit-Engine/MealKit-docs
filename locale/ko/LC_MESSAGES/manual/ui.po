@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-04 02:27+0900\n"
+"POT-Creation-Date: 2026-11-04 10:09+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ko\n"
@@ -427,6 +427,9 @@ msgstr "**삭제**: `Delete`는 선택한 노드와 그 자식을 지운다."
 
 msgid "Screens exported from Penpot open read-only: change them in Penpot and export again."
 msgstr "Penpot에서 내보낸 화면은 읽기 전용으로 열린다. Penpot에서 고치고 다시 내보낸다."
+
+msgid "**Previewing**: **Save values** keeps the view model's test values in `art/ui/samples/<screen>.<ViewModel>.values` (not shipped); they load when the screen opens. **Show state** in the properties shows the selected node as hovered, pressed, focused, disabled or checked. The **Focus** buttons make one keyboard or gamepad move and name the focused node."
+msgstr "**미리 보기**: **[값 저장]**은 뷰 모델의 시험 값을 `art/ui/samples/<화면>.<뷰 모델>.values`에 둔다(출시에 포함되지 않음). 화면을 열 때 함께 읽힌다. 속성의 **[상태 보기]**는 선택한 노드를 마우스 올림, 누름, 포커스, 비활성, 켜짐 상태로 보여 준다. **[포커스]** 버튼은 키보드나 게임패드 이동을 한 번 하고 포커스된 노드의 이름을 보여 준다."
 
 msgid "`MealKitEditor.exe --ui pause.ui --ui-select resume` opens the screen in edit mode with that node selected; add `--ui-drag 0,90` to drag it by that many logical units after the first frame (the log shows the result)."
 msgstr "`MealKitEditor.exe --ui pause.ui --ui-select resume`는 그 노드를 고른 편집 모드로 화면을 연다. `--ui-drag 0,90`을 붙이면 첫 프레임 뒤에 그만큼(논리 단위) 끌고 결과를 로그에 쓴다."
