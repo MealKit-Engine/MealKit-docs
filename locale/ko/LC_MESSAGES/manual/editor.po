@@ -129,8 +129,8 @@ msgstr "프리팹"
 msgid "A prefab is a group of objects saved to a file so you can place it many times, like a lamp post with its light or a furnished room."
 msgstr "프리팹은 여러 물체를 파일 하나로 저장해 여러 번 놓을 수 있게 한 묶음이다. 불빛이 달린 가로등이나 가구를 갖춘 방 같은 것."
 
-msgid "**Save**: select the objects and choose **Edit > Save as Prefab...** (or right-click in the scene tree). Their children are saved too. The file goes in `assets/prefabs/` as a `.prefab` text file. Positions are kept relative to the first selected object; heights above the floor stay as they are."
-msgstr "**저장**: 물체를 고르고 **편집 > 프리팹으로 저장...**을 누른다(씬 트리 오른쪽 클릭으로도 된다). 자식 물체도 같이 저장된다. 파일은 `assets/prefabs/`에 `.prefab` 텍스트 파일로 들어간다. 위치는 처음 고른 물체 기준으로 저장되고, 바닥 위 높이는 그대로 남는다."
+msgid "**Save**: select the objects and choose **Scene > Save as Prefab...** (or the button at the bottom of the inspector, or right-click in the scene tree). Their children are saved too. The file goes in `assets/prefabs/` as a `.prefab` text file. Positions are kept relative to the first selected object; heights above the floor stay as they are."
+msgstr "**저장**: 물체를 고르고 **씬 > 프리팹으로 저장...**을 누른다(인스펙터 아래쪽 버튼이나 씬 트리 오른쪽 클릭으로도 된다). 자식 물체도 같이 저장된다. 파일은 `assets/prefabs/`에 `.prefab` 텍스트 파일로 들어간다. 위치는 처음 고른 물체 기준으로 저장되고, 바닥 위 높이는 그대로 남는다."
 
 msgid "**Place**: in the **Assets** tab, double-click a prefab to place it on the floor in front of the camera, or drag it into the scene view to place it where you drop it."
 msgstr "**배치**: **에셋** 탭에서 프리팹을 두 번 누르면 카메라 앞 바닥에 놓이고, 씬 뷰로 끌어 놓으면 놓은 자리에 놓인다."
@@ -184,11 +184,11 @@ msgstr "패널"
 msgid "**Layout**: the scene tree is on the left, the inspector on the right, and **Debug** and assets share a strip under the scene view. **Window > Layout** picks Edit, Play or Look Dev and resets the layout."
 msgstr "**레이아웃**: 씬 트리는 왼쪽, 인스펙터는 오른쪽, **디버그**와 에셋은 씬 뷰 아래 가로 칸에 같이 놓인다. **창 > 레이아웃**에서 편집·플레이·룩데브를 골라 레이아웃을 다시 놓는다."
 
-msgid "**Scene environment**: select the **Scene** row at the top of the scene tree. The inspector then shows the sun, sky, fog, sky HDRI and post processing of the open scene."
-msgstr "**씬 환경**: 씬 트리 맨 위의 **씬** 줄을 고른다. 그러면 인스펙터에 열린 씬의 태양·하늘·안개·하늘 HDRI·포스트 프로세싱이 나온다."
+msgid "**Scene environment**: select the **Scene Environment** row at the top of the scene tree. The inspector then shows the sun, sky, fog, sky HDRI and post processing of the open scene."
+msgstr "**씬 환경**: 씬 트리 맨 위의 **씬 환경** 줄을 고른다. 그러면 인스펙터에 열린 씬의 태양·하늘·안개·하늘 HDRI·포스트 프로세싱이 나온다."
 
-msgid "**Log**: **Window > Debug**, Log page, shows engine and game log lines. Tick Info, Warnings or Errors to filter, type in the search box to find a line, and press Clear to empty it."
-msgstr "**로그**: **창 > 디버그**의 로그 페이지에 엔진과 게임의 로그 줄이 나온다. 정보·경고·오류를 체크해 거르고, 찾기 칸에 쳐서 줄을 찾고, 지우기로 비운다."
+msgid "**Log**: **Window > Debug**, Log page, shows engine and game log lines, with what is wrong right now above them: missing models, models over budget and missing row references. Click a problem to select the object or open the document; the flag button shows or hides the list. The info, warning and error buttons filter the lines, the search box finds a line, and the trash button empties the log."
+msgstr "**로그**: **창 > 디버그**의 로그 페이지에 엔진과 게임의 로그 줄이 나오고, 그 위에 지금 고쳐야 할 문제(없는 모델, 예산을 넘은 모델, 없는 행 참조)가 나온다. 문제를 클릭하면 그 물체를 선택하거나 문서를 열고, 깃발 버튼으로 목록을 보이거나 숨긴다. 정보·경고·오류 버튼으로 줄을 거르고, 찾기 칸으로 줄을 찾고, 휴지통 버튼으로 로그를 비운다."
 
 msgid "**Notices**: messages also appear at the bottom right of the scene view. Failures stay until you close them; click one to open the build log or the log. While playing, the menu bar turns brown and the scene view gets an orange frame."
 msgstr "**알림**: 메시지가 씬 뷰 오른쪽 아래에도 뜬다. 실패는 닫을 때까지 남고, 누르면 빌드 로그나 로그가 열린다. 플레이 중에는 메뉴 막대가 갈색, 씬 뷰 테두리가 주황색이 된다."
@@ -214,8 +214,8 @@ msgstr "**스냅과 정렬**: 이동·회전·크기 스냅 단위는 환경설�
 msgid "**Camera**: Alt + left drag orbits around the selection, the wheel moves toward the point under the mouse, and the toolbar switches between perspective and orthographic. Ctrl+1 to Ctrl+9 save camera bookmarks for the scene; 1 to 9 go back to them."
 msgstr "**카메라**: Alt + 왼쪽 드래그는 고른 물체를 중심으로 돌고, 휠은 마우스가 가리키는 곳 쪽으로 움직이며, 툴바에서 원근과 정사영을 바꾼다. Ctrl+1~9는 씬의 카메라 북마크를 저장하고 1~9로 돌아간다."
 
-msgid "**Inspector**: sections fold. Right-click a field for Reset to Default, Copy Value and Paste Value; a blue dot marks values that differ from the default. The lock before Scale keeps the X, Y and Z ratio. **Edit > History** (Ctrl+H) lists the undo steps; click one to go back to it."
-msgstr "**인스펙터**: 섹션을 접을 수 있다. 필드를 오른쪽 클릭하면 기본값으로·값 복사·값 붙여넣기가 나오고, 기본값과 다른 값에는 파란 점이 찍힌다. 크기 앞 자물쇠는 X·Y·Z 비율을 지킨다. **편집 > 기록**(Ctrl+H)에 되돌리기 단계가 나오고, 누르면 그 지점으로 돌아간다."
+msgid "**Inspector**: sections fold. Right-click a field for Reset to Default, Copy Value and Paste Value; a blue dot marks values that differ from the default. The lock before Scale keeps the X, Y and Z ratio. Click a color swatch for a picker with RGB, HSV and hex values; drag its bottom right corner to resize it. **Edit > History** (Ctrl+H) lists the undo steps; click one to go back to it."
+msgstr "**인스펙터**: 섹션을 접을 수 있다. 필드를 오른쪽 클릭하면 기본값으로·값 복사·값 붙여넣기가 나오고, 기본값과 다른 값에는 파란 점이 찍힌다. 크기 앞 자물쇠는 X·Y·Z 비율을 지킨다. 색상 칸을 클릭하면 RGB, HSV, Hex 값이 있는 선택창이 열리고, 오른쪽 아래 모서리를 끌어 크기를 바꾼다. **편집 > 기록**(Ctrl+H)에 되돌리기 단계가 나오고, 누르면 그 지점으로 돌아간다."
 
 msgid "**Performance**: **Window > Debug**, Performance page, (or click the fps number in the status bar) graphs the CPU and GPU frame time, simulation tick, draw calls and network traffic of the last 30 seconds against the budgets in the roadmap. Values over budget turn red."
 msgstr "**성능**: **창 > 디버그**의 성능 페이지(또는 상태 표시줄의 fps 숫자를 누름)은 최근 30초의 CPU·GPU 프레임 시간, 시뮬레이션 틱, 드로우 콜, 네트워크를 로드맵의 예산과 함께 그래프로 보여 준다. 예산을 넘은 값은 빨갛게 된다."
@@ -369,9 +369,6 @@ msgstr "에디터가 안에서 어떻게 돌아가는지(게임 DLL 불러오기
 msgid "**Data**: **Window > Data** gathers tuning, tables, feedback and sounds under one list, with `*` on unsaved documents. **Undo** and **Redo** on the page, or Ctrl+Z and Ctrl+Y while the window has focus, step back through its edits, including deleted rows and reloads. Particle effect files have no undo."
 msgstr "**데이터**: **창 > 데이터**에 튜닝·표·연출·소리가 한 목록으로 모이고, 저장하지 않은 문서에는 `*`가 붙는다. 페이지의 **실행 취소**와 **다시 실행**, 또는 창에 포커스가 있을 때 Ctrl+Z와 Ctrl+Y로 지운 행과 다시 읽기를 포함한 편집을 되돌린다. 파티클 효과 파일은 되돌릴 수 없다."
 
-msgid "**Problems** (a Debug page): missing models, models over budget and missing row references in one list, with the count on the tab. Click a line to select the object or open the document."
-msgstr "**문제** (디버그 창의 페이지): 없는 모델, 예산을 넘은 모델, 없는 행 참조가 한 목록에 모이고 탭에 개수가 표시된다. 줄을 클릭하면 그 물체를 선택하거나 문서를 연다."
-
 msgid "**Scene tree folders**: right-click an object and choose **Move to Folder...**, or drag it onto a folder. A path like `Props/Trees` makes folders inside folders. Right-click a folder to rename or remove it. Folders are saved in the scene and do not affect game results. A `!` after a name marks a problem (hover for the reason), and a blue dot marks fields changed from the kind's defaults."
 msgstr "**씬 트리 폴더**: 물체를 오른쪽 클릭해 **폴더로 옮기기...**를 고르거나 폴더로 끌어다 놓는다. `Props/Trees` 같은 경로는 폴더 안의 폴더를 만든다. 폴더를 오른쪽 클릭하면 이름을 바꾸거나 없앨 수 있다. 폴더는 씬에 저장되고 게임 결과에 영향을 주지 않는다. 이름 뒤의 `!`는 문제를 나타내고(마우스를 올리면 이유가 보인다), 파란 점은 종류의 기본값에서 바뀐 필드가 있다는 뜻이다."
 
@@ -393,8 +390,8 @@ msgstr "**좁은 행**: **환경 설정 > 인터페이스**에서 행을 좁혀 
 msgid "**Scene view tab**: the scene view is a tab. Drag other windows, such as **Data**, next to it to switch between them, or dock it elsewhere. It can't float: let go outside a dock and it returns to the center. Starting play brings it to the front."
 msgstr "**씬 뷰 탭**: 씬 뷰는 탭이다. **데이터** 같은 다른 창을 옆으로 끌어다 놓아 전환하거나, 씬 뷰를 다른 곳에 도킹할 수 있다. 떠 있는 창으로는 쓸 수 없어서 도킹 칸 밖에 놓으면 가운데로 돌아온다. 플레이를 시작하면 앞으로 나온다."
 
-msgid "**Debug**: **Window > Debug** gathers Log, Problems, Build Log, Performance and State under one list, with the problem count on its tab."
-msgstr "**디버그**: **창 > 디버그**에 로그, 문제, 빌드 로그, 성능, 상태가 한 목록으로 모이고, 탭에 문제 개수가 표시된다."
+msgid "**Debug**: **Window > Debug** gathers Log, Build Log, Performance and State under one list, with the problem count on its tab."
+msgstr "**디버그**: **창 > 디버그**에 로그, 빌드 로그, 성능, 상태가 한 목록으로 모이고, 탭에 문제 개수가 표시된다."
 
 msgid "**Settings**: **Project > Settings...** gathers project settings, preferences, modules, tools and keyboard shortcuts under one list."
 msgstr "**설정**: **프로젝트 > 설정...**에 프로젝트 설정, 환경설정, 모듈, 도구, 단축키가 한 목록으로 모인다."
@@ -414,8 +411,8 @@ msgstr "**표 보기**: 표 페이지에서 행을 거르고, 열 머리글을 �
 msgid "**Find Uses**: right-click a file in **Assets** to list the text files that name it."
 msgstr "**사용처 찾기**: **에셋**에서 파일을 오른쪽 클릭하면 그 파일을 적어 둔 텍스트 파일 목록이 나온다."
 
-msgid "**Saved layouts**: **Window > Layout** saves the current layout under a name."
-msgstr "**레이아웃 저장**: **창 > 레이아웃**에서 지금 배치를 이름을 붙여 저장한다."
+msgid "**Saved layouts**: **Window > Layout** saves the current layout under a name. The **Window** menu also turns panels on and off, including the scene tree, scene view and inspector; **Reset Layout** brings those three back, and playing reopens the scene view."
+msgstr "**레이아웃 저장**: **창 > 레이아웃**에서 지금 배치를 이름을 붙여 저장한다. **창** 메뉴에서 씬 트리, 씬 뷰, 인스펙터를 포함한 패널을 켜고 끌 수 있다. **레이아웃 초기화**는 이 셋을 다시 켜고, 플레이를 시작하면 씬 뷰가 다시 켜진다."
 
 msgid "**State graphs**: on the **State** page of **Debug**, add a field path to graph it while playing."
 msgstr "**상태 그래프**: **디버그**의 **상태** 페이지에 필드 경로를 추가하면 플레이 중 그래프로 볼 수 있다."

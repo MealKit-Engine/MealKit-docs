@@ -35,7 +35,7 @@ Scenes are saved as human-readable `.scene` text: each object is its kind name p
 
 A prefab is a group of objects saved to a file so you can place it many times, like a lamp post with its light or a furnished room.
 
-- **Save**: select the objects and choose **Edit > Save as Prefab...** (or right-click in the scene tree). Their children are saved too. The file goes in `assets/prefabs/` as a `.prefab` text file. Positions are kept relative to the first selected object; heights above the floor stay as they are.
+- **Save**: select the objects and choose **Scene > Save as Prefab...** (or the button at the bottom of the inspector, or right-click in the scene tree). Their children are saved too. The file goes in `assets/prefabs/` as a `.prefab` text file. Positions are kept relative to the first selected object; heights above the floor stay as they are.
 - **Place**: in the **Assets** tab, double-click a prefab to place it on the floor in front of the camera, or drag it into the scene view to place it where you drop it.
 - Placing makes plain copies, like Duplicate. Changing the prefab file later does not change copies already in scenes, and the game never reads prefab files.
 - A prefab holds only data: kinds, positions and field values. Behavior is game code; to reuse behavior with its objects, use a source module (see {doc}`modules`).
@@ -74,10 +74,10 @@ A scatter layer paints thousands of copies of one model, such as grass, rocks or
 - **Searching fields**: the inspector, **Tuning** and **Project Settings** have a search box. **Tuning** can also show only values changed from the defaults.
 - **Table views**: on a table page, filter rows, click a column header to sort, and edit the chosen row in the list below. Sorting only changes the view, not the file.
 - **Find Uses**: right-click a file in **Assets** to list the text files that name it.
-- **Saved layouts**: **Window > Layout** saves the current layout under a name.
+- **Saved layouts**: **Window > Layout** saves the current layout under a name. The **Window** menu also turns panels on and off, including the scene tree, scene view and inspector; **Reset Layout** brings those three back, and playing reopens the scene view.
 - **State graphs**: on the **State** page of **Debug**, add a field path to graph it while playing.
-- **Scene environment**: select the **Scene** row at the top of the scene tree. The inspector then shows the sun, sky, fog, sky HDRI and post processing of the open scene.
-- **Log**: **Window > Debug**, Log page, shows engine and game log lines. Tick Info, Warnings or Errors to filter, type in the search box to find a line, and press Clear to empty it.
+- **Scene environment**: select the **Scene Environment** row at the top of the scene tree. The inspector then shows the sun, sky, fog, sky HDRI and post processing of the open scene.
+- **Log**: **Window > Debug**, Log page, shows engine and game log lines, with what is wrong right now above them: missing models, models over budget and missing row references. Click a problem to select the object or open the document; the flag button shows or hides the list. The info, warning and error buttons filter the lines, the search box finds a line, and the trash button empties the log.
 - **Notices**: messages also appear at the bottom right of the scene view. Failures stay until you close them; click one to open the build log or the log. While playing, the menu bar turns brown and the scene view gets an orange frame.
 - **Command palette**: press Ctrl+P (or **Window > Command Palette**) and type part of a command, object, scene or tool name, in English or Korean. Use the arrow keys and Enter to run it.
 - **Preferences**: **Project > Settings, Preferences page** sets the camera speed, text size, autosave interval and code editor. The window layout is kept per project in `build\editor\layout.ini`. Press F1 for the list of keyboard shortcuts.
@@ -86,15 +86,14 @@ A scatter layer paints thousands of copies of one model, such as grass, rocks or
 - **Viewport toolbar**: the bar at the top left of the scene view switches between move, rotate and scale, local and world axes, snapping, the floor grid, the view mode and the camera speed. Click the axis cube at the top right to look from that side.
 - **Snap and align**: set the move, rotate and scale snap steps in Preferences or with the arrow next to Snap on the toolbar. **Edit > Drop to Floor** (End) puts the selection on the object below it, and **Edit > Align** lines up or evenly spaces several selected objects.
 - **Camera**: Alt + left drag orbits around the selection, the wheel moves toward the point under the mouse, and the toolbar switches between perspective and orthographic. Ctrl+1 to Ctrl+9 save camera bookmarks for the scene; 1 to 9 go back to them.
-- **Inspector**: sections fold. Right-click a field for Reset to Default, Copy Value and Paste Value; a blue dot marks values that differ from the default. The lock before Scale keeps the X, Y and Z ratio. **Edit > History** (Ctrl+H) lists the undo steps; click one to go back to it.
+- **Inspector**: sections fold. Right-click a field for Reset to Default, Copy Value and Paste Value; a blue dot marks values that differ from the default. The lock before Scale keeps the X, Y and Z ratio. Click a color swatch for a picker with RGB, HSV and hex values; drag its bottom right corner to resize it. **Edit > History** (Ctrl+H) lists the undo steps; click one to go back to it.
 - **Performance**: **Window > Debug**, Performance page, (or click the fps number in the status bar) graphs the CPU and GPU frame time, simulation tick, draw calls and network traffic of the last 30 seconds against the budgets in the roadmap. Values over budget turn red.
 - **Jump to code**: click a blue `file(line)` line in the build log or the log to open it in the code editor set in Preferences (VS Code by default). For a game object type, **Open Code** in the inspector opens its `MEALKIT_OBJECT` declaration.
 - **Scenes**: **Scene > Scenes** lists the scenes in `assets/scenes`. The star marks the start scene; select another and press **Set as Start Scene** to change it in `mealkit.project`. **File > Recent Scenes** reopens the scenes you used last in this project.
 - **Play from here**: Shift+F5 (the list by the play button) starts a solo game with the player under the editor camera, or at the selected spawn point. The scene file does not change.
 - **Assets**: the **Assets** tab under the scene view shows the `assets` folders and files. Drag a model or prefab into the scene view to place it, or double-click a scene to open it. Right-click a file and choose **Rename or Move** to change its path; references in scenes, tuning, UI and table files are updated too.
 - **Data**: **Window > Data** gathers tuning, tables, feedback and sounds under one list, with `*` on unsaved documents. **Undo** and **Redo** on the page, or Ctrl+Z and Ctrl+Y while the window has focus, step back through its edits, including deleted rows and reloads. Particle effect files have no undo.
-- **Debug**: **Window > Debug** gathers Log, Problems, Build Log, Performance and State under one list, with the problem count on its tab.
-- **Problems** (a Debug page): missing models, models over budget and missing row references in one list, with the count on the tab. Click a line to select the object or open the document.
+- **Debug**: **Window > Debug** gathers Log, Build Log, Performance and State under one list, with the problem count on its tab.
 - **Tuning** (a Data page): two pages. Game holds the values the simulation reads (`assets/game.tuning`); during solo play changes apply at once. Display holds the values that are only seen (`assets/view.tuning`); changes apply at once in every player window, even with several players.
 - **Tables** (a Data page): the game's definition tables (`assets/tables/*.table`) and the engine's input bindings table as a spreadsheet, CSV import and export. Playing saves edited tables first.
 - **Sounds** (a Data page): output buses, playing voices and culled plays, and a preview of sound events (see {doc}`sound`).
