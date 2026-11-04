@@ -395,3 +395,12 @@ msgstr "**씬 뷰 탭**: 씬 뷰는 탭이다. **데이터** 같은 다른 창�
 
 msgid "**Debug**: **View > Debug** gathers Log, Problems, Build Log, Performance and State under one list, with the problem count on its tab."
 msgstr "**디버그**: **보기 > 디버그**에 로그, 문제, 빌드 로그, 성능, 상태가 한 목록으로 모이고, 탭에 문제 개수가 표시된다."
+
+msgid "**Settings**: **File > Settings...** gathers project settings, preferences, modules, tools and keyboard shortcuts under one list."
+msgstr "**설정**: **파일 > 설정...**에 프로젝트 설정, 환경설정, 모듈, 도구, 단축키가 한 목록으로 모인다."
+
+msgid "**Previews**: **View > Previews** has UI, Look Dev and cutscene tabs."
+msgstr "**미리보기**: **보기 > 미리보기**에 UI, 룩데브, 컷신 탭이 있다."
+
+msgid "**Unsaved list**: when something is unsaved, click `Unsaved: N` in the status bar to save or revert each document."
+msgstr "**저장 안 된 목록**: 저장하지 않은 것이 있으면 상태 표시줄의 `저장 안 됨: N`을 눌러 문서별로 저장하거나 되돌린다."

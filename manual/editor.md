@@ -68,6 +68,9 @@ A scatter layer paints thousands of copies of one model, such as grass, rocks or
 - **Handles in the scene view**: fields that have a size in the world, such as a point light's range, show circles and a handle around the selected object. Drag the handle to change the value.
 - **Compact rows**: **Preferences > Interface** tightens rows so more fits on small screens.
 - **Scene view tab**: the scene view is a tab. Drag other windows, such as **Data**, next to it to switch between them, or dock it elsewhere. It can't float: let go outside a dock and it returns to the center. Starting play brings it to the front.
+- **Settings**: **File > Settings...** gathers project settings, preferences, modules, tools and keyboard shortcuts under one list.
+- **Previews**: **View > Previews** has UI, Look Dev and cutscene tabs.
+- **Unsaved list**: when something is unsaved, click `Unsaved: N` in the status bar to save or revert each document.
 - **Scene environment**: select the **Scene** row at the top of the scene tree. The inspector then shows the sun, sky, fog, sky HDRI and post processing of the open scene.
 - **Log**: **View > Debug**, Log page, shows engine and game log lines. Tick Info, Warnings or Errors to filter, type in the search box to find a line, and press Clear to empty it.
 - **Notices**: messages also appear at the bottom right of the scene view. Failures stay until you close them; click one to open the build log or the log. While playing, the menu bar turns brown and the scene view gets an orange frame.
