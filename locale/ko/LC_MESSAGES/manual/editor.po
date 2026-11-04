@@ -383,3 +383,9 @@ msgstr "**에셋 그리드**: **에셋** 위쪽 슬라이더로 목록을 모델
 
 msgid "**Command palette**: Ctrl+P finds commands, objects, scenes, tools, assets, table rows and tuning values. Letters can have gaps, and Korean initial consonants work."
 msgstr "**명령 팔레트**: Ctrl+P로 명령, 물체, 씬, 도구, 에셋, 표 행, 튜닝 값을 찾는다. 글자 사이가 떨어져도 되고 한글 초성으로도 찾을 수 있다."
+
+msgid "**Handles in the scene view**: fields that have a size in the world, such as a point light's range, show circles and a handle around the selected object. Drag the handle to change the value."
+msgstr "**씬 뷰 핸들**: 점광원의 범위처럼 월드에서 크기가 있는 필드는 선택한 물체 주위에 원과 핸들로 표시된다. 핸들을 끌면 값이 바뀐다."
+
+msgid "**Compact rows**: **Preferences > Interface** tightens rows so more fits on small screens."
+msgstr "**좁은 행**: **환경 설정 > 인터페이스**에서 행을 좁혀 작은 화면에 더 많이 표시한다."
