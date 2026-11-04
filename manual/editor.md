@@ -60,7 +60,7 @@ A scatter layer paints thousands of copies of one model, such as grass, rocks or
 
 ## Panels
 
-- **Layout**: the scene tree is on the left, the inspector on the right (with the **State** tab), and logs, problems and assets share a strip under the scene view. **View > Layout** picks Edit, Play or Look Dev and resets the layout.
+- **Layout**: the scene tree is on the left, the inspector on the right, and **Debug** and assets share a strip under the scene view. **View > Layout** picks Edit, Play or Look Dev and resets the layout.
 - **Scene tree folders**: right-click an object and choose **Move to Folder...**, or drag it onto a folder. A path like `Props/Trees` makes folders inside folders. Right-click a folder to rename or remove it. Folders are saved in the scene and do not affect game results. A `!` after a name marks a problem (hover for the reason), and a blue dot marks fields changed from the kind's defaults.
 - **Several objects**: with objects of the same kind selected, changing a field in the inspector changes it on all of them. Fields that differ show a dash.
 - **Asset grid**: the slider at the top of **Assets** switches from the list to a grid with model pictures.
@@ -69,7 +69,7 @@ A scatter layer paints thousands of copies of one model, such as grass, rocks or
 - **Compact rows**: **Preferences > Interface** tightens rows so more fits on small screens.
 - **Scene view tab**: the scene view is a tab. Drag other windows, such as **Data**, next to it to switch between them, or dock it elsewhere. It can't float: let go outside a dock and it returns to the center. Starting play brings it to the front.
 - **Scene environment**: select the **Scene** row at the top of the scene tree. The inspector then shows the sun, sky, fog, sky HDRI and post processing of the open scene.
-- **Log**: **Build > Log** shows engine and game log lines. Tick Info, Warnings or Errors to filter, type in the search box to find a line, and press Clear to empty it.
+- **Log**: **View > Debug**, Log page, shows engine and game log lines. Tick Info, Warnings or Errors to filter, type in the search box to find a line, and press Clear to empty it.
 - **Notices**: messages also appear at the bottom right of the scene view. Failures stay until you close them; click one to open the build log or the log. While playing, the menu bar turns brown and the scene view gets an orange frame.
 - **Command palette**: press Ctrl+P (or **View > Command Palette**) and type part of a command, object, scene or tool name, in English or Korean. Use the arrow keys and Enter to run it.
 - **Preferences**: **File > Preferences** sets the camera speed, text size, autosave interval and code editor. The window layout is kept per project in `build\editor\layout.ini`. Press F1 for the list of keyboard shortcuts.
@@ -79,19 +79,20 @@ A scatter layer paints thousands of copies of one model, such as grass, rocks or
 - **Snap and align**: set the move, rotate and scale snap steps in Preferences or with the arrow next to Snap on the toolbar. **Edit > Drop to Floor** (End) puts the selection on the object below it, and **Edit > Align** lines up or evenly spaces several selected objects.
 - **Camera**: Alt + left drag orbits around the selection, the wheel moves toward the point under the mouse, and the toolbar switches between perspective and orthographic. Ctrl+1 to Ctrl+9 save camera bookmarks for the scene; 1 to 9 go back to them.
 - **Inspector**: sections fold. Right-click a field for Reset to Default, Copy Value and Paste Value; a blue dot marks values that differ from the default. The lock before Scale keeps the X, Y and Z ratio. **Edit > History** (Ctrl+H) lists the undo steps; click one to go back to it.
-- **Performance**: **Build > Performance** (or click the fps number in the status bar) graphs the CPU and GPU frame time, simulation tick, draw calls and network traffic of the last 30 seconds against the budgets in the roadmap. Values over budget turn red.
+- **Performance**: **View > Debug**, Performance page, (or click the fps number in the status bar) graphs the CPU and GPU frame time, simulation tick, draw calls and network traffic of the last 30 seconds against the budgets in the roadmap. Values over budget turn red.
 - **Jump to code**: click a blue `file(line)` line in the build log or the log to open it in the code editor set in Preferences (VS Code by default). For a game object type, **Open Code** in the inspector opens its `MEALKIT_OBJECT` declaration.
 - **Scenes**: **File > Scenes** lists the scenes in `assets/scenes`. The star marks the start scene; select another and press **Set as Start Scene** to change it in `mealkit.project`. **File > Recent Scenes** reopens the scenes you used last in this project.
 - **Play from here**: Shift+F5 (**Build > Play From Here**) starts a solo game with the player under the editor camera, or at the selected spawn point. The scene file does not change.
 - **Assets**: the **Assets** tab under the scene view shows the `assets` folders and files. Drag a model or prefab into the scene view to place it, or double-click a scene to open it. Right-click a file and choose **Rename or Move** to change its path; references in scenes, tuning, UI and table files are updated too.
 - **Data**: **View > Data** gathers tuning, tables, feedback and sounds under one list, with `*` on unsaved documents. **Undo** and **Redo** on the page, or Ctrl+Z and Ctrl+Y while the window has focus, step back through its edits, including deleted rows and reloads. Particle effect files have no undo.
-- **Problems**: missing models, models over budget and missing row references in one list, with the count on the tab. Click a line to select the object or open the document.
+- **Debug**: **View > Debug** gathers Log, Problems, Build Log, Performance and State under one list, with the problem count on its tab.
+- **Problems** (a Debug page): missing models, models over budget and missing row references in one list, with the count on the tab. Click a line to select the object or open the document.
 - **Tuning** (a Data page): two pages. Game holds the values the simulation reads (`assets/game.tuning`); during solo play changes apply at once. Display holds the values that are only seen (`assets/view.tuning`); changes apply at once in every player window, even with several players.
 - **Tables** (a Data page): the game's definition tables (`assets/tables/*.table`) and the engine's input bindings table as a spreadsheet, CSV import and export. Playing saves edited tables first.
 - **Sounds** (a Data page): output buses, playing voices and culled plays, and a preview of sound events (see {doc}`sound`).
 - **Feedback** (a Data page): the feedback table that turns tick events into sounds, camera shake, screen flash and hit stop (see {doc}`sound`).
 - **UI**: previews a game screen (`assets/ui/*.ui`) over the scene view with test view model values (see {doc}`ui`).
-- **State**: the simulation state declared with `MEALKIT_FIELD` while playing.
+- **State** (a Debug page): the simulation state declared with `MEALKIT_FIELD` while playing.
 - **Project Settings**: `mealkit.project` (File > Project Settings).
 - **Folder layout**: when a project opens, the editor runs the layout check in the background and lists misplaced files (see {doc}`projects`).
 - **Build**: the Build menu runs the project's `build.bat Editor` and `build.bat Export` in the background and shows the log.
