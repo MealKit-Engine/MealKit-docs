@@ -46,6 +46,8 @@ A game DLL exports one function, `mealkitGetGameModule`, written by the macro `M
 The editor never sees game structs as C++ types. It reads their field declarations (`reflect::TypeInfo`) and draws them with one widget set, `editor::drawFields` ({engine}`engine/src/mealkit/editor/FieldEditor.h`).
 The inspector, the Tuning panel, the Tables panel and the State panel all use it, so a new `MEALKIT_FIELD` appears in every panel without editor code.
 
+A field label can carry display hints after the name: `"Push radius|Description|group=Pushing|range=0..30|step=0.1|unit=m|pick=effects:.fx"`. `group` starts a collapsible section, `range` gives a slider, `unit` follows the number, and `pick` gives a searchable list (`sound` for sound events, or `<folder>:<extension>` for files under `assets`). Labels stay out of the content hash, but editing a label in `sim/` still changes the simulation version, which hashes those source files.
+
 The engine side of the game code boundary (`GameInstance`, `GameContext`) is described in the engine repository's {engine}`docs/CODING_MODEL.md`.
 
 ## Hot reload

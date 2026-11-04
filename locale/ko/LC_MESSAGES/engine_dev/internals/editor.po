@@ -609,3 +609,5 @@ msgstr "`Editor::updateAutosave`"
 msgid "Writes a side file instead of the scene, and compares file times on open to offer recovery after a crash."
 msgstr "씬 파일 대신 옆 파일에 쓰고, 열 때 파일 시각을 비교해 크래시 뒤에 복구를 권한다."
 
+msgid "A field label can carry display hints after the name: `\"Push radius|Description|group=Pushing|range=0..30|step=0.1|unit=m|pick=effects:.fx\"`. `group` starts a collapsible section, `range` gives a slider, `unit` follows the number, and `pick` gives a searchable list (`sound` for sound events, or `<folder>:<extension>` for files under `assets`). Labels stay out of the content hash, but editing a label in `sim/` still changes the simulation version, which hashes those source files."
+msgstr "필드 라벨의 이름 뒤에 표시 힌트를 붙일 수 있다: `\"Push radius|Description|group=Pushing|range=0..30|step=0.1|unit=m|pick=effects:.fx\"`. `group`은 접을 수 있는 구역을 시작하고, `range`는 슬라이더를 만들고, `unit`은 숫자 뒤에 표시되고, `pick`은 찾을 수 있는 목록을 만든다(`sound`는 소리 이벤트, `<폴더>:<확장자>`는 `assets` 아래 파일). 라벨은 콘텐츠 해시에 들어가지 않지만, `sim/`의 라벨을 고치면 그 소스 파일을 해시하는 시뮬레이션 버전은 바뀐다."
