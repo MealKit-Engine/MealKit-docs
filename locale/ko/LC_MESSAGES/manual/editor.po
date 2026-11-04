@@ -371,3 +371,15 @@ msgstr "**데이터**: **보기 > 데이터**에 튜닝·표·연출·소리가 
 
 msgid "**Problems**: missing models, models over budget and missing row references in one list, with the count on the tab. Click a line to select the object or open the document."
 msgstr "**문제**: 없는 모델, 예산을 넘은 모델, 없는 행 참조가 한 목록에 모이고 탭에 개수가 표시된다. 줄을 클릭하면 그 물체를 선택하거나 문서를 연다."
+
+msgid "**Scene tree folders**: right-click an object and choose **Move to Folder...**, or drag it onto a folder. A path like `Props/Trees` makes folders inside folders. Right-click a folder to rename or remove it. Folders are saved in the scene and do not affect game results. A `!` after a name marks a problem (hover for the reason), and a blue dot marks fields changed from the kind's defaults."
+msgstr "**씬 트리 폴더**: 물체를 오른쪽 클릭해 **폴더로 옮기기...**를 고르거나 폴더로 끌어다 놓는다. `Props/Trees` 같은 경로는 폴더 안의 폴더를 만든다. 폴더를 오른쪽 클릭하면 이름을 바꾸거나 없앨 수 있다. 폴더는 씬에 저장되고 게임 결과에 영향을 주지 않는다. 이름 뒤의 `!`는 문제를 나타내고(마우스를 올리면 이유가 보인다), 파란 점은 종류의 기본값에서 바뀐 필드가 있다는 뜻이다."
+
+msgid "**Several objects**: with objects of the same kind selected, changing a field in the inspector changes it on all of them. Fields that differ show a dash."
+msgstr "**여러 물체**: 같은 종류의 물체를 함께 선택하면 인스펙터에서 고친 필드가 모두에 적용된다. 값이 서로 다른 필드에는 대시가 표시된다."
+
+msgid "**Asset grid**: the slider at the top of **Assets** switches from the list to a grid with model pictures."
+msgstr "**에셋 그리드**: **에셋** 위쪽 슬라이더로 목록을 모델 그림이 있는 그리드로 바꾼다."
+
+msgid "**Command palette**: Ctrl+P finds commands, objects, scenes, tools, assets, table rows and tuning values. Letters can have gaps, and Korean initial consonants work."
+msgstr "**명령 팔레트**: Ctrl+P로 명령, 물체, 씬, 도구, 에셋, 표 행, 튜닝 값을 찾는다. 글자 사이가 떨어져도 되고 한글 초성으로도 찾을 수 있다."

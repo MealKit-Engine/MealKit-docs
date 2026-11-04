@@ -61,6 +61,10 @@ A scatter layer paints thousands of copies of one model, such as grass, rocks or
 ## Panels
 
 - **Layout**: the scene tree is on the left, the inspector on the right (with the **State** tab), and logs, problems and assets share a strip under the scene view. **View > Layout** picks Edit, Play or Look Dev and resets the layout.
+- **Scene tree folders**: right-click an object and choose **Move to Folder...**, or drag it onto a folder. A path like `Props/Trees` makes folders inside folders. Right-click a folder to rename or remove it. Folders are saved in the scene and do not affect game results. A `!` after a name marks a problem (hover for the reason), and a blue dot marks fields changed from the kind's defaults.
+- **Several objects**: with objects of the same kind selected, changing a field in the inspector changes it on all of them. Fields that differ show a dash.
+- **Asset grid**: the slider at the top of **Assets** switches from the list to a grid with model pictures.
+- **Command palette**: Ctrl+P finds commands, objects, scenes, tools, assets, table rows and tuning values. Letters can have gaps, and Korean initial consonants work.
 - **Scene environment**: select the **Scene** row at the top of the scene tree. The inspector then shows the sun, sky, fog, sky HDRI and post processing of the open scene.
 - **Log**: **Build > Log** shows engine and game log lines. Tick Info, Warnings or Errors to filter, type in the search box to find a line, and press Clear to empty it.
 - **Notices**: messages also appear at the bottom right of the scene view. Failures stay until you close them; click one to open the build log or the log. While playing, the menu bar turns brown and the scene view gets an orange frame.
