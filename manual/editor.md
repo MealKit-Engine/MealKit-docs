@@ -71,6 +71,11 @@ A scatter layer paints thousands of copies of one model, such as grass, rocks or
 - **Settings**: **File > Settings...** gathers project settings, preferences, modules, tools and keyboard shortcuts under one list.
 - **Previews**: **View > Previews** has UI, Look Dev and cutscene tabs.
 - **Unsaved list**: when something is unsaved, click `Unsaved: N` in the status bar to save or revert each document.
+- **Searching fields**: the inspector, **Tuning** and **Project Settings** have a search box. **Tuning** can also show only values changed from the defaults.
+- **Table views**: on a table page, filter rows, click a column header to sort, and edit the chosen row in the list below. Sorting only changes the view, not the file.
+- **Find Uses**: right-click a file in **Assets** to list the text files that name it.
+- **Saved layouts**: **View > Layout** saves the current layout under a name.
+- **State graphs**: on the **State** page of **Debug**, add a field path to graph it while playing.
 - **Scene environment**: select the **Scene** row at the top of the scene tree. The inspector then shows the sun, sky, fog, sky HDRI and post processing of the open scene.
 - **Log**: **View > Debug**, Log page, shows engine and game log lines. Tick Info, Warnings or Errors to filter, type in the search box to find a line, and press Clear to empty it.
 - **Notices**: messages also appear at the bottom right of the scene view. Failures stay until you close them; click one to open the build log or the log. While playing, the menu bar turns brown and the scene view gets an orange frame.

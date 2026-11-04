@@ -404,3 +404,18 @@ msgstr "**미리보기**: **보기 > 미리보기**에 UI, 룩데브, 컷신 탭
 
 msgid "**Unsaved list**: when something is unsaved, click `Unsaved: N` in the status bar to save or revert each document."
 msgstr "**저장 안 된 목록**: 저장하지 않은 것이 있으면 상태 표시줄의 `저장 안 됨: N`을 눌러 문서별로 저장하거나 되돌린다."
+
+msgid "**Searching fields**: the inspector, **Tuning** and **Project Settings** have a search box. **Tuning** can also show only values changed from the defaults."
+msgstr "**필드 찾기**: 인스펙터, **튜닝**, **프로젝트 설정**에 찾기 칸이 있다. **튜닝**은 기본값에서 바뀐 값만 볼 수도 있다."
+
+msgid "**Table views**: on a table page, filter rows, click a column header to sort, and edit the chosen row in the list below. Sorting only changes the view, not the file."
+msgstr "**표 보기**: 표 페이지에서 행을 거르고, 열 머리글을 눌러 정렬하고, 아래 목록에서 고른 행을 고친다. 정렬은 보기만 바꾸고 파일 순서는 그대로다."
+
+msgid "**Find Uses**: right-click a file in **Assets** to list the text files that name it."
+msgstr "**사용처 찾기**: **에셋**에서 파일을 오른쪽 클릭하면 그 파일을 적어 둔 텍스트 파일 목록이 나온다."
+
+msgid "**Saved layouts**: **View > Layout** saves the current layout under a name."
+msgstr "**레이아웃 저장**: **보기 > 레이아웃**에서 지금 배치를 이름을 붙여 저장한다."
+
+msgid "**State graphs**: on the **State** page of **Debug**, add a field path to graph it while playing."
+msgstr "**상태 그래프**: **디버그**의 **상태** 페이지에 필드 경로를 추가하면 플레이 중 그래프로 볼 수 있다."
