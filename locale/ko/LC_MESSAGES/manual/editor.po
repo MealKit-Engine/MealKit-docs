@@ -181,8 +181,8 @@ msgstr "복사본은 씬을 저장할 때 `assets/terrain/<씬>_<id>.scatter`에
 msgid "Panels"
 msgstr "패널"
 
-msgid "**Layout**: the scene tree is on the left, the inspector on the right (with the **Tuning** and **State** tabs), and logs and tables share a strip under the scene view. **View > Layout** picks Edit, Play or Look Dev and resets the layout."
-msgstr "**레이아웃**: 씬 트리는 왼쪽, 인스펙터는 오른쪽(**튜닝**·**상태** 탭과 같이), 로그와 표는 씬 뷰 아래 가로 칸에 같이 놓인다. **보기 > 레이아웃**에서 편집·플레이·룩데브를 골라 레이아웃을 다시 놓는다."
+msgid "**Layout**: the scene tree is on the left, the inspector on the right (with the **State** tab), and logs, problems and assets share a strip under the scene view. **View > Layout** picks Edit, Play or Look Dev and resets the layout."
+msgstr "**레이아웃**: 씬 트리는 왼쪽, 인스펙터는 오른쪽(**상태** 탭과 같이), 로그·문제·에셋은 씬 뷰 아래 가로 칸에 같이 놓인다. **보기 > 레이아웃**에서 편집·플레이·룩데브를 골라 레이아웃을 다시 놓는다."
 
 msgid "**Scene environment**: select the **Scene** row at the top of the scene tree. The inspector then shows the sun, sky, fog, sky HDRI and post processing of the open scene."
 msgstr "**씬 환경**: 씬 트리 맨 위의 **씬** 줄을 고른다. 그러면 인스펙터에 열린 씬의 태양·하늘·안개·하늘 HDRI·포스트 프로세싱이 나온다."
@@ -232,19 +232,19 @@ msgstr "**여기서 플레이**: Shift+F5(**빌드 > 여기서 플레이**)는 �
 msgid "**Assets**: the **Assets** tab under the scene view shows the `assets` folders and files. Drag a model or prefab into the scene view to place it, or double-click a scene to open it. Right-click a file and choose **Rename or Move** to change its path; references in scenes, tuning, UI and table files are updated too."
 msgstr "**에셋**: 씬 뷰 아래 **에셋** 탭에 `assets` 폴더와 파일이 나온다. 모델이나 프리팹을 씬 뷰로 끌어 놓으면 그 자리에 놓이고, 씬을 두 번 누르면 열린다. 파일을 오른쪽 클릭해 **이름 바꾸기·옮기기**로 경로를 바꾸면 씬·튜닝·UI·표 파일의 참조도 같이 바뀐다."
 
-msgid "**Tuning**: two tabs. Game holds the values the simulation reads (`assets/game.tuning`); during solo play changes apply at once. Display holds the values that are only seen (`assets/view.tuning`); changes apply at once in every player window, even with several players."
-msgstr "**튜닝**: 탭 두 개. \"게임\"은 시뮬레이션이 읽는 값(`assets/game.tuning`)으로, 혼자 플레이 중에는 바꾸면 바로 적용된다. \"화면\"은 보이기만 하는 값(`assets/view.tuning`)으로, 여러 명이어도 모든 플레이어 창에 바로 적용된다."
+msgid "**Tuning** (a Data page): two pages. Game holds the values the simulation reads (`assets/game.tuning`); during solo play changes apply at once. Display holds the values that are only seen (`assets/view.tuning`); changes apply at once in every player window, even with several players."
+msgstr "**튜닝** (데이터 창의 페이지): 페이지 두 개. \"게임\"은 시뮬레이션이 읽는 값(`assets/game.tuning`)으로, 혼자 플레이 중에는 바꾸면 바로 적용된다. \"화면\"은 보이기만 하는 값(`assets/view.tuning`)으로, 여러 명이어도 모든 플레이어 창에 바로 적용된다."
 
-msgid "**Tables**: the game's definition tables (`assets/tables/*.table`) and the engine's input bindings table as a spreadsheet, CSV import and export, and the list of missing row references. Playing saves edited tables first."
-msgstr "**표**: 게임의 정의 데이터 표(`assets/tables/*.table`)와 엔진의 입력 바인딩 표를 스프레드시트처럼 보여 주고, CSV 가져오기·내보내기와 없는 행 참조 목록이 있다. 플레이하면 고친 표를 먼저 저장한다."
-
-#, python-brace-format
-msgid "**Sounds**: output buses, playing voices and culled plays, and a preview of sound events (see {doc}`sound`)."
-msgstr "**소리**: 출력 버스, 재생 중인 목소리와 걸러진 재생, 소리 이벤트 미리듣기({doc}`sound` 참고)."
+msgid "**Tables** (a Data page): the game's definition tables (`assets/tables/*.table`) and the engine's input bindings table as a spreadsheet, CSV import and export. Playing saves edited tables first."
+msgstr "**표** (데이터 창의 페이지): 게임의 정의 데이터 표(`assets/tables/*.table`)와 엔진의 입력 바인딩 표를 스프레드시트처럼 보여 주고, CSV 가져오기·내보내기가 있다. 플레이하면 고친 표를 먼저 저장한다."
 
 #, python-brace-format
-msgid "**Feedback**: the feedback table that turns tick events into sounds, camera shake, screen flash and hit stop (see {doc}`sound`)."
-msgstr "**연출**: 틱 이벤트를 소리·카메라 흔들림·화면 번쩍임·화면 정지로 바꾸는 연출 표({doc}`sound` 참고)."
+msgid "**Sounds** (a Data page): output buses, playing voices and culled plays, and a preview of sound events (see {doc}`sound`)."
+msgstr "**소리** (데이터 창의 페이지): 출력 버스, 재생 중인 목소리와 걸러진 재생, 소리 이벤트 미리듣기({doc}`sound` 참고)."
+
+#, python-brace-format
+msgid "**Feedback** (a Data page): the feedback table that turns tick events into sounds, camera shake, screen flash and hit stop (see {doc}`sound`)."
+msgstr "**연출** (데이터 창의 페이지): 틱 이벤트를 소리·카메라 흔들림·화면 번쩍임·화면 정지로 바꾸는 연출 표({doc}`sound` 참고)."
 
 #, python-brace-format
 msgid "**UI**: previews a game screen (`assets/ui/*.ui`) over the scene view with test view model values (see {doc}`ui`)."
@@ -366,3 +366,8 @@ msgstr "플레이 모드는 편집 중인 씬으로 에디터 안에서 게임�
 msgid "How the editor works inside (game DLL loading, hot reload, play mode, rewind) is in {doc}`../engine_dev/internals/editor`."
 msgstr "에디터가 안에서 어떻게 돌아가는지(게임 DLL 불러오기, 핫 리로드, 플레이 모드, 되감기)는 {doc}`../engine_dev/internals/editor`에 있다."
 
+msgid "**Data**: **View > Data** gathers tuning, tables, feedback and sounds under one list, with `*` on unsaved documents. **Undo** and **Redo** on the page, or Ctrl+Z and Ctrl+Y while the window has focus, step back through its edits, including deleted rows and reloads. Particle effect files have no undo."
+msgstr "**데이터**: **보기 > 데이터**에 튜닝·표·연출·소리가 한 목록으로 모이고, 저장하지 않은 문서에는 `*`가 붙는다. 페이지의 **실행 취소**와 **다시 실행**, 또는 창에 포커스가 있을 때 Ctrl+Z와 Ctrl+Y로 지운 행과 다시 읽기를 포함한 편집을 되돌린다. 파티클 효과 파일은 되돌릴 수 없다."
+
+msgid "**Problems**: missing models, models over budget and missing row references in one list, with the count on the tab. Click a line to select the object or open the document."
+msgstr "**문제**: 없는 모델, 예산을 넘은 모델, 없는 행 참조가 한 목록에 모이고 탭에 개수가 표시된다. 줄을 클릭하면 그 물체를 선택하거나 문서를 연다."

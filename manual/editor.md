@@ -60,7 +60,7 @@ A scatter layer paints thousands of copies of one model, such as grass, rocks or
 
 ## Panels
 
-- **Layout**: the scene tree is on the left, the inspector on the right (with the **Tuning** and **State** tabs), and logs and tables share a strip under the scene view. **View > Layout** picks Edit, Play or Look Dev and resets the layout.
+- **Layout**: the scene tree is on the left, the inspector on the right (with the **State** tab), and logs, problems and assets share a strip under the scene view. **View > Layout** picks Edit, Play or Look Dev and resets the layout.
 - **Scene environment**: select the **Scene** row at the top of the scene tree. The inspector then shows the sun, sky, fog, sky HDRI and post processing of the open scene.
 - **Log**: **Build > Log** shows engine and game log lines. Tick Info, Warnings or Errors to filter, type in the search box to find a line, and press Clear to empty it.
 - **Notices**: messages also appear at the bottom right of the scene view. Failures stay until you close them; click one to open the build log or the log. While playing, the menu bar turns brown and the scene view gets an orange frame.
@@ -77,10 +77,12 @@ A scatter layer paints thousands of copies of one model, such as grass, rocks or
 - **Scenes**: **File > Scenes** lists the scenes in `assets/scenes`. The star marks the start scene; select another and press **Set as Start Scene** to change it in `mealkit.project`. **File > Recent Scenes** reopens the scenes you used last in this project.
 - **Play from here**: Shift+F5 (**Build > Play From Here**) starts a solo game with the player under the editor camera, or at the selected spawn point. The scene file does not change.
 - **Assets**: the **Assets** tab under the scene view shows the `assets` folders and files. Drag a model or prefab into the scene view to place it, or double-click a scene to open it. Right-click a file and choose **Rename or Move** to change its path; references in scenes, tuning, UI and table files are updated too.
-- **Tuning**: two tabs. Game holds the values the simulation reads (`assets/game.tuning`); during solo play changes apply at once. Display holds the values that are only seen (`assets/view.tuning`); changes apply at once in every player window, even with several players.
-- **Tables**: the game's definition tables (`assets/tables/*.table`) and the engine's input bindings table as a spreadsheet, CSV import and export, and the list of missing row references. Playing saves edited tables first.
-- **Sounds**: output buses, playing voices and culled plays, and a preview of sound events (see {doc}`sound`).
-- **Feedback**: the feedback table that turns tick events into sounds, camera shake, screen flash and hit stop (see {doc}`sound`).
+- **Data**: **View > Data** gathers tuning, tables, feedback and sounds under one list, with `*` on unsaved documents. **Undo** and **Redo** on the page, or Ctrl+Z and Ctrl+Y while the window has focus, step back through its edits, including deleted rows and reloads. Particle effect files have no undo.
+- **Problems**: missing models, models over budget and missing row references in one list, with the count on the tab. Click a line to select the object or open the document.
+- **Tuning** (a Data page): two pages. Game holds the values the simulation reads (`assets/game.tuning`); during solo play changes apply at once. Display holds the values that are only seen (`assets/view.tuning`); changes apply at once in every player window, even with several players.
+- **Tables** (a Data page): the game's definition tables (`assets/tables/*.table`) and the engine's input bindings table as a spreadsheet, CSV import and export. Playing saves edited tables first.
+- **Sounds** (a Data page): output buses, playing voices and culled plays, and a preview of sound events (see {doc}`sound`).
+- **Feedback** (a Data page): the feedback table that turns tick events into sounds, camera shake, screen flash and hit stop (see {doc}`sound`).
 - **UI**: previews a game screen (`assets/ui/*.ui`) over the scene view with test view model values (see {doc}`ui`).
 - **State**: the simulation state declared with `MEALKIT_FIELD` while playing.
 - **Project Settings**: `mealkit.project` (File > Project Settings).
