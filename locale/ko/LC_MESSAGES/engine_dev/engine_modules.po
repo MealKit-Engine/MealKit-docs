@@ -164,8 +164,8 @@ msgstr "모듈 저장소의 새 태그를 잠그고 사본으로 가져온다"
 msgid "`local on [name]`"
 msgstr "`local on [name]`"
 
-msgid "links `modules/<name>` to the checkout beside the engine (`..\\MealKit-<Name>`), for a change that spans repos; `local off` puts the copy back"
-msgstr "여러 저장소에 걸친 변경을 위해 `modules/<name>`을 엔진 옆의 체크아웃(`..\\MealKit-<Name>`)에 연결한다. `local off`는 사본을 되돌린다"
+msgid "links `modules/<name>` to the checkout beside the engine (`..\\module-<name>`), for a change that spans repos; `local off` puts the copy back"
+msgstr "여러 저장소에 걸친 변경을 위해 `modules/<name>`을 엔진 옆의 체크아웃(`..\\module-<name>`)에 연결한다. `local off`는 사본을 되돌린다"
 
 msgid "A change to a module goes into its own repository first: commit, tag, then `bump` in the engine, so the engine gets the new copy and the lock in one commit. Each module repository runs the shared workflow `engine-module.yml`, which builds the engine with that repository in place of its copy."
 msgstr "모듈 변경은 먼저 그 모듈 저장소에 넣는다: 커밋하고 태그를 단 뒤 엔진에서 `bump`하면, 엔진은 새 사본과 잠금을 한 커밋으로 받는다. 모듈 저장소마다 공용 워크플로 `engine-module.yml`을 돌리는데, 이는 사본 대신 그 저장소를 넣어 엔진을 빌드한다."

@@ -11,7 +11,7 @@ A module is a folder `modules/<name>/` in your project:
 
 | Folder | What |
 |---|---|
-| `module.txt` | Name, version, engine version, required modules |
+| `module.txt` | Name, version, engine version, required modules, title, summary, tags and an optional `icon` keyword (`gameplay`, `timer`, `ui`, `audio`, ...) for the picture in the Modules window |
 | `sim/` | Simulation code. Checked by SimCheck like your own `source/sim/` |
 | `view/` | Drawing, view models, effects |
 | `assets/<kind>/` | `.ui`, `.table`, sounds and so on, with the same kind folders as your `assets/` |
@@ -26,7 +26,7 @@ The list of installed modules is the `modules/` folder itself. Commit it with yo
 
 ## Adding a module
 
-In the editor, **Project > Settings, Modules page** shows the installed modules and the registry list. **Add** copies the newest version made for your engine version, then the editor rebuilds the game code. MealKit Manager has the same list on its **Modules** tab for the selected project. Modules cannot be changed while playing.
+In the editor, **Window > Modules** opens the **Modules** window: the installed modules and the registry list on the left, the picked module on the right. Search matches names, descriptions, tags and authors; the list above it narrows to modules in this project, engine modules, community modules or ones with updates, and clicking a tag shows only modules with that tag. Drag the list's right edge to make it wider, and turn on **Compact** for one line per module. **Add** copies the newest version made for your engine version (**Add with Required** also adds what its `requires` line lists), then the editor rebuilds the game code. MealKit Manager has the same list on its **Modules** tab for the selected project. Modules cannot be changed while playing.
 
 The same from the command line, with the engine's `tools\module.ps1`:
 

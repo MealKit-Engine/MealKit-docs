@@ -64,6 +64,6 @@ The engine repository keeps a copy of every module in `modules/`, so cloning `Me
 | `status` | compares each copy with its locked commit |
 | `sync [name]` | rewrites copies from the locked commits |
 | `bump <name> [tag]` | locks a new tag of a module repo and copies it in |
-| `local on [name]` | links `modules/<name>` to the checkout beside the engine (`..\MealKit-<Name>`), for a change that spans repos; `local off` puts the copy back |
+| `local on [name]` | links `modules/<name>` to the checkout beside the engine (`..\module-<name>`), for a change that spans repos; `local off` puts the copy back |
 
 A change to a module goes into its own repository first: commit, tag, then `bump` in the engine, so the engine gets the new copy and the lock in one commit. Each module repository runs the shared workflow `engine-module.yml`, which builds the engine with that repository in place of its copy.

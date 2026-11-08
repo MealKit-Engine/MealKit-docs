@@ -393,8 +393,8 @@ msgstr "**씬 뷰 탭**: 씬 뷰는 탭이다. **데이터** 같은 다른 창�
 msgid "**Debug**: **Window > Debug** gathers Log, Build Log, Performance and State under one list, with the problem count on its tab."
 msgstr "**디버그**: **창 > 디버그**에 로그, 빌드 로그, 성능, 상태가 한 목록으로 모이고, 탭에 문제 개수가 표시된다."
 
-msgid "**Settings**: **Project > Settings...** gathers project settings, preferences, modules, tools and keyboard shortcuts under one list."
-msgstr "**설정**: **프로젝트 > 설정...**에 프로젝트 설정, 환경설정, 모듈, 도구, 단축키가 한 목록으로 모인다."
+msgid "**Settings**: **Project > Settings...** gathers project settings, preferences, tools and keyboard shortcuts under one list. Modules have their own window, **Window > Modules** (see {doc}`modules`)."
+msgstr "**설정**: **프로젝트 > 설정...**에 프로젝트 설정, 환경설정, 도구, 단축키가 한 목록으로 모인다. 모듈은 따로 **창 > 모듈** 창이 있다({doc}`modules` 참고)."
 
 msgid "**Previews**: **Window > Previews** has UI, Look Dev and cutscene tabs."
 msgstr "**미리보기**: **창 > 미리보기**에 UI, 룩데브, 컷신 탭이 있다."

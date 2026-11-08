@@ -44,8 +44,8 @@ msgstr "내용"
 msgid "`module.txt`"
 msgstr "`module.txt`"
 
-msgid "Name, version, engine version, required modules"
-msgstr "이름, 버전, 엔진 버전, 필요한 모듈"
+msgid "Name, version, engine version, required modules, title, summary, tags and an optional `icon` keyword (`gameplay`, `timer`, `ui`, `audio`, ...) for the picture in the Modules window"
+msgstr "이름, 버전, 엔진 버전, 필요한 모듈, 제목, 요약, 태그, 그리고 모듈 창에 보일 그림을 고르는 `icon` 키워드(`gameplay`, `timer`, `ui`, `audio` 등, 없어도 됨)"
 
 msgid "`sim/`"
 msgstr "`sim/`"
@@ -90,8 +90,8 @@ msgstr "설치된 모듈 목록은 `modules/` 폴더 자체입니다. 프로젝�
 msgid "Adding a module"
 msgstr "모듈 추가"
 
-msgid "In the editor, **Project > Settings, Modules page** shows the installed modules and the registry list. **Add** copies the newest version made for your engine version, then the editor rebuilds the game code. MealKit Manager has the same list on its **Modules** tab for the selected project. Modules cannot be changed while playing."
-msgstr "에디터의 **프로젝트 > 설정의 모듈 페이지** 은 설치된 모듈과 레지스트리 목록을 보여 줍니다. **추가**는 지금 엔진 버전용으로 나온 가장 새 버전을 복사하고, 에디터가 게임 코드를 다시 빌드합니다. MealKit Manager의 **모듈** 탭에도 고른 프로젝트에 대해 같은 목록이 있습니다. 플레이 중에는 모듈을 바꿀 수 없습니다."
+msgid "In the editor, **Window > Modules** opens the **Modules** window: the installed modules and the registry list on the left, the picked module on the right. Search matches names, descriptions, tags and authors; the list above it narrows to modules in this project, engine modules, community modules or ones with updates, and clicking a tag shows only modules with that tag. Drag the list's right edge to make it wider, and turn on **Compact** for one line per module. **Add** copies the newest version made for your engine version (**Add with Required** also adds what its `requires` line lists), then the editor rebuilds the game code. MealKit Manager has the same list on its **Modules** tab for the selected project. Modules cannot be changed while playing."
+msgstr "에디터의 **창 > 모듈**은 **모듈** 창을 엽니다. 왼쪽에 설치된 모듈과 레지스트리 목록, 오른쪽에 고른 모듈이 나옵니다. 검색은 이름, 설명, 태그, 만든 이를 찾습니다. 위의 목록으로 이 프로젝트의 모듈, 엔진 모듈, 커뮤니티 모듈, 갱신이 있는 모듈만 볼 수 있고, 태그를 누르면 그 태그가 붙은 모듈만 보입니다. 목록 오른쪽 가장자리를 끌면 넓어지고, **좁게**를 켜면 모듈마다 한 줄로 보입니다. **추가**는 지금 엔진 버전용으로 나온 가장 새 버전을 복사하고(**필요한 모듈과 함께 추가**는 `requires` 줄의 모듈도 추가합니다), 에디터가 게임 코드를 다시 빌드합니다. MealKit Manager의 **모듈** 탭에도 고른 프로젝트에 대해 같은 목록이 있습니다. 플레이 중에는 모듈을 바꿀 수 없습니다."
 
 msgid "The same from the command line, with the engine's `tools\\module.ps1`:"
 msgstr "명령줄에서는 엔진의 `tools\\module.ps1`로 같은 일을 합니다:"

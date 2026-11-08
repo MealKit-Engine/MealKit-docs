@@ -68,7 +68,7 @@ A scatter layer paints thousands of copies of one model, such as grass, rocks or
 - **Handles in the scene view**: fields that have a size in the world, such as a point light's range, show circles and a handle around the selected object. Drag the handle to change the value.
 - **Compact rows**: **Preferences > Interface** tightens rows so more fits on small screens.
 - **Scene view tab**: the scene view is a tab. Drag other windows, such as **Data**, next to it to switch between them, or dock it elsewhere. It can't float: let go outside a dock and it returns to the center. Starting play brings it to the front.
-- **Settings**: **Project > Settings...** gathers project settings, preferences, modules, tools and keyboard shortcuts under one list.
+- **Settings**: **Project > Settings...** gathers project settings, preferences, tools and keyboard shortcuts under one list. Modules have their own window, **Window > Modules** (see {doc}`modules`).
 - **Previews**: **Window > Previews** has UI, Look Dev and cutscene tabs.
 - **Unsaved list**: when something is unsaved, click `Unsaved: N` in the status bar to save or revert each document.
 - **Searching fields**: the inspector, **Tuning** and **Project Settings** have a search box. **Tuning** can also show only values changed from the defaults.
