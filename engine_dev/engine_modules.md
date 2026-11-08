@@ -45,6 +45,19 @@ Modules that need a left-out module go with it: leaving out `net` also leaves ou
 
 The build configuration `Presets` builds the samples with each preset, as CI does. Other combinations and versions are the game's own responsibility; peers with different simulation modules can't join each other.
 
+## Keeping modules in the game folder
+
+A game can also keep its engine modules in its own `modules/` folder, like source modules. Then the folders that are there are the modules it uses, and the build compiles them from there, so the game can keep its own version of a module or change one.
+
+```text
+tools\modules.ps1 add -Project <folder> -Preset standard     # every module of a preset
+tools\modules.ps1 add -Project <folder> camera -Tag v0.1.0   # one module at a version
+tools\modules.ps1 remove -Project <folder> audio
+tools\modules.ps1 status -Project <folder>                   # versions and changed files
+```
+
+A project uses either the `mealkit.project` lines above or the folder, not both. Engine updates don't change the copies: move a module with `add -Force -Tag <tag>`. The editor still uses the engine's modules.
+
 ## Vendored copies and the lock file
 
 The engine repository keeps a copy of every module in `modules/`, so cloning `MealKit` alone is enough to build. `modules.lock` records the repository, tag and commit each copy comes from. An engine version means `VERSION` plus `modules.lock`.

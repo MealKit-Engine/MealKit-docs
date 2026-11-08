@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-08 23:00+0900\n"
+"POT-Creation-Date: 2026-11-09 00:03+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ko\n"
@@ -106,6 +106,26 @@ msgstr "`net`과 `online`을 뺀 전부: 싱글플레이 게임용. 방 만들�
 
 msgid "The build configuration `Presets` builds the samples with each preset, as CI does. Other combinations and versions are the game's own responsibility; peers with different simulation modules can't join each other."
 msgstr "빌드 구성 `Presets`는 CI처럼 샘플을 프리셋마다 빌드한다. 그 밖의 조합과 버전은 게임이 책임진다. 시뮬레이션 모듈이 다른 피어끼리는 서로 접속할 수 없다."
+
+msgid "Keeping modules in the game folder"
+msgstr "게임 폴더에 모듈 두기"
+
+msgid "A game can also keep its engine modules in its own `modules/` folder, like source modules. Then the folders that are there are the modules it uses, and the build compiles them from there, so the game can keep its own version of a module or change one."
+msgstr "게임은 엔진 모듈을 소스 모듈처럼 자기 `modules/` 폴더에 둘 수도 있다. 그러면 거기 있는 폴더가 곧 게임이 쓰는 모듈이고, 빌드는 그 폴더에서 컴파일한다. 그래서 게임이 모듈을 자기 버전으로 두거나 직접 고칠 수 있다."
+
+msgid ""
+"tools\\modules.ps1 add -Project <folder> -Preset standard     # every module of a preset\n"
+"tools\\modules.ps1 add -Project <folder> camera -Tag v0.1.0   # one module at a version\n"
+"tools\\modules.ps1 remove -Project <folder> audio\n"
+"tools\\modules.ps1 status -Project <folder>                   # versions and changed files\n"
+msgstr ""
+"tools\\modules.ps1 add -Project <folder> -Preset standard     # every module of a preset\n"
+"tools\\modules.ps1 add -Project <folder> camera -Tag v0.1.0   # one module at a version\n"
+"tools\\modules.ps1 remove -Project <folder> audio\n"
+"tools\\modules.ps1 status -Project <folder>                   # versions and changed files\n"
+
+msgid "A project uses either the `mealkit.project` lines above or the folder, not both. Engine updates don't change the copies: move a module with `add -Force -Tag <tag>`. The editor still uses the engine's modules."
+msgstr "프로젝트는 위의 `mealkit.project` 줄과 폴더 중 하나만 쓴다. 엔진을 업데이트해도 복사본은 바뀌지 않는다. 모듈을 옮기려면 `add -Force -Tag <tag>`를 쓴다. 에디터는 여전히 엔진의 모듈을 쓴다."
 
 msgid "Vendored copies and the lock file"
 msgstr "포함된 사본과 잠금 파일"
