@@ -1,0 +1,137 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, KingProtea99 and MealKit contributors. CC BY 4.0
+# This file is distributed under the same license as the MealKit package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: MealKit 0.9\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-08 22:34+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ko\n"
+"Language-Team: ko <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+msgid "Engine modules"
+msgstr "엔진 모듈"
+
+#, python-brace-format
+msgid "The engine is a small kernel plus engine modules. The kernel (`engine/core/`) holds memory, logging, math, reflection, the service registry and the platform layer. Everything else (the renderer, physics, networking, the editor) is an engine module in `modules/<name>/`, and each module has its own repository under `MealKit-Engine`. The design and its reasons are in {engine}`docs/ENGINE_MODULES.md`."
+msgstr "엔진은 작은 커널과 엔진 모듈로 이루어진다. 커널(`engine/core/`)에는 메모리, 로그, 수학, 리플렉션, 서비스 레지스트리, 플랫폼 계층이 있다. 나머지(렌더러, 물리, 네트워크, 에디터)는 모두 `modules/<name>/`의 엔진 모듈이고, 모듈마다 `MealKit-Engine` 아래에 자기 저장소가 있다. 설계와 그 이유는 {engine}`docs/ENGINE_MODULES.md`에 있다."
+
+msgid "Engine modules are compiled in and chosen when the game is built. They are not plugins loaded at run time, so the shipped game is still one file."
+msgstr "엔진 모듈은 함께 컴파일되며 게임을 빌드할 때 고른다. 실행 중에 불러오는 플러그인이 아니므로 출시하는 게임은 여전히 파일 하나다."
+
+msgid "A module"
+msgstr "모듈 하나"
+
+msgid "Each module folder has a manifest, `engine-module.txt`:"
+msgstr "모듈 폴더마다 매니페스트 `engine-module.txt`가 있다:"
+
+msgid ""
+"@format engine-module 1\n"
+"name render\n"
+"version 0.1.0\n"
+"kernel 0.9\n"
+"kind view\n"
+"requires rhi 0.1 asset 0.1\n"
+"summary Renderer\n"
+msgstr ""
+"@format engine-module 1\n"
+"name render\n"
+"version 0.1.0\n"
+"kernel 0.9\n"
+"kind view\n"
+"requires rhi 0.1 asset 0.1\n"
+"summary Renderer\n"
+
+msgid "`kind` is `sim` (code the simulation runs, under the determinism rules), `view` (window, drawing, sound, input) or `tool` (editor and debug tools)."
+msgstr "`kind`는 `sim`(시뮬레이션이 실행하는 코드, 결정론 규칙을 따른다), `view`(창, 그리기, 소리, 입력), `tool`(에디터와 디버그 도구) 중 하나다."
+
+msgid "`requires` lists the modules this one may include. `optional` lists modules it can work without; their code sits inside `#if MEALKIT_HAS_<NAME>`."
+msgstr "`requires`는 이 모듈이 include할 수 있는 모듈 목록이다. `optional`은 없어도 동작하는 모듈 목록이고, 그 코드는 `#if MEALKIT_HAS_<NAME>` 안에 둔다."
+
+msgid "`tools\\check_modules.ps1` checks the manifests and every include against them."
+msgstr "`tools\\check_modules.ps1`이 매니페스트와, 모든 include가 그에 맞는지 검사한다."
+
+msgid "Headers other code may include are in `include/mealkit/<name>/`, the rest in `src/mealkit/<name>/`, and the module's editor panels in `editor/`."
+msgstr "다른 코드가 include할 수 있는 헤더는 `include/mealkit/<name>/`에, 나머지는 `src/mealkit/<name>/`에, 모듈의 에디터 패널은 `editor/`에 둔다."
+
+msgid "Presets"
+msgstr "프리셋"
+
+msgid "A game picks its modules in `mealkit.project`:"
+msgstr "게임은 `mealkit.project`에서 모듈을 고른다:"
+
+msgid "enginePreset standard\n"
+msgstr "enginePreset standard\n"
+
+msgid "Preset"
+msgstr "프리셋"
+
+msgid "What it has"
+msgstr "들어 있는 것"
+
+msgid "`standard`"
+msgstr "`standard`"
+
+msgid "every module (the default, and what new projects get)"
+msgstr "모든 모듈(기본값, 새 프로젝트도 이것을 받는다)"
+
+msgid "`solo`"
+msgstr "`solo`"
+
+msgid "everything except `net` and `online`: single-player games. Hosting and joining report that the build has no multiplayer"
+msgstr "`net`과 `online`을 뺀 전부: 싱글플레이 게임용. 방 만들기와 참가는 이 빌드에 멀티플레이가 없다고 알린다"
+
+msgid "`engineModules` adds modules to the preset. Changing either rebuilds the game. The editor always has every module. The build configuration `Presets` builds the samples with each preset, as CI does."
+msgstr "`engineModules`는 프리셋에 모듈을 더한다. 둘 중 하나를 바꾸면 게임을 다시 빌드한다. 에디터에는 항상 모든 모듈이 있다. 빌드 구성 `Presets`는 CI처럼 샘플을 프리셋마다 빌드한다."
+
+msgid "Vendored copies and the lock file"
+msgstr "포함된 사본과 잠금 파일"
+
+msgid "The engine repository keeps a copy of every module in `modules/`, so cloning `MealKit` alone is enough to build. `modules.lock` records the repository, tag and commit each copy comes from. An engine version means `VERSION` plus `modules.lock`."
+msgstr "엔진 저장소는 모든 모듈의 사본을 `modules/`에 두므로 `MealKit`만 클론해도 빌드할 수 있다. `modules.lock`에는 각 사본이 나온 저장소, 태그, 커밋이 적혀 있다. 엔진 버전 하나는 `VERSION`과 `modules.lock`을 합친 것이다."
+
+msgid "`tools\\modules.ps1` keeps them in step:"
+msgstr "`tools\\modules.ps1`이 둘을 맞춘다:"
+
+msgid "Command"
+msgstr "명령"
+
+msgid "What it does"
+msgstr "하는 일"
+
+msgid "`status`"
+msgstr "`status`"
+
+msgid "compares each copy with its locked commit"
+msgstr "각 사본을 잠긴 커밋과 비교한다"
+
+msgid "`sync [name]`"
+msgstr "`sync [name]`"
+
+msgid "rewrites copies from the locked commits"
+msgstr "잠긴 커밋에서 사본을 다시 쓴다"
+
+msgid "`bump <name> [tag]`"
+msgstr "`bump <name> [tag]`"
+
+msgid "locks a new tag of a module repo and copies it in"
+msgstr "모듈 저장소의 새 태그를 잠그고 사본으로 가져온다"
+
+msgid "`local on [name]`"
+msgstr "`local on [name]`"
+
+msgid "links `modules/<name>` to the checkout beside the engine (`..\\MealKit-<Name>`), for a change that spans repos; `local off` puts the copy back"
+msgstr "여러 저장소에 걸친 변경을 위해 `modules/<name>`을 엔진 옆의 체크아웃(`..\\MealKit-<Name>`)에 연결한다. `local off`는 사본을 되돌린다"
+
+msgid "A change to a module goes into its own repository first: commit, tag, then `bump` in the engine, so the engine gets the new copy and the lock in one commit. Each module repository runs the shared workflow `engine-module.yml`, which builds the engine with that repository in place of its copy."
+msgstr "모듈 변경은 먼저 그 모듈 저장소에 넣는다: 커밋하고 태그를 단 뒤 엔진에서 `bump`하면, 엔진은 새 사본과 잠금을 한 커밋으로 받는다. 모듈 저장소마다 공용 워크플로 `engine-module.yml`을 돌리는데, 이는 사본 대신 그 저장소를 넣어 엔진을 빌드한다."
+

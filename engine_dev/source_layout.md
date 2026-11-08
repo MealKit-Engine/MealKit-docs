@@ -1,25 +1,21 @@
 # Source layout
 
 ```text
-engine/
-  shaders/Forward.hlsl         instance transform + vertex color + half Lambert + hemisphere ambient + fog + selection highlight
-  src/mealkit/core/            Types, Log, Clock, Math, DetMath, Random, Hash, Reflect (field declarations), Version, Profile
-  src/mealkit/platform/        Window, Input, Paths, Process, System, DynamicLibrary, FileDialog, Image (headers + shared parts)
-  src/mealkit/platform/win32/  Windows implementations that call the OS (Win32, Winsock, WIC, dialogs)
-  src/mealkit/platform/posix/  minimal Linux and macOS implementation for headless builds (time, files, UDP, logging; built by CI)
-  src/mealkit/online/          Online (accounts, lobbies, invites, relay): Steam backend, None backend without an SDK
-  src/mealkit/render/          Renderer, Mesh, DrawList
-  src/mealkit/physics/         PhysicsWorld (Jolt)
-  src/mealkit/asset/           ModelCache (cgltf + meshoptimizer)
-  src/mealkit/net/             Socket, Transport, Lockstep
-  src/mealkit/scene/           Scene (.scene reading and writing)
-  src/mealkit/game/            GameInstance, GameContext (boundary between engine/editor and game code, MEALKIT_GAME_MODULE), Simulation, WorldSnapshot,
-                               ProjectSettings, GameData, Headless (MEALKIT_HEADLESS_GAME), InputRecord (input recording and hash logs)
-  src/mealkit/sim/             Pool<T>, TickTimer, TickEvents (deterministic tools for the game's sim/)
-  src/mealkit/editor/          MealKitEditor: EditorMain, ProjectManager, Project, GameModuleHost (DLL hot reload), Editor, PlaySession, FieldEditor, Strings (tr), ImGuiLayer
-  res/                         editor icon, editor UI translations (strings/ko.txt)
-  tests/Tests.cpp              engine unit tests (mealkit_tests.exe)
-  tools/SimCheck.cpp           determinism rule check for a game's sim/ folder (run at build time by mealkit_add_game)
+engine/core/                   the kernel: core (Types, Log, Memory, Services, Modules, DetMath, Reflect, ...), platform (Window, Paths, Socket, ...;
+                               win32/ and posix/ implementations), jobs (job system, Jolt allocator hooks)
+engine/libs/mkui/              game UI runtime library (no MealKit headers)
+engine/shaders/                HLSL shared by the renderer (Bindless.hlsli, Forward.hlsl, ...)
+engine/res/                    editor icon, editor UI translations (strings/ko.txt)
+engine/tests/Tests.cpp         engine unit tests (mealkit_tests.exe)
+engine/tools/SimCheck.cpp      determinism rule check for a game's sim/ folder (run at build time by mealkit_add_game)
+modules/<name>/                engine modules, each a vendored copy of its own repo (modules.lock):
+  engine-module.txt            manifest: kind (sim, view, tool), requires, optional
+  include/mealkit/<name>/      headers other modules and games include ("mealkit/<name>/X.h")
+  src/mealkit/<name>/          the module's own code and private headers
+  editor/mealkit/editor/       the module's editor panels (Editor builds only)
+                               sim modules: physics, sim, data, scene, asset, session (the session interface and LocalSession), net (lockstep)
+                               view modules: rhi, render, input, audio, ui, loc, settings, feedback, camera, online (+ online-steam, online-eos), game
+                               tool modules: debug, live, editor (MealKitEditor)
 samples/sandbox/               reference sample (physics party versus) = template for new projects (source/ in a project); its own mealkit.project, assets/
   sim/                         deterministic simulation: World (state, step order, hash), Systems.h, Pawns (slots, controllers, pawns, AI), Props, Objects, Tuning
   view/                        Camera, LocalInput (controls → GameInput), Draw, Effects (tick events → screen effects); only reads sim/ state
@@ -27,26 +23,24 @@ samples/sandbox/               reference sample (physics party versus) = templat
                                Headless.cpp (headless entry point: match start and bot input, also used by GameSession)
   replays/                     fixed input recordings that CI replays on every build
 samples/coop/                  reference sample (co-op third person: terrain, chasers, active ragdolls, revives); same layout, not a template
-samples/*/assets/              each sample's scenes, models, tables, UI
 third_party/                   external libraries (VERSIONS.txt)
-cmake/MealKit.cmake            shared build settings + mealkit_add_game() (used by the engine repository and game projects)
+cmake/MealKit.cmake            shared build settings, presets + mealkit_add_game() (used by the engine repository and game projects)
 cmake/MealKitExport.cmake      release folder creation (game_export target)
 cmake/FixExportsDef.cmake      removes MSVC CRT weak alias lines from the mealkit.dll export list (Editor build)
 templates/project/             build file templates for new game projects
-tools/                         build_project.bat, new_project.ps1, rename_project.ps1, upgrade_project.ps1,
-                               check.ps1, check_platform.ps1, check_strings.ps1, mp_test.ps1, ci_test.ps1, ci_compare.ps1, record_replay.ps1, make_sample_models.py
+tools/                         new_project.ps1, upgrade_project.ps1, modules.ps1, check.ps1, check_modules.ps1, mp_test.ps1, ... (and the build scripts)
+modules.lock                   the module repos, tags and commits this engine version is built from
 VERSION                        engine version (compared with engineVersion in mealkit.project)
-.vscode/                       build tasks and debug launch configurations
 ```
 
 ## Frame flow
 
 1. `Window::pumpMessages`: collect input.
-2. `LockstepSession::update`: receive packets, confirm inputs, send.
+2. `MatchService::update`: the session (`session::LocalSession` for solo play and replays, `net::LockstepSession` otherwise) receives packets, confirms inputs, sends.
 3. Simulation: fixed 30 Hz ticks. **Only confirmed ticks** run (Jolt takes 2 steps per tick), and right after a tick runs, the local input is submitted for `tick + inputDelay`.
 4. Rendering: interpolate between the previous and current tick, collect into `DrawList`, and draw each mesh once.
 
 ## External libraries
 
 The canonical list of external libraries (version, license, where they are used and why) is {engine}`third_party/VERSIONS.txt`. Library licenses are in `THIRD_PARTY_NOTICES.txt`.
-The conditions for adding a library are in {doc}`contributing`.
+The conditions for adding a library are in {doc}`contributing`. How the engine is split into modules is in {doc}`engine_modules`.

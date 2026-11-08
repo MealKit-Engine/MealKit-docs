@@ -7,6 +7,7 @@ To make a game, see the {doc}`../getting_started/index` part instead.
 :maxdepth: 2
 
 source_layout
+engine_modules
 testing
 writing_modules
 contributing
