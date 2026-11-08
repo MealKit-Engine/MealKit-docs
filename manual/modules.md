@@ -20,6 +20,8 @@ A module is a folder `modules/<name>/` in your project:
 
 The build picks up `modules/*/sim/` and `modules/*/view/` the same way as your `source/`, so you do not change your `CMakeLists.txt`. Module code is in the simulation version, so players with different module code cannot join each other, like any other simulation change.
 
+Engine modules (renderer, physics, sound, networking, ...) are folders here too and use the same commands; see {doc}`../engine_dev/engine_modules`.
+
 The list of installed modules is the `modules/` folder itself. Commit it with your project: teammates and CI build without downloading anything.
 
 ## Adding a module

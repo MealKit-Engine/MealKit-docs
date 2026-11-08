@@ -9,7 +9,7 @@ engine/res/                    editor icon, editor UI translations (strings/ko.t
 engine/tests/Tests.cpp         engine unit tests (mealkit_tests.exe)
 engine/tools/SimCheck.cpp      determinism rule check for a game's sim/ folder (run at build time by mealkit_add_game)
 modules/<name>/                engine modules, each a vendored copy of its own repo (modules.lock):
-  engine-module.txt            manifest: kind (sim, view, tool), requires, optional
+  module.txt                   manifest with type engine: kind (sim, view, tool), requires, optional
   include/mealkit/<name>/      headers other modules and games include ("mealkit/<name>/X.h")
   src/mealkit/<name>/          the module's own code and private headers
   editor/mealkit/editor/       the module's editor panels (Editor builds only)

@@ -6,15 +6,17 @@ Engine modules are compiled in and chosen when the game is built. They are not p
 
 ## A module
 
-Each module folder has a manifest, `engine-module.txt`:
+Each module folder has a `module.txt`, the same file as a source module's, with `type engine`:
 
 ```text
-@format engine-module 1
+@format module 1
+type engine
 name render
-version 0.1.0
-kernel 0.9
+version 0.1.2
+engine 0.9
 kind view
-requires rhi 0.1 asset 0.1
+layer framework
+requires rhi 0.1 scene 0.1
 summary Renderer
 ```
 
@@ -27,49 +29,41 @@ Headers other code may include are in `include/mealkit/<name>/`, the rest in `sr
 
 ## Choosing modules
 
-A game picks its modules in `mealkit.project`, any combination:
+Engine modules are added, updated and removed like source modules ({doc}`../manual/modules`): they are folders in the game's `modules/`, and the game is built with the ones that are there. New projects start with every module of the `standard` preset.
 
 ```text
-enginePreset standard              # starting point
-engineModules camera               # added
-engineWithout net                  # taken out
-engineModuleVersion render v0.2.0  # this module at another version
+tools\module.ps1 remove audio -Project <folder>         # a game without sound
+tools\module.ps1 add audio -Project <folder>            # back in, at the engine's version
+tools\module.ps1 add camera@0.1.2 -Project <folder>     # one module at another version
+tools\module.ps1 update render -Project <folder>        # to the engine's version after an engine update
+tools\module.ps1 add -Preset solo -Project <folder>     # every module of a preset
+tools\module.ps1 list -Project <folder>
 ```
 
-Modules that need a left-out module go with it: leaving out `net` also leaves out `online`. If the game framework itself needs it, the build stops and names the module. Changing these lines rebuilds the game. The editor always has every module at the engine's version.
+- `update` keeps files you changed and writes the new version next to them as `<file>.new`, as for source modules. Engine updates don't change the copies until you update them.
+- `remove` refuses while another module requires it, or while game code includes it outside `#if MEALKIT_HAS_<NAME>`.
+- Modules that need a missing module go with it: without `net` there is no `online` either. If the game framework itself needs it, the build stops and names the module to add.
+- A project with no engine modules in `modules/` is built with every module of its engine. The engine's own samples work this way.
+- The editor always has every module at the engine's version.
 
 | Preset | What it has |
 |---|---|
-| `standard` | every module (the default, and what new projects get) |
+| `standard` | every module (what new projects get) |
 | `solo` | everything except `net` and `online`: single-player games. Hosting and joining report that the build has no multiplayer |
 
-The build configuration `Presets` builds the samples with each preset, as CI does. Other combinations and versions are the game's own responsibility; peers with different simulation modules can't join each other.
-
-## Keeping modules in the game folder
-
-A game can also keep its engine modules in its own `modules/` folder, like source modules. Then the folders that are there are the modules it uses, and the build compiles them from there, so the game can keep its own version of a module or change one.
-
-```text
-tools\modules.ps1 add -Project <folder> -Preset standard     # every module of a preset
-tools\modules.ps1 add -Project <folder> camera -Tag v0.1.0   # one module at a version
-tools\modules.ps1 remove -Project <folder> audio
-tools\modules.ps1 status -Project <folder>                   # versions and changed files
-```
-
-A project uses either the `mealkit.project` lines above or the folder, not both. Engine updates don't change the copies: move a module with `add -Force -Tag <tag>`. The editor still uses the engine's modules.
+The build configuration `Presets` builds the samples with `solo` and without `audio`, as CI does. Other combinations and versions are the game's own responsibility; peers with different simulation modules can't join each other.
 
 ## Vendored copies and the lock file
 
 The engine repository keeps a copy of every module in `modules/`, so cloning `MealKit` alone is enough to build. `modules.lock` records the repository, tag and commit each copy comes from. An engine version means `VERSION` plus `modules.lock`.
 
-`tools\modules.ps1` keeps them in step:
+`tools\modules.ps1` keeps the engine's copies in step (games use `tools\module.ps1`):
 
 | Command | What it does |
 |---|---|
 | `status` | compares each copy with its locked commit |
 | `sync [name]` | rewrites copies from the locked commits |
 | `bump <name> [tag]` | locks a new tag of a module repo and copies it in |
-| `fetch -Project <folder>` | gets the versions a game pins with `engineModuleVersion` |
 | `local on [name]` | links `modules/<name>` to the checkout beside the engine (`..\MealKit-<Name>`), for a change that spans repos; `local off` puts the copy back |
 
 A change to a module goes into its own repository first: commit, tag, then `bump` in the engine, so the engine gets the new copy and the lock in one commit. Each module repository runs the shared workflow `engine-module.yml`, which builds the engine with that repository in place of its copy.

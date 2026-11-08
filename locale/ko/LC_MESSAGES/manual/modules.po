@@ -8,15 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-28 23:20+0900\n"
+"POT-Creation-Date: 2026-11-09 00:40+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: ko <LL@li.org>\n"
 "Language: ko\n"
+"Language-Team: ko <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.18.0\n"
 
 msgid "Modules"
@@ -79,6 +79,10 @@ msgstr "모듈 도구가 씁니다: 모듈을 어디서 받았는지와 파일�
 
 msgid "The build picks up `modules/*/sim/` and `modules/*/view/` the same way as your `source/`, so you do not change your `CMakeLists.txt`. Module code is in the simulation version, so players with different module code cannot join each other, like any other simulation change."
 msgstr "빌드는 `modules/*/sim/`과 `modules/*/view/`를 `source/`와 같은 방식으로 모으므로 `CMakeLists.txt`를 고치지 않습니다. 모듈 코드는 시뮬레이션 버전에 들어가므로, 다른 시뮬레이션 변경과 마찬가지로 모듈 코드가 다른 플레이어끼리는 접속할 수 없습니다."
+
+#, python-brace-format
+msgid "Engine modules (renderer, physics, sound, networking, ...) are folders here too and use the same commands; see {doc}`../engine_dev/engine_modules`."
+msgstr "엔진 모듈(렌더러, 물리, 사운드, 네트워크 등)도 여기 있는 폴더이고 같은 명령을 쓴다. {doc}`../engine_dev/engine_modules`를 보라."
 
 msgid "The list of installed modules is the `modules/` folder itself. Commit it with your project: teammates and CI build without downloading anything."
 msgstr "설치된 모듈 목록은 `modules/` 폴더 자체입니다. 프로젝트와 같이 커밋하세요. 팀원과 CI는 아무것도 받지 않고 빌드합니다."
@@ -177,3 +181,4 @@ msgstr "모듈의 `.ui`나 표를 크게 바꾸려면 내 `assets/`에 복사해
 
 msgid "`remove` refuses while another module requires the module or your `source/` still includes it, and shows the lines (`-Force` removes anyway). Git keeps the old files if you need them back."
 msgstr "`remove`는 다른 모듈이 그 모듈을 필요로 하거나 `source/`가 아직 include하면 거절하고 그 줄을 보여 줍니다(`-Force`면 그래도 지웁니다). 옛 파일이 다시 필요하면 git에 남아 있습니다."
+

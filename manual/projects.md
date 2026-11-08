@@ -33,7 +33,7 @@ Install it with `build.bat install` in the MealKit-Manager folder (to `%LOCALAPP
 
 ## Project settings
 
-`mealkit.project` holds the project settings: `name`, `engine`, `engineVersion`, `enginePreset` (which engine modules the game is built with, {doc}`../engine_dev/engine_modules`), `scene`, `tickRate`, the input delay range, the art style (`lightingModel`, `toonRamp`, {doc}`assets`), and game entries (`game.*`). Edit them in the editor under Project > Settings.
+`mealkit.project` holds the project settings: `name`, `engine`, `engineVersion`, `scene`, `tickRate`, the input delay range, the art style (`lightingModel`, `toonRamp`, {doc}`assets`), and game entries (`game.*`). Edit them in the editor under Project > Settings.
 
 `version` is the game version players see (title screen, lobby, window title). It is part of the simulation version, so players with different versions cannot join each other; raise it when you ship a change. `exportVersionFolder` puts it in the release folder name.
 
@@ -49,7 +49,7 @@ The engine fixes the project layout, so tools find files without settings and so
 | `source/` | Game code (`sim/`, `view/`, `app/`) |
 | `assets/` | Only what ships with the game. Directly inside it: the kind folders `scenes/ prefabs/ models/ textures/ sounds/ effects/ ui/ fonts/ tables/ strings/ lut/ probes/ terrain/` and the fixed files `game.tuning`, `view.tuning`, `input.bindings`, `feedback.table`, `sounds.events`. Subfolders inside a kind folder are free |
 | `art/` | Source files of external tools (`.blend`, Penpot, PSD, audio projects). Not shipped, not in the content hash |
-| `modules/` | Source modules, one folder per module ({doc}`modules`) |
+| `modules/` | Modules, one folder per module: source modules ({doc}`modules`) and the engine modules the game is built with ({doc}`../engine_dev/engine_modules`) |
 | `third_party/` | The game's own libraries: one folder per library with its original `LICENSE` and a `mealkit.txt` |
 | `build/`, `export/` | Generated |
 
