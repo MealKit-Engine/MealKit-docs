@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-09 19:01+0900\n"
+"POT-Creation-Date: 2026-11-09 19:41+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ko\n"
@@ -452,4 +452,42 @@ msgstr "**미리 보기**: **[값 저장]**은 뷰 모델의 시험 값을 `art/
 
 msgid "`MealKitEditor.exe --ui pause.ui --ui-select resume` opens the screen in the workspace with that node selected; add `--ui-drag 0,90` to drag it by that many logical units after the first frame (the log shows the result)."
 msgstr "`MealKitEditor.exe --ui pause.ui --ui-select resume`는 그 노드를 고른 채로 작업 창에 화면을 연다. `--ui-drag 0,90`을 붙이면 첫 프레임 뒤에 그만큼(논리 단위) 끌고 결과를 로그에 쓴다."
+
+msgid "Workspace tools"
+msgstr "작업 창 도구"
+
+msgid "**Layers**: drag a layer onto another to move it (the top or bottom of a row puts it before or after that row, the middle of a frame puts it inside). The eye on a hovered row hides the node from the canvas and the lock keeps the canvas from picking it; both are only for the editor and are never saved. A link mark shows nodes bound to the view model, dimmed rows are `hidden` in the file, and the buttons beside **Find layer** expand or collapse every row."
+msgstr "**레이어**: 레이어를 다른 레이어 위로 끌어 놓으면 옮겨진다(행의 위쪽이나 아래쪽은 그 행의 앞이나 뒤, 프레임 행의 가운데는 그 안). 마우스를 올린 행의 눈 버튼은 노드를 캔버스에서 숨기고 자물쇠는 캔버스에서 안 골라지게 한다. 둘 다 에디터에서만 쓰이고 저장되지 않는다. 링크 표시는 뷰 모델에 바인딩된 노드, 흐린 행은 파일에서 `hidden`인 노드다. **레이어 찾기** 옆 버튼은 모든 행을 펼치거나 접는다."
+
+#, python-brace-format
+msgid "**Binding by dragging**: with a view model chosen under **Preview values**, its fields are listed above the layers. Drag one onto a layer or onto the canvas: a text shows it (`{field}` is added to its content), a list field repeats the frame (`list`), a color field colors it (`colorField`), a decimal field scales its width (`widthRatio`), and other fields show or hide it (`visible`)."
+msgstr "**끌어서 바인딩**: **미리보기 값**에서 뷰 모델을 고르면 레이어 위에 그 필드가 나온다. 필드를 레이어나 캔버스로 끌어 놓으면 텍스트는 그 값을 보이고(내용에 `{필드}` 추가), 목록 필드는 프레임을 반복하고(`list`), 색 필드는 색을 정하고(`colorField`), 소수 필드는 너비 비율을 정하고(`widthRatio`), 나머지 필드는 보이거나 숨긴다(`visible`)."
+
+msgid "**Theme**: the **Theme** section edits the colors and numbers in `assets/ui/theme.ui` (the tooltip says how many times each is used); **Save theme** writes them and every screen uses the new values. The **$** button beside fill, text color and corner radius picks a theme token, or turns a token back into its plain value."
+msgstr "**테마**: **테마** 칸에서 `assets/ui/theme.ui`의 색과 숫자를 고친다(툴팁에 각각 몇 번 쓰였는지 나온다). **테마 저장**을 누르면 파일에 쓰이고 모든 화면이 새 값을 쓴다. 채우기, 글자 색, 모서리 둥글기 옆의 **$** 버튼은 테마 토큰을 고르거나 토큰을 일반 값으로 되돌린다."
+
+msgid "**Style**: **Copy style** and **Paste style** in the node menu (`Ctrl+Alt+C`, `Ctrl+Alt+V`) copy fill, stroke, radius, shadow, opacity and text style lines from one node to another."
+msgstr "**스타일**: 노드 메뉴의 **스타일 복사**와 **스타일 붙여넣기**(`Ctrl+Alt+C`, `Ctrl+Alt+V`)는 채우기, 테두리, 둥글기, 그림자, 불투명도, 글자 스타일 줄을 한 노드에서 다른 노드로 옮긴다."
+
+msgid "**Screens**: right-click a screen to **Duplicate** it or **Rename** it. Renaming lists the project files that name `ui/<screen>.ui` (game code and screens that use it as a component) and replaces the path in them."
+msgstr "**화면**: 화면을 오른쪽 클릭해 **복제**하거나 **이름 바꾸기**를 한다. 이름 바꾸기는 `ui/<화면>.ui`를 가리키는 프로젝트 파일(게임 코드, 그 화면을 컴포넌트로 쓰는 화면)을 보여 주고 그 경로를 함께 바꾼다."
+
+#, python-format
+msgid "**View** (the eye button under the canvas, or the `UI ...` commands in the command palette, `Ctrl+P`): layout outlines (every box, the direction of row and column layouts and their gaps), the safe area for TVs (90% and 80% frames), rulers, a grid with **Snap to grid** (`Ctrl` while dragging places freely), red marks on text that doesn't fit its box (also listed under **Problems**), and **Pseudo-localize**, which makes string table text about 40% longer and accented so you can see which texts won't fit translations. Hold `Alt` to see the distances from the selected box to the box under the mouse."
+msgstr "**보기**(캔버스 아래 눈 버튼, 또는 명령 팔레트 `Ctrl+P`의 `UI ...` 명령): 레이아웃 윤곽(모든 상자, row·column 레이아웃의 방향과 간격), TV용 안전 영역(90%, 80% 틀), 눈금자, 격자와 **격자에 맞추기**(끌 때 `Ctrl`을 누르면 자유롭게 놓는다), 상자에 안 들어가는 글자의 빨간 표시(**문제**에도 나온다), 그리고 문자열 표 글자를 40%쯤 늘리고 악센트를 붙여 번역하면 안 들어갈 글자를 보여 주는 **의사 번역**. `Alt`를 누르고 있으면 선택한 상자에서 마우스 아래 상자까지의 거리가 나온다."
+
+msgid "**Preview values**: **Value set** keeps several sets of values for one screen (for example empty, full, very long names) as `art/ui/samples/<screen>.<ViewModel>.<set>.values`; type a name and press **Save as** to add one."
+msgstr "**미리보기 값**: **값 세트**는 한 화면의 값을 여러 벌(예: 비어 있음, 가득, 아주 긴 이름) `art/ui/samples/<화면>.<뷰모델>.<세트>.values`로 둔다. 이름을 쓰고 **다른 이름으로 저장**을 누르면 하나 늘어난다."
+
+msgid "**Interact**: the pointer button in the toolbar lets you use the screen like a player (hover, press buttons, drag sliders) instead of editing it; the actions it sends are listed above the canvas."
+msgstr "**상호작용**: 툴바의 포인터 버튼을 켜면 화면을 편집하는 대신 플레이어처럼 쓴다(마우스 올리기, 버튼 누르기, 슬라이더 끌기). 화면이 보내는 액션이 캔버스 위에 나온다."
+
+msgid "**While playing**: the UI tab lists the game's open screens with their live view model values. **Keep as preview values** saves them as that screen's values, so the workspace previews real data after you stop."
+msgstr "**플레이 중**: UI 탭에 게임에 열린 화면과 그 뷰 모델의 실제 값이 나온다. **미리보기 값으로 저장**을 누르면 그 화면의 미리보기 값으로 저장되어, 플레이를 멈춘 뒤에도 실제 데이터로 미리 본다."
+
+msgid "**Saving a picture**: the camera button under the canvas saves the screen as `art/ui/captures/<screen>_<width>x<height>_<language>.png` and copies the path."
+msgstr "**그림 저장**: 캔버스 아래 카메라 버튼은 화면을 `art/ui/captures/<화면>_<폭>x<높이>_<언어>.png`로 저장하고 경로를 복사한다."
+
+msgid "**History and changes**: the history button next to undo and redo lists the steps by the line each one changed; click one to go back to it. The changes button shows the unsaved lines against the file, with **Save** and **Revert**. When the file changes outside the editor while nothing is unsaved, the workspace reads it again and says so above the canvas."
+msgstr "**기록과 변경**: 실행 취소·다시 실행 옆의 기록 버튼은 각 단계를 그 단계가 바꾼 줄로 보여 주고, 누르면 그 단계로 돌아간다. 변경 버튼은 저장 안 한 줄을 파일과 비교해 보여 주고 **저장**과 **되돌리기**가 있다. 저장 안 한 것이 없을 때 파일이 에디터 밖에서 바뀌면 작업 창이 다시 읽고 캔버스 위에 알린다."
 
