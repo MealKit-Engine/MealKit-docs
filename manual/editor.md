@@ -17,6 +17,7 @@ The general-purpose editor `MealKitEditor` edits scenes, runs the game in play m
 | `F5` | Play / back to editing (`Esc` goes to the game, for its pause menu) |
 | `Ctrl+R` / `Ctrl+B` | Build game code (hot reload) / release build. If the engine changed while the editor is open, the build can't replace the engine the editor is using: the editor offers **Save, Restart and Rebuild**, which closes it, builds the engine in a console window and opens the project again |
 | `Ctrl+T` | Show or hide the Tables panel |
+| `Shift+Space` / `Ctrl+\` | UI workspace: maximize the canvas / hide the side columns |
 
 ## Objects
 

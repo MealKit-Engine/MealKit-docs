@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-11-09 18:00+0900\n"
+"POT-Creation-Date: 2026-11-09 18:26+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -97,6 +97,12 @@ msgstr "`Ctrl+T`"
 
 msgid "Show or hide the Tables panel"
 msgstr "[표] 패널 보이기·숨기기"
+
+msgid "`Shift+Space` / `Ctrl+\\`"
+msgstr "`Shift+Space` / `Ctrl+\\`"
+
+msgid "UI workspace: maximize the canvas / hide the side columns"
+msgstr "UI 작업 창: 캔버스 최대화 / 양쪽 열 숨기기"
 
 msgid "Objects"
 msgstr "물체"

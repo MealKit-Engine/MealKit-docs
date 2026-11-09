@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-09 18:00+0900\n"
+"POT-Creation-Date: 2026-11-09 18:26+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ko\n"
@@ -23,7 +23,7 @@ msgid "Game UI"
 msgstr "게임 화면 UI"
 
 msgid "The game's screens (HUD, menus, settings) are `.ui` files in `assets/ui/`. The engine lays them out and draws them in one 2D pass after the 3D scene. Screens are placed in the editor (see [Editing screens in the editor](#editing-screens-in-the-editor)), designed in Penpot and exported by the MealKit plugin (see [Designing in Penpot](#designing-in-penpot)), or written by hand in the same format. An exported file starts with `# MealKit UI exported from Penpot`; change those in Penpot, not by hand."
-msgstr "게msgstr \"게임 화면(HUD, 메뉴, 설정)은 `assets/ui/`의 `.ui` 파일이다. 엔진이 배치하고 3D 장면 다음 2D 패스 하나로 그린다. 화면은 에디터에서 배치하거나([에디터에서 화면 편집하기](#editing-screens-in-the-editor)), Penpot에서 디자인하고 MealKit 플러그인으로 내보내거나([Penpot에서 디자인하기](#designing-in-penpot)), 같은 형식으로 손으로 쓴다. 내보낸 파일은 첫 줄이 `# MealKit UI exported from Penpot`이고, 손으로 고치지 않고 Penpot에서 고친다."
+msgstr "게임 화면(HUD, 메뉴, 설정)은 `assets/ui/`의 `.ui` 파일이다. 엔진이 배치하고 3D 장면 다음 2D 패스 하나로 그린다. 화면은 에디터에서 배치하거나([에디터에서 화면 편집하기](#editing-screens-in-the-editor)), Penpot에서 디자인하고 MealKit 플러그인으로 내보내거나([Penpot에서 디자인하기](#designing-in-penpot)), 같은 형식으로 손으로 쓴다. 내보낸 파일은 첫 줄이 `# MealKit UI exported from Penpot`이고, 손으로 고치지 않고 Penpot에서 고친다."
 
 msgid "A screen file"
 msgstr "화면 파일"
@@ -401,11 +401,15 @@ msgstr "**월드 위 UI**: `ctx.ui.openWorld(\"ui/nametag.ui\")`로 연 화면�
 msgid "Previewing in the editor"
 msgstr "에디터에서 미리 보기"
 
-msgid "**Window > UI** is a workspace tab beside the **Viewport**. Its left column lists the screens in `assets/ui` and the layers (node tree) of the open one, the middle is a canvas that draws the screen inside a frame of the chosen resolution (16:9, 21:9, 4:3, portrait), and the right column holds the selected node's properties, the preview values, the focus and the problems (file errors, binding errors for fields the view model does not have, and the node count, budget 500 per screen). The toolbar row above them shows the screen and has save, undo and redo, the **Add** menu and the selection's duplicate, wrap, delete and paste buttons. Above the canvas, the selection's path (for example `lobby > main > title`) selects a parent with one click; below it are the resolution, the language (to check that translations fit), the UI scale, the focus display and the zoom (**Fit** shows the whole screen, click the percentage for 100%). The wheel zooms around the mouse and a middle or right drag moves the view. The columns can be resized by dragging their borders. **Window > Layout > UI** (or the **UI Layout** command) gives the workspace the whole editor window above the bottom row; the hierarchy and inspector of the scene come back with the other layouts. `MealKitEditor.exe --ui hud.ui` opens the workspace with that screen."
-msgstr "**창 > UI**는 **뷰포트** 옆의 작업 창 탭이다. 왼쪽 열에는 `assets/ui`의 화면 목록과 열린 화면의 레이어(노드 트리), 가운데에는 고른 해상도(16:9, 21:9, 4:3, 세로) 틀 안에 화면을 그리는 캔버스, 오른쪽 열에는 고른 노드의 속성, 미리보기 값, 포커스, 문제(파일 오류, 뷰 모델에 없는 필드를 가리키는 바인딩 오류, 노드 수, 화면당 예산 500)가 있다. 그 위 툴바 줄에는 화면 이름과 저장·실행 취소·다시 실행, **추가** 메뉴, 고른 노드의 복제·감싸기·삭제·붙여넣기 버튼이 있다. 캔버스 위에는 고른 노드의 경로(예: `lobby > main > title`)가 나오고 누르면 그 부모를 고른다. 캔버스 아래에는 해상도, 언어(번역이 들어맞는지 확인), UI 배율, 포커스 표시, 확대·축소가 있다(**맞춤**은 화면 전체를 보이고, 퍼센트를 누르면 100%). 휠은 마우스 위치를 중심으로 확대·축소하고, 가운데나 오른쪽 버튼으로 끌면 화면을 옮긴다. 열 경계를 끌어 너비를 바꿀 수 있다. **창 > 레이아웃 > UI**(또는 **UI 레이아웃** 명령)는 아래 줄 위의 에디터 창 전체를 작업 창에 준다. 씬의 계층과 인스펙터는 다른 레이아웃을 고르면 돌아온다. `MealKitEditor.exe --ui hud.ui`는 그 화면으로 작업 창을 연다."
+#, python-format
+msgid "**Window > UI** is a workspace tab beside the **Viewport**. Its left column lists the screens in `assets/ui` and the layers (node tree) of the open one, the middle is a canvas that draws the screen inside a frame of the chosen resolution (16:9, 21:9, 4:3, portrait), and the right column holds the selected node's properties, the preview values, the focus and the problems (file errors, binding errors for fields the view model does not have, and the node count, budget 500 per screen). The toolbar row above them shows the screen and has save, undo and redo, the **Add** menu and the selection's duplicate, wrap, delete and paste buttons. Above the canvas, the selection's path (for example `lobby > main > title`) selects a parent with one click; below it are the resolution, the language (to check that translations fit), the UI scale, the focus display and the zoom (**Fit** shows the whole screen, **Fit width** fills the canvas width and starts a tall screen at its top, click the percentage for 100%; a fit above 100% uses whole multiples so text stays sharp). The wheel zooms around the mouse and a middle or right drag moves the view. The columns can be resized by dragging their borders."
+msgstr "**창 > UI**는 **뷰포트** 옆의 작업 창 탭이다. 왼쪽 열에는 `assets/ui`의 화면 목록과 열린 화면의 레이어(노드 트리), 가운데에는 고른 해상도(16:9, 21:9, 4:3, 세로) 틀 안에 화면을 그리는 캔버스, 오른쪽 열에는 고른 노드의 속성, 미리보기 값, 포커스, 문제(파일 오류, 뷰 모델에 없는 필드를 가리키는 바인딩 오류, 노드 수, 화면당 예산 500)가 있다. 그 위 툴바 줄에는 화면 이름과 저장·실행 취소·다시 실행, **추가** 메뉴, 고른 노드의 복제·감싸기·삭제·붙여넣기 버튼이 있다. 캔버스 위에는 고른 노드의 경로(예: `lobby > main > title`)가 나오고 누르면 그 부모를 고른다. 캔버스 아래에는 해상도, 언어(번역이 들어맞는지 확인), UI 배율, 포커스 표시, 확대·축소가 있다(**맞춤**은 화면 전체를 보이고, **폭 맞춤**은 캔버스 너비를 채우며 세로로 긴 화면은 위쪽부터 보인다. 퍼센트를 누르면 100%. 맞춤이 100%를 넘으면 글자가 흐려지지 않게 정수 배율을 쓴다). 휠은 마우스 위치를 중심으로 확대·축소하고, 가운데나 오른쪽 버튼으로 끌면 화면을 옮긴다. 열 경계를 끌어 너비를 바꿀 수 있다."
+
+msgid "For a bigger canvas, the buttons at the right end of the toolbar hide the left or right column, and `Ctrl+\\` hides both (or shows them again). A hidden column leaves a thin strip whose button shows it in a popup beside the canvas; **Keep open** brings it back. **Maximize** (`Shift+Space`) gives the workspace the whole window under the menu bar and hides the other panels; press it again to return to the same layout. **Window > Layout > UI** (or the **UI Layout** command) gives the workspace the whole editor window above the bottom row; the hierarchy and inspector of the scene come back with the other layouts. `MealKitEditor.exe --ui hud.ui` opens the workspace with that screen."
+msgstr "캔버스를 더 크게 보려면 툴바 오른쪽 끝의 버튼으로 왼쪽이나 오른쪽 열을 숨기고, `Ctrl+\\`로 두 열을 한꺼번에 숨기거나 다시 보인다. 숨긴 열은 얇은 막대로 남고, 막대의 버튼을 누르면 그 열이 캔버스 옆 팝업으로 열린다. **계속 열어 두기**를 누르면 열이 돌아온다. **최대화**(`Shift+Space`)는 메뉴 막대 아래 창 전체를 작업 창에 주고 다른 패널을 숨긴다. 다시 누르면 원래 배치로 돌아간다. **창 > 레이아웃 > UI**(또는 **UI 레이아웃** 명령)는 아래 줄 위의 에디터 창 전체를 작업 창에 준다. 씬의 계층과 인스펙터는 다른 레이아웃을 고르면 돌아온다. `MealKitEditor.exe --ui hud.ui`는 그 화면으로 작업 창을 연다."
 
 msgid "Editing screens in the editor"
-msgstr "에msgstr \"에디터에서 화면 편집하기"
+msgstr "에디터에서 화면 편집하기"
 
 msgid "The workspace changes the open screen while showing it as the game draws it (same layout, fonts, string tables and view model values)."
 msgstr "작업 창에서는 열린 화면을 게임이 그리는 그대로(같은 배치, 폰트, 문자열 표, 뷰 모델 값) 보면서 고친다."
