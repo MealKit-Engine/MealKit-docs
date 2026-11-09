@@ -101,8 +101,8 @@ msgstr "`remove`는 다른 모듈이 그 모듈을 필요로 하거나, 게임 �
 msgid "Modules that need a missing module go with it: without `net` there is no `online` either. If the game framework itself needs it, the build stops and names the module to add."
 msgstr "없는 모듈이 필요한 모듈은 함께 빠진다: `net`이 없으면 `online`도 없다. 게임 프레임워크 자체에 필요한 모듈이면 빌드가 멈추고 추가할 모듈 이름을 알려 준다."
 
-msgid "A project with no engine modules in `modules/` is built with every module of its engine. The engine's own samples work this way."
-msgstr "`modules/`에 엔진 모듈이 하나도 없는 프로젝트는 엔진의 모든 모듈로 빌드된다. 엔진의 샘플이 이렇게 동작한다."
+msgid "A project is built with exactly the engine modules in its `modules/`. With none there it has only the kernel, and game code that includes a missing module stops the build with the module names and the lines. Only the engine's own samples use every module of the engine."
+msgstr "프로젝트는 `modules/`에 있는 엔진 모듈로만 빌드된다. 하나도 없으면 커널만 있고, 없는 모듈을 include하는 게임 코드가 있으면 빌드가 그 모듈 이름과 줄을 보여 주며 멈춘다. 엔진의 모든 모듈을 쓰는 것은 엔진 자체 샘플뿐이다."
 
 msgid "The editor always has every module at the engine's version."
 msgstr "에디터에는 항상 엔진 버전의 모든 모듈이 있다."

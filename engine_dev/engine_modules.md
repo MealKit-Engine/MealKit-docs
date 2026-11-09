@@ -43,7 +43,7 @@ tools\module.ps1 list -Project <folder>
 - `update` keeps files you changed and writes the new version next to them as `<file>.new`, as for source modules. Engine updates don't change the copies until you update them.
 - `remove` refuses while another module requires it, or while game code includes it outside `#if MEALKIT_HAS_<NAME>`.
 - Modules that need a missing module go with it: without `net` there is no `online` either. If the game framework itself needs it, the build stops and names the module to add.
-- A project with no engine modules in `modules/` is built with every module of its engine. The engine's own samples work this way.
+- A project is built with exactly the engine modules in its `modules/`. With none there it has only the kernel, and game code that includes a missing module stops the build with the module names and the lines. Only the engine's own samples use every module of the engine.
 - The editor always has every module at the engine's version.
 
 | Preset | What it has |
