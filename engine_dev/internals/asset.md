@@ -18,7 +18,7 @@ A loaded `asset::Model` has:
 - the hull points for physics,
 - the hash of the file contents.
 
-`setRenderer` stores a plain function pointer that calls `Renderer::createMesh`. This call sits in an inline function in the header, so a headless program that never calls `setRenderer` links without the renderer at all. Without a renderer, the cache still builds bounds, hull points and hashes.
+`setGpu` takes an `asset::ModelGpu`, an interface the render module implements (`render::ModelUploader` in `render/ModelDraw.h`), so the asset module never includes `render` or `rhi`. Drawing models, terrain and scatter layers belongs to the render module too (`render::addModel`, `addTerrain`, `addScatter`, `postParams`, `probes`). Without a GPU (headless), the cache still builds bounds, hull points and hashes.
 
 `resolve` uses a path as it is when that file exists, otherwise it looks for `assets/<path>` with `findAsset`. `boxMesh` gives the unit box that entities without a model use.
 
@@ -78,7 +78,7 @@ The game adds it to the scene's content hash (see {doc}`scene`), so a peer whose
 | Technique | Where | What it does |
 |---|---|---|
 | Load-once cache | `ModelCache::get` | Keeps models by path in a hash map. Failures are cached too, so a missing file is reported once. |
-| Optional dependency through a function pointer | `ModelCache::setRenderer` | The only renderer call is in an inline header function, so headless builds link without the renderer. |
+| Optional dependency through an interface | `ModelCache::setGpu` | The asset module holds CPU data only; the render module uploads and draws, and headless builds set no GPU. |
 | Scene graph flattening | `visitNode` | Applies each node's world matrix to its vertices, so a model is one mesh in model space. |
 | Handedness conversion | `appendPrimitive` | Negates z and reverses winding, with a determinant check for mirrored nodes. |
 | Area-weighted smooth normals | `computeNormals` | Adds raw cross products of each triangle to its vertices and normalizes, so bigger triangles count more. |

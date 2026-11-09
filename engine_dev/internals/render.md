@@ -19,8 +19,8 @@ The frame budget and the profiler are in {doc}`../../manual/performance`. The co
 | {engine}`engine/src/mealkit/render/Renderer.h` | `Renderer`, the per-frame values (`FrameParams`), the 48-byte `InstanceData`, the 112-byte `UiQuad` and `RenderStats`. |
 | {engine}`engine/src/mealkit/render/Renderer.cpp` | The forward renderer, written only against the RHI. |
 | {engine}`engine/src/mealkit/render/DrawList.h` | Collects instances per mesh for one frame. |
-| {engine}`engine/src/mealkit/render/Mesh.h` | The 36-byte `Vertex`, `MeshData` and the unit box. |
-| {engine}`engine/src/mealkit/asset/TextureCache.h` | Model textures: decoding, mipmaps, BC7/BC5 compression and the cache files. |
+| {engine}`engine/src/mealkit/asset/MeshData.h` | The 36-byte `Vertex`, `MeshData` and the unit box. |
+| {engine}`engine/src/mealkit/render/TextureCache.h` | Model textures: decoding, mipmaps, BC7/BC5 compression and the cache files. |
 | {engine}`engine/shaders/Bindless.hlsli` | The binding layout that every shader shares. |
 | {engine}`engine/shaders/Forward.hlsl` | The 3D shader: instance transform, lighting and fog. |
 | {engine}`engine/shaders/Ui.hlsl` | The 2D UI shader: rounded boxes, gradients, shadows, images and SDF text. |
@@ -196,7 +196,7 @@ The two atlases are 2048 × 2048 textures: `R8_UNORM` for glyph distance fields 
 
 ## Sky HDRI
 
-`asset::loadEnvironment` ({engine}`engine/src/mealkit/asset/Environment.cpp`) turns an equirectangular `.hdr` into three things, baked on the CPU and cached in `build/cache/environments/<content hash>.mkenv`:
+`render::loadEnvironment` ({engine}`engine/src/mealkit/render/Environment.cpp`) turns an equirectangular `.hdr` into three things, baked on the CPU and cached in `build/cache/environments/<content hash>.mkenv`:
 
 - a **sky cube** (face size = image width / 4, at most 512) for the skybox,
 - a **reflection cube**, 128² with 6 mips: mip 0 is the sky itself, mip k is prefiltered for roughness k / 5 with 64 GGX importance samples per texel, each read from a lower mip of the image chosen from the sample's solid angle (filtered importance sampling) to keep noise down,
@@ -212,7 +212,7 @@ The RHI has cube textures for this: `TextureInit::cube` uploads six faces with t
 
 A `reflection_probe` scene object (a built-in type, view-only like the sky, its scale is the box it affects) gives that box its own reflection cube. The editor bakes it (`Editor::renderProbeBake`): each frame one cube face is drawn into an offscreen target with a 90° camera at the probe's position (objects visible in the game only, sky reflection, no probes), and `Renderer::captureTarget` reads the target back at `endFrame` (`rhi::Capture::source`, DX12 and Vulkan). After six faces `asset::bakeProbe` makes the same kind of reflection cube as the sky HDRI (mip 0 a mirror, then GGX samples, RGB9E5) and `asset::saveProbe` writes `assets/probes/<scene>_<id>.mkprobe`; the object's `bake` field keeps the path.
 
-At run time `ModelCache::probes(scene, out)` uploads the files (`Renderer::createProbe`) and returns the position, half size and number of each baked probe, up to the project setting `probeMaxCount`. The frame writes them into the upload ring as a table of 32 bytes per probe. The vertex shader picks, for each instance, the probe whose box contains the instance position and whose center is nearest, and the pixel shader reads that cube instead of the sky's reflection cube (without the HDRI rotation and intensity, which the capture already contains). Probe faces are drawn without tone mapping and captured as 8-bit sRGB, so light brighter than 1 is clipped.
+At run time `render::probes(models, scene, out)` uploads the files (`Renderer::createProbe`) and returns the position, half size and number of each baked probe, up to the project setting `probeMaxCount`. The frame writes them into the upload ring as a table of 32 bytes per probe. The vertex shader picks, for each instance, the probe whose box contains the instance position and whose center is nearest, and the pixel shader reads that cube instead of the sky's reflection cube (without the HDRI rotation and intensity, which the capture already contains). Probe faces are drawn without tone mapping and captured as 8-bit sRGB, so light brighter than 1 is clipped.
 
 ## Point lights
 

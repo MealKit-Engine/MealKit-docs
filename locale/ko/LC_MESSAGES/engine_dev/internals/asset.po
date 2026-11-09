@@ -49,8 +49,8 @@ msgstr "물리용 껍질 점,"
 msgid "the hash of the file contents."
 msgstr "파일 내용의 해시."
 
-msgid "`setRenderer` stores a plain function pointer that calls `Renderer::createMesh`. This call sits in an inline function in the header, so a headless program that never calls `setRenderer` links without the renderer at all. Without a renderer, the cache still builds bounds, hull points and hashes."
-msgstr "`setRenderer`는 `Renderer::createMesh`를 부르는 평범한 함수 포인터를 저장한다. 이 호출이 헤더의 인라인 함수 안에 있으므로, `setRenderer`를 부르지 않는 헤드리스 프로그램은 렌더러 없이 링크된다. 렌더러가 없어도 캐시는 경계, 껍질 점, 해시를 만든다."
+msgid "`setGpu` takes an `asset::ModelGpu`, an interface the render module implements (`render::ModelUploader` in `render/ModelDraw.h`), so the asset module never includes `render` or `rhi`. Drawing models, terrain and scatter layers belongs to the render module too (`render::addModel`, `addTerrain`, `addScatter`, `postParams`, `probes`). Without a GPU (headless), the cache still builds bounds, hull points and hashes."
+msgstr "`setGpu`는 render 모듈이 구현하는 인터페이스 `asset::ModelGpu`(`render/ModelDraw.h`의 `render::ModelUploader`)를 받으므로, asset 모듈은 `render`나 `rhi`를 include하지 않는다. 모델, 지형, 스캐터 레이어 그리기도 render 모듈이 맡는다(`render::addModel`, `addTerrain`, `addScatter`, `postParams`, `probes`). GPU가 없어도(헤드리스) 캐시는 경계, 껍질 점, 해시를 만든다."
 
 msgid "`resolve` uses a path as it is when that file exists, otherwise it looks for `assets/<path>` with `findAsset`. `boxMesh` gives the unit box that entities without a model use."
 msgstr "`resolve`는 그 파일이 있으면 경로를 그대로 쓰고, 없으면 `findAsset`으로 `assets/<경로>`를 찾는다. `boxMesh`는 모델이 없는 물체가 쓰는 한 변 1인 상자를 준다."
@@ -195,14 +195,14 @@ msgstr "`ModelCache::get`"
 msgid "Keeps models by path in a hash map. Failures are cached too, so a missing file is reported once."
 msgstr "모델을 경로로 해시맵에 둔다. 실패도 캐시하므로 없는 파일을 한 번만 알린다."
 
-msgid "Optional dependency through a function pointer"
-msgstr "함수 포인터로 선택적 의존"
+msgid "Optional dependency through an interface"
+msgstr "인터페이스로 선택적 의존"
 
-msgid "`ModelCache::setRenderer`"
-msgstr "`ModelCache::setRenderer`"
+msgid "`ModelCache::setGpu`"
+msgstr "`ModelCache::setGpu`"
 
-msgid "The only renderer call is in an inline header function, so headless builds link without the renderer."
-msgstr "렌더러 호출이 헤더의 인라인 함수 하나에만 있어서, 헤드리스 빌드는 렌더러 없이 링크된다."
+msgid "The asset module holds CPU data only; the render module uploads and draws, and headless builds set no GPU."
+msgstr "asset 모듈은 CPU 데이터만 갖고 올리기와 그리기는 render 모듈이 하며, 헤드리스 빌드는 GPU를 설정하지 않는다."
 
 msgid "Scene graph flattening"
 msgstr "씬 그래프 펼치기"

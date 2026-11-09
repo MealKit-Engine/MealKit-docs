@@ -100,15 +100,15 @@ msgid "Collects instances per mesh for one frame."
 msgstr "한 프레임의 인스턴스를 메시별로 모은다."
 
 #, python-brace-format
-msgid "{engine}`engine/src/mealkit/render/Mesh.h`"
-msgstr "{engine}`engine/src/mealkit/render/Mesh.h`"
+msgid "{engine}`engine/src/mealkit/asset/MeshData.h`"
+msgstr "{engine}`engine/src/mealkit/asset/MeshData.h`"
 
 msgid "The 36-byte `Vertex`, `MeshData` and the unit box."
 msgstr "36바이트 `Vertex`, `MeshData`, 단위 상자."
 
 #, python-brace-format
-msgid "{engine}`engine/src/mealkit/asset/TextureCache.h`"
-msgstr "{engine}`engine/src/mealkit/asset/TextureCache.h`"
+msgid "{engine}`engine/src/mealkit/render/TextureCache.h`"
+msgstr "{engine}`engine/src/mealkit/render/TextureCache.h`"
 
 msgid "Model textures: decoding, mipmaps, BC7/BC5 compression and the cache files."
 msgstr "모델 텍스처: 디코드, 밉맵, BC7/BC5 압축, 캐시 파일."
@@ -550,8 +550,8 @@ msgid "Sky HDRI"
 msgstr "하늘 HDRI"
 
 #, python-brace-format
-msgid "`asset::loadEnvironment` ({engine}`engine/src/mealkit/asset/Environment.cpp`) turns an equirectangular `.hdr` into three things, baked on the CPU and cached in `build/cache/environments/<content hash>.mkenv`:"
-msgstr "`asset::loadEnvironment`({engine}`engine/src/mealkit/asset/Environment.cpp`)는 정거리원통 `.hdr` 하나를 세 가지로 바꿔 CPU에서 굽고 `build/cache/environments/<내용 해시>.mkenv`에 캐시한다:"
+msgid "`render::loadEnvironment` ({engine}`engine/src/mealkit/render/Environment.cpp`) turns an equirectangular `.hdr` into three things, baked on the CPU and cached in `build/cache/environments/<content hash>.mkenv`:"
+msgstr "`render::loadEnvironment`({engine}`engine/src/mealkit/render/Environment.cpp`)는 정거리원통 `.hdr` 하나를 세 가지로 바꿔 CPU에서 굽고 `build/cache/environments/<내용 해시>.mkenv`에 캐시한다:"
 
 msgid "a **sky cube** (face size = image width / 4, at most 512) for the skybox,"
 msgstr "스카이박스용 **하늘 큐브** (면 크기 = 그림 가로 / 4, 최대 512),"
@@ -574,8 +574,8 @@ msgstr "반사 프로브"
 msgid "A `reflection_probe` scene object (a built-in type, view-only like the sky, its scale is the box it affects) gives that box its own reflection cube. The editor bakes it (`Editor::renderProbeBake`): each frame one cube face is drawn into an offscreen target with a 90° camera at the probe's position (objects visible in the game only, sky reflection, no probes), and `Renderer::captureTarget` reads the target back at `endFrame` (`rhi::Capture::source`, DX12 and Vulkan). After six faces `asset::bakeProbe` makes the same kind of reflection cube as the sky HDRI (mip 0 a mirror, then GGX samples, RGB9E5) and `asset::saveProbe` writes `assets/probes/<scene>_<id>.mkprobe`; the object's `bake` field keeps the path."
 msgstr "씬 물체 `reflection_probe`(엔진 기본 종류, 하늘처럼 화면 전용, 크기가 영향 상자)가 그 상자에 자기 반사 큐브를 준다. 굽기는 에디터가 한다(`Editor::renderProbeBake`): 프레임마다 큐브 면 하나를 프로브 자리의 90° 카메라로 오프스크린 대상에 그리고(게임에 보이는 물체만, 하늘 반사, 프로브 없이), `Renderer::captureTarget`이 `endFrame`에서 그 대상을 읽는다(`rhi::Capture::source`, DX12·Vulkan). 면 여섯이 모이면 `asset::bakeProbe`가 하늘 HDRI와 같은 반사 큐브(밉 0은 거울, 나머지는 GGX 표본, RGB9E5)를 만들고 `asset::saveProbe`가 `assets/probes/<씬>_<id>.mkprobe`를 쓴다. 물체의 `bake` 필드가 그 경로를 갖는다."
 
-msgid "At run time `ModelCache::probes(scene, out)` uploads the files (`Renderer::createProbe`) and returns the position, half size and number of each baked probe, up to the project setting `probeMaxCount`. The frame writes them into the upload ring as a table of 32 bytes per probe. The vertex shader picks, for each instance, the probe whose box contains the instance position and whose center is nearest, and the pixel shader reads that cube instead of the sky's reflection cube (without the HDRI rotation and intensity, which the capture already contains). Probe faces are drawn without tone mapping and captured as 8-bit sRGB, so light brighter than 1 is clipped."
-msgstr "실행 중에는 `ModelCache::probes(scene, out)`가 파일을 올리고(`Renderer::createProbe`) 구운 프로브마다 위치·반 크기·번호를 프로젝트 설정 `probeMaxCount`까지 돌려준다. 프레임은 이것을 프로브당 32바이트 표로 업로드 링에 쓴다. 정점 셰이더가 인스턴스마다 인스턴스 위치를 담은 상자 중 중심이 가장 가까운 프로브를 고르고, 픽셀 셰이더는 하늘 반사 큐브 대신 그 큐브를 읽는다(HDRI 회전·세기는 곱하지 않는다: 찍은 그림에 이미 들어 있다). 프로브 면은 톤 매핑 없이 그려 8비트 sRGB로 찍으므로 1보다 밝은 빛은 잘린다."
+msgid "At run time `render::probes(models, scene, out)` uploads the files (`Renderer::createProbe`) and returns the position, half size and number of each baked probe, up to the project setting `probeMaxCount`. The frame writes them into the upload ring as a table of 32 bytes per probe. The vertex shader picks, for each instance, the probe whose box contains the instance position and whose center is nearest, and the pixel shader reads that cube instead of the sky's reflection cube (without the HDRI rotation and intensity, which the capture already contains). Probe faces are drawn without tone mapping and captured as 8-bit sRGB, so light brighter than 1 is clipped."
+msgstr "실행 중에는 `render::probes(models, scene, out)`가 파일을 올리고(`Renderer::createProbe`) 구운 프로브마다 위치·반 크기·번호를 프로젝트 설정 `probeMaxCount`까지 돌려준다. 프레임은 이것을 프로브당 32바이트 표로 업로드 링에 쓴다. 정점 셰이더가 인스턴스마다 인스턴스 위치를 담은 상자 중 중심이 가장 가까운 프로브를 고르고, 픽셀 셰이더는 하늘 반사 큐브 대신 그 큐브를 읽는다(HDRI 회전·세기는 곱하지 않는다: 찍은 그림에 이미 들어 있다). 프로브 면은 톤 매핑 없이 그려 8비트 sRGB로 찍으므로 1보다 밝은 빛은 잘린다."
 
 msgid "Point lights"
 msgstr "점광원"
