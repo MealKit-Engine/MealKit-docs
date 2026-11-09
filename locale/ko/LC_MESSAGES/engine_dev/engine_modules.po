@@ -134,8 +134,8 @@ msgstr "포함된 사본과 잠금 파일"
 msgid "The engine repository keeps a copy of every module in `modules/`, so cloning `MealKit` alone is enough to build. `modules.lock` records the repository, tag and commit each copy comes from. An engine version means `VERSION` plus `modules.lock`."
 msgstr "엔진 저장소는 모든 모듈의 사본을 `modules/`에 두므로 `MealKit`만 클론해도 빌드할 수 있다. `modules.lock`에는 각 사본이 나온 저장소, 태그, 커밋이 적혀 있다. 엔진 버전 하나는 `VERSION`과 `modules.lock`을 합친 것이다."
 
-msgid "`tools\\modules.ps1` keeps the engine's copies in step (games use `tools\\module.ps1`):"
-msgstr "`tools\\modules.ps1`는 엔진의 복사본을 맞춰 둔다 (게임은 `tools\\module.ps1`을 쓴다):"
+msgid "`tools\\module.ps1 engine` keeps the engine's copies in step (games use the other `tools\\module.ps1` commands):"
+msgstr "`tools\\module.ps1 engine`은 엔진의 복사본을 맞춰 둔다 (게임은 `tools\\module.ps1`의 다른 명령을 쓴다):"
 
 msgid "Command"
 msgstr "명령"
@@ -143,29 +143,29 @@ msgstr "명령"
 msgid "What it does"
 msgstr "하는 일"
 
-msgid "`status`"
-msgstr "`status`"
+msgid "`engine status`"
+msgstr "`engine status`"
 
 msgid "compares each copy with its locked commit"
 msgstr "각 사본을 잠긴 커밋과 비교한다"
 
-msgid "`sync [name]`"
-msgstr "`sync [name]`"
+msgid "`engine sync [name]`"
+msgstr "`engine sync [name]`"
 
 msgid "rewrites copies from the locked commits"
 msgstr "잠긴 커밋에서 사본을 다시 쓴다"
 
-msgid "`bump <name> [tag]`"
-msgstr "`bump <name> [tag]`"
+msgid "`engine bump <name> [tag]`"
+msgstr "`engine bump <name> [tag]`"
 
 msgid "locks a new tag of a module repo and copies it in"
 msgstr "모듈 저장소의 새 태그를 잠그고 사본으로 가져온다"
 
-msgid "`local on [name]`"
-msgstr "`local on [name]`"
+msgid "`engine local on [name]`"
+msgstr "`engine local on [name]`"
 
-msgid "links `modules/<name>` to the checkout beside the engine (`..\\module-<name>`), for a change that spans repos; `local off` puts the copy back"
-msgstr "여러 저장소에 걸친 변경을 위해 `modules/<name>`을 엔진 옆의 체크아웃(`..\\module-<name>`)에 연결한다. `local off`는 사본을 되돌린다"
+msgid "links `modules/<name>` to the checkout beside the engine (`..\\module-<name>`), for a change that spans repos; `engine local off` puts the copy back"
+msgstr "여러 저장소에 걸친 변경을 위해 `modules/<name>`을 엔진 옆의 체크아웃(`..\\module-<name>`)에 연결한다. `engine local off`는 사본을 되돌린다"
 
 msgid "A change to a module goes into its own repository first: commit, tag, then `bump` in the engine, so the engine gets the new copy and the lock in one commit. Each module repository runs the shared workflow `engine-module.yml`, which builds the engine with that repository in place of its copy."
 msgstr "모듈 변경은 먼저 그 모듈 저장소에 넣는다: 커밋하고 태그를 단 뒤 엔진에서 `bump`하면, 엔진은 새 사본과 잠금을 한 커밋으로 받는다. 모듈 저장소마다 공용 워크플로 `engine-module.yml`을 돌리는데, 이는 사본 대신 그 저장소를 넣어 엔진을 빌드한다."

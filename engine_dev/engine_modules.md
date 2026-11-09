@@ -57,13 +57,13 @@ The build configuration `Presets` builds the samples with `solo` and without `au
 
 The engine repository keeps a copy of every module in `modules/`, so cloning `MealKit` alone is enough to build. `modules.lock` records the repository, tag and commit each copy comes from. An engine version means `VERSION` plus `modules.lock`.
 
-`tools\modules.ps1` keeps the engine's copies in step (games use `tools\module.ps1`):
+`tools\module.ps1 engine` keeps the engine's copies in step (games use the other `tools\module.ps1` commands):
 
 | Command | What it does |
 |---|---|
-| `status` | compares each copy with its locked commit |
-| `sync [name]` | rewrites copies from the locked commits |
-| `bump <name> [tag]` | locks a new tag of a module repo and copies it in |
-| `local on [name]` | links `modules/<name>` to the checkout beside the engine (`..\module-<name>`), for a change that spans repos; `local off` puts the copy back |
+| `engine status` | compares each copy with its locked commit |
+| `engine sync [name]` | rewrites copies from the locked commits |
+| `engine bump <name> [tag]` | locks a new tag of a module repo and copies it in |
+| `engine local on [name]` | links `modules/<name>` to the checkout beside the engine (`..\module-<name>`), for a change that spans repos; `engine local off` puts the copy back |
 
 A change to a module goes into its own repository first: commit, tag, then `bump` in the engine, so the engine gets the new copy and the lock in one commit. Each module repository runs the shared workflow `engine-module.yml`, which builds the engine with that repository in place of its copy.

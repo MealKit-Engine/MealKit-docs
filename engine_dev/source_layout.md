@@ -28,7 +28,7 @@ cmake/MealKit.cmake            shared build settings, presets + mealkit_add_game
 cmake/MealKitExport.cmake      release folder creation (game_export target)
 cmake/FixExportsDef.cmake      removes MSVC CRT weak alias lines from the mealkit.dll export list (Editor build)
 templates/project/             build file templates for new game projects
-tools/                         new_project.ps1, upgrade_project.ps1, modules.ps1, check.ps1, check_modules.ps1, mp_test.ps1, ... (and the build scripts)
+tools/                         new_project.ps1, upgrade_project.ps1, module.ps1, check.ps1, check_modules.ps1, mp_test.ps1, ... (and the build scripts)
 modules.lock                   the module repos, tags and commits this engine version is built from
 VERSION                        engine version (compared with engineVersion in mealkit.project)
 ```
