@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-19 12:58+0900\n"
+"POT-Creation-Date: 2026-11-09 17:39+0900\n"
 "PO-Revision-Date: 2026-10-19 12:45+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -118,12 +118,15 @@ msgstr "[연출] 패널이 틱 이벤트 종류와 필드를 보여 준다."
 msgid "`viewModels`"
 msgstr "`viewModels`"
 
-msgid "The UI panel previews screens with test view model values (`MEALKIT_VIEWMODEL`)."
-msgstr "[UI] 패널이 시험용 뷰 모델 값으로 화면을 미리 본다(`MEALKIT_VIEWMODEL`)."
+msgid "The UI workspace previews screens with test view model values (`MEALKIT_VIEWMODEL`)."
+msgstr "UI 작업 창이 시험용 뷰 모델 값으로 화면을 미리 본다(`MEALKIT_VIEWMODEL`)."
 
 #, python-brace-format
 msgid "The editor never sees game structs as C++ types. It reads their field declarations (`reflect::TypeInfo`) and draws them with one widget set, `editor::drawFields` ({engine}`engine/src/mealkit/editor/FieldEditor.h`). The inspector, the Tuning panel, the Tables panel and the State panel all use it, so a new `MEALKIT_FIELD` appears in every panel without editor code."
 msgstr "에디터는 게임 구조체를 C++ 타입으로 보지 않는다. 필드 선언(`reflect::TypeInfo`)을 읽어 위젯 한 벌 `editor::drawFields`로 그린다({engine}`engine/src/mealkit/editor/FieldEditor.h`). 인스펙터, [튜닝] 패널, [표] 패널, [상태] 패널이 모두 이것을 쓰므로, 새 `MEALKIT_FIELD`는 에디터 코드 없이 모든 패널에 나온다."
+
+msgid "A field label can carry display hints after the name: `\"Push radius|Description|group=Pushing|range=0..30|step=0.1|unit=m|pick=effects:.fx\"`. `group` starts a collapsible section, `range` gives a slider, `unit` follows the number, and `pick` gives a searchable list (`sound` for sound events, or `<folder>:<extension>` for files under `assets`). Labels stay out of the content hash, but editing a label in `sim/` still changes the simulation version, which hashes those source files."
+msgstr "필드 라벨의 이름 뒤에 표시 힌트를 붙일 수 있다: `\"Push radius|Description|group=Pushing|range=0..30|step=0.1|unit=m|pick=effects:.fx\"`. `group`은 접을 수 있는 구역을 시작하고, `range`는 슬라이더를 만들고, `unit`은 숫자 뒤에 표시되고, `pick`은 찾을 수 있는 목록을 만든다(`sound`는 소리 이벤트, `<폴더>:<확장자>`는 `assets` 아래 파일). 라벨은 콘텐츠 해시에 들어가지 않지만, `sim/`의 라벨을 고치면 그 소스 파일을 해시하는 시뮬레이션 버전은 바뀐다."
 
 #, python-brace-format
 msgid "The engine side of the game code boundary (`GameInstance`, `GameContext`) is described in the engine repository's {engine}`docs/CODING_MODEL.md`."
@@ -194,8 +197,8 @@ msgstr "소리와 연출을 갱신한다."
 msgid "Fill the draw list: the game's view during play, otherwise the viewport."
 msgstr "그리기 목록을 채운다: 플레이 중이면 게임 화면, 아니면 뷰포트."
 
-msgid "Draw the 3D scene, then the game screen UI, the UI panel preview, and finally the editor UI on top."
-msgstr "3D 장면을 그리고, 그 위에 게임 화면 UI, [UI] 패널 미리보기, 마지막으로 에디터 UI를 그린다."
+msgid "Draw the 3D scene, then the game screen UI, the UI workspace's backdrop and screen, and finally the editor UI on top."
+msgstr "3D 장면을 그리고, 그 위에 게임 화면 UI, UI 작업 창의 바탕과 화면, 마지막으로 에디터 UI를 그린다."
 
 msgid "Scene editing"
 msgstr "씬 편집"
@@ -609,5 +612,3 @@ msgstr "`Editor::updateAutosave`"
 msgid "Writes a side file instead of the scene, and compares file times on open to offer recovery after a crash."
 msgstr "씬 파일 대신 옆 파일에 쓰고, 열 때 파일 시각을 비교해 크래시 뒤에 복구를 권한다."
 
-msgid "A field label can carry display hints after the name: `\"Push radius|Description|group=Pushing|range=0..30|step=0.1|unit=m|pick=effects:.fx\"`. `group` starts a collapsible section, `range` gives a slider, `unit` follows the number, and `pick` gives a searchable list (`sound` for sound events, or `<folder>:<extension>` for files under `assets`). Labels stay out of the content hash, but editing a label in `sim/` still changes the simulation version, which hashes those source files."
-msgstr "필드 라벨의 이름 뒤에 표시 힌트를 붙일 수 있다: `\"Push radius|Description|group=Pushing|range=0..30|step=0.1|unit=m|pick=effects:.fx\"`. `group`은 접을 수 있는 구역을 시작하고, `range`는 슬라이더를 만들고, `unit`은 숫자 뒤에 표시되고, `pick`은 찾을 수 있는 목록을 만든다(`sound`는 소리 이벤트, `<폴더>:<확장자>`는 `assets` 아래 파일). 라벨은 콘텐츠 해시에 들어가지 않지만, `sim/`의 라벨을 고치면 그 소스 파일을 해시하는 시뮬레이션 버전은 바뀐다."

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-11-02 09:32+0900\n"
+"POT-Creation-Date: 2026-11-09 17:39+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -184,6 +184,53 @@ msgstr "패널"
 msgid "**Layout**: the hierarchy is on the left, the inspector on the right, and **Debug** and assets share a strip under the viewport. **Window > Layout** picks Edit, Play or Look Dev and resets the layout."
 msgstr "**레이아웃**: 계층는 왼쪽, 인스펙터는 오른쪽, **디버그**와 에셋은 뷰포트 아래 가로 칸에 같이 놓인다. **창 > 레이아웃**에서 편집·플레이·룩데브를 골라 레이아웃을 다시 놓는다."
 
+msgid "**Hierarchy folders**: right-click an object and choose **Move to Folder...**, or drag it onto a folder. A path like `Props/Trees` makes folders inside folders. Right-click a folder to rename or remove it. Folders are saved in the scene and do not affect game results. A `!` after a name marks a problem (hover for the reason), and a blue dot marks fields changed from the kind's defaults."
+msgstr "**계층 폴더**: 물체를 오른쪽 클릭해 **폴더로 옮기기...**를 고르거나 폴더로 끌어다 놓는다. `Props/Trees` 같은 경로는 폴더 안의 폴더를 만든다. 폴더를 오른쪽 클릭하면 이름을 바꾸거나 없앨 수 있다. 폴더는 씬에 저장되고 게임 결과에 영향을 주지 않는다. 이름 뒤의 `!`는 문제를 나타내고(마우스를 올리면 이유가 보인다), 파란 점은 종류의 기본값에서 바뀐 필드가 있다는 뜻이다."
+
+msgid "**Several objects**: with objects of the same kind selected, changing a field in the inspector changes it on all of them. Fields that differ show a dash."
+msgstr "**여러 물체**: 같은 종류의 물체를 함께 선택하면 인스펙터에서 고친 필드가 모두에 적용된다. 값이 서로 다른 필드에는 대시가 표시된다."
+
+msgid "**Asset grid**: the slider at the top of **Assets** switches from the list to a grid with model pictures."
+msgstr "**에셋 그리드**: **에셋** 위쪽 슬라이더로 목록을 모델 그림이 있는 그리드로 바꾼다."
+
+msgid "**Command palette**: Ctrl+P finds commands, objects, scenes, tools, assets, table rows and tuning values. Letters can have gaps, and Korean initial consonants work."
+msgstr "**명령 팔레트**: Ctrl+P로 명령, 물체, 씬, 도구, 에셋, 표 행, 튜닝 값을 찾는다. 글자 사이가 떨어져도 되고 한글 초성으로도 찾을 수 있다."
+
+msgid "**Handles in the viewport**: fields that have a size in the world, such as a point light's range, show circles and a handle around the selected object. Drag the handle to change the value."
+msgstr "**뷰포트 핸들**: 점광원의 범위처럼 월드에서 크기가 있는 필드는 선택한 물체 주위에 원과 핸들로 표시된다. 핸들을 끌면 값이 바뀐다."
+
+msgid "**Compact rows**: **Preferences > Interface** tightens rows so more fits on small screens."
+msgstr "**좁은 행**: **환경 설정 > 인터페이스**에서 행을 좁혀 작은 화면에 더 많이 표시한다."
+
+msgid "**Viewport tab**: the viewport is a tab. Drag other windows, such as **Data**, next to it to switch between them, or dock it elsewhere. It can't float: let go outside a dock and it returns to the center. Starting play brings it to the front."
+msgstr "**뷰포트 탭**: 뷰포트는 탭이다. **데이터** 같은 다른 창을 옆으로 끌어다 놓아 전환하거나, 뷰포트를 다른 곳에 도킹할 수 있다. 떠 있는 창으로는 쓸 수 없어서 도킹 칸 밖에 놓으면 가운데로 돌아온다. 플레이를 시작하면 앞으로 나온다."
+
+#, python-brace-format
+msgid "**Settings**: **Project > Settings...** gathers project settings, preferences, tools and keyboard shortcuts under one list. Modules have their own window, **Window > Modules** (see {doc}`modules`)."
+msgstr "**설정**: **프로젝트 > 설정...**에 프로젝트 설정, 환경설정, 도구, 단축키가 한 목록으로 모인다. 모듈은 따로 **창 > 모듈** 창이 있다({doc}`modules` 참고)."
+
+#, python-brace-format
+msgid "**Previews**: **Window > Previews** has Look Dev and cutscene tabs. Game screens have their own **UI** tab beside the viewport (see {doc}`ui`)."
+msgstr "**미리보기**: **창 > 미리보기**에 룩데브, 컷신 탭이 있다. 게임 화면은 뷰포트 옆 **UI** 탭에서 따로 다룬다({doc}`ui` 참고)."
+
+msgid "**Unsaved list**: when something is unsaved, click `Unsaved: N` in the status bar to save or revert each document."
+msgstr "**저장 안 된 목록**: 저장하지 않은 것이 있으면 상태 표시줄의 `저장 안 됨: N`을 눌러 문서별로 저장하거나 되돌린다."
+
+msgid "**Searching fields**: the inspector, **Tuning** and **Project Settings** have a search box. **Tuning** can also show only values changed from the defaults."
+msgstr "**필드 찾기**: 인스펙터, **튜닝**, **프로젝트 설정**에 찾기 칸이 있다. **튜닝**은 기본값에서 바뀐 값만 볼 수도 있다."
+
+msgid "**Table views**: on a table page, filter rows, click a column header to sort, and edit the chosen row in the list below. Sorting only changes the view, not the file."
+msgstr "**표 보기**: 표 페이지에서 행을 거르고, 열 머리글을 눌러 정렬하고, 아래 목록에서 고른 행을 고친다. 정렬은 보기만 바꾸고 파일 순서는 그대로다."
+
+msgid "**Find Uses**: right-click a file in **Assets** to list the text files that name it."
+msgstr "**사용처 찾기**: **에셋**에서 파일을 오른쪽 클릭하면 그 파일을 적어 둔 텍스트 파일 목록이 나온다."
+
+msgid "**Saved layouts**: **Window > Layout** saves the current layout under a name. The **Window** menu also turns panels on and off, including the hierarchy, viewport and inspector; **Reset Layout** brings those three back, and playing reopens the viewport."
+msgstr "**레이아웃 저장**: **창 > 레이아웃**에서 지금 배치를 이름을 붙여 저장한다. **창** 메뉴에서 계층, 뷰포트, 인스펙터를 포함한 패널을 켜고 끌 수 있다. **레이아웃 초기화**는 이 셋을 다시 켜고, 플레이를 시작하면 뷰포트가 다시 켜진다."
+
+msgid "**State graphs**: on the **State** page of **Debug**, add a field path to graph it while playing."
+msgstr "**상태 그래프**: **디버그**의 **상태** 페이지에 필드 경로를 추가하면 플레이 중 그래프로 볼 수 있다."
+
 msgid "**Scene environment**: select the **Scene Environment** row at the top of the hierarchy. The inspector then shows the sun, sky, fog, sky HDRI and post processing of the open scene."
 msgstr "**씬 환경**: 계층 맨 위의 **씬 환경** 줄을 고른다. 그러면 인스펙터에 열린 씬의 태양·하늘·안개·하늘 HDRI·포스트 프로세싱이 나온다."
 
@@ -234,6 +281,12 @@ msgstr "**여기서 플레이**: Shift+F5(**플레이 버튼 옆 목록**)는 �
 
 msgid "**Assets**: the **Assets** tab under the viewport shows the `assets` folders and files. Drag a model or prefab into the viewport to place it, or double-click a scene to open it. Right-click a file and choose **Rename or Move** to change its path; references in scenes, tuning, UI and table files are updated too."
 msgstr "**에셋**: 뷰포트 아래 **에셋** 탭에 `assets` 폴더와 파일이 나온다. 모델이나 프리팹을 뷰포트로 끌어 놓으면 그 자리에 놓이고, 씬을 두 번 누르면 열린다. 파일을 오른쪽 클릭해 **이름 바꾸기·옮기기**로 경로를 바꾸면 씬·튜닝·UI·표 파일의 참조도 같이 바뀐다."
+
+msgid "**Data**: **Window > Data** gathers tuning, tables, feedback and sounds under one list, with `*` on unsaved documents. **Undo** and **Redo** on the page, or Ctrl+Z and Ctrl+Y while the window has focus, step back through its edits, including deleted rows and reloads. Particle effect files have no undo."
+msgstr "**데이터**: **창 > 데이터**에 튜닝·표·연출·소리가 한 목록으로 모이고, 저장하지 않은 문서에는 `*`가 붙는다. 페이지의 **실행 취소**와 **다시 실행**, 또는 창에 포커스가 있을 때 Ctrl+Z와 Ctrl+Y로 지운 행과 다시 읽기를 포함한 편집을 되돌린다. 파티클 효과 파일은 되돌릴 수 없다."
+
+msgid "**Debug**: **Window > Debug** gathers Log, Build Log, Performance and State under one list, with the problem count on its tab."
+msgstr "**디버그**: **창 > 디버그**에 로그, 빌드 로그, 성능, 상태가 한 목록으로 모이고, 탭에 문제 개수가 표시된다."
 
 msgid "**Tuning** (a Data page): two pages. Game holds the values the simulation reads (`assets/game.tuning`); during solo play changes apply at once. Display holds the values that are only seen (`assets/view.tuning`); changes apply at once in every player window, even with several players."
 msgstr "**튜닝** (데이터 창의 페이지): 페이지 두 개. \"게임\"은 시뮬레이션이 읽는 값(`assets/game.tuning`)으로, 혼자 플레이 중에는 바꾸면 바로 적용된다. \"화면\"은 보이기만 하는 값(`assets/view.tuning`)으로, 여러 명이어도 모든 플레이어 창에 바로 적용된다."
@@ -369,53 +422,3 @@ msgstr "플레이 모드는 편집 중인 씬으로 에디터 안에서 게임�
 msgid "How the editor works inside (game DLL loading, hot reload, play mode, rewind) is in {doc}`../engine_dev/internals/editor`."
 msgstr "에디터가 안에서 어떻게 돌아가는지(게임 DLL 불러오기, 핫 리로드, 플레이 모드, 되감기)는 {doc}`../engine_dev/internals/editor`에 있다."
 
-msgid "**Data**: **Window > Data** gathers tuning, tables, feedback and sounds under one list, with `*` on unsaved documents. **Undo** and **Redo** on the page, or Ctrl+Z and Ctrl+Y while the window has focus, step back through its edits, including deleted rows and reloads. Particle effect files have no undo."
-msgstr "**데이터**: **창 > 데이터**에 튜닝·표·연출·소리가 한 목록으로 모이고, 저장하지 않은 문서에는 `*`가 붙는다. 페이지의 **실행 취소**와 **다시 실행**, 또는 창에 포커스가 있을 때 Ctrl+Z와 Ctrl+Y로 지운 행과 다시 읽기를 포함한 편집을 되돌린다. 파티클 효과 파일은 되돌릴 수 없다."
-
-msgid "**Hierarchy folders**: right-click an object and choose **Move to Folder...**, or drag it onto a folder. A path like `Props/Trees` makes folders inside folders. Right-click a folder to rename or remove it. Folders are saved in the scene and do not affect game results. A `!` after a name marks a problem (hover for the reason), and a blue dot marks fields changed from the kind's defaults."
-msgstr "**계층 폴더**: 물체를 오른쪽 클릭해 **폴더로 옮기기...**를 고르거나 폴더로 끌어다 놓는다. `Props/Trees` 같은 경로는 폴더 안의 폴더를 만든다. 폴더를 오른쪽 클릭하면 이름을 바꾸거나 없앨 수 있다. 폴더는 씬에 저장되고 게임 결과에 영향을 주지 않는다. 이름 뒤의 `!`는 문제를 나타내고(마우스를 올리면 이유가 보인다), 파란 점은 종류의 기본값에서 바뀐 필드가 있다는 뜻이다."
-
-msgid "**Several objects**: with objects of the same kind selected, changing a field in the inspector changes it on all of them. Fields that differ show a dash."
-msgstr "**여러 물체**: 같은 종류의 물체를 함께 선택하면 인스펙터에서 고친 필드가 모두에 적용된다. 값이 서로 다른 필드에는 대시가 표시된다."
-
-msgid "**Asset grid**: the slider at the top of **Assets** switches from the list to a grid with model pictures."
-msgstr "**에셋 그리드**: **에셋** 위쪽 슬라이더로 목록을 모델 그림이 있는 그리드로 바꾼다."
-
-msgid "**Command palette**: Ctrl+P finds commands, objects, scenes, tools, assets, table rows and tuning values. Letters can have gaps, and Korean initial consonants work."
-msgstr "**명령 팔레트**: Ctrl+P로 명령, 물체, 씬, 도구, 에셋, 표 행, 튜닝 값을 찾는다. 글자 사이가 떨어져도 되고 한글 초성으로도 찾을 수 있다."
-
-msgid "**Handles in the viewport**: fields that have a size in the world, such as a point light's range, show circles and a handle around the selected object. Drag the handle to change the value."
-msgstr "**뷰포트 핸들**: 점광원의 범위처럼 월드에서 크기가 있는 필드는 선택한 물체 주위에 원과 핸들로 표시된다. 핸들을 끌면 값이 바뀐다."
-
-msgid "**Compact rows**: **Preferences > Interface** tightens rows so more fits on small screens."
-msgstr "**좁은 행**: **환경 설정 > 인터페이스**에서 행을 좁혀 작은 화면에 더 많이 표시한다."
-
-msgid "**Viewport tab**: the viewport is a tab. Drag other windows, such as **Data**, next to it to switch between them, or dock it elsewhere. It can't float: let go outside a dock and it returns to the center. Starting play brings it to the front."
-msgstr "**뷰포트 탭**: 뷰포트는 탭이다. **데이터** 같은 다른 창을 옆으로 끌어다 놓아 전환하거나, 뷰포트를 다른 곳에 도킹할 수 있다. 떠 있는 창으로는 쓸 수 없어서 도킹 칸 밖에 놓으면 가운데로 돌아온다. 플레이를 시작하면 앞으로 나온다."
-
-msgid "**Debug**: **Window > Debug** gathers Log, Build Log, Performance and State under one list, with the problem count on its tab."
-msgstr "**디버그**: **창 > 디버그**에 로그, 빌드 로그, 성능, 상태가 한 목록으로 모이고, 탭에 문제 개수가 표시된다."
-
-msgid "**Settings**: **Project > Settings...** gathers project settings, preferences, tools and keyboard shortcuts under one list. Modules have their own window, **Window > Modules** (see {doc}`modules`)."
-msgstr "**설정**: **프로젝트 > 설정...**에 프로젝트 설정, 환경설정, 도구, 단축키가 한 목록으로 모인다. 모듈은 따로 **창 > 모듈** 창이 있다({doc}`modules` 참고)."
-
-msgid "**Previews**: **Window > Previews** has UI, Look Dev and cutscene tabs."
-msgstr "**미리보기**: **창 > 미리보기**에 UI, 룩데브, 컷신 탭이 있다."
-
-msgid "**Unsaved list**: when something is unsaved, click `Unsaved: N` in the status bar to save or revert each document."
-msgstr "**저장 안 된 목록**: 저장하지 않은 것이 있으면 상태 표시줄의 `저장 안 됨: N`을 눌러 문서별로 저장하거나 되돌린다."
-
-msgid "**Searching fields**: the inspector, **Tuning** and **Project Settings** have a search box. **Tuning** can also show only values changed from the defaults."
-msgstr "**필드 찾기**: 인스펙터, **튜닝**, **프로젝트 설정**에 찾기 칸이 있다. **튜닝**은 기본값에서 바뀐 값만 볼 수도 있다."
-
-msgid "**Table views**: on a table page, filter rows, click a column header to sort, and edit the chosen row in the list below. Sorting only changes the view, not the file."
-msgstr "**표 보기**: 표 페이지에서 행을 거르고, 열 머리글을 눌러 정렬하고, 아래 목록에서 고른 행을 고친다. 정렬은 보기만 바꾸고 파일 순서는 그대로다."
-
-msgid "**Find Uses**: right-click a file in **Assets** to list the text files that name it."
-msgstr "**사용처 찾기**: **에셋**에서 파일을 오른쪽 클릭하면 그 파일을 적어 둔 텍스트 파일 목록이 나온다."
-
-msgid "**Saved layouts**: **Window > Layout** saves the current layout under a name. The **Window** menu also turns panels on and off, including the hierarchy, viewport and inspector; **Reset Layout** brings those three back, and playing reopens the viewport."
-msgstr "**레이아웃 저장**: **창 > 레이아웃**에서 지금 배치를 이름을 붙여 저장한다. **창** 메뉴에서 계층, 뷰포트, 인스펙터를 포함한 패널을 켜고 끌 수 있다. **레이아웃 초기화**는 이 셋을 다시 켜고, 플레이를 시작하면 뷰포트가 다시 켜진다."
-
-msgid "**State graphs**: on the **State** page of **Debug**, add a field path to graph it while playing."
-msgstr "**상태 그래프**: **디버그**의 **상태** 페이지에 필드 경로를 추가하면 플레이 중 그래프로 볼 수 있다."

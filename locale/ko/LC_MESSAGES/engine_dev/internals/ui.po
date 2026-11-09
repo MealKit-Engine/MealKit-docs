@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-19 18:29+0900\n"
+"POT-Creation-Date: 2026-11-09 17:39+0900\n"
 "PO-Revision-Date: 2026-10-19 13:15+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -106,8 +106,8 @@ msgstr "`parseDocument`({engine}`engine/src/mealkit/ui/Document.cpp`)는 열린 
 msgid "Components are read recursively. The nesting stops at depth 8, so two components that use each other cannot loop forever."
 msgstr "컴포넌트는 재귀로 읽는다. 중첩은 깊이 8에서 멈추므로, 서로를 쓰는 두 컴포넌트가 끝없이 돌지 않는다."
 
-msgid "A file whose first line is `# MealKit UI exported from Penpot` is marked as exported, and the editor's UI panel shows it as not to be edited by hand."
-msgstr "첫 줄이 `# MealKit UI exported from Penpot`인 파일은 내보낸 것으로 표시되고, 에디터 [UI] 패널이 손으로 고치지 말라고 보여 준다."
+msgid "A file whose first line is `# MealKit UI exported from Penpot` is marked as exported, and the editor's UI workspace shows it as not to be edited by hand."
+msgstr "첫 줄이 `# MealKit UI exported from Penpot`인 파일은 내보낸 것으로 표시되고, 에디터 UI 작업 창이 손으로 고치지 말라고 보여 준다."
 
 msgid "Nodes as a flat tree"
 msgstr "평평한 트리로 둔 노드"
@@ -141,8 +141,8 @@ msgstr "`list` 위젯은 `MEALKIT_LIST` 배열의 원소마다 첫 자식을 한
 msgid "Input widgets (toggle, slider, select) write their value into their own view model field and send an action. They never change game state themselves."
 msgstr "입력 위젯(토글, 슬라이더, 선택)은 자기 뷰 모델 필드에 값을 쓰고 액션을 낸다. 게임 상태를 직접 고치지 않는다."
 
-msgid "A path that does not exist is a binding error: it is logged once and listed in the editor's UI panel (`info()`)."
-msgstr "없는 경로는 바인딩 오류다: 로그에 한 번 쓰고 에디터 [UI] 패널에 나온다(`info()`)."
+msgid "A path that does not exist is a binding error: it is logged once and listed in the editor's UI workspace (`info()`)."
+msgstr "없는 경로는 바인딩 오류다: 로그에 한 번 쓰고 에디터 UI 작업 창에 나온다(`info()`)."
 
 msgid "Expanding the tree"
 msgstr "트리 펼치기"

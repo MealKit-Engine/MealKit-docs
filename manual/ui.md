@@ -51,7 +51,7 @@ Files are reloaded within a quarter second when they change, also during play. E
 
 ### Installing the plugin
 
-1. Open the project in the editor and open **Window > Previews, UI tab,**. The **Penpot** section shows the plugin address, for example `http://127.0.0.1:27220/<token>/penpot/manifest.json`. The editor only listens on this computer, and the token changes every time the editor starts (the plugin is served by the editor's live connection, see {doc}`tools`).
+1. Open the project in the editor and open **Window > UI**. The **Penpot** section in its right column shows the plugin address, for example `http://127.0.0.1:27220/<token>/penpot/manifest.json`. The editor only listens on this computer, and the token changes every time the editor starts (the plugin is served by the editor's live connection, see {doc}`tools`).
 2. In a Penpot file press `Ctrl+Alt+P` (plugin manager), paste the address and press **Install**. Open the plugin from the same list after that.
 3. The panel says `Editor: <project>` when it reaches the editor. If the editor is closed, **Export** downloads a zip to unpack in the project folder instead (after restarting the editor, install the plugin again with the new address).
 
@@ -146,21 +146,21 @@ Mouse input over a widget or a filled panel does not reach the game. On screens 
 
 ## Previewing in the editor
 
-**Window > Previews, UI tab,** lists the screens in `assets/ui`. The selected screen is drawn over the viewport in edit mode, inside a frame of the chosen resolution (16:9, 21:9, 4:3, portrait). The panel changes the UI scale and the language (to check that translations fit), shows the focus, fills a game view model with test values, and lists file errors, binding errors (fields the view model does not have) and the node count (budget 500 per screen).
-`MealKitEditor.exe --ui hud.ui` opens the panel with that screen.
+**Window > UI** is a workspace tab beside the **Viewport**. Its left column lists the screens in `assets/ui` and the node tree of the open one, the middle is a canvas that draws the screen inside a frame of the chosen resolution (16:9, 21:9, 4:3, portrait), and the right column holds the selected node's properties, the preview values, the focus and the problems (file errors, binding errors for fields the view model does not have, and the node count, budget 500 per screen). The toolbar row above them has the edit buttons, the resolution, the UI scale and the language (to check that translations fit). The columns can be resized by dragging their borders. **Window > Layout > UI** (or the **UI Layout** command) gives the workspace most of the editor window.
+`MealKitEditor.exe --ui hud.ui` opens the workspace with that screen.
 
 ## Editing screens in the editor
 
-Tick **Edit** under **Edit screen** in the **Window > Previews, UI tab,** panel to change the open screen while seeing it as the game draws it (same layout, fonts, string tables and view model values).
+The workspace changes the open screen while showing it as the game draws it (same layout, fonts, string tables and view model values).
 
-- **Selecting**: click a box in the preview, or a node in the tree. `Ctrl`+click selects the box beneath the selected one (a label inside a button, then the button). The selected node is outlined in blue.
+- **Selecting**: click a box on the canvas, or a node in the tree. `Ctrl`+click selects the box beneath the selected one (a label inside a button, then the button). The selected node is outlined in blue.
 - **Moving and resizing**: drag the selected node to move it (its `pos`); edges and centers snap to the parent's and the siblings' (pink guides), hold `Ctrl` to place freely. The eight handles on its box change its size (an axis that was `hug` or `fill` becomes a number). Nodes a flex or grid layout places have no handles: dragging one changes its order among its siblings (a yellow line shows where it goes). A frame's padding is tinted green. A whole drag is one undo step.
-- **Properties**: the panel shows the node's name, its position (only for nodes a flex or grid layout doesn't place), its size and fill or text color, and below them every line of the node as text, in the format of [A screen file](#a-screen-file). Edit a line in place, remove it with **x**, or pick a property in **Add...**, type its value and press **Add**. `$theme` tokens and comments stay as they are.
-- **Undo and saving**: `Ctrl+Z` and `Ctrl+Y` undo and redo screen edits while the panel is in edit mode (the scene has its own history). Changes are shown at once but written to the file only by **Save** or `Ctrl+S`; switching to another screen with unsaved changes asks first. Only the lines you changed differ in the saved file.
+- **Properties**: the right column shows the node's name, its position (only for nodes a flex or grid layout doesn't place), its size and fill or text color, and below them every line of the node as text, in the format of [A screen file](#a-screen-file). Edit a line in place, remove it with **x**, or pick a property in **Add...**, type its value and press **Add**. `$theme` tokens and comments stay as they are.
+- **Undo and saving**: `Ctrl+Z` and `Ctrl+Y` undo and redo screen edits while the workspace is the visible tab (the scene has its own history). Changes are shown at once but written to the file only by **Save** or `Ctrl+S`; switching to another screen with unsaved changes asks first. Only the lines you changed differ in the saved file.
 - **Deleting**: `Delete` removes the selected node and its children.
 - Screens exported from Penpot open read-only: change them in Penpot and export again.
 
 - **Adding and copying**: **+ Frame**, **+ Text**, **+ Image** and **+ Component** add a node inside the selected frame, or after a selected text, image or component. **Duplicate** (`Ctrl+D`), **Copy** and **Paste** (`Ctrl+C`, `Ctrl+V`) keep its children; the clipboard holds `.ui` text, so it also pastes to and from a text editor. **Wrap in frame** puts a frame of the same size around the node. A new or copied node gets a name not used in the file.
 - **Previewing**: **Save values** keeps the view model's test values in `art/ui/samples/<screen>.<ViewModel>.values` (not shipped); they load when the screen opens. **Show state** in the properties shows the selected node as hovered, pressed, focused, disabled or checked. The **Focus** buttons make one keyboard or gamepad move and name the focused node.
 
-`MealKitEditor.exe --ui pause.ui --ui-select resume` opens the screen in edit mode with that node selected; add `--ui-drag 0,90` to drag it by that many logical units after the first frame (the log shows the result).
+`MealKitEditor.exe --ui pause.ui --ui-select resume` opens the screen in the workspace with that node selected; add `--ui-drag 0,90` to drag it by that many logical units after the first frame (the log shows the result).

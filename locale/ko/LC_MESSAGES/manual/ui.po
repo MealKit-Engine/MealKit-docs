@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MealKit 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-04 10:35+0900\n"
+"POT-Creation-Date: 2026-11-09 17:39+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ko\n"
@@ -143,8 +143,8 @@ msgid "Installing the plugin"
 msgstr "플러그인 설치"
 
 #, python-brace-format
-msgid "Open the project in the editor and open **Window > Previews, UI tab,**. The **Penpot** section shows the plugin address, for example `http://127.0.0.1:27220/<token>/penpot/manifest.json`. The editor only listens on this computer, and the token changes every time the editor starts (the plugin is served by the editor's live connection, see {doc}`tools`)."
-msgstr "에디터에서 프로젝트를 열고 **창 > UI**를 연다. **Penpot** 칸에 플러그인 주소가 보인다(예: `http://127.0.0.1:27220/<토큰>/penpot/manifest.json`). 에디터는 이 컴퓨터에서 오는 연결만 받고, 토큰은 에디터를 켤 때마다 바뀐다(플러그인은 에디터의 라이브 연결이 준다, {doc}`tools` 참고)."
+msgid "Open the project in the editor and open **Window > UI**. The **Penpot** section in its right column shows the plugin address, for example `http://127.0.0.1:27220/<token>/penpot/manifest.json`. The editor only listens on this computer, and the token changes every time the editor starts (the plugin is served by the editor's live connection, see {doc}`tools`)."
+msgstr "에디터에서 프로젝트를 열고 **창 > UI**를 연다. 오른쪽 열의 **Penpot** 칸에 플러그인 주소가 보인다(예: `http://127.0.0.1:27220/<토큰>/penpot/manifest.json`). 에디터는 이 컴퓨터에서 오는 연결만 받고, 토큰은 에디터를 켤 때마다 바뀐다(플러그인은 에디터의 라이브 연결이 준다, {doc}`tools` 참고)."
 
 msgid "In a Penpot file press `Ctrl+Alt+P` (plugin manager), paste the address and press **Install**. Open the plugin from the same list after that."
 msgstr "Penpot 파일에서 `Ctrl+Alt+P`(플러그인 관리자)를 누르고 주소를 붙여 넣은 뒤 **설치**를 누른다. 그다음부터는 같은 목록에서 플러그인을 연다."
@@ -401,26 +401,26 @@ msgstr "**월드 위 UI**: `ctx.ui.openWorld(\"ui/nametag.ui\")`로 연 화면�
 msgid "Previewing in the editor"
 msgstr "에디터에서 미리 보기"
 
-msgid "**Window > Previews, UI tab,** lists the screens in `assets/ui`. The selected screen is drawn over the viewport in edit mode, inside a frame of the chosen resolution (16:9, 21:9, 4:3, portrait). The panel changes the UI scale and the language (to check that translations fit), shows the focus, fills a game view model with test values, and lists file errors, binding errors (fields the view model does not have) and the node count (budget 500 per screen). `MealKitEditor.exe --ui hud.ui` opens the panel with that screen."
-msgstr "**[보기] > [UI]**가 `assets/ui`의 화면을 보여 준다. 고른 화면은 편집 모드에서 뷰포트 위, 고른 해상도(16:9, 21:9, 4:3, 세로)의 틀 안에 그려진다. 패널에서 UI 배율과 언어(번역이 들어가는지 확인)를 바꾸고, 포커스를 보이고, 게임 뷰 모델에 시험 값을 넣고, 파일 오류·바인딩 오류(뷰 모델에 없는 필드)·노드 수(화면당 예산 500)를 본다. `MealKitEditor.exe --ui hud.ui`는 그 화면으로 패널을 연다."
+msgid "**Window > UI** is a workspace tab beside the **Viewport**. Its left column lists the screens in `assets/ui` and the node tree of the open one, the middle is a canvas that draws the screen inside a frame of the chosen resolution (16:9, 21:9, 4:3, portrait), and the right column holds the selected node's properties, the preview values, the focus and the problems (file errors, binding errors for fields the view model does not have, and the node count, budget 500 per screen). The toolbar row above them has the edit buttons, the resolution, the UI scale and the language (to check that translations fit). The columns can be resized by dragging their borders. **Window > Layout > UI** (or the **UI Layout** command) gives the workspace most of the editor window. `MealKitEditor.exe --ui hud.ui` opens the workspace with that screen."
+msgstr "**창 > UI**는 **뷰포트** 옆의 작업 창 탭이다. 왼쪽 열에는 `assets/ui`의 화면 목록과 열린 화면의 노드 트리, 가운데에는 고른 해상도(16:9, 21:9, 4:3, 세로) 틀 안에 화면을 그리는 캔버스, 오른쪽 열에는 고른 노드의 속성, 미리보기 값, 포커스, 문제(파일 오류, 뷰 모델에 없는 필드를 가리키는 바인딩 오류, 노드 수, 화면당 예산 500)가 있다. 그 위 툴바 줄에는 편집 버튼, 해상도, UI 배율, 언어(번역이 들어맞는지 확인)가 있다. 열 경계를 끌어 너비를 바꿀 수 있다. **창 > 레이아웃 > UI**(또는 **UI 레이아웃** 명령)는 작업 창에 에디터 창의 대부분을 준다. `MealKitEditor.exe --ui hud.ui`는 그 화면으로 작업 창을 연다."
 
 msgid "Editing screens in the editor"
 msgstr "에msgstr \"에디터에서 화면 편집하기"
 
-msgid "Tick **Edit** under **Edit screen** in the **Window > Previews, UI tab,** panel to change the open screen while seeing it as the game draws it (same layout, fonts, string tables and view model values)."
-msgstr "**[보기] > [UI]** 패널의 **[화면 편집]**에서 **[편집]**을 켜면, 열린 화면을 게임이 그리는 그대로(같은 배치, 폰트, 문자열 표, 뷰 모델 값) 보면서 고친다."
+msgid "The workspace changes the open screen while showing it as the game draws it (same layout, fonts, string tables and view model values)."
+msgstr "작업 창에서는 열린 화면을 게임이 그리는 그대로(같은 배치, 폰트, 문자열 표, 뷰 모델 값) 보면서 고친다."
 
-msgid "**Selecting**: click a box in the preview, or a node in the tree. `Ctrl`+click selects the box beneath the selected one (a label inside a button, then the button). The selected node is outlined in blue."
-msgstr "**선택**: 미리보기의 상자나 트리의 노드를 클릭한다. `Ctrl`+클릭은 선택한 상자 아래의 상자를 고른다(버튼 안의 글자 다음에 버튼). 선택한 노드는 파란 테두리로 표시된다."
+msgid "**Selecting**: click a box on the canvas, or a node in the tree. `Ctrl`+click selects the box beneath the selected one (a label inside a button, then the button). The selected node is outlined in blue."
+msgstr "**선택**: 캔버스의 상자나 트리의 노드를 클릭한다. `Ctrl`+클릭은 선택한 상자 아래의 상자를 고른다(버튼 안의 글자 다음에 버튼). 선택한 노드는 파란 테두리로 표시된다."
 
 msgid "**Moving and resizing**: drag the selected node to move it (its `pos`); edges and centers snap to the parent's and the siblings' (pink guides), hold `Ctrl` to place freely. The eight handles on its box change its size (an axis that was `hug` or `fill` becomes a number). Nodes a flex or grid layout places have no handles: dragging one changes its order among its siblings (a yellow line shows where it goes). A frame's padding is tinted green. A whole drag is one undo step."
 msgstr "**옮기기와 크기 바꾸기**: 선택한 노드를 끌면 옮겨진다(`pos`). 가장자리와 가운데가 부모와 형제의 것에 맞춰지고(분홍 안내선), `Ctrl`을 누르고 있으면 자유롭게 놓는다. 상자의 손잡이 여덟 개로 크기를 바꾼다(`hug`나 `fill`이던 축은 숫자가 된다). flex·grid 레이아웃이 배치하는 노드는 손잡이가 없고, 끌면 형제 사이 순서가 바뀐다(노란 선이 들어갈 자리). 프레임의 안쪽 여백은 초록으로 칠해진다. 한 번 끈 것이 되돌리기 한 단계다."
 
-msgid "**Properties**: the panel shows the node's name, its position (only for nodes a flex or grid layout doesn't place), its size and fill or text color, and below them every line of the node as text, in the format of [A screen file](#a-screen-file). Edit a line in place, remove it with **x**, or pick a property in **Add...**, type its value and press **Add**. `$theme` tokens and comments stay as they are."
-msgstr "**속성**: 패널에 노드의 이름, 위치(flex·grid 레이아웃이 배치하지 않는 노드만), 크기, 채우기나 글자 색이 나오고, 그 아래에 노드의 모든 줄이 [화면 파일](#a-screen-file) 형식의 텍스트로 나온다. 줄을 그 자리에서 고치거나 **x**로 지우거나, **[추가...]**에서 속성을 골라 값을 쓰고 **[추가]**를 누른다. `$theme` 토큰과 주석은 그대로 남는다."
+msgid "**Properties**: the right column shows the node's name, its position (only for nodes a flex or grid layout doesn't place), its size and fill or text color, and below them every line of the node as text, in the format of [A screen file](#a-screen-file). Edit a line in place, remove it with **x**, or pick a property in **Add...**, type its value and press **Add**. `$theme` tokens and comments stay as they are."
+msgstr "**속성**: 오른쪽 열에 노드의 이름, 위치(flex·grid 레이아웃이 배치하지 않는 노드만), 크기, 채우기나 글자 색이 나오고, 그 아래에 노드의 모든 줄이 [화면 파일](#a-screen-file) 형식의 텍스트로 나온다. 줄을 그 자리에서 고치거나 **x**로 지우거나, **[추가...]**에서 속성을 골라 값을 쓰고 **[추가]**를 누른다. `$theme` 토큰과 주석은 그대로 남는다."
 
-msgid "**Undo and saving**: `Ctrl+Z` and `Ctrl+Y` undo and redo screen edits while the panel is in edit mode (the scene has its own history). Changes are shown at once but written to the file only by **Save** or `Ctrl+S`; switching to another screen with unsaved changes asks first. Only the lines you changed differ in the saved file."
-msgstr "**되돌리기와 저장**: 패널이 편집 모드일 때 `Ctrl+Z`와 `Ctrl+Y`는 화면 편집을 되돌리고 다시 실행한다(씬은 따로 기록이 있다). 바꾼 내용은 바로 보이지만 파일에는 **[저장]**이나 `Ctrl+S`로만 쓰이고, 저장하지 않은 채 다른 화면으로 바꾸면 먼저 묻는다. 저장한 파일에서는 고친 줄만 달라진다."
+msgid "**Undo and saving**: `Ctrl+Z` and `Ctrl+Y` undo and redo screen edits while the workspace is the visible tab (the scene has its own history). Changes are shown at once but written to the file only by **Save** or `Ctrl+S`; switching to another screen with unsaved changes asks first. Only the lines you changed differ in the saved file."
+msgstr "**되돌리기와 저장**: 작업 창이 보이는 탭일 때 `Ctrl+Z`와 `Ctrl+Y`는 화면 편집을 되돌리고 다시 실행한다(씬은 따로 기록이 있다). 바꾼 내용은 바로 보이지만 파일에는 **[저장]**이나 `Ctrl+S`로만 쓰이고, 저장하지 않은 채 다른 화면으로 바꾸면 먼저 묻는다. 저장한 파일에서는 고친 줄만 달라진다."
 
 msgid "**Deleting**: `Delete` removes the selected node and its children."
 msgstr "**삭제**: `Delete`는 선택한 노드와 그 자식을 지운다."
@@ -434,6 +434,6 @@ msgstr "**추가와 복사**: **[+ 프레임]**, **[+ 글자]**, **[+ 이미지]
 msgid "**Previewing**: **Save values** keeps the view model's test values in `art/ui/samples/<screen>.<ViewModel>.values` (not shipped); they load when the screen opens. **Show state** in the properties shows the selected node as hovered, pressed, focused, disabled or checked. The **Focus** buttons make one keyboard or gamepad move and name the focused node."
 msgstr "**미리 보기**: **[값 저장]**은 뷰 모델의 시험 값을 `art/ui/samples/<화면>.<뷰 모델>.values`에 둔다(출시에 포함되지 않음). 화면을 열 때 함께 읽힌다. 속성의 **[상태 보기]**는 선택한 노드를 마우스 올림, 누름, 포커스, 비활성, 켜짐 상태로 보여 준다. **[포커스]** 버튼은 키보드나 게임패드 이동을 한 번 하고 포커스된 노드의 이름을 보여 준다."
 
-msgid "`MealKitEditor.exe --ui pause.ui --ui-select resume` opens the screen in edit mode with that node selected; add `--ui-drag 0,90` to drag it by that many logical units after the first frame (the log shows the result)."
-msgstr "`MealKitEditor.exe --ui pause.ui --ui-select resume`는 그 노드를 고른 편집 모드로 화면을 연다. `--ui-drag 0,90`을 붙이면 첫 프레임 뒤에 그만큼(논리 단위) 끌고 결과를 로그에 쓴다."
+msgid "`MealKitEditor.exe --ui pause.ui --ui-select resume` opens the screen in the workspace with that node selected; add `--ui-drag 0,90` to drag it by that many logical units after the first frame (the log shows the result)."
+msgstr "`MealKitEditor.exe --ui pause.ui --ui-select resume`는 그 노드를 고른 채로 작업 창에 화면을 연다. `--ui-drag 0,90`을 붙이면 첫 프레임 뒤에 그만큼(논리 단위) 끌고 결과를 로그에 쓴다."
 

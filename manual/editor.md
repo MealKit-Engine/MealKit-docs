@@ -69,7 +69,7 @@ A scatter layer paints thousands of copies of one model, such as grass, rocks or
 - **Compact rows**: **Preferences > Interface** tightens rows so more fits on small screens.
 - **Viewport tab**: the viewport is a tab. Drag other windows, such as **Data**, next to it to switch between them, or dock it elsewhere. It can't float: let go outside a dock and it returns to the center. Starting play brings it to the front.
 - **Settings**: **Project > Settings...** gathers project settings, preferences, tools and keyboard shortcuts under one list. Modules have their own window, **Window > Modules** (see {doc}`modules`).
-- **Previews**: **Window > Previews** has UI, Look Dev and cutscene tabs.
+- **Previews**: **Window > Previews** has Look Dev and cutscene tabs. Game screens have their own **UI** tab beside the viewport (see {doc}`ui`).
 - **Unsaved list**: when something is unsaved, click `Unsaved: N` in the status bar to save or revert each document.
 - **Searching fields**: the inspector, **Tuning** and **Project Settings** have a search box. **Tuning** can also show only values changed from the defaults.
 - **Table views**: on a table page, filter rows, click a column header to sort, and edit the chosen row in the list below. Sorting only changes the view, not the file.

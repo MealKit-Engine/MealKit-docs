@@ -3,17 +3,17 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: MealKit\n"
+"Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-11-02 16:11+0900\n"
+"POT-Creation-Date: 2026-11-09 17:39+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
-"Language-Team: Korean\n"
 "Language: ko\n"
+"Language-Team: Korean\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.18.0\n"
 
 msgid "Command line"
@@ -432,8 +432,8 @@ msgstr "[표], [소리], [연출] 패널을 열고 시작"
 msgid "`--ui <file.ui>`"
 msgstr "`--ui <file.ui>`"
 
-msgid "Start with the UI panel previewing this screen"
-msgstr "[UI] 패널에 이 화면을 미리 보며 시작"
+msgid "Start with the UI workspace showing this screen"
+msgstr "UI 작업 창에 이 화면을 띄우고 시작"
 
 msgid "`--ui-check`"
 msgstr "`--ui-check`"
@@ -586,3 +586,4 @@ msgstr "`make_sample_sounds.py`"
 
 msgid "Regenerate the sample sounds"
 msgstr "샘플 소리 다시 만들기"
+
