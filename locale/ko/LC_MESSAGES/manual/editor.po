@@ -56,8 +56,8 @@ msgstr "`W` `E` `R`"
 msgid "Move / rotate / scale gizmo (hold `Ctrl` while dragging to snap)"
 msgstr "이동 / 회전 / 크기 기즈모 (`Ctrl` 누른 채 끌면 스냅)"
 
-msgid "`F` or double-click in the scene tree"
-msgstr "`F` 또는 씬 트리 더블클릭"
+msgid "`F` or double-click in the hierarchy"
+msgstr "`F` 또는 계층 더블클릭"
 
 msgid "Move the camera to the selected object"
 msgstr "선택한 물체로 카메라 이동"
@@ -117,8 +117,8 @@ msgid "**Match area** and **Box spawn area**: invisible area boxes. The editor d
 msgstr "**경기 영역**과 **상자 생성 영역**: 보이지 않는 영역 상자. 에디터는 모서리를 그리고, 모서리를 눌러 고른다."
 
 #, python-brace-format
-msgid "Solid boxes and decorations can carry a **model** (glTF): `+ Model` in the scene tree, or `Choose Model...` in the inspector. See {doc}`assets`."
-msgstr "충돌 상자와 장식에는 **모델**(glTF)을 붙일 수 있다. 씬 트리의 `+ 모델` 또는 인스펙터의 `모델 선택...`. {doc}`assets`를 본다."
+msgid "Solid boxes and decorations can carry a **model** (glTF): `+ Model` in the hierarchy, or `Choose Model...` in the inspector. See {doc}`assets`."
+msgstr "충돌 상자와 장식에는 **모델**(glTF)을 붙일 수 있다. 계층의 `+ 모델` 또는 인스펙터의 `모델 선택...`. {doc}`assets`를 본다."
 
 msgid "Scenes are saved as human-readable `.scene` text: each object is its kind name plus field text. Values of child objects are relative to their parent."
 msgstr "씬은 사람이 읽을 수 있는 `.scene` 텍스트로 저장된다. 물체마다 종류 이름 + 필드 텍스트다. 자식 물체의 값은 부모 기준이다."
@@ -129,11 +129,11 @@ msgstr "프리팹"
 msgid "A prefab is a group of objects saved to a file so you can place it many times, like a lamp post with its light or a furnished room."
 msgstr "프리팹은 여러 물체를 파일 하나로 저장해 여러 번 놓을 수 있게 한 묶음이다. 불빛이 달린 가로등이나 가구를 갖춘 방 같은 것."
 
-msgid "**Save**: select the objects and choose **Scene > Save as Prefab...** (or the button at the bottom of the inspector, or right-click in the scene tree). Their children are saved too. The file goes in `assets/prefabs/` as a `.prefab` text file. Positions are kept relative to the first selected object; heights above the floor stay as they are."
-msgstr "**저장**: 물체를 고르고 **씬 > 프리팹으로 저장...**을 누른다(인스펙터 아래쪽 버튼이나 씬 트리 오른쪽 클릭으로도 된다). 자식 물체도 같이 저장된다. 파일은 `assets/prefabs/`에 `.prefab` 텍스트 파일로 들어간다. 위치는 처음 고른 물체 기준으로 저장되고, 바닥 위 높이는 그대로 남는다."
+msgid "**Save**: select the objects and choose **Scene > Save as Prefab...** (or the button at the bottom of the inspector, or right-click in the hierarchy). Their children are saved too. The file goes in `assets/prefabs/` as a `.prefab` text file. Positions are kept relative to the first selected object; heights above the floor stay as they are."
+msgstr "**저장**: 물체를 고르고 **씬 > 프리팹으로 저장...**을 누른다(인스펙터 아래쪽 버튼이나 계층 오른쪽 클릭으로도 된다). 자식 물체도 같이 저장된다. 파일은 `assets/prefabs/`에 `.prefab` 텍스트 파일로 들어간다. 위치는 처음 고른 물체 기준으로 저장되고, 바닥 위 높이는 그대로 남는다."
 
-msgid "**Place**: in the **Assets** tab, double-click a prefab to place it on the floor in front of the camera, or drag it into the scene view to place it where you drop it."
-msgstr "**배치**: **에셋** 탭에서 프리팹을 두 번 누르면 카메라 앞 바닥에 놓이고, 씬 뷰로 끌어 놓으면 놓은 자리에 놓인다."
+msgid "**Place**: in the **Assets** tab, double-click a prefab to place it on the floor in front of the camera, or drag it into the viewport to place it where you drop it."
+msgstr "**배치**: **에셋** 탭에서 프리팹을 두 번 누르면 카메라 앞 바닥에 놓이고, 뷰포트로 끌어 놓으면 놓은 자리에 놓인다."
 
 msgid "Placing makes plain copies, like Duplicate. Changing the prefab file later does not change copies already in scenes, and the game never reads prefab files."
 msgstr "배치하면 복제처럼 독립된 복사본이 생긴다. 나중에 프리팹 파일을 고쳐도 씬에 이미 놓인 복사본은 바뀌지 않고, 게임은 프리팹 파일을 읽지 않는다."
@@ -157,8 +157,8 @@ msgstr "**가져오기**: 외부 지형 도구(Gaea, World Machine 등)에서 �
 msgid "**Size**: the object's scale is the terrain size: x and z are the width and depth, y the height range. Rotation is ignored."
 msgstr "**크기**: 물체의 크기가 지형 크기다. x와 z는 너비와 깊이, y는 높이 범위다. 회전은 무시된다."
 
-msgid "**Brushes**: turn on **Brush** in the **Terrain** section and drag with the left mouse button in the scene view. **Raise** and **Lower** push the ground, **Flatten** levels it to the height where the stroke started, **Smooth** softens it. **Radius** and **Strength** set the size and speed. Each stroke is one undo step; saving the scene writes the heightmap file."
-msgstr "**브러시**: **지형** 섹션에서 **브러시**를 켜고 씬 뷰에서 왼쪽 버튼으로 드래그한다. **올리기**와 **내리기**는 땅을 밀고, **평탄화**는 칠하기 시작한 곳의 높이로 맞추고, **다듬기**는 부드럽게 한다. **반경 (m)**과 **세기**로 크기와 속도를 정한다. 한 획이 되돌리기 한 번이고, 씬을 저장하면 높이맵 파일이 써진다."
+msgid "**Brushes**: turn on **Brush** in the **Terrain** section and drag with the left mouse button in the viewport. **Raise** and **Lower** push the ground, **Flatten** levels it to the height where the stroke started, **Smooth** softens it. **Radius** and **Strength** set the size and speed. Each stroke is one undo step; saving the scene writes the heightmap file."
+msgstr "**브러시**: **지형** 섹션에서 **브러시**를 켜고 뷰포트에서 왼쪽 버튼으로 드래그한다. **올리기**와 **내리기**는 땅을 밀고, **평탄화**는 칠하기 시작한 곳의 높이로 맞추고, **다듬기**는 부드럽게 한다. **반경 (m)**과 **세기**로 크기와 속도를 정한다. 한 획이 되돌리기 한 번이고, 씬을 저장하면 높이맵 파일이 써진다."
 
 msgid "If you re-export the PNG from the external tool while the editor is open, the terrain reloads (unless you have unsaved brush edits)."
 msgstr "에디터가 열린 동안 외부 도구에서 PNG를 다시 내보내면 지형이 다시 읽힌다(저장하지 않은 브러시 편집이 있으면 제외)."
@@ -172,8 +172,8 @@ msgstr "흩뿌리기 레이어는 풀, 바위, 작은 소품 같은 모델 하�
 msgid "**Add**: **+ Type... > Scatter layer**. Set its **Model** field (or leave it empty for small boxes) and its **Density**, size range and **Draw distance**."
 msgstr "**추가**: **+ 종류... > 흩뿌리기 레이어**. **모델** 필드(비우면 작은 상자)와 **밀도**, 크기 범위, **그리기 거리**를 정한다."
 
-msgid "**Paint**: with the layer selected and **Brush** on, drag with the left mouse button in the scene view. Copies land on whatever is below: terrain, boxes or models. Hold Shift (or pick **Erase**) to remove them. Each stroke is one undo step."
-msgstr "**칠하기**: 레이어를 선택하고 **브러시**를 켠 채 씬 뷰에서 왼쪽 버튼으로 드래그한다. 복사본은 아래에 있는 것(지형, 상자, 모델) 위에 놓인다. Shift를 누르거나 **지우기**를 고르면 지운다. 한 획이 되돌리기 한 번이다."
+msgid "**Paint**: with the layer selected and **Brush** on, drag with the left mouse button in the viewport. Copies land on whatever is below: terrain, boxes or models. Hold Shift (or pick **Erase**) to remove them. Each stroke is one undo step."
+msgstr "**칠하기**: 레이어를 선택하고 **브러시**를 켠 채 뷰포트에서 왼쪽 버튼으로 드래그한다. 복사본은 아래에 있는 것(지형, 상자, 모델) 위에 놓인다. Shift를 누르거나 **지우기**를 고르면 지운다. 한 획이 되돌리기 한 번이다."
 
 msgid "The copies are saved to `assets/terrain/<scene>_<id>.scatter` when you save the scene. Make one layer per model."
 msgstr "복사본은 씬을 저장할 때 `assets/terrain/<씬>_<id>.scatter`에 저장된다. 모델마다 레이어를 하나씩 만든다."
@@ -181,17 +181,17 @@ msgstr "복사본은 씬을 저장할 때 `assets/terrain/<씬>_<id>.scatter`에
 msgid "Panels"
 msgstr "패널"
 
-msgid "**Layout**: the scene tree is on the left, the inspector on the right, and **Debug** and assets share a strip under the scene view. **Window > Layout** picks Edit, Play or Look Dev and resets the layout."
-msgstr "**레이아웃**: 씬 트리는 왼쪽, 인스펙터는 오른쪽, **디버그**와 에셋은 씬 뷰 아래 가로 칸에 같이 놓인다. **창 > 레이아웃**에서 편집·플레이·룩데브를 골라 레이아웃을 다시 놓는다."
+msgid "**Layout**: the hierarchy is on the left, the inspector on the right, and **Debug** and assets share a strip under the viewport. **Window > Layout** picks Edit, Play or Look Dev and resets the layout."
+msgstr "**레이아웃**: 계층는 왼쪽, 인스펙터는 오른쪽, **디버그**와 에셋은 뷰포트 아래 가로 칸에 같이 놓인다. **창 > 레이아웃**에서 편집·플레이·룩데브를 골라 레이아웃을 다시 놓는다."
 
-msgid "**Scene environment**: select the **Scene Environment** row at the top of the scene tree. The inspector then shows the sun, sky, fog, sky HDRI and post processing of the open scene."
-msgstr "**씬 환경**: 씬 트리 맨 위의 **씬 환경** 줄을 고른다. 그러면 인스펙터에 열린 씬의 태양·하늘·안개·하늘 HDRI·포스트 프로세싱이 나온다."
+msgid "**Scene environment**: select the **Scene Environment** row at the top of the hierarchy. The inspector then shows the sun, sky, fog, sky HDRI and post processing of the open scene."
+msgstr "**씬 환경**: 계층 맨 위의 **씬 환경** 줄을 고른다. 그러면 인스펙터에 열린 씬의 태양·하늘·안개·하늘 HDRI·포스트 프로세싱이 나온다."
 
 msgid "**Log**: **Window > Debug**, Log page, shows engine and game log lines, with what is wrong right now above them: missing models, models over budget and missing row references. Click a problem to select the object or open the document; the flag button shows or hides the list. The info, warning and error buttons filter the lines, the search box finds a line, and the trash button empties the log."
 msgstr "**로그**: **창 > 디버그**의 로그 페이지에 엔진과 게임의 로그 줄이 나오고, 그 위에 지금 고쳐야 할 문제(없는 모델, 예산을 넘은 모델, 없는 행 참조)가 나온다. 문제를 클릭하면 그 물체를 선택하거나 문서를 열고, 깃발 버튼으로 목록을 보이거나 숨긴다. 정보·경고·오류 버튼으로 줄을 거르고, 찾기 칸으로 줄을 찾고, 휴지통 버튼으로 로그를 비운다."
 
-msgid "**Notices**: messages also appear at the bottom right of the scene view. Failures stay until you close them; click one to open the build log or the log. While playing, the menu bar turns brown and the scene view gets an orange frame."
-msgstr "**알림**: 메시지가 씬 뷰 오른쪽 아래에도 뜬다. 실패는 닫을 때까지 남고, 누르면 빌드 로그나 로그가 열린다. 플레이 중에는 메뉴 막대가 갈색, 씬 뷰 테두리가 주황색이 된다."
+msgid "**Notices**: messages also appear at the bottom right of the viewport. Failures stay until you close them; click one to open the build log or the log. While playing, the menu bar turns brown and the viewport gets an orange frame."
+msgstr "**알림**: 메시지가 뷰포트 오른쪽 아래에도 뜬다. 실패는 닫을 때까지 남고, 누르면 빌드 로그나 로그가 열린다. 플레이 중에는 메뉴 막대가 갈색, 뷰포트 테두리가 주황색이 된다."
 
 msgid "**Command palette**: press Ctrl+P (or **Window > Command Palette**) and type part of a command, object, scene or tool name, in English or Korean. Use the arrow keys and Enter to run it."
 msgstr "**명령 팔레트**: Ctrl+P(또는 **창 > 명령 팔레트**)를 누르고 명령·물체·씬·도구 이름의 일부를 영어나 한국어로 친다. 화살표와 Enter로 실행한다."
@@ -199,14 +199,17 @@ msgstr "**명령 팔레트**: Ctrl+P(또는 **창 > 명령 팔레트**)를 누�
 msgid "**Preferences**: **Project > Settings, Preferences page** sets the camera speed, text size, autosave interval and code editor. The window layout is kept per project in `build\\editor\\layout.ini`. Press F1 for the list of keyboard shortcuts."
 msgstr "**환경설정**: **프로젝트 > 설정의 환경설정 페이지**에서 카메라 속도, 글자 크기, 자동 저장 간격, 코드 편집기를 정한다. 창 배치는 프로젝트마다 `build\\editor\\layout.ini`에 따로 저장된다. F1을 누르면 단축키 목록이 나온다."
 
-msgid "**Scene tree**: type in the box above the tree (Ctrl+F) to find objects by name or type. The eye and lock buttons on the right of a row hide an object in the scene view or stop it being picked there; they are saved per project in `build\\editor`, not in the scene file."
-msgstr "**씬 트리**: 트리 위 칸(Ctrl+F)에 쳐서 이름이나 종류로 물체를 찾는다. 줄 오른쪽의 눈·자물쇠 버튼은 씬 뷰에서 물체를 숨기거나 클릭으로 고르지 못하게 한다. 이 상태는 씬 파일이 아니라 프로젝트의 `build\\editor`에 저장된다."
+msgid "**Hierarchy**: type in the box above the tree (Ctrl+F) to find objects by name or type. The eye and lock buttons on the right of a row hide an object in the viewport or stop it being picked there; they are saved per project in `build\\editor`, not in the scene file."
+msgstr "**계층**: 트리 위 칸(Ctrl+F)에 쳐서 이름이나 종류로 물체를 찾는다. 줄 오른쪽의 눈·자물쇠 버튼은 뷰포트에서 물체를 숨기거나 클릭으로 고르지 못하게 한다. 이 상태는 씬 파일이 아니라 프로젝트의 `build\\editor`에 저장된다."
 
-msgid "**Multi-select**: Shift-click in the scene tree or the scene view to add or remove objects, drag a box in an empty part of the scene view, or press Ctrl+A. The gizmo then moves, rotates or scales all of them, and Duplicate and Delete act on all of them. The inspector edits the last object you picked."
-msgstr "**다중 선택**: 씬 트리나 씬 뷰에서 Shift 클릭으로 물체를 더하거나 빼고, 씬 뷰 빈 곳에서 상자를 끌거나, Ctrl+A를 누른다. 그러면 기즈모가 모두를 옮기고 돌리고 크기를 바꾸며, 복제·삭제도 모두에 한다. 인스펙터는 마지막에 고른 물체를 고친다."
+msgid "**Multi-select**: Shift-click in the hierarchy or the viewport to add or remove objects, drag a box in an empty part of the viewport, or press Ctrl+A. The gizmo then moves, rotates or scales all of them, and Duplicate and Delete act on all of them. The inspector edits the last object you picked."
+msgstr "**다중 선택**: 계층나 뷰포트에서 Shift 클릭으로 물체를 더하거나 빼고, 뷰포트 빈 곳에서 상자를 끌거나, Ctrl+A를 누른다. 그러면 기즈모가 모두를 옮기고 돌리고 크기를 바꾸며, 복제·삭제도 모두에 한다. 인스펙터는 마지막에 고른 물체를 고친다."
 
-msgid "**Viewport toolbar**: the bar at the top left of the scene view switches between move, rotate and scale, local and world axes, snapping, the floor grid, the view mode and the camera speed. Click the axis cube at the top right to look from that side."
-msgstr "**뷰포트 툴바**: 씬 뷰 왼쪽 위 막대에서 이동·회전·크기, 로컬·월드 축, 스냅, 바닥 그리드, 보기 모드, 카메라 속도를 바꾼다. 오른쪽 위 축 상자를 누르면 그쪽에서 보게 된다."
+msgid "**Viewport toolbar**: the row along the top of the viewport switches between move, rotate and scale, local and world axes, snapping, the floor grid, the view mode and the camera speed. Click the axis cube at the top right of the picture to look from that side."
+msgstr "**뷰포트 툴바**: 뷰포트 맨 위 한 줄에서 이동·회전·크기, 로컬·월드 축, 스냅, 바닥 그리드, 보기 모드, 카메라 속도를 바꾼다. 화면 오른쪽 위 축 상자를 누르면 그쪽에서 보게 된다."
+
+msgid "**Status bar and project list**: the open scene's name (with `*` when unsaved) is at the left of the status bar; click it to open another scene from the project. **Project > Project Manager** opens MealKit Manager (or the editor's own project list) next to the editor."
+msgstr "**상태 표시줄과 프로젝트 목록**: 열린 씬 이름(저장 안 했으면 `*`)이 상태 표시줄 왼쪽에 있고, 누르면 프로젝트의 다른 씬을 연다. **프로젝트 > 프로젝트 매니저**는 에디터를 둔 채 MealKit Manager(없으면 에디터의 프로젝트 목록)를 연다."
 
 msgid "**Snap and align**: set the move, rotate and scale snap steps in Preferences or with the arrow next to Snap on the toolbar. **Edit > Drop to Floor** (End) puts the selection on the object below it, and **Edit > Align** lines up or evenly spaces several selected objects."
 msgstr "**스냅과 정렬**: 이동·회전·크기 스냅 단위는 환경설정이나 툴바 스냅 옆 화살표에서 정한다. **편집 > 바닥에 붙이기**(End)는 고른 물체를 아래 물체 위에 놓고, **편집 > 정렬**은 여러 물체를 한 줄로 맞추거나 같은 간격으로 놓는다."
@@ -229,8 +232,8 @@ msgstr "**씬 목록**: **씬 > 씬 목록**에 `assets/scenes`의 씬이 나온
 msgid "**Play from here**: Shift+F5 (the list by the play button) starts a solo game with the player under the editor camera, or at the selected spawn point. The scene file does not change."
 msgstr "**여기서 플레이**: Shift+F5(**플레이 버튼 옆 목록**)는 플레이어를 에디터 카메라 아래나 고른 스폰 지점에 두고 혼자 플레이를 시작한다. 씬 파일은 바뀌지 않는다."
 
-msgid "**Assets**: the **Assets** tab under the scene view shows the `assets` folders and files. Drag a model or prefab into the scene view to place it, or double-click a scene to open it. Right-click a file and choose **Rename or Move** to change its path; references in scenes, tuning, UI and table files are updated too."
-msgstr "**에셋**: 씬 뷰 아래 **에셋** 탭에 `assets` 폴더와 파일이 나온다. 모델이나 프리팹을 씬 뷰로 끌어 놓으면 그 자리에 놓이고, 씬을 두 번 누르면 열린다. 파일을 오른쪽 클릭해 **이름 바꾸기·옮기기**로 경로를 바꾸면 씬·튜닝·UI·표 파일의 참조도 같이 바뀐다."
+msgid "**Assets**: the **Assets** tab under the viewport shows the `assets` folders and files. Drag a model or prefab into the viewport to place it, or double-click a scene to open it. Right-click a file and choose **Rename or Move** to change its path; references in scenes, tuning, UI and table files are updated too."
+msgstr "**에셋**: 뷰포트 아래 **에셋** 탭에 `assets` 폴더와 파일이 나온다. 모델이나 프리팹을 뷰포트로 끌어 놓으면 그 자리에 놓이고, 씬을 두 번 누르면 열린다. 파일을 오른쪽 클릭해 **이름 바꾸기·옮기기**로 경로를 바꾸면 씬·튜닝·UI·표 파일의 참조도 같이 바뀐다."
 
 msgid "**Tuning** (a Data page): two pages. Game holds the values the simulation reads (`assets/game.tuning`); during solo play changes apply at once. Display holds the values that are only seen (`assets/view.tuning`); changes apply at once in every player window, even with several players."
 msgstr "**튜닝** (데이터 창의 페이지): 페이지 두 개. \"게임\"은 시뮬레이션이 읽는 값(`assets/game.tuning`)으로, 혼자 플레이 중에는 바꾸면 바로 적용된다. \"화면\"은 보이기만 하는 값(`assets/view.tuning`)으로, 여러 명이어도 모든 플레이어 창에 바로 적용된다."
@@ -247,8 +250,8 @@ msgid "**Feedback** (a Data page): the feedback table that turns tick events int
 msgstr "**연출** (데이터 창의 페이지): 틱 이벤트를 소리·카메라 흔들림·화면 번쩍임·화면 정지로 바꾸는 연출 표({doc}`sound` 참고)."
 
 #, python-brace-format
-msgid "**UI**: previews a game screen (`assets/ui/*.ui`) over the scene view with test view model values (see {doc}`ui`)."
-msgstr "**UI**: 게임 화면(`assets/ui/*.ui`)을 씬 뷰 위에 시험용 뷰 모델 값으로 미리 본다({doc}`ui` 참고)."
+msgid "**UI**: previews a game screen (`assets/ui/*.ui`) over the viewport with test view model values (see {doc}`ui`)."
+msgstr "**UI**: 게임 화면(`assets/ui/*.ui`)을 뷰포트 위에 시험용 뷰 모델 값으로 미리 본다({doc}`ui` 참고)."
 
 msgid "**State** (a Debug page): the simulation state declared with `MEALKIT_FIELD` while playing."
 msgstr "**상태**: 플레이 중 `MEALKIT_FIELD`로 선언된 시뮬레이션 상태."
@@ -270,8 +273,8 @@ msgstr "**도구**: [도구] 메뉴가 설치된 MealKit 도구(오디오 도구
 msgid "View modes"
 msgstr "보기 모드"
 
-msgid "The **View Mode** list on the scene view toolbar colors the scene view by what costs time, so artists can see what is expensive:"
-msgstr "**창 > 보기 모드**는 씬 뷰를 비용에 따라 색으로 칠해, 아티스트가 무엇이 비싼지 볼 수 있게 한다:"
+msgid "The **View Mode** list on the viewport toolbar colors the viewport by what costs time, so artists can see what is expensive:"
+msgstr "**창 > 보기 모드**는 뷰포트를 비용에 따라 색으로 칠해, 아티스트가 무엇이 비싼지 볼 수 있게 한다:"
 
 msgid "Mode"
 msgstr "모드"
@@ -369,8 +372,8 @@ msgstr "에디터가 안에서 어떻게 돌아가는지(게임 DLL 불러오기
 msgid "**Data**: **Window > Data** gathers tuning, tables, feedback and sounds under one list, with `*` on unsaved documents. **Undo** and **Redo** on the page, or Ctrl+Z and Ctrl+Y while the window has focus, step back through its edits, including deleted rows and reloads. Particle effect files have no undo."
 msgstr "**데이터**: **창 > 데이터**에 튜닝·표·연출·소리가 한 목록으로 모이고, 저장하지 않은 문서에는 `*`가 붙는다. 페이지의 **실행 취소**와 **다시 실행**, 또는 창에 포커스가 있을 때 Ctrl+Z와 Ctrl+Y로 지운 행과 다시 읽기를 포함한 편집을 되돌린다. 파티클 효과 파일은 되돌릴 수 없다."
 
-msgid "**Scene tree folders**: right-click an object and choose **Move to Folder...**, or drag it onto a folder. A path like `Props/Trees` makes folders inside folders. Right-click a folder to rename or remove it. Folders are saved in the scene and do not affect game results. A `!` after a name marks a problem (hover for the reason), and a blue dot marks fields changed from the kind's defaults."
-msgstr "**씬 트리 폴더**: 물체를 오른쪽 클릭해 **폴더로 옮기기...**를 고르거나 폴더로 끌어다 놓는다. `Props/Trees` 같은 경로는 폴더 안의 폴더를 만든다. 폴더를 오른쪽 클릭하면 이름을 바꾸거나 없앨 수 있다. 폴더는 씬에 저장되고 게임 결과에 영향을 주지 않는다. 이름 뒤의 `!`는 문제를 나타내고(마우스를 올리면 이유가 보인다), 파란 점은 종류의 기본값에서 바뀐 필드가 있다는 뜻이다."
+msgid "**Hierarchy folders**: right-click an object and choose **Move to Folder...**, or drag it onto a folder. A path like `Props/Trees` makes folders inside folders. Right-click a folder to rename or remove it. Folders are saved in the scene and do not affect game results. A `!` after a name marks a problem (hover for the reason), and a blue dot marks fields changed from the kind's defaults."
+msgstr "**계층 폴더**: 물체를 오른쪽 클릭해 **폴더로 옮기기...**를 고르거나 폴더로 끌어다 놓는다. `Props/Trees` 같은 경로는 폴더 안의 폴더를 만든다. 폴더를 오른쪽 클릭하면 이름을 바꾸거나 없앨 수 있다. 폴더는 씬에 저장되고 게임 결과에 영향을 주지 않는다. 이름 뒤의 `!`는 문제를 나타내고(마우스를 올리면 이유가 보인다), 파란 점은 종류의 기본값에서 바뀐 필드가 있다는 뜻이다."
 
 msgid "**Several objects**: with objects of the same kind selected, changing a field in the inspector changes it on all of them. Fields that differ show a dash."
 msgstr "**여러 물체**: 같은 종류의 물체를 함께 선택하면 인스펙터에서 고친 필드가 모두에 적용된다. 값이 서로 다른 필드에는 대시가 표시된다."
@@ -381,14 +384,14 @@ msgstr "**에셋 그리드**: **에셋** 위쪽 슬라이더로 목록을 모델
 msgid "**Command palette**: Ctrl+P finds commands, objects, scenes, tools, assets, table rows and tuning values. Letters can have gaps, and Korean initial consonants work."
 msgstr "**명령 팔레트**: Ctrl+P로 명령, 물체, 씬, 도구, 에셋, 표 행, 튜닝 값을 찾는다. 글자 사이가 떨어져도 되고 한글 초성으로도 찾을 수 있다."
 
-msgid "**Handles in the scene view**: fields that have a size in the world, such as a point light's range, show circles and a handle around the selected object. Drag the handle to change the value."
-msgstr "**씬 뷰 핸들**: 점광원의 범위처럼 월드에서 크기가 있는 필드는 선택한 물체 주위에 원과 핸들로 표시된다. 핸들을 끌면 값이 바뀐다."
+msgid "**Handles in the viewport**: fields that have a size in the world, such as a point light's range, show circles and a handle around the selected object. Drag the handle to change the value."
+msgstr "**뷰포트 핸들**: 점광원의 범위처럼 월드에서 크기가 있는 필드는 선택한 물체 주위에 원과 핸들로 표시된다. 핸들을 끌면 값이 바뀐다."
 
 msgid "**Compact rows**: **Preferences > Interface** tightens rows so more fits on small screens."
 msgstr "**좁은 행**: **환경 설정 > 인터페이스**에서 행을 좁혀 작은 화면에 더 많이 표시한다."
 
-msgid "**Scene view tab**: the scene view is a tab. Drag other windows, such as **Data**, next to it to switch between them, or dock it elsewhere. It can't float: let go outside a dock and it returns to the center. Starting play brings it to the front."
-msgstr "**씬 뷰 탭**: 씬 뷰는 탭이다. **데이터** 같은 다른 창을 옆으로 끌어다 놓아 전환하거나, 씬 뷰를 다른 곳에 도킹할 수 있다. 떠 있는 창으로는 쓸 수 없어서 도킹 칸 밖에 놓으면 가운데로 돌아온다. 플레이를 시작하면 앞으로 나온다."
+msgid "**Viewport tab**: the viewport is a tab. Drag other windows, such as **Data**, next to it to switch between them, or dock it elsewhere. It can't float: let go outside a dock and it returns to the center. Starting play brings it to the front."
+msgstr "**뷰포트 탭**: 뷰포트는 탭이다. **데이터** 같은 다른 창을 옆으로 끌어다 놓아 전환하거나, 뷰포트를 다른 곳에 도킹할 수 있다. 떠 있는 창으로는 쓸 수 없어서 도킹 칸 밖에 놓으면 가운데로 돌아온다. 플레이를 시작하면 앞으로 나온다."
 
 msgid "**Debug**: **Window > Debug** gathers Log, Build Log, Performance and State under one list, with the problem count on its tab."
 msgstr "**디버그**: **창 > 디버그**에 로그, 빌드 로그, 성능, 상태가 한 목록으로 모이고, 탭에 문제 개수가 표시된다."
@@ -411,8 +414,8 @@ msgstr "**표 보기**: 표 페이지에서 행을 거르고, 열 머리글을 �
 msgid "**Find Uses**: right-click a file in **Assets** to list the text files that name it."
 msgstr "**사용처 찾기**: **에셋**에서 파일을 오른쪽 클릭하면 그 파일을 적어 둔 텍스트 파일 목록이 나온다."
 
-msgid "**Saved layouts**: **Window > Layout** saves the current layout under a name. The **Window** menu also turns panels on and off, including the scene tree, scene view and inspector; **Reset Layout** brings those three back, and playing reopens the scene view."
-msgstr "**레이아웃 저장**: **창 > 레이아웃**에서 지금 배치를 이름을 붙여 저장한다. **창** 메뉴에서 씬 트리, 씬 뷰, 인스펙터를 포함한 패널을 켜고 끌 수 있다. **레이아웃 초기화**는 이 셋을 다시 켜고, 플레이를 시작하면 씬 뷰가 다시 켜진다."
+msgid "**Saved layouts**: **Window > Layout** saves the current layout under a name. The **Window** menu also turns panels on and off, including the hierarchy, viewport and inspector; **Reset Layout** brings those three back, and playing reopens the viewport."
+msgstr "**레이아웃 저장**: **창 > 레이아웃**에서 지금 배치를 이름을 붙여 저장한다. **창** 메뉴에서 계층, 뷰포트, 인스펙터를 포함한 패널을 켜고 끌 수 있다. **레이아웃 초기화**는 이 셋을 다시 켜고, 플레이를 시작하면 뷰포트가 다시 켜진다."
 
 msgid "**State graphs**: on the **State** page of **Debug**, add a field path to graph it while playing."
 msgstr "**상태 그래프**: **디버그**의 **상태** 페이지에 필드 경로를 추가하면 플레이 중 그래프로 볼 수 있다."

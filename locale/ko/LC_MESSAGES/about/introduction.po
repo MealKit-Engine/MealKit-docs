@@ -111,8 +111,8 @@ msgstr "`GameInstance`·`GameContext`(게임 코드 경계), `Simulation<World>`
 msgid "Editor"
 msgstr "Editor"
 
-msgid "The general-purpose editor `MealKitEditor` (Dear ImGui + ImGuizmo, Korean and English): project manager, game DLL hot reload, docking panels, scene tree, inspector, gizmos, click selection, undo, autosave, model picker, tuning, state and project settings panels, play mode (several players, pause, rewind), game code and release builds"
-msgstr "범용 에디터 `MealKitEditor` (Dear ImGui + ImGuizmo, 한국어/영어): 프로젝트 관리자, 게임 DLL 핫 리로드, 도킹 패널, 씬 트리, 인스펙터, 기즈모, 클릭 선택, 되돌리기, 자동 저장, 모델 선택, 튜닝·상태·프로젝트 설정 패널, 플레이 모드(여러 명, 일시정지·되감기), 게임 코드·출시 빌드"
+msgid "The general-purpose editor `MealKitEditor` (Dear ImGui + ImGuizmo, Korean and English): project manager, game DLL hot reload, docking panels, hierarchy, inspector, gizmos, click selection, undo, autosave, model picker, tuning, state and project settings panels, play mode (several players, pause, rewind), game code and release builds"
+msgstr "범용 에디터 `MealKitEditor` (Dear ImGui + ImGuizmo, 한국어/영어): 프로젝트 관리자, 게임 DLL 핫 리로드, 도킹 패널, 계층, 인스펙터, 기즈모, 클릭 선택, 되돌리기, 자동 저장, 모델 선택, 튜닝·상태·프로젝트 설정 패널, 플레이 모드(여러 명, 일시정지·되감기), 게임 코드·출시 빌드"
 
 msgid "Measurements (Intel Core Ultra 5 125U integrated graphics, 1280×720, vsync off, Release, 2,000 boxes + 9 models):"
 msgstr "측정값 (Intel Core Ultra 5 125U 내장 그래픽, 1280×720, 수직동기 끔, Release, 상자 2,000개 + 모델 9개):"

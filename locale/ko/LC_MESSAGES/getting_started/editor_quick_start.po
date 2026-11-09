@@ -18,8 +18,8 @@ msgstr ""
 msgid "Editor quick start"
 msgstr "빠른 시작: 에디터"
 
-msgid "**Edit the scene**: click an object in the viewport or pick it in the scene tree, then drag the gizmo or type values in the inspector."
-msgstr "**씬 편집**: 뷰포트에서 물체를 클릭하거나 씬 트리에서 고른 뒤, 기즈모를 끌거나 인스펙터에 값을 넣는다."
+msgid "**Edit the scene**: click an object in the viewport or pick it in the hierarchy, then drag the gizmo or type values in the inspector."
+msgstr "**씬 편집**: 뷰포트에서 물체를 클릭하거나 계층에서 고른 뒤, 기즈모를 끌거나 인스펙터에 값을 넣는다."
 
 msgid "**▶ Play (F5)**: runs the game right away with the scene you are editing. `F5` again returns to editing (the scene is not changed); `Esc` goes to the game (its pause menu). Disabled until the game code is loaded."
 msgstr "**▶ 플레이 (F5)**: 지금 편집 중인 씬으로 바로 게임을 실행한다. `F5`를 다시 누르면 편집으로 돌아온다(씬은 바뀌지 않음). `Esc`는 게임(일시 정지 메뉴)으로 간다. 게임 코드를 불러오기 전에는 비활성."

@@ -28,7 +28,7 @@ Today it runs on Windows with DirectX 12. Other platforms are planned for stage 
 | Net | Host–client deterministic input lockstep (the host is a player and the relay, no dedicated server): only 8 bytes of input per player per tick, desync detection by state hash, up to 8 players. Transport: UDP (redundant sends, no TCP) or Steam relay. Peers with a different build, scene, models or tuning are refused |
 | Scene | Object kinds and fields declared by the game, parent–child hierarchy, environment. Human-readable `.scene` text |
 | Game / Sim | `GameInstance` and `GameContext` (the boundary to game code), `Simulation<World>` (fixed ticks, interpolation, shadow simulation, recording and rewind), tuning (`.tuning`), project settings, `Pool<T>`, `TickTimer`, `TickEvents` |
-| Editor | The general-purpose editor `MealKitEditor` (Dear ImGui + ImGuizmo, Korean and English): project manager, game DLL hot reload, docking panels, scene tree, inspector, gizmos, click selection, undo, autosave, model picker, tuning, state and project settings panels, play mode (several players, pause, rewind), game code and release builds |
+| Editor | The general-purpose editor `MealKitEditor` (Dear ImGui + ImGuizmo, Korean and English): project manager, game DLL hot reload, docking panels, hierarchy, inspector, gizmos, click selection, undo, autosave, model picker, tuning, state and project settings panels, play mode (several players, pause, rewind), game code and release builds |
 
 Measurements (Intel Core Ultra 5 125U integrated graphics, 1280×720, vsync off, Release, 2,000 boxes + 9 models):
 

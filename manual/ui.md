@@ -146,7 +146,7 @@ Mouse input over a widget or a filled panel does not reach the game. On screens 
 
 ## Previewing in the editor
 
-**Window > Previews, UI tab,** lists the screens in `assets/ui`. The selected screen is drawn over the scene view in edit mode, inside a frame of the chosen resolution (16:9, 21:9, 4:3, portrait). The panel changes the UI scale and the language (to check that translations fit), shows the focus, fills a game view model with test values, and lists file errors, binding errors (fields the view model does not have) and the node count (budget 500 per screen).
+**Window > Previews, UI tab,** lists the screens in `assets/ui`. The selected screen is drawn over the viewport in edit mode, inside a frame of the chosen resolution (16:9, 21:9, 4:3, portrait). The panel changes the UI scale and the language (to check that translations fit), shows the focus, fills a game view model with test values, and lists file errors, binding errors (fields the view model does not have) and the node count (budget 500 per screen).
 `MealKitEditor.exe --ui hud.ui` opens the panel with that screen.
 
 ## Editing screens in the editor

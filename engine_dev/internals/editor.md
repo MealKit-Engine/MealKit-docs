@@ -82,7 +82,7 @@ The editor runs one loop ({engine}`engine/src/mealkit/editor/EditorMain.cpp`). E
 4. Start or stop play when it was requested.
 5. During play, `PlaySession::update` runs the network session and the game.
 6. Update sound and feedback.
-7. Fill the draw list: the game's view during play, otherwise the scene view.
+7. Fill the draw list: the game's view during play, otherwise the viewport.
 8. Draw the 3D scene, then the game screen UI, the UI panel preview, and finally the editor UI on top.
 
 ## Scene editing
@@ -103,7 +103,7 @@ When you press Play:
 
 1. Unsaved tuning values are written to a temporary `play.tuning`, and edited tables are saved (the game reads tables from files when a match starts).
 2. The editor asks the game DLL for a new `GameInstance`.
-3. The game starts with the scene being edited, including unsaved changes. Its view is drawn inside the scene view, and it gets keyboard input only while no editor panel is using the keyboard.
+3. The game starts with the scene being edited, including unsaved changes. Its view is drawn inside the viewport, and it gets keyboard input only while no editor panel is using the keyboard.
 
 ### Playing alone
 
@@ -159,7 +159,7 @@ UI text is written in English in the code with `tr()`, `trl()` and `trf()`, and 
 
 The algorithms and patterns behind the parts above, with where to find them in the code.
 
-### Scene view
+### Viewport
 
 | Technique | Where | What it does |
 |---|---|---|
