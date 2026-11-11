@@ -134,7 +134,7 @@ for (const mealkit::ui::Action& a : ctx.ui.actions())
 |---|---|
 | `{field}`, `{field:n0}`, `{field:f1}`, `{field:time}`, `{field:pct}` | A value inside text: as is, thousands separators, decimals, minutes:seconds, percent |
 | `visible [!]field`, `disabled field`, `widthRatio field`, `colorField field` | Show or hide, disable a widget, scale the width by 0 to 1 (health bars), take the color from a field |
-| `src {field}` | On an image: the PNG path comes from a string field (portraits, card art that change at runtime); an empty string draws nothing |
+| `src {field}` | On an image: the PNG path comes from a string field (portraits, card art that change at runtime); an empty string draws nothing. With `size hug` the image keeps its own size |
 | `button <action>` | Sends the action when clicked or confirmed |
 | `toggle <field>`, `slider <field> <min> <max> <step>`, `select <field> <key1,key2>` | Input widgets write their own field and send `changed` (or the action given after the field). Text inside a select shows the choice with `{option}` |
 | `textInput <field> [action]` | On a text node: typing writes the string field (keyboard text, including Korean input), `Enter` sends the action (default `submit`), `Esc` stops typing. `placeholder <key>` shows dimmed text while it is empty, `maxLength <n>` limits the characters. While typing, the game gets no keyboard input. `ctx.ui.focusText(screen, node)` starts typing from code (a chat key) |
