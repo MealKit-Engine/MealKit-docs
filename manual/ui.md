@@ -136,6 +136,8 @@ for (const mealkit::ui::Action& a : ctx.ui.actions())
 | `visible [!]field`, `disabled field`, `widthRatio field`, `colorField field` | Show or hide, disable a widget, scale the width by 0 to 1 (health bars), take the color from a field |
 | `src {field}` | On an image: the PNG path comes from a string field (portraits, card art that change at runtime); an empty string draws nothing. With `size hug` the image keeps its own size |
 | `scaleField field` | Scales the node's box about its centre by a number (1 = as laid out); world UI templates use it for per-instance sizes |
+| `offsetField xField yField`, `opacityField field` | Moves the node and its children by two numbers (logical units, after layout), multiplies their opacity by a number from 0 to 1: slides and fades driven from code |
+| `brightness b`, `brightnessField field` | On an image: mixes the picture toward white (b > 0) or black (b < 0), from -1 to 1; also per state (`on hover brightness 0.15`), and the field adds to it |
 | `flip horizontal`, `flip vertical` | On an image: mirrors the picture |
 | `button <action>` | Sends the action when clicked or confirmed |
 | `toggle <field>`, `slider <field> <min> <max> <step>`, `select <field> <key1,key2>` | Input widgets write their own field and send `changed` (or the action given after the field). Text inside a select shows the choice with `{option}` |

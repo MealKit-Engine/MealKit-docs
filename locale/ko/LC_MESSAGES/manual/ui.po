@@ -367,6 +367,18 @@ msgstr "`scaleField field`"
 msgid "Scales the node's box about its centre by a number (1 = as laid out); world UI templates use it for per-instance sizes"
 msgstr "노드 상자를 가운데 기준으로 숫자만큼 키우거나 줄인다(1 = 배치한 그대로). 월드 UI 템플릿에서 그릴 때마다 크기를 다르게 줄 때 쓴다"
 
+msgid "`offsetField xField yField`, `opacityField field`"
+msgstr "`offsetField xField yField`, `opacityField field`"
+
+msgid "Moves the node and its children by two numbers (logical units, after layout), multiplies their opacity by a number from 0 to 1: slides and fades driven from code"
+msgstr "노드와 그 자식을 숫자 두 개만큼 옮기고(논리 단위, 배치 뒤), 불투명도에 0~1의 숫자를 곱한다. 코드로 움직이는 미끄러짐과 페이드에 쓴다"
+
+msgid "`brightness b`, `brightnessField field`"
+msgstr "`brightness b`, `brightnessField field`"
+
+msgid "On an image: mixes the picture toward white (b > 0) or black (b < 0), from -1 to 1; also per state (`on hover brightness 0.15`), and the field adds to it"
+msgstr "이미지에서: 그림을 흰색(b > 0)이나 검은색(b < 0) 쪽으로 섞는다(-1~1). 상태마다 줄 수도 있고(`on hover brightness 0.15`), 필드 값은 거기에 더해진다"
+
 msgid "`flip horizontal`, `flip vertical`"
 msgstr "`flip horizontal`, `flip vertical`"
 
