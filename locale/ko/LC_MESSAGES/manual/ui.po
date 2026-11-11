@@ -361,6 +361,18 @@ msgstr "`visible [!]field`, `disabled field`, `widthRatio field`, `colorField fi
 msgid "Show or hide, disable a widget, scale the width by 0 to 1 (health bars), take the color from a field"
 msgstr "보이기·숨기기, 위젯 비활성, 너비를 0~1배로(체력 막대), 필드의 색 쓰기"
 
+msgid "`scaleField field`"
+msgstr "`scaleField field`"
+
+msgid "Scales the node's box about its centre by a number (1 = as laid out); world UI templates use it for per-instance sizes"
+msgstr "노드 상자를 가운데 기준으로 숫자만큼 키우거나 줄인다(1 = 배치한 그대로). 월드 UI 템플릿에서 그릴 때마다 크기를 다르게 줄 때 쓴다"
+
+msgid "`flip horizontal`, `flip vertical`"
+msgstr "`flip horizontal`, `flip vertical`"
+
+msgid "On an image: mirrors the picture"
+msgstr "이미지에서: 그림을 뒤집는다"
+
 msgid "`src {field}`"
 msgstr "`src {field}`"
 
