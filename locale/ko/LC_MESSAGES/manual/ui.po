@@ -379,6 +379,12 @@ msgstr "`brightness b`, `brightnessField field`"
 msgid "On an image: mixes the picture toward white (b > 0) or black (b < 0), from -1 to 1; also per state (`on hover brightness 0.15`), and the field adds to it"
 msgstr "이미지에서: 그림을 흰색(b > 0)이나 검은색(b < 0) 쪽으로 섞는다(-1~1). 상태마다 줄 수도 있고(`on hover brightness 0.15`), 필드 값은 거기에 더해진다"
 
+msgid "`fontSizeField field`"
+msgstr "`fontSizeField field`"
+
+msgid "On text: the font size comes from a number field (logical units) instead of `fontSize`"
+msgstr "글자에서: 글자 크기를 `fontSize` 대신 숫자 필드에서 가져온다(논리 단위)"
+
 msgid "`flip horizontal`, `flip vertical`"
 msgstr "`flip horizontal`, `flip vertical`"
 
