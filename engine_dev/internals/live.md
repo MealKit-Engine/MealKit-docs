@@ -1,14 +1,14 @@
 # Live
 
-This page explains the live connection server: how it finds its port, what it writes for tools, how requests and the state stream are handled, and how the editor's Penpot import runs on it.
+This page explains the live connection server: how it finds its port, what it writes for tools, how requests and the state stream are handled.
 `live` comes after `data` and before the view side in the layer order: it uses only `core`, `platform` and `net`, and the folders that add services (`game`, `editor`) come later. What tools see is specified in {doc}`../../reference/tool_contract`. The code is in {engine}`engine/src/mealkit/live`.
 
 ## Starting
 
 `live::Server::start(ServerConfig)` opens a non-blocking `net::TcpListener` on `127.0.0.1`:
 
-- The editor asks for `live::kEditorPort` (27220) and the next nine, so the Penpot plugin address keeps its port between runs. If all are taken, or the game asks for port 0, the system picks a free port.
-- The token is 128 random bits per run unless the config gives one (`--penpot-token` for automated tests).
+- The editor asks for `live::kEditorPort` (27220) and the next nine, so tools find it on the same port between runs. If all are taken, or the game asks for port 0, the system picks a free port.
+- The token is 128 random bits per run unless the config gives one (automated tests).
 - With a project folder, it writes `build/live/<kind>-<pid>.json`. Before writing, it removes files whose process id is no longer running (`platform::processRunning`), left over from crashes. `stop()` (also the destructor) deletes its own file.
 
 Who starts a server:
@@ -38,7 +38,3 @@ Because services run on the main thread, they can change engine state without lo
 
 `GET /<token>/api/events?topics=a,b` keeps the connection open with `Content-Type: text/event-stream`. `publish(topic, json)` appends `event: <topic>` and `data: <json>` to every connection that listens to the topic. `listening(topic)` lets the caller skip building JSON nobody reads. A connection that does not read is closed when 4 MB are waiting.
 `addTopic` declares a topic for `api/hello` before anyone listens. The game and the editor declare `stats` and publish `game::FrameStats::json()` after each report period.
-
-## Penpot import
-
-`editor::ImportServer` is the `penpot` service on the editor's server ({doc}`editor`). It serves the plugin files from `tools/penpot-plugin/dist` with `__MEALKIT_BASE__` replaced by `<server url>penpot/`, answers `api/project`, and writes exported files on `POST api/export`. It allows origins on `penpot.app` and `localhost`, and accepts exports only from its own origin (the plugin panel it served).

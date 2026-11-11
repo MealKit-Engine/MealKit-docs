@@ -47,13 +47,13 @@ Files are reloaded within a quarter second when they change, also during play. E
 
 ## Designing in Penpot
 
-[Penpot](https://penpot.app) is the source of the game's screens: a designer draws them there, and the MealKit plugin turns each screen board into a `.ui` file. The plugin lives in the engine (`tools/penpot-plugin`) and the editor serves it, so nothing is installed besides Penpot.
+[Penpot](https://penpot.app) is the source of the game's screens: a designer draws them there, and the MealKit plugin turns each screen board into a `.ui` file. The plugin comes with the MkUI Designer (see [Editing screens in MkUI](#editing-screens-in-mkui)), which serves it, so nothing is installed besides Penpot and the Designer.
 
 ### Installing the plugin
 
-1. Open the project in the editor and open **Window > UI**. The **Penpot** section in its right column shows the plugin address, for example `http://127.0.0.1:27220/<token>/penpot/manifest.json`. The editor only listens on this computer, and the token changes every time the editor starts (the plugin is served by the editor's live connection, see {doc}`tools`).
+1. Open the project in the MkUI Designer and press **Penpot plugin** in its **Files** panel. That copies the plugin address, for example `http://127.0.0.1:27240/<token>/penpot/manifest.json`. The Designer only listens on this computer, and the address stays the same for this project between runs.
 2. In a Penpot file press `Ctrl+Alt+P` (plugin manager), paste the address and press **Install**. Open the plugin from the same list after that.
-3. The panel says `Editor: <project>` when it reaches the editor. If the editor is closed, **Export** downloads a zip to unpack in the project folder instead (after restarting the editor, install the plugin again with the new address).
+3. The panel says `MkUI Designer: <project>` when it reaches the Designer. If the Designer is closed, **Export** downloads a zip to unpack in the project folder instead.
 
 The plugin works with Penpot in the cloud (`design.penpot.app`) and with a self-hosted Penpot on this computer. Some browsers block pages from reaching `127.0.0.1`; use a browser that allows it (Chrome, Brave, Edge, Firefox).
 
@@ -70,7 +70,7 @@ Text must use the fonts in the project's `assets/fonts`. Upload the same fonts t
 
 ### Bindings and widgets
 
-Select a layer to set what the game connects to it. The lists come from the game: the fields of the game's view models (`MEALKIT_VIEWMODEL`) and the actions already used in `assets/ui`.
+Select a layer to set what the game connects to it. The action list holds the actions already used in `assets/ui`; view-model field names (`MEALKIT_VIEWMODEL`) are typed in.
 
 | Panel field | `.ui` line |
 |---|---|
@@ -100,7 +100,7 @@ Groups without effects are flattened. The export warns when a screen has more th
 
 ### Exporting
 
-Tick the screens and press **Export**. The editor writes `assets/ui/<screen>.ui` and its images, removes images that the screen no longer uses, adds string keys, updates the theme and reloads the screens at once. The plugin also writes `art/ui/boxes/<screen>.boxes` and `art/ui/preview/<screen>.png` for the checks below; keep them in version control with the screen.
+Tick the screens and press **Export**. The MkUI Designer writes `assets/ui/<screen>.ui` and its images, removes images that the screen no longer uses, adds string keys, updates the theme, and the Designer and running games reload the screens at once. The plugin also writes `art/ui/boxes/<screen>.boxes` and `art/ui/preview/<screen>.png` for the checks below; keep them in version control with the screen.
 A hand-written `.ui` with the same name is not replaced unless **Replace hand-written .ui files** is ticked. Keep the Penpot file itself in `art/ui/` as well: the plugin tries to save it, and with Penpot versions where that fails it asks you to use Penpot's own **Export** (`.penpot`).
 
 The panel's **Add an example screen** draws a small pause menu (flex and grid layouts, two buttons, a baked icon and a color token) to see how a screen is set up.

@@ -41,7 +41,7 @@ A game DLL exports one function, `mealkitGetGameModule`, written by the macro `M
 | `projectSettingsType` | The game's `game.*` lines in Project Settings. |
 | `tables` | The Tables panel and the content hash (`MEALKIT_TABLE`). |
 | `eventType` | The Feedback panel shows the tick event kinds and fields. |
-| `viewModels` | The Penpot import uses them to check bindings (`MEALKIT_VIEWMODEL`). |
+| `viewModels` | View model types of the game (`MEALKIT_VIEWMODEL`); the editor itself doesn't use them now. |
 
 The editor never sees game structs as C++ types. It reads their field declarations (`reflect::TypeInfo`) and draws them with one widget set, `editor::drawFields` ({engine}`engine/src/mealkit/editor/FieldEditor.h`).
 The inspector, the Tuning panel, the Tables panel and the State panel all use it, so a new `MEALKIT_FIELD` appears in every panel without editor code.

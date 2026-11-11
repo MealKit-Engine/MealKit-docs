@@ -69,7 +69,7 @@ All paths start with `url` (it contains the token). Responses are JSON.
 |---|---|
 | `GET api/hello` | `protocol`, `kind`, `project`, `engine`, `pid`, `services` (names), `topics` (state topics) |
 | `GET api/events?topics=a,b` | A stream of state events (Server-Sent Events): `event: <topic>` and `data: <JSON>` lines, then a blank line |
-| `GET`/`POST <service>/...` | A feature added by the engine, such as `penpot/` in the editor |
+| `GET`/`POST <service>/...` | A feature added by the engine, such as `audio/` or `ui/` |
 
 The topic `stats` sends the performance numbers about four times a second: frame times, and when present `game` (tick, simulation time), `session` (players, round trip, traffic), `render` (draw calls, GPU time, memory) and `audio` (voices).
 Requests are handled on the engine's main thread between frames, so a service changes engine state safely.
