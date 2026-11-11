@@ -41,7 +41,7 @@ A game DLL exports one function, `mealkitGetGameModule`, written by the macro `M
 | `projectSettingsType` | The game's `game.*` lines in Project Settings. |
 | `tables` | The Tables panel and the content hash (`MEALKIT_TABLE`). |
 | `eventType` | The Feedback panel shows the tick event kinds and fields. |
-| `viewModels` | The UI workspace previews screens with test view model values (`MEALKIT_VIEWMODEL`). |
+| `viewModels` | The Penpot import uses them to check bindings (`MEALKIT_VIEWMODEL`). |
 
 The editor never sees game structs as C++ types. It reads their field declarations (`reflect::TypeInfo`) and draws them with one widget set, `editor::drawFields` ({engine}`engine/src/mealkit/editor/FieldEditor.h`).
 The inspector, the Tuning panel, the Tables panel and the State panel all use it, so a new `MEALKIT_FIELD` appears in every panel without editor code.
@@ -83,7 +83,7 @@ The editor runs one loop ({engine}`engine/src/mealkit/editor/EditorMain.cpp`). E
 5. During play, `PlaySession::update` runs the network session and the game.
 6. Update sound and feedback.
 7. Fill the draw list: the game's view during play, otherwise the viewport.
-8. Draw the 3D scene, then the game screen UI, the UI workspace's backdrop and screen, and finally the editor UI on top.
+8. Draw the 3D scene, then the game screen UI, and finally the editor UI on top.
 
 ## Scene editing
 

@@ -32,7 +32,7 @@ Errors are collected as `file(line): message` and the parser continues, so a scr
 
 Components are read recursively. The nesting stops at depth 8, so two components that use each other cannot loop forever.
 
-A file whose first line is `# MealKit UI exported from Penpot` is marked as exported, and the editor's UI workspace shows it as not to be edited by hand.
+A file whose first line is `# MealKit UI exported from Penpot` is marked as exported, and the MkUI Designer opens it read-only.
 
 ### Nodes as a flat tree
 
@@ -51,7 +51,7 @@ Game code connects to a screen in one direction only:
 - A `list` widget repeats its first child once per element of a `MEALKIT_LIST` array. The count is the field `<name>Count` when it exists. Inside a list item, paths are looked up first in the element, then in the view model.
 - Input widgets (toggle, slider, select) write their value into their own view model field and send an action. They never change game state themselves.
 
-A path that does not exist is a binding error: it is logged once and listed in the editor's UI workspace (`info()`).
+A path that does not exist is a binding error: it is logged once and listed on the editor's UI tab while playing and in the MkUI Designer (`info()`).
 
 ### Expanding the tree
 

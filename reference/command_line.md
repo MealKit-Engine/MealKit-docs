@@ -84,7 +84,7 @@ Window options (`--bot`, `--vsync`, `--fps`, `--size`, `--debug`, `--mute`, `--d
 | `--upgrade` | Upgrade the project right away |
 | `--project-settings` | Start with the Project Settings window open |
 | `--tables`, `--sounds`, `--feedback` | Start with the Tables, Sounds or Feedback panel open |
-| `--ui <file.ui>` | Start with the UI workspace showing this screen |
+| `--ui` | Start with the UI tab in front (the screen list; screens are edited in the MkUI Designer) |
 | `--ui-check` | Compare the screens exported from Penpot with Penpot's layout boxes, print `UI-CHECK` lines and exit (exit code 2 on a difference; with `--lang` for the text language) |
 | `--ui-render <ui/x.ui> <png>` | Draw one screen at half its board size, save it and exit (pixel comparison with the Penpot preview) |
 | `--lookdev` | Open the look dev window at start; it shows the model of the object chosen with `--select` ({doc}`../manual/editor`) |

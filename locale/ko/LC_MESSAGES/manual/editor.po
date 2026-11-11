@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-11-09 19:41+0900\n"
+"POT-Creation-Date: 2026-11-12 00:44+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -97,30 +97,6 @@ msgstr "`Ctrl+T`"
 
 msgid "Show or hide the Tables panel"
 msgstr "[표] 패널 보이기·숨기기"
-
-msgid "`Shift+Space` / `Ctrl+\\`"
-msgstr "`Shift+Space` / `Ctrl+\\`"
-
-msgid "UI workspace: maximize the canvas / hide the side columns"
-msgstr "UI 작업 창: 캔버스 최대화 / 양쪽 열 숨기기"
-
-msgid "`Shift+0` / `Shift+1` / `Shift+2` or `F`"
-msgstr "`Shift+0` / `Shift+1` / `Shift+2` 또는 `F`"
-
-msgid "UI workspace: 100% / fit the screen / zoom to the selection"
-msgstr "UI 작업 창: 100% / 화면 맞춤 / 선택에 맞춰 확대"
-
-msgid "Arrows / `Alt`+arrows / `F2`"
-msgstr "방향키 / `Alt`+방향키 / `F2`"
-
-msgid "UI workspace: move the selected node by 1 (`Shift`: 10) / change its order / rename it"
-msgstr "UI 작업 창: 고른 노드를 1씩 옮기기(`Shift`: 10) / 순서 바꾸기 / 이름 바꾸기"
-
-msgid "`Ctrl+Alt+C` / `Ctrl+Alt+V` / hold `Alt`"
-msgstr "`Ctrl+Alt+C` / `Ctrl+Alt+V` / `Alt` 누르고 있기"
-
-msgid "UI workspace: copy / paste a style / distances from the selection to the box under the mouse"
-msgstr "UI 작업 창: 스타일 복사 / 붙여넣기 / 선택한 상자에서 마우스 아래 상자까지 거리"
 
 msgid "Objects"
 msgstr "물체"
