@@ -202,6 +202,33 @@ msgstr "**칠하기**: 레이어를 선택하고 **브러시**를 켠 채 뷰포
 msgid "The copies are saved to `assets/terrain/<scene>_<id>.scatter` when you save the scene. Make one layer per model."
 msgstr "복사본은 씬을 저장할 때 `assets/terrain/<씬>_<id>.scatter`에 저장된다. 모델마다 레이어를 하나씩 만든다."
 
+msgid "Sprites"
+msgstr "스프라이트"
+
+msgid "A sprite is an image placed in the world, the way 2D games draw characters, backgrounds and props. Sprites are only for looks: they don't collide and are not part of the multiplayer content check, so put a solid box under anything players should stand on."
+msgstr "스프라이트는 월드에 놓는 이미지로, 2D 게임이 캐릭터·배경·소품을 그리는 방식이다. 보이기만 한다: 충돌하지 않고 멀티플레이 콘텐츠 검사에도 들어가지 않으므로, 플레이어가 밟아야 하는 곳에는 솔리드 박스를 따로 둔다."
+
+msgid "**Add**: **+ Type... > Sprite**. In a 2D project (`view2d`) it is placed on z = 0. Choose a PNG under `assets` in the **Image** field."
+msgstr "**추가**: **+ 종류... > 스프라이트**. 2D 프로젝트(`view2d`)에서는 z = 0에 놓인다. **이미지** 칸에서 `assets` 아래의 PNG를 고른다."
+
+msgid "**Size**: the object's x and y scale are the width and height in meters. Set **Pixels per meter** instead to size it from the image: a 128 px image at 64 pixels per meter is 2 m wide."
+msgstr "**크기**: 오브젝트의 x, y 크기가 미터 단위 너비와 높이다. 대신 **미터당 픽셀**을 정하면 이미지 크기로 정해진다: 128 px 이미지를 미터당 64픽셀로 두면 너비 2 m."
+
+msgid "**Pivot**: the point of the image that sits at the object's position, from 0 to 1 (0.5, 0.5 is the centre; y 0 puts the feet on the position)."
+msgstr "**기준점**: 이미지에서 오브젝트 위치에 놓이는 점으로, 0부터 1까지다(0.5, 0.5가 가운데, y 0이면 발이 위치에 닿는다)."
+
+msgid "**Sheets**: for an image with several frames in a grid, set **Sheet columns** and **Sheet rows**, then **Cell**, counted from the top left row by row."
+msgstr "**시트**: 여러 프레임이 격자로 든 이미지는 **시트 열**과 **시트 행**을 정하고 **칸**을 고른다. 칸은 왼쪽 위부터 줄마다 센다."
+
+msgid "**Order**: sprites with a higher **Layer** draw over lower ones; within a layer, nearer ones draw over farther ones. Solid objects in front still hide them."
+msgstr "**순서**: **레이어**가 높은 스프라이트가 낮은 것 위에 그려지고, 같은 레이어에서는 가까운 것이 먼 것 위에 그려진다. 앞에 있는 솔리드 오브젝트는 여전히 스프라이트를 가린다."
+
+msgid "**Look**: the object's color tints the image (white shows it as it is). **Flip horizontally/vertically** mirror it, and **Pixel art** shows sharp texels instead of smoothing them. Tone mapping in the scene's post settings changes sprite colors too; turn it off for art that must show its exact colors."
+msgstr "**모양**: 오브젝트 색이 이미지에 곱해진다(흰색이면 그대로). **좌우/상하 뒤집기**로 뒤집고, **픽셀 아트**는 부드럽게 하지 않고 텍셀을 또렷하게 보여 준다. 씬 후처리의 톤 매핑은 스프라이트 색도 바꾸므로, 색이 정확해야 하는 그림이면 끈다."
+
+msgid "If you save a new version of the PNG while the editor is open, the sprite updates."
+msgstr "에디터가 열린 채로 PNG를 새로 저장하면 스프라이트가 바뀐다."
+
 msgid "Panels"
 msgstr "패널"
 

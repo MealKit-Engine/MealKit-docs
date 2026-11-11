@@ -62,6 +62,18 @@ A scatter layer paints thousands of copies of one model, such as grass, rocks or
 - **Paint**: with the layer selected and **Brush** on, drag with the left mouse button in the viewport. Copies land on whatever is below: terrain, boxes or models. Hold Shift (or pick **Erase**) to remove them. Each stroke is one undo step.
 - The copies are saved to `assets/terrain/<scene>_<id>.scatter` when you save the scene. Make one layer per model.
 
+## Sprites
+
+A sprite is an image placed in the world, the way 2D games draw characters, backgrounds and props. Sprites are only for looks: they don't collide and are not part of the multiplayer content check, so put a solid box under anything players should stand on.
+
+- **Add**: **+ Type... > Sprite**. In a 2D project (`view2d`) it is placed on z = 0. Choose a PNG under `assets` in the **Image** field.
+- **Size**: the object's x and y scale are the width and height in meters. Set **Pixels per meter** instead to size it from the image: a 128 px image at 64 pixels per meter is 2 m wide.
+- **Pivot**: the point of the image that sits at the object's position, from 0 to 1 (0.5, 0.5 is the centre; y 0 puts the feet on the position).
+- **Sheets**: for an image with several frames in a grid, set **Sheet columns** and **Sheet rows**, then **Cell**, counted from the top left row by row.
+- **Order**: sprites with a higher **Layer** draw over lower ones; within a layer, nearer ones draw over farther ones. Solid objects in front still hide them.
+- **Look**: the object's color tints the image (white shows it as it is). **Flip horizontally/vertically** mirror it, and **Pixel art** shows sharp texels instead of smoothing them. Tone mapping in the scene's post settings changes sprite colors too; turn it off for art that must show its exact colors.
+- If you save a new version of the PNG while the editor is open, the sprite updates.
+
 ## Panels
 
 - **Layout**: the hierarchy is on the left, the inspector on the right, and **Debug** and assets share a strip under the viewport. **Window > Layout** picks Edit, Play or Look Dev and resets the layout.
