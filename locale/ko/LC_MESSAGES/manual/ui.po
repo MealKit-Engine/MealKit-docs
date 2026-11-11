@@ -361,6 +361,12 @@ msgstr "`visible [!]field`, `disabled field`, `widthRatio field`, `colorField fi
 msgid "Show or hide, disable a widget, scale the width by 0 to 1 (health bars), take the color from a field"
 msgstr "보이기·숨기기, 위젯 비활성, 너비를 0~1배로(체력 막대), 필드의 색 쓰기"
 
+msgid "`src {field}`"
+msgstr "`src {field}`"
+
+msgid "On an image: the PNG path comes from a string field (portraits, card art that change at runtime); an empty string draws nothing"
+msgstr "이미지에서: PNG 경로를 문자열 필드에서 가져온다(실행 중에 바뀌는 초상, 카드 그림). 빈 문자열이면 아무것도 그리지 않는다"
+
 msgid "`button <action>`"
 msgstr "`button <action>`"
 
