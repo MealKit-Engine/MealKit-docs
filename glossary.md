@@ -72,7 +72,7 @@ Shadow simulation
 : A second copy of the world run in the same process to check that the simulation reads no hidden global state.
 
 Sound event
-: A named sound in `assets/sounds.events`, edited in MealKit Audio (files, volume, pitch, 3D distance, bus, voice limits). Game code plays events by name, never files.
+: A named sound in `assets/sounds.events`, edited in MkAudio (files, volume, pitch, 3D distance, bus, voice limits). Game code plays events by name, never files.
 
 SimCheck
 : The build-time checker for the determinism rules of the `sim/` folder.

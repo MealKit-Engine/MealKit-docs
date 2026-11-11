@@ -122,8 +122,8 @@ msgid "`audio-events`"
 msgstr "`audio-events`"
 
 #, python-brace-format
-msgid "`assets/sounds.events` (defined by the audio runtime, edited in MealKit Audio, {doc}`../manual/sound`)"
-msgstr "`assets/sounds.events` (오디오 런타임이 정하고 MealKit Audio가 고친다, {doc}`../manual/sound`)"
+msgid "`assets/sounds.events` (defined by the audio runtime, edited in MkAudio, {doc}`../manual/sound`)"
+msgstr "`assets/sounds.events` (오디오 런타임이 정하고 MkAudio가 고친다, {doc}`../manual/sound`)"
 
 msgid "Rules for readers and writers:"
 msgstr "읽는 쪽과 쓰는 쪽의 규칙:"
@@ -281,13 +281,13 @@ msgstr "에디터는 `--tool-path`로 준 폴더, `%LOCALAPPDATA%\\MealKit\\tool
 msgid "Shared code"
 msgstr "공유 코드"
 
-msgid "The contract has one implementation, the C++ library `mkcontract` in [MealKit Contract](https://github.com/MealKit-Engine/MealKit-Contract) (MIT, no engine headers). The engine editor, MealKit Manager and MealKit Audio all use it, and a C++ tool can too: it reads and writes format lines, the per-user `MealKit` folder (recent and favorite projects, editor settings), tool manifests, live connection info files, and has a small live connection client. Its `docs/CONTRACT.md` is the full spec, including the parts this page leaves out (the per-user folder, the module list that `tools\\module.ps1 search -Tsv` prints). A tool in another language follows that spec."
-msgstr "이 약속의 구현은 하나뿐이다. [MealKit Contract](https://github.com/MealKit-Engine/MealKit-Contract)의 C++ 라이브러리 `mkcontract`(MIT, 엔진 헤더 없음)다. 엔진 에디터, MealKit Manager, MealKit Audio가 모두 이것을 쓰고, C++ 도구도 쓸 수 있다: 형식 줄, 사용자별 `MealKit` 폴더(최근·즐겨찾기 프로젝트, 에디터 설정), 도구 매니페스트, 라이브 연결 정보 파일을 읽고 쓰며, 작은 라이브 연결 클라이언트가 있다. 전체 명세는 그 저장소의 `docs/CONTRACT.md`이고, 이 페이지가 빼놓은 부분(사용자별 폴더, `tools\\module.ps1 search -Tsv`가 출력하는 모듈 목록)도 담고 있다. 다른 언어로 만든 도구는 그 명세를 따른다."
+msgid "The contract has one implementation, the C++ library `mkcontract` in [MealKit Contract](https://github.com/MealKit-Engine/MealKit-Contract) (MIT, no engine headers). The engine editor, MealKit Manager and MkAudio all use it, and a C++ tool can too: it reads and writes format lines, the per-user `MealKit` folder (recent and favorite projects, editor settings), tool manifests, live connection info files, and has a small live connection client. Its `docs/CONTRACT.md` is the full spec, including the parts this page leaves out (the per-user folder, the module list that `tools\\module.ps1 search -Tsv` prints). A tool in another language follows that spec."
+msgstr "이 약속의 구현은 하나뿐이다. [MealKit Contract](https://github.com/MealKit-Engine/MealKit-Contract)의 C++ 라이브러리 `mkcontract`(MIT, 엔진 헤더 없음)다. 엔진 에디터, MealKit Manager, MkAudio가 모두 이것을 쓰고, C++ 도구도 쓸 수 있다: 형식 줄, 사용자별 `MealKit` 폴더(최근·즐겨찾기 프로젝트, 에디터 설정), 도구 매니페스트, 라이브 연결 정보 파일을 읽고 쓰며, 작은 라이브 연결 클라이언트가 있다. 전체 명세는 그 저장소의 `docs/CONTRACT.md`이고, 이 페이지가 빼놓은 부분(사용자별 폴더, `tools\\module.ps1 search -Tsv`가 출력하는 모듈 목록)도 담고 있다. 다른 언어로 만든 도구는 그 명세를 따른다."
 
 msgid "Runtime parts"
 msgstr "런타임 조각"
 
 #, python-brace-format
-msgid "A tool can have a part that runs inside the game (the audio tool's mixer, [MealKit Audio](https://github.com/MealKit-Engine/MealKit-Audio)). That part does not include engine headers, and the engine takes it like any external library: a fixed version in `third_party/<lib>/` with its license, inside the release exe budget ({engine}`docs/CODING_MODEL.md` \"Placing external libraries\"). `tools\\check_libs.ps1` checks that it uses no engine header or macro. While both change, the engine builds the part from a local checkout (`-DMEALKIT_MKAUDIO_DIR` for the audio runtime)."
-msgstr "도구에는 게임 안에서 도는 조각이 있을 수 있다(오디오 도구의 믹서, [MealKit Audio](https://github.com/MealKit-Engine/MealKit-Audio)). 그 조각은 엔진 헤더를 include하지 않고, 엔진은 다른 외부 라이브러리처럼 가져온다: `third_party/<lib>/`에 버전을 고정하고 라이선스를 같이 넣고, 출시 exe 예산 안에서({engine}`docs/CODING_MODEL.md` \"외부 라이브러리 두기\"). 엔진 헤더·매크로를 쓰지 않는지는 `tools\\check_libs.ps1`이 본다. 둘을 같이 고치는 동안에는 엔진이 로컬 체크아웃에서 그 조각을 빌드한다(오디오 런타임은 `-DMEALKIT_MKAUDIO_DIR`)."
+msgid "A tool can have a part that runs inside the game (the audio tool's mixer, [MkAudio](https://github.com/MealKit-Engine/MkAudio)). That part does not include engine headers, and the engine takes it like any external library: a fixed version in `third_party/<lib>/` with its license, inside the release exe budget ({engine}`docs/CODING_MODEL.md` \"Placing external libraries\"). `tools\\check_libs.ps1` checks that it uses no engine header or macro. While both change, the engine builds the part from a local checkout (`-DMEALKIT_MKAUDIO_DIR` for the audio runtime)."
+msgstr "도구에는 게임 안에서 도는 조각이 있을 수 있다(오디오 도구의 믹서, [MkAudio](https://github.com/MealKit-Engine/MkAudio)). 그 조각은 엔진 헤더를 include하지 않고, 엔진은 다른 외부 라이브러리처럼 가져온다: `third_party/<lib>/`에 버전을 고정하고 라이선스를 같이 넣고, 출시 exe 예산 안에서({engine}`docs/CODING_MODEL.md` \"외부 라이브러리 두기\"). 엔진 헤더·매크로를 쓰지 않는지는 `tools\\check_libs.ps1`이 본다. 둘을 같이 고치는 동안에는 엔진이 로컬 체크아웃에서 그 조각을 빌드한다(오디오 런타임은 `-DMEALKIT_MKAUDIO_DIR`)."
 

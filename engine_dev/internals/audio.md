@@ -10,7 +10,7 @@ Sound is view side only: the simulation leaves tick events, and the view plays s
 
 Sound has two layers, so the runtime lives in its own repository, shared with the MealKit audio tool ({engine}`docs/DECISIONS.md` 2026-10-26):
 
-- **The runtime** `mkaudio::Mixer` from [MealKit Audio](https://github.com/MealKit-Engine/MealKit-Audio), vendored at a fixed version in {engine}`third_party/mkaudio`, does the mixing, buses, voices, containers, curves and subtitles described on this page. It is a library outside the engine: it includes no MealKit header and uses only miniaudio, stb_vorbis and the standard library. `tools\check_libs.ps1` fails the check if it uses an engine header or macro. Events come in as plain `mkaudio::EventDef` values through `setEvents`, clips as file paths, and log lines through a callback.
+- **The runtime** `mkaudio::Mixer` from [MkAudio](https://github.com/MealKit-Engine/MkAudio), vendored at a fixed version in {engine}`third_party/mkaudio`, does the mixing, buses, voices, containers, curves and subtitles described on this page. It is a library outside the engine: it includes no MealKit header and uses only miniaudio, stb_vorbis and the standard library. `tools\check_libs.ps1` fails the check if it uses an engine header or macro. Events come in as plain `mkaudio::EventDef` values through `setEvents`, clips as file paths, and log lines through a callback.
 - **The glue** `audio::Engine` in {engine}`engine/src/mealkit/audio` keeps the game API. It reads `assets/sounds.events` with the runtime's `mkaudio::loadEventFile`, finds clip files with `findAsset`, writes the runtime's log lines to the engine log and adds the profiler zone. `Handle`, `Param` and the panel types are aliases of the runtime's types.
 
 ## miniaudio
@@ -27,7 +27,7 @@ When there is no output device, `init` returns `false`, every later call does no
 
 ### Live service
 
-`audio::addLiveService` adds the service `audio/` to the live connection of development game builds and the editor ({doc}`live`), for MealKit Audio:
+`audio::addLiveService` adds the service `audio/` to the live connection of development game builds and the editor ({doc}`live`), for MkAudio:
 
 | Request | What it does |
 |---|---|
@@ -39,14 +39,14 @@ The service asks for the audio engine on each request, so it answers 503 when th
 
 ### Changing the runtime
 
-Work on the runtime happens in a MealKit-Audio checkout, which has its own tests (mixing without a device, `Desc::noDevice` and `render`) and CI. To try a change in the engine before it is released, configure the engine with `-DMEALKIT_MKAUDIO_DIR=<checkout>`; CMake then builds the runtime from the checkout instead of `third_party/mkaudio`. When the change is tagged in MealKit-Audio, `tools\update_mkaudio.ps1 -From <checkout> -Ref <tag>` copies that tag into `third_party/mkaudio` (only `CMakeLists.txt`, `include/`, `src/` and the license, with the version in `mealkit.txt`) and rebuilds the notices.
+Work on the runtime happens in a MkAudio checkout, which has its own tests (mixing without a device, `Desc::noDevice` and `render`) and CI. To try a change in the engine before it is released, configure the engine with `-DMEALKIT_MKAUDIO_DIR=<checkout>`; CMake then builds the runtime from the checkout instead of `third_party/mkaudio`. When the change is tagged in MkAudio, `tools\update_mkaudio.ps1 -From <checkout> -Ref <tag>` copies that tag into `third_party/mkaudio` (only `CMakeLists.txt`, `include/`, `src/` and the license, with the version in `mealkit.txt`) and rebuilds the notices.
 
 ## Sound events
 
 A game plays an event name, never a file: `ctx.audio.play("hit", position, {{"speed", 6.0f}})`.
 Events are `event` blocks of `assets/sounds.events`, read by the runtime's `mkaudio::parseEvents` ({engine}`third_party/mkaudio/include/mkaudio/Events.h`) into `mkaudio::EventDef`: clips, container, a parameter and its curve, random volume and pitch, distances, bus, loop, stream, priority, instance limit, steal rule, cooldown and subtitle. `mixbus` blocks become `BusDef` values (parent and mix volume) for `Mixer::setBuses`.
 
-- The file is view-only, outside the content hash. Every 0.25 seconds `update` checks its write time and reads it again when it changed, so an edit is heard during play. MealKit Audio also asks for a reload at once after saving (below).
+- The file is view-only, outside the content hash. Every 0.25 seconds `update` checks its write time and reads it again when it changed, so an edit is heard during play. MkAudio also asks for a reload at once after saving (below).
 - If the project still has the old `assets/sounds.table`, the glue turns its `row` lines into `event` lines (the keys are the same), reads it and warns; `tools\upgrade_project.ps1` converts the file.
 - On reload, each event keeps its last play time (for the cooldown) and its last clip. Playing sounds find their event again by name; a sound whose event was removed stops.
 - Clips that are not streamed are decoded into memory when the events are read (`MA_SOUND_FLAG_DECODE`). Playing one makes a copy of the decoded sound (`ma_sound_init_copy`), so no disk read happens during play. Streamed clips are opened from the file each time they start.

@@ -35,8 +35,8 @@ msgid "Sound has two layers, so the runtime lives in its own repository, shared 
 msgstr "소리는 두 층이다. 그래서 런타임은 MealKit 오디오 도구와 같이 쓰는 자기 저장소에 있다({engine}`docs/DECISIONS.md` 2026-10-26):"
 
 #, python-brace-format
-msgid "**The runtime** `mkaudio::Mixer` from [MealKit Audio](https://github.com/MealKit-Engine/MealKit-Audio), vendored at a fixed version in {engine}`third_party/mkaudio`, does the mixing, buses, voices, containers, curves and subtitles described on this page. It is a library outside the engine: it includes no MealKit header and uses only miniaudio, stb_vorbis and the standard library. `tools\\check_libs.ps1` fails the check if it uses an engine header or macro. Events come in as plain `mkaudio::EventDef` values through `setEvents`, clips as file paths, and log lines through a callback."
-msgstr "**런타임** [MealKit Audio](https://github.com/MealKit-Engine/MealKit-Audio)의 `mkaudio::Mixer`(버전을 고정해 {engine}`third_party/mkaudio`에 넣었다)가 이 페이지에서 설명하는 섞기·버스·목소리·컨테이너·곡선·자막을 한다. 엔진 밖 라이브러리다: MealKit 헤더를 include하지 않고 miniaudio·stb_vorbis·표준 라이브러리만 쓴다. 엔진 헤더나 매크로를 쓰면 `tools\\check_libs.ps1`이 검사를 실패시킨다. 이벤트는 `setEvents`로 일반 값 `mkaudio::EventDef`로 받고, 클립은 파일 경로로, 로그 줄은 콜백으로 보낸다."
+msgid "**The runtime** `mkaudio::Mixer` from [MkAudio](https://github.com/MealKit-Engine/MkAudio), vendored at a fixed version in {engine}`third_party/mkaudio`, does the mixing, buses, voices, containers, curves and subtitles described on this page. It is a library outside the engine: it includes no MealKit header and uses only miniaudio, stb_vorbis and the standard library. `tools\\check_libs.ps1` fails the check if it uses an engine header or macro. Events come in as plain `mkaudio::EventDef` values through `setEvents`, clips as file paths, and log lines through a callback."
+msgstr "**런타임** [MkAudio](https://github.com/MealKit-Engine/MkAudio)의 `mkaudio::Mixer`(버전을 고정해 {engine}`third_party/mkaudio`에 넣었다)가 이 페이지에서 설명하는 섞기·버스·목소리·컨테이너·곡선·자막을 한다. 엔진 밖 라이브러리다: MealKit 헤더를 include하지 않고 miniaudio·stb_vorbis·표준 라이브러리만 쓴다. 엔진 헤더나 매크로를 쓰면 `tools\\check_libs.ps1`이 검사를 실패시킨다. 이벤트는 `setEvents`로 일반 값 `mkaudio::EventDef`로 받고, 클립은 파일 경로로, 로그 줄은 콜백으로 보낸다."
 
 #, python-brace-format
 msgid "**The glue** `audio::Engine` in {engine}`engine/src/mealkit/audio` keeps the game API. It reads `assets/sounds.events` with the runtime's `mkaudio::loadEventFile`, finds clip files with `findAsset`, writes the runtime's log lines to the engine log and adds the profiler zone. `Handle`, `Param` and the panel types are aliases of the runtime's types."
@@ -67,8 +67,8 @@ msgid "Live service"
 msgstr "라이브 서비스"
 
 #, python-brace-format
-msgid "`audio::addLiveService` adds the service `audio/` to the live connection of development game builds and the editor ({doc}`live`), for MealKit Audio:"
-msgstr "`audio::addLiveService`는 MealKit Audio를 위해 게임 개발 빌드와 에디터의 라이브 연결에 서비스 `audio/`를 더한다({doc}`live`):"
+msgid "`audio::addLiveService` adds the service `audio/` to the live connection of development game builds and the editor ({doc}`live`), for MkAudio:"
+msgstr "`audio::addLiveService`는 MkAudio를 위해 게임 개발 빌드와 에디터의 라이브 연결에 서비스 `audio/`를 더한다({doc}`live`):"
 
 msgid "Request"
 msgstr "요청"
@@ -100,8 +100,8 @@ msgstr "서비스는 요청마다 오디오 엔진을 찾으므로, 없으면(�
 msgid "Changing the runtime"
 msgstr "런타임 고치기"
 
-msgid "Work on the runtime happens in a MealKit-Audio checkout, which has its own tests (mixing without a device, `Desc::noDevice` and `render`) and CI. To try a change in the engine before it is released, configure the engine with `-DMEALKIT_MKAUDIO_DIR=<checkout>`; CMake then builds the runtime from the checkout instead of `third_party/mkaudio`. When the change is tagged in MealKit-Audio, `tools\\update_mkaudio.ps1 -From <checkout> -Ref <tag>` copies that tag into `third_party/mkaudio` (only `CMakeLists.txt`, `include/`, `src/` and the license, with the version in `mealkit.txt`) and rebuilds the notices."
-msgstr "런타임은 MealKit-Audio 체크아웃에서 고친다. 그 저장소에는 자기 시험(장치 없이 섞기, `Desc::noDevice`와 `render`)과 CI가 있다. 출시 전에 엔진에서 써 보려면 엔진을 `-DMEALKIT_MKAUDIO_DIR=<체크아웃>`으로 구성한다. 그러면 CMake가 `third_party/mkaudio` 대신 체크아웃에서 런타임을 빌드한다. MealKit-Audio에 태그를 달면 `tools\\update_mkaudio.ps1 -From <체크아웃> -Ref <태그>`가 그 태그를 `third_party/mkaudio`에 복사하고(`CMakeLists.txt`, `include/`, `src/`, 라이선스만, `mealkit.txt`의 버전도) 고지문을 다시 만든다."
+msgid "Work on the runtime happens in a MkAudio checkout, which has its own tests (mixing without a device, `Desc::noDevice` and `render`) and CI. To try a change in the engine before it is released, configure the engine with `-DMEALKIT_MKAUDIO_DIR=<checkout>`; CMake then builds the runtime from the checkout instead of `third_party/mkaudio`. When the change is tagged in MkAudio, `tools\\update_mkaudio.ps1 -From <checkout> -Ref <tag>` copies that tag into `third_party/mkaudio` (only `CMakeLists.txt`, `include/`, `src/` and the license, with the version in `mealkit.txt`) and rebuilds the notices."
+msgstr "런타임은 MkAudio 체크아웃에서 고친다. 그 저장소에는 자기 시험(장치 없이 섞기, `Desc::noDevice`와 `render`)과 CI가 있다. 출시 전에 엔진에서 써 보려면 엔진을 `-DMEALKIT_MKAUDIO_DIR=<체크아웃>`으로 구성한다. 그러면 CMake가 `third_party/mkaudio` 대신 체크아웃에서 런타임을 빌드한다. MkAudio에 태그를 달면 `tools\\update_mkaudio.ps1 -From <체크아웃> -Ref <태그>`가 그 태그를 `third_party/mkaudio`에 복사하고(`CMakeLists.txt`, `include/`, `src/`, 라이선스만, `mealkit.txt`의 버전도) 고지문을 다시 만든다."
 
 msgid "Sound events"
 msgstr "소리 이벤트"
@@ -110,8 +110,8 @@ msgstr "소리 이벤트"
 msgid "A game plays an event name, never a file: `ctx.audio.play(\"hit\", position, {{\"speed\", 6.0f}})`. Events are `event` blocks of `assets/sounds.events`, read by the runtime's `mkaudio::parseEvents` ({engine}`third_party/mkaudio/include/mkaudio/Events.h`) into `mkaudio::EventDef`: clips, container, a parameter and its curve, random volume and pitch, distances, bus, loop, stream, priority, instance limit, steal rule, cooldown and subtitle. `mixbus` blocks become `BusDef` values (parent and mix volume) for `Mixer::setBuses`."
 msgstr "게임은 파일이 아니라 이벤트 이름을 재생한다: `ctx.audio.play(\"hit\", position, {{\"speed\", 6.0f}})`. 이벤트는 `assets/sounds.events`의 `event` 블록이고, 런타임의 `mkaudio::parseEvents`({engine}`third_party/mkaudio/include/mkaudio/Events.h`)가 `mkaudio::EventDef`로 읽는다: 클립, 컨테이너, 파라미터와 곡선, 무작위 볼륨·피치, 거리, 버스, 루프, 스트림, 우선순위, 동시 재생 상한, 끊을 것, 쿨다운, 자막. `mixbus` 블록은 `Mixer::setBuses`에 넘기는 `BusDef`(부모, 믹스 볼륨)가 된다."
 
-msgid "The file is view-only, outside the content hash. Every 0.25 seconds `update` checks its write time and reads it again when it changed, so an edit is heard during play. MealKit Audio also asks for a reload at once after saving (below)."
-msgstr "파일은 화면 전용이라 콘텐츠 해시 밖이다. `update`가 0.25초마다 파일 시각을 보고 바뀌면 다시 읽으므로, 플레이 중에 고쳐도 바로 들린다. MealKit Audio는 저장한 뒤 바로 다시 읽으라고도 알린다(아래)."
+msgid "The file is view-only, outside the content hash. Every 0.25 seconds `update` checks its write time and reads it again when it changed, so an edit is heard during play. MkAudio also asks for a reload at once after saving (below)."
+msgstr "파일은 화면 전용이라 콘텐츠 해시 밖이다. `update`가 0.25초마다 파일 시각을 보고 바뀌면 다시 읽으므로, 플레이 중에 고쳐도 바로 들린다. MkAudio는 저장한 뒤 바로 다시 읽으라고도 알린다(아래)."
 
 msgid "If the project still has the old `assets/sounds.table`, the glue turns its `row` lines into `event` lines (the keys are the same), reads it and warns; `tools\\upgrade_project.ps1` converts the file."
 msgstr "프로젝트에 아직 예전 `assets/sounds.table`이 있으면 접착층이 `row` 줄을 `event` 줄로 바꿔(키는 같다) 읽고 경고한다. 파일은 `tools\\upgrade_project.ps1`이 옮긴다."

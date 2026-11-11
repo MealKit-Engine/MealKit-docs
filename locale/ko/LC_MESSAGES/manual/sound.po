@@ -28,11 +28,11 @@ msgstr "소리와 \"타격감\"(카메라 흔들림, 화면 번쩍임, 화면 �
 msgid "Sound events"
 msgstr "소리 이벤트"
 
-msgid "Game code plays a **sound event** by name, never a file: `ctx.audio.play(\"hit\", position, {{\"speed\", 9.0f}})`, or `ctx.audio.play2D(\"click\")` for sounds with no position. Events live in `assets/sounds.events`. Sound designers edit it in **MealKit Audio**, the audio tool of the MealKit family (below); it is also plain text that can be edited by hand:"
-msgstr "게임 코드는 파일이 아니라 **소리 이벤트** 이름으로 재생한다: `ctx.audio.play(\"hit\", position, {{\"speed\", 9.0f}})`, 위치가 없는 소리는 `ctx.audio.play2D(\"click\")`. 이벤트는 `assets/sounds.events`에 있다. 사운드 디자이너는 MealKit 제품군의 오디오 도구 **MealKit Audio**(아래)로 고치고, 손으로 고칠 수 있는 일반 텍스트이기도 하다:"
+msgid "Game code plays a **sound event** by name, never a file: `ctx.audio.play(\"hit\", position, {{\"speed\", 9.0f}})`, or `ctx.audio.play2D(\"click\")` for sounds with no position. Events live in `assets/sounds.events`. Sound designers edit it in **MkAudio**, the audio tool of the MealKit family (below); it is also plain text that can be edited by hand:"
+msgstr "게임 코드는 파일이 아니라 **소리 이벤트** 이름으로 재생한다: `ctx.audio.play(\"hit\", position, {{\"speed\", 9.0f}})`, 위치가 없는 소리는 `ctx.audio.play2D(\"click\")`. 이벤트는 `assets/sounds.events`에 있다. 사운드 디자이너는 MealKit 제품군의 오디오 도구 **MkAudio**(아래)로 고치고, 손으로 고칠 수 있는 일반 텍스트이기도 하다:"
 
 msgid ""
-"# MealKit audio events. Edit them in MealKit Audio or by hand\n"
+"# MealKit audio events. Edit them in MkAudio or by hand\n"
 "@format audio-events 2\n"
 "\n"
 "mixbus ambience\n"
@@ -50,7 +50,7 @@ msgid ""
 "paramMax 15\n"
 "volumeAtMin 0.2\n"
 msgstr ""
-"# MealKit audio events. Edit them in MealKit Audio or by hand\n"
+"# MealKit audio events. Edit them in MkAudio or by hand\n"
 "@format audio-events 2\n"
 "\n"
 "mixbus ambience\n"
@@ -140,12 +140,12 @@ msgstr "소리가 날 때 화면 아래에 보일 게임 문자열 키(플레이
 msgid "A `mixbus` block sets a bus's `parent` (default `master`) and its mix `volume`, which is multiplied by the player's volume setting for that bus. `reverb true` gives the bus reverb from reverb zones (below). `duckBy <bus>` lowers this bus while anything plays on the other bus or its children: down to `duckVolume`, in `duckAttack` seconds, and back in `duckRelease` seconds. Voice lines over music is the usual case. The file is reloaded when it changes, also during play. The engine moves the listener with the camera. Files written in format 1 (engine 0.7.12 and older) read as they are. Projects made with engine 0.5.1 or older have `assets/sounds.table` instead; the engine still reads it with a warning, and `tools\\upgrade_project.ps1` converts it to `sounds.events`."
 msgstr "`mixbus` 블록은 버스의 `parent`(기본 `master`)와 믹스 `volume`을 정하고, 믹스 볼륨은 그 버스의 플레이어 볼륨 설정과 곱해진다. `reverb true`는 그 버스에 잔향 영역(아래)의 잔향을 준다. `duckBy <버스>`는 다른 버스나 그 자식에서 무엇이든 재생되는 동안 이 버스를 낮춘다: `duckAttack`초 동안 `duckVolume`까지 내려가고, `duckRelease`초 동안 돌아온다. 음악 위의 대사가 흔한 경우다. 파일이 바뀌면 플레이 중에도 다시 읽는다. 리스너는 엔진이 카메라와 같이 옮긴다. 형식 1(엔진 0.7.12 이하)로 쓴 파일도 그대로 읽는다. 엔진 0.5.1 이하로 만든 프로젝트에는 대신 `assets/sounds.table`이 있다. 엔진은 경고와 함께 계속 읽고, `tools\\upgrade_project.ps1`이 `sounds.events`로 옮긴다."
 
-msgid "MealKit Audio"
-msgstr "MealKit Audio"
+msgid "MkAudio"
+msgstr "MkAudio"
 
 #, python-brace-format
-msgid "MealKit Audio is a separate program for sound designers ([MealKit-Audio](https://github.com/MealKit-Engine/MealKit-Audio), free, MIT). Open it from the editor's **Tools** menu once it is installed ({doc}`tools`), or start it with `MealKitAudio --project <project folder>`."
-msgstr "MealKit Audio는 사운드 디자이너용 별도 프로그램이다([MealKit-Audio](https://github.com/MealKit-Engine/MealKit-Audio), 무료, MIT). 설치하면 에디터 **도구** 메뉴에서 열거나({doc}`tools`) `MealKitAudio --project <프로젝트 폴더>`로 실행한다."
+msgid "MkAudio is a separate program for sound designers ([MkAudio](https://github.com/MealKit-Engine/MkAudio), free, MIT). Open it from the editor's **Tools** menu once it is installed ({doc}`tools`), or start it with `MkAudio --project <project folder>`."
+msgstr "MkAudio는 사운드 디자이너용 별도 프로그램이다([MkAudio](https://github.com/MealKit-Engine/MkAudio), 무료, MIT). 설치하면 에디터 **도구** 메뉴에서 열거나({doc}`tools`) `MkAudio --project <프로젝트 폴더>`로 실행한다."
 
 msgid "**Events**: the list of events, with add, duplicate and delete. Events with a missing clip are red. Double-click an event to play it."
 msgstr "**Events**: 이벤트 목록과 추가·복제·지우기. 클립이 없는 이벤트는 빨갛다. 두 번 누르면 재생한다."
@@ -171,8 +171,8 @@ msgstr "**Live**: 이 프로젝트의 실행 중인 게임 개발 빌드와 에�
 msgid "Ctrl+S saves `assets/sounds.events`; a running game or editor reloads it at once. Ctrl+Z and Ctrl+Y undo and redo."
 msgstr "Ctrl+S로 `assets/sounds.events`를 저장하면 실행 중인 게임·에디터가 바로 다시 읽는다. Ctrl+Z·Ctrl+Y는 되돌리기·다시 하기."
 
-msgid "To notice when a sound changes by accident, run the golden render tests: `MealKitAudio --golden --project <project folder>` plays every event alone without a sound device and compares how loud it is over time with `tests/audio/<event>.golden`. The first run writes the files; commit them. Later runs print `GOLDEN ok` or `GOLDEN FAIL <event>` with the time and level that differ (within 1.5 dB counts as the same). After an intended change, `--update` rewrites the files."
-msgstr "소리가 실수로 바뀐 것을 알아채려면 골든 렌더 테스트를 실행하세요. `MealKitAudio --golden --project <project folder>`는 사운드 장치 없이 이벤트를 하나씩 재생하고, 시간에 따른 크기를 `tests/audio/<event>.golden`과 비교합니다. 처음 실행하면 파일을 쓰니 커밋하세요. 이후 실행은 `GOLDEN ok`, 또는 달라진 시간과 레벨을 담은 `GOLDEN FAIL <event>`를 출력합니다(1.5 dB 안이면 같다고 봅니다). 일부러 바꿨다면 `--update`로 파일을 다시 씁니다."
+msgid "To notice when a sound changes by accident, run the golden render tests: `MkAudio --golden --project <project folder>` plays every event alone without a sound device and compares how loud it is over time with `tests/audio/<event>.golden`. The first run writes the files; commit them. Later runs print `GOLDEN ok` or `GOLDEN FAIL <event>` with the time and level that differ (within 1.5 dB counts as the same). After an intended change, `--update` rewrites the files."
+msgstr "소리가 실수로 바뀐 것을 알아채려면 골든 렌더 테스트를 실행하세요. `MkAudio --golden --project <project folder>`는 사운드 장치 없이 이벤트를 하나씩 재생하고, 시간에 따른 크기를 `tests/audio/<event>.golden`과 비교합니다. 처음 실행하면 파일을 쓰니 커밋하세요. 이후 실행은 `GOLDEN ok`, 또는 달라진 시간과 레벨을 담은 `GOLDEN FAIL <event>`를 출력합니다(1.5 dB 안이면 같다고 봅니다). 일부러 바꿨다면 `--update`로 파일을 다시 씁니다."
 
 msgid "Music"
 msgstr "음악"
@@ -259,8 +259,8 @@ msgstr "엔진은 한 번에 최대 `audioVoices`개(프로젝트 설정, 기본
 msgid "Sounds panel"
 msgstr "[소리] 패널"
 
-msgid "Window > Data, Sounds page, and Window > Debug, Sounds page, in the MealKit editor shows the output buses with level meters and volume, the playing voices (mixed or virtual, audibility, distance), the most recently culled plays and why (cooldown, voice limit, missing clip ...), and a preview of the selected event. Events are edited in MealKit Audio."
-msgstr "MealKit 에디터의 창 > 소리는 출력 버스의 레벨 미터와 볼륨, 재생 중인 목소리(섞는 중·가상, 들리는 크기, 거리), 최근에 끊긴 재생과 이유(쿨다운, 목소리 상한, 없는 클립 등), 고른 이벤트의 미리 듣기를 보여 준다. 이벤트는 MealKit Audio에서 고친다."
+msgid "Window > Data, Sounds page, and Window > Debug, Sounds page, in the MealKit editor shows the output buses with level meters and volume, the playing voices (mixed or virtual, audibility, distance), the most recently culled plays and why (cooldown, voice limit, missing clip ...), and a preview of the selected event. Events are edited in MkAudio."
+msgstr "MealKit 에디터의 창 > 소리는 출력 버스의 레벨 미터와 볼륨, 재생 중인 목소리(섞는 중·가상, 들리는 크기, 거리), 최근에 끊긴 재생과 이유(쿨다운, 목소리 상한, 없는 클립 등), 고른 이벤트의 미리 듣기를 보여 준다. 이벤트는 MkAudio에서 고친다."
 
 msgid "Feedback table"
 msgstr "연출 표 (Feedback table)"

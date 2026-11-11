@@ -5,10 +5,10 @@ Sound and "game feel" (camera shake, screen flash, hit stop) are data. Sound des
 ## Sound events
 
 Game code plays a **sound event** by name, never a file: `ctx.audio.play("hit", position, {{"speed", 9.0f}})`, or `ctx.audio.play2D("click")` for sounds with no position.
-Events live in `assets/sounds.events`. Sound designers edit it in **MealKit Audio**, the audio tool of the MealKit family (below); it is also plain text that can be edited by hand:
+Events live in `assets/sounds.events`. Sound designers edit it in **MkAudio**, the audio tool of the MealKit family (below); it is also plain text that can be edited by hand:
 
 ```text
-# MealKit audio events. Edit them in MealKit Audio or by hand
+# MealKit audio events. Edit them in MkAudio or by hand
 @format audio-events 2
 
 mixbus ambience
@@ -48,9 +48,9 @@ The file is reloaded when it changes, also during play. The engine moves the lis
 Files written in format 1 (engine 0.7.12 and older) read as they are.
 Projects made with engine 0.5.1 or older have `assets/sounds.table` instead; the engine still reads it with a warning, and `tools\upgrade_project.ps1` converts it to `sounds.events`.
 
-### MealKit Audio
+### MkAudio
 
-MealKit Audio is a separate program for sound designers ([MealKit-Audio](https://github.com/MealKit-Engine/MealKit-Audio), free, MIT). Open it from the editor's **Tools** menu once it is installed ({doc}`tools`), or start it with `MealKitAudio --project <project folder>`.
+MkAudio is a separate program for sound designers ([MkAudio](https://github.com/MealKit-Engine/MkAudio), free, MIT). Open it from the editor's **Tools** menu once it is installed ({doc}`tools`), or start it with `MkAudio --project <project folder>`.
 
 - **Events**: the list of events, with add, duplicate and delete. Events with a missing clip are red. Double-click an event to play it.
 - **Event**: every setting of the selected event. Clips are picked from the `.wav` and `.ogg` files under `assets/`. The volume, pitch and low-pass curves are drawn over the parameter range; drag their end points. The 3D section draws the distance fade.
@@ -62,7 +62,7 @@ MealKit Audio is a separate program for sound designers ([MealKit-Audio](https:/
 
 Ctrl+S saves `assets/sounds.events`; a running game or editor reloads it at once. Ctrl+Z and Ctrl+Y undo and redo.
 
-To notice when a sound changes by accident, run the golden render tests: `MealKitAudio --golden --project <project folder>` plays every event alone without a sound device and compares how loud it is over time with `tests/audio/<event>.golden`. The first run writes the files; commit them. Later runs print `GOLDEN ok` or `GOLDEN FAIL <event>` with the time and level that differ (within 1.5 dB counts as the same). After an intended change, `--update` rewrites the files.
+To notice when a sound changes by accident, run the golden render tests: `MkAudio --golden --project <project folder>` plays every event alone without a sound device and compares how loud it is over time with `tests/audio/<event>.golden`. The first run writes the files; commit them. Later runs print `GOLDEN ok` or `GOLDEN FAIL <event>` with the time and level that differ (within 1.5 dB counts as the same). After an intended change, `--update` rewrites the files.
 
 ### Music
 
@@ -112,7 +112,7 @@ Physics impact sounds come from `PhysicsWorld::setContactEvents`; the contacts c
 
 ### Sounds panel
 
-Window > Data, Sounds page, and Window > Debug, Sounds page, in the MealKit editor shows the output buses with level meters and volume, the playing voices (mixed or virtual, audibility, distance), the most recently culled plays and why (cooldown, voice limit, missing clip ...), and a preview of the selected event. Events are edited in MealKit Audio.
+Window > Data, Sounds page, and Window > Debug, Sounds page, in the MealKit editor shows the output buses with level meters and volume, the playing voices (mixed or virtual, audibility, distance), the most recently culled plays and why (cooldown, voice limit, missing clip ...), and a preview of the selected event. Events are edited in MkAudio.
 
 ## Feedback table
 

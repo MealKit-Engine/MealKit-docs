@@ -39,4 +39,4 @@ shakeSeconds 0.2
 shakeRange 14
 ```
 
-`sound push` is an event in `assets/sounds.events` (made in MealKit Audio) and `effect spark` is `assets/effects/spark.fx`. The game's `GameSession` already passes every tick event to the table with `ctx.feedback.trigger`, so a new event needs only steps 1 to 3.
+`sound push` is an event in `assets/sounds.events` (made in MkAudio) and `effect spark` is `assets/effects/spark.fx`. The game's `GameSession` already passes every tick event to the table with `ctx.feedback.trigger`, so a new event needs only steps 1 to 3.

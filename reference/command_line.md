@@ -110,7 +110,7 @@ For example: `MealKitEditor.exe --project . --frames 60 --select 5 --capture out
 | `ci_test.ps1`, `ci_compare.ps1` | What CI runs for each build, and the comparison between builds |
 | `check_platform.ps1`, `check_strings.ps1` | OS calls outside the platform layer; editor translations |
 | `check_libs.ps1 [-Path <folder>]` | Runtime parts of MealKit tools in `third_party/` (the audio runtime), and a local checkout given with `-Path`, use no engine headers or macros |
-| `update_mkaudio.ps1 -From <checkout> [-Ref <tag>]` | Copy a MealKit-Audio tag into `third_party/mkaudio` and rebuild the notices ({doc}`../engine_dev/internals/audio`) |
+| `update_mkaudio.ps1 -From <checkout> [-Ref <tag>]` | Copy a MkAudio tag into `third_party/mkaudio` and rebuild the notices ({doc}`../engine_dev/internals/audio`) |
 | `check_layout.ps1 [-Project <folder>]` | Project folder layout and third-party metadata (also run by the release build and the editor) |
 | `gen_notices.ps1 [-Check]` | Build `third_party/VERSIONS.txt` and `THIRD_PARTY_NOTICES.txt` from `third_party/<lib>/mealkit.txt` (`-Check` only compares) |
 | `make_sample_models.py` | Regenerate the sample models |

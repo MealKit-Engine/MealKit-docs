@@ -45,8 +45,8 @@ msgid "Installing a tool"
 msgstr "도구 설치"
 
 #, python-brace-format
-msgid "The first tool is **MealKit Audio** for sound events ({doc}`sound`). Building the MealKit-Audio repository puts `MealKitAudio` and its `mealkit-tool.txt` in `build/bin/`; copy that folder as described below."
-msgstr "첫 도구는 소리 이벤트용 **MealKit Audio**다({doc}`sound`). MealKit-Audio 저장소를 빌드하면 `build/bin/`에 `MealKitAudio`와 `mealkit-tool.txt`가 생긴다. 그 폴더를 아래처럼 복사한다."
+msgid "The first tool is **MkAudio** for sound events ({doc}`sound`). Building the MkAudio repository puts `MkAudio` and its `mealkit-tool.txt` in `build/bin/`; copy that folder as described below."
+msgstr "첫 도구는 소리 이벤트용 **MkAudio**다({doc}`sound`). MkAudio 저장소를 빌드하면 `build/bin/`에 `MkAudio`와 `mealkit-tool.txt`가 생긴다. 그 폴더를 아래처럼 복사한다."
 
 msgid "A tool is a folder with a manifest file `mealkit-tool.txt` next to its program. Put the folder in `%LOCALAPPDATA%\\MealKit\\tools\\` (for example `%LOCALAPPDATA%\\MealKit\\tools\\audio\\`), then **Tools > Rescan Tools**."
 msgstr "도구는 프로그램 옆에 매니페스트 파일 `mealkit-tool.txt`가 있는 폴더다. 그 폴더를 `%LOCALAPPDATA%\\MealKit\\tools\\`에 넣고(예: `%LOCALAPPDATA%\\MealKit\\tools\\audio\\`) **도구 > 도구 다시 찾기**를 누른다."

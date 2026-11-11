@@ -560,8 +560,8 @@ msgid "`update_mkaudio.ps1 -From <checkout> [-Ref <tag>]`"
 msgstr "`update_mkaudio.ps1 -From <checkout> [-Ref <tag>]`"
 
 #, python-brace-format
-msgid "Copy a MealKit-Audio tag into `third_party/mkaudio` and rebuild the notices ({doc}`../engine_dev/internals/audio`)"
-msgstr "MealKit-Audio 태그를 `third_party/mkaudio`에 복사하고 고지문을 다시 만든다({doc}`../engine_dev/internals/audio`)"
+msgid "Copy a MkAudio tag into `third_party/mkaudio` and rebuild the notices ({doc}`../engine_dev/internals/audio`)"
+msgstr "MkAudio 태그를 `third_party/mkaudio`에 복사하고 고지문을 다시 만든다({doc}`../engine_dev/internals/audio`)"
 
 msgid "`check_layout.ps1 [-Project <folder>]`"
 msgstr "`check_layout.ps1 [-Project <폴더>]`"

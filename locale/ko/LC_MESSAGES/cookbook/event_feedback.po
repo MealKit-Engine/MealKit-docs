@@ -70,6 +70,6 @@ msgstr ""
 "shakeSeconds 0.2\n"
 "shakeRange 14\n"
 
-msgid "`sound push` is an event in `assets/sounds.events` (made in MealKit Audio) and `effect spark` is `assets/effects/spark.fx`. The game's `GameSession` already passes every tick event to the table with `ctx.feedback.trigger`, so a new event needs only steps 1 to 3."
-msgstr "`sound push`는 `assets/sounds.events`(MealKit Audio에서 만듦)의 이벤트이고, `effect spark`는 `assets/effects/spark.fx`다. 게임의 `GameSession`이 이미 모든 틱 이벤트를 `ctx.feedback.trigger`로 테이블에 넘기므로, 새 이벤트는 1~3단계만 하면 된다."
+msgid "`sound push` is an event in `assets/sounds.events` (made in MkAudio) and `effect spark` is `assets/effects/spark.fx`. The game's `GameSession` already passes every tick event to the table with `ctx.feedback.trigger`, so a new event needs only steps 1 to 3."
+msgstr "`sound push`는 `assets/sounds.events`(MkAudio에서 만듦)의 이벤트이고, `effect spark`는 `assets/effects/spark.fx`다. 게임의 `GameSession`이 이미 모든 틱 이벤트를 `ctx.feedback.trigger`로 테이블에 넘기므로, 새 이벤트는 1~3단계만 하면 된다."
 

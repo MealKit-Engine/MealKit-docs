@@ -35,7 +35,7 @@ row hit
 | `ui` | `assets/ui/*.ui` |
 | `strings` | `assets/strings/<language>.txt` |
 | `tool` | `mealkit-tool.txt` (below) |
-| `audio-events` | `assets/sounds.events` (defined by the audio runtime, edited in MealKit Audio, {doc}`../manual/sound`) |
+| `audio-events` | `assets/sounds.events` (defined by the audio runtime, edited in MkAudio, {doc}`../manual/sound`) |
 
 Rules for readers and writers:
 
@@ -110,9 +110,9 @@ The editor looks in folders given with `--tool-path`, then `%LOCALAPPDATA%\MealK
 
 ## Shared code
 
-The contract has one implementation, the C++ library `mkcontract` in [MealKit Contract](https://github.com/MealKit-Engine/MealKit-Contract) (MIT, no engine headers). The engine editor, MealKit Manager and MealKit Audio all use it, and a C++ tool can too: it reads and writes format lines, the per-user `MealKit` folder (recent and favorite projects, editor settings), tool manifests, live connection info files, and has a small live connection client.
+The contract has one implementation, the C++ library `mkcontract` in [MealKit Contract](https://github.com/MealKit-Engine/MealKit-Contract) (MIT, no engine headers). The engine editor, MealKit Manager and MkAudio all use it, and a C++ tool can too: it reads and writes format lines, the per-user `MealKit` folder (recent and favorite projects, editor settings), tool manifests, live connection info files, and has a small live connection client.
 Its `docs/CONTRACT.md` is the full spec, including the parts this page leaves out (the per-user folder, the module list that `tools\module.ps1 search -Tsv` prints). A tool in another language follows that spec.
 
 ## Runtime parts
 
-A tool can have a part that runs inside the game (the audio tool's mixer, [MealKit Audio](https://github.com/MealKit-Engine/MealKit-Audio)). That part does not include engine headers, and the engine takes it like any external library: a fixed version in `third_party/<lib>/` with its license, inside the release exe budget ({engine}`docs/CODING_MODEL.md` "Placing external libraries"). `tools\check_libs.ps1` checks that it uses no engine header or macro. While both change, the engine builds the part from a local checkout (`-DMEALKIT_MKAUDIO_DIR` for the audio runtime).
+A tool can have a part that runs inside the game (the audio tool's mixer, [MkAudio](https://github.com/MealKit-Engine/MkAudio)). That part does not include engine headers, and the engine takes it like any external library: a fixed version in `third_party/<lib>/` with its license, inside the release exe budget ({engine}`docs/CODING_MODEL.md` "Placing external libraries"). `tools\check_libs.ps1` checks that it uses no engine header or macro. While both change, the engine builds the part from a local checkout (`-DMEALKIT_MKAUDIO_DIR` for the audio runtime).
