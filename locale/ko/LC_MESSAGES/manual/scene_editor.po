@@ -1,0 +1,481 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, KingProtea99 and MealKit contributors. CC BY 4.0
+# This file is distributed under the same license as the MealKit package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: MealKit 0.9\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-12 17:41+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: ko <LL@li.org>\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Generated-By: Babel 2.18.0\n"
+
+msgid "Scene editor (MkRender)"
+msgstr "씬 편집기 (MkRender)"
+
+#, python-brace-format
+msgid ""
+"Scenes are edited in **MkRender**, a separate program built on the engine's "
+"renderer, the way screens are edited in the MkUI Designer and sound events "
+"in MkAudio. It opens a project's `.scene` files with a hierarchy, a viewport"
+" and an inspector, and saves them for the engine. The MealKit editor plays "
+"them ({doc}`editor`)."
+msgstr ""
+"씬은 **MkRender**에서 편집한다. 엔진 렌더러 위에 만든 별도 프로그램으로, 화면을 MkUI Designer에서, 소리 이벤트를"
+" MkAudio에서 편집하는 것과 같다. 프로젝트의 `.scene` 파일을 계층, 뷰포트, 인스펙터로 열고 엔진이 읽는 형식으로 "
+"저장한다. 플레이는 MealKit 에디터가 한다({doc}`editor`)."
+
+msgid "Opening a scene"
+msgstr "씬 열기"
+
+#, python-brace-format
+msgid ""
+"In the MealKit editor: **Tools > MkRender** opens the project. **Scene > "
+"Open in MkRender**, **Open in MkRender** in **Scene > Scenes**, or double-"
+"clicking a scene in **Assets** opens that scene. Install MkRender like other"
+" tools ({doc}`tools`); without it, the editor opens the scene itself to look"
+" at and play."
+msgstr ""
+"MealKit 에디터에서: **도구 > MkRender**가 프로젝트를 연다. **씬 > MkRender에서 열기**, **씬 > 씬 "
+"목록**의 **MkRender에서 열기**, 또는 **에셋**에서 씬을 두 번 누르면 그 씬이 열린다. MkRender는 다른 도구처럼 "
+"설치한다({doc}`tools`). 없으면 에디터가 씬을 직접 열어 보고 플레이할 수 있게 한다."
+
+msgid ""
+"In MkRender: **File > Open project...** or **File > Project scenes**. A "
+"`.gltf`/`.glb` file opens in a new scene as one decoration, to look at a "
+"model."
+msgstr ""
+"MkRender에서: **File > Open project...** 또는 **File > Project scenes**. "
+"`.gltf`/`.glb` 파일은 모델을 보도록 새 씬에 장식 하나로 열린다."
+
+msgid ""
+"MkRender reads the project's object kinds from `build/editor/kinds.txt`, "
+"which the editor writes when it loads the game code (or `<game>_headless "
+"--write-kinds`). Field names, typed fields and the **Add** menu come from "
+"it; without it, game kinds' fields are edited as text."
+msgstr ""
+"MkRender는 프로젝트의 물체 종류를 `build/editor/kinds.txt`에서 읽는다. 이 파일은 에디터가 게임 코드를 불러올"
+" 때 쓴다(또는 `<game>_headless --write-kinds`). 필드 이름, 타입이 있는 필드, **Add** 메뉴가 여기서"
+" 온다. 없으면 게임 종류의 필드를 텍스트로 고친다."
+
+msgid "Controls"
+msgstr "조작"
+
+msgid "Control"
+msgstr "입력"
+
+msgid "Action"
+msgstr "기능"
+
+msgid "Right drag / middle drag / wheel"
+msgstr "오른쪽 드래그 / 가운데 드래그 / 휠"
+
+msgid "Orbit / pan / zoom"
+msgstr "돌기 / 옮기기 / 확대"
+
+msgid "Right drag + `WASD` / `Q` `E`"
+msgstr "오른쪽 드래그 + `WASD` / `Q` `E`"
+
+msgid "Fly the view (`Shift` for faster)"
+msgstr "화면 날기(`Shift`로 빠르게)"
+
+msgid "Left click"
+msgstr "왼쪽 클릭"
+
+msgid "Select (Shift or Ctrl adds or removes; drag on empty space for a box)"
+msgstr "선택(Shift나 Ctrl은 더하거나 빼기, 빈 곳을 끌면 상자 선택)"
+
+msgid "`W` `E` `R`"
+msgstr "`W` `E` `R`"
+
+msgid "Move / rotate / scale gizmo (hold `Ctrl` to snap)"
+msgstr "이동 / 회전 / 크기 기즈모(`Ctrl`을 누르면 스냅)"
+
+msgid "`F`"
+msgstr "`F`"
+
+msgid "Frame the selection"
+msgstr "선택한 것으로 화면 맞추기"
+
+msgid "`Ctrl+D` / `Delete`"
+msgstr "`Ctrl+D` / `Delete`"
+
+msgid "Duplicate / delete"
+msgstr "복제 / 삭제"
+
+msgid "`Ctrl+Z` / `Ctrl+Y`"
+msgstr "`Ctrl+Z` / `Ctrl+Y`"
+
+msgid "Undo / redo"
+msgstr "되돌리기 / 다시 실행"
+
+msgid "`Ctrl+S` / `Ctrl+O` / `Ctrl+N`"
+msgstr "`Ctrl+S` / `Ctrl+O` / `Ctrl+N`"
+
+msgid "Save / open / new scene"
+msgstr "저장 / 열기 / 새 씬"
+
+msgid "`H` / `Shift+H`"
+msgstr "`H` / `Shift+H`"
+
+msgid "Hide the selection / show everything"
+msgstr "선택 숨기기 / 모두 보이기"
+
+msgid "`G`"
+msgstr "`G`"
+
+msgid "Floor grid"
+msgstr "바닥 그리드"
+
+msgid "`B`"
+msgstr "`B`"
+
+msgid "Brush of the selected terrain or scatter layer"
+msgstr "선택한 지형이나 스캐터 레이어의 브러시"
+
+msgid "`End`"
+msgstr "`End`"
+
+msgid "Drop the selection to the floor"
+msgstr "선택한 것을 바닥에 내려놓기"
+
+msgid "`Ctrl+1` to `Ctrl+9` / `1` to `9`"
+msgstr "`Ctrl+1` ~ `Ctrl+9` / `1` ~ `9`"
+
+msgid "Save / go to a camera bookmark (shared with the MealKit editor)"
+msgstr "카메라 북마크 저장 / 이동(MealKit 에디터와 같이 씀)"
+
+msgid "`F5` / `Shift+F5`"
+msgstr "`F5` / `Shift+F5`"
+
+msgid "Play in the MealKit editor / play from here (below)"
+msgstr "MealKit 에디터에서 플레이 / 여기서 플레이(아래)"
+
+msgid "Objects"
+msgstr "물체"
+
+msgid ""
+"The object kinds come from the game (`MEALKIT_OBJECT` declarations) and "
+"appear in the **Add** menu. The example game has these:"
+msgstr ""
+"물체 종류는 게임에서 온다(`MEALKIT_OBJECT` 선언). **Add** 메뉴에 나온다. 예제 게임에는 이런 것이 있다:"
+
+msgid "**Solid box**: visible and collides."
+msgstr "**충돌 상자**: 보이고 부딪힌다."
+
+msgid "**Decoration (no collision)**: only visible."
+msgstr "**장식**: 보이기만 한다."
+
+msgid "**Spawn point**: where players start. Not visible in the game."
+msgstr "**스폰 지점**: 플레이어 시작 위치. 게임에서는 보이지 않는다."
+
+msgid ""
+"**Match area** and **Box spawn area**: invisible area boxes. Their edges are"
+" drawn in the viewport."
+msgstr "**경기 영역**과 **상자 생성 영역**: 보이지 않는 영역 상자. 뷰포트에 모서리가 그려진다."
+
+#, python-brace-format
+msgid ""
+"Objects can carry a **model** (glTF): drag one from **Assets** into the "
+"viewport, or set the **Model** field. See {doc}`assets`. A skinned model "
+"plays the clip chosen in the inspector's **Clip** box (the object's `anim` "
+"field) in a loop; **View > Play animations** stops them."
+msgstr ""
+"물체는 **모델**(glTF)을 가질 수 있다: **Assets**에서 뷰포트로 끌어 놓거나 **Model** 필드를 정한다. "
+"{doc}`assets` 참고. 스킨 모델은 인스펙터 **Clip** 상자에서 고른 클립(물체의 `anim` 필드)을 반복 재생한다. "
+"**View > Play animations**로 멈춘다."
+
+msgid ""
+"Scenes are saved as human-readable `.scene` text: each object is its kind "
+"name plus field text. Values of child objects are relative to their parent. "
+"Drag an object onto another in the hierarchy to make it a child, and give "
+"objects a folder to group them."
+msgstr ""
+"씬은 사람이 읽을 수 있는 `.scene` 텍스트로 저장된다: 물체마다 종류 이름과 필드 텍스트. 자식 물체의 값은 부모 기준이다. "
+"계층에서 물체를 다른 물체 위로 끌면 자식이 되고, 폴더를 정해 물체를 묶는다."
+
+msgid ""
+"**Edit > Arrange** lines up several selected objects (minimum, center or "
+"maximum on an axis) or spaces them evenly. Hidden and locked objects and "
+"camera bookmarks are kept per project in `build/editor`, not in the scene "
+"file."
+msgstr ""
+"**Edit > Arrange**는 고른 물체 여러 개를 한 축의 최소·가운데·최대에 맞추거나 같은 간격으로 놓는다. 숨긴 물체, 잠근 "
+"물체, 카메라 북마크는 씬 파일이 아니라 프로젝트의 `build/editor`에 둔다."
+
+msgid "Prefabs"
+msgstr "프리팹"
+
+msgid ""
+"A prefab is a group of objects saved to a file so you can place it many "
+"times, like a lamp post with its light or a furnished room."
+msgstr ""
+"프리팹은 여러 물체를 파일 하나로 저장해 여러 번 놓을 수 있게 한 묶음이다. 불빛이 달린 가로등이나 가구를 갖춘 방 같은 것."
+
+msgid ""
+"**Save**: select the objects and choose **Edit > Save selection as prefab**."
+" Their children are saved too. The file goes in `assets/prefabs/` as a "
+"`.prefab` text file."
+msgstr ""
+"**저장**: 물체를 고르고 **Edit > Save selection as prefab**을 고른다. 자식도 같이 저장된다. 파일은 "
+"`assets/prefabs/`에 `.prefab` 텍스트 파일로 간다."
+
+msgid ""
+"**Place**: drag a prefab from **Assets** into the viewport, or double-click "
+"it to place it at the view center."
+msgstr "**놓기**: **Assets**에서 프리팹을 뷰포트로 끌어 놓거나, 두 번 눌러 화면 가운데에 놓는다."
+
+msgid ""
+"Placing makes plain copies, like Duplicate. Changing the prefab file later "
+"does not change copies already in scenes, and the game never reads prefab "
+"files."
+msgstr ""
+"배치하면 복제처럼 독립된 복사본이 생긴다. 나중에 프리팹 파일을 고쳐도 씬에 이미 놓인 복사본은 바뀌지 않고, 게임은 프리팹 파일을 읽지"
+" 않는다."
+
+msgid "Terrain"
+msgstr "지형"
+
+msgid ""
+"A terrain is a heightmap stretched over its object's box: black is the "
+"bottom of the box, white the top. Players stand and collide on it, and it "
+"goes into the multiplayer content check like models."
+msgstr ""
+"지형은 물체의 상자 위에 펼친 높이맵이다. 검은색이 상자 바닥, 흰색이 꼭대기다. 플레이어가 그 위에 서고 부딪히며, 모델처럼 멀티플레이"
+" 콘텐츠 검사에 들어간다."
+
+msgid ""
+"**Add**: **Add > Terrain**, then **New flat heightmap** in the inspector. "
+"The heightmap is saved to `assets/terrain/<scene>_<id>.png` when you save "
+"the scene."
+msgstr ""
+"**추가**: **Add > Terrain**을 고른 뒤 인스펙터의 **New flat heightmap**. 높이맵은 씬을 저장할 때 "
+"`assets/terrain/<씬>_<id>.png`로 저장된다."
+
+msgid ""
+"**Import**: make a heightmap in an external terrain tool (Gaea, World "
+"Machine, etc.), export a square 16-bit grayscale PNG into `assets/terrain/` "
+"and set it as the **Heightmap** field. The top of the image is the +z side."
+msgstr ""
+"**가져오기**: 외부 지형 도구(Gaea, World Machine 등)로 높이맵을 만들어 정사각형 16비트 회색조 PNG로 "
+"`assets/terrain/`에 내보내고 **Heightmap** 필드로 정한다. 그림의 위쪽이 +z 쪽이다."
+
+msgid ""
+"**Size**: the object's scale is the terrain size: x and z are the width and "
+"depth, y the height range. Rotation is ignored."
+msgstr "**크기**: 물체의 크기가 지형 크기다. x와 z는 너비와 깊이, y는 높이 범위다. 회전은 무시된다."
+
+msgid ""
+"**Brushes**: select the terrain, press `B` (or tick **Brush** in the "
+"inspector) and drag with the left mouse button. **Raise** and **Lower** push"
+" the ground, **Flatten** levels it to the height where the stroke started, "
+"**Smooth** softens it. **Radius** and **Strength** set the size and speed. "
+"Each stroke is one undo step; saving the scene writes the heightmap file."
+msgstr ""
+"**브러시**: 지형을 고르고 `B`를 누르거나(인스펙터의 **Brush** 체크) 왼쪽 버튼으로 끈다. **Raise**와 "
+"**Lower**는 땅을 올리고 내리고, **Flatten**은 획을 시작한 높이로 평평하게 하고, **Smooth**는 부드럽게 한다."
+" **Radius**와 **Strength**가 크기와 속도다. 획 하나가 되돌리기 한 번이고, 씬을 저장하면 높이맵 파일을 쓴다."
+
+msgid "Scatter layers"
+msgstr "흩뿌리기 레이어"
+
+msgid ""
+"A scatter layer paints thousands of copies of one model, such as grass, "
+"rocks or small props, onto terrain and floors. They are only for looks: "
+"players walk through them, and they are not part of the multiplayer content "
+"check."
+msgstr ""
+"스캐터 레이어는 풀, 돌, 작은 소품 같은 모델 하나의 복사본 수천 개를 지형과 바닥에 칠한다. 보이기만 한다: 플레이어는 그 사이를 "
+"지나가고, 멀티플레이 콘텐츠 검사에 들어가지 않는다."
+
+msgid ""
+"**Add**: **Add > Scatter layer**, then **New instance file** in the "
+"inspector. Set its **Model**, **Density** and size range."
+msgstr ""
+"**추가**: **Add > Scatter layer**를 고른 뒤 인스펙터의 **New instance file**. "
+"**Model**, **Density**, 크기 범위를 정한다."
+
+msgid ""
+"**Paint**: with the layer selected and the brush on, drag with the left "
+"mouse button. Copies land on whatever is below. Hold Shift (or pick "
+"**Erase**) to remove them. Each stroke is one undo step."
+msgstr ""
+"**칠하기**: 레이어를 고르고 브러시를 켠 뒤 왼쪽 버튼으로 끈다. 복사본은 아래에 있는 것 위에 놓인다. Shift를 누르면(또는 "
+"**Erase**) 지운다. 획 하나가 되돌리기 한 번이다."
+
+msgid ""
+"The copies are saved to `assets/terrain/<scene>_<id>.scatter` when you save "
+"the scene. Make one layer per model."
+msgstr ""
+"복사본은 씬을 저장할 때 `assets/terrain/<씬>_<id>.scatter`에 저장된다. 모델마다 레이어를 하나씩 만든다."
+
+msgid "Sprites"
+msgstr "스프라이트"
+
+msgid ""
+"A sprite is an image placed in the world, the way 2D games draw characters, "
+"backgrounds and props. Sprites are only for looks: they don't collide and "
+"are not part of the multiplayer content check."
+msgstr ""
+"스프라이트는 월드에 놓은 그림이다. 2D 게임이 캐릭터, 배경, 소품을 그리는 방식이다. 보이기만 한다: 부딪히지 않고 멀티플레이 콘텐츠"
+" 검사에 들어가지 않는다."
+
+msgid ""
+"**Add**: drag a PNG from **Assets** into the viewport, or **Add > Sprite** "
+"and choose the **Image**."
+msgstr ""
+"**추가**: **Assets**에서 PNG를 뷰포트로 끌어 놓거나, **Add > Sprite**를 고르고 **Image**를 정한다."
+
+msgid ""
+"**Size**: the object's x and y scale are the width and height in meters. Set"
+" **Pixels per meter** instead to size it from the image."
+msgstr ""
+"**크기**: 물체의 x, y 크기가 미터 단위 너비와 높이다. 대신 **Pixels per meter**를 정하면 그림 크기로 정한다."
+
+msgid ""
+"**Pivot**: the point of the image that sits at the object's position, from 0"
+" to 1 (0.5, 0.5 is the centre; y 0 puts the feet on the position)."
+msgstr ""
+"**기준점**: 이미지에서 오브젝트 위치에 놓이는 점으로, 0부터 1까지다(0.5, 0.5가 가운데, y 0이면 발이 위치에 닿는다)."
+
+msgid ""
+"**Sheets**: for an image with several frames in a grid, set the sheet "
+"columns and rows, then the cell, counted from the top left row by row."
+msgstr "**시트**: 칸으로 나뉜 여러 프레임 그림은 시트 열과 행을 정한 뒤 칸 번호를 정한다. 왼쪽 위부터 줄마다 센다."
+
+msgid "Environment"
+msgstr "환경"
+
+#, python-brace-format
+msgid ""
+"The **Environment** window edits the open scene's sun, sky, fog, sky HDRI "
+"and post processing ({doc}`assets`)."
+msgstr ""
+"**Environment** 창은 열린 씬의 태양, 하늘, 안개, 하늘 HDRI, 포스트 프로세싱을 고친다({doc}`assets`)."
+
+msgid ""
+"**Sky HDRI**: pick a `.hdr` under `assets/textures/`. The first use bakes it"
+" into `build/cache/environments`, the same file the engine reads."
+msgstr ""
+"**하늘 HDRI**: `assets/textures/` 아래의 `.hdr`을 고른다. 처음 쓸 때 "
+"`build/cache/environments`에 구워 두고, 엔진도 같은 파일을 읽는다."
+
+msgid ""
+"**Reflection probes**: **Bake probes** (or **Bake this probe** in a probe's "
+"inspector) draws the scene in six directions from each probe and writes "
+"`assets/probes/<scene>_<id>.mkprobe`."
+msgstr ""
+"**반사 프로브**: **Bake probes**(또는 프로브 인스펙터의 **Bake this probe**)가 프로브마다 여섯 방향으로"
+" 장면을 그려 `assets/probes/<씬>_<id>.mkprobe`를 쓴다."
+
+msgid ""
+"**Color LUT** and **Grading capture**: the capture saves the view without "
+"the LUT to `art/grading/<scene>.png` with a neutral `neutral.cube`; grade "
+"both in an external tool and export a `.cube` into `assets/lut/`."
+msgstr ""
+"**Color LUT**와 **Grading capture**: 캡처가 화면을 LUT 없이 `art/grading/<씬>.png`로, "
+"중립 `neutral.cube`와 함께 저장한다. 둘을 외부 도구에서 보정하고 `.cube`로 `assets/lut/`에 내보낸다."
+
+msgid "Assets"
+msgstr "에셋"
+
+msgid ""
+"The **Assets** window lists models, prefabs, images and scenes, with "
+"pictures of models and images (**Pictures**). Drag a file into the viewport "
+"to place it on the surface under the mouse; right-click it for **Find uses "
+"in this scene**."
+msgstr ""
+"**Assets** 창은 모델, 프리팹, 그림, 씬을 보여 주고, 모델과 그림은 사진으로 보여 준다(**Pictures**). 파일을 "
+"뷰포트로 끌면 마우스 아래 표면에 놓이고, 오른쪽 클릭하면 **Find uses in this scene**이 있다."
+
+msgid "Playing"
+msgstr "플레이"
+
+msgid ""
+"MkRender finds the project's running MealKit editor and uses its play view: "
+"**Editor > Play in editor** (`F5`) saves the scene and plays it there, "
+"**Play from here** (`Shift+F5`) starts a solo game from MkRender's camera "
+"(or at the selected spawn point), and **Stop** (`F5`) ends it. **Look "
+"through selected camera** shows a virtual camera's view in the editor, and "
+"**Preview** plays a cutscene there. The editor refuses while it has unsaved "
+"edits of its own scene."
+msgstr ""
+"MkRender는 프로젝트의 실행 중인 MealKit 에디터를 찾아 그 플레이 화면을 쓴다: **Editor > Play in "
+"editor**(`F5`)는 씬을 저장하고 거기서 플레이하고, **Play from here**(`Shift+F5`)는 MkRender "
+"카메라에서(또는 고른 스폰 지점에서) 혼자 게임을 시작하고, **Stop**(`F5`)은 끝낸다. **Look through "
+"selected camera**는 가상 카메라 시점을 에디터에 보여 주고, **Preview**는 거기서 컷신을 재생한다. 에디터에 자기"
+" 씬의 저장하지 않은 편집이 있으면 거절한다."
+
+msgid "Command line"
+msgstr "명령줄"
+
+msgid "Option"
+msgstr "옵션"
+
+msgid "Meaning"
+msgstr "뜻"
+
+msgid "`--project <folder>`"
+msgstr "`--project <folder>`"
+
+msgid "Open a project"
+msgstr "프로젝트 열기"
+
+msgid "`--file <scene|model>`"
+msgstr "`--file <scene|model>`"
+
+msgid "Open this file"
+msgstr "이 파일 열기"
+
+msgid "`--select <id>[,<id>...]`"
+msgstr "`--select <id>[,<id>...]`"
+
+msgid "Select objects"
+msgstr "물체 선택"
+
+msgid "`--frames <n>`, `--capture <png>`"
+msgstr "`--frames <n>`, `--capture <png>`"
+
+msgid "Exit after n frames, saving a screenshot"
+msgstr "n 프레임 뒤 스크린샷을 저장하고 끝내기"
+
+msgid "`--check-scene <file>`"
+msgstr "`--check-scene <file>`"
+
+msgid ""
+"Read and write a scene in memory and report whether it comes back the same"
+msgstr "씬을 메모리에서 읽고 써 보고 그대로 돌아오는지 알려 준다"
+
+msgid "`--check-terrain <png|scatter>`"
+msgstr "`--check-terrain <png|scatter>`"
+
+msgid "The same for a heightmap or scatter file"
+msgstr "높이맵이나 스캐터 파일에 같은 검사"
+
+msgid "`--bake-probes`, `--grading-capture`"
+msgstr "`--bake-probes`, `--grading-capture`"
+
+msgid "Bake every probe / save the grading capture once the scene is open"
+msgstr "씬이 열리면 모든 프로브 굽기 / 보정용 캡처 저장"
+
+msgid "`--editor-play`"
+msgstr "`--editor-play`"
+
+msgid "Ask the running editor to play the scene once it is found"
+msgstr "실행 중인 에디터를 찾으면 씬 플레이를 요청"
+
+msgid "`--render-golden <shots.txt> <folder>`"
+msgstr "`--render-golden <shots.txt> <folder>`"
+
+#, python-brace-format
+msgid "Draw the graphics regression views ({doc}`../engine_dev/testing`)"
+msgstr "그래픽 회귀 검사 장면 그리기({doc}`../engine_dev/testing`)"

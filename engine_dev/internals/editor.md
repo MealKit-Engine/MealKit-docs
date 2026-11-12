@@ -1,7 +1,7 @@
 # Editor
 
 This page explains how the editor works inside: which files it loads, how game code is swapped while it runs, and what happens when you press Play.
-How to use the editor is in {doc}`../../manual/editor`. The editor code is in {engine}`engine/src/mealkit/editor`.
+How to use the editor is in {doc}`../../manual/editor`; scenes are edited in MkRender ({doc}`../../manual/scene_editor`). The editor code is in {engine}`engine/src/mealkit/editor`.
 
 ## Three files
 

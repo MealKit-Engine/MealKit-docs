@@ -74,7 +74,6 @@ Window options (`--bot`, `--vsync`, `--fps`, `--size`, `--debug`, `--mute`, `--d
 | `--lang <ko\|en>` | Editor language for this run only (the saved setting is not changed; used for documentation screenshots) |
 | `--frames <n>` | Exit after n frames |
 | `--capture <png>` | Save a screenshot before exiting |
-| `--select <i>` | Select object i |
 | `--view-mode <n>` | Start in a view mode: 1 wireframe, 2 normals, 3 LOD level, 4 overdraw, 5 over budget ({doc}`../manual/editor`) |
 | `--gpu-capture` | Load RenderDoc or PIX if installed: View > GPU Capture and `F11` capture the next frame |
 | `--play`, `--players <n>`, `--bot` | Start play mode, with several players and bot input |
@@ -87,13 +86,13 @@ Window options (`--bot`, `--vsync`, `--fps`, `--size`, `--debug`, `--mute`, `--d
 | `--ui` | Start with the UI tab in front (the screen list; screens are edited in the MkUI Designer) |
 | `--ui-check` | Compare the screens exported from Penpot with Penpot's layout boxes, print `UI-CHECK` lines and exit (exit code 2 on a difference; with `--lang` for the text language) |
 | `--ui-render <ui/x.ui> <png>` | Draw one screen at half its board size, save it and exit (pixel comparison with the Penpot preview) |
-| `--lookdev` | Open the look dev window at start; it shows the model of the object chosen with `--select` ({doc}`../manual/editor`) |
-| `--render-golden <shots.txt> <folder>` | Draw each view of the graphics regression test without the editor UI, save `<name>.png` in the folder and exit ({doc}`../engine_dev/testing`) |
+| `--lookdev`, `--lookdev-model <model>` | Open the look dev window at start, showing that model (as if picked in Assets) ({doc}`../manual/editor`) |
+| `--look-through <id>` | Look through that virtual camera at start |
 | `--tool-path <folder>` | Also look for MealKit tools in this folder (repeatable; a tool you are building) ({doc}`../manual/tools`) |
 | `--list-tools` | Print the tools the Tools menu finds and exit (no window) |
 | `--bodies <n>`, `--debug` | As in the game |
 
-For example: `MealKitEditor.exe --project . --frames 60 --select 5 --capture out.png`.
+For example: `MealKitEditor.exe --project . --frames 60 --capture out.png`. The scene editor's options are in {doc}`../manual/scene_editor`.
 
 ## Engine tools (`tools\`)
 

@@ -20,10 +20,10 @@ A last Vulkan step plays a match with `--debug` and fails on any `[Vulkan]` vali
 
 ## Graphics regression test
 
-The full check draws a few fixed views without the editor UI and compares them with reference images in {engine}`engine/tests/golden`, so a shader change that breaks the picture fails the check before anyone looks.
+The full check draws a few fixed views with the MkRender scene editor (sibling repository `MkRender`, its `build` and `build-vulkan` folders; the step shows `SKIP` when it is not built) and compares them with reference images in {engine}`engine/tests/golden`, so a shader change that breaks the picture fails the check before anyone looks.
 
-- The views are listed in `engine/tests/golden/shots.txt`, one per line: name, scene (under `assets/`), camera position and yaw and pitch in degrees, and optionally a lighting model (`pbr`, `toon` or `unlit`; without it the project setting). Wind is drawn at screen time 0, so the pictures do not change between runs. `MealKitEditor --project . --render-golden <shots.txt> <folder>` draws each one for a few frames and saves `<name>.png`.
-- Both the Direct3D 12 and the Vulkan editor are compared with the same images: at most 0.5 % of pixels may differ by more than 8 per channel. The limit allows small differences between GPUs and drivers.
+- The views are listed in `engine/tests/golden/shots.txt`, one per line: name, scene (under `assets/`), camera position and yaw and pitch in degrees, and optionally a lighting model (`pbr`, `toon` or `unlit`; without it the project setting). Wind is drawn at screen time 0, so the pictures do not change between runs. `MkRender --project samples\sandbox --render-golden <shots.txt> <folder>` draws each one at 1600 x 900 for a few frames and saves `<name>.png`.
+- Both the Direct3D 12 and the Vulkan MkRender builds are compared with the same images: at most 0.5 % of pixels may differ by more than 8 per channel. The limit allows small differences between GPUs and drivers.
 - When an image differs, `build\check\golden\<name>-diff.png` (or `golden-vulkan`) shows the different pixels in red over a darkened reference.
 - When you change the picture on purpose (a new shader feature, lighting), run `tools\check.ps1 -UpdateGolden`: it replaces the reference images with the Direct3D 12 ones, and the step shows `SKIP`. Look at the new images before committing them.
 - When lighting models or post processing arrive, add views with them on and off.

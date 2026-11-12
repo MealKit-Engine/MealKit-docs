@@ -8,6 +8,7 @@ How each part of the engine is used from a game project, one topic per page.
 projects
 game_code
 editor
+scene_editor
 assets
 blender
 sound

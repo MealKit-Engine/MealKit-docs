@@ -1,6 +1,6 @@
 # Editor
 
-The general-purpose editor `MealKitEditor` edits scenes, runs the game in play mode, and builds game code and releases. The first steps are in {doc}`../getting_started/editor_quick_start`.
+The general-purpose editor `MealKitEditor` runs the game in play mode, edits tuning, tables and other data, and builds game code and releases. Scenes are edited in MkRender ({doc}`scene_editor`); the editor shows the open scene read-only and plays it. The first steps are in {doc}`../getting_started/editor_quick_start`.
 
 ## Controls
 
@@ -8,103 +8,39 @@ The general-purpose editor `MealKitEditor` edits scenes, runs the game in play m
 |---|---|
 | Right drag + `WASD` / `Q` `E` | Fly the camera (`Shift` for faster, wheel to change speed) |
 | Wheel / middle drag | Move forward and back / pan |
-| Left click | Select (click empty space to deselect) |
-| `W` `E` `R` | Move / rotate / scale gizmo (hold `Ctrl` while dragging to snap) |
-| `F` or double-click in the hierarchy | Move the camera to the selected object |
-| `Ctrl+D` / `Delete` | Duplicate / delete |
-| `Ctrl+Z` / `Ctrl+Y` | Undo / redo |
-| `Ctrl+S` / `Ctrl+O` / `Ctrl+N` | Save / open / new scene |
+| `Ctrl+S` | Save data (tuning, tables, project settings) |
+| `Ctrl+O` | Open a scene to look at and play |
+| `Ctrl+Z` / `Ctrl+Y` | Undo / redo in the Data window |
 | `F5` | Play / back to editing (`Esc` goes to the game, for its pause menu) |
 | `Ctrl+R` / `Ctrl+B` | Build game code (hot reload) / release build. If the engine changed while the editor is open, the build can't replace the engine the editor is using: the editor offers **Save, Restart and Rebuild**, which closes it, builds the engine in a console window and opens the project again |
 | `Ctrl+T` | Show or hide the Tables panel |
 
-## Objects
-
-The object kinds come from the game (`MEALKIT_OBJECT` declarations) and appear in the editor's Add menu. The example game has these:
-
-- **Solid box**: visible and collides.
-- **Decoration (no collision)**: only visible.
-- **Spawn point**: where players start. Not visible in the game.
-- **Match area** and **Box spawn area**: invisible area boxes. The editor draws their edges; click an edge to select one.
-
-Solid boxes and decorations can carry a **model** (glTF): `+ Model` in the hierarchy, or `Choose Model...` in the inspector. See {doc}`assets`.
-
-Scenes are saved as human-readable `.scene` text: each object is its kind name plus field text. Values of child objects are relative to their parent.
-
-## Prefabs
-
-A prefab is a group of objects saved to a file so you can place it many times, like a lamp post with its light or a furnished room.
-
-- **Save**: select the objects and choose **Scene > Save as Prefab...** (or the button at the bottom of the inspector, or right-click in the hierarchy). Their children are saved too. The file goes in `assets/prefabs/` as a `.prefab` text file. Positions are kept relative to the first selected object; heights above the floor stay as they are.
-- **Place**: in the **Assets** tab, double-click a prefab to place it on the floor in front of the camera, or drag it into the viewport to place it where you drop it.
-- Placing makes plain copies, like Duplicate. Changing the prefab file later does not change copies already in scenes, and the game never reads prefab files.
-- A prefab holds only data: kinds, positions and field values. Behavior is game code; to reuse behavior with its objects, use a source module (see {doc}`modules`).
-
-## Terrain
-
-A terrain is a heightmap stretched over its object's box: black is the bottom of the box, white the top. Players stand and collide on it, and it goes into the multiplayer content check like models.
-
-- **Add**: **+ Type... > Terrain** makes a flat 128 x 128 m terrain. Its heightmap is saved to `assets/terrain/<scene>_<id>.png` when you save the scene.
-- **Import**: make a heightmap in an external terrain tool (Gaea, World Machine, etc.) and export a square 16-bit grayscale PNG into `assets/terrain/`. In the inspector's **Terrain** section, choose **Import PNG...**. The top of the image is the +z side.
-- **Size**: the object's scale is the terrain size: x and z are the width and depth, y the height range. Rotation is ignored.
-- **Brushes**: turn on **Brush** in the **Terrain** section and drag with the left mouse button in the viewport. **Raise** and **Lower** push the ground, **Flatten** levels it to the height where the stroke started, **Smooth** softens it. **Radius** and **Strength** set the size and speed. Each stroke is one undo step; saving the scene writes the heightmap file.
-- If you re-export the PNG from the external tool while the editor is open, the terrain reloads (unless you have unsaved brush edits).
-
-### Scatter layers
-
-A scatter layer paints thousands of copies of one model, such as grass, rocks or small props, onto terrain and floors. They are only for looks: players walk through them, and they are not part of the multiplayer content check. Place large objects that need collision as normal objects instead.
-
-- **Add**: **+ Type... > Scatter layer**. Set its **Model** field (or leave it empty for small boxes) and its **Density**, size range and **Draw distance**.
-- **Paint**: with the layer selected and **Brush** on, drag with the left mouse button in the viewport. Copies land on whatever is below: terrain, boxes or models. Hold Shift (or pick **Erase**) to remove them. Each stroke is one undo step.
-- The copies are saved to `assets/terrain/<scene>_<id>.scatter` when you save the scene. Make one layer per model.
-
-## Sprites
-
-A sprite is an image placed in the world, the way 2D games draw characters, backgrounds and props. Sprites are only for looks: they don't collide and are not part of the multiplayer content check, so put a solid box under anything players should stand on.
-
-- **Add**: **+ Type... > Sprite**. In a 2D project (`view2d`) it is placed on z = 0. Choose a PNG under `assets` in the **Image** field.
-- **Size**: the object's x and y scale are the width and height in meters. Set **Pixels per meter** instead to size it from the image: a 128 px image at 64 pixels per meter is 2 m wide.
-- **Pivot**: the point of the image that sits at the object's position, from 0 to 1 (0.5, 0.5 is the centre; y 0 puts the feet on the position).
-- **Sheets**: for an image with several frames in a grid, set **Sheet columns** and **Sheet rows**, then **Cell**, counted from the top left row by row.
-- **Order**: sprites with a higher **Layer** draw over lower ones; within a layer, nearer ones draw over farther ones. Solid objects in front still hide them.
-- **Look**: the object's color tints the image (white shows it as it is). **Flip horizontally/vertically** mirror it, and **Pixel art** shows sharp texels instead of smoothing them. Tone mapping in the scene's post settings changes sprite colors too; turn it off for art that must show its exact colors.
-- If you save a new version of the PNG while the editor is open, the sprite updates.
-
 ## Panels
 
-- **Layout**: the hierarchy is on the left, the inspector on the right, and **Debug** and assets share a strip under the viewport. **Window > Layout** picks Edit, Play or Look Dev and resets the layout.
-- **Hierarchy folders**: right-click an object and choose **Move to Folder...**, or drag it onto a folder. A path like `Props/Trees` makes folders inside folders. Right-click a folder to rename or remove it. Folders are saved in the scene and do not affect game results. A `!` after a name marks a problem (hover for the reason), and a blue dot marks fields changed from the kind's defaults.
-- **Several objects**: with objects of the same kind selected, changing a field in the inspector changes it on all of them. Fields that differ show a dash.
+- **Layout**: **Previews** is on the right, and **Debug** and assets share a strip under the viewport. **Window > Layout** picks Edit, Play or Look Dev and resets the layout.
 - **Asset grid**: the slider at the top of **Assets** switches from the list to a grid with model pictures.
-- **Command palette**: Ctrl+P finds commands, objects, scenes, tools, assets, table rows and tuning values. Letters can have gaps, and Korean initial consonants work.
-- **Handles in the viewport**: fields that have a size in the world, such as a point light's range, show circles and a handle around the selected object. Drag the handle to change the value.
+- **Command palette**: Ctrl+P finds commands, scenes, tools, assets, table rows and tuning values. Letters can have gaps, and Korean initial consonants work.
 - **Compact rows**: **Preferences > Interface** tightens rows so more fits on small screens.
 - **Viewport tab**: the viewport is a tab. Drag other windows, such as **Data**, next to it to switch between them, or dock it elsewhere. It can't float: let go outside a dock and it returns to the center. Starting play brings it to the front.
 - **Settings**: **Project > Settings...** gathers project settings, preferences, tools and keyboard shortcuts under one list. Modules have their own window, **Window > Modules** (see {doc}`modules`).
 - **Previews**: **Window > Previews** has Look Dev and cutscene tabs. Game screens have their own **UI** tab beside the viewport (see {doc}`ui`).
 - **Unsaved list**: when something is unsaved, click `Unsaved: N` in the status bar to save or revert each document.
-- **Searching fields**: the inspector, **Tuning** and **Project Settings** have a search box. **Tuning** can also show only values changed from the defaults.
 - **Table views**: on a table page, filter rows, click a column header to sort, and edit the chosen row in the list below. Sorting only changes the view, not the file.
 - **Find Uses**: right-click a file in **Assets** to list the text files that name it.
-- **Saved layouts**: **Window > Layout** saves the current layout under a name. The **Window** menu also turns panels on and off, including the hierarchy, viewport and inspector; **Reset Layout** brings those three back, and playing reopens the viewport.
+- **Saved layouts**: **Window > Layout** saves the current layout under a name. The **Window** menu also turns panels on and off; playing reopens the viewport.
 - **State graphs**: on the **State** page of **Debug**, add a field path to graph it while playing.
-- **Scene environment**: select the **Scene Environment** row at the top of the hierarchy. The inspector then shows the sun, sky, fog, sky HDRI and post processing of the open scene.
-- **Log**: **Window > Debug**, Log page, shows engine and game log lines, with what is wrong right now above them: missing models, models over budget and missing row references. Click a problem to select the object or open the document; the flag button shows or hides the list. The info, warning and error buttons filter the lines, the search box finds a line, and the trash button empties the log.
+- **Log**: **Window > Debug**, Log page, shows engine and game log lines, with what is wrong right now above them: missing models, models over budget and missing row references. Click a problem to open the document (objects are fixed in MkRender); the flag button shows or hides the list. The info, warning and error buttons filter the lines, the search box finds a line, and the trash button empties the log.
 - **Notices**: messages also appear at the bottom right of the viewport. Failures stay until you close them; click one to open the build log or the log. While playing, the menu bar turns brown and the viewport gets an orange frame.
-- **Command palette**: press Ctrl+P (or **Window > Command Palette**) and type part of a command, object, scene or tool name, in English or Korean. Use the arrow keys and Enter to run it.
+- **Command palette**: press Ctrl+P (or **Window > Command Palette**) and type part of a command, scene or tool name, in English or Korean. Use the arrow keys and Enter to run it.
 - **Preferences**: **Project > Settings, Preferences page** sets the camera speed, text size, autosave interval and code editor. The window layout is kept per project in `build\editor\layout.ini`. Press F1 for the list of keyboard shortcuts.
-- **Hierarchy**: type in the box above the tree (Ctrl+F) to find objects by name or type. The eye and lock buttons on the right of a row hide an object in the viewport or stop it being picked there; they are saved per project in `build\editor`, not in the scene file.
-- **Multi-select**: Shift-click in the hierarchy or the viewport to add or remove objects, drag a box in an empty part of the viewport, or press Ctrl+A. The gizmo then moves, rotates or scales all of them, and Duplicate and Delete act on all of them. The inspector edits the last object you picked.
-- **Viewport toolbar**: the row along the top of the viewport switches between move, rotate and scale, local and world axes, snapping, the floor grid, the view mode and the camera speed. Click the axis cube at the top right of the picture to look from that side.
+- **Viewport toolbar**: the row along the top of the viewport switches the floor grid, perspective or orthographic, the view mode and the camera speed. Click the axis cube at the top right of the picture to look from that side.
 - **Status bar and project list**: the open scene's name (with `*` when unsaved) is at the left of the status bar; click it to open another scene from the project. **Project > Project Manager** opens MealKit Manager (or the editor's own project list) next to the editor.
-- **Snap and align**: set the move, rotate and scale snap steps in Preferences or with the arrow next to Snap on the toolbar. **Edit > Drop to Floor** (End) puts the selection on the object below it, and **Edit > Align** lines up or evenly spaces several selected objects.
-- **Camera**: Alt + left drag orbits around the selection, the wheel moves toward the point under the mouse, and the toolbar switches between perspective and orthographic. Ctrl+1 to Ctrl+9 save camera bookmarks for the scene; 1 to 9 go back to them.
-- **Inspector**: sections fold. Right-click a field for Reset to Default, Copy Value and Paste Value; a blue dot marks values that differ from the default. The lock before Scale keeps the X, Y and Z ratio. Click a color swatch for a picker with RGB, HSV and hex values; drag its bottom right corner to resize it. **Edit > History** (Ctrl+H) lists the undo steps; click one to go back to it.
+- **Camera**: the wheel moves toward the point under the mouse, and the toolbar switches between perspective and orthographic. Ctrl+1 to Ctrl+9 save camera bookmarks for the scene; 1 to 9 go back to them.
 - **Performance**: **Window > Debug**, Performance page, (or click the fps number in the status bar) graphs the CPU and GPU frame time, simulation tick, draw calls and network traffic of the last 30 seconds against the budgets in the roadmap. Values over budget turn red.
-- **Jump to code**: click a blue `file(line)` line in the build log or the log to open it in the code editor set in Preferences (VS Code by default). For a game object type, **Open Code** in the inspector opens its `MEALKIT_OBJECT` declaration.
-- **Scenes**: **Scene > Scenes** lists the scenes in `assets/scenes`. The star marks the start scene; select another and press **Set as Start Scene** to change it in `mealkit.project`. **File > Recent Scenes** reopens the scenes you used last in this project.
-- **Play from here**: Shift+F5 (the list by the play button) starts a solo game with the player under the editor camera, or at the selected spawn point. The scene file does not change.
-- **Assets**: the **Assets** tab under the viewport shows the `assets` folders and files. Drag a model or prefab into the viewport to place it, or double-click a scene to open it. Right-click a file and choose **Rename or Move** to change its path; references in scenes, tuning, UI and table files are updated too.
+- **Jump to code**: click a blue `file(line)` line in the build log or the log to open it in the code editor set in Preferences (VS Code by default).
+- **Scenes**: **Scene > Scenes** lists the scenes in `assets/scenes`. The star marks the start scene; select another and press **Set as Start Scene** to change it in `mealkit.project`, or **Open in MkRender** to edit it. **File > Recent Scenes** reopens the scenes you used last in this project.
+- **Play from here**: Shift+F5 (the list by the play button) starts a solo game with the player under the editor camera. MkRender asks for the same from its own camera ({doc}`scene_editor`). The scene file does not change.
+- **Assets**: the **Assets** tab under the viewport shows the `assets` folders and files. Double-click a scene to open it in MkRender (or here without MkRender); pick a model to show it in Look Dev. Right-click a file and choose **Rename or Move** to change its path; references in scenes, tuning, UI and table files are updated too.
 - **Data**: **Window > Data** gathers tuning, tables, feedback and sounds under one list, with `*` on unsaved documents. **Undo** and **Redo** on the page, or Ctrl+Z and Ctrl+Y while the window has focus, step back through its edits, including deleted rows and reloads. Particle effect files have no undo.
 - **Debug**: **Window > Debug** gathers Log, Build Log, Performance and State under one list, with the problem count on its tab.
 - **Tuning** (a Data page): two pages. Game holds the values the simulation reads (`assets/game.tuning`); during solo play changes apply at once. Display holds the values that are only seen (`assets/view.tuning`); changes apply at once in every player window, even with several players.
@@ -132,18 +68,18 @@ The **View Mode** list on the viewport toolbar colors the viewport by what costs
 | Over Budget | Models over their asset budget in red, everything else gray ({doc}`assets`) |
 | Material Features | The style features of each material: outline red, wind green, rim blue, dissolve yellow (colors add up when a material has several), none gray ({doc}`assets`) |
 
-View modes apply to the editing view and are left out of shipped builds.
+View modes apply to the scene view and are left out of shipped builds.
 
 ## Look dev
 
-**Window > Previews** opens a window that shows the model of the selected object on a turntable, lit the same way whatever the scene's lighting is. Use it to check a model and its materials right after exporting from Blender.
+**Window > Previews** opens a window that shows the model picked in **Assets** on a turntable, lit the same way whatever the scene's lighting is. Use it to check a model and its materials right after exporting from Blender.
 
 - **Light**: four fixed light setups (neutral studio, daylight, sunset, night), then every sky HDRI under `assets/textures/` ({doc}`assets`).
 - **Lighting model**: the project setting, or `Pbr`, `Toon` or `Unlit` to compare looks without changing the project.
 - **Turn**, **Zoom**: the turntable spins by itself; drag the picture to turn it and change the height, and use the mouse wheel to zoom.
 - **Flash**, **Dissolve**: preview the per-object values that game code sets ({doc}`assets`).
 
-The window follows the selection; selecting an object without a model keeps the last model. `--lookdev` opens it at start (with `--select`).
+The window follows the model picked in **Assets**; picking another file keeps the last model. `--lookdev` opens it at start (`--lookdev-model <model>` picks the model).
 
 ## GPU capture
 
@@ -152,7 +88,7 @@ Without `--gpu-capture` or without an installed tool, the menu item is hidden. T
 
 ## Play mode
 
-Play mode runs the game inside the editor with the scene being edited. It can run several players at once, pause, and rewind.
+Play mode runs the game inside the editor with the open scene, as saved (MkRender saves before it asks the editor to play). It can run several players at once, pause, and rewind.
 For automated checks, the editor also runs from the command line (see {doc}`../reference/command_line`).
 
 How the editor works inside (game DLL loading, hot reload, play mode, rewind) is in {doc}`../engine_dev/internals/editor`.
