@@ -25,11 +25,13 @@ The engine repository's reference samples are game projects in `samples/<name>/`
 
 MealKit Manager is a separate hub app (repository MealKit-Manager) that lists your projects, the engines they use and the installed MealKit tools. It does not contain an engine, so one Manager works with every engine version.
 
-- **Projects**: create a project (it runs the chosen engine's `tools\new_project.ps1`), import a folder, open it in its engine's editor, and upgrade it when the project's `engineVersion` is older than its engine. The list is the same recent and favorite list the editor keeps.
-- **Engines**: the engines your projects point to (the `engine` line of `mealkit.project`) and folders you add. If an engine's editor is not built, the Manager builds it.
-- **Tools**: tools with a `mealkit-tool.txt` manifest, opened with the selected project.
+- **Projects**: the recent and favorite list the editor keeps. Double-click a project (or press Enter) to open it in its engine's editor. On the selected project, click its name to rename it (the exe name changes too), its icon to pick a PNG, or its folder to move it; a project whose folder is gone gets **Find...**. **New Project** runs the chosen engine's `tools\new_project.ps1`, **Import...** adds a folder, and a project made with an older engine shows **Upgrade**.
+- **Tools**: every MealKit tool the Manager can install (MkAudio, MkUI, MkRender, ...) and the installed ones, each with one button: install, update, or open with a project. A project's **More > Open with Tool** opens it in a tool, installing the tool first when needed. The editor's [Tools] menu lists the tools you haven't installed and opens the Manager for them.
+- **Settings** (the gear): the language (shared with the editor and the tools), the default folder for new projects, the Manager's version and update, and the engines: the ones your projects point to (the `engine` line of `mealkit.project`), folders you add, and engines to install, with the tools for them.
 
-Install it with `build.bat install` in the MealKit-Manager folder (to `%LOCALAPPDATA%\MealKit\manager`). After that, starting the editor without a project (`editor.bat`) opens the Manager. Without it, the editor shows its own project manager; `MealKitEditor --builtin-manager` always does.
+A project's modules are managed in the editor, not in the Manager.
+
+Install the Manager from its download, or with `build.bat install` in the MealKit-Manager folder (to `%LOCALAPPDATA%\MealKit\manager`). Starting the editor without a project (`editor.bat`) opens the Manager; when it isn't installed, the editor says so and you can still open a project with `MealKitEditor --project <folder>`.
 
 ## Project settings
 
