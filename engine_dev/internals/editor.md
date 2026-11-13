@@ -77,7 +77,7 @@ Old copies are deleted on the next load: all of this process's copies, and other
 The editor runs one loop ({engine}`engine/src/mealkit/editor/EditorMain.cpp`). Each frame:
 
 1. Collect window messages and input.
-2. `Editor::update`: build the editor UI with Dear ImGui and handle editing input (gizmo, picking, shortcuts, undo).
+2. `Editor::update`: build the editor UI with Dear ImGui and handle input (viewport camera, shortcuts).
 3. In edit mode, check whether the game code should be reloaded.
 4. Start or stop play when it was requested.
 5. During play, `PlaySession::update` runs the network session and the game.
@@ -90,10 +90,7 @@ The editor runs one loop ({engine}`engine/src/mealkit/editor/EditorMain.cpp`). E
 A scene is a list of entities. Each entity has a kind name, a parent, a transform, an optional model and the text of its fields ({engine}`engine/src/mealkit/scene/Scene.h`).
 Because fields are stored as text by name, a scene still opens when the game DLL is missing or its types changed: the inspector shows the fields of an unknown kind as plain text and keeps them as they are.
 
-- **Picking**: a click casts a ray from the camera through the mouse and tests it against each entity's box (the model bounds when it has a model). Area objects are hit only on their edges, so a click inside an area selects the object inside it.
-- **Gizmo**: ImGuizmo moves, rotates and scales the selected entity. Values are stored relative to the parent.
-- **Undo**: before each edit the editor captures a snapshot of the whole scene. While a drag or a text field stays active, only the first snapshot is kept, so one drag is one undo step. Up to 100 steps are kept.
-- **Autosave**: when there are unsaved changes, the scene is written to `<scene>.autosave` every 90 seconds and when the editor closes. When you open a scene whose autosave is newer, the editor offers to recover it.
+Editing scenes happens in MkRender ({doc}`../../manual/scene_editor`), which reads and writes the same text. Outside play the editor's viewport is a read-only preview of the open scene (fly camera, bookmarks, view modes, camera and cutscene previews), and a scene file changed on disk is reread at once.
 
 ## Play mode
 
@@ -209,4 +206,3 @@ The algorithms and patterns behind the parts above, with where to find them in t
 |---|---|---|
 | Source-string localization | `tr()` in {engine}`engine/src/mealkit/editor/Strings.h` | The English text is the key and a missing translation shows the English text, like gettext. `trl()` adds `###` with the English text so ImGui window IDs do not change with the language. |
 | Background child processes | `ChildProcess` | Builds and checks run in hidden child processes whose output is read without blocking the editor frame. |
-| Autosave with recovery | `Editor::updateAutosave` | Writes a side file instead of the scene, and compares file times on open to offer recovery after a crash. |

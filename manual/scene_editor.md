@@ -74,7 +74,19 @@ A sprite is an image placed in the world, the way 2D games draw characters, back
 - **Add**: drag a PNG from **Assets** into the viewport, or **Add > Sprite** and choose the **Image**.
 - **Size**: the object's x and y scale are the width and height in meters. Set **Pixels per meter** instead to size it from the image.
 - **Pivot**: the point of the image that sits at the object's position, from 0 to 1 (0.5, 0.5 is the centre; y 0 puts the feet on the position).
-- **Sheets**: for an image with several frames in a grid, set the sheet columns and rows, then the cell, counted from the top left row by row.
+- **Sheets**: for an image with several frames in a grid, set **Columns, rows** in the inspector. The inspector shows the whole image with the grid; click a cell to show it (cells are counted from the top left, row by row).
+- **Pivot buttons**: the 3 × 3 buttons under the sheet set the pivot to a corner, an edge or the centre, placed like the point they pick on the image.
+- **2D projects**: a project made from the 2D template (`view2d true` in `mealkit.project`) opens in a flat front view of the x/y plane. The view doesn't turn: right drag pans, `W`/`S` move up and down, and the wheel zooms. The grid lies on the plane, the move gizmo has only x and y, and the rotate gizmo turns only around z.
+
+## Hierarchy marks and handles
+
+- **Kind icons**: each row in the hierarchy starts with an icon for its kind (box, model, spawn point, area, light, camera, probe, sprite, other game kinds) drawn in the object's color.
+- **Problems**: a `!` after a name marks something MkRender can see is wrong: a model or image file that doesn't load, a sprite without an image, a kind the project doesn't have, a reflection probe that isn't baked. Red is an error, orange a warning; hover over the row for the reason. Field values (missing rows, required fields) are checked by the MealKit editor's **Debug** list, which knows the game's types.
+- **Radius handles**: fields the game marks with `gizmo=radius` (for example a point light's **Range**) show as rings around the selected object with a round handle. Drag the handle to change the value (`Ctrl` snaps to the move step).
+
+## Look Dev
+
+The **Look Dev** tab beside the inspector shows one model on a turning stand under fixed lighting, apart from the scene's lighting: the model clicked in **Assets > Models**, or else the selected object's. Pick a light (Neutral studio, Daylight, Sunset, Night or a `.hdr` from the project) and a lighting model, and try the material's flash and dissolve. Drag the picture to turn the stand and tilt the camera; the wheel zooms.
 
 ## Environment
 
@@ -90,7 +102,7 @@ The **Assets** window lists models, prefabs, images and scenes, with pictures of
 
 ## Playing
 
-MkRender finds the project's running MealKit editor and uses its play view: **Editor > Play in editor** (`F5`) saves the scene and plays it there, **Play from here** (`Shift+F5`) starts a solo game from MkRender's camera (or at the selected spawn point), and **Stop** (`F5`) ends it. **Look through selected camera** shows a virtual camera's view in the editor, and **Preview** plays a cutscene there. The editor refuses while it has unsaved edits of its own scene.
+MkRender finds the project's running MealKit editor and uses its play view: **Editor > Play in editor** (`F5`) saves the scene and plays it there, **Play from here** (`Shift+F5`) starts a solo game from MkRender's camera (or at the selected spawn point), and **Stop** (`F5`) ends it. **Look through selected camera** shows a virtual camera's view in the editor, and **Preview** plays a cutscene there.
 
 ## Command line
 
