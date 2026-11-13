@@ -68,8 +68,8 @@ msgstr "넣는 방법(필요한 파일과 자동으로 만드는 고지 파일)�
 msgid "Documentation"
 msgstr "문서"
 
-msgid "This documentation lives in its own repository (`MealKit-docs`). English is the source language and Korean is a gettext translation in `locale/ko/LC_MESSAGES/`."
-msgstr "이 문서는 별도 저장소(`MealKit-docs`)에 있다. 영어가 원문이고 한국어는 `locale/ko/LC_MESSAGES/`의 gettext 번역이다."
+msgid "This documentation lives in its own repository (`MealKit-Docs`). English is the source language and Korean is a gettext translation in `locale/ko/LC_MESSAGES/`."
+msgstr "이 문서는 별도 저장소(`MealKit-Docs`)에 있다. 영어가 원문이고 한국어는 `locale/ko/LC_MESSAGES/`의 gettext 번역이다."
 
 msgid "The documentation has two parts. Pages about making a game go in the game developer guide (`getting_started/`, `manual/`, `cookbook/`, `reference/`), pages about working on the engine go in the engine developer guide (`engine_dev/`, `engine_dev/internals/`). Each section has an `index.md` that lists its pages; add a new page there."
 msgstr "문서는 두 부분이다. 게임 만들기 페이지는 게임 개발자 안내(`getting_started/`, `manual/`, `cookbook/`, `reference/`)에, 엔진 작업 페이지는 엔진 개발자 안내(`engine_dev/`, `engine_dev/internals/`)에 둔다. 묶음마다 페이지 목록을 담은 `index.md`가 있으니 새 페이지는 거기에 더한다."
