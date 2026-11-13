@@ -113,6 +113,10 @@ Other data points at a row with a `RowRef<Row>` field (the row id in files, a dr
 In the Tables panel (Window > Data, `Ctrl+T`) you add, copy, delete and reorder rows, edit cells, and see every reference to a missing row id. **CSV import and export** let you balance a table in Google Sheets or Excel: the first column is `id` and the other columns are the field paths. Importing replaces the table.
 A table registered with `reflect::kTableView` is display-only and stays out of the content hash.
 
+### Rule rows
+
+With the `objects` source module, designers build map gimmicks from table rows instead of new code. Programmers declare the list of effects (such as a speed multiplier) and a row type with four fields: when (`Enter`, `Inside`, `Exit`, `Timer`), effect, amount and duration. Each row goes in `tables/rules.table`, and a rule zone (an area) or a rule timer placed in the scene picks a row, for example "inside the mud: speed ×0.6". A duration of 0 means the effect lasts while the player is inside, or while the timer is on. The rows are table data in the content hash, so every peer runs them the same way. The module's docs ("Rule rows") show the code to add.
+
 ## Game text and languages
 
 Text that players see is never written in code. Each language has a string table `assets/strings/<language>.txt` with one `key = text` per line:
