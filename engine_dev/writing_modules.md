@@ -20,11 +20,12 @@ The repository root is the module folder. When a game adds the module, these are
 | `LICENSE` | Required. The template uses MIT |
 | `sim/` | State (`MEALKIT_STRUCT`) and system functions. Deterministic, checked by SimCheck |
 | `view/` | Drawing, view model helpers, effects |
-| `assets/<kind>/` | Only the kind folders of a project's `assets/` (`ui/`, `tables/`, `sounds/` and so on) |
+| `app/` | Screens and session code the game calls from its own `app/` (through `ctx.match`). Built like `view/`, never into the headless build; no `main` or game module macro |
+| `assets/<kind>/` | Only the kind folders of a project's `assets/` (`ui/`, `tables/`, `sounds/` and so on). Text for the module's screens goes in `assets/strings/<language>.txt`, read under the project's own table |
 | `art/` | Source files of external tools. Not shipped, not in the content hash |
 | `docs/index.md` | The module's documentation in English; `docs/index.ko.md` is an optional Korean version |
 
-`tests/`, `.github/` and build folders stay in the module repository. There is no `app/`: screens and sessions belong to the game. Keep one feature per module and split big features into small modules with requirements.
+`tests/`, `.github/` and build folders stay in the module repository. The game still owns its `app/` (main, game module, its `GameInstance`) and calls the module's `app/` code from there. Keep one feature per module and split big features into small modules with requirements.
 `tools\check_layout.ps1` checks a module folder with the same rules as a project.
 
 ## `module.txt`

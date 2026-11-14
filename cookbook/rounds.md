@@ -3,7 +3,7 @@
 **Goal**: a match with a start countdown, timed rounds, a round winner and a match winner.
 **From**: the sandbox sample's match (`samples/sandbox/sim/Match.cpp`).
 
-The engine's match flow (`mealkit/sim/MatchFlow.h`) keeps the phase (waiting, countdown, playing, round end, results) in the state and moves it forward every tick. The game only gives the rules and reacts to what the flow reports.
+The `matchflow` module (`matchflow/sim/MatchFlow.h`) keeps the phase (waiting, countdown, playing, round end, results) in the state and moves it forward every tick. The game only gives the rules and reacts to what the flow reports. It is a module, not part of every project: add it with `tools\module.ps1 add -Project <your project> matchflow` (until engine 0.9.8 it was the engine's `mealkit/sim/MatchFlow.h`).
 
 ## 1. Rules from tuning
 
@@ -24,7 +24,7 @@ The lengths and counts are tuning values (seconds in the file, ticks in `sim/`),
 
 % from: samples/sandbox/sim/Match.cpp
 ```cpp
-    handle(world, mealkit::sim::advanceMatch(s.flow, world.rules, s.tick, players));
+    handle(world, matchflow::advanceMatch(s.flow, world.rules, s.tick, players));
 ```
 
 % from: samples/sandbox/sim/Match.cpp

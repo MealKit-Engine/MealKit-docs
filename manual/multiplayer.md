@@ -32,7 +32,7 @@ Game controls in the example: `WASD` or a gamepad's left stick move, `Space` jum
 
 ## Screen flow
 
-The screens from the title to the results are game code, so each game changes them freely: the example keeps them in `source/app/Flow.cpp` and one `.ui` file per screen (`title`, `menu`, `join`, `lobby`, `loading`, `pause`, `results`, `message`).
+The screens from the title to the results belong to the game. The example uses the `screens` module (`modules/screens/`, `screens::Flow` and one `.ui` file per screen: `title`, `menu`, `join`, `lobby`, `loading`, `pause`, `results`, `message`); to change a screen, copy its `.ui` file into your `assets/ui/` and edit the copy. A game with other menus writes its own.
 Opening and closing rooms is engine work, and the game only calls `ctx.match` (`mealkit/game/MatchService.h`):
 
 | Call | When |

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  MealKit\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-11-02 21:59+0900\n"
+"POT-Creation-Date: 2026-11-15 01:24+0900\n"
 "PO-Revision-Date: 2026-10-18 16:00+0900\n"
 "Last-Translator: KingProtea99\n"
 "Language: ko\n"
@@ -56,11 +56,15 @@ msgstr "`-Template`으로 시작점을 고른다 (에디터의 새 프로젝트 
 msgid "`arena` (default) copies the example game's code and `assets/`: a physics party versus game with AI, boxes, jump pads and cutscenes."
 msgstr "`arena` (기본): 예제 게임의 코드와 `assets/`를 복사한다. AI, 상자, 점프대, 컷신이 있는 물리 파티 대전 게임이다."
 
-msgid "`empty` starts with one character per player on a floor, plus the title, lobby, pause and results screens. The screen flow code (`source/app/Flow.cpp`) and its screens are the same as the example game's."
-msgstr "`empty`: 바닥 위에 플레이어마다 캐릭터 하나와 타이틀·로비·일시정지·결과 화면으로 시작한다. 화면 흐름 코드(`source/app/Flow.cpp`)와 그 화면들은 예제 게임과 같다."
+msgid "`empty` starts with one character per player on a floor and goes straight into the match: no menus, no countdown, no rounds. `empty2d` is the same as a side view on a plane."
+msgstr "`empty`는 바닥 위에 플레이어마다 캐릭터 하나로 시작하고 바로 매치에 들어간다. 메뉴도, 카운트다운도, 라운드도 없다. `empty2d`는 같은 것을 평면 위 옆모습으로 보여 준다."
+
+#, python-brace-format
+msgid "`-Modules` adds source modules at once ({doc}`../manual/modules`): `screens` (title, menu, lobby, pause and results screens), `matchflow` (waiting, start countdown, rounds and results) and `camrig` (orbit and zoom, a 2D follow camera), for example `-Modules screens,matchflow`. Each module's `docs/index.md` shows the few lines that connect it to your game. The example game (`arena`) already uses all three."
+msgstr "`-Modules`는 소스 모듈을 바로 넣는다({doc}`../manual/modules`): `screens`(타이틀, 메뉴, 로비, 일시 정지, 결과 화면), `matchflow`(대기, 시작 카운트다운, 라운드, 결과), `camrig`(궤도 회전과 줌, 2D 따라가기 카메라). 예: `-Modules screens,matchflow`. 각 모듈의 `docs/index.md`에 게임에 연결하는 몇 줄이 있다. 예제 게임(`arena`)은 셋 다 이미 쓴다."
 
 msgid "Both fill in the files from `templates/project` (`mealkit.project`, `CMakeLists.txt`, `build.bat`, `build.ps1`, `editor.bat`, `.vscode/`, `README.md`, `CLAUDE.md`), and `mealkit.project` records the template in `templateName`. The engine location is the `engine` line in the project's `mealkit.project`, and the engine's `tools\\build.ps1` does the actual build (`build.bat` on Windows, `pwsh build.ps1` on Linux and macOS). The project's `CMakeLists.txt` includes `cmake/MealKit.cmake` and creates the game exe, the game DLL and the release target with a single `mealkit_add_game(...)`."
-msgstr "어느 쪽이든 `templates/project`의 파일(`mealkit.project`, `CMakeLists.txt`, `build.bat`, `build.ps1`, `editor.bat`, `.vscode/`, `README.md`, `CLAUDE.md`)을 채우고, `mealkit.project`의 `templateName`에 템플릿을 적는다. 엔진 위치는 프로젝트 `mealkit.project`의 `engine` 줄에 있고, 실제 빌드는 엔진의 `tools\build.ps1`이 한다(Windows는 `build.bat`, Linux와 macOS는 `pwsh build.ps1`). 프로젝트 `CMakeLists.txt`는 `cmake/MealKit.cmake`를 include하고 `mealkit_add_game(...)` 한 번으로 게임 exe·게임 DLL·출시 타깃을 만든다."
+msgstr "어느 쪽이든 `templates/project`의 파일(`mealkit.project`, `CMakeLists.txt`, `build.bat`, `build.ps1`, `editor.bat`, `.vscode/`, `README.md`, `CLAUDE.md`)을 채우고, `mealkit.project`의 `templateName`에 템플릿을 적는다. 엔진 위치는 프로젝트 `mealkit.project`의 `engine` 줄에 있고, 실제 빌드는 엔진의 `tools\\build.ps1`이 한다(Windows는 `build.bat`, Linux와 macOS는 `pwsh build.ps1`). 프로젝트 `CMakeLists.txt`는 `cmake/MealKit.cmake`를 include하고 `mealkit_add_game(...)` 한 번으로 게임 exe·게임 DLL·출시 타깃을 만든다."
 
 msgid "Upgrading a project"
 msgstr "프로젝트 업그레이드"

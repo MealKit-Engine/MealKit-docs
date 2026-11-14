@@ -14,11 +14,12 @@ A module is a folder `modules/<name>/` in your project:
 | `module.txt` | Name, version, engine version, required modules, title, summary, tags and an optional `icon` keyword (`gameplay`, `timer`, `ui`, `audio`, ...) for the picture in the Modules window |
 | `sim/` | Simulation code. Checked by SimCheck like your own `source/sim/` |
 | `view/` | Drawing, view models, effects |
-| `assets/<kind>/` | `.ui`, `.table`, sounds and so on, with the same kind folders as your `assets/` |
+| `app/` | Screens and session code your own `app/` calls (for example the `screens` module's title, lobby and results screens) |
+| `assets/<kind>/` | `.ui`, `.table`, sounds and so on, with the same kind folders as your `assets/`. `assets/strings/<language>.txt` holds the module's text; a line with the same key in your own `assets/strings/` wins |
 | `docs/index.md` | The module's documentation for the version you have |
 | `module.files` | Written by the module tool: where the module came from and a hash of every file |
 
-The build picks up `modules/*/sim/` and `modules/*/view/` the same way as your `source/`, so you do not change your `CMakeLists.txt`. Module code is in the simulation version, so players with different module code cannot join each other, like any other simulation change.
+The build picks up `modules/*/sim/`, `modules/*/view/` and `modules/*/app/` the same way as your `source/`, so you do not change your `CMakeLists.txt`. Module code is in the simulation version, so players with different module code cannot join each other, like any other simulation change.
 
 Engine modules (renderer, physics, sound, networking, ...) are folders here too and use the same commands; see {doc}`../engine_dev/engine_modules`.
 

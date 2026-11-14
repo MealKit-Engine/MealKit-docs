@@ -21,7 +21,7 @@ The simulation is one `World` (`sim/World.h`). It holds the data fixed at match 
 ```cpp
 MEALKIT_STRUCT(WorldState) {
     MEALKIT_FIELD(u32, tick, 0, "Tick");
-    MEALKIT_FIELD(mealkit::sim::MatchFlow, flow, {}, "Match flow");
+    MEALKIT_FIELD(matchflow::MatchFlow, flow, {}, "Match flow"); // matchflow module
     MEALKIT_ARRAY(PlayerSlot, mealkit::net::kMaxPlayers, slots, "Player slots");
     MEALKIT_FIELD(mealkit::sim::Pool<Pawn>, pawns, {}, "Pawns");
     MEALKIT_FIELD(mealkit::Pcg32, aiRng, {}, "AI random numbers");
@@ -46,7 +46,7 @@ State must be plain data: no pointers and no strings. Objects refer to each othe
 void World::step(const mealkit::net::TickInputs& tickInputs) {
     // copy this tick's 8-byte inputs into world.inputs, clear last tick's events
     applyCommands(*this, tickInputs); // commands first
-    updateMatch(*this);               // countdown → playing → finished
+    updateMatch(*this);               // countdown → playing → finished (matchflow module)
     respawnPawns(*this);
     controlPawns(*this);              // inputs and AI → velocity, jump, push
     usePads(*this);
@@ -93,9 +93,9 @@ u32 left = flow.phaseEnd.remaining(tick);                // for a countdown disp
 
 ## Match flow
 
-Rounds, timers, teams and win conditions come from the engine's `mealkit::sim::MatchFlow` (`mealkit/sim/MatchFlow.h`). The flow goes waiting → countdown → playing → round end → (countdown for the next round) → results. The rules are tuning values: `minPlayers`, `countdown`, `roundLength`, `roundEndDelay`, `rounds` (best of N), `scoreLimit`, `lives` (elimination) and `teams` (side = slot number % teams; 0 is free for all). A round ends when a side reaches the score limit, when at most one side has players left (with lives), or when time runs out (highest score wins, a tie is a draw).
+Rounds, timers, teams and win conditions come from the `matchflow` module's `matchflow::MatchFlow` (`matchflow/sim/MatchFlow.h`), which the example game uses. A game without rounds (a card battle, a sandbox) leaves the module out and keeps its own phase, or none. The flow goes waiting → countdown → playing → round end → (countdown for the next round) → results. The rules are tuning values: `minPlayers`, `countdown`, `roundLength`, `roundEndDelay`, `rounds` (best of N), `scoreLimit`, `lives` (elimination) and `teams` (side = slot number % teams; 0 is free for all). A round ends when a side reaches the score limit, when at most one side has players left (with lives), or when time runs out (highest score wins, a tie is a draw).
 
-`sim/Match.cpp` calls `mealkit::sim::advanceMatch` once per tick with each player's round score and whether they are still in. It returns the transition made on that tick, and the game calls its own functions for it (`onRoundStart` resets scores and lives and puts everyone back at the spawn points). The scoreboard (`score`, `lives`, `falls`) lives in `PlayerSlot`. The screens only read `flow.phase`, `flow.round`, `flow.roundWinner` and `flow.matchWinner`.
+`sim/Match.cpp` calls `matchflow::advanceMatch` once per tick with each player's round score and whether they are still in. It returns the transition made on that tick, and the game calls its own functions for it (`onRoundStart` resets scores and lives and puts everyone back at the spawn points). The scoreboard (`score`, `lives`, `falls`) lives in `PlayerSlot`. The screens only read `flow.phase`, `flow.round`, `flow.roundWinner` and `flow.matchWinner`.
 
 Durations come from `Ticks` fields in the tuning, scene objects or tables ({doc}`assets`, "Time values"), so the code has no seconds or tick numbers in it.
 
