@@ -92,4 +92,8 @@ Without `--gpu-capture` or without an installed tool, the menu item is hidden. T
 Play mode runs the game inside the editor with the open scene, as saved (MkRender saves before it asks the editor to play). It can run several players at once, pause, and rewind.
 For automated checks, the editor also runs from the command line (see {doc}`../reference/command_line`).
 
+The list at the right end of the viewport's bar sets the play view size, like a game view's aspect list: **Free Aspect** fills the tab, and an aspect (16:9, 4:3, ...) or a resolution (1920x1080, ...) gives the game the largest rectangle of that shape, centred, with black bars around it. A resolution also shows the scale it is drawn at. While paused (`F6`) the game gets a frame time of 0, so its presentation (animations, camera, UI timers) stops with the simulation; `F7` gives it the time of the tick it steps.
+
+The button at the right end of the viewport's bar, a double click on the viewport's tab, or **Window > Maximize Viewport** makes the viewport fill the window, with the docked panels hidden (like a maximized game view); the same button, a double click on the bar, or the menu item brings the layout back. The panels keep their places.
+
 How the editor works inside (game DLL loading, hot reload, play mode, rewind) is in {doc}`../engine_dev/internals/editor`.

@@ -297,6 +297,12 @@ msgstr "플레이 모드"
 msgid "Play mode runs the game inside the editor with the open scene, as saved (MkRender saves before it asks the editor to play). It can run several players at once, pause, and rewind. For automated checks, the editor also runs from the command line (see {doc}`../reference/command_line`)."
 msgstr "플레이 모드는 열린 씬을 저장된 그대로 에디터 안에서 돌린다(MkRender는 에디터에 플레이를 요청하기 전에 저장한다). 여러 명을 같이 돌리고, 일시정지하고, 되감을 수 있다. 자동 검사용으로 에디터를 명령줄에서도 실행할 수 있다({doc}`../reference/command_line`)."
 
+msgid "The list at the right end of the viewport's bar sets the play view size, like a game view's aspect list: **Free Aspect** fills the tab, and an aspect (16:9, 4:3, ...) or a resolution (1920x1080, ...) gives the game the largest rectangle of that shape, centred, with black bars around it. A resolution also shows the scale it is drawn at. While paused (`F6`) the game gets a frame time of 0, so its presentation (animations, camera, UI timers) stops with the simulation; `F7` gives it the time of the tick it steps."
+msgstr "뷰포트 막대 오른쪽 끝의 목록은 게임 뷰의 비율 목록처럼 재생 화면 크기를 정한다. **자유 비율**은 탭을 가득 채우고, 비율(16:9, 4:3, ...)이나 해상도(1920x1080, ...)를 고르면 게임은 그 모양으로 들어가는 가장 큰 사각형에 가운데 맞춰 그려지고 둘레는 검게 남는다. 해상도는 그려지는 배율도 보여 준다. 일시정지(`F6`) 동안 게임이 받는 프레임 시간은 0이라 연출(애니메이션, 카메라, UI 타이머)도 시뮬레이션과 함께 멈춘다. `F7`은 진행한 틱만큼의 시간을 준다."
+
+msgid "The button at the right end of the viewport's bar, a double click on the viewport's tab, or **Window > Maximize Viewport** makes the viewport fill the window, with the docked panels hidden (like a maximized game view); the same button, a double click on the bar, or the menu item brings the layout back. The panels keep their places."
+msgstr "뷰포트 막대 오른쪽 끝의 버튼, 뷰포트 탭 더블클릭, **창 > 뷰포트 최대화**는 도킹된 패널을 숨기고 뷰포트를 창 전체로 키운다(게임 뷰 최대화처럼). 같은 버튼, 막대 더블클릭, 메뉴 항목으로 레이아웃으로 돌아온다. 패널 자리는 그대로 남는다."
+
 #, python-brace-format
 msgid "How the editor works inside (game DLL loading, hot reload, play mode, rewind) is in {doc}`../engine_dev/internals/editor`."
 msgstr "에디터가 안에서 어떻게 돌아가는지(게임 DLL 불러오기, 핫 리로드, 플레이 모드, 되감기)는 {doc}`../engine_dev/internals/editor`에 있다."
